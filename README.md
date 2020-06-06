@@ -11,4 +11,4 @@ I also added Unity Vectors to floatTypes automatic conversions --> example: new 
 
 All the code I wrote, was only checked by me many times.
 
-Please BE Aware that the code could still have some errors. If you ever encounter an error, please notify me ASAP to prevent others from falling into ditches. Enjoy these 765 lines of extension methods !
+Please BE Aware that the code could still have some errors. If you ever encounter an error, please notify me ASAP to prevent others from falling into ditches. Enjoy these 1080 lines of extension methods !
