@@ -11,15 +11,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Runtime.InteropServices;
 using Unity.Mathematics;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 using Vector4 = UnityEngine.Vector4;
+using Uei = UnityEngine.Internal;
 
 namespace LTMX
 {
-    public static class UnityMathematicsExtensions
+    public static partial class UnityMathematicsExtensions
     {
     
         // Vector Specific Functions ------------------------------------------------------
@@ -638,20 +640,35 @@ namespace LTMX
         public static double4 cmul(this double4 f) => f.x * f.y * f.z * f.w;
         public static double3 cmul(this double3 f) => f.x * f.y * f.z;
         public static double2 cmul(this double2 f) => f.x * f.y;
+        
+        // One Minus -----------------------------------------------------------------------------------
 
-
-        private const int G = 7;
-
-        private static readonly double[] P = {0.99999999999980993, 676.5203681218851, -1259.1392167224028,
-            771.32342877765313, -176.61502916214059, 12.507343278686905,
-            -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7};
+        public static float4 onem(this float4 f) => 1 - f;
+        public static float3 onem(this float3 f) => 1 - f;
+        public static float2 onem(this float2 f) => 1 - f;
+        public static float onem(this float f) => 1 - f;
+        public static int onem(this int f) => 1 - f;
+        
+        public static double4 onem(this double4 f) => 1 - f;
+        public static double3 onem(this double3 f) => 1 - f;
+        public static double2 onem(this double2 f) => 1 - f;
+        public static double onem(this double f) => 1 - f;
+        
+        public static float4 onem(this Vector4 f) => 1 - f.asfloat();
+        public static float3 onem(this Vector3 f) => 1 - f.asfloat();
+        public static float2 onem(this Vector2 f) => 1 - f.asfloat();
+        
      
         //https://rosettacode.org/wiki/Gamma_function#C.23
         
         //Factorial Lanczos Interpolated ---------------------------------------------------------------
+        
+        private static readonly double[] P = {0.99999999999980993, 676.5203681218851, -1259.1392167224028,
+            771.32342877765313, -176.61502916214059, 12.507343278686905,
+            -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7};
 
         /// <summary>Returns the factorial componentwise Lanczos-interpolated value (gamma function)</summary>
-        public static float fct(this float f) => (float)f.asdouble().fct();
+        // public static float fct(this float f) => (float)f.asdouble().fct();
         /// <inheritdoc cref="fct(float)"/>>
         public static double fct(this double f)
         {
@@ -663,7 +680,20 @@ namespace LTMX
             for (var i = 1; i < 9; i++) x += P[i] / (f2 + i);
             
             var t = f2 + 7.5;
-            return (2 * math.PI).sqrt() * t.pow(f2 + 0.5) * (-t).exp() * x;
+            return (2 * math.PI_DBL).sqrt() * t.pow(f2 + 0.5) * (-t).exp() * x;
+        }
+        
+        public static float fct(this float f)
+        {
+            if (f == 0 || f == 1) return 1;
+            if (f < 0.5f) return math.PI / ((math.PI * f).sin() * fct(1 - f));
+
+            var f2 = f - 1;
+            var x = (float)P[0];
+            for (var i = 1; i < 9; i++) x += (float)P[i] / (f2 + i);
+            
+            var t = f2 + 7.5f;
+            return (2 * math.PI).sqrt() * t.pow(f2 + 0.5f) * (-t).exp() * x;
         }
         
         /// <inheritdoc cref="fct(float)"/>>
@@ -674,9 +704,9 @@ namespace LTMX
             
             z -= 1;
             Complex x = P[0];
-            for (var i = 1; i < G + 2; i++) x += P[i]/(z+i);
+            for (var i = 1; i < 9; i++) x += P[i]/(z+i);
             
-            var t = z + G + 0.5;
+            var t = z + 7.5;
             return Complex.Sqrt(2 * math.PI_DBL) * Complex.Pow(t, z + 0.5) * Complex.Exp(-t) * x;
         }
         
@@ -1210,13 +1240,157 @@ namespace LTMX
         //Existing In UnityEngine Code, converted
 
         /// Loops the value t, so that it is never larger than length and never smaller than 0.
-        public static float repeat(float t, float length) => t - (t / length).floor() * length.clamp(0, length);
+        public static float repeat(this float t, float length) => (t - (t / length).floor() * length).clamp(0, length);
         
         /// PingPongs the value t, so that it is never larger than length and never smaller than 0.
         public static float pingpong(float t, float length)
         {
-            t = repeat(t, length * 2);
+            t = t.repeat(length * 2);//repeat(t, length * 2);
             return length - (t - length).abs();
         }
+        
+        
+        // https://gist.github.com/SaffronCR/b0802d102dd7f262118ac853cd5b4901#file-mathutil-cs-L24
+        
+        // Evil floating point bit level hacking.
+        [StructLayout(LayoutKind.Explicit)]
+        private struct FloatIntUnion
+        {
+            [FieldOffset(0)] public float f;
+            [FieldOffset(0)] public int tmp;
+        }
+        /// The Infamous Unusual Fast Inverse Square Root (TM).
+        public static float fastrsqrt(this float z)
+        {
+            if (z == 0) return 0;
+            FloatIntUnion u;
+            u.tmp = 0;
+            float xhalf = 0.5f * z;
+            u.f = z;
+            u.tmp = 0x5f375a86 - (u.tmp >> 1);
+            u.f *= 1.5f - xhalf * u.f * u.f;
+            return u.f * z;
+        }
+        
+        /// Returns the distance between a and b (fast but very low accuracy).
+        public static float fastdistance(float4 a, float4 b) => fastsqrt((a - b).sqr().sum());
+        public static float fastdistance(float3 a, float3 b) => fastsqrt((a - b).sqr().sum());
+        public static float fastdistance(float2 a, float2 b) => fastsqrt((a - b).sqr().sum());
+
+        public static float fastlength(this float4 f) => fastsqrt(f.sqr().sum());
+        public static float fastlength(this float3 f) => fastsqrt(f.sqr().sum());
+        public static float fastlength(this float2 f) => fastsqrt(f.sqr().sum());
+        
+        public static float fastlength(this Vector4 f) => fastsqrt(f.sqr().sum());
+        public static float fastlength(this Vector3 f) => fastsqrt(f.sqr().sum());
+        public static float fastlength(this Vector2 f) => fastsqrt(f.sqr().sum());
+
+        /// Low accuracy sqrt method for fast calculation.
+        public static float fastsqrt(this float z)
+        {
+            if (z == 0) return 0;
+            FloatIntUnion u;
+            u.tmp = 0;
+            u.f = z;
+            u.tmp -= 1 << 23; // Subtract 2^m.
+            u.tmp >>= 1; // Divide by 2.
+            u.tmp += 1 << 29; // Add ((b + 1) / 2) * 2^m.
+            return u.f;
+        }
+        
+
+        /// Determine the signed angle between two vectors, with normal 'n' as the rotation axis.
+
+        public static float AngleSigned(float3 f1, float3 f2, float3 n) => math.atan2(math.dot(n, math.cross(f1, f2)), math.dot(f1, f2)).degrees();
+        public static double AngleSigned(double3 f1, double3 f2, double3 n) => math.atan2(math.dot(n, math.cross(f1, f2)), math.dot(f1, f2)).degrees();
+        
+        /// <summary>
+        /// Sample a parabola trajectory
+        /// </summary>
+        /// <param name="start">Start position</param>
+        /// <param name="end">End position</param>
+        /// <param name="height">Height of the parabola</param>
+        /// <param name="t">Time parameter to sample</param>
+        /// <returns>The position in the parabola at time t</returns>
+        public static float3 SampleParabola(float3 start, float3 end, float height, float t)
+        {
+            if ((start.y - end.y).abs() < 0.1f)
+            {
+                // Start and end are roughly level, pretend they are - simpler solution with less steps
+                var travelDirection = end - start;
+                var result = start + t * travelDirection;
+                result.y += (t * math.PI).sin() * height;
+                return result;
+            } else {
+                // Start and end are not level, gets more complicated
+                var travelDirection = end - start;
+                var levelDirection = end - new float3(start.x, end.y, start.z);
+                var right = math.cross(travelDirection, levelDirection);
+                var up = math.cross(right, travelDirection);
+                if (end.y > start.y) up = -up;
+                var result = start + t * travelDirection;
+                result += (t * Mathf.PI).sin() * height * up.normalized();
+                return result;
+            }
+        }
+
+        public const float TAU = 6.28318530717959f;
+        public const double TAU_DBL = 6.283185307179586477;
+        public const float PHI = 1.61803398875f;
+        public const double PHI_DBL = 1.6180339887498948482;
+        public const float PINFINITY = float.PositiveInfinity;
+        public const float NINFINITY = float.NegativeInfinity;
+        public const double PINFINITY_DBL = double.PositiveInfinity;
+        public const double NINFINITY_DBL = double.NegativeInfinity;
+
+        //TODO: cosec, cotan, and other trig functions
+        
+        // doing
+
+        // https://github.com/FreyaHolmer/Mathfs/blob/master/Mathfs.cs
+        
+        public static float smootherstep(this float f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();
+        public static float smoothstepcos(this float f) => - (f * math.PI).cos() * 0.5f + 0.5f;
+        public static float eerp(this float f, float a, float b) => a.pow(1 - f) * b.pow(f);
+        public static float uneerp(this float f, float a, float b) => (a / f).ln() / (a / b).ln();
+
+        public static float SmoothDamp( float current, float target, ref float currentVelocity, float smoothTime, float maxSpeed ) {
+            float deltaTime = Time.deltaTime;
+            return SmoothDamp( current, target, ref currentVelocity, smoothTime, maxSpeed, deltaTime );
+        }
+
+        public static float SmoothDamp( float current, float target, ref float currentVelocity, float smoothTime ) 
+        {
+            return SmoothDamp( current, target, ref currentVelocity, smoothTime, float.PositiveInfinity, Time.deltaTime );
+        }
+        
+        // From Game Programming Gems 4 Chapter 1.10
+        public static float SmoothDamp( float current, float target, ref float currentVelocity, float smoothTime, [Uei.DefaultValue( "Mathf.Infinity" )] float maxSpeed, [Uei.DefaultValue( "Time.deltaTime" )] float deltaTime ) {
+            
+            smoothTime = smoothTime.max(0.0001f);
+            var omega = 2F / smoothTime;
+
+            var x = omega * deltaTime;
+            var exp = (1 + x + 0.48f * x.sqr() + 0.235f * x.cube()).rcp();
+            var change = current - target;
+            var originalTo = target;
+
+            // Clamp maximum speed
+            var maxChange = maxSpeed * smoothTime;
+            change = change.clamp(- maxChange, maxChange);
+            target = current - change;
+
+            var temp = (currentVelocity + omega * change) * deltaTime;
+            currentVelocity = (currentVelocity - omega * temp) * exp;
+            var output = target + (change + temp) * exp;
+
+            // Prevent overshooting
+            if (originalTo - current > 0 != output > originalTo) return output;
+            output = originalTo;
+            currentVelocity = ( output - originalTo ) / deltaTime;
+
+            return output;
+        }
+
     }
 }
