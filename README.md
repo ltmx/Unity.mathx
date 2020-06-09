@@ -3,12 +3,8 @@ Extension method syntax for generic Unity.Mathematics data-types & additional me
 
 <h3>SYNTAX</h3>
   
-<p>Changes ➤</p>
-<p><code class='language-cs'>var v1 = math.cos(math.clamp(f.magnitude, 0, 10));</code>
-<br><code class='language-cs'>return v1 * v1;</code>
-</p>
-<p>Into ➤</p>
-<p><code class='language-cs'> return f.length().clamp(0, 10).cos().sqr(); </code></p>
+<p>Changes ➤<code class='language-cs'>var v1 = math.cos(math.clamp(f.magnitude, 0, 10)); return v1 * v1;</code></p>
+<p>Into ➤<code class='language-cs'> return f.length().clamp(0, 10).cos().sqr(); </code></p>
 
 <br>
 <p>Unity Vectors are converted to floatTypes by default</p>
