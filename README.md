@@ -2,11 +2,22 @@
 Extension method syntax for generic Unity.Mathematics data-types & additional methods
 
 <h3>SYNTAX</h3>
-<blockquote><p>Converts ➤ math.cos(math.clamp(V.magnitude, 0, 10)) * math.cos(math.clamp(V.magnitude, 0, 10))</p>
-<p>To ➤ V.length().clamp(0, 10).cos().sqr()</blockquote></p>
+  
+<p>Changes ➤</p>
+<p><code class='language-cs'>var v1 = math.cos(math.clamp(f.magnitude, 0, 10));</code>
+<br><code class='language-cs'>return v1 * v1;</code>
+</p>
+<p>Into ➤</p>
+<p><code class='language-cs'> return f.length().clamp(0, 10).cos().sqr(); </code></p>
 
-Unity Vectors are converted to floatTypes by default
+<br>
+<p>Unity Vectors are converted to floatTypes by default</p>
 <blockquote> ex: new Vector3(0, 3, 4).abs() is actually a float3</blockquote>
+
+<h3>INSTALL</h3>
+
+<p><b>Git Package URL</b> > https://github.com/LTMX/Unity.Mathematics-Extensions.git</p>
+<p><b>Unity :</b> Window > Package Manager > Add Package From Git URL</p>
 
 <h3>PREVIEW PHASE</h3>
 This code may not be suitable for production, still largely undocumented.
