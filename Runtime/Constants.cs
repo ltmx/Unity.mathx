@@ -1,6 +1,6 @@
-﻿namespace LTMX
+﻿namespace UME
 {
-    public partial class UnityMathematicsExtensions
+    public static partial class UnityMathematicsExtensions
     {
         public const double HPI_DBL = 1.57079632679489661923;
         public const float HPI = 1.570796326795f;

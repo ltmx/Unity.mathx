@@ -1,10 +1,9 @@
-﻿using System;
-using Unity.Mathematics;
+﻿using Unity.Mathematics;
 using UnityEngine;
 
-namespace LTMX
+namespace UME
 {
-    public partial class UnityMathematicsExtensions
+    public static partial class UnityMathematicsExtensions
     {       
         //translated from UnityEngine
         /// Returns the signed angle between two vectors in radians

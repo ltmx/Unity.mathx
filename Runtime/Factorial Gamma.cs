@@ -4,9 +4,9 @@ using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 using Vector4 = UnityEngine.Vector4;
 
-namespace LTMX
+namespace UME
 {
-    public partial class UnityMathematicsExtensions
+    public static partial class UnityMathematicsExtensions
     {
         // See : https://rosettacode.org/wiki/Gamma_function#C.23
         // Factorial Gamma Function - Lanczos Interpolated -------------------------------------------------

@@ -1,11 +1,9 @@
-﻿using System.ComponentModel;
-using Unity.Mathematics;
+﻿using Unity.Mathematics;
 using UnityEngine;
-using Uei = UnityEngine.Internal;
 
-namespace LTMX
+namespace UME
 {
-    public partial class UnityMathematicsExtensions
+    public static partial class UnityMathematicsExtensions
     {
         // https://github.com/FreyaHolmer/Mathfs/blob/master/Mathfs.cs
 
@@ -57,7 +55,7 @@ namespace LTMX
 
         // From Game Programming Gems 4 Chapter 1.10
         public static float4 smoothdamp(float4 current, float4 target, ref float4 currentVelocity, float smoothTime,
-            [DefaultValue("Mathf.Infinity")] float maxSpeed, [DefaultValue("Time.deltaTime")] float deltaTime)
+            [System.ComponentModel.DefaultValue("Mathf.Infinity")] float maxSpeed, [System.ComponentModel.DefaultValue("Time.deltaTime")] float deltaTime)
         {
             smoothTime = smoothTime.max(0.0001f);
             var omega = 2 / smoothTime;
@@ -89,8 +87,8 @@ namespace LTMX
         }
 
         public static float smoothdamp(float current, float target, ref float currentVelocity, float smoothTime,
-            [Uei.DefaultValueAttribute("Mathf.Infinity")]
-            float maxSpeed, [Uei.DefaultValueAttribute("Time.deltaTime")]
+            [UnityEngine.Internal.DefaultValueAttribute("Mathf.Infinity")]
+            float maxSpeed, [UnityEngine.Internal.DefaultValueAttribute("Time.deltaTime")]
             float deltaTime)
         {
             smoothTime = smoothTime.max(0.0001f);
@@ -120,7 +118,7 @@ namespace LTMX
 
 
         public static float3 smoothdamp(float3 current, float3 target, ref float3 currentVelocity, float smoothTime,
-            [DefaultValue("Mathf.Infinity")] float maxSpeed, [DefaultValue("Time.deltaTime")] float deltaTime)
+            [System.ComponentModel.DefaultValue("Mathf.Infinity")] float maxSpeed, [System.ComponentModel.DefaultValue("Time.deltaTime")] float deltaTime)
         {
             smoothTime = smoothTime.max(0.0001f);
             var omega = 2 / smoothTime;
@@ -152,7 +150,7 @@ namespace LTMX
         }
 
         public static float2 smoothdamp(float2 current, float2 target, ref float2 currentVelocity, float smoothTime,
-            [DefaultValue("Mathf.Infinity")] float maxSpeed, [DefaultValue("Time.deltaTime")] float deltaTime)
+            [System.ComponentModel.DefaultValue("Mathf.Infinity")] float maxSpeed, [System.ComponentModel.DefaultValue("Time.deltaTime")] float deltaTime)
         {
             smoothTime = smoothTime.max(0.0001f);
             var omega = 2 / smoothTime;

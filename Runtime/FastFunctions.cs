@@ -2,9 +2,9 @@
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace LTMX
+namespace UME
 {
-    public partial class UnityMathematicsExtensions
+    public static partial class UnityMathematicsExtensions
     {
         // https://gist.github.com/SaffronCR/b0802d102dd7f262118ac853cd5b4901#file-mathutil-cs-L24
         

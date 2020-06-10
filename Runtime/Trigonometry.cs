@@ -1,11 +1,10 @@
 ﻿using Unity.Mathematics;
 using UnityEngine;
 
-namespace LTMX
+namespace UME
 {
-    public partial class UnityMathematicsExtensions
+    public static  partial class UnityMathematicsExtensions
     {
-        
         // Trigonometry ----------------------------------------------------------------------------------
 
         // Sine

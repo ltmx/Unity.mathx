@@ -8,9 +8,9 @@ using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 using Vector4 = UnityEngine.Vector4;
 
-namespace LTMX
+namespace UME
 {
-    public partial class UnityMathematicsExtensions
+    public static partial class UnityMathematicsExtensions
     {
         // Type Conversion -----------------------------------------------------------------------------
         
@@ -116,5 +116,4 @@ namespace LTMX
         public static float3 asfloat3(this Color c) => new float3(c.r, c.g, c.b);
         public static float2 asfloat2(this Color c) => new float2(c.r, c.g);
     }
-    
 }

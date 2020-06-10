@@ -1,9 +1,10 @@
 ﻿using Unity.Mathematics;
 using UnityEngine;
+using static Unity.Mathematics.math;
 
-namespace LTMX
+namespace UME
 {
-    public partial class UnityMathematicsExtensions
+    public static partial class UnityMathematicsExtensions
     {
         // Exponents ------------------------------------------
         
@@ -57,20 +58,20 @@ namespace LTMX
         // Logarithms -----------------------------------------------
         
         // Natural Logarithm renamed to "ln", to avoid confusion in the scientific community
-        public static float4 ln(this float4 f) => math.log(f);
-        public static float3 ln(this float3 f) => math.log(f);
-        public static float2 ln(this float2 f) => math.log(f);
-        public static float ln(this float f) => math.log(f);
-        public static float ln(this int f) => math.log(f);
+        public static float4 ln(this float4 f) => log(f);
+        public static float3 ln(this float3 f) => log(f);
+        public static float2 ln(this float2 f) => log(f);
+        public static float ln(this float f) => log(f);
+        public static float ln(this int f) => log(f);
         
-        public static float4 ln(this Vector4 f) => math.log(f);
-        public static float3 ln(this Vector3 f) => math.log(f);
-        public static float2 ln(this Vector2 f) => math.log(f);
+        public static float4 ln(this Vector4 f) => log(f);
+        public static float3 ln(this Vector3 f) => log(f);
+        public static float2 ln(this Vector2 f) => log(f);
 
-        public static double4 ln(this double4 f) => math.log(f);
-        public static double3 ln(this double3 f) => math.log(f);
-        public static double2 ln(this double2 f) => math.log(f);
-        public static double ln(this double f) => math.log(f);
+        public static double4 ln(this double4 f) => log(f);
+        public static double3 ln(this double3 f) => log(f);
+        public static double2 ln(this double2 f) => log(f);
+        public static double ln(this double f) => log(f);
         
         // Log Base 2
         public static float4 log2(this float4 f) => math.log2(f);

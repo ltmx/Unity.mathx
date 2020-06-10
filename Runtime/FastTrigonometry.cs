@@ -1,7 +1,8 @@
-﻿namespace LTMX
+﻿
+//Refactored and optimized by LTMX - from - https://web.archive.org/web/20180616003313/http://lab.polygonal.de/2007/07/18/fast-and-accurate-sinecosine-approximation/
+namespace UME
 {
-    //Refactored and optimized by LTMX - from - https://web.archive.org/web/20180616003313/http://lab.polygonal.de/2007/07/18/fast-and-accurate-sinecosine-approximation/
-    public partial class UnityMathematicsExtensions
+    public static partial class UnityMathematicsExtensions
     {
         private const float t1 = 1.27323954f;
         private const float t2 = 0.405284735f;
