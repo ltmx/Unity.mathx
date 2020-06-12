@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -39,25 +40,39 @@ namespace UME
             return u.f;
         }
         
+        public static float4 fastsqrt(this float4 f) => new float4(f.x.fastsqrt(), f.y.fastsqrt(), f.z.fastsqrt(), f.w.fastsqrt());
+        public static float3 fastsqrt(this float3 f) => new float3(f.x.fastsqrt(), f.y.fastsqrt(), f.z.fastsqrt());
+        public static float2 fastsqrt(this float2 f) => new float2(f.x.fastsqrt(), f.y.fastsqrt());
+        
+        public static float4 fastrsqrt(this float4 f) => new float4(f.x.fastrsqrt(), f.y.fastrsqrt(), f.z.fastrsqrt(), f.w.fastrsqrt());
+        public static float3 fastrsqrt(this float3 f) => new float3(f.x.fastrsqrt(), f.y.fastrsqrt(), f.z.fastrsqrt());
+        public static float2 fastrsqrt(this float2 f) => new float2(f.x.fastrsqrt(), f.y.fastrsqrt());
+
+
+
         /// Returns the distance between a and b (fast but low accuracy)
-        public static float fastdistance(float4 a, float4 b) => fastsqrt((a - b).sqr().sum());
+        public static float fastdistance(float4 a, float4 b) => fastsqrt((a - b).selfmul());
         /// <inheritdoc cref="fastdistance(float4,float4)"/>
-        public static float fastdistance(float3 a, float3 b) => fastsqrt((a - b).sqr().sum());
+        public static float fastdistance(float3 a, float3 b) => fastsqrt((a - b).selfmul());
         /// <inheritdoc cref="fastdistance(float4,float4)"/>
-        public static float fastdistance(float2 a, float2 b) => fastsqrt((a - b).sqr().sum());
+        public static float fastdistance(float2 a, float2 b) => fastsqrt((a - b).selfmul());
+        
+        
+        
+        // sadly not faster
 
         /// Returns the length of the vector (fast but low accuracy)
-        public static float fastlength(this float4 f) => fastsqrt(f.sqr().sum());
+        public static float fastlength(this float4 f) => fastsqrt(f.selfmul());
         /// <inheritdoc cref="fastlength(float4)"/>
-        public static float fastlength(this float3 f) => fastsqrt(f.sqr().sum());
+        public static float fastlength(this float3 f) => fastsqrt(f.selfmul());
         /// <inheritdoc cref="fastlength(float4)"/>
-        public static float fastlength(this float2 f) => fastsqrt(f.sqr().sum());
+        public static float fastlength(this float2 f) => fastsqrt(f.selfmul());
         
         /// <inheritdoc cref="fastlength(float4)"/>
-        public static float fastlength(this Vector4 f) => fastsqrt(f.sqr().sum());
+        public static float fastlength(this Vector4 f) => fastsqrt(f.selfmul());
         /// <inheritdoc cref="fastlength(float4)"/>
-        public static float fastlength(this Vector3 f) => fastsqrt(f.sqr().sum());
+        public static float fastlength(this Vector3 f) => fastsqrt(f.selfmul());
         /// <inheritdoc cref="fastlength(float4)"/>
-        public static float fastlength(this Vector2 f) => fastsqrt(f.sqr().sum());
+        public static float fastlength(this Vector2 f) => fastsqrt(f.selfmul());
     }
 }

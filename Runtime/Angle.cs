@@ -81,7 +81,7 @@ namespace UME
         /// Returns the result of rotating a vector by a unit quaternion
         public static float3 rotate(this float3 f, quaternion rotation) => math.rotate(rotation, f);
         /// Returns the result of transforming a vector by a quaternion
-        public static float3 mul(this float3 f, quaternion rotation) => math.rotate(rotation, f);
+        public static float3 mulq(this float3 f, quaternion rotation) => math.mul(rotation, f);
         
     }
 }
