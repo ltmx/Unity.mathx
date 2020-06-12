@@ -40,7 +40,7 @@ namespace UME
             for (var i = 1; i < 9; i++) x += (float)Table[i] / (f2 + i);
             
             var t = f2 + 7.5f;
-            return (2 * math.PI).sqrt() * t.pow(f2 + 0.5f) * (-t).exp() * x;
+            return TAU.sqrt() * t.pow(f2 + 0.5f) * exp(-t) * x;
         }
         
         /// <inheritdoc cref="fct(float)"/>>
