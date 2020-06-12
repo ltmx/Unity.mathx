@@ -8,48 +8,24 @@ namespace UME
         // https://github.com/FreyaHolmer/Mathfs/blob/master/Mathfs.cs
 
         // SmoothDamp ------------------------------------------------------------------------------------------------
-        public static float4 smoothdamp(float4 current, float4 target, ref float4 currentVelocity, float smoothTime,
-            float maxSpeed)
+        public static float4 smoothdamp(float4 current, float4 target, ref float4 currentVelocity, float smoothTime, float maxSpeed = float.PositiveInfinity)
         {
             return smoothdamp(current, target, ref currentVelocity, smoothTime, maxSpeed, Time.deltaTime);
         }
 
-        public static float4 smoothdamp(float4 current, float4 target, ref float4 currentVelocity, float smoothTime)
-        {
-            return smoothdamp(current, target, ref currentVelocity, smoothTime, float.PositiveInfinity, Time.deltaTime);
-        }
-
-        public static float3 smoothdamp(float3 current, float3 target, ref float3 currentVelocity, float smoothTime,
-            float maxSpeed)
+        public static float3 smoothdamp(float3 current, float3 target, ref float3 currentVelocity, float smoothTime, float maxSpeed = float.PositiveInfinity)
         {
             return smoothdamp(current, target, ref currentVelocity, smoothTime, maxSpeed, Time.deltaTime);
         }
 
-        public static float3 smoothdamp(float3 current, float3 target, ref float3 currentVelocity, float smoothTime)
-        {
-            return smoothdamp(current, target, ref currentVelocity, smoothTime, float.PositiveInfinity, Time.deltaTime);
-        }
-
-        public static float2 smoothdamp(float2 current, float2 target, ref float2 currentVelocity, float smoothTime,
-            float maxSpeed)
+        public static float2 smoothdamp(float2 current, float2 target, ref float2 currentVelocity, float smoothTime, float maxSpeed = float.PositiveInfinity)
         {
             return smoothdamp(current, target, ref currentVelocity, smoothTime, maxSpeed, Time.deltaTime);
         }
 
-        public static float2 smoothdamp(float2 current, float2 target, ref float2 currentVelocity, float smoothTime)
-        {
-            return smoothdamp(current, target, ref currentVelocity, smoothTime, float.PositiveInfinity, Time.deltaTime);
-        }
-
-        public static float smoothdamp(float current, float target, ref float currentVelocity, float smoothTime,
-            float maxSpeed)
+        public static float smoothdamp(float current, float target, ref float currentVelocity, float smoothTime, float maxSpeed = float.PositiveInfinity)
         {
             return smoothdamp(current, target, ref currentVelocity, smoothTime, maxSpeed, Time.deltaTime);
-        }
-
-        public static float smoothdamp(float current, float target, ref float currentVelocity, float smoothTime)
-        {
-            return smoothdamp(current, target, ref currentVelocity, smoothTime, float.PositiveInfinity, Time.deltaTime);
         }
 
 
@@ -131,8 +107,6 @@ namespace UME
             // Clamp maximum speed
             var maxChange = maxSpeed * smoothTime;
             change = change.clamp(-maxChange, maxChange);
-            // var num9 = change.sqr().sum();
-            // if (num9 > maxChange.sqr()) change /= num9.sqrt() * maxChange;
             target = current - change;
 
             var temp = (currentVelocity + omega * change) * deltaTime;
@@ -163,8 +137,6 @@ namespace UME
             // Clamp maximum speed
             var maxChange = maxSpeed * smoothTime;
             change = change.clamp(-maxChange, maxChange);
-            // var num9 = change.sqr().sum();
-            // if (num9 > maxChange.sqr()) change /= num9.sqrt() * maxChange;
             target = current - change;
 
             var temp = (currentVelocity + omega * change) * deltaTime;

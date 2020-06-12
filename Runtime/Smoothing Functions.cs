@@ -12,10 +12,10 @@ namespace UME
         public static float2 smootherstep(this float2 f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();
         public static float smootherstep(this float f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();
 
-        public static float4 smoothstepcos(this float4 f) => - (f * PI).cos() * 0.5f + 0.5f;
-        public static float3 smoothstepcos(this float3 f) => - (f * PI).cos() * 0.5f + 0.5f;
-        public static float2 smoothstepcos(this float2 f) => - (f * PI).cos() * 0.5f + 0.5f;
-        public static float smoothstepcos(this float f) => - (f * PI).cos() * 0.5f + 0.5f;
+        public static float4 smoothstepcos(this float4 f) => (f.saturate() * PI).cos().onem() * 0.5f;
+        public static float3 smoothstepcos(this float3 f) => (f.saturate() * PI).cos().onem() * 0.5f;
+        public static float2 smoothstepcos(this float2 f) => (f.saturate() * PI).cos().onem() * 0.5f;
+        public static float smoothstepcos(this float f) => (f.saturate() * PI).cos().onem() * 0.5f;
 
         public static float4 eerp(this float4 f, float4 a, float4 b) => a.pow(1 - f) * b.pow(f);
         public static float3 eerp(this float3 f, float3 a, float3 b) => a.pow(1 - f) * b.pow(f);

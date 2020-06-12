@@ -19,6 +19,19 @@ namespace UME
         public static double4 normalized(this double4 f) => math.normalize(f);
         public static double3 normalized(this double3 f) => math.normalize(f);
         public static double2 normalized(this double2 f) => math.normalize(f);
+        
+        // Normalized safely
+        public static float4 normalizedsafe(this float4 f) => math.normalizesafe(f);
+        public static float3 normalizedsafe(this float3 f) => math.normalizesafe(f);
+        public static float2 normalizedsafe(this float2 f) => math.normalizesafe(f);
+        
+        public static float4 normalizedsafe(this Vector4 f) => math.normalizesafe(f);
+        public static float3 normalizedsafe(this Vector3 f) => math.normalizesafe(f);
+        public static float2 normalizedsafe(this Vector2 f) => math.normalizesafe(f);
+        
+        public static double4 normalizedsafe(this double4 f) => math.normalizesafe(f);
+        public static double3 normalizedsafe(this double3 f) => math.normalizesafe(f);
+        public static double2 normalizedsafe(this double2 f) => math.normalizesafe(f);
 
         
         //length
@@ -154,5 +167,31 @@ namespace UME
         public static double dot(this double4x2 f) => math.dot(f.c0, f.c1);
         public static double dot(this double3x2 f) => math.dot(f.c0, f.c1);
         public static double dot(this double2x2 f) => math.dot(f.c0, f.c1);
+        
+        
+        // Reflect -------------------------------------------------------------
+        
+        /// Given an incident vector i and a normal vector n, returns the reflection vector r = i - 2.0f * dot(i, n) * n
+        public static float4 reflect(this float4 f, float4 n) => math.reflect(f, n);
+        /// <inheritdoc cref="reflect(float4,float4)"/>
+        public static float3 reflect(this float3 f, float3 n) => math.reflect(f, n);
+        /// <inheritdoc cref="reflect(float4,float4)"/>
+        public static float2 reflect(this float2 f, float2 n) => math.reflect(f, n);
+
+        /// <inheritdoc cref="reflect(float4,float4)"/>
+        public static float4 reflect(this Vector4 f, float4 n) => math.reflect(f, n);
+        /// <inheritdoc cref="reflect(float4,float4)"/>
+        public static float3 reflect(this Vector3 f, float3 n) => math.reflect(f, n);
+        /// <inheritdoc cref="reflect(float4,float4)"/>
+        public static float2 reflect(this Vector2 f, float2 n) => math.reflect(f, n);
+        
+        /// <inheritdoc cref="reflect(float4,float4)"/>
+        public static double4 reflect(this double4 f, double4 n) => math.reflect(f, n);
+        /// <inheritdoc cref="reflect(float4,float4)"/>
+        public static double3 reflect(this double3 f, double3 n) => math.reflect(f, n);
+        /// <inheritdoc cref="reflect(float4,float4)"/>
+        public static double2 reflect(this double2 f, double2 n) => math.reflect(f, n);
+        
+        // TODO: Refract
     }
 }

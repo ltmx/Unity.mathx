@@ -57,22 +57,22 @@ namespace UME
         public static double2 sum(this double2 f) => math.csum(f);
 
         // Component-Wise Multiplication ---------------------------------------------------------------
-        
-        public static float cmul(this float4 f) => math.mul(f,f);
-        public static float cmul(this float3 f) => math.mul(f,f);
-        public static float cmul(this float2 f) => math.mul(f,f);
 
-        public static float cmul(this Vector4 f) => math.mul(f,f);
-        public static float cmul(this Vector3 f) => math.mul(f,f);
-        public static float cmul(this Vector2 f) => math.mul(f,f);
+        public static float cmul(this float4 f) => f.x * f.y * f.z * f.w;
+        public static float cmul(this float3 f) => f.x * f.y * f.z;
+        public static float cmul(this float2 f) => f.x * f.y;
+
+        public static float cmul(this Vector4 f) => f.x * f.y * f.z * f.w;
+        public static float cmul(this Vector3 f) => f.x * f.y * f.z;
+        public static float cmul(this Vector2 f) => f.x * f.y;
         
-        public static int cmul(this int4 f) => math.mul(f,f);
-        public static int cmul(this int3 f) => math.mul(f,f);
-        public static int cmul(this int2 f) => math.mul(f,f);
+        public static int cmul(this int4 f) => f.x * f.y * f.z * f.w;
+        public static int cmul(this int3 f) => f.x * f.y * f.z;
+        public static int cmul(this int2 f) => f.x * f.y;
         
-        public static double4 cmul(this double4 f) => math.mul(f,f);
-        public static double3 cmul(this double3 f) => math.mul(f,f);
-        public static double2 cmul(this double2 f) => math.mul(f,f);
+        public static double4 cmul(this double4 f) => f.x * f.y * f.z * f.w;
+        public static double3 cmul(this double3 f) => f.x * f.y * f.z;
+        public static double2 cmul(this double2 f) => f.x * f.y;
         
         // One Minus -----------------------------------------------------------------------------------
 
@@ -151,7 +151,7 @@ namespace UME
         public static double2 sqr(this double2 f) => f * f;
         public static double sqr(this double f) => f * f;
         
-        // Cube -----------------------------------------------------------------------------------
+        // Cube --------------------------------------------------
         
         public static float4 cube(this float4 f) => f * f * f;
         public static float3 cube(this float3 f) => f * f * f;
@@ -183,5 +183,32 @@ namespace UME
         public static double3 frac(this double3 f) => math.frac(f);
         public static double2 frac(this double2 f) => math.frac(f);
         public static double frac(this double f) => math.frac(f);
+        
+        // Matrix Multiplication ------------------------------------
+        
+        /// Returns the component sum of f², Equivalent to a matrix multiplication with itself as row and column;
+        public static float selfmul(this float4 f) => math.mul(f,f);
+        /// <inheritdoc cref="mul(float4)"/>
+        public static float selfmul(this float3 f) => math.mul(f,f);
+        /// <inheritdoc cref="mul(float4)"/>
+        public static float selfmul(this float2 f) => math.mul(f,f);
+        /// <inheritdoc cref="mul(float4)"/>
+        public static float selfmul(this float f) => math.mul(f,f);
+        
+        /// <inheritdoc cref="mul(float4)"/>
+        public static float selfmul(this Vector4 f) => math.mul(f,f);
+        /// <inheritdoc cref="mul(float4)"/>
+        public static float selfmul(this Vector3 f) => math.mul(f,f);
+        /// <inheritdoc cref="mul(float4)"/>
+        public static float selfmul(this Vector2 f) => math.mul(f,f);
+        
+        /// <inheritdoc cref="mul(float4)"/>
+        public static double selfmul(this double4 f) => math.mul(f,f);
+        /// <inheritdoc cref="mul(float4)"/>
+        public static double selfmul(this double3 f) => math.mul(f,f);
+        /// <inheritdoc cref="mul(float4)"/>
+        public static double selfmul(this double2 f) => math.mul(f,f);
+        /// <inheritdoc cref="mul(float4)"/>
+        public static double selfmul(this double f) => math.mul(f,f);
     }
 }

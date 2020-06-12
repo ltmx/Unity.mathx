@@ -115,5 +115,8 @@ namespace UME
         public static float4 asfloat4(this Color c) => new float4(c.r, c.g, c.b, c.a);
         public static float3 asfloat3(this Color c) => new float3(c.r, c.g, c.b);
         public static float2 asfloat2(this Color c) => new float2(c.r, c.g);
+
+
+        public static float3 youopie(this Vector3 v) => v;
     }
 }
