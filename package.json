@@ -1,7 +1,7 @@
 {
   "name": "com.ltmx.unitymathematicsextensions",
-  "displayName": "Unity.Mathematics Extensions",
-  "description": "Extension methods to simplify and extend the Unity Mathematics library",
+  "displayName": "Mathematics Extensions",
+  "description": "Extension methods to simplify and extend the Unity.Mathematics library",
   "version": "1.0.0",
   "unity": "2018.4",
   "dependencies": {
@@ -9,7 +9,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/LTMX/Unity.Mathematics-Extensions"
+    "url": "https://github.com/LTMX/Unity.Mathematics-Extensions",
+    "revision": ""
   },
   "author": {
     "name": "Nicolas Reinhard Alias LTMX",
