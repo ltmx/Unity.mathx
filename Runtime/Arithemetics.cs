@@ -121,7 +121,7 @@ namespace UME
         public static float3 pow(this float3 f, float3 pow) => math.pow(f, pow);
         public static float2 pow(this float2 f, float2 pow) => math.pow(f, pow);
         public static float pow(this float f, float pow) => math.pow(f, pow);
-        public static float pow(this int f, float pow) => (int)math.pow(f, pow);
+        public static float pow(this int f, float pow) => math.pow(f, pow);
         public static int pow(this int f, int pow) => (int)math.pow(f, pow);
 
         
@@ -141,7 +141,7 @@ namespace UME
         public static float3 sqr(this float3 f) => f * f;
         public static float2 sqr(this float2 f) => f * f;
         public static float sqr(this float f) => f * f;
-        public static int sqr(this int f) => f * f;
+        public static float sqr(this int f) => f * f;
         
         public static float4 sqr(this Vector4 f) => f.asfloat() * f;
         public static float3 sqr(this Vector3 f) => f.asfloat() * f;

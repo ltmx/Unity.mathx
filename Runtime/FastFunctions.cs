@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -54,5 +55,23 @@ namespace UME
         public static float fastlength(this Vector3 f) => fastsqrt(f.selfmul());
         /// <inheritdoc cref="fastlength(float4)"/>
         public static float fastlength(this Vector2 f) => fastsqrt(f.selfmul());
+        
+        // https://github.com/SunsetQuest/Fast-Integer-Log2 --------------------------
+        [StructLayout(LayoutKind.Explicit)]
+        private struct ConverterStruct2
+        {
+            [FieldOffset(0)] public ulong asLong;
+            [FieldOffset(0)] public double asDouble;
+        }
+
+        // Same as Log2_SunsetQuest3 except it uses FP64.
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static int log2int(this int value)
+        {
+            ConverterStruct2 a;  a.asLong = 0; a.asDouble = (uint)value;
+            return (int)((a.asLong >> 52) + 1) & 0xFF;
+        }
+        // -------------------------------------------------------------------------------
+        
     }
 }
