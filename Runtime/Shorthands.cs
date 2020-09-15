@@ -40,10 +40,10 @@ namespace UME
         
         /// Shorthand for writing new float3(1,0,0);
         public static readonly float3 f3right = new float3(1,0,0);
-        
+
         /// Shorthand for writing new float3(0,0,1)
         public static readonly float3 f3forward = new float3(0,0,1);
-        
+
         /// Shorthand for writing new new float3(0,-1,0)
         public static readonly float3 f3down = new float3(0,-1,0);
         

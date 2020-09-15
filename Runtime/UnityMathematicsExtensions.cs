@@ -57,6 +57,5 @@ namespace UME
                 return result;
             }
         }
-
     }
 }
