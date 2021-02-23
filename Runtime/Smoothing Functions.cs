@@ -32,9 +32,9 @@ namespace UME
         /// Returns a smooth Hermite interpolation between 0.0 and 1.0 when x is in [a, b].
         public static float smoothstep(this float f, float min = 0, float max = 1) => math.smoothstep(min, max, f);
         /// <inheritdoc cref="smoothstep(float,float,float)"/>
-        public static double smoothstep(this double f, double min = 0, double max = 0) => math.smoothstep(min, max, f);
+        public static double smoothstep(this double f, double min = 0.0, double max = 0.0) => math.smoothstep(min, max, f);
         /// <inheritdoc cref="smoothstep(float,float,float)"/>
-        public static float4 smoothstep(this float4 f, float4 min = 0, float4 max) => math.smoothstep(min, max, f);
+        public static float4 smoothstep(this float4 f, float4 min, float4 max) => math.smoothstep(min, max, f);
         /// <inheritdoc cref="smoothstep(float,float,float)"/>
         public static float3 smoothstep(this float3 f, float3 min, float3 max) => math.smoothstep(min, max, f);
         /// <inheritdoc cref="smoothstep(float,float,float)"/>
