@@ -7,7 +7,7 @@ namespace UME
     {
         // Vector Specific Functions ------------------------------------------------------
 
-        // Normalized
+        ///Normalized
         public static float4 normalized(this float4 f) => math.normalize(f);
         public static float3 normalized(this float3 f) => math.normalize(f);
         public static float2 normalized(this float2 f) => math.normalize(f);
@@ -20,7 +20,8 @@ namespace UME
         public static double3 normalized(this double3 f) => math.normalize(f);
         public static double2 normalized(this double2 f) => math.normalize(f);
         
-        // Normalized safely
+        
+        ///Normalized safely
         public static float4 normalizedsafe(this float4 f) => math.normalizesafe(f);
         public static float3 normalizedsafe(this float3 f) => math.normalizesafe(f);
         public static float2 normalizedsafe(this float2 f) => math.normalizesafe(f);
@@ -32,9 +33,44 @@ namespace UME
         public static double4 normalizedsafe(this double4 f) => math.normalizesafe(f);
         public static double3 normalizedsafe(this double3 f) => math.normalizesafe(f);
         public static double2 normalizedsafe(this double2 f) => math.normalizesafe(f);
+        
+        
+        ///Distance with self
+        public static float distance(this float2 f, float2 f2) => math.distance(f, f2);
+        public static float distance(this float3 f, float3 f2) => math.distance(f, f2);
+        public static float distance(this float4 f, float4 f2) => math.distance(f, f2);
+        
+        public static float distance(this Vector2 f, float2 f2) => math.distance(f, f2);
+        public static float distance(this Vector3 f, float3 f2) => math.distance(f, f2);
+        public static float distance(this Vector4 f, float4 f2) => math.distance(f, f2);
+        
+        public static double distance(this double2 f, double2 f2) => math.distance(f, f2);
+        public static double distance(this double3 f, double3 f2) => math.distance(f, f2);
+        public static double distance(this double4 f, double4 f2) => math.distance(f, f2);
+        
+        
+        ///Distancequared with self
+        public static float distancesq(this float2 f, float2 f2) => math.distancesq(f, f2);
+        public static float distancesq(this float3 f, float3 f2) => math.distancesq(f, f2);
+        public static float distancesq(this float4 f, float4 f2) => math.distancesq(f, f2);
+        
+        public static float distancesq(this Vector2 f, float2 f2) => math.distancesq(f, f2);
+        public static float distancesq(this Vector3 f, float3 f2) => math.distancesq(f, f2);
+        public static float distancesq(this Vector4 f, float4 f2) => math.distancesq(f, f2);
+        
+        public static double distancesq(this double2 f, double2 f2) => math.distancesq(f, f2);
+        public static double distancesq(this double3 f, double3 f2) => math.distancesq(f, f2);
+        public static double distancesq(this double4 f, double4 f2) => math.distancesq(f, f2);
+        
+        
+        ///Cross With Self
+        public static float3 cross(this float3 f, float3 f2) => math.cross(f, f2);
+        public static float3 cross(this Vector3 f, float3 f2) => math.cross(f, f2);
+        public static double3 cross(this double3 f, double3 f2) => math.cross(f, f2);
+
 
         
-        //length
+        ///length
         public static float length(this float4 f) => math.length(f);
         public static float length(this float3 f) => math.length(f);
         public static float length(this float2 f) => math.length(f);
@@ -48,7 +84,7 @@ namespace UME
         public static double2 length(this double2 f) => math.length(f);
 
 
-        //Length Squared
+        ///Length Squared
         public static float lengthsq(this float4 f) => math.lengthsq(f);
         public static float lengthsq(this float3 f) => math.lengthsq(f);
         public static float lengthsq(this float2 f) => math.lengthsq(f);
@@ -61,7 +97,7 @@ namespace UME
         public static double lengthsq(this double3 f) => math.lengthsq(f);
         public static double lengthsq(this double2 f) => math.lengthsq(f);
 
-        // Square Root
+        ///Square Root
         public static float4 sqrt(this float4 f) => math.sqrt(f);
         public static float3 sqrt(this float3 f) => math.sqrt(f);
         public static float2 sqrt(this float2 f) => math.sqrt(f);
@@ -78,7 +114,7 @@ namespace UME
         public static double sqrt(this double f) => math.sqrt(f);
         
         
-        // Cube Root
+        ///Cube Root
         
         private const double dthird = 0.333333333333333333333;
         private const float fthird = 0.3333333333f;
@@ -99,7 +135,7 @@ namespace UME
         public static double cbrt(this double f) => f.sign() * f.abs().pow(dthird);
         
         
-        // Inverse cube root
+        ///Inverse cube root
         
         public static float4 rcbrt(this float4 f) => f.cbrt().rcp();
         public static float3 rcbrt(this float3 f) => f.cbrt().rcp();
@@ -117,7 +153,7 @@ namespace UME
         public static double rcbrt(this double f) => f.cbrt().rcp();
 
 
-        // Inverse Square Root
+        ///Inverse Square Root
         
         public static float4 rsqrt(this float4 f) => math.rsqrt(f);
         public static float3 rsqrt(this float3 f) => math.rsqrt(f);
@@ -136,8 +172,9 @@ namespace UME
 
 
         //Math Operations From Matrices -------------------------------------------------
-        
-        //Self Distance
+
+
+        ///Self Distance
         public static float distance(this float2x2 f) => math.distance(f.c0, f.c1);
         public static float distance(this float3x2 f) => math.distance(f.c0, f.c1);
         public static float distance(this float4x2 f) => math.distance(f.c0, f.c1);
@@ -146,7 +183,7 @@ namespace UME
         public static double distance(this double3x2 f) => math.distance(f.c0, f.c1);
         public static double distance(this double2x2 f) => math.distance(f.c0, f.c1);
         
-        // Self Squared Distance
+        ///Self Squared Distance
         public static float distancesq(this float2x2 f) => math.distancesq(f.c0, f.c1);
         public static float distancesq(this float3x2 f) => math.distancesq(f.c0, f.c1);
         public static float distancesq(this float4x2 f) => math.distancesq(f.c0, f.c1);
@@ -155,11 +192,11 @@ namespace UME
         public static double distancesq(this double3x2 f) => math.distancesq(f.c0, f.c1);
         public static double distancesq(this double2x2 f) => math.distancesq(f.c0, f.c1);
         
-        // Self Cross
+        ///Self Cross
         public static float3 cross(this float3x2 f) => math.cross(f.c0, f.c1);
         public static double3 cross(this double3x2 f) => math.cross(f.c0, f.c1);
         
-        // Self Dot
+        ///Self Dot
         public static float dot(this float4x2 f) => math.dot(f.c0, f.c1);
         public static float dot(this float3x2 f) => math.dot(f.c0, f.c1);
         public static float dot(this float2x2 f) => math.dot(f.c0, f.c1);
@@ -169,7 +206,7 @@ namespace UME
         public static double dot(this double2x2 f) => math.dot(f.c0, f.c1);
         
         
-        // Reflect -------------------------------------------------------------
+        // Reflect
         
         /// Given an incident vector i and a normal vector n, returns the reflection vector r = i - 2.0f * dot(i, n) * n
         public static float4 reflect(this float4 f, float4 n) => math.reflect(f, n);
@@ -192,6 +229,20 @@ namespace UME
         /// <inheritdoc cref="reflect(float4,float4)"/>
         public static double2 reflect(this double2 f, double2 n) => math.reflect(f, n);
         
-        // TODO: Refract
+        
+        ///Refract with self
+        public static float2 refract(this float2 f, float2 f2, float eta) => math.refract(f, f2, eta);
+        public static float3 refract(this float3 f, float3 f2, float eta) => math.refract(f, f2, eta);
+        public static float4 refract(this float4 f, float4 f2, float eta) => math.refract(f, f2, eta);
+        
+        public static float2 refract(this Vector2 f, float2 f2, float eta) => math.refract(f, f2, eta);
+        public static float3 refract(this Vector3 f, float3 f2, float eta) => math.refract(f, f2, eta);
+        public static float4 refract(this Vector4 f, float4 f2, float eta) => math.refract(f, f2, eta);
+        
+        public static double2 refract(this double2 f, double2 f2, double eta) => math.refract(f, f2, eta);
+        public static double3 refract(this double3 f, double3 f2, double eta) => math.refract(f, f2, eta);
+        public static double4 refract(this double4 f, double4 f2, double eta) => math.refract(f, f2, eta);
+        
+        // public static float shit(this float poop) => math.
     }
 }
