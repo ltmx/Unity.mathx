@@ -75,6 +75,7 @@ namespace UME
         public static double3 cmul(this double3 f) => f.x * f.y * f.z;
         public static double2 cmul(this double2 f) => f.x * f.y;
         
+        
         // One Minus -----------------------------------------------------------------------------------
 
         public static float4 onem(this float4 f) => 1 - f;
@@ -93,7 +94,22 @@ namespace UME
         public static float2 onem(this Vector2 f) => 1 - f.asfloat();
         
      
+        // Negate -----------------------------------------------------------------------------------
+
+        public static float4 neg(this float4 f) => - f;
+        public static float3 neg(this float3 f) => - f;
+        public static float2 neg(this float2 f) => - f;
+        public static float neg(this float f) => - f;
+        public static int neg(this int f) => - f;
         
+        public static double4 neg(this double4 f) => - f;
+        public static double3 neg(this double3 f) => - f;
+        public static double2 neg(this double2 f) => - f;
+        public static double neg(this double f) => - f;
+        
+        public static float4 neg(this Vector4 f) => - f;
+        public static float3 neg(this Vector3 f) => - f;
+        public static float2 neg(this Vector2 f) => - f;
 
 
         // Reciprocal ----------------------------------------------------------------------------------
