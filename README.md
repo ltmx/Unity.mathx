@@ -9,9 +9,6 @@ Extension method syntax for generic Unity.Mathematics data-types & additional me
 <p><b>Git Package URL</b> > https://github.com/LTMX/Unity.Mathematics-Extensions.git</p>
 <p><b>Unity :</b> Window > Package Manager > Add Package From Git URL</p>
 
-<h3>PREVIEW PHASE</h3>
-This code may not be suitable for production, still largely undocumented.
-
 <h3>LICENSING</h3><hr>
 <p>This project is licensed under the MIT License (<a href="https://github.com/LTMX/Unity.Mathematics-Extensions/blob/master/LICENSE">License</a>)</p>
 <p>Unity.Mathematics Companion License (<a href="https://github.com/Unity-Technologies/Unity.Mathematics/blob/master/LICENSE.md">Unity Companion License</a>)</p>
