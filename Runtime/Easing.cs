@@ -1,9 +1,5 @@
-
 // Translation to C# from https://easings.net/
 // by LTMX - https://github.com/LTMX
-
-
-using static Unity.Mathematics.math;
 
 namespace UME
 {
@@ -17,13 +13,13 @@ namespace UME
         public static float easeInOutQuad(this float x) => x < 0.5 ? 2 * x * x : 1 - (-2 * x + 2).sqr() / 2;
         public static float easeInCubic(this float x) => x.cube();
         public static float easeOutCubic(this float x) => 1 - (1 - x).cube();
-        public static float easeInOutCubic(this float x) => x < 0.5 ? 4 * x * x * x : 1 - (-2 * x + 2).cube() / 2;
+        public static float easeInOutCubic(this float x) => x < 0.5 ? 4 * x.cube() : 1 - (-2 * x + 2).cube() / 2;
         public static float easeInQuart(this float x) => x * x * x * x;
         public static float easeOutQuart(this float x) => 1 - pow(1 - x, 4);
-        public static float easeInOutQuart(this float x) => x < 0.5 ? 8 * x * x * x * x : 1 - pow(-2 * x + 2, 4) / 2;
-        public static float easeInQuint(this float x) => x * x * x * x * x;
+        public static float easeInOutQuart(this float x) => x < 0.5 ? 8 * x.quart() : 1 - pow(-2 * x + 2, 4) / 2;
+        public static float easeInQuint(this float x) => x.quint();
         public static float easeOutQuint(this float x) => 1 - pow(1 - x, 5);
-        public static float easeInOutQuint(this float x) => x < 0.5 ? 16 * x * x * x * x * x : 1 - pow(-2 * x + 2, 5) / 2;
+        public static float easeInOutQuint(this float x) => x < 0.5 ? 16 * x.quint() : 1 - pow(-2 * x + 2, 5) / 2;
         public static float easeInExpo(this float x) => x == 0 ? 0 : exp2( 10 * x - 10);
         public static float easeOutExpo(this float x) => x == 1 ? 1 : 1 - exp2( -10 * x);
         public static float easeInOutExpo(this float x) {
@@ -42,7 +38,7 @@ namespace UME
         public static float easeInBack(this float x){
             const float c1 = 1.70158f;
             const float c3 = c1 + 1;
-            return c3 * x * x * x - c1 * x * x;
+            return c3 * x.cube() - c1 * x.sqr();
         }
         public static float easeOutBack(this float x){
             const float c1 = 1.70158f;
@@ -74,9 +70,8 @@ namespace UME
                 return -(exp2(20 * x - 10) * sin((20 * x - 11.125f) * c5)) / 2;
             return (exp2(-20 * x + 10) * sin((20 * x - 11.125f) * c5)) / 2 + 1;
         }
-        public static float easeInBounce(this float x){
-            return 1 - easeOutBounce(1 - x);
-        }
+        public static float easeInBounce(this float x) => 1 - easeOutBounce(1 - x);
+
         public static float easeOutBounce(this float x){
             const float n1 = 7.5625f;
             const float d1 = 2.75f;
@@ -92,7 +87,5 @@ namespace UME
                 ? (1 - easeOutBounce(1 - 2 * x)) / 2
                 : (1 + easeOutBounce(2 * x - 1)) / 2;
         }
-
     }
-    
 }
