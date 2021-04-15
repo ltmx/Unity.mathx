@@ -185,6 +185,40 @@ namespace UME
         public static double2 cube(this double2 f) => f * f * f;
         public static double cube(this double f) => f * f * f;
         
+        // Quart--------------------------------------------------
+        
+        public static float4 quart(this float4 f) => f * f * f * f;
+        public static float3 quart(this float3 f) => f * f * f * f;
+        public static float2 quart(this float2 f) => f * f * f * f;
+        public static float quart(this float f) => f * f * f * f;
+        public static int quart(this int f) => f * f * f * f;
+        
+        public static float4 quart(this Vector4 f) => f.asfloat() * f * f * f;
+        public static float3 quart(this Vector3 f) => f.asfloat() * f * f * f;
+        public static float2 quart(this Vector2 f) => f * f * f * f;
+        
+        public static double4 quart(this double4 f) => f * f * f * f;
+        public static double3 quart(this double3 f) => f * f * f * f;
+        public static double2 quart(this double2 f) => f * f * f * f;
+        public static double quart(this double f) => f * f * f * f;
+        
+        // Quint --------------------------------------------------
+        
+        public static float4 quint(this float4 f) => f * f * f * f * f;
+        public static float3 quint(this float3 f) => f * f * f * f * f;
+        public static float2 quint(this float2 f) => f * f * f * f * f;
+        public static float quint(this float f) => f * f * f * f * f;
+        public static int quint(this int f) => f * f * f * f * f;
+        
+        public static float4 quint(this Vector4 f) => f.asfloat() * f * f * f * f;
+        public static float3 quint(this Vector3 f) => f.asfloat() * f * f * f * f;
+        public static float2 quint(this Vector2 f) => f * f * f * f * f;
+        
+        public static double4 quint(this double4 f) => f * f * f * f * f;
+        public static double3 quint(this double3 f) => f * f * f * f * f;
+        public static double2 quint(this double2 f) => f * f * f * f * f;
+        public static double quint(this double f) => f * f * f * f * f;
+        
         
         // Fractional Remainder
         public static float4 frac(this float4 f) => math.frac(f);
