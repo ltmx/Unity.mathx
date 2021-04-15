@@ -53,5 +53,32 @@ namespace UME
         public static double3 smoothstep(this double3 f, double3 min, double3 max) => math.smoothstep(min, max, f);
         /// <inheritdoc cref="smoothstep(float,float,float)"/>
         public static double2 smoothstep(this double2 f, double2 min, double2 max) => math.smoothstep(min, max, f);
+        
+        
+        
+        /// Returns the result of normalizing a floating point value x to a range [min, max]. The opposite of lerp. Equivalent to (x - min) / (max - min).
+        public static float unlerp(this float f, float min = 0, float max = 1) => math.unlerp(min, max, f);
+        /// <inheritdoc cref="unlerp(float,float,float)"/>
+        public static double unlerp(this double f, double min = 0.0, double max = 1.0) => math.unlerp(min, max, f);
+        /// <inheritdoc cref="unlerp(float,float,float)"/>
+        public static float4 unlerp(this float4 f, float4 min, float4 max) => math.unlerp(min, max, f);
+        /// <inheritdoc cref="unlerp(float,float,float)"/>
+        public static float3 unlerp(this float3 f, float3 min, float3 max) => math.unlerp(min, max, f);
+        /// <inheritdoc cref="unlerp(float,float,float)"/>
+        public static float2 unlerp(this float2 f, float2 min, float2 max) => math.unlerp(min, max, f);
+        
+        /// <inheritdoc cref="unlerp(float,float,float)"/>
+        public static float4 unlerp(this Vector4 f, float4 min, float4 max) => math.unlerp(min, max, f);
+        /// <inheritdoc cref="unlerp(float,float,float)"/>
+        public static float3 unlerp(this Vector3 f, float3 min, float3 max) => math.unlerp(min, max, f);
+        /// <inheritdoc cref="unlerp(float,float,float)"/>
+        public static float2 unlerp(this Vector2 f, float2 min, float2 max) => math.unlerp(min, max, f);
+        
+        /// <inheritdoc cref="smoothstep(float,float,float)"/>
+        public static double4 unlerp(this double4 f, double4 min, double4 max) => math.unlerp(min, max, f);
+        /// <inheritdoc cref="unlerp(float,float,float)"/>
+        public static double3 unlerp(this double3 f, double3 min, double3 max) => math.unlerp(min, max, f);
+        /// <inheritdoc cref="unlerp(float,float,float)"/>
+        public static double2 unlerp(this double2 f, double2 min, double2 max) => math.unlerp(min, max, f);
     }
 }
