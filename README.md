@@ -5,10 +5,6 @@ Extension method syntax for generic Unity.Mathematics data-types & additional me
 <p>Changes ➤<code class='language-cs'>var v1 = math.cos(math.clamp(f.magnitude, 0, 10)); return v1 * v1;</code></p>
 <p>Into ➤<code class='language-cs'> return f.length().clamp(0, 10).cos().sqr(); </code></p>
 
-/*<br>
-<p>Unity Vectors are converted to floatTypes by default</p>
-<blockquote> ex: new Vector3(0, 3, 4).abs() is actually a float3</blockquote>*/
-
 <h3>INSTALL</h3><hr>
 <p><b>Git Package URL</b> > https://github.com/LTMX/Unity.Mathematics-Extensions.git</p>
 <p><b>Unity :</b> Window > Package Manager > Add Package From Git URL</p>
