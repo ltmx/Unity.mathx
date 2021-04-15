@@ -2,9 +2,9 @@
 using UnityEngine;
 using static Unity.Mathematics.math;
 
-namespace UME
+namespace Plugins.Mathematics_Extensions.Runtime
 {
-    public static partial class UnityMathematicsExtensions
+    public static partial class UME
     {
         // Exponents ------------------------------------------
         

@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
-using System.Runtime.CompilerServices;
 using Unity.Mathematics;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 using Vector4 = UnityEngine.Vector4;
 
-namespace UME
+namespace Plugins.Mathematics_Extensions.Runtime
 {
-    public static partial class UnityMathematicsExtensions
+    public static partial class UME
     {
         // Type Conversion -----------------------------------------------------------------------------
         

@@ -2,9 +2,9 @@
 using Unity.Mathematics;
 using Random = Unity.Mathematics.Random;
 
-namespace UME
+namespace Plugins.Mathematics_Extensions.Runtime
 {
-    public partial class UnityMathematicsExtensions
+    public partial class UME
     {
         private static uint seed() => (uint) DateTime.Now.Millisecond;
         private static Random random => new Random(seed());

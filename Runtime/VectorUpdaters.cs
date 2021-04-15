@@ -1,9 +1,9 @@
 ﻿using Unity.Mathematics;
 using UnityEngine;
 
-namespace UME
+namespace Plugins.Mathematics_Extensions.Runtime
 {
-    public partial class UnityMathematicsExtensions
+    public partial class UME
     {
         /// Calculate a position between the points specified by current and target, moving no farther than the distance specified by maxDistanceDelta
         public static float4 movetowards(this float4 current, float4 target, float maxDistanceDelta)

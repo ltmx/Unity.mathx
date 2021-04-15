@@ -7,12 +7,12 @@
 
 //https://github.com/LTMX/Unity-Mathematics-Extensions
 
-using UnityEngine;
 using Unity.Mathematics;
+using UnityEngine;
 
-namespace UME
+namespace Plugins.Mathematics_Extensions.Runtime
 {
-    public static partial class UnityMathematicsExtensions
+    public static partial class UME
     {
 
         //Specific Functions ------------------------------------------------------------------------------------------

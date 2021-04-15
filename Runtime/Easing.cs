@@ -1,9 +1,9 @@
 // Translation to C# from https://easings.net/
 // by LTMX - https://github.com/LTMX
 
-namespace UME
+namespace Plugins.Mathematics_Extensions.Runtime
 {
-    public static partial class UnityMathematicsExtensions
+    public static partial class UME
     {
         public static float easeInSine(this float x) => 1 - cos((x * PI) / 2);
         public static float easeOutSine(this float x) => sin(x * PI / 2);

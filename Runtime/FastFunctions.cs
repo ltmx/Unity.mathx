@@ -3,9 +3,9 @@ using System.Runtime.InteropServices;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace UME
+namespace Plugins.Mathematics_Extensions.Runtime
 {
-    public static partial class UnityMathematicsExtensions
+    public static partial class UME
     {
         // https://gist.github.com/SaffronCR/b0802d102dd7f262118ac853cd5b4901#file-mathutil-cs-L24
         

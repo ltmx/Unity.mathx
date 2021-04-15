@@ -1,9 +1,8 @@
 ﻿using Unity.Mathematics;
-using UnityEngine;
 
-namespace UME
+namespace Plugins.Mathematics_Extensions.Runtime
 {
-    public partial class UnityMathematicsExtensions
+    public partial class UME
     {
         // Shorthands -----------------------------------------
 

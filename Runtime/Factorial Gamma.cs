@@ -1,14 +1,8 @@
-﻿using System.Numerics;
-using Unity.Mathematics;
-using Vector2 = UnityEngine.Vector2;
-using Vector3 = UnityEngine.Vector3;
-using Vector4 = UnityEngine.Vector4;
-
-namespace UME
+﻿namespace Plugins.Mathematics_Extensions.Runtime
 {
     
     // Not exactly working as expected
-    public static partial class UnityMathematicsExtensions
+    public static partial class UME
     {
         // See : https://rosettacode.org/wiki/Gamma_function#C.23
         // Factorial Gamma Function - Lanczos Interpolated -------------------------------------------------

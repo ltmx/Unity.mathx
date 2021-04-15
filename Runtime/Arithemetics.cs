@@ -1,10 +1,9 @@
-﻿using System.Runtime.CompilerServices;
-using Unity.Mathematics;
+﻿using Unity.Mathematics;
 using UnityEngine;
 
-namespace UME
+namespace Plugins.Mathematics_Extensions.Runtime
 {
-    public static partial class UnityMathematicsExtensions
+    public static partial class UME
     {
         // Sign
         public static float4 sign(this float4 f) => math.sign(f);
