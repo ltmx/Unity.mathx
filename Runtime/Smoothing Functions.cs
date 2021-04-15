@@ -54,7 +54,7 @@ namespace UME
         /// <inheritdoc cref="smoothstep(float,float,float)"/>
         public static double2 smoothstep(this double2 f, double2 min, double2 max) => math.smoothstep(min, max, f);
         
-        
+                    // Unlerp -----------------------------------------------------------------------------
         
         /// Returns the result of normalizing a floating point value x to a range [min, max]. The opposite of lerp. Equivalent to (x - min) / (max - min).
         public static float unlerp(this float f, float min = 0, float max = 1) => math.unlerp(min, max, f);
@@ -80,5 +80,34 @@ namespace UME
         public static double3 unlerp(this double3 f, double3 min, double3 max) => math.unlerp(min, max, f);
         /// <inheritdoc cref="unlerp(float,float,float)"/>
         public static double2 unlerp(this double2 f, double2 min, double2 max) => math.unlerp(min, max, f);
+        
+        
+                    // Lerp -----------------------------------------------------------------------------
+        
+        
+        /// Returns the result of linearly interpolating from min to max using the interpolation parameter f.
+        public static float lerp(this float f, float min = 0, float max = 1) => math.lerp(min, max, f);
+        /// <inheritdoc cref="lerp(float,float,float)"/>
+        public static double lerp(this double f, double min = 0.0, double max = 1.0) => math.lerp(min, max, f);
+        /// Returns the result of a componentwise linear interpolating from min to max using the interpolation parameter f.
+        public static float4 lerp(this float4 f, float4 min, float4 max) => math.lerp(min, max, f);
+        /// <inheritdoc cref="lerp(float4,float4,float4)"/>
+        public static float3 lerp(this float3 f, float3 min, float3 max) => math.lerp(min, max, f);
+        /// <inheritdoc cref="lerp(float4,float4,float4)"/>
+        public static float2 lerp(this float2 f, float2 min, float2 max) => math.lerp(min, max, f);
+        
+        /// <inheritdoc cref=="lerp(float4,float4,float4)"/>
+        public static float4 lerp(this Vector4 f, float4 min, float4 max) => math.lerp(min, max, f);
+        /// <inheritdoc cref=="lerp(float4,float4,float4)"/>
+        public static float3 lerp(this Vector3 f, float3 min, float3 max) => math.lerp(min, max, f);
+        /// <inheritdoc cref=="lerp(float4,float4,float4)"/>
+        public static float2 lerp(this Vector2 f, float2 min, float2 max) => math.lerp(min, max, f);
+        
+        /// <inheritdoc cref="lerp(float4,float4,float4)"/>
+        public static double4 lerp(this double4 f, double4 min, double4 max) => math.lerp(min, max, f);
+        /// <inheritdoc cref="lerp(float4,float4,float4)"/>
+        public static double3 lerp(this double3 f, double3 min, double3 max) => math.lerp(min, max, f);
+        /// <inheritdoc cref="lerp(float4,float4,float4)"/>
+        public static double2 lerp(this double2 f, double2 min, double2 max) => math.lerp(min, max, f);
     }
 }
