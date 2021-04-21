@@ -26,7 +26,7 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static int2 asint(this float2 f) => math.asint(f);
         public static int asint(this float f) => math.asint(f);
 
-        // ints to floats
+        // ints to floats -------------------------------------------
         /// Returns a float type equivalent
         public static float4 asfloat(this int4 f) => math.asfloat(f);
         /// <inheritdoc cref="asfloat(int4)"/>
@@ -36,7 +36,7 @@ namespace Plugins.Mathematics_Extensions.Runtime
         /// <inheritdoc cref="asfloat(int4)"/>
         public static float asfloat(this int f) => math.asfloat(f);
 
-        // Vectors to floats
+        // Vectors to floats -------------------------------------------
         
         /// Returns a float type equivalent
         public static float4 asfloat(this Vector4 f) => f;
@@ -46,7 +46,7 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static float2 asfloat(this Vector2 f) => f;
         
         
-        // Complex conversion
+        // Complex conversion -------------------------------------------
         
         /// Returns a double2 equivalent
         public static double2 asdouble(this Complex c) => new double2(c.Real, c.Imaginary);
@@ -65,7 +65,7 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static int asint(this bool b) => b ? 1 : 0;
         
         
-        // bools as floats
+        // bools as floats -------------------------------------------
         
         /// Returns 1 when true, componentwise
         public static float4 asfloat(this bool4 b) => b.asint();
@@ -76,7 +76,7 @@ namespace Plugins.Mathematics_Extensions.Runtime
         /// Returns 1 when true
         public static float asfloat(this bool b) => b.asint();
         
-        // doubles as floats
+        // doubles as floats -------------------------------------------
         
         /// Returns a float type equivalent
         public static float4 asfloat(this double4 f) => (float4)f;
@@ -88,7 +88,7 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static float asfloat(this double f) => (float)f;
         
         
-        // floats as doubles
+        // floats as doubles -------------------------------------------
         
         /// Returns a double type equivalent
         public static double4 asdouble(this float4 f) => Convert.ToDouble(f);
@@ -104,7 +104,7 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static float4 asfloat(quaternion q) => q.value;
         
 
-        // floats as Color
+        // floats as Color -------------------------------------------
         
         public static Color ascolor(this float4 f) => new Color(f.x, f.y, f.z, f.w);
         public static Color ascolor(this float3 f) => new Color(f.x, f.y, f.z);
@@ -149,7 +149,7 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static float2[] asfloatarray(this IEnumerable<Vector2> f) => f.asIEfloat().ToArray();
         
         
-        // Type Conversion SubMethods
+        // Type Conversion SubMethods -------------------------------------------
         private static IEnumerable<Vector4> asIEVector(this IEnumerable<float4> f2s) => f2s.Select(f => (Vector4)f);
         public static IEnumerable<Vector3> asIEVector(this IEnumerable<float3> f2s) => f2s.Select(f => (Vector3)f);
         public static IEnumerable<Vector2> asIEVector(this IEnumerable<float2> f2s) => f2s.Select(f => (Vector2)f);
@@ -164,6 +164,24 @@ namespace Plugins.Mathematics_Extensions.Runtime
 
         private static IEnumerable<float4> asIEfloat4(this IEnumerable<Color> f2s) => f2s.Select(f => f.asfloat4());
         private static IEnumerable<float3> asIEfloat3(this IEnumerable<Color> f2s) => f2s.Select(f => f.asfloat3());
+        
+        
+        // Simple Casts to Classic Types -------------------------------------------
+        
+        public static Vector2 cast(this float2 f) => f;
+        public static Vector3 cast(this float3 f) => f;
+        public static Vector4 cast(this float4 f) => f;
+    
+        public static float2 cast(this Vector2 f) => f;
+        public static float3 cast(this Vector3 f) => f;
+        public static float4 cast(this Vector4 f) => f;
+    
+        public static Vector2 cast(this double2 f) => f.asfloat();
+        public static Vector3 cast(this double3 f) => f.asfloat();
+        public static Vector4 cast(this double4 f) => f.asfloat();
+    
+        public static float4x4 cast(this Matrix4x4 f) => f;
+        public static Matrix4x4 cast(this float4x4 f) => f;
 
     }
 }
