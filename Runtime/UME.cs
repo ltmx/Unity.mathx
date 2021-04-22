@@ -53,7 +53,6 @@ namespace Plugins.Mathematics_Extensions.Runtime
         /// <returns>The position in the parabola at time t</returns>
         public static float3 SampleParabola(float3 start, float3 end, float height, float t)
         {
-            var s = Mathf.LerpAngle()
             if ((start.y - end.y).abs() < 0.1f)
             {
                 // Start and end are roughly level, pretend they are - simpler solution with less steps
