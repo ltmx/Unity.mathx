@@ -109,5 +109,22 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static double3 lerp(this double3 f, double3 min, double3 max) => math.lerp(min, max, f);
         /// <inheritdoc cref="lerp(float4,float4,float4)"/>
         public static double2 lerp(this double2 f, double2 min, double2 max) => math.lerp(min, max, f);
+        
+        
+        //using float/double as interpolation parameter
+        /// <inheritdoc cref="lerp(float4,float4,float4)"/>
+        public static float4 lerp(this float f, float4 min, float4 max) => math.lerp(min, max, f);
+        /// <inheritdoc cref="lerp(float4,float4,float4)"/>
+        public static float3 lerp(this float f, float3 min, float3 max) => math.lerp(min, max, f);
+        /// <inheritdoc cref="lerp(float4,float4,float4)"/>
+        public static float2 lerp(this float f, float2 min, float2 max) => math.lerp(min, max, f);
+
+        /// <inheritdoc cref="lerp(float4,float4,float4)"/>
+        public static double4 lerp(this double f, double4 min, double4 max) => math.lerp(min, max, f);
+        /// <inheritdoc cref="lerp(float4,float4,float4)"/>
+        public static double3 lerp(this double f, double3 min, double3 max) => math.lerp(min, max, f);
+        /// <inheritdoc cref="lerp(float4,float4,float4)"/>
+        public static double2 lerp(this double f, double2 min, double2 max) => math.lerp(min, max, f);
+        
     }
 }
