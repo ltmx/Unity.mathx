@@ -5,7 +5,7 @@
   "version": "1.1.2",
   "unity": "2018.4",
   "dependencies": {
-    "com.unity.mathematics": "1.1.0"
+    "com.unity.mathematics": "1.2.1"
   },
   "repository": {
     "type": "git",
