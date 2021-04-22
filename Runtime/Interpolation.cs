@@ -1,4 +1,5 @@
-﻿using Unity.Mathematics;
+﻿using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Plugins.Mathematics_Extensions.Runtime
@@ -125,6 +126,19 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static double3 lerp(this double f, double3 min, double3 max) => math.lerp(min, max, f);
         /// <inheritdoc cref="lerp(float4,float4,float4)"/>
         public static double2 lerp(this double f, double2 min, double2 max) => math.lerp(min, max, f);
+
+        
+        // Lerp Angle -------------------------------------------
+        
+        public static float lerpAngle(float a, float b, float t) {
+            var num = (b - a).repeat(360);
+            if (num > 180.0) num -= 360;
+            return a + num * t.saturate();
+
+        }
+
+        /// Compares two floating point values and returns true if they are similar.
+        public static bool approx(float a, float b) => (double) (b - a).abs() < (1E-06f * a.abs().max(b.abs())).max(Mathf.Epsilon * 8f);
         
     }
 }
