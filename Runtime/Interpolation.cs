@@ -138,7 +138,7 @@ namespace Plugins.Mathematics_Extensions.Runtime
         }
 
         /// Compares two floating point values and returns true if they are similar.
-        public static bool approx(float a, float b) => (double) (b - a).abs() < (1E-06f * a.abs().max(b.abs())).max(Mathf.Epsilon * 8f);
+        public static bool approx(this float a, float b) => (double) (b - a).abs() < (1E-06f * a.abs().max(b.abs())).max(Mathf.Epsilon * 8f);
         
     }
 }
