@@ -130,10 +130,10 @@ namespace Plugins.Mathematics_Extensions.Runtime
         
         // Lerp Angle -------------------------------------------
         
-        public static float lerpAngle(float a, float b, float t) {
+        public static float lerpAngle(this float x, float a, float b) {
             var num = (b - a).repeat(360);
             if (num > 180.0) num -= 360;
-            return a + num * t.saturate();
+            return a + num * x.saturate();
 
         }
 
