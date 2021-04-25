@@ -57,11 +57,11 @@ namespace Plugins.Mathematics_Extensions.Runtime
         
 
         /// Returns 1 when true, componentwise
-        public static int4 asint(this bool4 b) => new int4(b.x.asint(), b.y.asint(), b.z.asint(), b.w.asint());
+        public static int4 asint(this bool4 b) => new int4(b);
         /// <inheritdoc cref="asint(bool4)"/>
-        public static int3 asint(this bool3 b) => new int3(b.x.asint(), b.y.asint(), b.z.asint());
+        public static int3 asint(this bool3 b) => new int3(b);
         /// <inheritdoc cref="asfloat(bool4)"/>
-        public static int2 asint(this bool2 b) => new int2(b.x.asint(), b.y.asint());
+        public static int2 asint(this bool2 b) => new int2(b);
         /// Returns 1 when true
         public static int asint(this bool b) => b ? 1 : 0;
         
@@ -69,11 +69,11 @@ namespace Plugins.Mathematics_Extensions.Runtime
         // bools as floats -------------------------------------------
         
         /// Returns 1 when true, componentwise
-        public static float4 asfloat(this bool4 b) => b.asint();
+        public static float4 asfloat(this bool4 b) => new float4(b);
         /// <inheritdoc cref="asfloat(bool4)"/>
-        public static float3 asfloat(this bool3 b) => b.asint();
+        public static float3 asfloat(this bool3 b) => new float3(b);
         /// <inheritdoc cref="asfloat(bool4)"/>
-        public static float2 asfloat(this bool2 b) => b.asint();
+        public static float2 asfloat(this bool2 b) => new float2(b);
         /// Returns 1 when true
         public static float asfloat(this bool b) => b.asint();
         
