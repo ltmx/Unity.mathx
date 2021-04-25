@@ -1,6 +1,9 @@
 // Translation to C# from https://easings.net/
 // by LTMX - https://github.com/LTMX
 
+using Unity.Mathematics;
+
+
 namespace Plugins.Mathematics_Extensions.Runtime
 {
     public static partial class UME
@@ -16,10 +19,10 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static float easeInOutCubic(this float x) => x < 0.5 ? 4 * x.cube() : 1 - (-2 * x + 2).cube() / 2;
         public static float easeInQuart(this float x) => x * x * x * x;
         public static float easeOutQuart(this float x) => 1 - pow(1 - x, 4);
-        public static float easeInOutQuart(this float x) => x < 0.5 ? 8 * x.quart() : 1 - pow(-2 * x + 2, 4) / 2;
+        public static float easeInOutQuart(this float x) => x < 0.5 ? 8 * x.quart() : 1 - math.pow(-2 * x + 2, 4) / 2;
         public static float easeInQuint(this float x) => x.quint();
-        public static float easeOutQuint(this float x) => 1 - pow(1 - x, 5);
-        public static float easeInOutQuint(this float x) => x < 0.5 ? 16 * x.quint() : 1 - pow(-2 * x + 2, 5) / 2;
+        public static float easeOutQuint(this float x) => 1 - math.pow(1 - x, 5);
+        public static float easeInOutQuint(this float x) => x < 0.5 ? 16 * x.quint() : 1 - math.pow(-2 * x + 2, 5) / 2;
         public static float easeInExpo(this float x) => x == 0 ? 0 : exp2( 10 * x - 10);
         public static float easeOutExpo(this float x) => x == 1 ? 1 : 1 - exp2( -10 * x);
         public static float easeInOutExpo(this float x) {
@@ -28,7 +31,7 @@ namespace Plugins.Mathematics_Extensions.Runtime
             return (2 - exp2(-20 * x + 10)) / 2;
         }
         public static float easeInCirc(this float x) => 1 - sqrt(1 - x * x);
-        public static float easeOutCirc(this float x) => sqrt(1 - pow(x - 1, 2));
+        public static float easeOutCirc(this float x) => sqrt(1 - math.pow(x - 1, 2));
 
         public static float easeInOutCirc(this float x){
             return x < 0.5

@@ -8,23 +8,19 @@ namespace Plugins.Mathematics_Extensions.Runtime
         // https://github.com/FreyaHolmer/Mathfs/blob/master/Mathfs.cs
 
         // SmoothDamp ------------------------------------------------------------------------------------------------
-        public static float4 smoothdamp(float4 current, float4 target, ref float4 currentVelocity, float smoothTime, float maxSpeed = float.PositiveInfinity)
-        {
+        public static float4 smoothdamp(float4 current, float4 target, ref float4 currentVelocity, float smoothTime, float maxSpeed = float.PositiveInfinity) {
             return smoothdamp(current, target, ref currentVelocity, smoothTime, maxSpeed, Time.deltaTime);
         }
 
-        public static float3 smoothdamp(float3 current, float3 target, ref float3 currentVelocity, float smoothTime, float maxSpeed = float.PositiveInfinity)
-        {
+        public static float3 smoothdamp(float3 current, float3 target, ref float3 currentVelocity, float smoothTime, float maxSpeed = float.PositiveInfinity) {
             return smoothdamp(current, target, ref currentVelocity, smoothTime, maxSpeed, Time.deltaTime);
         }
 
-        public static float2 smoothdamp(float2 current, float2 target, ref float2 currentVelocity, float smoothTime, float maxSpeed = float.PositiveInfinity)
-        {
+        public static float2 smoothdamp(float2 current, float2 target, ref float2 currentVelocity, float smoothTime, float maxSpeed = float.PositiveInfinity) {
             return smoothdamp(current, target, ref currentVelocity, smoothTime, maxSpeed, Time.deltaTime);
         }
 
-        public static float smoothdamp(float current, float target, ref float currentVelocity, float smoothTime, float maxSpeed = float.PositiveInfinity)
-        {
+        public static float smoothdamp(float current, float target, ref float currentVelocity, float smoothTime, float maxSpeed = float.PositiveInfinity) {
             return smoothdamp(current, target, ref currentVelocity, smoothTime, maxSpeed, Time.deltaTime);
         }
 

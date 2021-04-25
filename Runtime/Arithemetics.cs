@@ -21,6 +21,7 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static double2 sign(this double2 f) => math.sign(f);
         public static double sign(this double f) => math.sign(f);
         
+        
         // Absolute Value ------------------------------------------------------------------------------
         
         public static float4 abs(this float4 f) => math.abs(f);
@@ -37,8 +38,8 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static double3 abs(this double3 f) => math.abs(f);
         public static double2 abs(this double2 f) => math.abs(f);
         public static double abs(this double f) => math.abs(f);
-        
-        
+
+
         // Component-Wise Sum --------------------------------------------------------------------------
         public static float sum(this float4 f) => math.csum(f);
         public static float sum(this float3 f) => math.csum(f);
@@ -52,9 +53,9 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static int sum(this int3 f) => math.csum(f);
         public static int sum(this int2 f) => math.csum(f);
         
-        public static double4 sum(this double4 f) => math.csum(f);
-        public static double3 sum(this double3 f) => math.csum(f);
-        public static double2 sum(this double2 f) => math.csum(f);
+        public static double sum(this double4 f) => math.csum(f);
+        public static double sum(this double3 f) => math.csum(f);
+        public static double sum(this double2 f) => math.csum(f);
 
         // Component-Wise Multiplication ---------------------------------------------------------------
 
@@ -70,11 +71,11 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static int cmul(this int3 f) => f.x * f.y * f.z;
         public static int cmul(this int2 f) => f.x * f.y;
         
-        public static double4 cmul(this double4 f) => f.x * f.y * f.z * f.w;
-        public static double3 cmul(this double3 f) => f.x * f.y * f.z;
-        public static double2 cmul(this double2 f) => f.x * f.y;
-        
-        
+        public static double cmul(this double4 f) => f.x * f.y * f.z * f.w;
+        public static double cmul(this double3 f) => f.x * f.y * f.z;
+        public static double cmul(this double2 f) => f.x * f.y;
+
+
         // One Minus -----------------------------------------------------------------------------------
 
         public static float4 onem(this float4 f) => 1 - f;
@@ -91,8 +92,7 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static float4 onem(this Vector4 f) => 1 - f.asfloat();
         public static float3 onem(this Vector3 f) => 1 - f.asfloat();
         public static float2 onem(this Vector2 f) => 1 - f.asfloat();
-        
-     
+
         // Negate -----------------------------------------------------------------------------------
 
         public static float4 neg(this float4 f) => - f;
@@ -128,8 +128,8 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static double2 rcp(this double2 f) => math.rcp(f);
         public static double rcp(this double f) => math.rcp(f);
 
-        
-        
+
+
         // Power ---------------------------------------------------------------------------------
 
         public static float4 pow(this float4 f, float4 pow) => math.pow(f, pow);
@@ -139,7 +139,6 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static float pow(this int f, float pow) => math.pow(f, pow);
         public static int pow(this int f, int pow) => (int)math.pow(f, pow);
 
-        
         public static float4 exp(this Vector4 f, float4 pow) => math.pow(f, pow);
         public static float3 exp(this Vector3 f, float3 pow) => math.pow(f, pow);
         public static float2 exp(this Vector2 f, float2 pow) => math.pow(f, pow);
@@ -166,7 +165,7 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static double3 sqr(this double3 f) => f * f;
         public static double2 sqr(this double2 f) => f * f;
         public static double sqr(this double f) => f * f;
-        
+
         // Cube --------------------------------------------------
         
         public static float4 cube(this float4 f) => f * f * f;
@@ -175,15 +174,15 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static float cube(this float f) => f * f * f;
         public static int cube(this int f) => f * f * f;
         
-        public static float4 cube(this Vector4 f) => f.asfloat() * f * f;
-        public static float3 cube(this Vector3 f) => f.asfloat() * f * f;
+        public static float4 cube(this Vector4 f) => f.cast() * f * f;
+        public static float3 cube(this Vector3 f) => f.cast() * f * f;
         public static float2 cube(this Vector2 f) => f * f;
         
         public static double4 cube(this double4 f) => f * f * f;
         public static double3 cube(this double3 f) => f * f * f;
         public static double2 cube(this double2 f) => f * f * f;
         public static double cube(this double f) => f * f * f;
-        
+
         // Quart--------------------------------------------------
         
         public static float4 quart(this float4 f) => f * f * f * f;
@@ -192,15 +191,15 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static float quart(this float f) => f * f * f * f;
         public static int quart(this int f) => f * f * f * f;
         
-        public static float4 quart(this Vector4 f) => f.asfloat() * f * f * f;
-        public static float3 quart(this Vector3 f) => f.asfloat() * f * f * f;
+        public static float4 quart(this Vector4 f) => f.cast() * f * f * f;
+        public static float3 quart(this Vector3 f) => f.cast() * f * f * f;
         public static float2 quart(this Vector2 f) => f * f * f * f;
         
         public static double4 quart(this double4 f) => f * f * f * f;
         public static double3 quart(this double3 f) => f * f * f * f;
         public static double2 quart(this double2 f) => f * f * f * f;
         public static double quart(this double f) => f * f * f * f;
-        
+
         // Quint --------------------------------------------------
         
         public static float4 quint(this float4 f) => f * f * f * f * f;
@@ -217,8 +216,8 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static double3 quint(this double3 f) => f * f * f * f * f;
         public static double2 quint(this double2 f) => f * f * f * f * f;
         public static double quint(this double f) => f * f * f * f * f;
-        
-        
+
+
         // Fractional Remainder
         public static float4 frac(this float4 f) => math.frac(f);
         public static float3 frac(this float3 f) => math.frac(f);
@@ -233,7 +232,7 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static double3 frac(this double3 f) => math.frac(f);
         public static double2 frac(this double2 f) => math.frac(f);
         public static double frac(this double f) => math.frac(f);
-        
+
         // Matrix Multiplication ------------------------------------
         
         /// Returns the component sum of f², Equivalent to a matrix multiplication with itself as row and column;

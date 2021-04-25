@@ -391,7 +391,7 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static double radians(this double f) => math.radians(f);
         
         // Sine-Cosine combined
-        
+
         public static float4x2 sincos(this float4 f4) {
             var f = new float4x2();
             math.sincos(f4,out f.c0, out f.c1);

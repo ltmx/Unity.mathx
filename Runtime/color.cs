@@ -277,48 +277,48 @@ namespace UME
 
         /// <summary>Implicitly converts a single float value to a color2 by assigning it to every component.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator color(float v) { return new color(v); }
+        public static implicit operator color(float v) => new color(v);
 
         /// <summary>Explicitly converts a single bool value to a color2 by converting it to float and assigning it to every component.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static explicit operator color(bool v) { return new color(v); }
+        public static explicit operator color(bool v) => new color(v);
 
         /// <summary>Explicitly converts a bool4 vector to a color2 by componentwise conversion.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static explicit operator color(bool4 v) { return new color(v); }
+        public static explicit operator color(bool4 v) => new color(v);
 
         /// <summary>Implicitly converts a single int value to a color2 by converting it to float and assigning it to every component.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator color(int v) { return new color(v); }
+        public static implicit operator color(int v) => new color(v);
 
         /// <summary>Implicitly converts a int4 vector to a color2 by componentwise conversion.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator color(int4 v) { return new color(v); }
+        public static implicit operator color(int4 v) => new color(v);
 
         /// <summary>Implicitly converts a single uint value to a color2 by converting it to float and assigning it to every component.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator color(uint v) { return new color(v); }
+        public static implicit operator color(uint v) => new color(v);
 
         /// <summary>Implicitly converts a uint4 vector to a color2 by componentwise conversion.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator color(uint4 v) { return new color(v); }
+        public static implicit operator color(uint4 v) => new color(v);
 
         /// <summary>Implicitly converts a single half value to a color2 by converting it to float and assigning it to every component.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator color(half v) { return new color(v); }
+        public static implicit operator color(half v) => new color(v);
 
         /// <summary>Implicitly converts a half4 vector to a color2 by componentwise conversion.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator color(half4 v) { return new color(v); }
+        public static implicit operator color(half4 v) => new color(v);
 
         /// <summary>Explicitly converts a single double value to a vector by converting it to float and assigning it to every component.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static explicit operator color(double v) { return new color(v); }
+        public static explicit operator color(double v) => new color(v);
 
         /// <summary>Explicitly converts a double4 vector to a color2 by componentwise conversion.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static explicit operator color(double4 v) { return new color(v); }
-        
+        public static explicit operator color(double4 v) => new color(v);
+
         /// <summary>Explicitly converts a double4 vector to a color2 by componentwise conversion.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static implicit operator color(float4 v) => new color(v);
@@ -360,6 +360,8 @@ namespace UME
         /// <summary>Explicitly converts a Vector3 to a color2 by componentwise conversion.</summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static explicit operator color(Vector3 v) => new color(v.x, v.y, v.z, 1);
+        
+
         
                 // End Additions --------------------------------------------------------------
 
@@ -3560,7 +3562,7 @@ namespace UME
         ///   <para>A version of the color2 that has had the gamma curve applied.</para>
         public color gamma => new color(Mathf.LinearToGammaSpace(x), Mathf.LinearToGammaSpace(y), Mathf.LinearToGammaSpace(z), w);
         ///   <para>Returns the maximum color2 component value: Max(r,g,b).</para>
-        public float maxcolorComponent => math.cmax(xyz);
+        public float maxcolorComponent => xyz.cmax();
         
         
     }
@@ -3713,11 +3715,27 @@ namespace UME
             }
         }
         
+        // Additions --------------------- 
         
-        // Additions --------------------- // Should be implemented in UME 
-        
-        public static color lerp(color a, color b, float x) => math.lerp(a, b, x);
-        public static color lerp(this float x, color a, color b) => math.lerp(a, b, x);
+        public static color clamp(this color f, float min, float max) => math.clamp(f, min, max);
+        public static color min(this color f, color m) => math.min(f, m);
+        public static color max(this color f, color m) => math.max(f, m);
+        public static color saturate(this color f) => math.saturate(f);
+        public static color sqrt(this color f) => math.sqrt(f);
+        public static color pow(this color f, float pow) => math.pow(f, pow);
+        public static color pow(this color f, float4 min) => math.pow(f, min);
+        public static color sqr(this color f) => f * f;
+        public static color cube(this color f) => f * f * f;
+        public static color quart(this color f) => f * f * f * f;
+        public static color quint(this color f) => f * f * f * f * f;
+        public static color frac(this color f) => math.frac(f);
+        public static color sign(this color f) => math.sign(f);
+        public static color abs(this color f) => math.abs(f); 
+        public static float sum(this color f) => math.csum(f);
+        public static float cmul(this color f) => f.x * f.y * f.z * f.w;
+        public static color onem(this color f) => 1 - f;
+        public static color neg(this color f) => - f;
+        public static color rcp(this color f) => math.rcp(f);
     }
 
 }

@@ -143,9 +143,12 @@ namespace Plugins.Mathematics_Extensions.Runtime
         /// Shorthand for new int4(i)
         public static int4 xxxx(this int i) => new int4(i);
         
+        /// Shorthand for new bool2(i)
+        public static bool2 xx(this bool b) => new bool2(b);
+        /// Shorthand for new bool3(i)
+        public static bool3 xxx(this bool b) => new bool3(b);
+        /// Shorthand for new bool4(i)
+        public static bool4 xxxx(this bool b) => new bool4(b);
         
-        // public static int asint(this bool b) => math.asint()
-
-
     }
 }

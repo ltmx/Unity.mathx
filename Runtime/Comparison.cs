@@ -1,4 +1,5 @@
-﻿using Unity.Mathematics;
+﻿using UME;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Plugins.Mathematics_Extensions.Runtime
@@ -18,6 +19,8 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static float cmax(this Vector4 f) => math.cmax(f);
         public static float cmax(this Vector3 f) => math.cmax(f);
         public static float cmax(this Vector2 f) => math.cmax(f);
+        
+        public static float cmax(this color f) => math.cmax(f);
 
         public static float cmin(this float4 f) => math.cmin(f);
         public static float cmin(this float3 f) => math.cmin(f);
@@ -30,6 +33,8 @@ namespace Plugins.Mathematics_Extensions.Runtime
         public static double cmin(this double4 f) => math.cmin(f);
         public static double cmin(this double3 f) => math.cmin(f);
         public static double cmin(this double2 f) => math.cmin(f);
+        
+        public static double cmin(this color f) => math.cmin(f);
         
         
         /// Returns 1 inside the longest(s) axis(es) and 0 in the others
