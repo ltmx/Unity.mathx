@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using Unity.Mathematics;
 using UnityEngine;
 
+[System.Serializable]
 public struct color : IEquatable<color>, IFormattable
 {
     public float x;
@@ -14,6 +15,13 @@ public struct color : IEquatable<color>, IFormattable
     public float g => y;
     public float b => z;
     public float a => w;
+    
+    public float2 rg => xy;
+    public float2 rb => xz;
+    public float2 gr => yx;
+    public float2 gb => yz;
+    public float2 br => zx;
+    public float2 bg => zy;
         
     public float3 rgb => xyz;
     public float3 rbg => xzy;
@@ -303,7 +311,7 @@ public struct color : IEquatable<color>, IFormattable
         
     // Additions --------------------------------------------------------------
 
-    /// <summary>Explicitly converts a color vector to a float4 by componentwise conversion.</summary>
+    /// <summary>Implicitly converts a color vector to a float4 by componentwise conversion.</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator float4(color v) => new float4(v.x, v.y, v.z, v.w);
 
@@ -315,17 +323,17 @@ public struct color : IEquatable<color>, IFormattable
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator Color(color b) => new Color(b.x, b.y, b.z, b.w);
         
-    /// <summary>Explicitly converts a UnityEngine.Color to a color by componentwise conversion.</summary>
+    /// <summary>Implicitly converts a UnityEngine.Color to a color by componentwise conversion.</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static implicit operator color(Color b) => new color(b.r, b.g, b.b, b.a);
         
     /// <summary>Explicitly converts a color to a Vector4 by componentwise conversion.</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static implicit operator Vector4(color c) => new Vector4(c.x, c.y, c.z, c.w);
+    public static explicit operator Vector4(color c) => new Vector4(c.x, c.y, c.z, c.w);
         
     /// <summary>Explicitly converts a Vector4 to a color by componentwise conversion.</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static implicit operator color(Vector4 v) => new color(v.x, v.y, v.z, v.w);
+    public static explicit operator color(Vector4 v) => new color(v.x, v.y, v.z, v.w);
         
     /// <summary>Explicitly converts a color to a Vector3 by componentwise conversion.</summary>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -2861,8 +2869,10 @@ public struct color : IEquatable<color>, IFormattable
     public color gamma => new color(Mathf.LinearToGammaSpace(x), Mathf.LinearToGammaSpace(y), Mathf.LinearToGammaSpace(z), w);
     ///   <para>Returns the maximum color component value: Max(r,g,b).</para>
     public float maxcolorComponent => xyz.cmax();
-        
-        
+    
+    ///   <para>Solid orange. RGBA is (1, 0.5f, 0, 1).</para>
+    public static color orange => new color(1, 0.5f, 0, 1);
+    
 }
    
 public static partial class UME
@@ -2993,19 +3003,18 @@ public static partial class UME
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal static float select_shuffle_component(color a, color b, math.ShuffleComponent component){
-        switch(component)
-        {
-            case math.ShuffleComponent.LeftX: return a.x;
-            case math.ShuffleComponent.LeftY: return a.y;
-            case math.ShuffleComponent.LeftZ: return a.z;
-            case math.ShuffleComponent.LeftW: return a.w;
-            case math.ShuffleComponent.RightX: return b.x;
-            case math.ShuffleComponent.RightY: return b.y;
-            case math.ShuffleComponent.RightZ: return b.z;
-            case math.ShuffleComponent.RightW: return b.w;
-            default: throw new ArgumentException("Invalid shuffle component: " + component);
-        }
+    internal static float select_shuffle_component(color a, color b, math.ShuffleComponent component) {
+        return component switch {
+            math.ShuffleComponent.LeftX => a.x,
+            math.ShuffleComponent.LeftY => a.y,
+            math.ShuffleComponent.LeftZ => a.z,
+            math.ShuffleComponent.LeftW => a.w,
+            math.ShuffleComponent.RightX => b.x,
+            math.ShuffleComponent.RightY => b.y,
+            math.ShuffleComponent.RightZ => b.z,
+            math.ShuffleComponent.RightW => b.w,
+            _ => throw new ArgumentException("Invalid shuffle component: " + component)
+        };
     }
         
     // Additions --------------------- 
@@ -3029,4 +3038,8 @@ public static partial class UME
     public static color onem(this color f) => 1 - f;
     public static color neg(this color f) => - f;
     public static color rcp(this color f) => math.rcp(f);
+    public static color lerp(color a, color b, float f) => math.lerp(a, b, f);
+    public static color lerp(this float f, color a, color b) => math.lerp(a, b, f);
+    public static color unlerp(this float f, color min, color max) => math.unlerp(min, max, f);
+    public static color unlerp(color min, color max, float f) => math.unlerp(min, max, f);
 }

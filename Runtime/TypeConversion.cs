@@ -110,10 +110,10 @@ public static partial class UME
 
     // floats as Color -------------------------------------------
         
-    public static color ascolor(this float4 f) => new Color(f.x, f.y, f.z, f.w);
-    public static color ascolor(this float3 f) => new Color(f.x, f.y, f.z);
-    public static color ascolor(this float2 f) => new Color(f.x, f.y, 0);
-    public static color ascolor(this float f) => new Color(f,f,f);
+    public static color ascolor(this float4 f) => new color(f);
+    public static color ascolor(this float3 f) => new color(f);
+    public static color ascolor(this float2 f) => new color(f.x, f.y, 0);
+    public static color ascolor(this float f) => new color(f);
 
     // Color as floats
     // public static float4 asfloat4(this Color c) => c.cast(); // compatibility
@@ -210,10 +210,10 @@ public static partial class UME
     
     public static float4x4 cast(this Matrix4x4 f) => f;
     public static Matrix4x4 cast(this float4x4 f) => f;
-        
-    /// returns a float4 with the same sub-components
-    /// returns a float4 with the same sub-components
+    
+    /// casts to a UME.color
     public static color cast(this Color f) => f;
-    public static Color cast(this color f) => f;
+    /// casts to a UnityEngine.Color
+    public static Color cast(this color f) => (Color)f;
 
 }

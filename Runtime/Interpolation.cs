@@ -79,12 +79,8 @@ public static partial class UME
     public static double3 unlerp(this double3 f, double3 min, double3 max) => math.unlerp(min, max, f);
     /// <inheritdoc cref="unlerp(float,float,float)"/>
     public static double2 unlerp(this double2 f, double2 min, double2 max) => math.unlerp(min, max, f);
-        
-        
-    public static color unlerp(this float f, color min, color max) => math.unlerp(min, max, f);
-    public static color unlerp(color min, color max, float f) => math.unlerp(min, max, f);
-        
-        
+
+
     // Lerp -----------------------------------------------------------------------------
         
         
@@ -128,11 +124,8 @@ public static partial class UME
     public static double3 lerp(this double f, double3 min, double3 max) => math.lerp(min, max, f);
     /// <inheritdoc cref="lerp(float4,float4,float4)"/>
     public static double2 lerp(this double f, double2 min, double2 max) => math.lerp(min, max, f);
-        
-    public static color lerp(color a, color b, float x) => math.lerp(a, b, x);
-    public static color lerp(this float x, color a, color b) => math.lerp(a, b, x);
 
-        
+
     // Lerp Angle -------------------------------------------
         
     public static float lerpAngle(this float x, float a, float b) {
