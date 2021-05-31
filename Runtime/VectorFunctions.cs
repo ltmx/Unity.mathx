@@ -241,5 +241,50 @@ public static partial class UME
     public static double3 refract(this double3 f, double3 f2, double eta) => math.refract(f, f2, eta);
     public static double4 refract(this double4 f, double4 f2, double eta) => math.refract(f, f2, eta);
         
-    // public static float shit(this float poop) => math.
+            
+    /// Compute vector projection of a onto b.
+    public static float4 project(this float4 f, float4 n) => math.project(f, n);
+    /// <inheritdoc cref="project(float4,float4)"/>
+    public static float3 project(this float3 f, float3 n) => math.project(f, n);
+    /// <inheritdoc cref="project(float4,float4)"/>
+    public static float2 project(this float2 f, float2 n) => math.project(f, n);
+    
+    /// <inheritdoc cref="project(float4,float4)"/>
+    public static float4 project(this Vector4 f, float4 n) => math.project(f, n);
+    /// <inheritdoc cref="project(float4,float4)"/>
+    public static float3 project(this Vector3 f, float3 n) => math.project(f, n);
+    /// <inheritdoc cref="project(float4,float4)"/>
+    public static float2 project(this Vector2 f, float2 n) => math.project(f, n);
+        
+    /// <inheritdoc cref="project(float4,float4)"/>
+    public static double4 project(this double4 f, double4 n) => math.project(f, n);
+    /// <inheritdoc cref="project(float4,float4)"/>
+    public static double3 project(this double3 f, double3 n) => math.project(f, n);
+    /// <inheritdoc cref="project(float4,float4)"/>
+    public static double2 project(this double2 f, double2 n) => math.project(f, n);
+    
+    
+    
+    /// Compute vector projection of a onto b. If result is not finite, then return the default value instead.
+    public static float4 projectsafe(this float4 f, float4 n) => math.projectsafe(f, n);
+    /// <inheritdoc cref="projectsafe(float4,float4)"/>
+    public static float3 projectsafe(this float3 f, float3 n) => math.projectsafe(f, n);
+    /// <inheritdoc cref="projectsafe(float4,float4)"/>
+    public static float2 projectsafe(this float2 f, float2 n) => math.projectsafe(f, n);
+    
+    /// <inheritdoc cref="projectsafe(float4,float4)"/>
+    public static float4 projectsafe(this Vector4 f, float4 n) => math.projectsafe(f, n);
+    /// <inheritdoc cref="projectsafe(float4,float4)"/>
+    public static float3 projectsafe(this Vector3 f, float3 n) => math.projectsafe(f, n);
+    /// <inheritdoc cref="projectsafe(float4,float4)"/>
+    public static float2 projectsafe(this Vector2 f, float2 n) => math.projectsafe(f, n);
+        
+    /// <inheritdoc cref="projectsafe(float4,float4)"/>
+    public static double4 projectsafe(this double4 f, double4 n) => math.projectsafe(f, n);
+    /// <inheritdoc cref="projectsafe(float4,float4)"/>
+    public static double3 projectsafe(this double3 f, double3 n) => math.projectsafe(f, n);
+    /// <inheritdoc cref="projectsafe(float4,float4)"/>
+    public static double2 projectsafe(this double2 f, double2 n) => math.projectsafe(f, n);
+    
+    
 }
