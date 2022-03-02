@@ -1,21 +1,20 @@
 {
-  "name": "com.ltmx.unitymathematicsextensions",
-  "displayName": "Mathematics Extensions",
-  "description": "Extension methods to simplify and extend the Unity.Mathematics library",
-  "version": "1.1.2",
-  "unity": "2018.4",
-  "dependencies": {
-    "com.unity.mathematics": "1.2.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/LTMX/Unity.Mathematics-Extensions",
-    "revision": ""
-  },
-  "author": {
-    "name": "Nicolas Reinhard Alias LTMX",
-    "email": "nicolasreinhard.pro@gmail.com",
-    "url": "https://www.youtube.com/channel/UCKQp3slLtSsRCWtQz67RjYQ"
-  },
-  "type": "library"
+    "name": "com.ltmx.unitymathematicsextensions",
+    "displayName": "Mathematics Extensions",
+    "description": "Extension methods to simplify and extend the Unity.Mathematics library",
+    "version": "1.2.5",
+    "dependencies": {
+        "com.unity.mathematics": "1.2.5"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/LTMX/Unity.Mathematics-Extensions",
+        "revision": ""
+    },
+    "author": {
+        "name": "LTMX",
+        "email": "nicolasreinhard.pro@gmail.com", 
+        "url": "https://www.youtube.com/channel/UCKQp3slLtSsRCWtQz67RjYQ"
+    },
+    "type": "library"
 }

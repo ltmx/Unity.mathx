@@ -1,7 +1,9 @@
 {
-    "name": "Unity.Unity.Mathematics Extensions.Runtime",
+    "name": "UME",
+    "rootNamespace": "",
     "references": [
-        "GUID:d8b63aba1907145bea998dd612889d6b"
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:329b4ccd385744985bf3f83cfd77dfe7"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
