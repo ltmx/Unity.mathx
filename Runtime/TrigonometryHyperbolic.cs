@@ -1,93 +1,80 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Unity.Mathematics;
 
 namespace UME
 {
     public partial class Math
     {
-        //cotangent
-        public static float4 cot(this float4 f) => f.tan().rcp();
-        public static float3 cot(this float3 f) => f.tan().rcp();
-        public static float2 cot(this float2 f) => f.tan().rcp();
-        public static float cot(this float f) => f.tan().rcp();
-        public static float cot(this int f) => f.tan().rcp();
-        
-        public static double4 cot(this double4 f) => f.tan().rcp();
-        public static double3 cot(this double3 f) => f.tan().rcp();
-        public static double2 cot(this double2 f) => f.tan().rcp();
-        
-        public static Vector4 cot(this Vector4 f) => f.tan().rcp();
-        public static Vector3 cot(this Vector3 f) => f.tan().rcp();
-        public static Vector2 cot(this Vector2 f) => f.tan().rcp();
 
-        
-        
-        // Cosecant
-        public static float4 csc(this float4 f) => f.sin().rcp();
-        public static float3 csc(this float3 f) => f.sin().rcp();
-        public static float2 csc(this float2 f) => f.sin().rcp();
-        public static float csc(this float f) => f.sin().rcp();
-        public static float csc(this int f) => f.sin().rcp();
-        
-        public static double4 csc(this double4 f) => f.sin().rcp();
-        public static double3 csc(this double3 f) => f.sin().rcp();
-        public static double2 csc(this double2 f) => f.sin().rcp();
-        public static double csc(this double f) => f.sin().rcp();
-        
-        public static Vector4 csc(this Vector4 f) => f.sin().rcp();
-        public static Vector3 csc(this Vector3 f) => f.sin().rcp();
-        public static Vector2 csc(this Vector2 f) => f.sin().rcp();
-        
         // Move Sec To Here or move above to "Trigonometry)
 
-        // Arccotangent
-        public static float4 acot(this float4 f) => f.rcp().atan();
-        public static float3 acot(this float3 f) => f.rcp().atan();
-        public static float2 acot(this float2 f) => f.rcp().atan();
-        public static float acot(this float f) => f.rcp().atan();
-        public static float acot(this int f) => f.rcp().atan();
+        // Hyperbolic Sine
         
-        public static double4 acot(this double4 f) => f.rcp().atan();
-        public static double3 acot(this double3 f) => f.rcp().atan();
-        public static double2 acot(this double2 f) => f.rcp().atan();
-        public static double acot(this double f) => f.rcp().atan();
+        public static float4 sinh(this float4 f) => math.sinh(f);
+        public static float3 sinh(this float3 f) => math.sinh(f);
+        public static float2 sinh(this float2 f) => math.sinh(f);
+        public static float sinh(this float f) => math.sinh(f);
+        public static float sinh(this int f) => math.sinh(f);
         
-        public static Vector4 acot(this Vector4 f) => f.rcp().atan();
-        public static Vector3 acot(this Vector3 f) => f.rcp().atan();
-        public static Vector2 acot(this Vector2 f) => f.rcp().atan();
+        public static float4 sinh(this Vector4 f) => math.sinh(f);
+        public static float3 sinh(this Vector3 f) => math.sinh(f);
+        public static float2 sinh(this Vector2 f) => math.sinh(f);
         
-        // Arcsecant
-        public static float4 asec(this float4 f) => f.rcp().acos();
-        public static float3 asec(this float3 f) => f.rcp().acos();
-        public static float2 asec(this float2 f) => f.rcp().acos();
-        public static float asec(this float f) => f.rcp().acos();
-        public static float asec(this int f) => f.rcp().acos();
+        public static double4 sinh(this double4 f) => math.sinh(f);
+        public static double3 sinh(this double3 f) => math.sinh(f);
+        public static double2 sinh(this double2 f) => math.sinh(f);
+        public static double sinh(this double f) => math.sinh(f);
         
-        public static double4 asec(this double4 f) => f.rcp().acos();
-        public static double3 asec(this double3 f) => f.rcp().acos();
-        public static double2 asec(this double2 f) => f.rcp().acos();
-        public static double asec(this double f) => f.rcp().acos();
+        // Hyperbolic Cosine
+        public static float4 cosh(this float4 f) => math.cosh(f);
+        public static float3 cosh(this float3 f) => math.cosh(f);
+        public static float2 cosh(this float2 f) => math.cosh(f);
+        public static float cosh(this float f) => math.cosh(f);
+        public static float cosh(this int f) => math.cosh(f);
         
-        public static Vector4 asec(this Vector4 f) => f.rcp().acos();
-        public static Vector3 asec(this Vector3 f) => f.rcp().acos();
-        public static Vector2 asec(this Vector2 f) => f.rcp().acos();
+        public static float4 cosh(this Vector4 f) => math.cosh(f);
+        public static float3 cosh(this Vector3 f) => math.cosh(f);
+        public static float2 cosh(this Vector2 f) => math.cosh(f);
         
-        // Arccosecant
-        public static float4 acsc(this float4 f) => f.rcp().asin();
-        public static float3 acsc(this float3 f) => f.rcp().asin();
-        public static float2 acsc(this float2 f) => f.rcp().asin();
-        public static float acsc(this float f) => f.rcp().asin();
-        public static float acsc(this int f) => f.rcp().asin();
+        public static double4 cosh(this double4 f) => math.cosh(f);
+        public static double3 cosh(this double3 f) => math.cosh(f);
+        public static double2 cosh(this double2 f) => math.cosh(f);
+        public static double cosh(this double f) => math.cosh(f);
         
-        public static double4 acsc(this double4 f) => f.rcp().asin();
-        public static double3 acsc(this double3 f) => f.rcp().asin();
-        public static double2 acsc(this double2 f) => f.rcp().asin();
-        public static double acsc(this double f) => f.rcp().asin();
+        // Hyperbolic Tangent
         
-        public static Vector4 acsc(this Vector4 f) => f.rcp().asin();
-        public static Vector3 acsc(this Vector3 f) => f.rcp().asin();
-        public static Vector2 acsc(this Vector2 f) => f.rcp().asin();
+        public static float4 tanh(this float4 f) => math.tanh(f);
+        public static float3 tanh(this float3 f) => math.tanh(f);
+        public static float2 tanh(this float2 f) => math.tanh(f);
+        public static float tanh(this float f) => math.tanh(f);
+        public static float tanh(this int f) => math.tanh(f);
+        
+        public static float4 tanh(this Vector4 f) => math.tanh(f);
+        public static float3 tanh(this Vector3 f) => math.tanh(f);
+        public static float2 tanh(this Vector2 f) => math.tanh(f);
+        
+        public static double4 tanh(this double4 f) => math.tanh(f);
+        public static double3 tanh(this double3 f) => math.tanh(f);
+        public static double2 tanh(this double2 f) => math.tanh(f);
+        public static double tanh(this double f) => math.tanh(f);
+        
+                
+        // Hyperbolic Secant
+        
+        public static float4 sech(this float4 f) => f.cosh().rcp();
+        public static float3 sech(this float3 f) => f.cosh().rcp();
+        public static float2 sech(this float2 f) => f.cosh().rcp();
+        public static float sech(this float f) => f.cosh().rcp();
+        public static float sech(this int f) => f.cosh().rcp();
+        
+        public static float4 sech(this Vector4 f) => f.cosh().rcp();
+        public static float3 sech(this Vector3 f) => f.cosh().rcp();
+        public static float2 sech(this Vector2 f) => f.cosh().rcp();
+        
+        public static double4 sech(this double4 f) => f.cosh().rcp();
+        public static double3 sech(this double3 f) => f.cosh().rcp();
+        public static double2 sech(this double2 f) => f.cosh().rcp();
+        public static double sech(this double f) => f.cosh().rcp();
         
         // Hyperbolic Cotangent
         public static float4 coth(this float4 f) => f.tanh().rcp();
@@ -101,9 +88,9 @@ namespace UME
         public static double2 coth(this double2 f) => f.tanh().rcp();
         public static double coth(this double f) => f.tanh().rcp();
         
-        public static Vector4 coth(this Vector4 f) => f.tanh().rcp();
-        public static Vector3 coth(this Vector3 f) => f.tanh().rcp();
-        public static Vector2 coth(this Vector2 f) => f.tanh().rcp();
+        public static float4 coth(this Vector4 f) => f.tanh().rcp();
+        public static float3 coth(this Vector3 f) => f.tanh().rcp();
+        public static float2 coth(this Vector2 f) => f.tanh().rcp();
         
         // sech already implemented
         
@@ -119,17 +106,13 @@ namespace UME
         public static double2 csch(this double2 f) => f.sinh().rcp();
         public static double csch(this double f) => f.sinh().rcp();
         
-        public static Vector4 csch(this Vector4 f) => f.sinh().rcp();
-        public static Vector3 csch(this Vector3 f) => f.sinh().rcp();
-        public static Vector2 csch(this Vector2 f) => f.sinh().rcp();
-        
-        // asech already implemented
-        
-        // acsch already implemented
+        public static float4 csch(this Vector4 f) => f.sinh().rcp();
+        public static float3 csch(this Vector3 f) => f.sinh().rcp();
+        public static float2 csch(this Vector2 f) => f.sinh().rcp();
         
                // Inverse Hyperbolic Arcs ---------------------------------------------------
         
-        // Hyperbolic Arccosine // Verified
+        // Hyperbolic Arccosine
 
         public static float4 acosh(this float4 f) => (f + (f.sqr() - 1).sqrt()).ln();
         public static float3 acosh(this float3 f) => (f + (f.sqr() - 1).sqrt()).ln();
@@ -146,7 +129,7 @@ namespace UME
         public static double2 acosh(this double2 f) => (f + (f.sqr() - 1).sqrt()).ln();
         public static double acosh(this double f) => (f + (f.sqr() - 1).sqrt()).ln();
         
-        // Hyperbolic Arcsine // Verified
+        // Hyperbolic Arcsine
         
         public static float4 asinh(this float4 f) => (f + (f.sqr() + 1).sqrt()).ln();
         public static float3 asinh(this float3 f) => (f + (f.sqr() + 1).sqrt()).ln();
