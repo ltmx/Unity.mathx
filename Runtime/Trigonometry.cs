@@ -5,6 +5,7 @@ namespace UME
 {
     public static  partial class Math
     {
+        
         // Trigonometry ----------------------------------------------------------------------------------
 
         // Sine
@@ -165,91 +166,127 @@ namespace UME
         
         // Arcsecant ?
         
-        // Secant
+        // Secant // Verified
         
-        public static float4 sec(this float4 f) => f.cosh().rcp();
-        public static float3 sec(this float3 f) => f.cosh().rcp();
-        public static float2 sec(this float2 f) => f.cosh().rcp();
-        public static float sec(this float f) => f.cosh().rcp();
-        public static float sec(this int f) => f.cosh().rcp();
+        public static float4 sech(this float4 f) => f.cosh().rcp();
+        public static float3 sech(this float3 f) => f.cosh().rcp();
+        public static float2 sech(this float2 f) => f.cosh().rcp();
+        public static float sech(this float f) => f.cosh().rcp();
+        public static float sech(this int f) => f.cosh().rcp();
         
-        public static float4 sec(this Vector4 f) => f.cosh().rcp();
-        public static float3 sec(this Vector3 f) => f.cosh().rcp();
-        public static float2 sec(this Vector2 f) => f.cosh().rcp();
+        public static float4 sech(this Vector4 f) => f.cosh().rcp();
+        public static float3 sech(this Vector3 f) => f.cosh().rcp();
+        public static float2 sech(this Vector2 f) => f.cosh().rcp();
         
-        public static double4 sec(this double4 f) => f.cosh().rcp();
-        public static double3 sec(this double3 f) => f.cosh().rcp();
-        public static double2 sec(this double2 f) => f.cosh().rcp();
-        public static double sec(this double f) => f.cosh().rcp();
+        public static double4 sech(this double4 f) => f.cosh().rcp();
+        public static double3 sech(this double3 f) => f.cosh().rcp();
+        public static double2 sech(this double2 f) => f.cosh().rcp();
+        public static double sech(this double f) => f.cosh().rcp();
 
 
-        // Sine²
+        // Sine² // Verified
         
-        public static float4 sin2(this float4 f) => (1 - f.cos()) / 2;
-        public static float3 sin2(this float3 f) => (1 - f.cos()) / 2;
-        public static float2 sin2(this float2 f) => (1 - f.cos()) / 2;
-        public static float sin2(this float f) => (1 - f.cos()) / 2;
-        public static float sin2(this int f) => (1 - f.cos()) / 2;
+        public static float4 sin2(this float4 f) => (1 - cos(f*2)) / 2;
+        public static float3 sin2(this float3 f) => (1 - cos(f*2)) / 2;
+        public static float2 sin2(this float2 f) => (1 - cos(f*2)) / 2;
+        public static float sin2(this float f) => (1 - cos(f*2)) / 2;
+        public static float sin2(this int f) => (1 - cos(f*2)) / 2;
         
-        public static float4 sin2(this Vector4 f) => (1 - f.cos()) / 2;
-        public static float3 sin2(this Vector3 f) => (1 - f.cos()) / 2;
-        public static float2 sin2(this Vector2 f) => (1 - f.cos()) / 2;
+        public static float4 sin2(this Vector4 f) => (1 - cos(f*2)) / 2;
+        public static float3 sin2(this Vector3 f) => (1 - cos(f*2)) / 2;
+        public static float2 sin2(this Vector2 f) => (1 - cos(f*2)) / 2;
         
-        public static double4 sin2(this double4 f) => (1 - f.cos()) / 2;
-        public static double3 sin2(this double3 f) => (1 - f.cos()) / 2;
-        public static double2 sin2(this double2 f) => (1 - f.cos()) / 2;
-        public static double sin2(this double f) => (1 - f.cos()) / 2;
+        public static double4 sin2(this double4 f) => (1 - cos(f*2)) / 2;
+        public static double3 sin2(this double3 f) => (1 - cos(f*2)) / 2;
+        public static double2 sin2(this double2 f) => (1 - cos(f*2)) / 2;
+        public static double sin2(this double f) => (1 - cos(f*2)) / 2;
         
-        // Cosine²
+        // Cosine² // Verified
         
-        public static float4 cos2(this float4 f) => (1 + f.cos()) / 2;
-        public static float3 cos2(this float3 f) => (1 + f.cos()) / 2;
-        public static float2 cos2(this float2 f) => (1 + f.cos()) / 2;
-        public static float cos2(this float f) => (1 + f.cos()) / 2;
-        public static float cos2(this int f) => (1 + f.cos()) / 2;
+        public static float4 cos2(this float4 f) => (1 + cos(f*2)) / 2;
+        public static float3 cos2(this float3 f) => (1 + cos(f*2)) / 2;
+        public static float2 cos2(this float2 f) => (1 + cos(f*2)) / 2;
+        public static float cos2(this float f) => (1 + cos(f*2)) / 2;
+        public static float cos2(this int f) => (1 + cos(f*2)) / 2;
         
-        public static float4 cos2(this Vector4 f) => (1 + f.cos()) / 2;
-        public static float3 cos2(this Vector3 f) => (1 + f.cos()) / 2;
-        public static float2 cos2(this Vector2 f) => (1 + f.cos()) / 2;
+        public static float4 cos2(this Vector4 f) => (1 + cos(f*2)) / 2;
+        public static float3 cos2(this Vector3 f) => (1 + cos(f*2)) / 2;
+        public static float2 cos2(this Vector2 f) => (1 + cos(f*2)) / 2;
         
-        public static double4 cos2(this double4 f) => (1 + f.cos()) / 2;
-        public static double3 cos2(this double3 f) => (1 + f.cos()) / 2;
-        public static double2 cos2(this double2 f) => (1 + f.cos()) / 2;
-        public static double cos2(this double f) => (1 + f.cos()) / 2;
+        public static double4 cos2(this double4 f) => (1 + cos(f*2)) / 2;
+        public static double3 cos2(this double3 f) => (1 + cos(f*2)) / 2;
+        public static double2 cos2(this double2 f) => (1 + cos(f*2)) / 2;
+        public static double cos2(this double f) => (1 + cos(f*2)) / 2;
 
-        // Tangent²
+        // Tangent² // Verified
+
+        public static float4 tan2(this float4 f) {
+            var a = cos(f * 2);
+            return (1 - a) / (1 + a);
+        }
+        public static float3 tan2(this float3 f) {
+            var a = cos(f * 2);
+            return (1 - a) / (1 + a);
+        }
+        public static float2 tan2(this float2 f) {
+            var a = cos(f * 2);
+            return (1 - a) / (1 + a);
+        }
+        public static float tan2(this float f) {
+            var a = cos(f * 2);
+            return (1 - a) / (1 + a);
+        }
+        public static float tan2(this int f) {
+            var a = cos(f * 2);
+            return (1 - a) / (1 + a);
+        }
         
-        public static float4 tan2(this float4 f) => f.sec2() - 1;
-        public static float3 tan2(this float3 f) => f.sec2() - 1;
-        public static float2 tan2(this float2 f) => f.sec2() - 1;
-        public static float tan2(this float f) => f.sec2() - 1;
-        public static float tan2(this int f) => f.sec2() - 1;
+        public static float4 tan2(this Vector4 f) {
+            var a = cos(f * 2);
+            return (1 - a) / (1 + a);
+        }
+        public static float3 tan2(this Vector3 f) {
+            var a = cos(f * 2);
+            return (1 - a) / (1 + a);
+        }
+        public static float2 tan2(this Vector2 f) {
+            var a = cos(f * 2);
+            return (1 - a) / (1 + a);
+        }
         
-        public static float4 tan2(this Vector4 f) => f.sec2() - 1;
-        public static float3 tan2(this Vector3 f) => f.sec2() - 1;
-        public static float2 tan2(this Vector2 f) => f.sec2() - 1;
+        public static double4 tan2(this double4 f) {
+            var a = cos(f * 2);
+            return (1 - a) / (1 + a);
+        }
+        public static double3 tan2(this double3 f) {
+            var a = cos(f * 2);
+            return (1 - a) / (1 + a);
+        }
+        public static double2 tan2(this double2 f) {
+            var a = cos(f * 2);
+            return (1 - a) / (1 + a);
+        }
+        public static double tan2(this double f) {
+            var a = cos(f * 2);
+            return (1 - a) / (1 + a);
+        }
         
-        public static double4 tan2(this double4 f) => f.sec2() - 1;
-        public static double3 tan2(this double3 f) => f.sec2() - 1;
-        public static double2 tan2(this double2 f) => f.sec2() - 1;
-        public static double tan2(this double f) => f.sec2() - 1;
+        // Secant² // Verified
         
-        // Secant²
+        public static float4 sec2(this float4 f) => f.cos2().rcp();
+        public static float3 sec2(this float3 f) => f.cos2().rcp();
+        public static float2 sec2(this float2 f) => f.cos2().rcp();
+        public static float sec2(this float f) => f.cos2().rcp();
+        public static float sec2(this int f) => f.cos2().rcp();
         
-        public static float4 sec2(this float4 f) => f.cosh().sqr().rcp();
-        public static float3 sec2(this float3 f) => f.cosh().sqr().rcp();
-        public static float2 sec2(this float2 f) => f.cosh().sqr().rcp();
-        public static float sec2(this float f) => f.cosh().sqr().rcp();
-        public static float sec2(this int f) => f.cosh().sqr().rcp();
+        public static float4 sec2(this Vector4 f) => f.cos2().rcp();
+        public static float3 sec2(this Vector3 f) => f.cos2().rcp();
+        public static float2 sec2(this Vector2 f) => f.cos2().rcp();
         
-        public static float4 sec2(this Vector4 f) => f.cosh().sqr().rcp();
-        public static float3 sec2(this Vector3 f) => f.cosh().sqr().rcp();
-        public static float2 sec2(this Vector2 f) => f.cosh().sqr().rcp();
-        
-        public static double4 sec2(this double4 f) => f.cosh().sqr().rcp();
-        public static double3 sec2(this double3 f) => f.cosh().sqr().rcp();
-        public static double2 sec2(this double2 f) => f.cosh().sqr().rcp();
-        public static double sec2(this double f) => f.cosh().sqr().rcp();
+        public static double4 sec2(this double4 f) => f.cos2().rcp();
+        public static double3 sec2(this double3 f) => f.cos2().rcp();
+        public static double2 sec2(this double2 f) => f.cos2().rcp();
+        public static double sec2(this double f) => f.cos2().rcp();
         
         // Radians to Degrees
         
@@ -270,7 +307,7 @@ namespace UME
 
         // Inverse Hyperbolic Arcs ---------------------------------------------------
         
-        // Hyperbolic Arccosine
+        // Hyperbolic Arccosine // Verified
 
         public static float4 acosh(this float4 f) => (f + (f.sqr() - 1).sqrt()).ln();
         public static float3 acosh(this float3 f) => (f + (f.sqr() - 1).sqrt()).ln();
@@ -278,16 +315,16 @@ namespace UME
         public static float acosh(this float f) => (f + (f.sqr() - 1).sqrt()).ln();
         public static float acosh(this int f) => (f + (f.sqr() - 1).sqrt()).ln();
         
-        public static float4 acosh(this Vector4 f) => (f.asfloat() + (f.sqr() - 1).sqrt()).ln();
-        public static float3 acosh(this Vector3 f) => (f.asfloat() + (f.sqr() - 1).sqrt()).ln();
-        public static float2 acosh(this Vector2 f) => (f.asfloat() + (f.sqr() - 1).sqrt()).ln();
+        public static float4 acosh(this Vector4 f) => f.asfloat().acosh();
+        public static float3 acosh(this Vector3 f) => f.asfloat().acosh();
+        public static float2 acosh(this Vector2 f) => f.asfloat().acosh();
         
         public static double4 acosh(this double4 f) => (f + (f.sqr() - 1).sqrt()).ln();
         public static double3 acosh(this double3 f) => (f + (f.sqr() - 1).sqrt()).ln();
         public static double2 acosh(this double2 f) => (f + (f.sqr() - 1).sqrt()).ln();
         public static double acosh(this double f) => (f + (f.sqr() - 1).sqrt()).ln();
         
-        // Hyperbolic Arcsine
+        // Hyperbolic Arcsine // Verified
         
         public static float4 asinh(this float4 f) => (f + (f.sqr() + 1).sqrt()).ln();
         public static float3 asinh(this float3 f) => (f + (f.sqr() + 1).sqrt()).ln();
@@ -295,16 +332,16 @@ namespace UME
         public static float asinh(this float f) => (f + (f.sqr() + 1).sqrt()).ln();
         public static float asinh(this int f) => (f + (f.sqr() + 1).sqrt()).ln();
         
-        public static float4 asinh(this Vector4 f) => (f.asfloat() + (f.sqr() + 1).sqrt()).ln();
-        public static float3 asinh(this Vector3 f) => (f.asfloat() + (f.sqr() + 1).sqrt()).ln();
-        public static float2 asinh(this Vector2 f) => (f.asfloat() + (f.sqr() + 1).sqrt()).ln();
+        public static float4 asinh(this Vector4 f) => f.asfloat().asinh();
+        public static float3 asinh(this Vector3 f) => f.asfloat().asinh();
+        public static float2 asinh(this Vector2 f) => f.asfloat().asinh();
         
         public static double4 asinh(this double4 f) => (f + (f.sqr() + 1).sqrt()).ln();
         public static double3 asinh(this double3 f) => (f + (f.sqr() + 1).sqrt()).ln();
         public static double2 asinh(this double2 f) => (f + (f.sqr() + 1).sqrt()).ln();
         public static double asinh(this double f) => (f + (f.sqr() + 1).sqrt()).ln();
         
-        // Hyperbolic Arctangent
+        // Hyperbolic Arctangent // Verified
 
         public static float4 atanh(this float4 f) => ((1 + f) / (1 - f)).ln() / 2;
         public static float3 atanh(this float3 f) => ((1 + f) / (1 - f)).ln() / 2;
@@ -312,65 +349,65 @@ namespace UME
         public static float atanh(this float f) => ((1 + f) / (1 - f)).ln() / 2;
         public static float atanh(this int f) => ((1 + f) / (1 - f)).ln() / 2;
         
-        public static float4 atanh(this Vector4 f) => ((1 + f.asfloat()) / (1 - f.asfloat())).ln() / 2;
-        public static float3 atanh(this Vector3 f) => ((1 + f.asfloat()) / (1 - f.asfloat())).ln() / 2;
-        public static float2 atanh(this Vector2 f) => ((1 + f.asfloat()) / (1 - f.asfloat())).ln() / 2;
+        public static float4 atanh(this Vector4 f) => f.asfloat().atanh();
+        public static float3 atanh(this Vector3 f) => f.asfloat().atanh();
+        public static float2 atanh(this Vector2 f) => f.asfloat().atanh();
         
         public static double4 atanh(this double4 f) => ((1 + f) / (1 - f)).ln() / 2;
         public static double3 atanh(this double3 f) => ((1 + f) / (1 - f)).ln() / 2;
         public static double2 atanh(this double2 f) => ((1 + f) / (1 - f)).ln() / 2;
         public static double atanh(this double f) => ((1 + f) / (1 - f)).ln() / 2;
         
-        // Hyperbolic Arccotangent
+        // Hyperbolic Arccotangent // Verified
         
         public static float4 acoth(this float4 f) => ((f + 1) / (f - 1)).ln() / 2;
         public static float3 acoth(this float3 f) => ((f + 1) / (f - 1)).ln() / 2;
         public static float2 acoth(this float2 f) => ((f + 1) / (f - 1)).ln() / 2;
         public static float acoth(this float f) => ((f + 1) / (f - 1)).ln() / 2;
         public static float acoth(this int f) => ((f + 1) / (f - 1)).ln() / 2;
-        
-        public static float4 acoth(this Vector4 f) => ((f.asfloat() + 1) / (f.asfloat() - 1)).ln() / 2;
-        public static float3 acoth(this Vector3 f) => ((f.asfloat() + 1) / (f.asfloat() - 1)).ln() / 2;
-        public static float2 acoth(this Vector2 f) => ((f.asfloat() + 1) / (f.asfloat() - 1)).ln() / 2;
+
+        public static float4 acoth(this Vector4 f) => f.asfloat().acoth();
+        public static float3 acoth(this Vector3 f) => f.asfloat().acoth();
+        public static float2 acoth(this Vector2 f) => f.asfloat().acoth();
         
         public static double4 acoth(this double4 f) => ((f + 1) / (f - 1)).ln() / 2;
         public static double3 acoth(this double3 f) => ((f + 1) / (f - 1)).ln() / 2;
         public static double2 acoth(this double2 f) => ((f + 1) / (f - 1)).ln() / 2;
         public static double acoth(this double f) => ((f + 1) / (f - 1)).ln() / 2;
         
-        // Hyperbolic Arcsecant
+        // Hyperbolic Arcsecant // Verified
 
-        public static float4 asech(this float4 f) => ((1 + (1 - f.sqr().sqrt())) / f).ln();
-        public static float3 asech(this float3 f) => ((1 + (1 - f.sqr().sqrt())) / f).ln();
-        public static float2 asech(this float2 f) => ((1 + (1 - f.sqr().sqrt())) / f).ln();
-        public static float asech(this float f) => ((1 + (1 - f.sqr().sqrt())) / f).ln();
-        public static float asech(this int f) => ((1 + (1 - f.sqr().sqrt())) / f).ln();
+        public static float4 asech(this float4 f) => f.rcp().acosh();
+        public static float3 asech(this float3 f) => f.rcp().acosh();
+        public static float2 asech(this float2 f) => f.rcp().acosh();
+        public static float asech(this float f) => f.rcp().acosh();
+        public static float asech(this int f) => f.rcp().acosh();// Previous : ((1 + (1 - f.sqr().sqrt())) / f).ln();
         
-        public static float4 asech(this Vector4 f) => ((1 + (1 - f.sqr().sqrt())) / f).ln();
-        public static float3 asech(this Vector3 f) => ((1 + (1 - f.sqr().sqrt())) / f).ln();
-        public static float2 asech(this Vector2 f) => ((1 + (1 - f.sqr().sqrt())) / f.asfloat()).ln();
+        public static float4 asech(this Vector4 f) => f.rcp().acosh();
+        public static float3 asech(this Vector3 f) => f.rcp().acosh();
+        public static float2 asech(this Vector2 f) => f.rcp().acosh();
         
-        public static double4 asech(this double4 f) => ((1 + (1 - f.sqr().sqrt())) / f).ln();
-        public static double3 asech(this double3 f) => ((1 + (1 - f.sqr().sqrt())) / f).ln();
-        public static double2 asech(this double2 f) => ((1 + (1 - f.sqr().sqrt())) / f).ln();
-        public static double asech(this double f) => ((1 + (1 - f.sqr().sqrt())) / f).ln();
+        public static double4 asech(this double4 f) => f.rcp().acosh();
+        public static double3 asech(this double3 f) => f.rcp().acosh();
+        public static double2 asech(this double2 f) => f.rcp().acosh();
+        public static double asech(this double f) => f.rcp().acosh();
         
-        // Hyperbolic Arccosecant
+        // Hyperbolic Arccosecant // Verified
 
-        public static float4 acsch(this float4 f) => ((1 + (1 + f.sqr().sqrt())) / f).ln();
-        public static float3 acsch(this float3 f) => ((1 + (1 + f.sqr().sqrt())) / f).ln();
-        public static float2 acsch(this float2 f) => ((1 + (1 + f.sqr().sqrt())) / f).ln();
-        public static float acsch(this float f) => ((1 + (1 + f.sqr().sqrt())) / f).ln();
-        public static float acsch(this int f) => ((1 + (1 + f.sqr().sqrt())) / f).ln();
+        public static float4 acsch(this float4 f) => f.rcp().asinh();
+        public static float3 acsch(this float3 f) => f.rcp().asinh();
+        public static float2 acsch(this float2 f) => f.rcp().asinh();
+        public static float acsch(this float f) => f.rcp().asinh();
+        public static float acsch(this int f) => f.rcp().asinh(); // Previous : ((1 + (1 + f.sqr().sqrt())) / f).ln();
         
-        public static float4 acsch(this Vector4 f) => ((1 + (1 + f.sqr().sqrt())) / f).ln();
-        public static float3 acsch(this Vector3 f) => ((1 + (1 + f.sqr().sqrt())) / f).ln();
-        public static float2 acsch(this Vector2 f) => ((1 + (1 + f.sqr().sqrt())) / f.asfloat()).ln();
+        public static float4 acsch(this Vector4 f) => f.rcp().asinh();
+        public static float3 acsch(this Vector3 f) => f.rcp().asinh();
+        public static float2 acsch(this Vector2 f) => f.rcp().asinh();
         
-        public static double4 acsch(this double4 f) => ((1 + (1 + f.sqr().sqrt())) / f).ln();
-        public static double3 acsch(this double3 f) => ((1 + (1 + f.sqr().sqrt())) / f).ln();
-        public static double2 acsch(this double2 f) => ((1 + (1 + f.sqr().sqrt())) / f).ln();
-        public static double acsch(this double f) => ((1 + (1 + f.sqr().sqrt())) / f).ln();
+        public static double4 acsch(this double4 f) => f.rcp().asinh();
+        public static double3 acsch(this double3 f) => f.rcp().asinh();
+        public static double2 acsch(this double2 f) => f.rcp().asinh();
+        public static double acsch(this double f) => f.rcp().asinh();
         
         
         // Degrees To Radians
