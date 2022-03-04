@@ -3,9 +3,8 @@ using UnityEngine;
 
 namespace UME
 {
-    public static  partial class Math
+    public static partial class Math
     {
-        
         // Trigonometry ----------------------------------------------------------------------------------
 
         // Sine
@@ -71,7 +70,6 @@ namespace UME
         public static double2 sec(this double2 f) => f.rcp().cos();
         public static double sec(this double f) => f.rcp().cos();
         
-        
         // Cotangent
         public static float4 cot(this float4 f) => f.tan().rcp();
         public static float3 cot(this float3 f) => f.tan().rcp();
@@ -82,6 +80,7 @@ namespace UME
         public static double4 cot(this double4 f) => f.tan().rcp();
         public static double3 cot(this double3 f) => f.tan().rcp();
         public static double2 cot(this double2 f) => f.tan().rcp();
+        public static double cot(this double f) => f.tan().rcp();
         
         public static Vector4 cot(this Vector4 f) => f.tan().rcp();
         public static Vector3 cot(this Vector3 f) => f.tan().rcp();
@@ -102,7 +101,6 @@ namespace UME
         public static Vector4 csc(this Vector4 f) => f.sin().rcp();
         public static Vector3 csc(this Vector3 f) => f.sin().rcp();
         public static Vector2 csc(this Vector2 f) => f.sin().rcp();
-        
         
         // Arcsine
         public static float4 asin(this float4 f) => math.asin(f);
@@ -201,7 +199,7 @@ namespace UME
         public static float2 acsc(this Vector2 f) => f.rcp().asin();
 
 
-        // Sine² // Verified
+        // Sine²
         
         public static float4 sin2(this float4 f) => (1 - cos(f*2)) / 2;
         public static float3 sin2(this float3 f) => (1 - cos(f*2)) / 2;
@@ -218,8 +216,7 @@ namespace UME
         public static double2 sin2(this double2 f) => (1 - cos(f*2)) / 2;
         public static double sin2(this double f) => (1 - cos(f*2)) / 2;
         
-        // Cosine² // Verified
-        
+        // Cosine²
         public static float4 cos2(this float4 f) => (1 + cos(f*2)) / 2;
         public static float3 cos2(this float3 f) => (1 + cos(f*2)) / 2;
         public static float2 cos2(this float2 f) => (1 + cos(f*2)) / 2;
@@ -235,8 +232,7 @@ namespace UME
         public static double2 cos2(this double2 f) => (1 + cos(f*2)) / 2;
         public static double cos2(this double f) => (1 + cos(f*2)) / 2;
 
-        // Tangent² // Verified
-
+        // Tangent²
         public static float4 tan2(this float4 f) {
             var a = cos(f * 2);
             return (1 - a) / (1 + a);
@@ -288,8 +284,7 @@ namespace UME
             return (1 - a) / (1 + a);
         }
         
-        // Secant² // Verified
-        
+        // Secant²
         public static float4 sec2(this float4 f) => f.cos2().rcp();
         public static float3 sec2(this float3 f) => f.cos2().rcp();
         public static float2 sec2(this float2 f) => f.cos2().rcp();
@@ -305,8 +300,10 @@ namespace UME
         public static double2 sec2(this double2 f) => f.cos2().rcp();
         public static double sec2(this double f) => f.cos2().rcp();
         
-        // Radians to Degrees
         
+        
+        
+        // Radians to Degrees
         public static float4 degrees(this float4 f) => math.degrees(f);
         public static float3 degrees(this float3 f) => math.degrees(f);
         public static float2 degrees(this float2 f) => math.degrees(f);
@@ -321,12 +318,8 @@ namespace UME
         public static double3 degrees(this double3 f) => math.degrees(f);
         public static double2 degrees(this double2 f) => math.degrees(f);
         public static double degrees(this double f) => math.degrees(f);
-
- 
-        
         
         // Degrees To Radians
-        
         public static float4 radians(this float4 f) => math.radians(f);
         public static float3 radians(this float3 f) => math.radians(f);
         public static float2 radians(this float2 f) => math.radians(f);
@@ -343,7 +336,6 @@ namespace UME
         public static double radians(this double f) => math.radians(f);
         
         // Sine-Cosine combined
-
         public static float4x2 sincos(this float4 f4) {
             var f = new float4x2();
             math.sincos(f4,out f.c0, out f.c1);
