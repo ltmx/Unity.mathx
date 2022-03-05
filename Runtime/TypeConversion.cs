@@ -137,6 +137,7 @@ namespace UME
         public static List<Color> toColorList(this IEnumerable<float4> f) => f.toColorIE().ToList();
         public static List<Color> toColorList(this IEnumerable<float3> f) => f.toColorIE().ToList();
         public static List<Color> toColorList(this IEnumerable<float2> f) => f.toColorIE().ToList();
+        public static List<Color> toColorList(this IEnumerable<float> f) => f.toColorIE().ToList();
 
         public static List<color> tocolorList(this IEnumerable<float4> f) => f.tocolorIE().ToList();
         public static List<color> tocolorList(this IEnumerable<float3> f) => f.tocolorIE().ToList();
@@ -145,6 +146,7 @@ namespace UME
         public static Color[] toColorArray(this IEnumerable<float4> f) => f.toColorIE().ToArray();
         public static Color[] toColorArray(this IEnumerable<float3> f) => f.toColorIE().ToArray();
         public static Color[] toColorArray(this IEnumerable<float2> f) => f.toColorIE().ToArray();
+        public static Color[] toColorArray(this IEnumerable<float> f) => f.toColorIE().ToArray();
         
         public static color[] tocolorArray(this IEnumerable<float4> f) => f.tocolorIE().ToArray();
         public static color[] tocolorArray(this IEnumerable<float3> f) => f.tocolorIE().ToArray();
@@ -180,6 +182,7 @@ namespace UME
         private static IEnumerable<Color> toColorIE(this IEnumerable<float4> f2s) => f2s.Select(f => f.ascolor().cast());
         private static IEnumerable<Color> toColorIE(this IEnumerable<float3> f2s) => f2s.Select(f => f.ascolor().cast());
         private static IEnumerable<Color> toColorIE(this IEnumerable<float2> f2s) => f2s.Select(f => f.ascolor().cast());
+        private static IEnumerable<Color> toColorIE(this IEnumerable<float> f2s) => f2s.Select(f => f.ascolor().cast());
 
         private static IEnumerable<color> tocolorIE(this IEnumerable<float4> f2s) => f2s.Select(f => f.ascolor());
         private static IEnumerable<color> tocolorIE(this IEnumerable<float3> f2s) => f2s.Select(f => f.ascolor());

@@ -205,13 +205,20 @@ namespace UME
         public static double dot(this double3x2 f) => math.dot(f.c0, f.c1);
         public static double dot(this double2x2 f) => math.dot(f.c0, f.c1);
         
-        public static float dot(this float2 f, float2 f2) => math.dot(f, f2);
-        public static float dot(this float3 f, float3 f2) => math.dot(f, f2);
-        public static float dot(this float4 f, float4 f2) => math.dot(f, f2);
         
-        public static double dot(this double2 f, double2 f2) => math.dot(f, f2);
-        public static double dot(this double3 f, double3 f2) => math.dot(f, f2);
+        // Dot
+        public static float dot(this float4 f, float4 f2) => math.dot(f, f2);
+        public static float dot(this float3 f, float3 f2) => math.dot(f, f2);
+        public static float dot(this float2 f, float2 f2) => math.dot(f, f2);
+        
+        
         public static double dot(this double4 f, double4 f2) => math.dot(f, f2);
+        public static double dot(this double3 f, double3 f2) => math.dot(f, f2);
+        public static double dot(this double2 f, double2 f2) => math.dot(f, f2);
+        
+        public static float dot(this Vector4 f, float4 f2) => math.dot(f, f2);
+        public static float dot(this Vector3 f, float3 f2) => math.dot(f, f2);
+        public static float dot(this Vector2 f, float2 f2) => math.dot(f, f2);
         
         
         // Reflect
