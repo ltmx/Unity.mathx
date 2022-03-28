@@ -1,5 +1,5 @@
 
-namespace UME
+namespace Unity.Mathematics
 {
     public partial class IOR
     {

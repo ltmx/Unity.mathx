@@ -1,6 +1,6 @@
 ﻿//Refactored and optimized by LTMX - from - https://web.archive.org/web/20180616003313/http://lab.polygonal.de/2007/07/18/fast-and-accurate-sinecosine-approximation/
 
-namespace UME
+namespace Unity.Mathematics
 {
     public static partial class Math
     {

@@ -7,9 +7,8 @@
 
 //https://github.com/LTMX/Unity-Mathematics-Extensions
 
-using Unity.Mathematics;
 
-namespace UME
+namespace Unity.Mathematics
 {
     public static partial class Math
     {

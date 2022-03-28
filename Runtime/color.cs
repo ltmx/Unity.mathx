@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using Unity.Mathematics;
 using UnityEngine;
 
-namespace UME
+namespace Unity.Mathematics
 {
     [Serializable]
     public struct color : IEquatable<color>, IFormattable

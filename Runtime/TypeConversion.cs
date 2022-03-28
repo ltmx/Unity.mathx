@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
-using Unity.Mathematics;
 using UnityEngine;
 using Matrix4x4 = UnityEngine.Matrix4x4;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 using Vector4 = UnityEngine.Vector4;
 
-namespace UME
+namespace Unity.Mathematics
 {
     public static partial class Math
     {

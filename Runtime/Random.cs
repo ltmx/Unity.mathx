@@ -1,8 +1,6 @@
 ﻿using System;
-using Unity.Mathematics;
-using Random = Unity.Mathematics.Random;
 
-namespace UME
+namespace Unity.Mathematics
 {
     public partial class Math
     {

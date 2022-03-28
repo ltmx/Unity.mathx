@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-
-namespace UME
+﻿
+namespace Unity.Mathematics
 {
     public static partial class Math
     {

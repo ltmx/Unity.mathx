@@ -1,6 +1,5 @@
 ﻿
-// Not exactly working as expected
-namespace UME
+namespace Unity.Mathematics
 {
     public static partial class Math
     {

@@ -1,9 +1,7 @@
 // Translation to C# from https://easings.net/
 // by LTMX - https://github.com/LTMX
 
-using Unity.Mathematics;
-
-namespace UME
+namespace Unity.Mathematics
 {
     public static partial class Math
     {

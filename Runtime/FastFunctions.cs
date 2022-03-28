@@ -1,9 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using Unity.Mathematics;
 using UnityEngine;
 
-namespace UME
+namespace Unity.Mathematics
 {
     public static partial class Math
     {
