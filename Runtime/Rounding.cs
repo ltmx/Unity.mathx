@@ -20,6 +20,21 @@ namespace Unity.Mathematics
         public static double3 round(this double3 f) => math.round(f);
         public static double2 round(this double2 f) => math.round(f);
         public static double round(this double f) => math.round(f);
+        
+        // Round To Int
+        public static int4 roundtoint(this float4 f) => math.round(f).asint();
+        public static int3 roundtoint(this float3 f) => math.round(f).asint();
+        public static int2 roundtoint(this float2 f) => math.round(f).asint();
+        public static int roundtoint(this float f) => math.round(f).asint();
+        
+        public static int4 roundtoint(this Vector4 f) => math.round(f).asint();
+        public static int3 roundtoint(this Vector3 f) => math.round(f).asint();
+        public static int2 roundtoint(this Vector2 f) => math.round(f).asint();
+        
+        public static int4 roundtoint(this double4 f) => math.round(f).asint();
+        public static int3 roundtoint(this double3 f) => math.round(f).asint();
+        public static int2 roundtoint(this double2 f) => math.round(f).asint();
+        public static int roundtoint(this double f) => math.round(f).asint();
 
         // Clamp
         public static float4 clamp(this float4 f, float4 min, float4 max) => math.clamp(f, min, max);
@@ -78,7 +93,6 @@ namespace Unity.Mathematics
         public static float3 ceil(this float3 f) => math.ceil(f);
         public static float2 ceil(this float2 f) => math.ceil(f);
         public static float ceil(this float f) => math.ceil(f);
-        public static int ceil(this int f) => (int)math.ceil(f);
         
         public static float4 ceil(this Vector4 f) => math.ceil(f);
         public static float3 ceil(this Vector3 f) => math.ceil(f);
@@ -88,14 +102,29 @@ namespace Unity.Mathematics
         public static double3 ceil(this double3 f) => math.ceil(f);
         public static double2 ceil(this double2 f) => math.ceil(f);
         public static double ceil(this double f) => math.ceil(f);
+        
+        // Ceil To Int
+        public static int4 ceiltoint(this float4 f) => math.ceil(f).asint();
+        public static int3 ceiltoint(this float3 f) => math.ceil(f).asint();
+        public static int2 ceiltoint(this float2 f) => math.ceil(f).asint();
+        public static int ceiltoint(this float f) => math.ceil(f).asint();
+        
+        public static int4 ceiltoint(this Vector4 f) => math.ceil(f).asint();
+        public static int3 ceiltoint(this Vector3 f) => math.ceil(f).asint();
+        public static int2 ceiltoint(this Vector2 f) => math.ceil(f).asint();
+        
+        public static int4 ceiltoint(this double4 f) => math.ceil(f).asint();
+        public static int3 ceiltoint(this double3 f) => math.ceil(f).asint();
+        public static int2 ceiltoint(this double2 f) => math.ceil(f).asint();
+        public static int ceiltoint(this double f) => math.ceil(f).asint();
 
         // Floor
         public static float4 floor(this float4 f) => math.floor(f);
         public static float3 floor(this float3 f) => math.floor(f);
         public static float2 floor(this float2 f) => math.floor(f);
         public static float floor(this float f) => math.floor(f);
-        public static int floor(this int f) => (int)math.floor(f);
         
+
         public static float4 floor(this Vector4 f) => math.floor(f);
         public static float3 floor(this Vector3 f) => math.floor(f);
         public static float2 floor(this Vector2 f) => math.floor(f);
@@ -104,6 +133,21 @@ namespace Unity.Mathematics
         public static double3 floor(this double3 f) => math.floor(f);
         public static double2 floor(this double2 f) => math.floor(f);
         public static double floor(this double f) => math.floor(f);
+        
+        // Floor To Int
+        public static int4 floortoint(this float4 f) => math.floor(f).asint();
+        public static int3 floortoint(this float3 f) => math.floor(f).asint();
+        public static int2 floortoint(this float2 f) => math.floor(f).asint();
+        public static int floortoint(this float f) => math.floor(f).asint();
+        
+        public static int4 floortoint(this Vector4 f) => math.floor(f).asint();
+        public static int3 floortoint(this Vector3 f) => math.floor(f).asint();
+        public static int2 floortoint(this Vector2 f) => math.floor(f).asint();
+        
+        public static int4 floortoint(this double4 f) => math.floor(f).asint();
+        public static int3 floortoint(this double3 f) => math.floor(f).asint();
+        public static int2 floortoint(this double2 f) => math.floor(f).asint();
+        public static int floortoint(this double f) => math.floor(f).asint();
         
         // Saturate
         /// Returns the result of clamping f to [0, 1]

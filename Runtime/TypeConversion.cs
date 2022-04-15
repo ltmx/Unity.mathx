@@ -17,14 +17,16 @@ namespace Unity.Mathematics
         // floats to ints
         /// Returns this float-type cast to an equivalent int-type
         public static int4 asint(this float4 f) => math.asint(f);
-        /// <summary>
+
         /// <inheritdoc cref="asint(float4)"/>>
-        /// </summary>
-        /// <param name="f"></param>
-        /// <returns></returns>
         public static int3 asint(this float3 f) => math.asint(f);
         public static int2 asint(this float2 f) => math.asint(f);
         public static int asint(this float f) => math.asint(f);
+        
+        public static int4 asint(this double4 f) => f.asfloat().asint();
+        public static int3 asint(this double3 f) => f.asfloat().asint();
+        public static int2 asint(this double2 f) => f.asfloat().asint();
+        public static int asint(this double f) => f.asfloat().asint();
 
         // ints to floats -------------------------------------------
         /// Returns a float type equivalent
