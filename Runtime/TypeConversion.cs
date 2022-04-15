@@ -16,27 +16,27 @@ namespace Unity.Mathematics
         
         // floats to ints
         /// Returns this float-type cast to an equivalent int-type
-        public static int4 asint(this float4 f) => math.asint(f);
+        public static int4 asint(this float4 f) => (int4)f;
 
         /// <inheritdoc cref="asint(float4)"/>>
-        public static int3 asint(this float3 f) => math.asint(f);
-        public static int2 asint(this float2 f) => math.asint(f);
-        public static int asint(this float f) => math.asint(f);
+        public static int3 asint(this float3 f) => (int3)f;
+        public static int2 asint(this float2 f) => (int2)f;
+        public static int asint(this float f) => (int) f;
         
-        public static int4 asint(this double4 f) => f.asfloat().asint();
-        public static int3 asint(this double3 f) => f.asfloat().asint();
-        public static int2 asint(this double2 f) => f.asfloat().asint();
-        public static int asint(this double f) => f.asfloat().asint();
+        public static int4 asint(this double4 f) => (int4) f;
+        public static int3 asint(this double3 f) => (int3) f;
+        public static int2 asint(this double2 f) => (int2) f;
+        public static int asint(this double f) => (int) f;
 
         // ints to floats -------------------------------------------
         /// Returns a float type equivalent
-        public static float4 asfloat(this int4 f) => math.asfloat(f);
+        public static float4 asfloat(this int4 f) => f;
         /// <inheritdoc cref="asfloat(int4)"/>
-        public static float3 asfloat(this int3 f) => math.asfloat(f);
+        public static float3 asfloat(this int3 f) => f;
         /// <inheritdoc cref="asfloat(int4)"/>
-        public static float2 asfloat(this int2 f) => math.asfloat(f);
+        public static float2 asfloat(this int2 f) => f;
         /// <inheritdoc cref="asfloat(int4)"/>
-        public static float asfloat(this int f) => math.asfloat(f);
+        public static float asfloat(this int f) => f;
 
         // Vectors to floats -------------------------------------------
         
