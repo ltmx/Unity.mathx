@@ -275,12 +275,17 @@ namespace Unity.Mathematics
         private static extern bool IntersectRayAABB_Injected(
             ref Ray ray,
             ref bounds bounds,
-            out float dist);
+            out float dist
+        );
 
         [MethodImpl(MethodImplOptions.InternalCall)]
         private static extern void ClosestPoint_Injected(
             ref bounds self,
             ref float3 point,
-            out float3 ret);
+            out float3 ret
+        );
+        
+        public static implicit operator bounds(Bounds b) => new(b.center, b.size);
+        public static implicit operator Bounds(bounds b) => new(b.center, b.size);
     }
 }
