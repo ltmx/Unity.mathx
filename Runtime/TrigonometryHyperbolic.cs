@@ -113,37 +113,37 @@ namespace Unity.Mathematics
         
         // Hyperbolic Arccosine
 
-        public static float4 acosh(this float4 f) => (f + (f.sqr() - 1).sqrt()).ln();
-        public static float3 acosh(this float3 f) => (f + (f.sqr() - 1).sqrt()).ln();
-        public static float2 acosh(this float2 f) => (f + (f.sqr() - 1).sqrt()).ln();
-        public static float acosh(this float f) => (f + (f.sqr() - 1).sqrt()).ln();
-        public static float acosh(this int f) => (f + (f.sqr() - 1).sqrt()).ln();
+        public static float4 acosh(this float4 f) => (f + (f.sq() - 1).sqrt()).ln();
+        public static float3 acosh(this float3 f) => (f + (f.sq() - 1).sqrt()).ln();
+        public static float2 acosh(this float2 f) => (f + (f.sq() - 1).sqrt()).ln();
+        public static float acosh(this float f) => (f + (f.sq() - 1).sqrt()).ln();
+        public static float acosh(this int f) => (f + (f.sq() - 1).sqrt()).ln();
         
         public static float4 acosh(this Vector4 f) => f.asfloat().acosh();
         public static float3 acosh(this Vector3 f) => f.asfloat().acosh();
         public static float2 acosh(this Vector2 f) => f.asfloat().acosh();
         
-        public static double4 acosh(this double4 f) => (f + (f.sqr() - 1).sqrt()).ln();
-        public static double3 acosh(this double3 f) => (f + (f.sqr() - 1).sqrt()).ln();
-        public static double2 acosh(this double2 f) => (f + (f.sqr() - 1).sqrt()).ln();
-        public static double acosh(this double f) => (f + (f.sqr() - 1).sqrt()).ln();
+        public static double4 acosh(this double4 f) => (f + (f.sq() - 1).sqrt()).ln();
+        public static double3 acosh(this double3 f) => (f + (f.sq() - 1).sqrt()).ln();
+        public static double2 acosh(this double2 f) => (f + (f.sq() - 1).sqrt()).ln();
+        public static double acosh(this double f) => (f + (f.sq() - 1).sqrt()).ln();
         
         // Hyperbolic Arcsine
         
-        public static float4 asinh(this float4 f) => (f + (f.sqr() + 1).sqrt()).ln();
-        public static float3 asinh(this float3 f) => (f + (f.sqr() + 1).sqrt()).ln();
-        public static float2 asinh(this float2 f) => (f + (f.sqr() + 1).sqrt()).ln();
-        public static float asinh(this float f) => (f + (f.sqr() + 1).sqrt()).ln();
-        public static float asinh(this int f) => (f + (f.sqr() + 1).sqrt()).ln();
+        public static float4 asinh(this float4 f) => (f + (f.sq() + 1).sqrt()).ln();
+        public static float3 asinh(this float3 f) => (f + (f.sq() + 1).sqrt()).ln();
+        public static float2 asinh(this float2 f) => (f + (f.sq() + 1).sqrt()).ln();
+        public static float asinh(this float f) => (f + (f.sq() + 1).sqrt()).ln();
+        public static float asinh(this int f) => (f + (f.sq() + 1).sqrt()).ln();
         
         public static float4 asinh(this Vector4 f) => f.asfloat().asinh();
         public static float3 asinh(this Vector3 f) => f.asfloat().asinh();
         public static float2 asinh(this Vector2 f) => f.asfloat().asinh();
         
-        public static double4 asinh(this double4 f) => (f + (f.sqr() + 1).sqrt()).ln();
-        public static double3 asinh(this double3 f) => (f + (f.sqr() + 1).sqrt()).ln();
-        public static double2 asinh(this double2 f) => (f + (f.sqr() + 1).sqrt()).ln();
-        public static double asinh(this double f) => (f + (f.sqr() + 1).sqrt()).ln();
+        public static double4 asinh(this double4 f) => (f + (f.sq() + 1).sqrt()).ln();
+        public static double3 asinh(this double3 f) => (f + (f.sq() + 1).sqrt()).ln();
+        public static double2 asinh(this double2 f) => (f + (f.sq() + 1).sqrt()).ln();
+        public static double asinh(this double f) => (f + (f.sq() + 1).sqrt()).ln();
         
         // Hyperbolic Arctangent // Verified
 

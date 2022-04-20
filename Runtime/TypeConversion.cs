@@ -27,6 +27,12 @@ namespace Unity.Mathematics
         public static int3 asint(this double3 f) => (int3) f;
         public static int2 asint(this double2 f) => (int2) f;
         public static int asint(this double f) => (int) f;
+        
+        // As Boolean
+        public static bool4 asbool(this int4 f) => new (f.xy.asbool(), f.zw.asbool());
+        public static bool3 asbool(this int3 f) => new(f.xy.asbool(), f.z.asbool());
+        public static bool2 asbool(this int2 f) => new(f.x.asbool(), f.y.asbool());
+        public static bool asbool(this int f) => Convert.ToBoolean(f);
 
         // ints to floats -------------------------------------------
         /// Returns a float type equivalent
@@ -63,11 +69,11 @@ namespace Unity.Mathematics
         
 
         /// Returns 1 when true, componentwise
-        public static int4 asint(this bool4 b) => new int4(b);
+        public static int4 asint(this bool4 b) => (int4) b;
         /// <inheritdoc cref="asint(bool4)"/>
-        public static int3 asint(this bool3 b) => new int3(b);
+        public static int3 asint(this bool3 b) => (int3) b;
         /// <inheritdoc cref="asfloat(bool4)"/>
-        public static int2 asint(this bool2 b) => new int2(b);
+        public static int2 asint(this bool2 b) => (int2) b;
         /// Returns 1 when true
         public static int asint(this bool b) => b ? 1 : 0;
         
@@ -75,24 +81,24 @@ namespace Unity.Mathematics
         // bools as floats -------------------------------------------
         
         /// Returns 1 when true, componentwise
-        public static float4 asfloat(this bool4 b) => new float4(b);
+        public static float4 asfloat(this bool4 b) => (float4) b;
         /// <inheritdoc cref="asfloat(bool4)"/>
-        public static float3 asfloat(this bool3 b) => new float3(b);
+        public static float3 asfloat(this bool3 b) => (float3) b;
         /// <inheritdoc cref="asfloat(bool4)"/>
-        public static float2 asfloat(this bool2 b) => new float2(b);
+        public static float2 asfloat(this bool2 b) => (float2) b;
         /// Returns 1 when true
         public static float asfloat(this bool b) => b.asint();
         
         // doubles as floats -------------------------------------------
         
         /// Returns a float type equivalent
-        public static float4 asfloat(this double4 f) => (float4)f;
+        public static float4 asfloat(this double4 f) => (float4) f;
         /// <inheritdoc cref="asfloat(double4)"/>
-        public static float3 asfloat(this double3 f) => (float3)f;
+        public static float3 asfloat(this double3 f) => (float3) f;
         /// <inheritdoc cref="asfloat(double4)"/>
-        public static float2 asfloat(this double2 f) => (float2)f;
+        public static float2 asfloat(this double2 f) => (float2) f;
         /// <inheritdoc cref="asfloat(double4)"/>
-        public static float asfloat(this double f) => (float)f;
+        public static float asfloat(this double f) => (float) f;
         
         
         // floats as doubles -------------------------------------------
@@ -113,15 +119,15 @@ namespace Unity.Mathematics
 
         // floats as Color -------------------------------------------
         
-        public static color ascolor(this float4 f) => new color(f);
-        public static color ascolor(this float3 f) => new color(f);
-        public static color ascolor(this float2 f) => new color(f.x, f.y, 0);
-        public static color ascolor(this float f) => new color(f);
+        public static color ascolor(this float4 f) => f;
+        public static color ascolor(this float3 f) => f;
+        public static color ascolor(this float2 f) => new color(f.xy, 0);
+        public static color ascolor(this float f) => f;
 
         // Color as floats
         // public static float4 asfloat4(this Color c) => c.cast(); // compatibility
         public static float3 asfloat3(this Color c) => new float3(c.r, c.g, c.b);
-        public static float3 asfloat3(this color c) => (float3)c;
+        public static float3 asfloat3(this color c) => (float3) c;
 
 
         //IEnumerable Type Conversion -------------------------------------------------------------------

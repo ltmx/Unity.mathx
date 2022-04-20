@@ -3029,10 +3029,10 @@ namespace Unity.Mathematics
         public static color sqrt(this color f) => math.sqrt(f);
         public static color pow(this color f, float pow) => math.pow(f, pow);
         public static color pow(this color f, float4 min) => math.pow(f, min);
-        public static color sqr(this color f) => f * f;
+        public static color sq(this color f) => f * f;
         public static color cube(this color f) => f * f * f;
-        public static color quart(this color f) => f * f * f * f;
-        public static color quint(this color f) => f * f * f * f * f;
+        public static color pow4(this color f) => f * f * f * f;
+        public static color pow5(this color f) => f * f * f * f * f;
         public static color frac(this color f) => math.frac(f);
         public static color sign(this color f) => math.sign(f);
         public static color abs(this color f) => math.abs(f); 

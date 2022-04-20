@@ -1,7 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
+using UnityEngine;
+using static System.Runtime.CompilerServices.MethodImplOptions;
 
 namespace Unity.Mathematics
 {
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
+    
     public static partial class Math
     {
         // Sign
@@ -58,20 +63,32 @@ namespace Unity.Mathematics
 
         // Component-Wise Multiplication ---------------------------------------------------------------
 
+        [MethodImpl(AggressiveInlining)]
         public static float cmul(this float4 f) => f.x * f.y * f.z * f.w;
+        [MethodImpl(AggressiveInlining)]
         public static float cmul(this float3 f) => f.x * f.y * f.z;
+        [MethodImpl(AggressiveInlining)]
         public static float cmul(this float2 f) => f.x * f.y;
 
+        [MethodImpl(AggressiveInlining)]
         public static float cmul(this Vector4 f) => f.x * f.y * f.z * f.w;
+        [MethodImpl(AggressiveInlining)]
         public static float cmul(this Vector3 f) => f.x * f.y * f.z;
+        [MethodImpl(AggressiveInlining)]
         public static float cmul(this Vector2 f) => f.x * f.y;
         
+        [MethodImpl(AggressiveInlining)]
         public static int cmul(this int4 f) => f.x * f.y * f.z * f.w;
+        [MethodImpl(AggressiveInlining)]
         public static int cmul(this int3 f) => f.x * f.y * f.z;
+        [MethodImpl(AggressiveInlining)]
         public static int cmul(this int2 f) => f.x * f.y;
         
+        [MethodImpl(AggressiveInlining)]
         public static double cmul(this double4 f) => f.x * f.y * f.z * f.w;
+        [MethodImpl(AggressiveInlining)]
         public static double cmul(this double3 f) => f.x * f.y * f.z;
+        [MethodImpl(AggressiveInlining)]
         public static double cmul(this double2 f) => f.x * f.y;
 
 
@@ -88,9 +105,9 @@ namespace Unity.Mathematics
         public static double2 onem(this double2 f) => 1 - f;
         public static double onem(this double f) => 1 - f;
         
-        public static float4 onem(this Vector4 f) => 1 - f.asfloat();
-        public static float3 onem(this Vector3 f) => 1 - f.asfloat();
-        public static float2 onem(this Vector2 f) => 1 - f.asfloat();
+        public static float4 onem(this Vector4 f) => 1 - f.cast();
+        public static float3 onem(this Vector3 f) => 1 - f.cast();
+        public static float2 onem(this Vector2 f) => 1 - f.cast();
 
         // Negate -----------------------------------------------------------------------------------
 
@@ -138,9 +155,9 @@ namespace Unity.Mathematics
         public static float pow(this int f, float pow) => math.pow(f, pow);
         public static int pow(this int f, int pow) => (int)math.pow(f, pow);
 
-        public static float4 exp(this Vector4 f, float4 pow) => math.pow(f, pow);
-        public static float3 exp(this Vector3 f, float3 pow) => math.pow(f, pow);
-        public static float2 exp(this Vector2 f, float2 pow) => math.pow(f, pow);
+        public static float4 pow(this Vector4 f, float4 pow) => math.pow(f, pow);
+        public static float3 pow(this Vector3 f, float3 pow) => math.pow(f, pow);
+        public static float2 pow(this Vector2 f, float2 pow) => math.pow(f, pow);
 
         public static double4 pow(this double4 f, double4 min) => math.pow(f, min);
         public static double3 pow(this double3 f, double3 min) => math.pow(f, min);
@@ -150,71 +167,83 @@ namespace Unity.Mathematics
 
         // Square ---------------------------------------------------------------------------------
         
-        public static float4 sqr(this float4 f) => f * f;
-        public static float3 sqr(this float3 f) => f * f;
-        public static float2 sqr(this float2 f) => f * f;
-        public static float sqr(this float f) => f * f;
-        public static float sqr(this int f) => f * f;
+        public static float4 sq(this float4 f) => f * f;
+        public static float3 sq(this float3 f) => f * f;
+        public static float2 sq(this float2 f) => f * f;
+        public static float sq(this float f) => f * f;
+        public static float sq(this int f) => f * f;
         
-        public static float4 sqr(this Vector4 f) => f.asfloat() * f;
-        public static float3 sqr(this Vector3 f) => f.asfloat() * f;
-        public static float2 sqr(this Vector2 f) => f * f;
+        public static float4 sq(this Vector4 f) => f.cast() * f;
+        public static float3 sq(this Vector3 f) => f.cast() * f;
+        public static float2 sq(this Vector2 f) => f * f;
         
-        public static double4 sqr(this double4 f) => f * f;
-        public static double3 sqr(this double3 f) => f * f;
-        public static double2 sqr(this double2 f) => f * f;
-        public static double sqr(this double f) => f * f;
+        public static double4 sq(this double4 f) => f * f;
+        public static double3 sq(this double3 f) => f * f;
+        public static double2 sq(this double2 f) => f * f;
+        public static double sq(this double f) => f * f;
 
         // Cube --------------------------------------------------
         
+        /// <summary> returns x * x * x </summary>
         public static float4 cube(this float4 f) => f * f * f;
+        /// <inheritdoc cref="cube(float4)"/>
         public static float3 cube(this float3 f) => f * f * f;
+        /// <inheritdoc cref="cube(float4)"/>
         public static float2 cube(this float2 f) => f * f * f;
+        /// <inheritdoc cref="cube(float4)"/>
         public static float cube(this float f) => f * f * f;
+        /// <inheritdoc cref="cube(float4)"/>
         public static int cube(this int f) => f * f * f;
         
-        public static float4 cube(this Vector4 f) => f.cast() * f * f;
-        public static float3 cube(this Vector3 f) => f.cast() * f * f;
-        public static float2 cube(this Vector2 f) => f * f;
+        /// <inheritdoc cref="cube(float4)"/>
+        public static float4 cube(this Vector4 f) => f.cast().cube();
+        /// <inheritdoc cref="cube(float4)"/>
+        public static float3 cube(this Vector3 f) => f.cast().cube();
+        /// <inheritdoc cref="cube(float4)"/>
+        public static float2 cube(this Vector2 f) => f.cast().cube();
         
+        /// <inheritdoc cref="cube(float4)"/>
         public static double4 cube(this double4 f) => f * f * f;
+        /// <inheritdoc cref="cube(float4)"/>
         public static double3 cube(this double3 f) => f * f * f;
+        /// <inheritdoc cref="cube(float4)"/>
         public static double2 cube(this double2 f) => f * f * f;
+        /// <inheritdoc cref="cube(float4)"/>
         public static double cube(this double f) => f * f * f;
 
         // Quart--------------------------------------------------
         
-        public static float4 quart(this float4 f) => f * f * f * f;
-        public static float3 quart(this float3 f) => f * f * f * f;
-        public static float2 quart(this float2 f) => f * f * f * f;
-        public static float quart(this float f) => f * f * f * f;
-        public static int quart(this int f) => f * f * f * f;
+        public static float4 pow4(this float4 f) => f * f * f * f;
+        public static float3 pow4(this float3 f) => f * f * f * f;
+        public static float2 pow4(this float2 f) => f * f * f * f;
+        public static float pow4(this float f) => f * f * f * f;
+        public static int pow4(this int f) => f * f * f * f;
         
-        public static float4 quart(this Vector4 f) => f.cast() * f * f * f;
-        public static float3 quart(this Vector3 f) => f.cast() * f * f * f;
-        public static float2 quart(this Vector2 f) => f * f * f * f;
+        public static float4 pow4(this Vector4 f) => f.cast().pow4();
+        public static float3 pow4(this Vector3 f) => f.cast().pow4();
+        public static float2 pow4(this Vector2 f) => f.cast().pow4();
         
-        public static double4 quart(this double4 f) => f * f * f * f;
-        public static double3 quart(this double3 f) => f * f * f * f;
-        public static double2 quart(this double2 f) => f * f * f * f;
-        public static double quart(this double f) => f * f * f * f;
+        public static double4 pow4(this double4 f) => f * f * f * f;
+        public static double3 pow4(this double3 f) => f * f * f * f;
+        public static double2 pow4(this double2 f) => f * f * f * f;
+        public static double pow4(this double f) => f * f * f * f;
 
         // Quint --------------------------------------------------
         
-        public static float4 quint(this float4 f) => f * f * f * f * f;
-        public static float3 quint(this float3 f) => f * f * f * f * f;
-        public static float2 quint(this float2 f) => f * f * f * f * f;
-        public static float quint(this float f) => f * f * f * f * f;
-        public static int quint(this int f) => f * f * f * f * f;
+        public static float4 pow5(this float4 f) => f * f * f * f * f;
+        public static float3 pow5(this float3 f) => f * f * f * f * f;
+        public static float2 pow5(this float2 f) => f * f * f * f * f;
+        public static float pow5(this float f) => f * f * f * f * f;
+        public static int pow5(this int f) => f * f * f * f * f;
         
-        public static float4 quint(this Vector4 f) => f.asfloat() * f * f * f * f;
-        public static float3 quint(this Vector3 f) => f.asfloat() * f * f * f * f;
-        public static float2 quint(this Vector2 f) => f * f * f * f * f;
+        public static float4 pow5(this Vector4 f) => f.cast().pow5();
+        public static float3 pow5(this Vector3 f) => f.cast().pow5();
+        public static float2 pow5(this Vector2 f) => f.cast().pow5();
         
-        public static double4 quint(this double4 f) => f * f * f * f * f;
-        public static double3 quint(this double3 f) => f * f * f * f * f;
-        public static double2 quint(this double2 f) => f * f * f * f * f;
-        public static double quint(this double f) => f * f * f * f * f;
+        public static double4 pow5(this double4 f) => f * f * f * f * f;
+        public static double3 pow5(this double3 f) => f * f * f * f * f;
+        public static double2 pow5(this double2 f) => f * f * f * f * f;
+        public static double pow5(this double f) => f * f * f * f * f;
 
 
         // Fractional Remainder
@@ -235,28 +264,28 @@ namespace Unity.Mathematics
         // Matrix Multiplication ------------------------------------
         
         /// Returns the component sum of f², Equivalent to a matrix multiplication with itself as row and column;
-        public static float selfmul(this float4 f) => math.mul(f,f);
+        public static float selfmul(this float4 f) => math.mul(f, f);
         /// <inheritdoc cref="selfmul(float4)"/>
-        public static float selfmul(this float3 f) => math.mul(f,f);
+        public static float selfmul(this float3 f) => math.mul(f, f);
         /// <inheritdoc cref="selfmul(float4)"/>
-        public static float selfmul(this float2 f) => math.mul(f,f);
+        public static float selfmul(this float2 f) => math.mul(f, f);
         /// <inheritdoc cref="selfmul(float4)"/>
-        public static float selfmul(this float f) => math.mul(f,f);
+        public static float selfmul(this float f) => math.mul(f, f);
         
         /// <inheritdoc cref="selfmul(float4)"/>
-        public static float selfmul(this Vector4 f) => math.mul(f,f);
+        public static float selfmul(this Vector4 f) => math.mul(f, f);
         /// <inheritdoc cref="selfmul(float4)"/>
-        public static float selfmul(this Vector3 f) => math.mul(f,f);
+        public static float selfmul(this Vector3 f) => math.mul(f, f);
         /// <inheritdoc cref="selfmul(float4)"/>
-        public static float selfmul(this Vector2 f) => math.mul(f,f);
+        public static float selfmul(this Vector2 f) => math.mul(f, f);
         
         /// <inheritdoc cref="selfmul(float4)"/>
-        public static double selfmul(this double4 f) => math.mul(f,f);
+        public static double selfmul(this double4 f) => math.mul(f, f);
         /// <inheritdoc cref="selfmul(float4)"/>
-        public static double selfmul(this double3 f) => math.mul(f,f);
+        public static double selfmul(this double3 f) => math.mul(f, f);
         /// <inheritdoc cref="selfmul(float4)"/>
-        public static double selfmul(this double2 f) => math.mul(f,f);
+        public static double selfmul(this double2 f) => math.mul(f, f);
         /// <inheritdoc cref="selfmul(float4)"/>
-        public static double selfmul(this double f) => math.mul(f,f);
+        public static double selfmul(this double f) => math.mul(f, f);
     }
 }

@@ -9,7 +9,7 @@ namespace Unity.Mathematics
         {
             var delta = target - current;
             var deltaLength = delta.selfmul();
-            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sqr())
+            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sq())
                 return target;
             return (current + delta) / deltaLength.sqrt() * maxDistanceDelta;
         }
@@ -18,7 +18,7 @@ namespace Unity.Mathematics
         {
             var delta = target - current;
             var deltaLength = delta.selfmul();
-            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sqr())
+            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sq())
                 return target;
             return (current + delta) / deltaLength.sqrt() * maxDistanceDelta;
         }
@@ -27,7 +27,7 @@ namespace Unity.Mathematics
         {
             var delta = target - current;
             var deltaLength = delta.selfmul();
-            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sqr())
+            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sq())
                 return target;
             return (current + delta) / deltaLength.sqrt() * maxDistanceDelta;
         }
@@ -36,7 +36,7 @@ namespace Unity.Mathematics
         {
             var delta = target - current;
             var deltaLength = delta.selfmul();
-            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sqr())
+            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sq())
                 return target;
             return (current + delta) / deltaLength.sqrt() * maxDistanceDelta;
         }
@@ -47,7 +47,7 @@ namespace Unity.Mathematics
         {
             var delta = target - current.asfloat();
             var deltaLength = delta.selfmul();
-            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sqr())
+            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sq())
                 return target;
             return (current.asfloat() + delta) / deltaLength.sqrt() * maxDistanceDelta;
         }
@@ -56,7 +56,7 @@ namespace Unity.Mathematics
         {
             var delta = target - current.asfloat();
             var deltaLength = delta.selfmul();
-            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sqr())
+            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sq())
                 return target;
             return (current.asfloat() + delta) / deltaLength.sqrt() * maxDistanceDelta;
         }
@@ -65,7 +65,7 @@ namespace Unity.Mathematics
         {
             var delta = target - current.asfloat();
             var deltaLength = delta.selfmul();
-            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sqr())
+            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sq())
                 return target;
             return (current.asfloat() + delta) / deltaLength.sqrt() * maxDistanceDelta;
         }
@@ -75,7 +75,7 @@ namespace Unity.Mathematics
         {
             var delta = target - current;
             var deltaLength = delta.selfmul();
-            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sqr())
+            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sq())
                 return target;
             return (current + delta) / deltaLength.sqrt() * maxDistanceDelta;
         }
@@ -84,7 +84,7 @@ namespace Unity.Mathematics
         {
             var delta = target - current;
             var deltaLength = delta.selfmul();
-            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sqr())
+            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sq())
                 return target;
             return (current + delta) / deltaLength.sqrt() * maxDistanceDelta;
         }
@@ -93,7 +93,7 @@ namespace Unity.Mathematics
         {
             var delta = target - current;
             var deltaLength = delta.selfmul();
-            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sqr())
+            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sq())
                 return target;
             return (current + delta) / deltaLength.sqrt() * maxDistanceDelta;
         }
@@ -102,7 +102,7 @@ namespace Unity.Mathematics
         {
             var delta = target - current;
             var deltaLength = delta.selfmul();
-            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sqr())
+            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sq())
                 return target;
             return (current + delta) / deltaLength.sqrt() * maxDistanceDelta;
         }

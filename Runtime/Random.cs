@@ -18,10 +18,10 @@ namespace Unity.Mathematics
         public static int4 randomint4range(int min, int max) => random.NextInt4(min, max);
         
         public static float3 randomInsideUnitSphere() => random.NextFloat3Direction() * random.NextFloat().cube();
-        public static float2 randomInsideUnitCircle() => random.NextFloat2Direction() * random.NextFloat().sqr();
+        public static float2 randomInsideUnitCircle() => random.NextFloat2Direction() * random.NextFloat().sq();
         
         public static float3 randomInsideSphere(float radius = 1) => random.NextFloat3Direction() * random.NextFloat().cube() * radius;
-        public static float2 randomInsideCircle(float radius = 1) => random.NextFloat2Direction() * random.NextFloat().sqr() * radius;
+        public static float2 randomInsideCircle(float radius = 1) => random.NextFloat2Direction() * random.NextFloat().sq() * radius;
         
         public static float3 random3Ddirection() => random.NextFloat3Direction();
         public static float2 random2Ddirection() => random.NextFloat2Direction();

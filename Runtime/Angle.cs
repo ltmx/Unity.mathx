@@ -38,15 +38,15 @@ namespace Unity.Mathematics
         public static double straightsignedangle (double3 f1, double3 f2, double3 n) => math.atan2 (math.dot (n, math.cross (f1, f2)), math.dot (f1, f2));
 
         public static float preciseangle (float3 v1, float3 v2) {
-            var v3 = v1.normalized();
-            var v4 = v2.normalized();
+            var v3 = v1.norm();
+            var v4 = v2.norm();
             return math.dot (v1, v2) < 0 ?
                 math.PI - 2 * ((-v3 - v4).length() / 2).asin() :
                 2 * ((v3 - v4).length() / 2).asin();
         }
         public static float preciseangle (float2 v1, float2 v2) {
-            var v3 = v1.normalized();
-            var v4 = v2.normalized();
+            var v3 = v1.norm();
+            var v4 = v2.norm();
             return math.dot (v3, v4) < 0 ?
                 math.PI - 2 * ((-v3 - v4).length() / 2).asin() :
                 2 * ((v3 - v4).length() / 2).asin();

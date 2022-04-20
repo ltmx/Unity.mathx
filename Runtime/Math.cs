@@ -7,11 +7,12 @@
 
 //https://github.com/LTMX/Unity-Mathematics-Extensions
 
-
 namespace Unity.Mathematics
 {
+
     public static partial class Math
     {
+        
 
         //Specific Functions ------------------------------------------------------------------------------------------
         //Existing In UnityEngine Code, converted
@@ -55,9 +56,10 @@ namespace Unity.Mathematics
                 // Start and end are roughly level, pretend they are - simpler solution with less steps
                 var travelDirection = end - start;
                 var result = start + t * travelDirection;
-                result.y += (t * math.PI).sin() * height;
+                result.y += (t * PI).sin() * height;
                 return result;
-            } else {
+            }
+            else {
                 // Start and end are not level, gets more complicated
                 var travelDirection = end - start;
                 var levelDirection = end - new float3(start.x, end.y, start.z);
@@ -65,7 +67,7 @@ namespace Unity.Mathematics
                 var up = right.cross(travelDirection);
                 if (end.y > start.y) up = -up;
                 var result = start + t * travelDirection;
-                result += (t * math.PI).sin() * height * up.normalized();
+                result += (t * PI).sin() * height * up.norm();
                 return result;
             }
             

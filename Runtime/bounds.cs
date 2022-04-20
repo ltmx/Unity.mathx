@@ -29,10 +29,10 @@ namespace Unity.Mathematics
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override int GetHashCode()
         {
-            var float3 = center;
-            var hashCode = float3.GetHashCode();
-            float3 = extents;
-            var num = float3.GetHashCode() << 2;
+            var c = center;
+            var hashCode = c.GetHashCode();
+            c = extents;
+            var num = c.GetHashCode() << 2;
             return hashCode ^ num;
         }
 
@@ -65,7 +65,7 @@ namespace Unity.Mathematics
         public float3 size
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get => Extents * 2f;
+            get => Extents * 2;
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             set => Extents = value * 0.5f;
         }
@@ -155,7 +155,7 @@ namespace Unity.Mathematics
         public void Expand(float amount)
         {
             amount *= 0.5f;
-            extents += new float3(amount, amount, amount);
+            extents += amount;
         }
 
         /// <summary>
@@ -175,9 +175,11 @@ namespace Unity.Mathematics
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Intersects(bounds bounds)
         {
-            return min.x <= (double) bounds.max.x && max.x >= (double) bounds.min.x &&
-                   min.y <= (double) bounds.max.y && max.y >= (double) bounds.min.y &&
-                   min.z <= (double) bounds.max.z && max.z >= (double) bounds.min.z;
+            var b = min <= bounds.max & max >= bounds.min;
+            return b.isAlwaysTrue();
+            // return min.x <= (double) bounds.max.x && max.x >= (double) bounds.min.x &&
+            //        min.y <= (double) bounds.max.y && max.y >= (double) bounds.min.y &&
+            //        min.z <= (double) bounds.max.z && max.z >= (double) bounds.min.z;
         }
 
         /// <summary>
@@ -199,8 +201,6 @@ namespace Unity.Mathematics
         /// <summary>
         ///     <para>Returns a formatted string for the bounds.</para>
         /// </summary>
-        /// <param name="format">A numeric format string.</param>
-        /// <param name="formatProvider">An object that specifies culture-specific formatting.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override string ToString()
         {
@@ -211,7 +211,6 @@ namespace Unity.Mathematics
         ///     <para>Returns a formatted string for the bounds.</para>
         /// </summary>
         /// <param name="format">A numeric format string.</param>
-        /// <param name="formatProvider">An object that specifies culture-specific formatting.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public string ToString(string format)
         {
@@ -237,10 +236,7 @@ namespace Unity.Mathematics
         ///     <para>Is point contained in the bounding box?</para>
         /// </summary>
         /// <param name="point"></param>
-        public bool Contains(float3 point)
-        {
-            return Contains_Injected(ref this, ref point);
-        }
+        public bool Contains(float3 point) => Contains_Injected(ref this, ref point);
 
         /// <summary>
         ///     <para>The smallest squared distance between the point and this bounding box.</para>
@@ -265,8 +261,7 @@ namespace Unity.Mathematics
         /// </returns>
         public float3 ClosestPoint(float3 point)
         {
-            float3 ret;
-            ClosestPoint_Injected(ref this, ref point, out ret);
+            ClosestPoint_Injected(ref this, ref point, out var ret);
             return ret;
         }
 
