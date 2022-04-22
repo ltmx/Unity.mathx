@@ -6,81 +6,99 @@ namespace Unity.Mathematics
         // Shorthands -----------------------------------------
     
         // float2
-        public static readonly float2 onef2 = new(1);
+        public static readonly float2 f2one = 1;
         /// Shorthand for new float2(0,0)
-        public static readonly float2 zerof2 = new(0);
+        public static readonly float2 f2zero = 0;
         /// Shorthand for new float2(0,1)
-        public static readonly float2 upf2 = new(0, 1);
+        public static readonly float2 f2up = new(0, 1);
         /// Shorthand for new float2(0,-1)
-        public static readonly float2 downf2 = new(0, -1);
+        public static readonly float2 f2down = new(0, -1);
         /// Shorthand for new float2(1,0)
-        public static readonly float2 rightf2 = new(1, 0);
+        public static readonly float2 f2right = new(1, 0);
         /// Shorthand for new float2(-1,0)
-        public static readonly float2 leftf2 = new(-1, 0);
+        public static readonly float2 f2left = new(-1, 0);
     
         // float3
         /// Shorthand for new float3(1,1,1)
-        public static readonly float3 f3one = new(1);
+        public static readonly float3 f3one = 1;
         /// Shorthand for new float3(0,0,0)
-        public static readonly float3 f3zero = new(0);
+        public static readonly float3 f3zero = 0;
         /// Shorthand for new float3(0,1,0)
         public static readonly float3 up = new(0, 1, 0);
         /// Shorthand for new float3(1,0,0);
         public static readonly float3 right = new(1, 0, 0);
         /// Shorthand for new float3(0,0,1)
-        public static readonly float3 f3forward = new(0, 0, 1);
+        public static readonly float3 forward = new(0, 0, 1);
         /// Shorthand for new new float3(0,-1,0)
         public static readonly float3 down = new(0, -1, 0);
         /// Shorthand for new float3(-1,0,0)
         public static readonly float3 left = new(-1, 0, 0);
         /// Shorthand for new float3(0,0,-1)
         public static readonly float3 back = new(0, 0, -1);
+        
+        // int3
+        /// Shorthand for new int3(1,1,1)
+        public static readonly int3 i3one = 1;
+        /// Shorthand for new int3(0,0,0)
+        public static readonly int3 i3zero = 0;
+        /// Shorthand for new int3(0,1,0)
+        public static readonly int3 i3up = new(0, 1, 0);
+        /// Shorthand for new int3(1,0,0);
+        public static readonly int3 i3right = new(1, 0, 0);
+        /// Shorthand for new int3(0,0,1)
+        public static readonly int3 i3forward = new(0, 0, 1);
+        /// Shorthand for new new float3(0,-1,0)
+        public static readonly int3 i3down = new(0, -1, 0);
+        /// Shorthand for new int3(-1,0,0)
+        public static readonly int3 i3left = new(-1, 0, 0);
+        /// Shorthand for new int3(0,0,-1)
+        public static readonly int3 i3back = new(0, 0, -1);
 
         // float4
         /// Shorthand for new float4(1,1,1,1)
-        public static readonly float4 onef4 = new(1);
+        public static readonly float4 f4one = 1;
         /// Shorthand for new float4(0,0,0,0)
-        public static readonly float4 zerof4 = new(0);
+        public static readonly float4 f4zero = 0;
         
         // double2
         /// Shorthand for new double2(1,1)
-        public static readonly double2 oned2 = new(1);
+        public static readonly double2 d2one = 1;
         /// Shorthand for new double2(0,0)
-        public static readonly double2 zerod2 = new(0);
+        public static readonly double2 d2zero = 0;
         /// Shorthand for new double2(0,1)
-        public static readonly double2 upd2 = new(0,1);
+        public static readonly double2 d2up = new(0, 1);
         /// Shorthand for new double2(0,-1)
-        public static readonly double2 downd2 = new(0,-1);
+        public static readonly double2 d2down = new(0, -1);
         /// Shorthand for new double2(1,0)
-        public static readonly double2 rightd2 = new(1,0);
+        public static readonly double2 d2right = new(1, 0);
         /// Shorthand for new double2(-1,0)
-        public static readonly double2 leftd2 = new(-1,0);
+        public static readonly double2 leftd2 = new(-1, 0);
 
         // double3
         /// Shorthand for new double3(1,1,1)
-        public static readonly double3 oned3 = new(1);
+        public static readonly double3 oned3 = 1;
         /// Shorthand for new double3(0,0,0)
-        public static readonly double3 zerod3 = new(0);
+        public static readonly double3 zerod3 = 0;
         /// Shorthand for new double3(0,1,0)
-        public static readonly double3 upd3 = new(0,1,0);
+        public static readonly double3 upd3 = new(0, 1, 0);
         /// Shorthand for new double3(1,0,0);
-        public static readonly double3 rightd3 = new(1,0,0);
+        public static readonly double3 d3right = new(1, 0, 0);
         /// Shorthand for new double3(0,0,1)
-        public static readonly double3 forward3 = new(0,0,1);
+        public static readonly double3 d3forward = new(0, 0, 1);
         /// Shorthand for new new double3(0,-1,0)
-        public static readonly double3 downd3 = new(0,-1,0);
+        public static readonly double3 d3down = new(0, -1, 0);
         /// Shorthand for new double3(-1,0,0)
-        public static readonly double3 leftd3 = new(-1,0,0);
+        public static readonly double3 d3left = new(-1, 0, 0);
         /// Shorthand for new double3(0,0,-1)
-        public static readonly double3 backd3 = new(0,0,-1);
+        public static readonly double3 d3back = new(0, 0, -1);
     
         //double4
         /// Shorthand for new double4(1,1,1,1)
-        public static double4 oned4 = new(1);
+        public static double4 d4one = 1;
         /// Shorthand for new float4(0,0,0,0)
-        public static double4 zerod4 = new(0);
+        public static double4 d4zero = 0;
 
-        // .xxxx shader syntax
+        // .xxxx shader syntax 
         
         /// Shorthand for new float2(f)
         public static float2 xx(this float f) => new(f);

@@ -19,6 +19,17 @@ namespace Unity.Mathematics
         public const double PINFINITY_DBL = double.PositiveInfinity;
         public const double NINFINITY_DBL = double.NegativeInfinity;
 
+        public const double E_DBL = 2.71828182845904523536;
+        public const float E = 2.71828182845904523536f;
+        
+        // For Gamma Functions
+        /// <summary>The number 2 * sqrt(e / pi)</summary>
+        public const double TwoSqrtEOverPi = 1.8603827342052657173362492472666631120594218414085755;
+        /// <summary>The number log[e](pi)</summary>
+        public const double LnPi = 1.1447298858494001741434273513530587116472948129153d;
+        /// <summary>The number log(2 * sqrt(e / pi))</summary>
+        public const double LogTwoSqrtEOverPi = 0.6207822376352452223455184457816472122518527279025978;
+
 
         // Translated from https://github.com/JJ/p6-math-constants/blob/master/lib/Math/Constants.pm6
         // Update physical constants from https://nist.gov/cuu/Constants -- CODATA 2018 recommendations

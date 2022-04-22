@@ -7,13 +7,14 @@
 
 //https://github.com/LTMX/Unity-Mathematics-Extensions
 
+using System;
+using System.ComponentModel;
+using UnityEngine;
+
 namespace Unity.Mathematics
 {
-
     public static partial class Math
     {
-        
-
         //Specific Functions ------------------------------------------------------------------------------------------
         //Existing In UnityEngine Code, converted
 
@@ -70,7 +71,21 @@ namespace Unity.Mathematics
                 result += (t * PI).sin() * height * up.norm();
                 return result;
             }
-            
         }
+        
+        /// Compares two floating point values and returns true if they are similar.
+        public static bool approx(this float a, float b) => (b - a).abs() < (1E-06f * a.abs().max(b.abs())).max(math.EPSILON * 8);
+        public static bool approx(this double a, double b) => (b - a).abs() < (1E-06f * a.abs().max(b.abs())).max(math.EPSILON * 8);
+        
+        
+        public static bool odd(this int a) => a % 2 == 1;
+        public static bool2 odd(this int2 a) => a % 2 == 1;
+        public static bool3 odd(this int3 a) => a % 2 == 1;
+        public static bool4 odd(this int4 a) => a % 2 == 1;
+        public static bool even(this int a) => a % 2 == 0;
+        public static bool2 even(this int2 a) => a % 2 == 0;
+        public static bool3 even(this int3 a) => a % 2 == 0;
+        public static bool4 even(this int4 a) => a % 2 == 0;
+
     }
 }

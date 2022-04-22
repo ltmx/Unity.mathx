@@ -287,5 +287,42 @@ namespace Unity.Mathematics
         public static double selfmul(this double2 f) => math.mul(f, f);
         /// <inheritdoc cref="selfmul(float4)"/>
         public static double selfmul(this double f) => math.mul(f, f);
+        
+        
+        
+        // logic ----------------------------------------------------
+
+        /// returns true if any of the components is true
+        public static bool any(this bool4 b) => b.x || b.y || b.z || b.w;
+        /// returns true in all components are true
+        public static bool all(this bool4 b) => b.x && b.y && b.z && b.w;
+        
+        /// <inheritdoc cref="any(bool4)"/>
+        public static bool any(this bool3 b) => b.x || b.y || b.z;
+        /// <inheritdoc cref="all(bool4)"/>
+        public static bool all(this bool3 b) => b.x && b.y && b.z;
+
+        /// <inheritdoc cref="any(bool4)"/>
+        public static bool any(this bool2 b) => b.x || b.y;
+        /// <inheritdoc cref="all(bool4)"/>
+        public static bool all(this bool2 b) => b.x && b.y;
+        
+        // WIP --------------------
+        public static float4 select(this bool4 b, float4 ifIsTrue, float4 ifIsFalse) => new (b.asfloat().lerp(ifIsFalse, ifIsTrue)); // lerp order is reversed compared to boolean seelection
+        public static float3 select(this bool3 b, float3 ifIsTrue, float3 ifIsFalse) => new (b.asfloat().lerp(ifIsFalse, ifIsTrue));
+        public static float2 select(this bool2 b, float2 ifIsTrue, float2 ifIsFalse) => b.asfloat().lerp(ifIsFalse, ifIsTrue);
+        
+        public static float4 select(this bool b, float4 ifIsTrue, float4 ifIsFalse) => b ? ifIsTrue : ifIsFalse;
+        public static float3 select(this bool b, float3 ifIsTrue, float3 ifIsFalse) => b ? ifIsTrue : ifIsFalse;
+        public static float2 select(this bool b, float2 ifIsTrue, float2 ifIsFalse) => b ? ifIsTrue : ifIsFalse;
+        public static float select(this bool b, float ifIsTrue, float ifIsFalse) => b ? ifIsTrue : ifIsFalse;
+
+        // public static float select(this int b, float ifIsTrue, float ifIsFalse) => b.asbool().select(ifIsTrue, ifIsFalse);
+        // public static float2 select(this int b, float2 ifIsTrue, float2 ifIsFalse) => b.asbool().select(ifIsTrue, ifIsFalse);
+        // public static float3 select(this int b, float3 ifIsTrue, float3 ifIsFalse) => b.asbool().select(ifIsTrue, ifIsFalse);
+        // public static float4 select(this int b, float4 ifIsTrue, float4 ifIsFalse) => b.asbool().select(ifIsTrue, ifIsFalse);
+        public static T select<T>(this bool b, T ifIsTrue, T ifIsFalse) => b ? ifIsTrue : ifIsFalse;
+        public static T select<T>(this int b, T ifIsTrue, T ifIsFalse) => b.asbool() ? ifIsTrue : ifIsFalse;
+
     }
 }

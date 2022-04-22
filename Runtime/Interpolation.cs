@@ -108,8 +108,8 @@ namespace Unity.Mathematics
         public static double3 lerp(this double3 f, double3 min, double3 max) => math.lerp(min, max, f);
         /// <inheritdoc cref="lerp(float4,float4,float4)"/>
         public static double2 lerp(this double2 f, double2 min, double2 max) => math.lerp(min, max, f);
-        
-        
+
+
         //using float/double as interpolation parameter
         /// <inheritdoc cref="lerp(float4,float4,float4)"/>
         public static float4 lerp(this float f, float4 min, float4 max) => math.lerp(min, max, f);
@@ -124,6 +124,10 @@ namespace Unity.Mathematics
         public static double3 lerp(this double f, double3 min, double3 max) => math.lerp(min, max, f);
         /// <inheritdoc cref="lerp(float4,float4,float4)"/>
         public static double2 lerp(this double f, double2 min, double2 max) => math.lerp(min, max, f);
+        
+        public static float3 lerp(this int3 f, float3 min, float3 max) => math.lerp(min, max, f);
+        public static float2 lerp(this int2 f, float2 min, float2 max) => math.lerp(min, max, f);
+        public static float lerp(this int f, float min, float max) => math.lerp(min, max, f);
 
 
         // Lerp Angle -------------------------------------------
@@ -135,8 +139,5 @@ namespace Unity.Mathematics
 
         }
 
-        /// Compares two floating point values and returns true if they are similar.
-        public static bool approx(this float a, float b) => (double) (b - a).abs() < (1E-06f * a.abs().max(b.abs())).max(Mathf.Epsilon * 8f);
-        
     }
 }
