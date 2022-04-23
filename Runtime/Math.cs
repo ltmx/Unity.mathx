@@ -7,9 +7,6 @@
 
 //https://github.com/LTMX/Unity-Mathematics-Extensions
 
-using System;
-using System.ComponentModel;
-using UnityEngine;
 
 namespace Unity.Mathematics
 {
