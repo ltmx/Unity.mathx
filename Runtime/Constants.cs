@@ -1,27 +1,42 @@
 ﻿
+// ReSharper disable InconsistentNaming
 namespace Unity.Mathematics
 {
     public static partial class Math
     {
-        public const double HPI_DBL = 1.57079632679489661923;
-        public const float HPI = 1.570796326795f;
+        public const float RAD = 0.0174532925f;
+        public const float DEG = 57.295779513f;
+        public const double RAD_D = 0.017453292519943296;
+        public const double DEG_D = 57.29577951308232;
 
-        public const double PI_DBL = 3.14159265358979323846;
+        public const float EPSILON = 1.401298E-45f;
+        public const double EPSILON_D = 4.9406564584124654e-324;
+
         public const float PI = 3.14159265359f;
+        public const double PI_D = 3.14159265358979323846;
 
-        public const double TAU_DBL = 6.283185307179586477;
+        public const float PIo2 = 1.57079632679f; // PI/2
+        public const float HPI = PIo2; // PI/2
+        public const double PIo2_D = 1.57079632679489661923; // PI/2
+        public const double HPI_D = 1.57079632679489661923; // PI/2
+
+
+        public const double TAU_D = 6.283185307179586477;
         public const float TAU = 6.28318530718f;
-        public const double PHI_DBL = 1.6180339887498948482;
+        public const double PI2_D = 6.2831853071795864769; // same as TAU_D
+        public const float PI2 = 6.28318530718f; // same as TAU
+
+        public const double PHI_D = 1.6180339887498948482;
         public const float PHI = 1.61803398875f;
 
-        public const float PINFINITY = float.PositiveInfinity;
-        public const float NINFINITY = float.NegativeInfinity;
-        public const double PINFINITY_DBL = double.PositiveInfinity;
-        public const double NINFINITY_DBL = double.NegativeInfinity;
+        public const float PINF = float.PositiveInfinity;
+        public const float NINF = float.NegativeInfinity;
+        public const double PINF_D = double.PositiveInfinity;
+        public const double NINF_D = double.NegativeInfinity;
 
-        public const double E_DBL = 2.71828182845904523536;
-        public const float E = 2.71828182845904523536f;
-        
+        public const double E_D = 2.71828182845904523536;
+        public const float E = 2.71828182845f;
+
         // For Gamma Functions
         /// <summary>The number 2 * sqrt(e / pi)</summary>
         public const double TwoSqrtEOverPi = 1.8603827342052657173362492472666631120594218414085755;
@@ -104,5 +119,10 @@ namespace Unity.Mathematics
         public const float λ = conway;
         public const float μ0 = vacuum_permeability;
         public const float φ = phi;
+        
+        // Other constants
+        public const int INLINE = 256; // Aggressive inlining
+        
+        
     }
 }

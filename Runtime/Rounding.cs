@@ -30,19 +30,19 @@ namespace Unity.Mathematics
         public static double round(this double f) => m.round(f);
         
         // Round To Int
-        public static int4 roundtoint(this f4 f) => f.round().asint();
-        public static int3 roundtoint(this f3 f) => f.round().asint();
-        public static int2 roundtoint(this f2 f) => f.round().asint();
-        public static int roundtoint(this f1 f) => f.round().asint();
+        public static int4 rint(this f4 f) => f.round().asint();
+        public static int3 rint(this f3 f) => f.round().asint();
+        public static int2 rint(this f2 f) => f.round().asint();
+        public static int rint(this f1 f) => f.round().asint();
         
-        public static int4 roundtoint(this Vector4 f) => f.round().asint();
-        public static int3 roundtoint(this Vector3 f) => f.round().asint();
-        public static int2 roundtoint(this Vector2 f) => f.round().asint();
+        public static int4 rint(this Vector4 f) => f.round().asint();
+        public static int3 rint(this Vector3 f) => f.round().asint();
+        public static int2 rint(this Vector2 f) => f.round().asint();
         
-        public static int4 roundtoint(this double4 f) => f.round().asint();
-        public static int3 roundtoint(this double3 f) => f.round().asint();
-        public static int2 roundtoint(this double2 f) => f.round().asint();
-        public static int roundtoint(this double f) => f.round().asint();
+        public static int4 rint(this double4 f) => f.round().asint();
+        public static int3 rint(this double3 f) => f.round().asint();
+        public static int2 rint(this double2 f) => f.round().asint();
+        public static int rint(this double f) => f.round().asint();
 
         // Clamp
         public static f4 clamp(this f4 f, f4 min, f4 max) => m.clamp(f, min, max);
@@ -143,19 +143,19 @@ namespace Unity.Mathematics
         public static double floor(this double f) => m.floor(f);
         
         // Floor To Int
-        public static int4 floortoint(this f4 f) => m.floor(f).asint();
-        public static int3 floortoint(this f3 f) => m.floor(f).asint();
-        public static int2 floortoint(this f2 f) => m.floor(f).asint();
-        public static int floortoint(this f1 f) => m.floor(f).asint();
+        public static int4 flint(this f4 f) => f.asint();
+        public static int3 flint(this f3 f) => f.asint();
+        public static int2 flint(this f2 f) => f.asint();
+        public static int flint(this f1 f) => f.asint();
         
-        public static int4 floortoint(this Vector4 f) => m.floor(f).asint();
-        public static int3 floortoint(this Vector3 f) => m.floor(f).asint();
-        public static int2 floortoint(this Vector2 f) => m.floor(f).asint();
+        public static int4 flint(this Vector4 f) => f.asint();
+        public static int3 flint(this Vector3 f) => f.asint();
+        public static int2 flint(this Vector2 f) => f.asint();
         
-        public static int4 floortoint(this double4 f) => m.floor(f).asint();
-        public static int3 floortoint(this double3 f) => m.floor(f).asint();
-        public static int2 floortoint(this double2 f) => m.floor(f).asint();
-        public static int floortoint(this double f) => m.floor(f).asint();
+        public static int4 flint(this double4 f) => f.asint();
+        public static int3 flint(this double3 f) => f.asint();
+        public static int2 flint(this double2 f) => f.asint();
+        public static int flint(this double f) => f.asint();
         
         // Saturate
         /// Returns the result of clamping f to [0, 1]

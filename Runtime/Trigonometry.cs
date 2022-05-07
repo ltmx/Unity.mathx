@@ -344,63 +344,26 @@ namespace Unity.Mathematics
         public static d2 radians(this d2 f) => ma.radians(f);
         public static d1 radians(this d1 f) => ma.radians(f);
         
-        // Sine-Cosine combined
-        public static float4x2 sincos(this f4 f4) {
-            var f = new float4x2();
-            ma.sincos(f4,out f.c0, out f.c1);
-            return f;
-        }
-        public static float3x2 sincos(this f3 f3) {
-            var f = new float3x2();
-            ma.sincos(f3,out f.c0, out f.c1);
-            return f;
-        }
-        public static float2x2 sincos(this f2 f2) {
-            var f = new float2x2();
-            ma.sincos(f2,out f.c0, out f.c1);
-            return f;
-        }
-        public static f2 sincos(this f1 f) {
-            var f2 = new f2();
-            ma.sincos(f,out f2.x, out f2.y);
-            return f2;
-        }
-        public static float4x2 sincos(this Vector4 f4) {
-            var f = new float4x2();
-            ma.sincos(f4,out f.c0, out f.c1);
-            return f;
-        }
-        public static float3x2 sincos(this Vector3 f3) {
-            var f = new float3x2();
-            ma.sincos(f3,out f.c0, out f.c1);
-            return f;
-        }
-        public static float2x2 sincos(this Vector2 f2) {
-            var f = new float2x2();
-            ma.sincos(f2,out f.c0, out f.c1);
-            return f;
-        }
-
-        public static double4x2 sincos(this d4 f4) {
-            var f = new double4x2();
-            ma.sincos(f4,out f.c0, out f.c1);
-            return f;
-        }
-        public static double3x2 sincos(this d3 f3) {
-            var f = new double3x2();
-            ma.sincos(f3,out f.c0, out f.c1);
-            return f;
-        }
-        public static double2x2 sincos(this d2 f2) {
-            var f = new double2x2();
-            ma.sincos(f2,out f.c0, out f.c1);
-            return f;
-        }
-        public static d2 sincos(this d1 f) {
-            var f2 = new d2();
-            ma.sincos(f,out f2.x, out f2.y);
-            return f2;
-        }
         
+        /// Cosine - Sine combined
+        public static float2 cossin(this float f) => new (f.cos(), f.sin());
+        public static float2 cossin(this int f) => new (f.cos(), f.sin());
+
+        public static float2x2 cossin(this float2 f) => new(f.cos(), f.sin());
+        public static float3x2 cossin(this float3 f) => new(f.cos(), f.sin());
+        public static float4x2 cossin(this float4 f) => new(f.cos(), f.sin());
+
+
+        
+        
+        /// Cosine - Sine combined
+        public static float2 sincos(this float f) => new (f.sin(), f.cos());
+        public static float2 sincos(this int f) => new (f.sin(), f.cos());
+        
+        public static float2x2 sincos(this float2 f) => new(f.sin(), f.cos());
+        public static float3x2 sincos(this float3 f) => new(f.sin(), f.cos());
+        public static float4x2 sincos(this float4 f) => new(f.sin(), f.cos());
+
+
     }
 }

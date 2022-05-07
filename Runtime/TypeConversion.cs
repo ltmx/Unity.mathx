@@ -17,15 +17,27 @@ namespace Unity.Mathematics
         // floats to ints
         /// Returns this float-type cast to an equivalent int-type
         public static int4 asint(this float4 f) => (int4)f;
-
         /// <inheritdoc cref="asint(float4)"/>>
         public static int3 asint(this float3 f) => (int3)f;
+        /// <inheritdoc cref="asint(float4)"/>>
         public static int2 asint(this float2 f) => (int2)f;
+        /// <inheritdoc cref="asint(float4)"/>>
         public static int asint(this float f) => (int) f;
         
+        
+        /// Returns this float-type cast to an equivalent int-type
+        public static int4 asint(this Vector4 f) => new ((int)f.x, (int)f.y, (int)f.z, (int)f.w);
+        /// <inheritdoc cref="asint(float4)"/>>
+        public static int3 asint(this Vector3 f) => new ((int)f.x, (int)f.y, (int)f.z);
+        /// <inheritdoc cref="asint(float4)"/>>
+        public static int2 asint(this Vector2 f) => new ((int)f.x, (int)f.y);
+        
         public static int4 asint(this double4 f) => (int4) f;
+        /// <inheritdoc cref="asint(float4)"/>>
         public static int3 asint(this double3 f) => (int3) f;
+        /// <inheritdoc cref="asint(float4)"/>>
         public static int2 asint(this double2 f) => (int2) f;
+        /// <inheritdoc cref="asint(float4)"/>>
         public static int asint(this double f) => (int) f;
         
         // As Boolean

@@ -1,7 +1,9 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using static System.Runtime.CompilerServices.MethodImplOptions;
+
 
 namespace Unity.Mathematics
 {
@@ -171,7 +173,7 @@ namespace Unity.Mathematics
         public static float3 sq(this float3 f) => f * f;
         public static float2 sq(this float2 f) => f * f;
         public static float sq(this float f) => f * f;
-        public static float sq(this int f) => f * f;
+        public static int sq(this int f) => f * f;
         
         public static float4 sq(this Vector4 f) => f.cast() * f;
         public static float3 sq(this Vector3 f) => f.cast() * f;
@@ -213,53 +215,53 @@ namespace Unity.Mathematics
 
         // Quart--------------------------------------------------
         
-        public static float4 pow4(this float4 f) => f * f * f * f;
-        public static float3 pow4(this float3 f) => f * f * f * f;
-        public static float2 pow4(this float2 f) => f * f * f * f;
-        public static float pow4(this float f) => f * f * f * f;
-        public static int pow4(this int f) => f * f * f * f;
+        public static float4 pow4(this float4 f) => f * f * (f * f);
+        public static float3 pow4(this float3 f) => f * f * (f * f);
+        public static float2 pow4(this float2 f) => f * f * (f * f);
+        public static float pow4(this float f) => f * f * (f * f);
+        public static int pow4(this int f) => f * f * (f * f);
         
         public static float4 pow4(this Vector4 f) => f.cast().pow4();
         public static float3 pow4(this Vector3 f) => f.cast().pow4();
         public static float2 pow4(this Vector2 f) => f.cast().pow4();
         
-        public static double4 pow4(this double4 f) => f * f * f * f;
-        public static double3 pow4(this double3 f) => f * f * f * f;
-        public static double2 pow4(this double2 f) => f * f * f * f;
-        public static double pow4(this double f) => f * f * f * f;
+        public static double4 pow4(this double4 f) => f * f * (f * f);
+        public static double3 pow4(this double3 f) => f * f * (f * f);
+        public static double2 pow4(this double2 f) => f * f * (f * f);
+        public static double pow4(this double f) => f * f * (f * f);
 
         // Quint --------------------------------------------------
         
-        public static float4 pow5(this float4 f) => f * f * f * f * f;
-        public static float3 pow5(this float3 f) => f * f * f * f * f;
-        public static float2 pow5(this float2 f) => f * f * f * f * f;
-        public static float pow5(this float f) => f * f * f * f * f;
-        public static int pow5(this int f) => f * f * f * f * f;
+        public static float4 pow5(this float4 f) => f.sq().sq() * f;
+        public static float3 pow5(this float3 f) => f.sq().sq() * f;
+        public static float2 pow5(this float2 f) => f.sq().sq() * f;
+        public static float pow5(this float f) => f.sq().sq() * f;
+        public static int pow5(this int f) => f.sq().sq() * f;
         
         public static float4 pow5(this Vector4 f) => f.cast().pow5();
         public static float3 pow5(this Vector3 f) => f.cast().pow5();
         public static float2 pow5(this Vector2 f) => f.cast().pow5();
         
-        public static double4 pow5(this double4 f) => f * f * f * f * f;
-        public static double3 pow5(this double3 f) => f * f * f * f * f;
-        public static double2 pow5(this double2 f) => f * f * f * f * f;
-        public static double pow5(this double f) => f * f * f * f * f;
+        public static double4 pow5(this double4 f) => f.sq().sq() * f;
+        public static double3 pow5(this double3 f) => f.sq().sq() * f;
+        public static double2 pow5(this double2 f) => f.sq().sq() * f;
+        public static double pow5(this double f) => f.sq().sq() * f;
 
 
-        // Fractional Remainder
-        public static float4 frac(this float4 f) => math.frac(f);
-        public static float3 frac(this float3 f) => math.frac(f);
-        public static float2 frac(this float2 f) => math.frac(f);
-        public static float frac(this float f) => math.frac(f);
+        // Fractional Remainder (f - (int)f) is x3 faster than math.frac()
+        public static float4 frac(this float4 f) => f - (int4)f;
+        public static float3 frac(this float3 f) => f - (int3)f;
+        public static float2 frac(this float2 f) => f - (int2)f;
+        public static float frac(this float f) => f - (int)f;
         
-        public static float4 frac(this Vector4 f) => math.frac(f);
-        public static float3 frac(this Vector3 f) => math.frac(f);
-        public static float2 frac(this Vector2 f) => math.frac(f);
+        public static float4 frac(this Vector4 f) => f.cast() - f.asint();
+        public static float3 frac(this Vector3 f) => f.cast() - f.asint();
+        public static float2 frac(this Vector2 f) => f.cast() - f.asint();
         
-        public static double4 frac(this double4 f) => math.frac(f);
-        public static double3 frac(this double3 f) => math.frac(f);
-        public static double2 frac(this double2 f) => math.frac(f);
-        public static double frac(this double f) => math.frac(f);
+        public static double4 frac(this double4 f) => f - (int4)f;
+        public static double3 frac(this double3 f) => f - (int3)f;
+        public static double2 frac(this double2 f) => f - (int2)f;
+        public static double frac(this double f) => f - (int)f;
 
         // Matrix Multiplication ------------------------------------
         

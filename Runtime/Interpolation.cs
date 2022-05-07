@@ -4,6 +4,8 @@ namespace Unity.Mathematics
 {
     public static partial class Math
     {
+
+
         // https://github.com/FreyaHolmer/Mathfs/blob/master/Mathfs.cs
         
         public static float4 smootherstep(this float4 f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();
@@ -27,9 +29,9 @@ namespace Unity.Mathematics
         public static float uneerp(this float f, float a, float b) => (a / f).ln() / (a / b).ln();
         
         // SmoothStep -----------------------------------------------------------------------------
-        
+
         /// Returns a smooth Hermite interpolation between 0.0 and 1.0 when x is in [a, b].
-        public static float smoothstep(this float f, float min = 0, float max = 1) => math.smoothstep(min, max, f);
+        public static float smoothstep(this float f, float min, float max) => math.smoothstep(min, max, f);
         /// <inheritdoc cref="smoothstep(float,float,float)"/>
         public static double smoothstep(this double f, double min = 0.0, double max = 1.0) => math.smoothstep(min, max, f);
         /// <inheritdoc cref="smoothstep(float,float,float)"/>
