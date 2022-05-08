@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using static System.Runtime.CompilerServices.MethodImplOptions;
@@ -8,7 +7,7 @@ using static System.Runtime.CompilerServices.MethodImplOptions;
 namespace Unity.Mathematics
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    
+    [SuppressMessage("ReSharper", "IdentifierTypo")]
     public static partial class Math
     {
         // Sign
@@ -289,10 +288,6 @@ namespace Unity.Mathematics
         public static double selfmul(this double2 f) => math.mul(f, f);
         /// <inheritdoc cref="selfmul(float4)"/>
         public static double selfmul(this double f) => math.mul(f, f);
-        
-        
-        
-
 
     }
 }

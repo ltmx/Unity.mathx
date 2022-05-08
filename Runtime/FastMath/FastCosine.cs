@@ -2,8 +2,6 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Unity.Burst;
-using Unity.Jobs;
-using static Unity.Mathematics.OperationInterface;
 
 namespace Unity.Mathematics
 {
@@ -119,11 +117,18 @@ namespace Unity.Mathematics
 
         private static FloatUInt32Union fiu;
         
-        [BurstCompile(FloatPrecision.Low, FloatMode.Fast)]
-        public static float frcp(float x)
+        [BurstCompile]
+        public static float frcp(this float x)
         {
             fiu.f = x;
-            fiu.u = 0;
+            fiu.u = (0xbe6eb3beU - fiu.u) >> 1; // pow( x, -0.5 )
+            return fiu.f * fiu.f; // pow( pow(x,-0.5), 2 ) = pow( x, -1 ) = 1.0 / x
+        }
+        
+        [BurstCompile]
+        public static float frcp(this int x)
+        {
+            fiu.f = x;
             fiu.u = (0xbe6eb3beU - fiu.u) >> 1; // pow( x, -0.5 )
             return fiu.f * fiu.f; // pow( pow(x,-0.5), 2 ) = pow( x, -1 ) = 1.0 / x
         }
