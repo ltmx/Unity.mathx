@@ -8,8 +8,11 @@
 //https://github.com/LTMX/Unity-Mathematics-Extensions
 
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace Unity.Mathematics
 {
+    [SuppressMessage("ReSharper", "InconsistentNaming")]
     public static partial class Math
     {
         //Specific Functions ------------------------------------------------------------------------------------------
@@ -39,9 +42,7 @@ namespace Unity.Mathematics
             return length - (x.repeat(length * 2) - length).abs();
         }
 
-        /// <summary>
         /// Sample a parabola trajectory
-        /// </summary>
         /// <param name="start">Start position</param>
         /// <param name="end">End position</param>
         /// <param name="height">Height of the parabola</param>
@@ -69,20 +70,6 @@ namespace Unity.Mathematics
                 return result;
             }
         }
-        
-        /// Compares two floating point values and returns true if they are similar.
-        public static bool approx(this float a, float b) => (b - a).abs() < (1E-06f * a.abs().max(b.abs())).max(math.EPSILON * 8);
-        public static bool approx(this double a, double b) => (b - a).abs() < (1E-06f * a.abs().max(b.abs())).max(math.EPSILON * 8);
-        
-        
-        public static bool odd(this int a) => a % 2 == 1;
-        public static bool2 odd(this int2 a) => a % 2 == 1;
-        public static bool3 odd(this int3 a) => a % 2 == 1;
-        public static bool4 odd(this int4 a) => a % 2 == 1;
-        public static bool even(this int a) => a % 2 == 0;
-        public static bool2 even(this int2 a) => a % 2 == 0;
-        public static bool3 even(this int3 a) => a % 2 == 0;
-        public static bool4 even(this int4 a) => a % 2 == 0;
 
     }
 }

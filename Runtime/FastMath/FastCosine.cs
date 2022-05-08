@@ -1,14 +1,9 @@
 using System;
-using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using AOT;
 using Unity.Burst;
-using Unity.Burst.CompilerServices;
-using Unity.Collections;
 using Unity.Jobs;
-using UnityEngine;
-
+using static Unity.Mathematics.OperationInterface;
 
 namespace Unity.Mathematics
 {
@@ -33,12 +28,13 @@ namespace Unity.Mathematics
             return x * (b * (b * (1 / 120f) - 1 / 6f) + 1);
         }
 
-        private const float a = 1 / 0.9428f;
-        private const float b = -1 / 6f;
+
 
         [MethodImpl(INLINE)]
         public static float ultraFastCos(float x)
         {
+            const float a = 1 / 0.9428f; 
+            const float b = -1 / 6f;
             x -= PIo2;
             return (x - x * x * x * b) * a;
         }
@@ -88,6 +84,8 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)]
         public static float ultraFastCos(int y)
         {
+            const float a = 1 / 0.9428f; 
+            const float b = -1 / 6f;
             var x = y - PIo2;
             return (x - x * x * x * b) * a;
         }
@@ -128,13 +126,6 @@ namespace Unity.Mathematics
             fiu.u = 0;
             fiu.u = (0xbe6eb3beU - fiu.u) >> 1; // pow( x, -0.5 )
             return fiu.f * fiu.f; // pow( pow(x,-0.5), 2 ) = pow( x, -1 ) = 1.0 / x
-        }
-
-        public static float Jobbifying()
-        {
-            var n =  JobifyExtensions.Jobify(OperationInterface.MultiplyFloat, 3.5f);
-            n.ExecuteAndComplete();
-            return n.Output;
         }
 
     }

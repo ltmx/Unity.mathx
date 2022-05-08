@@ -1,23 +1,26 @@
 using Unity.Burst;
+using Unity.Collections;
 using Unity.Jobs;
+using static Unity.Mathematics.OperationInterface;
 
 namespace Unity.Mathematics // Should be defined in the assembly definition // Jobify namespace
 {
     /// A static class to convert functions to jobs using prebaked delegates.
     public static class Jobify
     {
-        [BurstCompile]
+        [BurstCompile(CompileSynchronously = true)]
         public struct Jobified : IJob
         {
-            public float Input;
+            [ReadOnly] public readonly float Input;
             public float Output;
-            public FunctionPointer<OperationInterface.FloatInOut> Method;
+            public FunctionPointer<FloatIO> FunctionPointer;
             public void Execute() {
-                Output = Method.Invoke(Input);
+                Output = FunctionPointer.Invoke(Input);
             }
 
-            public Jobified(OperationInterface.FloatInOut method, float input) {
-                Method = BurstCompiler.CompileFunctionPointer(method);
+            public Jobified(FunctionPointer<FloatIO> functionPointer, float input)
+            {
+                FunctionPointer = functionPointer;
                 Input = input;
                 Output = 0;
             }
