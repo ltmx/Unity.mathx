@@ -24,6 +24,20 @@ namespace Unity.Mathematics
         /// Shorthand for new float3(0,0,0)
         public static readonly float3 f3zero = 0;
         /// Shorthand for new float3(0,1,0)
+        public static readonly float3 f3up = new(0, 1, 0);
+        /// Shorthand for new float3(1,0,0);
+        public static readonly float3 f3right = new(1, 0, 0);
+        /// Shorthand for new float3(0,0,1)
+        public static readonly float3 f3forward = new(0, 0, 1);
+        /// Shorthand for new new float3(0,-1,0)
+        public static readonly float3 f3down = new(0, -1, 0);
+        /// Shorthand for new float3(-1,0,0)
+        public static readonly float3 f3left = new(-1, 0, 0);
+        /// Shorthand for new float3(0,0,-1)
+        public static readonly float3 f3back = new(0, 0, -1);
+
+        // float3 with implicit naming
+        /// Shorthand for new float3(0,1,0)
         public static readonly float3 up = new(0, 1, 0);
         /// Shorthand for new float3(1,0,0);
         public static readonly float3 right = new(1, 0, 0);
@@ -35,6 +49,7 @@ namespace Unity.Mathematics
         public static readonly float3 left = new(-1, 0, 0);
         /// Shorthand for new float3(0,0,-1)
         public static readonly float3 back = new(0, 0, -1);
+
         
         // int3
         /// Shorthand for new int3(1,1,1)

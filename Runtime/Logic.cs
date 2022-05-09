@@ -1,11 +1,8 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Runtime.CompilerServices;
-
 namespace Unity.Mathematics
 {
     public static partial class Math
     {
-        // logic ----------------------------------------------------
+        // Logic ----------------------------------------------------
 
         /// returns true if any of the components is true
         public static bool any(this bool4 s) => s.x || s.y || s.z || s.w;
@@ -36,6 +33,52 @@ namespace Unity.Mathematics
         public static T select<T>(this bool s, T a, T b) => s ? a : b;
         /// Returns a if s is true, b otherwise
         public static T select<T>(this int s, T a, T b) => s.asbool() ? a : b;
+
+        // Approx ---------------------------------------------------
+        
+        /// Compares two floating point values and returns true if they are similar.
+        public static bool approx(this float a, float b) => (b - a).abs() < (1E-06f * a.abs().max(b.abs())).max(EPSILON * 8);
+        /// Compares two floating point values and returns true if they are similar.
+        public static bool approx(this double a, double b) => (b - a).abs() < (1E-06f * a.abs().max(b.abs())).max(EPSILON * 8);
+        
+        // Odd & Even ----------------------------------------------
+        
+        /// Returns true if a is odd
+        public static bool odd(this int a) => (a & 1) != 0; // 12% faster than a % 2 == 1
+        /// Returns true if a is odd component-wise
+        public static bool2 odd(this int2 a) => (a & 1) != 0;
+        /// Returns true if a is odd component-wise
+        public static bool3 odd(this int3 a) => (a & 1) != 0;
+        /// Returns true if a is odd component-wise
+        public static bool4 odd(this int4 a) => (a & 1) != 0;
+
+        /// Returns true if a is odd
+        public static bool odd(this float a) => ((int)a & 1) != 0;
+        /// Returns true if a is odd component-wise
+        public static bool2 odd(this float2 a) => ((int2)a & 1) != 0;
+        /// Returns true if a is odd component-wise
+        public static bool3 odd(this float3 a) => ((int3)a & 1) != 0;
+        /// Returns true if a is odd component-wise
+        public static bool4 odd(this float4 a) => ((int4)a & 1) != 0;
+        
+        /// Returns true if a is even
+        public static bool even(this int a) => (a & 1) != 1; // 12% faster than a % 2 == 0
+        /// Returns true if a is even component-wise
+        public static bool2 even(this int2 a) => (a & 1) != 1;
+        /// Returns true if a is even component-wise
+        public static bool3 even(this int3 a) => (a & 1) != 1;
+        /// Returns true if a is even component-wise
+        public static bool4 even(this int4 a) => (a & 1) != 1;
+
+        /// Returns true if a is even
+        public static bool even(this float a) => ((int)a & 1) != 1;
+        /// Returns true if a is even component-wise
+        public static bool2 even(this float2 a) => ((int2) a & 1) != 1;
+        /// Returns true if a is even component-wise
+        public static bool3 even(this float3 a) => ((int3)a & 1) != 1;
+        /// Returns true if a is even component-wise
+        public static bool4 even(this float4 a) => ((int4)a & 1) != 1;
+
         
         // packed data accessing ------------------------------------
         
@@ -71,46 +114,6 @@ namespace Unity.Mathematics
         /// selects an element of an array of multidimensional arrays using an int3 as index;
         public static T get<T>(this T[][,] t, int3 id) => t[id.x][id.y, id.z];
         
-
-        
-
-        
-
-        
-        
-        
-        /// Compares two floating point values and returns true if they are similar.
-        public static bool approx(this float a, float b) => (b - a).abs() < (1E-06f * a.abs().max(b.abs())).max(EPSILON * 8);
-        /// Compares two floating point values and returns true if they are similar.
-        public static bool approx(this double a, double b) => (b - a).abs() < (1E-06f * a.abs().max(b.abs())).max(EPSILON * 8);
-        
-        
-        /// Returns true if a is within the range [b, c]
-        // a % 2 != 0; // odd
-        // a % 2 == 0; // even
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool odd(this int a) => (a & 1) != 0; // 12% faster than % 2 == 1
-        public static bool2 odd(this int2 a) => (a & 1) != 0;
-        public static bool3 odd(this int3 a) => (a & 1) != 0;
-        public static bool4 odd(this int4 a) => (a & 1) != 0;
-        public static bool even(this int a) => (a & 1) != 1;
-        public static bool2 even(this int2 a) => (a & 1) != 1;
-        public static bool3 even(this int3 a) => (a & 1) != 1;
-        public static bool4 even(this int4 a) => (a & 1) != 1;
-        
-        public static bool odd(this float a) => ((int)a & 1) != 0;
-        public static bool2 odd(this float2 a) => ((int2)a & 1) != 0;
-        public static bool3 odd(this float3 a) => ((int3)a & 1) != 0;
-        public static bool4 odd(this float4 a) => ((int4)a & 1) != 0;
-        
-        public static bool even(this float a) => ((int)a & 1) != 1;
-        public static bool2 even(this float2 a) => ((int2)a & 1) != 1;
-        public static bool3 even(this float3 a) => ((int3)a & 1) != 1;
-        public static bool4 even(this float4 a) => ((int4)a & 1) != 1;
-
-
-
-
     }
 }
 
