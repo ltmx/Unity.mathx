@@ -37,6 +37,47 @@ namespace Unity.Mathematics
         /// Returns a if s is true, b otherwise
         public static T select<T>(this int s, T a, T b) => s.asbool() ? a : b;
         
+        // packed data accessing ------------------------------------
+        
+        /// selects an element of an array using an int as index;
+        public static T get<T>(this int id, T[] t) => t[id];
+        /// selects an element of an array of arrays using an int2 as index;
+        public static T get<T>(this int2 id, T[][] t) => t[id.x][id.y];
+        /// selects an element of an array of arrays using an int2 as index;
+        public static T get<T>(this int3 id, T[][][] t) => t[id.x][id.y][id.z];
+        
+        /// selects an element of an array using an int2 as index;
+        public static T get<T>(this int2 id, T[,] t) => t[id.x, id.y];
+        /// selects an element of an array using an int3 as index;
+        public static T get<T>(this int3 id, T[,,] t) => t[id.x, id.y, id.z];
+        /// selects an element of a multidimensional array of arrays using an int3 as index;
+        public static T get<T>(this int3 id, T[,][] t) => t[id.x, id.y][id.z];
+        /// selects an element of an array of multidimensional arrays using an int3 as index;
+        public static T get<T>(this int3 id, T[][,] t) => t[id.x][id.y, id.z];
+
+        
+        /// selects an element of an array using an int as index;
+        public static T get<T>(this T[] t, int id) => t[id];
+        /// selects an element of an array of arrays using an int2 as index;
+        public static T get<T>(this T[][] t, int2 id) => t[id.x][id.y];
+        /// selects an element of an array of arrays using an int2 as index;
+        public static T get<T>(this T[][][] t, int3 id) => t[id.x][id.y][id.z];
+        /// selects an element of an array using an int2 as index;
+        public static T get<T>(this T[,] t, int2 id) => t[id.x, id.y];
+        /// selects an element of an array using an int3 as index;
+        public static T get<T>(this T[,,] t, int3 id) => t[id.x, id.y, id.z];
+        /// selects an element of a multidimensional array of arrays using an int3 as index;
+        public static T get<T>(this T[,][] t, int3 id) => t[id.x, id.y][id.z];
+        /// selects an element of an array of multidimensional arrays using an int3 as index;
+        public static T get<T>(this T[][,] t, int3 id) => t[id.x][id.y, id.z];
+        
+
+        
+
+        
+
+        
+        
         
         /// Compares two floating point values and returns true if they are similar.
         public static bool approx(this float a, float b) => (b - a).abs() < (1E-06f * a.abs().max(b.abs())).max(EPSILON * 8);
