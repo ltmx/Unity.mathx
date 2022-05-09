@@ -5,21 +5,21 @@ namespace Unity.Mathematics
 {
     public static partial class Math
     {
-        public static float easeInSine(this float x) => 1 - cos((x * PI) / 2);
-        public static float easeOutSine(this float x) => sin(x * PI / 2);
-        public static float easeInOutSine(this float x) => - (cos(PI * x) - 1) / 2;
+        public static float easeInSine(this float x) => 1 - cos(x * HPI);
+        public static float easeOutSine(this float x) => sin(x * HPI);
+        public static float easeInOutSine(this float x) => - (cos(PI * x) - 1) * 0.5f;
         public static float easeInQuad(this float x) => x * x;
         public static float easeOutQuad(this float x) => 1 - (1 - x) * (1 - x);
-        public static float easeInOutQuad(this float x) => x < 0.5 ? 2 * x * x : 1 - (-2 * x + 2).sq() / 2;
+        public static float easeInOutQuad(this float x) => x < 0.5f ? 2 * x * x : 1 - (-2 * x + 2).sq() * 0.5f;
         public static float easeInCubic(this float x) => x.cube();
         public static float easeOutCubic(this float x) => 1 - (1 - x).cube();
-        public static float easeInOutCubic(this float x) => x < 0.5 ? 4 * x.cube() : 1 - (-2 * x + 2).cube() / 2;
+        public static float easeInOutCubic(this float x) => x < 0.5f ? 4 * x.cube() : 1 - (-2 * x + 2).cube() * 0.5f;
         public static float easeInQuart(this float x) => x * x * x * x;
-        public static float easeOutQuart(this float x) => 1 - pow(1 - x, 4);
-        public static float easeInOutQuart(this float x) => x < 0.5 ? 8 * x.pow4() : 1 - (-2 * x + 2).pow4() / 2;
+        public static float easeOutQuart(this float x) => 1 - pow4(1 - x);
+        public static float easeInOutQuart(this float x) => x < 0.5f ? 8 * x.pow4() : 1 - (-2 * x + 2).pow4() * 0.5f;
         public static float easeInQuint(this float x) => x.pow5();
-        public static float easeOutQuint(this float x) => 1 - math.pow(1 - x, 5);
-        public static float easeInOutQuint(this float x) => x < 0.5 ? 16 * x.pow5() : 1 - (-2 * x + 2).pow5() / 2;
+        public static float easeOutQuint(this float x) => 1 - pow5(1 - x);
+        public static float easeInOutQuint(this float x) => x < 0.5f ? 16 * x.pow5() : 1 - (-2 * x + 2).pow5() * 0.5f;
         public static float easeInExpo(this float x) => x == 0 ? 0 : exp2( 10 * x - 10);
         public static float easeOutExpo(this float x) => x == 1 ? 1 : 1 - exp2( -10 * x);
         public static float easeInOutExpo(this float x) {
@@ -28,12 +28,12 @@ namespace Unity.Mathematics
             return (2 - exp2(-20 * x + 10)) / 2;
         }
         public static float easeInCirc(this float x) => 1 - sqrt(1 - x * x);
-        public static float easeOutCirc(this float x) => sqrt(1 - math.pow(x - 1, 2));
+        public static float easeOutCirc(this float x) => sqrt(1 - (x - 1).sq());
 
         public static float easeInOutCirc(this float x){
             return x < 0.5
-                ? (1 - sqrt(1 - (2 * x).sq())) / 2
-                : (sqrt(1 - (-2 * x + 2).sq()) + 1) / 2;
+                ? (1 - sqrt(1 - (2 * x).sq())) * 0.5f
+                : (sqrt(1 - (-2 * x + 2).sq()) + 1) * 0.5f;
         }
         public static float easeInBack(this float x){
             const float c1 = 1.70158f;
@@ -49,11 +49,11 @@ namespace Unity.Mathematics
             const float c1 = 1.70158f;
             const float c2 = c1 * 1.525f;
             return x < 0.5
-                ? ((2 * x).sq() * ((c2 + 1) * 2 * x - c2)) / 2
-                : ((2 * x - 2).sq() * ((c2 + 1) * (x * 2 - 2) + c2) + 2) / 2;
+                ? (2 * x).sq() * ((c2 + 1) * 2 * x - c2) * 0.5f
+                : ((2 * x - 2).sq() * ((c2 + 1) * (x * 2 - 2) + c2) + 2) * 0.5f;
         }
         public static float easeInElastic(this float x) {
-            const float c4 = (2 * PI) / 3;
+            const float c4 = (TAU) / 3;
             if (x == 0 || x == 1) return x;
             return - exp2(10 * x - 10) * sin((x * 10 - 10.75f) * c4);
         }
@@ -67,8 +67,8 @@ namespace Unity.Mathematics
 
             if (x == 0 || x == 1) return x;
             if (x < 0.5f) 
-                return -(exp2(20 * x - 10) * sin((20 * x - 11.125f) * c5)) / 2;
-            return (exp2(-20 * x + 10) * sin((20 * x - 11.125f) * c5)) / 2 + 1;
+                return -(exp2(20 * x - 10) * sin((20 * x - 11.125f) * c5)) * 0.5f;
+            return (exp2(-20 * x + 10) * sin((20 * x - 11.125f) * c5)) * 0.5f + 1;
         }
         public static float easeInBounce(this float x) => 1 - easeOutBounce(1 - x);
 
@@ -87,5 +87,6 @@ namespace Unity.Mathematics
                 ? (1 - easeOutBounce(1 - 2 * x)) / 2
                 : (1 + easeOutBounce(2 * x - 1)) / 2;
         }
+        
     }
 }
