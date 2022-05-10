@@ -1,10 +1,10 @@
 {
-    "name": "com.ltmx.unitymathematicsextensions",
+    "name": "com.ltmx.mathematics.extensions",
     "displayName": "Mathematics Extensions",
     "description": "Extension methods to simplify and extend the Unity.Mathematics library",
-    "version": "1.2.5",
+    "version": "1.2.6",
     "dependencies": {
-        "com.unity.mathematics": "1.2.5"
+        "com.unity.mathematics": "1.2.6"
     },
     "repository": {
         "type": "git",
