@@ -36,7 +36,7 @@ namespace Unity.Mathematics
         public static double3 exp2(this double3 f) => math.exp2(f);
         public static double2 exp2(this double2 f) => math.exp2(f);
         public static double exp2(this double f) => math.exp2(f);
-        
+
         // Exponential Base 10
         public static float4 exp10(this float4 f) => math.exp10(f);
         public static float3 exp10(this float3 f) => math.exp10(f);
