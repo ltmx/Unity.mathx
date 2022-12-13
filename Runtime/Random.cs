@@ -5,7 +5,13 @@ namespace Unity.Mathematics
     public partial class Math
     {
         private static uint seed() => (uint) DateTime.Now.Millisecond;
-        private static Random random => new Random(seed());
+        private static Random random => new Random(seed()).Init();
+
+        // Extension returning type
+        public static Random Init(this Random random){
+            random.InitState();
+            return random;
+        }
 
         public static float randomrange(float min, float max) => random.NextFloat(min, max);
         public static float2 randomrange(float2 min, float2 max) => random.NextFloat2(min, max);
@@ -20,7 +26,7 @@ namespace Unity.Mathematics
         public static float3 randomInsideUnitSphere() => random.NextFloat3Direction() * random.NextFloat().cube();
         public static float2 randomInsideUnitCircle() => random.NextFloat2Direction() * random.NextFloat().sq();
         
-        public static float3 randomInsideSphere(float radius = 1) => random.NextFloat3Direction() * random.NextFloat().cube() * radius;
+        public static float3 randomInsideSphere(float radius = 1) => random.NextFloat3Direction() * random.NextFloat().cube() * radius; // Always outputting the same value
         public static float2 randomInsideCircle(float radius = 1) => random.NextFloat2Direction() * random.NextFloat().sq() * radius;
         
         public static float3 random3Ddirection() => random.NextFloat3Direction();
