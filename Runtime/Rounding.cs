@@ -118,26 +118,26 @@ namespace Unity.Mathematics
         public static double ceil(this double f) => math.ceil(f);
         
         // Ceil To Int
-        public static int4 ceiltoint(this float4 f) => math.ceil(f).asint();
-        public static int3 ceiltoint(this float3 f) => math.ceil(f).asint();
-        public static int2 ceiltoint(this float2 f) => math.ceil(f).asint();
-        public static int ceiltoint(this float f) => math.ceil(f).asint();
+        public static int4 clint(this float4 f) => math.ceil(f).asint();
+        public static int3 clint(this float3 f) => math.ceil(f).asint();
+        public static int2 clint(this float2 f) => math.ceil(f).asint();
+        public static int clint(this float f) => math.ceil(f).asint();
         
-        public static int4 ceiltoint(this Vector4 f) => math.ceil(f).asint();
-        public static int3 ceiltoint(this Vector3 f) => math.ceil(f).asint();
-        public static int2 ceiltoint(this Vector2 f) => math.ceil(f).asint();
+        public static int4 clint(this Vector4 f) => math.ceil(f).asint();
+        public static int3 clint(this Vector3 f) => math.ceil(f).asint();
+        public static int2 clint(this Vector2 f) => math.ceil(f).asint();
         
-        public static int4 ceiltoint(this double4 f) => math.ceil(f).asint();
-        public static int3 ceiltoint(this double3 f) => math.ceil(f).asint();
-        public static int2 ceiltoint(this double2 f) => math.ceil(f).asint();
-        public static int ceiltoint(this double f) => math.ceil(f).asint();
+        public static int4 clint(this double4 f) => math.ceil(f).asint();
+        public static int3 clint(this double3 f) => math.ceil(f).asint();
+        public static int2 clint(this double2 f) => math.ceil(f).asint();
+        public static int clint(this double f) => math.ceil(f).asint();
+        
 
         // Floor
         public static float4 floor(this float4 f) => math.floor(f);
         public static float3 floor(this float3 f) => math.floor(f);
         public static float2 floor(this float2 f) => math.floor(f);
         public static float floor(this float f) => math.floor(f);
-        
 
         public static float4 floor(this Vector4 f) => math.floor(f);
         public static float3 floor(this Vector3 f) => math.floor(f);

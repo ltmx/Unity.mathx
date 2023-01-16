@@ -4,6 +4,8 @@ namespace Unity.Mathematics
     public partial class Math
     {
         // Shorthands -----------------------------------------
+        
+        
     
         // float2
         public static readonly float2 f2one = 1;
