@@ -191,7 +191,8 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="saturate(float4)"/>
         public static double saturate(this double f) => math.saturate(f);
 
-
+        // npsaturate
+        
         /// Returns the result of clamping f to [-1, 1]
         public static float4 npsaturate(this float4 f) => f.clamp(-1,1);
         /// <inheritdoc cref="npsaturate(float4)"/>
@@ -219,5 +220,35 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="npsaturate(float4)"/>
         public static double npsaturate(this double f) => f.clamp(-1,1);
         
+        
+        // Max0
+        
+        /// Same as max(f, 0); It can be useful to prevent negative values in some cases
+        public static float4 max0(this float4 f) => f.max(0);
+        /// <inheritdoc cref="max0(float4)"/>
+        public static float3 max0(this float3 f) => f.max(0);
+        /// <inheritdoc cref="max0(float4)"/>
+        public static float2 max0(this float2 f) => f.max(0);
+        /// <inheritdoc cref="max0(float4)"/>
+        public static float max0(this float f) => f.max(0);
+        /// <inheritdoc cref="max0(float4)"/>
+        public static float max0(this int f) => f.max(0);
+        
+        /// <inheritdoc cref="max0(float4)"/>
+        public static float4 max0(this Vector4 f) => f.max(0);
+        /// <inheritdoc cref="max0(float4)"/>
+        public static float3 max0(this Vector3 f) => f.max(0);
+        /// <inheritdoc cref="max0(float4)"/>
+        public static float2 max0(this Vector2 f) => f.max(0);
+        
+        /// <inheritdoc cref="max0(float4)"/>
+        public static double4 max0(this double4 f) => f.max(0);
+        /// <inheritdoc cref="max0(float4)"/>
+        public static double3 max0(this double3 f) => f.max(0);
+        /// <inheritdoc cref="max0(float4)"/>
+        public static double2 max0(this double2 f) => f.max(0);
+        /// <inheritdoc cref="max0(float4)"/>
+        public static double max0(this double f) => f.max(0);
+
     }
 }
