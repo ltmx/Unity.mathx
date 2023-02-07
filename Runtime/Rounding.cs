@@ -249,6 +249,37 @@ namespace Unity.Mathematics
         public static double2 max0(this double2 f) => f.max(0);
         /// <inheritdoc cref="max0(float4)"/>
         public static double max0(this double f) => f.max(0);
+        
+        
+        
+        //Min0
+        
+        /// Short for min(f, 0);
+        public static float4 min0(this float4 f) => f.min(0);
+        /// <inheritdoc cref="min0(float4)"/>
+        public static float3 min0(this float3 f) => f.min(0);
+        /// <inheritdoc cref="min0(float4)"/>
+        public static float2 min0(this float2 f) => f.min(0);
+        /// <inheritdoc cref="min0(float4)"/>
+        public static float min0(this float f) => f.min(0);
+        /// <inheritdoc cref="min0(float4)"/>
+        public static float min0(this int f) => f.min(0);
+        
+        /// <inheritdoc cref="min0(float4)"/>
+        public static float4 min0(this Vector4 f) => f.min(0);
+        /// <inheritdoc cref="min0(float4)"/>
+        public static float3 min0(this Vector3 f) => f.min(0);
+        /// <inheritdoc cref="min0(float4)"/>
+        public static float2 min0(this Vector2 f) => f.min(0);
+        
+        /// <inheritdoc cref="min0(float4)"/>
+        public static double4 min0(this double4 f) => f.min(0);
+        /// <inheritdoc cref="min0(float4)"/>
+        public static double3 min0(this double3 f) => f.min(0);
+        /// <inheritdoc cref="min0(float4)"/>
+        public static double2 min0(this double2 f) => f.min(0);
+        /// <inheritdoc cref="min0(float4)"/>
+        public static double min0(this double f) => f.min(0);
 
     }
 }
