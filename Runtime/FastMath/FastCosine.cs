@@ -12,7 +12,7 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)]
         public static float fcos(float x)
         {
-            x -= PIo2;
+            x -= HPI;
             var b = x * x;
             return x * (b * (b * (1 / 120f - b / 5040) - 1 / 6f) + 1);
         }
@@ -21,7 +21,7 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)]
         public static float veryFastCos(float x)
         {
-            x -= PIo2;
+            x -= HPI;
             var b = x * x;
             return x * (b * (b * (1 / 120f) - 1 / 6f) + 1);
         }
@@ -33,7 +33,7 @@ namespace Unity.Mathematics
         {
             const float a = 1 / 0.9428f; 
             const float b = -1 / 6f;
-            x -= PIo2;
+            x -= HPI;
             return (x - x * x * x * b) * a;
         }
 
@@ -42,14 +42,14 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)]
         public static float CosLoop(this int x)
         {
-            return (x % PI2 - x).abs() - PIo2;
+            return (x % PI2 - x).abs() - HPI;
         }
 
         [MethodImpl(INLINE)]
         public static float SinLoop(this int y)
         {
             var x = y - HPI;
-            return (x % PI2 - x).abs() - PIo2;
+            return (x % PI2 - x).abs() - HPI;
         }
 
 
@@ -58,14 +58,14 @@ namespace Unity.Mathematics
         [BurstCompile(OptimizeFor = OptimizeFor.Performance)]
         public static float fcos(int y)
         {
-            var x = y - PIo2;
+            var x = y - HPI;
             var b = x * x;
             return x * (b * (b * (1 / 120f - b / 5040) - 1 / 6f) + 1);
         }
         
         public static float sfcos(int y)
         {
-            var x = y - PIo2;
+            var x = y - HPI;
             var b = x * x;
             return x * (b * (b * (1 / 120f - b / 5040) - 1 / 6f) + 1);
         }
@@ -74,7 +74,7 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)]
         public static float veryFastCos(int y)
         {
-            var x = y - PIo2;
+            var x = y - HPI;
             var b = x * x;
             return x * (b * (b * (1 / 120f) - 1 / 6f) + 1);
         }
@@ -84,7 +84,7 @@ namespace Unity.Mathematics
         {
             const float a = 1 / 0.9428f; 
             const float b = -1 / 6f;
-            var x = y - PIo2;
+            var x = y - HPI;
             return (x - x * x * x * b) * a;
         }
 
