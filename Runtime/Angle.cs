@@ -74,15 +74,18 @@ namespace Unity.Mathematics
         }
 
         /// Returns the result of rotating a vector by a unit quaternion
-        public static float3 rotateRad (this float3 f, quaternion rotation) => math.rotate (rotation, f);
-        /// Rotates using euler angles
+        public static float3 rotateQuaternion (this float3 f, quaternion rotation) => math.rotate (rotation, f);
+        
+        public static float3 rotateAxisAngle (this float3 f, float3 axis, float angle) => math.rotate(quaternion.AxisAngle(axis, angle), f);
+        
+        /// Rotates using euler angles in radians
         /// <param name="f">input vector</param>
-        /// <param name="rotation">euler angles</param>
+        /// <param name="rotation">radians</param>
         public static float3 rotateRad(this float3 f, float3 rotation) => math.rotate(quaternion.Euler(rotation), f);
         
         /// Rotates using euler angles
         /// <param name="f">input vector</param>
-        /// <param name="rotation">euler angles</param>
+        /// <param name="rotation">degrees</param>
         public static float3 rotateDeg(this float3 f, float3 rotation) => math.rotate(quaternion.Euler(rotation * RAD), f);
         
         
