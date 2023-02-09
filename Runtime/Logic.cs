@@ -1,3 +1,5 @@
+using static Unity.Mathematics.math;
+
 namespace Unity.Mathematics
 {
     public static partial class Math
@@ -113,6 +115,17 @@ namespace Unity.Mathematics
         public static T get<T>(this T[,][] t, int3 id) => t[id.x, id.y][id.z];
         /// selects an element of an array of multidimensional arrays using an int3 as index;
         public static T get<T>(this T[][,] t, int3 id) => t[id.x][id.y, id.z];
+        
+        
+        public static bool allnan(this float4 f) => f.x.isnan() && f.y.isnan() && f.z.isnan() && f.w.isnan();
+        public static bool allnan(this float3 f) => f.x.isnan() && f.y.isnan() && f.z.isnan();
+        public static bool allnan(this float2 f) => f.x.isnan() && f.y.isnan();
+        /// returns true if the value is NAN, otherwise false
+        public static bool anynan(this float4 f) => f.x.isnan() || f.y.isnan() || f.z.isnan() || f.w.isnan();
+        public static bool anynan(this float3 f) => f.x.isnan() || f.y.isnan() || f.z.isnan();
+        public static bool anynan(this float2 f) => f.x.isnan() || f.y.isnan();
+        /// returns true if the value is NAN, otherwise false
+        public static bool isnan(this float f) => math.isnan(f);
         
     }
 }

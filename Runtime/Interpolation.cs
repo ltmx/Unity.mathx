@@ -138,8 +138,12 @@ namespace Unity.Mathematics
             var num = (b - a).repeat(360);
             if (num > 180.0) num -= 360;
             return a + num * x.saturate();
-
         }
-
+        
+        public static float4 remap(this float t, float4 oldMin, float4 oldMax, float4 newMin, float4 newMax) => math.remap(oldMin, oldMax, newMin, newMax, t);
+        public static float3 remap(this float t, float3 oldMin, float3 oldMax, float3 newMin, float3 newMax) => math.remap(oldMin, oldMax, newMin, newMax, t);
+        public static float2 remap(this float t, float2 oldMin, float2 oldMax, float2 newMin, float2 newMax) => math.remap(oldMin, oldMax, newMin, newMax, t);
+        public static float remap(this float t,float oldMin, float oldMax, float newMin, float newMax) => math.remap(oldMin, oldMax, newMin, newMax, t);
+        
     }
 }
