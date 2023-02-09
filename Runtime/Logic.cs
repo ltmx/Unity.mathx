@@ -9,17 +9,17 @@ namespace Unity.Mathematics
         /// returns true if any of the components is true
         public static bool any(this bool4 s) => s.x || s.y || s.z || s.w;
         /// returns true in all components are true
-        public static bool all(this bool4 s) => s.x && s.y && s.z && s.w;
+        public static bool all(this bool4 s) => s is { x: true, y: true, z: true, w: true };
         
         /// <inheritdoc cref="any(bool4)"/>
         public static bool any(this bool3 s) => s.x || s.y || s.z;
         /// <inheritdoc cref="all(bool4)"/>
-        public static bool all(this bool3 s) => s.x && s.y && s.z;
+        public static bool all(this bool3 s) => s is { x: true, y: true, z: true };
 
         /// <inheritdoc cref="any(bool4)"/>
         public static bool any(this bool2 s) => s.x || s.y;
         /// <inheritdoc cref="all(bool4)"/>
-        public static bool all(this bool2 s) => s.x && s.y;
+        public static bool all(this bool2 s) => s is { x: true, y: true };
         
         // Select ---------------------------------------------------
         
