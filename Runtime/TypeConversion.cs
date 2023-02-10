@@ -69,14 +69,14 @@ namespace Unity.Mathematics
         // Complex conversion -------------------------------------------
         
         /// Returns a double2 equivalent
-        public static double2 asdouble(this Complex c) => new double2(c.Real, c.Imaginary);
+        public static double2 asdouble(this Complex f) => new double2(f.Real, f.Imaginary);
         /// Returns a float2 equivalent
-        public static float2 asfloat(this Complex c) => (float2)c.asdouble();
+        public static float2 asfloat(this Complex f) => (float2)f.asdouble();
         
         // Color conversion -------------------------------------------
         
-        public static float4 asfloat(this Color c) => c.cast();
-        public static float4 asfloat(this color c) => c; // Compatibility
+        public static float4 asfloat(this Color f) => f.cast();
+        public static float4 asfloat(this color f) => f; // Compatibility
         
         
 
@@ -133,13 +133,13 @@ namespace Unity.Mathematics
         
         public static color ascolor(this float4 f) => f;
         public static color ascolor(this float3 f) => f;
-        public static color ascolor(this float2 f) => new color(f.xy, 0);
+        public static color ascolor(this float2 f) => new(f.xy, 0);
         public static color ascolor(this float f) => f;
 
         // Color as floats
         // public static float4 asfloat4(this Color c) => c.cast(); // compatibility
-        public static float3 asfloat3(this Color c) => new float3(c.r, c.g, c.b);
-        public static float3 asfloat3(this color c) => (float3) c;
+        public static float3 asfloat3(this Color f) => new(f.r, f.g, f.b);
+        public static float3 asfloat3(this color f) => (float3) f;
 
 
         //IEnumerable Type Conversion -------------------------------------------------------------------

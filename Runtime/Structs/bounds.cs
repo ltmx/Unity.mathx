@@ -2,11 +2,10 @@ using System;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using UnityEngine;
-
+using static Unity.Mathematics.math;
 
 namespace Unity.Mathematics
 {
-    // TODO Implement original extern methods in this class
     /// Represents an axis aligned bounding box.
     [Serializable]
     public struct bounds : IEquatable<bounds>, IFormattable
@@ -122,7 +121,6 @@ namespace Unity.Mathematics
         }
 
         /// Grow the bounds to encapsulate the bounds.
-        /// <param name="bounds"></param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Encapsulate(bounds bounds)
         {
@@ -131,26 +129,22 @@ namespace Unity.Mathematics
         }
 
         /// Expand the bounds by increasing its size by amount along each side.
-        /// <param name="amount"></param>
         public void Expand(float amount) => extents += amount * 0.5f;
 
         /// Expand the bounds by increasing its size by amount along each side.
-        /// <param name="amount"></param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Expand(float3 amount) => extents += amount * 0.5f;
 
         /// Does another bounding box intersect with this bounding box?
-        /// <param name="bounds"></param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Intersects(bounds bounds) => (min <= bounds.max & max >= bounds.min).all();
 
-        // /// Does ray intersect this bounding box?
-        // /// <param name="ray"></param>
-        // [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        // public bool IntersectRay(Ray ray) => IntersectRayAABB(ray, this, out var _);
-        //
-        // [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        // public bool IntersectRay(Ray ray, out float distance) => IntersectRayAABB(ray, this, out distance);
+        /// Does ray intersect this bounding box?
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool IntersectRay(Ray ray) => IntersectRayAABB(ray, this, out var _);
+        
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool IntersectRay(Ray ray, out float distance) => IntersectRayAABB(ray, this, out distance);
 
         /// Returns a formatted string for the bounds.
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -173,53 +167,51 @@ namespace Unity.Mathematics
             return
                 $"Center: {Center.ToString(format, formatProvider)}, Extents: {Extents.ToString(format, formatProvider)}";
         }
-
-
-        // /// Is point contained in the bounding box?
-        // /// <param name="point"></param>
-        // public bool Contains(float3 point) => Contains_Injected(ref this, ref point);
-        //
-        // /// The smallest squared distance between the point and this bounding box.
-        // /// <param name="point"></param>
-        // public float SqrDistance(float3 point) => SqrDistance_Injected(ref this, ref point);
-        //
-        // private static bool IntersectRayAABB(Ray ray, bounds bounds, out float dist)
-        // {
-        //     return IntersectRayAABB_Injected(ref ray, ref bounds, out dist);
-        // }
-        //
-        // /// The closest point on the bounding box.
-        // /// <param name="point">Arbitrary point.</param>
-        // /// <returns>
-        // /// The point on the bounding box or inside the bounding box.
-        // /// </returns>
-        // public float3 ClosestPoint(float3 point)
-        // {
-        //     ClosestPoint_Injected(ref this, ref point, out var ret);
-        //     return ret;
-        // }
-
-        // [MethodImpl(MethodImplOptions.InternalCall)]
-        // private static extern bool Contains_Injected(ref bounds self, ref float3 point);
-        //
-        // [MethodImpl(MethodImplOptions.InternalCall)]
-        // private static extern float SqrDistance_Injected(ref bounds self, ref float3 point);
-        //
-        // [MethodImpl(MethodImplOptions.InternalCall)]
-        // private static extern bool IntersectRayAABB_Injected(
-        //     ref Ray ray,
-        //     ref bounds bounds,
-        //     out float dist
-        // );
-        //
-        // [MethodImpl(MethodImplOptions.InternalCall)]
-        // private static extern void ClosestPoint_Injected(
-        //     ref bounds self,
-        //     ref float3 point,
-        //     out float3 ret
-        // );
         
+        /// Is point contained in the bounding box?
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public bool Contains(float3 point) => (point >= min & point <= max).all();
+        
+        /// Is point contained in the bounding box?
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IntersectRayAABB(ray ray, bounds bounds, out float distance)
+        {
+            distance = 0;
+            var dirfrac = ray.direction.rcp();
+            var t1 = (bounds.min - ray.origin) * dirfrac;
+            var t2 = (bounds.max - ray.origin) * dirfrac;
+            var t3 =  min(t1, t2).cmax();
+            var t4 = max(t1, t2).cmin();
+            if (t3 < t4)
+            {
+                distance = t3;
+                return true;
+            }
+            return false;
+        }
+
+        /// The smallest squared distance between the point and this bounding box.
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public float SqrDistance(float3 point)
+        {
+            var v = point - center;
+            var d = v - clamp(v, -extents, extents);
+            return dot(d, d);
+        }
+        
+        /// The closest point on the bounding box.
+        /// <param name="point">Arbitrary point.</param>
+        /// <returns>The point on the bounding box or inside the bounding box.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public float3 ClosestPoint(float3 point)
+        {
+            return center + clamp((point - center), -extents, extents);
+        }
+
+        // Conversions ---------------------------------------------------------------------
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static implicit operator bounds(Bounds b) => new(b.center, b.size);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static implicit operator Bounds(bounds b) => new(b.center, b.size);
     }
 }
