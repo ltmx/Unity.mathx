@@ -1,30 +1,43 @@
 # Unity.Mathematics Extensions
-Extension method syntax for generic Unity.Mathematics data-types & additional methods
+Extension methods for generic `Unity.Mathematics` data-types <br>
+& many useful methods to process mathematics !
 
-### SYNTAX
-<hr>
-Changes 🡶
-  ```C#
-  var v1 = math.cos(math.clamp(f.magnitude, 0, 10));`{.ruby}
-  return v1 * v1;
-  ```
-Into
-  ```C#
-  return f.length().clamp(0, 10).cos().sqr();
-  ```
+<br>
 
-### INSTALL 
-<hr>
-<p><b>Git Package URL</b> > https://github.com/LTMX/Unity.Mathematics-Extensions.git</p>
-<p><b>Unity :</b> Window > Package Manager > Add Package From Git URL</p>
+## SYNTAX
+*Old Code :*
+> ```C#
+> var v1 = math.cos(math.clamp(f.magnitude, 0, 10));
+> return v1 * v1;
+> ```
+*New Code :*
+> ```C#
+> return f.length().clamp(0, 10).cos().sqr();
+> ```
 
-### Roadmap
+<br>
 
+## INSTALL
+### Method 1 : <br>
+Git Package URL : https://github.com/LTMX/Unity.Mathematics-Extensions.git
+<br>
+Unity : `Window > Package Manager > Add Package From Git URL`
+<br>
+### Method 2 : <br>
+1. Download the package in *releases*
+2. Unzip the file
+3. Unity : `Window > Package Manager > Add Package From Disk`
+4. Select the `.json` file inside the unzipped package
+
+<br>
+
+## Roadmap
 - [x] Add Fast Functions
+- [ ] Complete Documentation `WIP`
+- [ ] Signed Distance Functions `WIP`
 
-- [ ] Complete Documentation
+<br>
 
-### LICENSING 
-<hr>
+## LICENSING
 <p>This project is licensed under the MIT License (<a href="https://github.com/LTMX/Unity.Mathematics-Extensions/blob/master/LICENSE">License</a>)</p>
 <p>Unity.Mathematics Companion License (<a href="https://github.com/Unity-Technologies/Unity.Mathematics/blob/master/LICENSE.md">Unity Companion License</a>)</p>
