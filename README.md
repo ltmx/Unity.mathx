@@ -35,6 +35,7 @@ Unity : `Window > Package Manager > Add Package From Git URL`
 - [x] Add Fast Functions
 - [ ] Complete Documentation `WIP`
 - [ ] Signed Distance Functions `WIP`
+- [ ] Jobify Class `WIP`
 
 <br>
 
