@@ -1,6 +1,7 @@
 # Unity.Mathematics Extensions
 Extension methods for generic `Unity.Mathematics` data-types <br>
 & many useful methods to process mathematics !
+Package name : `com.ltmx.unitymathematicsextensions`
 
 <br>
 
