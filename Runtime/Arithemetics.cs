@@ -261,33 +261,5 @@ namespace Unity.Mathematics
         public static double3 frac(this double3 f) => f - (int3)f;
         public static double2 frac(this double2 f) => f - (int2)f;
         public static double frac(this double f) => f - (int)f;
-
-        // Matrix Multiplication ------------------------------------
-        
-        /// Returns the component sum of f², Equivalent to a matrix multiplication with itself as row and column;
-        public static float selfmul(this float4 f) => math.mul(f, f);
-        /// <inheritdoc cref="selfmul(float4)"/>
-        public static float selfmul(this float3 f) => math.mul(f, f);
-        /// <inheritdoc cref="selfmul(float4)"/>
-        public static float selfmul(this float2 f) => math.mul(f, f);
-        /// <inheritdoc cref="selfmul(float4)"/>
-        public static float selfmul(this float f) => math.mul(f, f);
-        
-        /// <inheritdoc cref="selfmul(float4)"/>
-        public static float selfmul(this Vector4 f) => math.mul(f, f);
-        /// <inheritdoc cref="selfmul(float4)"/>
-        public static float selfmul(this Vector3 f) => math.mul(f, f);
-        /// <inheritdoc cref="selfmul(float4)"/>
-        public static float selfmul(this Vector2 f) => math.mul(f, f);
-        
-        /// <inheritdoc cref="selfmul(float4)"/>
-        public static double selfmul(this double4 f) => math.mul(f, f);
-        /// <inheritdoc cref="selfmul(float4)"/>
-        public static double selfmul(this double3 f) => math.mul(f, f);
-        /// <inheritdoc cref="selfmul(float4)"/>
-        public static double selfmul(this double2 f) => math.mul(f, f);
-        /// <inheritdoc cref="selfmul(float4)"/>
-        public static double selfmul(this double f) => math.mul(f, f);
-
     }
 }

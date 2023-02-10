@@ -63,6 +63,7 @@ namespace Unity.Mathematics
             return x * (b * (b * (1 / 120f - b / 5040) - 1 / 6f) + 1);
         }
         
+        [BurstCompile(OptimizeFor = OptimizeFor.Performance)]
         public static float sfcos(int y)
         {
             var x = y - HPI;
@@ -88,50 +89,6 @@ namespace Unity.Mathematics
             return (x - x * x * x * b) * a;
         }
 
-        [MethodImpl(INLINE)]
-        public static float fmod(this float f, float mod) => (f / mod).frac() * mod; // 5% faster
-
-        [MethodImpl(INLINE)]
-        public static float mod(this float f, float mod) => f % mod;
-
-        [MethodImpl(INLINE)]
-        public static float fmod(this int f, float mod) => (f / mod).frac() * mod; // 5% faster
-
-        [MethodImpl(INLINE)]
-        public static float mod(this int f, float mod) => f % mod;
-
-        [MethodImpl(INLINE)]
-        public static float modfaster(this int f, float invMod, float mod) => (f * invMod).frac() * mod;
-
-        [MethodImpl(INLINE)]
-        [BurstCompile(FloatPrecision.Low, FloatMode.Fast)]
-        public static float modrcp(this int f, float mod) => (f * mod.rcp()).frac() * mod;
-
-
-        [StructLayout(LayoutKind.Explicit)]
-        private struct FloatUInt32Union
-        {
-            [FieldOffset(0)] public float f;
-            [FieldOffset(0)] public UInt32 u;
-        }
-
-        private static FloatUInt32Union fiu;
-        
-        [BurstCompile]
-        public static float frcp(this float x)
-        {
-            fiu.f = x;
-            fiu.u = (0xbe6eb3beU - fiu.u) >> 1; // pow( x, -0.5 )
-            return fiu.f * fiu.f; // pow( pow(x,-0.5), 2 ) = pow( x, -1 ) = 1.0 / x
-        }
-        
-        [BurstCompile]
-        public static float frcp(this int x)
-        {
-            fiu.f = x;
-            fiu.u = (0xbe6eb3beU - fiu.u) >> 1; // pow( x, -0.5 )
-            return fiu.f * fiu.f; // pow( pow(x,-0.5), 2 ) = pow( x, -1 ) = 1.0 / x
-        }
 
     }
 }

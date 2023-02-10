@@ -23,9 +23,9 @@ namespace Unity.Mathematics
             return num < 1.00000000362749E-15f ? 0 : (math.dot (from, to) / num).npsaturate ().acos (); // * 57.29578f;
         }
 
-        public static float fastangle (float4 from, float4 to) => (math.dot(from, to) / (from.lengthsq() * to.lengthsq()).fastsqrt()).npsaturate().acos();
-        public static float fastangle (float3 from, float3 to) => (math.dot(from, to) / (from.lengthsq() * to.lengthsq()).fastsqrt()).npsaturate().acos();
-        public static float fastangle (float2 from, float2 to) => (math.dot(from, to) / (from.lengthsq() * to.lengthsq()).fastsqrt()).npsaturate().acos();
+        public static float fastangle (float4 from, float4 to) => (math.dot(from, to) / (from.lengthsq() * to.lengthsq()).fsqrt()).npsaturate().acos();
+        public static float fastangle (float3 from, float3 to) => (math.dot(from, to) / (from.lengthsq() * to.lengthsq()).fsqrt()).npsaturate().acos();
+        public static float fastangle (float2 from, float2 to) => (math.dot(from, to) / (from.lengthsq() * to.lengthsq()).fsqrt()).npsaturate().acos();
 
         // another way of computing angles
         //public static float otherangle(float2 v1, float2 v2) => math.atan2(v1.x * v2.y - v2.x * v1.y, (v1 * v2).sum()) * (180 / math.PI);
