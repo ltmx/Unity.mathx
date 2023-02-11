@@ -1,10 +1,16 @@
 # Unity.Mathematics Extensions
+
+![GitHub repo size](https://img.shields.io/github/repo-size/LTMX/Unity-Mathematics-Extensions)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/LTMX/Unity.Mathematics-Extensions?color=blueviolet)
+![GitHub top language](https://img.shields.io/github/languages/top/LTMX/Unity.Mathematics-Extensions?color=success)
+![GitHub](https://img.shields.io/github/license/LTMX/Unity.Mathematics-Extensions)
+
 Extension Library for [`Unity.Mathematics`](https://github.com/Unity-Technologies/Unity.Mathematics) <br>
 & many useful methods to process mathematics !<br>
 Package name : `com.ltmx.unitymathematicsextensions`
 
 <a href="https://ko-fi.com/I2I0IMQA9">
-  <img align="left" src="https://raw.githubusercontent.com/LTMX/Banners-And-Buttons/main/Support%20Me%20Kofi%20Banner%20Shader%20Graph%20Mastery.png" width="160px"/>
+  <img align="left" src="https://raw.githubusercontent.com/LTMX/Banners-And-Buttons/main/Support%20Me%20Kofi%20Banner%20Shader%20Graph%20Mastery.png" width="140px"/>
 </a><br><br>
 
 
