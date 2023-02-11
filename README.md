@@ -4,7 +4,7 @@ Extension Library for [`Unity.Mathematics`](https://github.com/Unity-Technologie
 Package name : `com.ltmx.unitymathematicsextensions`
 
 <a href="https://ko-fi.com/I2I0IMQA9">
-  <img align="left" src="https://raw.githubusercontent.com/LTMX/Banners-And-Buttons/main/Support%20Me%20Kofi%20Banner%20Shader%20Graph%20Mastery.png" width="200px"/>
+  <img align="left" src="https://raw.githubusercontent.com/LTMX/Banners-And-Buttons/main/Support%20Me%20Kofi%20Banner%20Shader%20Graph%20Mastery.png" width="160px"/>
 </a><br><br>
 
 
@@ -19,23 +19,18 @@ Package name : `com.ltmx.unitymathematicsextensions`
 > return f.length().clamp(0, 10).cos().sqr();
 > ```
 
-<br>
 
 ## Install
 #### Method 1 : <br>
-Git Package URL : 
-> ```
-> https://github.com/LTMX/Unity.Mathematics-Extensions.git
-> ```
-Unity : `Window > Package Manager > Add Package From Git URL`
-<br>
+1. Copy Git Package URL : `https://github.com/LTMX/Unity.Mathematics-Extensions.git`
+2. In Unity : `Window > Package Manager > Add Package From Git URL`
+
 #### Method 2 : <br>
-1. Download the package in *releases*
+1. Download the package in *releases*,
 2. Unzip the file
 3. Unity : `Window > Package Manager > Add Package From Disk`
 4. Select the `.json` file inside the unzipped package
 
-<br>
 
 ## Roadmap
 - [x] Add Fast Functions
