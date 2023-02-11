@@ -16,15 +16,20 @@ Package name : `com.ltmx.unitymathematicsextensions`
 
 ## Exension Method Syntax
 *Old Code :*
-> ```C#
-> var v1 = math.cos(math.clamp(f.magnitude, 0, 10));
-> return v1 * v1;
-> ```
+```C#
+var v1 = math.cos(math.clamp(f.magnitude, 0, 10));
+return v1 * v1;
+```
 *New Code :*
-> ```C#
-> return f.length().clamp(0, 10).cos().sqr();
-> ```
+```C#
+return f.length().clamp(0, 10).cos().sqr();
+```
 
+
+## Using Declaration
+```C#
+using static Unity.Mathematics.Math;
+```
 
 ## Install
 #### Method 1 : <br>
