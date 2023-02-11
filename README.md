@@ -1,5 +1,5 @@
 # Unity.Mathematics Extensions
-Extension methods for generic `Unity.Mathematics` data-types <br>
+Extension Library for [`Unity.Mathematics`](https://github.com/Unity-Technologies/Unity.Mathematics) <br>
 & many useful methods to process mathematics !<br>
 Package name : `com.ltmx.unitymathematicsextensions`
 
@@ -8,7 +8,7 @@ Package name : `com.ltmx.unitymathematicsextensions`
 </a><br><br>
 
 
-## SYNTAX
+## Exension Method Syntax
 *Old Code :*
 > ```C#
 > var v1 = math.cos(math.clamp(f.magnitude, 0, 10));
@@ -21,13 +21,15 @@ Package name : `com.ltmx.unitymathematicsextensions`
 
 <br>
 
-## INSTALL
-### Method 1 : <br>
-Git Package URL : https://github.com/LTMX/Unity.Mathematics-Extensions.git
-<br>
+## Install
+#### Method 1 : <br>
+Git Package URL : 
+> ```
+> https://github.com/LTMX/Unity.Mathematics-Extensions.git
+> ```
 Unity : `Window > Package Manager > Add Package From Git URL`
 <br>
-### Method 2 : <br>
+#### Method 2 : <br>
 1. Download the package in *releases*
 2. Unzip the file
 3. Unity : `Window > Package Manager > Add Package From Disk`
