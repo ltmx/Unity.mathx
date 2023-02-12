@@ -93,6 +93,8 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)]
         [BurstCompile(FloatPrecision.Low, FloatMode.Fast)]
         public static float fastmod3(this int f, float mod) => (f * mod.rcp()).frac() * mod;
+        public static float3 fastmod3(this float3 f, float3 mod) => (f * mod.rcp()).frac() * mod;
+        public static float3 fastmod3(this float3 f, float mod) => (f * mod.rcp()).frac() * mod;
 
 
         [StructLayout(LayoutKind.Explicit)]

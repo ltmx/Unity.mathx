@@ -91,6 +91,9 @@ namespace Unity.Mathematics
         public static float3 rotateDeg(this float3 f, float3 rotation) => math.rotate(quaternion(rotation * RAD), f);
         
         
+        
+        /// public static float3 mul(this float3x4 m, float3 p) => m[0] * p.x + m[1] * p.y + m[2] * p.z + m[3];
+        public static float3 mul(this float3 p, float3x4 m) => m[0] * p.x + m[1] * p.y + m[2] * p.z + m[3];
         /// Returns the result of transforming a vector by a quaternion
         public static float3 mul(this float3 f, quaternion rotation) => math.mul(rotation, f);
         
