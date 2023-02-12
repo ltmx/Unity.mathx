@@ -53,11 +53,11 @@ namespace Unity.Mathematics
         }
 
         /// Returns the signed angle between two vectors in radians using an axis of rotation
-        public static float signedangle (float4 from, float4 to, float4 axis) => angle (from, to) * ((from.yzwx * to.zwxy - from.zwxy * to.yzwx) * axis).sum().sign();
+        public static float signedangle (float4 from, float4 to, float4 axis) => angle(from, to) * ((from.yzwx * to.zwxy - from.zwxy * to.yzwx) * axis).sum().sign();
         /// Returns the signed angle between two vectors in radians using an axis of rotation
-        public static float signedangle (float3 from, float3 to, float3 axis) => angle (from, to) * ((from.yzx * to.zxy - from.zxy * to.yzx) * axis).sum().sign();
+        public static float signedangle (float3 from, float3 to, float3 axis) => angle(from, to) * ((from.yzx * to.zxy - from.zxy * to.yzx) * axis).sum().sign();
         /// Returns the signed angle between two vectors in radians;
-        public static float signedangle (Vector2 from, Vector2 to) => angle (from, to) * (from.x * to.y - from.y * to.x).sign();
+        public static float signedangle (Vector2 from, Vector2 to) => angle(from, to) * (from.x * to.y - from.y * to.x).sign();
 
         //https://gist.github.com/voidqk/fc5a58b7d9fc020ecf7f2f5fc907dfa5
         //  Computes atan2(y,x), fast -->  max err: 0.071115
@@ -69,28 +69,33 @@ namespace Unity.Mathematics
             float angle;
             if (x >= 0) angle = c1 - c1 * ((x - abs_y) / (x + abs_y));
             else angle = c2 - c1 * ((x + abs_y) / (abs_y - x));
-            if (y < 0) return -angle;
+            if (y < 0) return -angle; 
             return angle;
         }
+        // rotation -----------------------------------------------------
 
         /// Returns the result of rotating a vector by a unit quaternion
-        public static float3 rotateQuaternion (this float3 f, quaternion rotation) => math.rotate (rotation, f);
+        public static float3 rotate (this float3 f, quaternion rotation) => math.rotate (rotation, f);
+        public static float3 rotate (this float3 f, float3x3 rotation) => math.mul(rotation, f);
         
-        public static float3 rotateAxisAngle (this float3 f, float3 axis, float angle) => math.rotate(quaternion.AxisAngle(axis, angle), f);
+        public static float3 rotateAxisAngle (this float3 f, float3 axis, float angle) => math.rotate(quaternion(axis, angle), f);
         
         /// Rotates using euler angles in radians
         /// <param name="f">input vector</param>
         /// <param name="rotation">radians</param>
-        public static float3 rotateRad(this float3 f, float3 rotation) => math.rotate(quaternion.Euler(rotation), f);
+        public static float3 rotateRad(this float3 f, float3 rotation) => math.rotate(quaternion(rotation), f);
         
         /// Rotates using euler angles
         /// <param name="f">input vector</param>
         /// <param name="rotation">degrees</param>
-        public static float3 rotateDeg(this float3 f, float3 rotation) => math.rotate(quaternion.Euler(rotation * RAD), f);
+        public static float3 rotateDeg(this float3 f, float3 rotation) => math.rotate(quaternion(rotation * RAD), f);
         
         
         /// Returns the result of transforming a vector by a quaternion
-        public static float3 mulq (this float3 f, quaternion rotation) => math.mul (rotation, f);
+        public static float3 mul(this float3 f, quaternion rotation) => math.mul(rotation, f);
+        
+        public static quaternion quaternion(float3 axis, float angle) => Mathematics.quaternion.AxisAngle(axis, angle); 
+        public static quaternion quaternion(float3 eulerangles) => Mathematics.quaternion.Euler(eulerangles);
 
     }
 }
