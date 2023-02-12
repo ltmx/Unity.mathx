@@ -57,21 +57,20 @@ namespace Unity.Mathematics
         public static float clamp(this float f, float min, float max) => math.clamp(f, min, max);
         public static float clamp(this int f, float min, float max) => math.clamp(f, min, max);
         public static int clamp(this int f, int min, int max) => math.clamp(f, min, max);
-        
-        public static float4 min(this Vector4 f, float4 min, float4 max) => math.clamp(f, min, max);
-        public static float3 min(this Vector3 f, float3 min, float3 max) => math.clamp(f, min, max);
-        public static float2 min(this Vector2 f, float2 min, float2 max) => math.clamp(f, min, max);
+
         
         public static double4 clamp(this double4 f, double4 min, double4 max) => math.clamp(f, min, max);
         public static double3 clamp(this double3 f, double3 min, double3 max) => math.clamp(f, min, max);
         public static double2 clamp(this double2 f, double2 min, double2 max) => math.clamp(f, min, max);
         public static double clamp(this double f, double min, double max) => math.clamp(f, min, max);
+        
 
-
-        // Minimum
+        // Min --------------------------------------------------
+        
         public static float4 min(this float4 f, float4 min) => math.min(f, min);
         public static float3 min(this float3 f, float3 min) => math.min(f, min);
         public static float2 min(this float2 f, float2 min) => math.min(f, min);
+        
         public static float min(this float f, float min) => math.min(f, min);
         public static float min(this int f, float min) => math.min(f, min);
         public static int min(this int f, int min) => math.min(f, min);
@@ -84,8 +83,17 @@ namespace Unity.Mathematics
         public static double3 min(this double3 f, double3 min) => math.min(f, min);
         public static double2 min(this double2 f, double2 min) => math.min(f, min);
         public static double min(this double f, double min) => math.min(f, min);
+        
+        public static float4 min(this Vector4 f, float4 min, float4 max) => math.clamp(f, min, max);
+        public static float3 min(this Vector3 f, float3 min, float3 max) => math.clamp(f, min, max);
+        public static float2 min(this Vector2 f, float2 min, float2 max) => math.clamp(f, min, max);
+        
 
-        // Maximum
+        
+        
+
+        #region Max
+
         public static float4 max(this float4 f, float4 max) => math.max(f, max);
         public static float3 max(this float3 f, float3 max) => math.max(f, max);
         public static float2 max(this float2 f, float2 max) => math.max(f, max);
@@ -102,7 +110,11 @@ namespace Unity.Mathematics
         public static double2 max(this double2 f, double2 max) => math.max(f, max);
         public static double max(this double f, double max) => math.max(f, max);
 
-        // Ceiling
+        #endregion
+        
+
+        #region Ceil
+
         public static float4 ceil(this float4 f) => math.ceil(f);
         public static float3 ceil(this float3 f) => math.ceil(f);
         public static float2 ceil(this float2 f) => math.ceil(f);
@@ -116,83 +128,150 @@ namespace Unity.Mathematics
         public static double3 ceil(this double3 f) => math.ceil(f);
         public static double2 ceil(this double2 f) => math.ceil(f);
         public static double ceil(this double f) => math.ceil(f);
+
+        #endregion
         
         // Ceil To Int
+
+        #region CeilToInt
+
+        /// Ceil to int
         public static int4 clint(this float4 f) => math.ceil(f).asint();
+
+        /// <inheritdoc cref="clint(float4)" />
         public static int3 clint(this float3 f) => math.ceil(f).asint();
+
+        /// <inheritdoc cref="clint(float4)" />
         public static int2 clint(this float2 f) => math.ceil(f).asint();
+
+        /// <inheritdoc cref="clint(float4)" />
         public static int clint(this float f) => math.ceil(f).asint();
-        
+
+        /// <inheritdoc cref="clint(float4)" />
         public static int4 clint(this Vector4 f) => math.ceil(f).asint();
+
+        /// <inheritdoc cref="clint(float4)" />
         public static int3 clint(this Vector3 f) => math.ceil(f).asint();
+
+        /// <inheritdoc cref="clint(float4)" />
         public static int2 clint(this Vector2 f) => math.ceil(f).asint();
-        
+
+        /// <inheritdoc cref="clint(float4)" />
         public static int4 clint(this double4 f) => math.ceil(f).asint();
+
+        /// <inheritdoc cref="clint(float4)" />
         public static int3 clint(this double3 f) => math.ceil(f).asint();
+
+        /// <inheritdoc cref="clint(float4)" />
         public static int2 clint(this double2 f) => math.ceil(f).asint();
+
+        /// <inheritdoc cref="clint(float4)" />
         public static int clint(this double f) => math.ceil(f).asint();
+
+        #endregion
         
 
         // Floor
+
+        #region Floor
+
+
+        /// ///<inheritdoc cref="math.floor(float4)"/>
         public static float4 floor(this float4 f) => math.floor(f);
+        ///<inheritdoc cref="math.floor(float3)"/>
         public static float3 floor(this float3 f) => math.floor(f);
+        ///<inheritdoc cref="math.floor(float2)"/>
         public static float2 floor(this float2 f) => math.floor(f);
+        ///<inheritdoc cref="math.floor(float)"/>
         public static float floor(this float f) => math.floor(f);
 
+        ///<inheritdoc cref="math.floor(float4)"/>
         public static float4 floor(this Vector4 f) => math.floor(f);
+        ///<inheritdoc cref="math.floor(float3)"/>
         public static float3 floor(this Vector3 f) => math.floor(f);
+        ///<inheritdoc cref="math.floor(float2)"/>
         public static float2 floor(this Vector2 f) => math.floor(f);
+        ///<inheritdoc cref="math.floor(float)"/>
         
+        ///<inheritdoc cref="math.floor(double4)"/>
         public static double4 floor(this double4 f) => math.floor(f);
+        ///<inheritdoc cref="math.floor(double3)"/>
         public static double3 floor(this double3 f) => math.floor(f);
+        ///<inheritdoc cref="math.floor(double2)"/>
         public static double2 floor(this double2 f) => math.floor(f);
+        ///<inheritdoc cref="math.floor(double)"/>
         public static double floor(this double f) => math.floor(f);
+
+        #endregion
         
-        // Floor To Int
+       
+
+        #region Floor To Int
+        
+        /// Floor To Int
         public static int4 flint(this float4 f) => f.asint();
+        /// <inheritdoc cref="flint(float4)"/>
         public static int3 flint(this float3 f) => f.asint();
+        /// <inheritdoc cref="flint(float4)"/>
         public static int2 flint(this float2 f) => f.asint();
+        /// <inheritdoc cref="flint(float4)"/>
         public static int flint(this float f) => f.asint();
         
+        /// <inheritdoc cref="flint(float4)"/>
         public static int4 flint(this Vector4 f) => f.asint();
+        /// <inheritdoc cref="flint(float4)"/>
         public static int3 flint(this Vector3 f) => f.asint();
+        /// <inheritdoc cref="flint(float4)"/>
         public static int2 flint(this Vector2 f) => f.asint();
         
+        /// <inheritdoc cref="flint(float4)"/>
         public static int4 flint(this double4 f) => f.asint();
+        /// <inheritdoc cref="flint(float4)"/>
         public static int3 flint(this double3 f) => f.asint();
+        /// <inheritdoc cref="flint(float4)"/>
         public static int2 flint(this double2 f) => f.asint();
+        /// <inheritdoc cref="flint(float4)"/>
         public static int flint(this double f) => f.asint();
+
+        #endregion
         
         // Saturate
+
+        #region Saturate
+
         /// Returns the result of clamping f to [0, 1]
         public static float4 saturate(this float4 f) => math.saturate(f);
-        /// <inheritdoc cref="saturate(float4)"/>
+        /// <inheritdoc cref="math.saturate(float3)"/>
         public static float3 saturate(this float3 f) => math.saturate(f);
-        /// <inheritdoc cref="saturate(float4)"/>
+        /// <inheritdoc cref="math.saturate(float2)"/>
         public static float2 saturate(this float2 f) => math.saturate(f);
-        /// <inheritdoc cref="saturate(float4)"/>
+        /// <inheritdoc cref="math.saturate(float)"/>
         public static float saturate(this float f) => math.saturate(f);
-        /// <inheritdoc cref="saturate(float4)"/>
+        /// <inheritdoc cref="math.saturate(float)"/>
         public static float saturate(this int f) => math.saturate(f);
         
-        /// <inheritdoc cref="saturate(float4)"/>
+        /// <inheritdoc cref="math.saturate(float4)"/>
         public static float4 saturate(this Vector4 f) => math.saturate(f);
-        /// <inheritdoc cref="saturate(float4)"/>
+        /// <inheritdoc cref="math.saturate(float3)"/>
         public static float3 saturate(this Vector3 f) => math.saturate(f);
-        /// <inheritdoc cref="saturate(float4)"/>
+        /// <inheritdoc cref="math.saturate(float2)"/>
         public static float2 saturate(this Vector2 f) => math.saturate(f);
         
-        /// <inheritdoc cref="saturate(float4)"/>
+        /// <inheritdoc cref="math.saturate(double4)"/>
         public static double4 saturate(this double4 f) => math.saturate(f);
-        /// <inheritdoc cref="saturate(float4)"/>
+        /// <inheritdoc cref="math.saturate(double3)"/>
         public static double3 saturate(this double3 f) => math.saturate(f);
-        /// <inheritdoc cref="saturate(float4)"/>
+        /// <inheritdoc cref="math.saturate(double2)"/>
         public static double2 saturate(this double2 f) => math.saturate(f);
-        /// <inheritdoc cref="saturate(float4)"/>
+        /// <inheritdoc cref="math.saturate(double)"/>
         public static double saturate(this double f) => math.saturate(f);
 
+        #endregion
+
         // npsaturate
-        
+
+        #region npSaturate
+
         /// Returns the result of clamping f to [-1, 1]
         public static float4 npsaturate(this float4 f) => f.clamp(-1,1);
         /// <inheritdoc cref="npsaturate(float4)"/>
@@ -219,67 +298,71 @@ namespace Unity.Mathematics
         public static double2 npsaturate(this double2 f) => f.clamp(-1,1);
         /// <inheritdoc cref="npsaturate(float4)"/>
         public static double npsaturate(this double f) => f.clamp(-1,1);
+
+        #endregion
         
         
         // Max0
         
         /// Same as max(f, 0); It can be useful to prevent negative values in some cases
-        public static float4 max0(this float4 f) => f.max(0);
-        /// <inheritdoc cref="max0(float4)"/>
-        public static float3 max0(this float3 f) => f.max(0);
-        /// <inheritdoc cref="max0(float4)"/>
-        public static float2 max0(this float2 f) => f.max(0);
-        /// <inheritdoc cref="max0(float4)"/>
-        public static float max0(this float f) => f.max(0);
-        /// <inheritdoc cref="max0(float4)"/>
-        public static float max0(this int f) => f.max(0);
+        /// Clamps the negative values to 0;
+        public static float4 over0(this float4 f) => f.max(0);
+        /// <inheritdoc cref="over0(float4)"/>
+        public static float3 over0(this float3 f) => f.max(0);
+        /// <inheritdoc cref="over0(float4)"/>
+        public static float2 over0(this float2 f) => f.max(0);
+        /// <inheritdoc cref="over0(float4)"/>
+        public static float over0(this float f) => f.max(0);
+        /// <inheritdoc cref="over0(float4)"/>
+        public static float over0(this int f) => f.max(0);
         
-        /// <inheritdoc cref="max0(float4)"/>
-        public static float4 max0(this Vector4 f) => f.max(0);
-        /// <inheritdoc cref="max0(float4)"/>
-        public static float3 max0(this Vector3 f) => f.max(0);
-        /// <inheritdoc cref="max0(float4)"/>
-        public static float2 max0(this Vector2 f) => f.max(0);
+        /// <inheritdoc cref="over0(float4)"/>
+        public static float4 over0(this Vector4 f) => f.max(0);
+        /// <inheritdoc cref="over0(float4)"/>
+        public static float3 over0(this Vector3 f) => f.max(0);
+        /// <inheritdoc cref="over0(float4)"/>
+        public static float2 over0(this Vector2 f) => f.max(0);
         
-        /// <inheritdoc cref="max0(float4)"/>
-        public static double4 max0(this double4 f) => f.max(0);
-        /// <inheritdoc cref="max0(float4)"/>
-        public static double3 max0(this double3 f) => f.max(0);
-        /// <inheritdoc cref="max0(float4)"/>
-        public static double2 max0(this double2 f) => f.max(0);
-        /// <inheritdoc cref="max0(float4)"/>
-        public static double max0(this double f) => f.max(0);
+        /// <inheritdoc cref="over0(float4)"/>
+        public static double4 over0(this double4 f) => f.max(0);
+        /// <inheritdoc cref="over0(float4)"/>
+        public static double3 over0(this double3 f) => f.max(0);
+        /// <inheritdoc cref="over0(float4)"/>
+        public static double2 over0(this double2 f) => f.max(0);
+        /// <inheritdoc cref="over0(float4)"/>
+        public static double over0(this double f) => f.max(0);
         
         
         
         //Min0
         
         /// Short for min(f, 0);
-        public static float4 min0(this float4 f) => f.min(0);
-        /// <inheritdoc cref="min0(float4)"/>
-        public static float3 min0(this float3 f) => f.min(0);
-        /// <inheritdoc cref="min0(float4)"/>
-        public static float2 min0(this float2 f) => f.min(0);
-        /// <inheritdoc cref="min0(float4)"/>
-        public static float min0(this float f) => f.min(0);
-        /// <inheritdoc cref="min0(float4)"/>
-        public static float min0(this int f) => f.min(0);
+        /// Clamps the positive values to 0;
+        public static float4 under0(this float4 f) => f.min(0);
+        /// <inheritdoc cref="under0(float4)"/>
+        public static float3 under0(this float3 f) => f.min(0);
+        /// <inheritdoc cref="under0(float4)"/>
+        public static float2 under0(this float2 f) => f.min(0);
+        /// <inheritdoc cref="under0(float4)"/>
+        public static float under0(this float f) => f.min(0);
+        /// <inheritdoc cref="under0(float4)"/>
+        public static float under0(this int f) => f.min(0);
         
-        /// <inheritdoc cref="min0(float4)"/>
-        public static float4 min0(this Vector4 f) => f.min(0);
-        /// <inheritdoc cref="min0(float4)"/>
-        public static float3 min0(this Vector3 f) => f.min(0);
-        /// <inheritdoc cref="min0(float4)"/>
-        public static float2 min0(this Vector2 f) => f.min(0);
+        /// <inheritdoc cref="under0(float4)"/>
+        public static float4 under0(this Vector4 f) => f.min(0);
+        /// <inheritdoc cref="under0(float4)"/>
+        public static float3 under0(this Vector3 f) => f.min(0);
+        /// <inheritdoc cref="under0(float4)"/>
+        public static float2 under0(this Vector2 f) => f.min(0);
         
-        /// <inheritdoc cref="min0(float4)"/>
-        public static double4 min0(this double4 f) => f.min(0);
-        /// <inheritdoc cref="min0(float4)"/>
-        public static double3 min0(this double3 f) => f.min(0);
-        /// <inheritdoc cref="min0(float4)"/>
-        public static double2 min0(this double2 f) => f.min(0);
-        /// <inheritdoc cref="min0(float4)"/>
-        public static double min0(this double f) => f.min(0);
+        /// <inheritdoc cref="under0(float4)"/>
+        public static double4 under0(this double4 f) => f.min(0);
+        /// <inheritdoc cref="under0(float4)"/>
+        public static double3 under0(this double3 f) => f.min(0);
+        /// <inheritdoc cref="under0(float4)"/>
+        public static double2 under0(this double2 f) => f.min(0);
+        /// <inheritdoc cref="under0(float4)"/>
+        public static double under0(this double f) => f.min(0);
 
     }
 }
