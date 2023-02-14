@@ -377,5 +377,7 @@ namespace Unity.Mathematics
         public static double2 pow5(this double2 f) => f.sq().sq() * f;
         /// <inheritdoc cref="pow5(float4)"/>
         public static double pow5(this double f) => f.sq().sq() * f;
+        
+        
     }
 }
