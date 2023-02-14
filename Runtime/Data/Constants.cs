@@ -38,12 +38,18 @@ namespace Unity.Mathematics
         public const float E = 2.71828182845f;
 
         // For Gamma Functions
-        /// <summary>The number 2 * sqrt(e / pi)</summary>
+        /// The number 2 * sqrt(e / pi)
         public const double TwoSqrtEOverPi = 1.8603827342052657173362492472666631120594218414085755;
         /// <summary>The number log[e](pi)</summary>
         public const double LnPi = 1.1447298858494001741434273513530587116472948129153d;
-        /// <summary>The number log(2 * sqrt(e / pi))</summary>
+        /// The number log(2 * sqrt(e / pi))
         public const double LogTwoSqrtEOverPi = 0.6207822376352452223455184457816472122518527279025978;
+
+        
+        /// sqrt(2)/2 or sqrt(0.5f)
+        public const float SqrtHalf = math.SQRT2 / 2;
+        /// sqrt(2)/2 or sqrt(0.5f)
+        public const float Sqrt2Over2 = math.SQRT2 / 2;
 
 
         // Translated from https://github.com/JJ/p6-math-constants/blob/master/lib/Math/Constants.pm6
