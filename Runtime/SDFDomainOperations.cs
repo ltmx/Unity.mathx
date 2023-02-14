@@ -1,4 +1,4 @@
-// https://iquilezles.org/www/articles/distfunctions/distfunctions.htm
+//Translated from : https://iquilezles.org/www/articles/distfunctions/distfunctions.htm
 
 using System;
 
@@ -44,12 +44,19 @@ namespace Unity.Mathematics
         /// This is a great savings performance.
         /// You have to be aware however that the resulting SDF might not be an exact SDF but a bound,
         /// if the object you are mirroring crosses the mirroring plane.
+        ///
+        /// Symmetry in Y axis
         private static float3 opSymX(this float3 p) => float3(p.x.abs(), p.yz);
+        /// Symmetry on Y axis
         private static float3 opSymY(this float3 p) => float3(p.x, p.y.abs(), p.z);
+        /// Symmetry on Z axis
         private static float3 opSymZ(this float3 p) => float3(p.xy, p.z.abs());
-        private static float3 opSymXZ(this float3 p) => float3(p.x.abs(), p.y, p.z.abs());
+        /// Symmetry on X and Y axis
         private static float3 opSymXY(this float3 p) => float3(p.xy.abs(), p.z);
+        /// Symmetry on X and Z axis
         private static float3 opSymYZ(this float3 p) => float3(p.x, p.yz.abs());
+        /// Symmetry on X and Z axis
+        private static float3 opSymXZ(this float3 p) => float3(p.x.abs(), p.y, p.z.abs());
 
         
         // Infinite Repetition ----------------------------------------------------------------------

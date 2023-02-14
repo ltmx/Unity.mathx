@@ -445,9 +445,9 @@ namespace Unity.Mathematics
         /// require more raymarching steps until an intersection is found than euclidean primitives. Since they
         /// only give a bound to the real SDF, this kind of primitive alteration also doesn't play well with shadows
         /// and occlusion algorithms that rely on true SDFs for measuring distance to occluders.
-        private static float _length2(float3 p) => p.sq().sum().sqrt();
-        private static float _length6(float3 p) => p.cube().sq().sum().pow(1 / 6f);
-        private static float _length8(float3 p) => p.sq().sq().sq().sum().pow(1 / 8f);
+        private static float _length2(this float3 p) => p.sq().sum().sqrt();
+        private static float _length6(this float3 p) => p.cube().sq().sum().pow(1 / 6f);
+        private static float _length8(this float3 p) => p.sq().sq().sq().sum().pow(1 / 8f);
 
         
         
@@ -457,37 +457,57 @@ namespace Unity.Mathematics
         //carve or intersect basic primitives. Given the SDFs d1 and d2 of two primitives,
         //you can use the following operators to combine together.
 
-        /// These are the most basic combinations of pairs of primitives you can do. They correspond to the basic
-        /// boolean operations. Please note that only the Union of two SDFs returns a true SDF, not the Subtraction
-        /// or Intersection. To make it more subtle, this is only true the exterior of the SDF
-        /// (where distances are positive) and not the interior. You can learn more about this and how to work around
-        /// it the article "Interior Distances". Also note that opSubtraction() is not commutative and depending
-        /// on the order of the operand it will produce different results.
-        private static float opUnion(float d1, float d2) => d1.min(d2);
-
+        // These are the most basic combinations of pairs of primitives you can do. They correspond to the basic
+        // boolean operations. Please note that only the Union of two SDFs returns a true SDF, not the Subtraction
+        // or Intersection. To make it more subtle, this is only true the exterior of the SDF
+        // (where distances are positive) and not the interior. You can learn more about this and how to work around
+        // it the article "Interior Distances". Also note that opSubtraction() is not commutative and depending
+        // on the order of the operand it will produce different results.
+        
+        /// The intersection of two shapes. (The minimum of the two distance functions)
+        private static float opIntersection(float d1, float d2) => d1.min(d2);
+        
+        /// Subtract a shape from another. This is not commutative, so the order of the operands matters.
         private static float opSubtraction(float d1, float d2) => (-d1).max(d2);
-        private static float opIntersection(float d1, float d2) => d1.max(d2);
+        
+        /// Adds two SDFs together. (The union of two SDFs is the minimum of the two)
+        private static float opUnion(float d1, float d2) => d1.max(d2);
 
         
         // Smooth Union, Subtraction and Intersection - bound, bound, bound -----------------
         
-        /// Blending primitives is a really powerful tool - it allows to construct complex and organic shapes without
-        /// the geometrical semas that normal boolean operations produce. There are many flavors of such operations,
-        /// but the basic ones try to replace the Math.min() and Math.max() functions used the opUnion, opSubstraction and
-        /// opIntersection above with smooth versions. They all accept an extra parameter called k that defines the
-        /// size of the smooth transition between the two primitives. It is given actual distance units.
+        // Blending primitives is a really powerful tool - it allows to construct complex and organic shapes without
+        // the geometrical semas that normal boolean operations produce. There are many flavors of such operations,
+        // but the basic ones try to replace the Math.min() and Math.max() functions used the opUnion, opSubstraction and
+        // opIntersection above with smooth versions. They all accept an extra parameter called k that defines the
+        // size of the smooth transition between the two primitives. It is given actual distance units.
+        
+        /// Smooth Union of two SDFs
+        /// <param name="d1">Shape 1</param>
+        /// <param name="d2">Shape 2</param>
+        /// <param name="k">Size of the transition</param>
+        /// <returns></returns>
         private static float opSmoothUnion(float d1, float d2, float k)
         {
             var h = saturate(0.5f + 0.5f * (d2 - d1) / k);
             return lerp(d2, d1, h) - k * h * (1-h);
         }
         
-        private static float opSmoothSubtraction(float d1, float d2, float k)
+        /// Smooth subtraction: This is not commutative, so the order of the operands matters.
+        /// <param name="d1">Base Shape</param>
+        /// <param name="d2">Shape to subtract from the base shape</param>
+        /// <param name="k">The size of transition</param>
+        private static float opSmoothSubtraction(this float d1, float d2, float k)
         {
             var h = saturate(0.5f - 0.5f * (d2 + d1) / k);
             return lerp(d2, -d1, h) + k * h * (1 - h);
         }
 
+        /// Smooth intersection
+        /// <param name="d1">Shape 1</param>
+        /// <param name="d2">Shape 2</param>
+        /// <param name="k">Size of the transition</param>
+        /// <returns></returns>
         private static float opSmoothIntersection(float d1, float d2, float k)
         {
             var h = saturate(0.5f - 0.5f * (d2 - d1) / k);

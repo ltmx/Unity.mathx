@@ -435,11 +435,9 @@ namespace Unity.Mathematics
                 c = stop;
             }
 
-            if (c < start)
-            {
-                p += size * (c - start);
-                c = start;
-            }
+            if (c >= start) return c;
+            p += size * (c - start);
+            c = start;
 
             return c;
         }
@@ -493,17 +491,15 @@ namespace Unity.Mathematics
         // Repeat in three dimensions
         private static float3 pMod3(this float3 p, float3 size)
         {
-            var c = floor((p + size * 0.5f) / size);
-            p = mod(p + size * 0.5f, size) - size * 0.5f;
-            return c;
+            p = (p + size * 0.5f).mod(size) - size * 0.5f;
+            return floor((p + size * 0.5f) / size);;
         }
 
         // Mirror at an axis-aligned plane which is at a specified distance <dist> from the origin.
-        private static float pMirror(this float p, float dist)
+        private static float2 pMirror(this float2 p, float2 dist)
         {
-            var s = sgn(p);
             p = p.abs() - dist;
-            return s;
+            return sgn(p);
         }
 
         // Mirror in both dimensions and at the diagonal, yielding one eighth of the space.
@@ -511,8 +507,7 @@ namespace Unity.Mathematics
         private static float2 pMirrorOctant(this float2 p, float2 dist)
         {
             var s = sgn(p);
-            pMirror(p.x, dist.x);
-            pMirror(p.y, dist.y);
+            p.pMirror(dist);
             if (p.y > p.x)
                 p.xy = p.yx;
             return s;
@@ -522,16 +517,13 @@ namespace Unity.Mathematics
         private static float pReflect(this float3 p, float3 planeNormal, float offset)
         {
             var t = p.dot(planeNormal) + offset;
-            if (t < 0) p = p - 2 * t * planeNormal;
+            if (t < 0) 
+                p -= 2 * t * planeNormal;
             return sgn(t);
         }
 
-
-        ////////////////////////////////////////////////////////////////
-        //
+        
         //             OBJECT COMBINATION OPERATORS
-        //
-        ////////////////////////////////////////////////////////////////
         //
         // We usually need the following boolean operators to combine two objects:
         // Union: OR(a,b)
@@ -579,18 +571,16 @@ namespace Unity.Mathematics
         //   float box1 = fBox(p-float3(1), float3(1));
         //   return fOpUnionChamfer(box0, box1, 0.2);
         // }
-        //
-        ////////////////////////////////////////////////////////////////
 
+        
 
         // The "Chamfer" flavour makes a 45-degree chamfered edge (the diagonal of a square of size <r>):
-        private static float fOpUnionChamfer(float a, float b, float r) => a.min(b).min((a - r + b) * sqrt(0.5f));
+        private static float fOpUnionChamfer(float a, float b, float r) => a.min(b).min((a - r + b) * Sqrt2Over2);
 
         // Intersection has to deal with what is normally the inside of the resulting object
         // when using union, which we normally don't care about too much. Thus, intersection
         // implementations sometimes differ from union implementations.
-        private static float fOpIntersectionChamfer(float a, float b, float r) =>
-            max(a, b).max((a + r + b) * sqrt(0.5f));
+        private static float fOpIntersectionChamfer(float a, float b, float r) => a.max(b).max((a + r + b) * Sqrt2Over2);
 
         // Difference can be built from Intersection or Union:
         private static float fOpDifferenceChamfer(float a, float b, float r) => fOpIntersectionChamfer(a, -b, r);
@@ -605,7 +595,7 @@ namespace Unity.Mathematics
         private static float fOpIntersectionRound(float a, float b, float r)
         {
             var u = float2(r + a, r + b).max(0);
-            return (-r).min(max(a, b)) + u.length();
+            return (-r).min(Math.max(a, b)) + u.length();
         }
 
         private static float fOpDifferenceRound(float a, float b, float r) => fOpIntersectionRound(a, -b, r);
@@ -617,19 +607,18 @@ namespace Unity.Mathematics
             if (a < r && b < r)
             {
                 var p = float2(a, b);
-                var columnradius = r * sqrt(2) / ((n - 1) * 2 + sqrt(2));
+                var columnradius = r * SQRT2 / ((n - 1) * 2 + SQRT2);
                 p.pR45();
-                p.x -= sqrt(2) / 2 * r;
-                p.x += columnradius * sqrt(2);
-                if (mod(n, 2).approx(1)) p.y += columnradius;
+                p.x -= Sqrt2Over2 * r;
+                p.x += columnradius * SQRT2;
+                if (n.mod(2).approx(1)) 
+                    p.y += columnradius;
                 // At this point, we have turned 45 degrees and moved at a point on the
                 // diagonal that we want to place the columns on.
                 // Now, repeat the domain along this direction and place a circle.
                 pMod1(p.y, columnradius * 2);
                 var result = p.length() - columnradius;
-                result = result.min(p.x);
-                result = result.min(a);
-                return result.min(b);
+                return result.min(p.x).min(a).min(b);
             }
 
             return a.min(b);
@@ -640,39 +629,35 @@ namespace Unity.Mathematics
             a = -a;
             var m = a.min(b);
             //avoid the expensive computation where not needed (produces discontinuity though)
-            if (a < r && b < r)
-            {
-                var p = float2(a, b);
-                float columnradius; // = r * sqrt(2) / n / 2;
-                columnradius = r * sqrt(2) / ((n - 1) * 2 + sqrt(2));
+            if (a >= r || b >= r) return -m;
+            
+            var p = float2(a, b);
+            float columnradius; // = r * sqrt(2) / n / 2;
+            columnradius = r * SQRT2 / ((n - 1) * 2 + SQRT2);
 
-                p.pR45();
+            p.pR45();
+            p.y += columnradius;
+            p.x -= Sqrt2Over2 * r;
+            p.x -= Sqrt2Over2 * columnradius;
+
+            if (n.mod(2).approx(1)) 
                 p.y += columnradius;
-                p.x -= sqrt(2) / 2 * r;
-                p.x += -columnradius * sqrt(2) / 2;
+            pMod1(p.y, columnradius * 2);
 
-                if (mod(n, 2).approx(1)) p.y += columnradius;
-                pMod1(p.y, columnradius * 2);
+            var result = -p.length() + columnradius;
+            return -result.max(p.x).min(a).min(b);
 
-                var result = -p.length() + columnradius;
-                result = result.max(p.x);
-                result = result.min(a);
-                return -result.min(b);
-            }
-
-            return -m;
         }
 
-        private static float fOpIntersectionColumns(float a, float b, float r, float n) =>
-            fOpDifferenceColumns(a, -b, r, n);
+        private static float fOpIntersectionColumns(float a, float b, float r, float n) => fOpDifferenceColumns(a, -b, r, n);
 
         // The "Stairs" flavour produces n-1 steps of a staircase:
-        // much less stupid version by paniq
+        // much less stupid version by Paniq
         private static float fOpUnionStairs(float a, float b, float r, float n)
         {
             var s = r / n;
             var u = b - r;
-            return a.min(b).min(0.5f * (u + a + (mod(u - a + s, 2 * s) - s).abs()));
+            return a.min(b).min(0.5f * (u + a + ((u - a + s).mod(2 * s) - s).abs()));
         }
 
         // We can just call Union since stairs are symmetric.
@@ -683,25 +668,25 @@ namespace Unity.Mathematics
 
         // Similar to fOpUnionRound, but more lipschitz-y at acute angles
         // (and less so at 90 degrees). Useful when fudging around too much
-        // by MediaMolecule, from Alex Evans' siggraph slides
+        // by MediaMolecule, from Alex Evans' SIGGRAPH slides
         private static float fOpUnionSoft(float a, float b, float r)
         {
-            var e = (r - (a - b).abs()).max(0);
-            return a.min(b) - e * e * 0.25f / r;
+            var e = (r - (a - b).abs()).over0();
+            return a.min(b) - e.sq() * 0.25f / r;
         }
 
 
-        // produces a cylindical pipe that runs along the intersection.
+        // produces a cylindrical pipe that runs along the intersection.
         // No objects remain, only the pipe. This is not a boolean operator.
         private static float fOpPipe(float a, float b, float r) => float2(a, b).length() - r;
 
         // first object gets a v-shaped engraving where it intersect the second
-        private static float fOpEngrave(float a, float b, float r) => a.max((a + r - b.abs()) * sqrt(0.5f));
+        private static float fOpEngrave(float a, float b, float r) => a.max((a + r - b.abs()) * Sqrt2Over2);
 
         // first object gets a capenter-style groove cut out
         private static float fOpGroove(float a, float b, float ra, float rb) => a.max((a + ra).min(rb - b.abs()));
 
         // first object gets a capenter-style tongue attached
-        private static float fOpTongue(float a, float b, float ra, float rb) => a.min(max(a - ra, b.abs() - rb));
+        private static float fOpTongue(float a, float b, float ra, float rb) => a.min((a - ra).max(b.abs() - rb));
     }
 }
