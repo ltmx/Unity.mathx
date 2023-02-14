@@ -1,12 +1,11 @@
-﻿using UnityEngine;
+﻿// Some functions are translated from : https://github.com/FreyaHolmer/Mathfs/blob/master/Mathfs.cs
+
+using UnityEngine;
 
 namespace Unity.Mathematics
 {
     public static partial class Math
     {
-
-
-        // https://github.com/FreyaHolmer/Mathfs/blob/master/Mathfs.cs
         
         public static float4 smootherstep(this float4 f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();
         public static float3 smootherstep(this float3 f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();
@@ -75,7 +74,7 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="unlerp(float,float,float)"/>
         public static float2 unlerp(this Vector2 f, float2 min, float2 max) => math.unlerp(min, max, f);
         
-        /// <inheritdoc cref="smoothstep(float,float,float)"/>
+        /// <inheritdoc cref="unlerp(float,float,float)"/>
         public static double4 unlerp(this double4 f, double4 min, double4 max) => math.unlerp(min, max, f);
         /// <inheritdoc cref="unlerp(float,float,float)"/>
         public static double3 unlerp(this double3 f, double3 min, double3 max) => math.unlerp(min, max, f);
@@ -140,10 +139,44 @@ namespace Unity.Mathematics
             return a + num * x.saturate();
         }
         
+        // Remap --------------------------------------------------------------------
+
+        /// Remapping function identical as in HLSL
         public static float4 remap(this float t, float4 oldMin, float4 oldMax, float4 newMin, float4 newMax) => math.remap(oldMin, oldMax, newMin, newMax, t);
+        /// <inheritdoc cref="remap(float,float,float,float,float)"/>
         public static float3 remap(this float t, float3 oldMin, float3 oldMax, float3 newMin, float3 newMax) => math.remap(oldMin, oldMax, newMin, newMax, t);
+        /// <inheritdoc cref="remap(float,float,float,float,float)"/>
         public static float2 remap(this float t, float2 oldMin, float2 oldMax, float2 newMin, float2 newMax) => math.remap(oldMin, oldMax, newMin, newMax, t);
+        /// <inheritdoc cref="remap(float,float,float,float,float)"/>
         public static float remap(this float t,float oldMin, float oldMax, float newMin, float newMax) => math.remap(oldMin, oldMax, newMin, newMax, t);
+        
+        
+        // step ---------------------------------------------------------------------
+
+        /// <inheritdoc cref="math.step(float, float)"/>
+        public static float step(this float f, float step) => math.step(f, step);
+        /// <inheritdoc cref="step(float,float)"/>
+        public static double step(this double f, double step = 0.0) => math.step(f, step);
+        /// <inheritdoc cref="step(float,float)"/>
+        public static float4 step(this float4 f, float4 step) => math.step(f, step);
+        /// <inheritdoc cref="step(float,float)"/>
+        public static float3 step(this float3 f, float3 step) => math.step(f, step);
+        /// <inheritdoc cref="step(float,float)"/>
+        public static float2 step(this float2 f, float2 step) => math.step(f, step);
+        
+        /// <inheritdoc cref="step(float,float)"/>
+        public static float4 step(this Vector4 f, float4 step) => math.step(f, step);
+        /// <inheritdoc cref="step(float,float)"/>
+        public static float3 step(this Vector3 f, float3 step) => math.step(f, step);
+        /// <inheritdoc cref="step(float,float)"/>
+        public static float2 step(this Vector2 f, float2 step ) => math.step(f, step);
+        
+        /// <inheritdoc cref="step(float,float)"/>
+        public static double4 step(this double4 f, double4 step) => math.step(f, step);
+        /// <inheritdoc cref="step(float,float)"/>
+        public static double3 step(this double3 f, double3 step) => math.step(f, step);
+        /// <inheritdoc cref="step(float,float)"/>
+        public static double2 step(this double2 f, double2 step) => math.step(f, step);
         
     }
 }
