@@ -7,7 +7,7 @@ using static Unity.Mathematics.math;
 
 namespace Unity.Mathematics
 {
-    public static class SDF
+    public static partial class SDF
     {
         private static float sdSphere(float3 p, float s) => p.length() - s;
 
@@ -382,6 +382,15 @@ namespace Unity.Mathematics
             return primitive(q);
         }
 
+        public struct primitive
+        {
+            private float3 position; // the sampled position
+            public primitive(float3 position)
+            {
+                this.position = position;
+            }
+        }
+
         /// The reason I provide to implementations is the following. For 1D elongations, the first function
         /// works perfectly and gives exact exterior and interior distances. However, the first implementation
         /// produces a small core of zero distances inside the volume for 2D and 3D elongations.
@@ -407,6 +416,9 @@ namespace Unity.Mathematics
         /// You can use it multiple times to create concentric layers your SDF.
         private static float opOnion(float sdf, float thickness) => sdf.abs() - thickness;
 
+        
+        // Revolution and extrusion from 2D - exact -----------------
+        
         /// Generating 3D volumes from 2D shapes has many advantages. AssuMath.ming the 2D shape defines exact distances,
         /// the resulting 3D volume is exact and way often less intensive to evaluate than when produced from boolean
         /// operations on other volumes. Two of the most simplest way to make volumes out of flat shapes is to use
@@ -423,6 +435,9 @@ namespace Unity.Mathematics
             var q = float2(p.xz.length() - o, p.y);
             return primitive(q);
         }
+        
+        
+        // Change of Metric - bound -----------------------------------
 
         /// Most of these functions can be modified to use other norms than the euclidean. By replacing Math.length(p),
         /// which computes (x2+y2+z2)1/2 by (xn+yn+zn)1/n one can get variations of the basic primitives that have
@@ -431,10 +446,16 @@ namespace Unity.Mathematics
         /// only give a bound to the real SDF, this kind of primitive alteration also doesn't play well with shadows
         /// and occlusion algorithms that rely on true SDFs for measuring distance to occluders.
         private static float _length2(float3 p) => p.sq().sum().sqrt();
-
         private static float _length6(float3 p) => p.cube().sq().sum().pow(1 / 6f);
         private static float _length8(float3 p) => p.sq().sq().sq().sum().pow(1 / 8f);
 
+        
+        
+        // Primitive combinations -------------------------------------
+        
+        //Sometimes you cannot simply elongate, round or onion a primitive, and you need to combine,
+        //carve or intersect basic primitives. Given the SDFs d1 and d2 of two primitives,
+        //you can use the following operators to combine together.
 
         /// These are the most basic combinations of pairs of primitives you can do. They correspond to the basic
         /// boolean operations. Please note that only the Union of two SDFs returns a true SDF, not the Subtraction
@@ -447,6 +468,9 @@ namespace Unity.Mathematics
         private static float opSubtraction(float d1, float d2) => (-d1).max(d2);
         private static float opIntersection(float d1, float d2) => d1.max(d2);
 
+        
+        // Smooth Union, Subtraction and Intersection - bound, bound, bound -----------------
+        
         /// Blending primitives is a really powerful tool - it allows to construct complex and organic shapes without
         /// the geometrical semas that normal boolean operations produce. There are many flavors of such operations,
         /// but the basic ones try to replace the Math.min() and Math.max() functions used the opUnion, opSubstraction and
@@ -455,9 +479,9 @@ namespace Unity.Mathematics
         private static float opSmoothUnion(float d1, float d2, float k)
         {
             var h = saturate(0.5f + 0.5f * (d2 - d1) / k);
-            return lerp(d2, d1, h) - k * h * (1 - h);
+            return lerp(d2, d1, h) - k * h * (1-h);
         }
-
+        
         private static float opSmoothSubtraction(float d1, float d2, float k)
         {
             var h = saturate(0.5f - 0.5f * (d2 + d1) / k);
@@ -469,121 +493,6 @@ namespace Unity.Mathematics
             var h = saturate(0.5f - 0.5f * (d2 - d1) / k);
             return lerp(d2, d1, h) + k * h * (1 - h);
         }
-
-
-        // Positioning
-
-        /// Since rotations and translation don't compress nor dilate space, all we need to do is simply to transform
-        /// the point being sampled with the inverse of the transformation used to place an object the scene.
-        /// This code below assumes that transform encodes only a rotation and a translation
-        /// (as a 3x4 matrix for example, or as a quaternion and a vector), and that it does not contain
-        /// scaling factors it.
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static float3x4 inversematrix(this RigidTransform m)
-        {
-            var r = float3x3(m.rot);
-            var t = m.pos;
-            return float3x4(r, t.rotate(-r));
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static float3x4 matrix(this RigidTransform m)
-        {
-            var r = float3x3(m.rot);
-            return float3x4(r, m.pos);
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static float3x4 inverse(this float3x4 m) => float3x4(m.rotation(), m[3].rotate(-m.rotation()));
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static float3x4 float3x4(float3x3 r, float3 t) => math.float3x4(r.c0, r.c1, r.c2, t);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static float3x3 f3x3(this float3x4 m) => float3x3(m[0], m[1], m[2]);
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static float3x3 rotation(this float3x4 m) => m.f3x3();
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static float3 translation(this float3x4 m) => m[3];
-
-
-        // public static float opTransform( float3x4 transform, float3 p, Func<float3, float> primitive )
-        // {
-        //     return primitive( math.mul(transform.inverse(), p) );
-        // }
-
-
-        private static float3 opTx(this float3 p, float3x4 t) => p.mul(t.inverse()).xyz;
-
-        /// Scaling an obect is slightly more tricky since that compresses/dilates spaces, so we have to
-        /// take that into account on the resulting distance estimation. Still, it's not difficult to perform:
-        private static float opScale(float3 p, float s, Func<float3, float> primitive) => primitive(p / s) * s;
-
-        /// Symmetry is useful, since many things around us are symmetric, from humans, animals, vehicles, instruments,
-        /// furniture, ... Oftentimes, one can take shortcuts and only model half or a quarter of the desired shape,
-        /// and get it duplicated automatically by using the Math.absolute value of the domacoordinates before evaluation.
-        /// For example, the image below, there's a single object evaluation instead of two. This is a great savings
-        /// performance. You have to be aware however that the resulting SDF might not be an exact SDF but a bound,
-        /// if the object you are mirroring crosses the mirroring plane.
-        private static float opSymX(float3 p, Func<float3, float> primitive)
-        {
-            p.x = p.x.abs();
-            return primitive(p);
-        }
-
-        private static float opSymXZ(float3 p, Func<float3, float> primitive)
-        {
-            p.xz = p.xz.abs();
-            return primitive(p);
-        }
-
-        // Infinite Repetition
-        /// Domarepetition is a very useful operator, since it allows you to create infinitely many primitives with a single object evaluator and without increasing the memory footprint of your application. The code below shows how to perform the operation the simplest way:
-        private static float opRep(float3 p, float3 c, Func<float3, float> primitive)
-        {
-            var q = (p + 0.5f * c).fastmod3(c) - 0.5f * c;
-            return primitive(q);
-        }
-
-        // finite repetition
-        /// Infinite domarepetition is great, but sometimes you only need a few copies or instances of a given SDF, not infinite. A frequently seen but suboptimal solution is to generate infinite copies and then clip the unwanted areas away with a box SDF. This is not ideal because the resulting SDF is not a real SDF but just a bound, since clipping through Math.max() only produces a bound. A much better approach is to clamp the indices of the instances instead of the SDF, and let a correct SDF emerge from the truncated/clamped indices.
-        private static float3 opRepLim(float3 p, float c, float3 l, Func<float3, float> primitive)
-        {
-            var q = p - c * clamp(round(p / c), -l, l);
-            return primitive(q);
-        }
-
-        // displacement
-        /// The displacement example below is using sin(20*p.x)*sin(20*p.y)*sin(20*p.z) as displacement pattern, but you can of course use anything you might imagine.
-        private static float opDisplace(Func<float3, float> primitive, Func<float3, float> displacement, float3 p)
-        {
-            var d1 = primitive(p);
-            var d2 = displacement(p);
-            return d1 + d2;
-        }
-
-        // Twist
-        private static float opTwist(Func<float3, float> primitive, float3 p)
-        {
-            const float k = 10; // or some other amount
-            var c = cos(k * p.y);
-            var s = sin(k * p.y);
-            var m = float2x2(c, -s, s, c);
-            var q = float3(mul(m, p.xz), p.y);
-            return primitive(q);
-        }
-
-        // bend
-        private static float opCheapBend(Func<float3, float> primitive, float3 p)
-        {
-            const float k = 10; // or some other amount
-            var c = cos(k * p.x);
-            var s = sin(k * p.x);
-            var m = float2x2(c, -s, s, c);
-            var q = float3(mul(m, p.xy), p.z);
-            return primitive(q);
-        }
+        
     }
 }
