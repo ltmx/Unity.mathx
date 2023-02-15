@@ -4,6 +4,7 @@
 using System;
 using System.Runtime.CompilerServices;
 using static Unity.Mathematics.math;
+using static Unity.Mathematics.Math;
 
 namespace Unity.Mathematics
 {
@@ -93,11 +94,12 @@ namespace Unity.Mathematics
             // n must be normalized
             dot(p, n) + h;
 
-        private static float3 k = float3(-0.8660254f, 0.5f, 0.57735f);
+        
 
         //Hexagonal Prism - exact
         private static float sdHexPrism(float3 p, float2 h)
         {
+            float3 k = new float3(x: -0.8660254f, y: 0.5f, z: 0.5773503f);
             p = p.abs();
             p.xy -= 2 * dot(k.xy, p.xy).min(0) * k.xy;
             var d = float2(
@@ -326,7 +328,8 @@ namespace Unity.Mathematics
 
             return sqrt((d2 + q.z * q.z) / m2) * sign(q.z.max(-p.y));
         }
-
+        
+        /// Triangle Unsigned Distance Function
         private static float udTriangle(float3 p, float3 a, float3 b, float3 c)
         {
             var ba = b - a;
@@ -335,17 +338,19 @@ namespace Unity.Mathematics
             var pb = p - b;
             var ac = a - c;
             var pc = p - c;
-            var nor = cross(ba, ac);
+            var nor = ba.cross(ac);
 
-            return sqrt(
-                sign(dot(cross(ba, nor), pa)) +
-                sign(dot(cross(cb, nor), pb)) +
-                sign(dot(cross(ac, nor), pc)) < 2
-                    ? (ba * clamp(dot(ba, pa) / ba.lengthsq(), 0, 1) - pa).lengthsq()
-                    .min((cb * clamp(dot(cb, pb) / cb.lengthsq(), 0, 1) - pb).lengthsq())
-                    .min((ac * clamp(dot(ac, pc) / ac.lengthsq(), 0, 1) - pc).lengthsq())
-                    : dot(nor, pa) * dot(nor, pa) / nor.lengthsq());
+            return (ba.cross(nor).dot(pa).sign() +
+                    cb.cross(nor).dot(pb).sign() +
+                    ac.cross(nor).dot(pc).sign() < 2 
+                        ? (ba * (ba.dot(pa) / ba.lengthsq()).saturate() - pa).lengthsq()
+                        .min((cb * (cb.dot(pb) / cb.lengthsq()).saturate() - pb).lengthsq())
+                        .min((ac * (ac.dot(pc) / ac.lengthsq()).saturate() - pc).lengthsq())
+                        : nor.dot(pa) * nor.dot(pa) / nor.lengthsq()).sqrt();
         }
+
+        
+        /// Quad Unsigned Distance Function
 
         private static float udQuad(float3 p, float3 a, float3 b, float3 c, float3 d)
         {
@@ -357,39 +362,25 @@ namespace Unity.Mathematics
             var pc = p - c;
             var ad = a - d;
             var pd = p - d;
-            var nor = cross(ba, ad);
+            var nor = ba.cross(ad);
 
-            return sqrt(
-                sign(dot(cross(ba, nor), pa)) +
-                sign(dot(cross(cb, nor), pb)) +
-                sign(dot(cross(dc, nor), pc)) +
-                sign(dot(cross(ad, nor), pd)) < 3
-                    ? (ba * clamp(dot(ba, pa) / ba.lengthsq(), 0, 1) - pa).lengthsq()
-                    .min((cb * clamp(dot(cb, pb) / cb.lengthsq(), 0, 1) - pb).lengthsq())
-                    .min((dc * clamp(dot(dc, pc) / dc.lengthsq(), 0, 1) - pc).lengthsq())
-                    .min((ad * clamp(dot(ad, pd) / ad.lengthsq(), 0, 1) - pd).lengthsq())
-                    : dot(nor, pa) * dot(nor, pa) / nor.lengthsq());
-        }
+            return (ba.cross(nor).dot(pa).sign() +
+                    cb.cross(nor).dot(pb).sign() +
+                    dc.cross(nor).dot(pc).sign() +
+                    ad.cross(nor).dot(pd).sign() < 3
+                        ? (ba * (ba.dot(pa) / ba.lengthsq()).clamp(0, 1) - pa).lengthsq()
+                        .min((cb * (cb.dot(pb) / cb.lengthsq()).clamp(0, 1) - pb).lengthsq())
+                        .min((dc * (dc.dot(pc) / dc.lengthsq()).clamp(0, 1) - pc).lengthsq())
+                        .min((ad * (ad.dot(pd) / ad.lengthsq()).clamp(0, 1) - pd).lengthsq())
+                        : nor.dot(pa) * nor.dot(pa) / nor.lengthsq()).sqrt();
+            }
 
 
         /// Elongating is a useful way to construct new shapes. It basically splits a primitive two (four or eight),
         /// moves the pieces apart and and connects them. It is a perfect distance preserving operation,
         /// it does not introduce any artifacts the SDF. Some of the basic primitives above use this technique.
         /// For example,the Capsule is an elongated Sphere along an axis really.
-        private static float opElongate(Func<float3, float> primitive, float3 p, float3 h)
-        {
-            var q = p - clamp(p, -h, h);
-            return primitive(q);
-        }
-
-        public struct primitive
-        {
-            private float3 position; // the sampled position
-            public primitive(float3 position)
-            {
-                this.position = position;
-            }
-        }
+        private static float3 opElongate(float3 p, float3 h) => p - clamp(p, -h, h);
 
         /// The reason I provide to implementations is the following. For 1D elongations, the first function
         /// works perfectly and gives exact exterior and interior distances. However, the first implementation
@@ -397,10 +388,10 @@ namespace Unity.Mathematics
         /// Depending on your application that might be a problem. One way to create exact interior distances
         /// all the way to the very elongated core of the volume, is the following, which is in languages like GLSL
         /// that don't have function pointers or lambdas need to be implemented a bit differently
-        private static float opElongateAlternate(Func<float3, float> primitive, float3 p, float3 h)
+        private static float3 opElongateAlternate(float3 p, float3 h)
         {
             var q = p.abs() - h;
-            return primitive(q.max(0)) + q.x.max(q.y.max(q.z)).min(0);
+            return (q.max(0)) + q.x.max(q.y.max(q.z)).min(0);
         }
 
         /// Rounding a shape is as simple as subtracting some distance (jumping to a different isosurface).
@@ -408,10 +399,10 @@ namespace Unity.Mathematics
         /// like the cone the image below. If you happen to be interested preserving the overall volume
         /// of the shape, most of the times it's pretty easy to shrink the source primitive by the same amount
         /// we are rounding it by.
-        private static float opRound(float3 p, Func<float3, float> primitive, float rad) => primitive(p) - rad;
+        private static float opRound(float sdf, float rad) => sdf - rad;
 
 
-        /// For carving interiors or giving thickness to primitives, without perforMath.ming expensive boolean operations
+        /// For carving interiors or giving thickness to primitives, without performing expensive boolean operations
         /// (see below) and without distorting the distance field into a bound, one can use "onioning".
         /// You can use it multiple times to create concentric layers your SDF.
         private static float opOnion(float sdf, float thickness) => sdf.abs() - thickness;
@@ -427,7 +418,7 @@ namespace Unity.Mathematics
         {
             var d = primitive(p.xy);
             var w = float2(d, p.z.abs() - h);
-            return w.x.max(w.y).min(0) + w.max(0).length();
+            return w.x.max(w.y).under0() + w.over0().length();
         }
 
         private static float opRevolution(float3 p, Func<float2, float> primitive, float o)
@@ -451,68 +442,10 @@ namespace Unity.Mathematics
 
         
         
-        // Primitive combinations -------------------------------------
-        
-        //Sometimes you cannot simply elongate, round or onion a primitive, and you need to combine,
-        //carve or intersect basic primitives. Given the SDFs d1 and d2 of two primitives,
-        //you can use the following operators to combine together.
-
-        // These are the most basic combinations of pairs of primitives you can do. They correspond to the basic
-        // boolean operations. Please note that only the Union of two SDFs returns a true SDF, not the Subtraction
-        // or Intersection. To make it more subtle, this is only true the exterior of the SDF
-        // (where distances are positive) and not the interior. You can learn more about this and how to work around
-        // it the article "Interior Distances". Also note that opSubtraction() is not commutative and depending
-        // on the order of the operand it will produce different results.
-        
-        /// The intersection of two shapes. (The minimum of the two distance functions)
-        private static float opIntersection(float d1, float d2) => d1.min(d2);
-        
-        /// Subtract a shape from another. This is not commutative, so the order of the operands matters.
-        private static float opSubtraction(float d1, float d2) => (-d1).max(d2);
-        
-        /// Adds two SDFs together. (The union of two SDFs is the minimum of the two)
-        private static float opUnion(float d1, float d2) => d1.max(d2);
-
-        
-        // Smooth Union, Subtraction and Intersection - bound, bound, bound -----------------
-        
-        // Blending primitives is a really powerful tool - it allows to construct complex and organic shapes without
-        // the geometrical semas that normal boolean operations produce. There are many flavors of such operations,
-        // but the basic ones try to replace the Math.min() and Math.max() functions used the opUnion, opSubstraction and
-        // opIntersection above with smooth versions. They all accept an extra parameter called k that defines the
-        // size of the smooth transition between the two primitives. It is given actual distance units.
-        
-        /// Smooth Union of two SDFs
-        /// <param name="d1">Shape 1</param>
-        /// <param name="d2">Shape 2</param>
-        /// <param name="k">Size of the transition</param>
-        /// <returns></returns>
-        private static float opSmoothUnion(float d1, float d2, float k)
-        {
-            var h = saturate(0.5f + 0.5f * (d2 - d1) / k);
-            return lerp(d2, d1, h) - k * h * (1-h);
-        }
-        
-        /// Smooth subtraction: This is not commutative, so the order of the operands matters.
-        /// <param name="d1">Base Shape</param>
-        /// <param name="d2">Shape to subtract from the base shape</param>
-        /// <param name="k">The size of transition</param>
-        private static float opSmoothSubtraction(this float d1, float d2, float k)
-        {
-            var h = saturate(0.5f - 0.5f * (d2 + d1) / k);
-            return lerp(d2, -d1, h) + k * h * (1 - h);
-        }
-
-        /// Smooth intersection
-        /// <param name="d1">Shape 1</param>
-        /// <param name="d2">Shape 2</param>
-        /// <param name="k">Size of the transition</param>
-        /// <returns></returns>
-        private static float opSmoothIntersection(float d1, float d2, float k)
-        {
-            var h = saturate(0.5f - 0.5f * (d2 - d1) / k);
-            return lerp(d2, d1, h) + k * h * (1 - h);
-        }
         
     }
+
 }
+
+
+ 
