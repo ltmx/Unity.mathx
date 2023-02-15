@@ -117,12 +117,12 @@ namespace Unity.Mathematics
         public static T get<T>(this T[][,] t, int3 id) => t[id.x][id.y, id.z];
         
         
-        public static bool allnan(this float4 f) => f.x.isnan() && f.y.isnan() && f.z.isnan() && f.w.isnan();
-        public static bool allnan(this float3 f) => f.x.isnan() && f.y.isnan() && f.z.isnan();
+        public static bool allnan(this float4 f) => f.xy.allnan() && f.zw.allnan();
+        public static bool allnan(this float3 f) => f.xy.allnan() && f.z.isnan();
         public static bool allnan(this float2 f) => f.x.isnan() && f.y.isnan();
         /// returns true if the value is NAN, otherwise false
-        public static bool anynan(this float4 f) => f.x.isnan() || f.y.isnan() || f.z.isnan() || f.w.isnan();
-        public static bool anynan(this float3 f) => f.x.isnan() || f.y.isnan() || f.z.isnan();
+        public static bool anynan(this float4 f) => f.xy.anynan() || f.zw.anynan();
+        public static bool anynan(this float3 f) => f.xy.anynan() || f.z.isnan();
         public static bool anynan(this float2 f) => f.x.isnan() || f.y.isnan();
         /// returns true if the value is NAN, otherwise false
         public static bool isnan(this float f) => math.isnan(f);
