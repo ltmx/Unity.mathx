@@ -671,7 +671,7 @@ namespace Unity.Mathematics
         // by MediaMolecule, from Alex Evans' SIGGRAPH slides
         private static float fOpUnionSoft(float a, float b, float r)
         {
-            var e = (r - (a - b).abs()).over0();
+            var e = (r - (a - b).abs()).p();
             return a.min(b) - e.sq() * 0.25f / r;
         }
 

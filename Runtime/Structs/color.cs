@@ -3038,7 +3038,7 @@ namespace Unity.Mathematics
         public static color abs(this color f) => math.abs(f); 
         public static float sum(this color f) => math.csum(f);
         public static float cmul(this color f) => f.x * f.y * f.z * f.w;
-        public static color onem(this color f) => 1 - f;
+        public static color inv(this color f) => 1 - f;
         public static color neg(this color f) => - f;
         public static color rcp(this color f) => math.rcp(f);
         public static color lerp(color a, color b, float f) => math.lerp(a, b, f);

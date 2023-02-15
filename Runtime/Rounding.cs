@@ -308,64 +308,64 @@ namespace Unity.Mathematics
         // Max0
         
         /// Same as max(f, 0); It can be useful to prevent negative values in some cases
-        /// Clamps the negative values to 0;
-        public static float4 over0(this float4 f) => f.max(0);
-        /// <inheritdoc cref="over0(float4)"/>
-        public static float3 over0(this float3 f) => f.max(0);
-        /// <inheritdoc cref="over0(float4)"/>
-        public static float2 over0(this float2 f) => f.max(0);
-        /// <inheritdoc cref="over0(float4)"/>
-        public static float over0(this float f) => f.max(0);
-        /// <inheritdoc cref="over0(float4)"/>
-        public static float over0(this int f) => f.max(0);
+        /// returns 0 if f is negative, otherwise returns f
+        public static float4 p(this float4 f) => f.max(0);
+        /// <inheritdoc cref="p(float4)"/>
+        public static float3 p(this float3 f) => f.max(0);
+        /// <inheritdoc cref="p(float4)"/>
+        public static float2 p(this float2 f) => f.max(0);
+        /// <inheritdoc cref="p(float4)"/>
+        public static float p(this float f) => f.max(0);
+        /// <inheritdoc cref="p(float4)"/>
+        public static float p(this int f) => f.max(0);
         
-        /// <inheritdoc cref="over0(float4)"/>
-        public static float4 over0(this Vector4 f) => f.max(0);
-        /// <inheritdoc cref="over0(float4)"/>
-        public static float3 over0(this Vector3 f) => f.max(0);
-        /// <inheritdoc cref="over0(float4)"/>
-        public static float2 over0(this Vector2 f) => f.max(0);
+        /// <inheritdoc cref="p(float4)"/>
+        public static float4 p(this Vector4 f) => f.max(0);
+        /// <inheritdoc cref="p(float4)"/>
+        public static float3 p(this Vector3 f) => f.max(0);
+        /// <inheritdoc cref="p(float4)"/>
+        public static float2 p(this Vector2 f) => f.max(0);
         
-        /// <inheritdoc cref="over0(float4)"/>
-        public static double4 over0(this double4 f) => f.max(0);
-        /// <inheritdoc cref="over0(float4)"/>
-        public static double3 over0(this double3 f) => f.max(0);
-        /// <inheritdoc cref="over0(float4)"/>
-        public static double2 over0(this double2 f) => f.max(0);
-        /// <inheritdoc cref="over0(float4)"/>
-        public static double over0(this double f) => f.max(0);
+        /// <inheritdoc cref="p(float4)"/>
+        public static double4 p(this double4 f) => f.max(0);
+        /// <inheritdoc cref="p(float4)"/>
+        public static double3 p(this double3 f) => f.max(0);
+        /// <inheritdoc cref="p(float4)"/>
+        public static double2 p(this double2 f) => f.max(0);
+        /// <inheritdoc cref="p(float4)"/>
+        public static double p(this double f) => f.max(0);
         
         
         
         //Min0
         
         /// Short for min(f, 0);
-        /// Clamps the positive values to 0;
-        public static float4 under0(this float4 f) => f.min(0);
-        /// <inheritdoc cref="under0(float4)"/>
-        public static float3 under0(this float3 f) => f.min(0);
-        /// <inheritdoc cref="under0(float4)"/>
-        public static float2 under0(this float2 f) => f.min(0);
-        /// <inheritdoc cref="under0(float4)"/>
-        public static float under0(this float f) => f.min(0);
-        /// <inheritdoc cref="under0(float4)"/>
-        public static float under0(this int f) => f.min(0);
+        /// returns 0 if f is positive, otherwise returns f
+        public static float4 n(this float4 f) => f.min(0);
+        /// <inheritdoc cref="n(float)"/>
+        public static float3 n(this float3 f) => f.min(0);
+        /// <inheritdoc cref="n(float4)"/>
+        public static float2 n(this float2 f) => f.min(0);
+        /// <inheritdoc cref="n(float4)"/>
+        public static float n(this float f) => f.min(0);
+        /// <inheritdoc cref="n(float4)"/>
+        public static float n(this int f) => f.min(0);
         
-        /// <inheritdoc cref="under0(float4)"/>
-        public static float4 under0(this Vector4 f) => f.min(0);
-        /// <inheritdoc cref="under0(float4)"/>
-        public static float3 under0(this Vector3 f) => f.min(0);
-        /// <inheritdoc cref="under0(float4)"/>
-        public static float2 under0(this Vector2 f) => f.min(0);
+        /// <inheritdoc cref="n(float4)"/>
+        public static float4 n(this Vector4 f) => f.min(0);
+        /// <inheritdoc cref="n(float4)"/>
+        public static float3 n(this Vector3 f) => f.min(0);
+        /// <inheritdoc cref="n(float4)"/>
+        public static float2 n(this Vector2 f) => f.min(0);
         
-        /// <inheritdoc cref="under0(float4)"/>
-        public static double4 under0(this double4 f) => f.min(0);
-        /// <inheritdoc cref="under0(float4)"/>
-        public static double3 under0(this double3 f) => f.min(0);
-        /// <inheritdoc cref="under0(float4)"/>
-        public static double2 under0(this double2 f) => f.min(0);
-        /// <inheritdoc cref="under0(float4)"/>
-        public static double under0(this double f) => f.min(0);
+        /// <inheritdoc cref="n(float4)"/>
+        public static double4 n(this double4 f) => f.min(0);
+        /// <inheritdoc cref="n(float4)"/>
+        public static double3 n(this double3 f) => f.min(0);
+        /// <inheritdoc cref="n(float4)"/>
+        public static double2 n(this double2 f) => f.min(0);
+        /// <inheritdoc cref="n(float4)"/>
+        public static double n(this double f) => f.min(0);
         
         
         //Min0

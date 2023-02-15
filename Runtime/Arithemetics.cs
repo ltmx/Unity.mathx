@@ -145,32 +145,32 @@ namespace Unity.Mathematics
         // One Minus -----------------------------------------------------------------------------------
 
         /// Returns one minus the given value.
-        public static float4 onem(this float4 f) => 1 - f;
-        /// <inheritdoc cref="onem(float4)"/>
-        public static float3 onem(this float3 f) => 1 - f;
-        /// <inheritdoc cref="onem(float4)"/>
-        public static float2 onem(this float2 f) => 1 - f;
-        /// <inheritdoc cref="onem(float4)"/>
-        public static float onem(this float f) => 1 - f;
-        /// <inheritdoc cref="onem(float4)"/>
-        public static int onem(this int f) => 1 - f;
+        public static float4 inv(this float4 f) => 1 - f;
+        /// <inheritdoc cref="inv(float4)"/>
+        public static float3 inv(this float3 f) => 1 - f;
+        /// <inheritdoc cref="inv(float4)"/>
+        public static float2 inv(this float2 f) => 1 - f;
+        /// <inheritdoc cref="inv(float4)"/>
+        public static float inv(this float f) => 1 - f;
+        /// <inheritdoc cref="inv(float4)"/>
+        public static int inv(this int f) => 1 - f;
         
-        /// <inheritdoc cref="onem(float4)"/>
-        public static double4 onem(this double4 f) => 1 - f;
-        /// <inheritdoc cref="onem(float4)"/>
-        public static double3 onem(this double3 f) => 1 - f;
-        /// <inheritdoc cref="onem(float4)"/>
-        public static double2 onem(this double2 f) => 1 - f;
-        /// <inheritdoc cref="onem(float4)"/>
-        public static double onem(this double f) => 1 - f;
-        /// <inheritdoc cref="onem(float4)"/>
+        /// <inheritdoc cref="inv(float4)"/>
+        public static double4 inv(this double4 f) => 1 - f;
+        /// <inheritdoc cref="inv(float4)"/>
+        public static double3 inv(this double3 f) => 1 - f;
+        /// <inheritdoc cref="inv(float4)"/>
+        public static double2 inv(this double2 f) => 1 - f;
+        /// <inheritdoc cref="inv(float4)"/>
+        public static double inv(this double f) => 1 - f;
+        /// <inheritdoc cref="inv(float4)"/>
         
-        /// <inheritdoc cref="onem(float4)"/>
-        public static float4 onem(this Vector4 f) => 1 - f.cast();
-        /// <inheritdoc cref="onem(float4)"/>
-        public static float3 onem(this Vector3 f) => 1 - f.cast();
-        /// <inheritdoc cref="onem(float4)"/>
-        public static float2 onem(this Vector2 f) => 1 - f.cast();
+        /// <inheritdoc cref="inv(float4)"/>
+        public static float4 inv(this Vector4 f) => 1 - f.cast();
+        /// <inheritdoc cref="inv(float4)"/>
+        public static float3 inv(this Vector3 f) => 1 - f.cast();
+        /// <inheritdoc cref="inv(float4)"/>
+        public static float2 inv(this Vector2 f) => 1 - f.cast();
 
         // Negate -----------------------------------------------------------------------------------
 
