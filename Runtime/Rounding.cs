@@ -363,6 +363,37 @@ namespace Unity.Mathematics
         public static double2 under0(this double2 f) => f.min(0);
         /// <inheritdoc cref="under0(float4)"/>
         public static double under0(this double f) => f.min(0);
+        
+        
+        //Min0
+        
+        /// Short for min(f, 1);
+        /// Clamps values over 1 to 1;
+        public static float4 under1(this float4 f) => f.min(1);
+        /// <inheritdoc cref="under1(float4)"/>
+        public static float3 under1(this float3 f) => f.min(1);
+        /// <inheritdoc cref="under1(float4)"/>
+        public static float2 under1(this float2 f) => f.min(1);
+        /// <inheritdoc cref="under1(float4)"/>
+        public static float under1(this float f) => f.min(1);
+        /// <inheritdoc cref="under1(float4)"/>
+        public static float under1(this int f) => f.min(1);
+        
+        /// <inheritdoc cref="under1(float4)"/>
+        public static float4 under1(this Vector4 f) => f.min(1);
+        /// <inheritdoc cref="under1(float4)"/>
+        public static float3 under1(this Vector3 f) => f.min(1);
+        /// <inheritdoc cref="under1(float4)"/>
+        public static float2 under1(this Vector2 f) => f.min(1);
+        
+        /// <inheritdoc cref="under1(float4)"/>
+        public static double4 under1(this double4 f) => f.min(1);
+        /// <inheritdoc cref="under1(float4)"/>
+        public static double3 under1(this double3 f) => f.min(1);
+        /// <inheritdoc cref="under1(float4)"/>
+        public static double2 under1(this double2 f) => f.min(1);
+        /// <inheritdoc cref="under1(float4)"/>
+        public static double under1(this double f) => f.min(1);
 
     }
 }
