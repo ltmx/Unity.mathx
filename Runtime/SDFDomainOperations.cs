@@ -30,21 +30,19 @@ namespace Unity.Mathematics
         
         // Scale -----------------------------------------------------------------------------------------------
         
-        /// Scaling an obect is slightly more tricky since that compresses/dilates spaces, so we have to
-        /// take that into account on the resulting distance estimation. Still, it's not difficult to perform:
-        private static float opScale(this float3 p, float s, Func<float3, float> primitive) => primitive(p / s) * s;
+        /// Scale Operation
+        private static float3 opScale(this float3 p, float s) => p * s;
         
         
         // Symmetry - bound and exact ---------------------------------------------------------------------
 
-        /// Symmetry is useful, since many things around us are symmetric, from humans, animals, vehicles, instruments,
-        /// furniture, ... Oftentimes, one can take shortcuts and only model half or a quarter of the desired shape,
-        /// and get it duplicated automatically by using the Math.absolute value of the domain-coordinates before
-        /// evaluation. For example, the image below, there's a single object evaluation instead of two.
-        /// This is a great savings performance.
-        /// You have to be aware however that the resulting SDF might not be an exact SDF but a bound,
-        /// if the object you are mirroring crosses the mirroring plane.
-        ///
+        // Symmetry is useful, since many things around us are symmetric, from humans, animals, vehicles, instruments,
+        // furniture, ... Oftentimes, one can take shortcuts and only model half or a quarter of the desired shape,
+        // and get it duplicated automatically by using the Math.absolute value of the domain-coordinates before
+        // evaluation. For example, the image below, there's a single object evaluation instead of two.
+        // This is a great savings performance.
+        // You have to be aware however that the resulting SDF might not be an exact SDF but a bound,
+        // if the object you are mirroring crosses the mirroring plane.
         /// Symmetry in Y axis
         private static float3 opSymX(this float3 p) => float3(p.x.abs(), p.yz);
         /// Symmetry on Y axis

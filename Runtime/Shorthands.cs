@@ -144,6 +144,38 @@ namespace Unity.Mathematics
         public static bool3 xxx(this bool b) => new(b);
         /// Shorthand for new bool4(i)
         public static bool4 xxxx(this bool b) => new(b);
+
         
+        /// appends a float to a float to create a float2
+        public static float2 xy(this float x, float y) => new(x, y);
+        
+        /// appends a float to a float2 to create a float3
+        public static float3 xyz(this float2 xy, float z) => new(xy, z);
+        /// appends a float2 to a float to create a float3
+        public static float3 xyz(this float x, float2 yz) => new(x, yz);
+        /// appends a float to a float3 to create a float4
+        public static float4 xyzw(this float3 xyz, float w) => new(xyz, w);
+        /// appends a float2 to a float2 to create a float4
+        public static float4 xyzw(this float2 xy, float2 zw) => new(xy, zw);
+        /// appends a float3 to a float to create a float4
+        public static float4 xyzw(this float x, float3 yzw) => new(x, yzw);
+
+        // Append -------------------------------------------
+        
+        /// appends a float to a float to create a float2
+        public static float2 append(this float x, float y) => new(x, y);
+        
+        /// appends a float to a float2 to create a float3
+        public static float3 append(this float2 xy, float z) => new(xy, z);
+        /// appends a float2 to a float to create a float3
+        public static float3 append(this float x, float2 yz) => new(x, yz);
+        /// appends a float to a float3 to create a float4
+        public static float4 append(this float3 xyz, float w) => new(xyz, w);
+        /// appends a float2 to a float2 to create a float4
+        public static float4 append(this float2 xy, float2 zw) => new(xy, zw);
+        /// appends a float3 to a float to create a float4
+        public static float4 append(this float x, float3 yzw) => new(x, yzw);
+
+
     }
 }
