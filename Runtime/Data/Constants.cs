@@ -1,5 +1,4 @@
 ﻿
-// ReSharper disable InconsistentNaming
 namespace Unity.Mathematics
 {
     public static partial class Math
@@ -15,8 +14,8 @@ namespace Unity.Mathematics
         public const float PI = 3.14159265359f;
         public const double PI_D = 3.14159265358979323846;
 
-        public const float PIo2 = 1.57079632679f; // PI/2
-        public const float HPI = PIo2; // PI/2
+        public const float PIOver2 = 1.57079632679f; // PI/2
+        public const float HPI = PIOver2; // PI/2
         public const double PIo2_D = 1.57079632679489661923; // PI/2
         public const double HPI_D = 1.57079632679489661923; // PI/2
 
@@ -25,13 +24,17 @@ namespace Unity.Mathematics
         public const float TAU = 6.28318530718f;
         public const double PI2_D = 6.2831853071795864769; // same as TAU_D
         public const float PI2 = 6.28318530718f; // same as TAU
-
+        
         public const double PHI_D = 1.6180339887498948482;
         public const float PHI = 1.61803398875f;
 
+        /// Positive Infinity
         public const float PINF = float.PositiveInfinity;
+        /// Negative Infinity
         public const float NINF = float.NegativeInfinity;
+        /// Positive Infinity
         public const double PINF_D = double.PositiveInfinity;
+        /// Negative Infinity
         public const double NINF_D = double.NegativeInfinity;
 
         public const double E_D = 2.71828182845904523536;
