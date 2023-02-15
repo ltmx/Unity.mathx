@@ -2,9 +2,7 @@
 
 // using static Unity.Mathematics.math;
 
-using System;
 using static Unity.Mathematics.math;
-using static Unity.Mathematics.Math;
 
 namespace Unity.Mathematics
 {
@@ -45,8 +43,8 @@ namespace Unity.Mathematics
         public static float sdCappedTorus(float3 p, float2 sc, float ra, float rb)
         {
             p.x = p.x.abs();
-            var k = sc.y * p.x > sc.x * p.y ? Math.dot(p.xy, sc) : p.xy.length();
-            return (Math.dot(p, p) + ra * ra - 2 * ra * k).sqrt() - rb;
+            var k = sc.y * p.x > sc.x * p.y ? p.xy.dot(sc) : p.xy.length();
+            return (p.dot(p) + ra * ra - 2 * ra * k).sqrt() - rb;
         }
 
         public static float sdLink(float3 p, float le, float r1, float r2)
@@ -66,10 +64,10 @@ namespace Unity.Mathematics
             var q = h * float2(c.x / c.y, -1);
 
             var w = float2(p.xz.length(), p.y);
-            var a = w - q * (Math.dot(w, q) / Math.dot(q, q)).saturate();
-            var b = w - q * float2(clamp(w.x / q.x, 0, 1), 1);
+            var a = w - q * (w.dot(q) / q.lengthsq()).saturate();
+            var b = w - q * float2((w.x / q.x).saturate(), 1);
             var k = q.y.sign();
-            var d = Math.dot(a, a).min(dot(b, b));
+            var d = a.lengthsq().min(b.lengthsq());
             var s = (k * (w.x * q.y - w.y * q.x)).max(k * (w.y - q.y));
             return d.sqrt() * s.sign();
         }
@@ -78,7 +76,7 @@ namespace Unity.Mathematics
         public static float sdConeBound(float3 p, float2 c, float h)
         {
             var q = p.xz.length();
-            return Math.dot(c.xy, float2(q, p.y)).max(-h - p.y);
+            return c.xy.dot(float2(q, p.y)).max(-h - p.y);
         }
 
         //infinite cone
@@ -86,13 +84,13 @@ namespace Unity.Mathematics
         {
             // c is the sin/cos of the angle
             var q = float2(p.xz.length(), -p.y);
-            var d = (q - c * Math.dot(q, c).p()).length();
+            var d = (q - c * q.dot(c).p()).length();
             return d * (q.x * c.y - q.y * c.x < 0 ? -1 : 1);
         }
 
         public static float sdPlane(float3 p, float3 n, float h) =>
             // n must be normalized
-            Math.dot(p, n) + h;
+            p.dot(n) + h;
 
 
         //Hexagonal Prism - exact
@@ -100,10 +98,11 @@ namespace Unity.Mathematics
         {
             var k = new float3(-0.8660254f, 0.5f, 0.5773503f);
             p = p.abs();
-            p.xy -= 2 * Math.dot(k.xy, p.xy).n() * k.xy;
+            p.xy -= 2 * k.xy.dot(p.xy).n() * k.xy;
             var d = float2(
-                (p.xy - float2(clamp(p.x, -k.z * h.x, k.z * h.x), h.x)).length() * (p.y - h.x).sign(),
-                p.z - h.y);
+                (p.xy - float2(clamp(p.x, -k.z * h.x, k.z * h.x), 
+                    h.x)).length() * (p.y - h.x).sign(),
+                    p.z - h.y);
             return d.x.max(d.y).n() + d.p().length();
         }
 
@@ -116,7 +115,7 @@ namespace Unity.Mathematics
         public static float sdCapsule(float3 p, float3 a, float3 b, float r)
         {
             float3 pa = p - a, ba = b - a;
-            var h = (Math.dot(pa, ba) / Math.dot(ba, ba)).saturate();
+            var h = (pa.dot(ba) / ba.lengthsq()).saturate();
             return (pa - ba * h).length() - r;
         }
 
@@ -137,8 +136,8 @@ namespace Unity.Mathematics
         {
             var ba = b - a;
             var pa = p - a;
-            var baba = Math.dot(ba, ba);
-            var paba = Math.dot(pa, ba);
+            var baba = ba.lengthsq();
+            var paba = pa.dot(ba);
             var x = (pa * baba - ba * paba).length() - r * baba;
             var y = (paba - baba * 0.5f).abs() - baba * 0.5f;
             var x2 = x * x;
@@ -150,7 +149,7 @@ namespace Unity.Mathematics
         public static float sdRoundedCylinder(float3 p, float ra, float rb, float h)
         {
             var d = float2(p.xz.length() - 2 * ra + rb, p.y.abs() - h);
-            return ((int)d.x.max(d.y)).n() + d.p().length() - rb;
+            return d.cmax().asint().n() + d.p().length() - rb;
         }
 
         // Vertical Version
@@ -160,7 +159,7 @@ namespace Unity.Mathematics
             var k1 = float2(r2, h);
             var k2 = float2(r2 - r1, 2 * h);
             var ca = float2(q.x - q.x.min(q.y < 0 ? r1 : r2), q.y.abs() - h);
-            var cb = q - k1 + k2 * (Math.dot(k1 - q, k2) / k2.lengthsq()).saturate();
+            var cb = q - k1 + k2 * ((k1 - q).dot(k2) / k2.lengthsq()).saturate();
             float s = cb.x < 0 && ca.y < 0 ? -1 : 1;
             return s * ca.lengthsq().min(cb.lengthsq()).sqrt();
         }
@@ -168,18 +167,18 @@ namespace Unity.Mathematics
         public static float sdCappedCone(float3 p, float3 a, float3 b, float ra, float rb)
         {
             var rba = rb - ra;
-            var baba = (b - a).dot(b - a);
-            var papa = (p - a).dot(p - a);
+            var baba = (b - a).lengthsq();
+            var papa = (p - a).lengthsq();
             var paba = (p - a).dot(b - a) / baba;
-            var x = (papa - paba * paba * baba).sqrt();
+            var x = (papa - paba.sq() * baba).sqrt();
             var cax = (x - (paba < 0.5f ? ra : rb)).p();
             var cay = (paba - 0.5f).abs() - 0.5f;
-            var k = rba * rba + baba;
+            var k = rba.sq() + baba;
             var f = ((rba * (x - ra) + paba * baba) / k).saturate();
             var cbx = x - ra - f * rba;
             var cby = paba - f;
             float s = cbx < 0 && cay < 0 ? -1 : 1;
-            return s * (cax * cax + cay * cay * baba).min(cbx * cbx + cby * cby * baba).sqrt();
+            return s * (cax.sq() + cay.sq() * baba).min(cbx.sq() + cby.sq() * baba).sqrt();
         }
 
         public static float sdSolidAngle(float3 p, float2 c, float ra)
@@ -198,7 +197,7 @@ namespace Unity.Mathematics
 
             // sampling dependant computations
             var q = float2(p.xz.length(), p.y);
-            var s = ((h - r) * q.x * q.x + w * w * (h + r - 2 * q.y)).max(h * q.x - w * q.y);
+            var s = ((h - r) * q.x.sq() + w.sq() * (h + r - 2 * q.y)).max(h * q.x - w * q.y);
             return s < 0 ? q.length() - r :
                 q.x < w ? h - q.y :
                 (q - float2(w, h)).length();
@@ -207,7 +206,7 @@ namespace Unity.Mathematics
         public static float sdCutHollowSphere(float3 p, float r, float h, float t)
         {
             // sampling independent computations (only depend on shape)
-            var w = (r * r - h * h).sqrt();
+            var w = (r.sq() - h.sq()).sqrt();
 
             // sampling dependant computations
             var q = float2(p.xz.length(), p.y);
@@ -218,7 +217,7 @@ namespace Unity.Mathematics
         {
             // sampling independent computations (only depend on shape)
             var a = (ra - rb * rb + d * d) / (2 * d);
-            var b = (ra * ra - a * a).p().sqrt();
+            var b = (ra.sq() - a.sq()).p().sqrt();
 
             // sampling dependant computations
             var p = float2(p2.x, p2.yz.length());
@@ -271,16 +270,16 @@ namespace Unity.Mathematics
             var k1 = (p / r.sq()).length();
             return k0 * (k0 - 1) / k1;
         }
+
         public static float sdbEllipsoid_2(in float3 p, in float3 r) => ((p / r).length() - 1) * r.cmin();
 
-        public static float sdaEllipsoid_3( in float3 p, in float3 r ) => p.length() * (p/r).length().rcp().inv();
+        public static float sdaEllipsoid_3(in float3 p, in float3 r) => p.length() * (p / r).length().rcp().inv();
 
 
         private static float ndot(in float2 a, in float2 b) => a.x * b.x - a.y * b.y; // local function
+
         public static float sdRhombus(float3 p, float la, float lb, float h, float ra)
         {
-            
-            
             p = p.abs();
             var b = float2(la, lb);
             var f = (ndot(b, b - 2 * p.xz) / b.dot(b)).npsaturate();
@@ -328,7 +327,7 @@ namespace Unity.Mathematics
             var a = m2 * (q.x + s).sq() + q.y.sq();
             var b = m2 * (q.x + 0.5f * t).sq() + (q.y - m2 * t).sq();
 
-            var d2 = Math.min(q.y, -q.x * m2 - q.y * 0.5) > 0 ? 0 : a.min(b);
+            var d2 = q.y.min(-q.x * m2 - q.y * 0.5f) > 0 ? 0 : a.min(b);
 
             return ((d2 + q.z * q.z) / m2).sqrt() * q.z.max(-p.y).sign();
         }
@@ -377,28 +376,7 @@ namespace Unity.Mathematics
                     .min((ad * (ad.dot(pd) / ad.lengthsq()).saturate() - pd).lengthsq())
                     : nor.dot(pa) * nor.dot(pa) / nor.lengthsq()).sqrt();
         }
-
-
         
-
-        
-        
-        // Distance Modification ---------------------------------------------------
-        
-        /// Rounding a shape is as simple as subtracting some distance (jumping to a different isosurface).
-        /// The rounded box above is an example, but you can apply it to cones, hexagons or any other shape
-        /// like the cone the image below. If you happen to be interested preserving the overall volume
-        /// of the shape, most of the times it's pretty easy to shrink the source primitive by the same amount
-        /// we are rounding it by.
-        public static float opRound(float sdf, float rad) => sdf - rad;
-
-
-        /// For carving interiors or giving thickness to primitives, without performing expensive boolean operations
-        /// (see below) and without distorting the distance field into a bound, one can use "onioning".
-        /// You can use it multiple times to create concentric layers your SDF.
-        public static float opOnion(float sdf, float thickness) => sdf.abs() - thickness;
-
-
 
         // Change of Metric - bound -----------------------------------
 
@@ -409,7 +387,6 @@ namespace Unity.Mathematics
         /// only give a bound to the real SDF, this kind of primitive alteration also doesn't play well with shadows
         /// and occlusion algorithms that rely on true SDFs for measuring distance to occluders.
         public static float _length2(this float3 p) => p.sq().sum().sqrt();
-
         public static float _length6(this float3 p) => p.cube().sq().sum().pow(1 / 6f);
         public static float _length8(this float3 p) => p.sq().sq().sq().sum().pow(1 / 8f);
     }

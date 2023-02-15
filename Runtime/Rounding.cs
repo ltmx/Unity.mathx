@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using UnityEngine;
-using static Unity.Mathematics.math;
+﻿using UnityEngine;
 
 namespace Unity.Mathematics
 {
