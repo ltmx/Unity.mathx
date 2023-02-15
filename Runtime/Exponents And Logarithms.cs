@@ -20,6 +20,39 @@ namespace Unity.Mathematics
         public static double3 exp(this double3 f) => math.exp(f);
         public static double2 exp(this double2 f) => math.exp(f);
         public static double exp(this double f) => math.exp(f);
+        
+        
+        // nexp : exp(-x) ------------------------------------------
+        
+
+        /// The exponential function e raised to the power of negative x.
+        public static float4 nexp(this float4 f) => math.exp(-f);
+        /// <inheritdoc cref="nexp(float4)"/>
+        public static float3 nexp(this float3 f) => math.exp(-f);
+        /// <inheritdoc cref="nexp(float4)"/>
+        public static float2 nexp(this float2 f) => math.exp(-f);
+        /// <inheritdoc cref="nexp(float4)"/>
+        public static float nexp(this float f) => math.exp(-f);
+        /// <inheritdoc cref="nexp(float4)"/>
+        public static float nexp(this int f) => math.exp(-f);
+        
+        
+        /// <inheritdoc cref="nexp(float4)"/>
+        public static float4 nexp(this Vector4 f) => math.exp(-f);
+        /// <inheritdoc cref="nexp(float4)"/>
+        public static float3 nexp(this Vector3 f) => math.exp(-f);
+        /// <inheritdoc cref="nexp(float4)"/>
+        public static float2 nexp(this Vector2 f) => math.exp(-f);
+
+        /// <inheritdoc cref="nexp(float4)"/>
+        public static double4 nexp(this double4 f) => math.exp(-f);
+        /// <inheritdoc cref="nexp(float4)"/>
+        public static double3 nexp(this double3 f) => math.exp(-f);
+        /// <inheritdoc cref="nexp(float4)"/>
+        public static double2 nexp(this double2 f) => math.exp(-f);
+        /// <inheritdoc cref="nexp(float4)"/>
+        public static double nexp(this double f) => math.exp(-f);
+        
 
         // Exponential Base 2
         public static float4 exp2(this float4 f) => math.exp2(f);
