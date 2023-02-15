@@ -36,11 +36,11 @@ namespace Unity.Mathematics
         
         
         /// Returns 1 inside the longest(s) axis(es) and 0 in the others
-        public static bool4 cmaxAxis(this float4 f) { var m = f.cmax(); return new bool4(f.x == m, f.y == m, f.z == m, f.w == m); }
+        public static bool4 cmaxAxis(this float4 f) => f == f.cmax();
         /// <inheritdoc cref="cmaxAxis(Unity.Mathematics.float4)"/>
-        public static bool3 cmaxAxis(this float3 f) { var m = f.cmax(); return new bool3(f.x == m, f.y == m, f.z == m); }
+        public static bool3 cmaxAxis(this float3 f) => f == f.cmax();
         /// <inheritdoc cref="cmaxAxis(Unity.Mathematics.float4)"/>
-        public static bool2 cmaxAxis(this float2 f) { var m = f.cmax(); return new bool2(f.x == m, f.y == m); }
+        public static bool2 cmaxAxis(this float2 f) => f == f.cmax();
         
         /// <inheritdoc cref="cmaxAxis(Unity.Mathematics.float4)"/>
         public static bool4 cmaxAxis(this Vector4 f) => f.asfloat().cmaxAxis();
@@ -50,11 +50,11 @@ namespace Unity.Mathematics
         public static bool2 cmaxAxis(this Vector2 f) => f.asfloat().cmaxAxis();
 
         /// Returns true inside the shortest axes
-        public static bool4 cminAxis(this float4 f) { var m = f.cmin(); return new bool4(f.x == m, f.y == m, f.z == m, f.w == m); }
+        public static bool4 cminAxis(this float4 f)  => f == f.cmin();
         /// <inheritdoc cref="cminAxis(Unity.Mathematics.float4)"/>
-        public static bool3 cminAxis(this float3 f) { var m = f.cmin(); return new bool3(f.x == m, f.y == m, f.z == m); }
+        public static bool3 cminAxis(this float3 f) => f == f.cmin();
         /// <inheritdoc cref="cminAxis(Unity.Mathematics.float4)"/>
-        public static bool2 cminAxis(this float2 f) { var m = f.cmin(); return new bool2(f.x == m, f.y == m); }
+        public static bool2 cminAxis(this float2 f) => f == f.cmin();
         
         /// <inheritdoc cref="cminAxis(Unity.Mathematics.float4)"/>
         public static bool4 cminAxis(this Vector4 f) => f.asfloat().cminAxis();
