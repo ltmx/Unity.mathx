@@ -9,6 +9,24 @@ namespace Unity.Mathematics
     public static partial class SDF
     {
         
+        /// Elongating is a useful way to construct new shapes. It basically splits a primitive two (four or eight),
+        /// moves the pieces apart and and connects them. It is a perfect distance preserving operation,
+        /// it does not introduce any artifacts the SDF. Some of the basic primitives above use this technique.
+        /// For example,the Capsule is an elongated Sphere along an axis really.
+        public static float3 opElongate(float3 p, float3 h) => p - p.clamp(-h, h);
+
+        /// The reason I provide to implementations is the following. For 1D elongations, the first function
+        /// works perfectly and gives exact exterior and interior distances. However, the first implementation
+        /// produces a small core of zero distances inside the volume for 2D and 3D elongations.
+        /// Depending on your application that might be a problem. One way to create exact interior distances
+        /// all the way to the very elongated core of the volume, is the following, which is in languages like GLSL
+        /// that don't have function pointers or lambdas need to be implemented a bit differently
+        public static float3 opElongateAlternate(float3 p, float3 h)
+        {
+            var q = p.abs() - h;
+            return q.p() + q.x.max(q.y.max(q.z)).n();
+        }
+        
         
         // Positioning -----------------------------------------------------------------------------------------------
         
@@ -20,12 +38,7 @@ namespace Unity.Mathematics
         /// (as a 3x4 matrix for example, or as a quaternion and a vector), and that it does not contain
         /// scaling factors it.
 
-        // public static float opTransform( float3x4 transform, float3 p, Func<float3, float> primitive )
-        // {
-        //     return primitive( p.mul(transform.inverse()) );
-        // }
-        
-        private static float3 opTx(this float3 p, float3x4 t) => p.mul(t.inverse()).xyz;
+        private static float3 opTransformx(this float3 p, float3x4 t) => p.mul(t.inverse()).xyz;
         
         
         // Scale -----------------------------------------------------------------------------------------------
@@ -117,5 +130,24 @@ namespace Unity.Mathematics
             var q = float3(mul(m, p.xy), p.z);
             return q;
         }
+        
+        // Revolution and extrusion from -----------------
+
+        /// Generating 3D volumes from 2D shapes has many advantages. Assuming the 2D shape defines exact distances,
+        /// the resulting 3D volume is exact and way often less intensive to evaluate than when produced from boolean
+        /// operations on other volumes. Two of the most simplest way to make volumes out of flat shapes is to use
+        /// extrusion and revolution (generalizations of these are easy to build, but we we'll keep simple here)
+
+        
+        public static float3 revolveY(this float3 p)
+        {
+            var c = float2(p.xz.length(), p.y);
+            var a = atan2(p.z, p.x);
+            sincos(a, out var sin, out var cos);
+            return float3(c.x * cos, c.y, c.x * sin);
+        }
+        
+        public static float3 extrudeZ(this float3 p, float h) => float3(p.xy, p.z.abs() - h);
+
     }
 }

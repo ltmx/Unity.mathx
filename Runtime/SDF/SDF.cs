@@ -268,11 +268,14 @@ namespace Unity.Mathematics
         public static float sdEllipsoid(float3 p, float3 r)
         {
             var k0 = (p / r).length();
-            var k1 = (p / (r * r)).length();
+            var k1 = (p / r.sq()).length();
             return k0 * (k0 - 1) / k1;
         }
+        public static float sdbEllipsoid_2(in float3 p, in float3 r) => ((p / r).length() - 1) * r.cmin();
 
-        
+        public static float sdaEllipsoid_3( in float3 p, in float3 r ) => p.length() * (p/r).length().rcp().inv();
+
+
         private static float ndot(in float2 a, in float2 b) => a.x * b.x - a.y * b.y; // local function
         public static float sdRhombus(float3 p, float la, float lb, float h, float ra)
         {
@@ -376,24 +379,12 @@ namespace Unity.Mathematics
         }
 
 
-        /// Elongating is a useful way to construct new shapes. It basically splits a primitive two (four or eight),
-        /// moves the pieces apart and and connects them. It is a perfect distance preserving operation,
-        /// it does not introduce any artifacts the SDF. Some of the basic primitives above use this technique.
-        /// For example,the Capsule is an elongated Sphere along an axis really.
-        public static float3 opElongate(float3 p, float3 h) => p - p.clamp(-h, h);
+        
 
-        /// The reason I provide to implementations is the following. For 1D elongations, the first function
-        /// works perfectly and gives exact exterior and interior distances. However, the first implementation
-        /// produces a small core of zero distances inside the volume for 2D and 3D elongations.
-        /// Depending on your application that might be a problem. One way to create exact interior distances
-        /// all the way to the very elongated core of the volume, is the following, which is in languages like GLSL
-        /// that don't have function pointers or lambdas need to be implemented a bit differently
-        public static float3 opElongateAlternate(float3 p, float3 h)
-        {
-            var q = p.abs() - h;
-            return q.p() + q.x.max(q.y.max(q.z)).n();
-        }
-
+        
+        
+        // Distance Modification ---------------------------------------------------
+        
         /// Rounding a shape is as simple as subtracting some distance (jumping to a different isosurface).
         /// The rounded box above is an example, but you can apply it to cones, hexagons or any other shape
         /// like the cone the image below. If you happen to be interested preserving the overall volume
@@ -407,25 +398,6 @@ namespace Unity.Mathematics
         /// You can use it multiple times to create concentric layers your SDF.
         public static float opOnion(float sdf, float thickness) => sdf.abs() - thickness;
 
-
-        // Revolution and extrusion from 2D - exact -----------------
-
-        /// Generating 3D volumes from 2D shapes has many advantages. AssuMath.ming the 2D shape defines exact distances,
-        /// the resulting 3D volume is exact and way often less intensive to evaluate than when produced from boolean
-        /// operations on other volumes. Two of the most simplest way to make volumes out of flat shapes is to use
-        /// extrusion and revolution (generalizations of these are easy to build, but we we'll keep simple here)
-        public static float opExtrusion(float3 p, Func<float2, float> primitive, float h)
-        {
-            var d = primitive(p.xy);
-            var w = float2(d, p.z.abs() - h);
-            return w.x.max(w.y).n() + w.p().length();
-        }
-
-        public static float opRevolution(float3 p, Func<float2, float> primitive, float o)
-        {
-            var q = float2(p.xz.length() - o, p.y);
-            return primitive(q);
-        }
 
 
         // Change of Metric - bound -----------------------------------
