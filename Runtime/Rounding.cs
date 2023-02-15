@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.CompilerServices;
+using UnityEngine;
 using static Unity.Mathematics.math;
 
 namespace Unity.Mathematics
@@ -6,7 +7,6 @@ namespace Unity.Mathematics
     public static partial class Math
     {
         
-    
         // Rounding --------------------------------------------------
         
         // Round
@@ -111,6 +111,9 @@ namespace Unity.Mathematics
         public static double max(this double f, double max) => math.max(f, max);
 
         #endregion
+
+
+       
         
 
         #region Ceil

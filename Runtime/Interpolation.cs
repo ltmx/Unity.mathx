@@ -1,5 +1,6 @@
 ﻿// Some functions are translated from : https://github.com/FreyaHolmer/Mathfs/blob/master/Mathfs.cs
-
+// Smin from Inigo Quilez https://iquilezles.org/articles/smin/
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace Unity.Mathematics
@@ -177,6 +178,199 @@ namespace Unity.Mathematics
         public static double3 step(this double3 f, double3 step) => math.step(f, step);
         /// <inheritdoc cref="step(float,float)"/>
         public static double2 step(this double2 f, double2 step) => math.step(f, step);
+        
+        
+        
+         #region Smooth Min - Smooth Max
+
+        /// Smooth min is a smooth version of math.min() that accepts a smoothness parameter t
+        [MethodImpl(INLINE)]
+        public static float smin(this float t, float a, float b) => smax(-t, a, b);
+
+        /// <inheritdoc cref="smin(float,float,float)"/>
+        [MethodImpl(INLINE)]
+        public static float2 smin(this float t, float2 a, float2 b) => smax(-t, a, b);
+
+        /// <inheritdoc cref="smin(float,float,float)"/>
+        [MethodImpl(INLINE)]
+        public static float3 smin(this float t, float3 a, float3 b) => smax(-t, a, b);
+
+        /// <inheritdoc cref="smin(float,float,float)"/>
+        [MethodImpl(INLINE)]
+        public static float4 smin(this float t, float4 a, float4 b) => smax(-t, a, b);
+
+        /// <inheritdoc cref="smin(float,float,float)"/>
+        [MethodImpl(INLINE)]
+        public static float2 smin(this float2 t, float2 a, float2 b) => smax(-t, a, b);
+
+        /// <inheritdoc cref="smin(float,float,float)"/>
+        [MethodImpl(INLINE)]
+        public static float3 smin(this float3 t, float3 a, float3 b) => smax(-t, a, b);
+
+        /// <inheritdoc cref="smin(float,float,float)"/>
+        [MethodImpl(INLINE)]
+        public static float4 smin(this float4 t, float4 a, float4 b) => smax(-t, a, b);
+
+
+        // Smooth Max --------------------------------------------------
+
+        /// Smooth max is a smooth version of math.max() that accepts a smoothness parameter t
+        [MethodImpl(INLINE)]
+        public static float smax(this float t, float a, float b)
+        {
+            var h = saturate(0.5f + (b - a) / (t * 2));
+            return h.lerp(a, b) + t * h * (1-h);
+        }
+        /// <inheritdoc cref="smax(float, float,float)"/>
+        [MethodImpl(INLINE)]
+        public static float2 smax(this float t, float2 a, float2 b)
+        {
+            var h = saturate(0.5f + (b - a) / (t * 2));
+            return h.lerp(a, b) + t * h * (1-h);
+        }
+        /// <inheritdoc cref="smax(float, float,float)"/>
+        [MethodImpl(INLINE)]
+        public static float3 smax(this float t, float3 a, float3 b)
+        {
+            var h = saturate(0.5f + (b - a) / (t * 2));
+            return h.lerp(a, b) + t * h * (1-h);
+        }
+        /// <inheritdoc cref="smax(float, float,float)"/>
+        [MethodImpl(INLINE)]
+        public static float4 smax(this float t, float4 a, float4 b)
+        {
+            var h = saturate(0.5f + (b - a) / (t * 2));
+            return h.lerp(a, b) + t * h * (1-h);
+        }
+        /// <inheritdoc cref="smax(float, float,float)"/>
+        [MethodImpl(INLINE)]
+        public static float2 smax(this float2 t, float2 a, float2 b)
+        {
+            var h = saturate(0.5f + (b - a) / (t * 2));
+            return h.lerp(a, b) + t * h * (1-h);
+        }
+        /// <inheritdoc cref="smax(float, float,float)"/>
+        [MethodImpl(INLINE)]
+        public static float3 smax(this float3 t, float3 a, float3 b)
+        {
+            var h = saturate(0.5f + (b - a) / (t * 2));
+            return h.lerp(a, b) + t * h * (1-h);
+        }
+        /// <inheritdoc cref="smax(float, float,float)"/>
+        [MethodImpl(INLINE)]
+        public static float4 smax(this float4 t, float4 a, float4 b)
+        {
+            var h = saturate(0.5f + (b - a) / (t * 2));
+            return h.lerp(a, b) + t * h * (1-h);
+        }
+        
+        
+        // Smooth Min Functions https://iquilezles.org/articles/smin/
+
+        // exponential smooth min (t=32)
+        public static float smin_exp(float a, float b, float t)
+        {
+            var res = (-t * a).exp2() + (-t * b).exp2();
+            return -res.log2() / t;
+        }
+
+        // power smooth min (t=8)
+        public static float smin_pow(float a, float b, float t)
+        {
+            a = a.pow(t);
+            b = b.pow(t);
+            return (a * b / (a + b)).pow(t.rcp());
+        }
+
+        // root smooth min (t=0.01)
+        public static float smin_root(float a, float b, float t)
+        {
+            var h = a - b;
+            return 0.5f * (a + b - (h * h + t).sqrt());
+        }
+
+        // polynomial smooth min 1 (t=0.1)
+        public static float smin_polynomial(float a, float b, float t)
+        {
+            var h = (0.5f + (b - a) / (t*2)).saturate();
+            return b.lerp(a, h) - t * h * (1 - h);
+        }
+
+        /// polynomial smooth min 2 (t=0.1) - this is the one used in the paper
+        public static float smin_quadratic(float a, float b, float t)
+        {
+            var h = (t - (a - b).abs()).max(0) / t;
+            return a.min(b) - h * h * t * 0.25f;
+        }
+        
+        /// polynomial smooth min
+        /// As noted by Shadertoy user TinyTexel, this can be generalized to higher levels of continuity than
+        /// the quadratic polynomial offers (C1), which might be important for preventing lighting artifacts.
+        /// Moving on to a cubic curve gives us C2 continuity, and doesn't get a lot more expensive
+        /// than the quadratic one anyways
+        public static float smin_cubic(float a, float b, float t)
+        {
+            var h = (t - (a - b).abs()).max(0) / t;
+            return a.min(b) - h.cube() * t * (1 / 6f);
+        }
+        
+        /// Transition Factor
+        /// Besides smoothly blending values, it might be useful to compute also a blending factor that can be used for shading. For example, if the smooth-minimum is being used to blend SDF shapes, having a blend factor could be useful to blend the material properties of the two shapes during the transition area. For example, the image below shows the mix of a red and a blue materials based on this mix factor as computed by the code below, which returns the smooth-minimum in .x and the blend factor in .y:
+        public static float2 smin_factor(float a, float b, float t)
+        {
+            var h = (t - (a - b).abs()).max(0) / t;
+            var m = h * h * 0.5f;
+            var s = m * t * 0.5f;
+            return a < b ? new float2(a - s, m) : new float2(b - s, 1 - m);
+        }
+
+        public static float2 smin_cubic_factor(float a, float b, float t)
+        {
+            var h = (t - (a - b).abs()).max(0) / t;
+            var m = h * h * h * 0.5f;
+            var s = m * t * (1 / 3f);
+            return a < b ? new float2(a - s, m) : new float2(b - s, 1 - m);
+        }
+
+        /// Smin generalization to any power n
+        public static float2 smin_N_factor(float a, float b, float t, float n)
+        {
+            var h = (t - (a - b).abs()).max(0) / t;
+            var m = h.pow(n) * 0.5f;
+            var s = m * t / n;
+            return a < b ? new float2(a - s, m) : new float2(b - s, 1 - m);
+        }
+
+        
+        
+        // ChatGPT Generated Code
+        /// <summary>
+        /// This implementation follows the formula for smax:
+        /// <code>
+        /// public static float smax(float a, float b, float t)
+        /// {
+        ///     var o = (float2(a - b, b - a) / t).exp();
+        ///     return float2(a, b).dot(o) / o.sum();
+        /// }
+        /// </code>
+        /// However, it simplifies the calculation of the exponential terms by using the fact that exp(x) = 1 / exp(-x)
+        /// and rearranging the terms.It also avoids division by zero by checting if t is zero or if a and b are equal.
+        /// Note that the function assumes that t is positive, and it does not chect for overflow or underflow when
+        /// computing the exponential terms.
+        /// If t is very large or small, the exponential terms may cause numerical issues.
+        /// </summary>
+        public static float smaxGPT(float a, float b, float t)
+        {
+            float x = a.max(b);
+            float y = a.max(b);
+            float z = (x - y) / t;
+            if (z >= 1) return x;
+            if (z <= 0) return y;
+            float w = z.exp();
+            return (x * w + y) / (1 + w);
+        }
+
+        #endregion
         
     }
 }
