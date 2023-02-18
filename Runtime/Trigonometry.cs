@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-
 using ma = Unity.Mathematics.math;
 using f4 = Unity.Mathematics.float4;
 using f3 = Unity.Mathematics.float3;

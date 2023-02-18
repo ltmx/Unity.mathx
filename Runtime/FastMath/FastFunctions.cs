@@ -24,7 +24,7 @@ namespace Unity.Mathematics
         public static float fsqrt(this float z)
         {
             if (z == 0) return 0;
-            FloatIntUnion u;
+            Math.FloatIntUnion u;
             u.tmp = 0;
             u.f = z;
             u.tmp -= 1 << 23; // Subtract 2^m.
@@ -88,7 +88,7 @@ namespace Unity.Mathematics
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static int log2int(this int value)
         {
-            ConverterStruct2 a;  a.asLong = 0; a.asDouble = (uint)value;
+            Math.ConverterStruct2 a;  a.asLong = 0; a.asDouble = (uint)value;
             return (int)((a.asLong >> 52) + 1) & 0xFF;
         }
         
@@ -163,7 +163,7 @@ namespace Unity.Mathematics
             [FieldOffset(0)] public uint u;
         }
 
-        private static FloatUInt32Union fiu;
+        private static Math.FloatUInt32Union fiu;
         
         /// returns 1/x using fast math
         public static float frcp(this float x)
