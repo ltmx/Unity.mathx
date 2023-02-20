@@ -5,7 +5,7 @@ namespace Unity.Mathematics
 {
     public static partial class Math
     {
-        // https://github.com/FreyaHolmer/Mathfs/blob/master/Mathfs.cs
+        // https://github.com/FreyaHolmer/Mathfs/blob/master/Runtime/Mathfs.cs
 
         // SmoothDamp ------------------------------------------------------------------------------------------------
         public static float4 smoothdamp(float4 current, float4 target, ref float4 currentVelocity, float smoothTime, float maxSpeed = float.PositiveInfinity) {
