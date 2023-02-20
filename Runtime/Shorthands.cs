@@ -175,7 +175,87 @@ namespace Unity.Mathematics
         public static float4 append(this float2 xy, float2 zw) => new(xy, zw);
         /// appends a float3 to a float to create a float4
         public static float4 append(this float x, float3 yzw) => new(x, yzw);
-
+        
+        
+        // Matrix Shorthands -------------------------------------------
+        /// Creates a matrix with the same value in every row
+        public static float4x4 f4x4(this float4 f) => new(f, f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static float4x3 f4x3(this float4 f) => new(f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static float4x2 f4x2(this float4 f) => new(f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static float3x4 f3x4(this float3 f) => new(f, f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static float3x3 f3x3(this float3 f) => new(f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static float3x2 f3x2(this float3 f) => new(f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static float2x4 f2x4(this float2 f) => new(f, f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static float2x3 f2x3(this float2 f) => new(f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static float2x2 f2x2(this float2 f) => new(f, f);
+        
+        
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static bool4x4 b4x4(this bool4 f) => new(f, f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static bool4x3 b4x3(this bool4 f) => new(f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static bool4x2 b4x2(this bool4 f) => new(f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static bool3x4 b3x4(this bool3 f) => new(f, f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static bool3x3 b3x3(this bool3 f) => new(f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static bool3x2 b3x2(this bool3 f) => new(f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static bool2x4 b2x4(this bool2 f) => new(f, f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static bool2x3 b2x3(this bool2 f) => new(f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static bool2x2 b2x2(this bool2 f) => new(f, f);
+        
+        
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static int4x4 i4x4(this int4 f) => new(f, f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static int4x3 i4x3(this int4 f) => new(f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static int4x2 i4x2(this int4 f) => new(f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static int3x4 i3x4(this int3 f) => new(f, f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static int3x3 i3x3(this int3 f) => new(f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static int3x2 i3x2(this int3 f) => new(f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static int2x4 i2x4(this int2 f) => new(f, f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static int2x3 i2x3(this int2 f) => new(f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static int2x2 i2x2(this int2 f) => new(f, f);
+        
+        
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static uint4x4 u4x4(this uint4 f) => new(f, f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static uint4x3 u4x3(this uint4 f) => new(f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static uint4x2 u4x2(this uint4 f) => new(f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static uint3x4 u3x4(this uint3 f) => new(f, f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static uint3x3 u3x3(this uint3 f) => new(f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static uint3x2 u3x2(this uint3 f) => new(f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static uint2x4 u2x4(this uint2 f) => new(f, f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static uint2x3 u2x3(this uint2 f) => new(f, f, f);
+        ///<inheritdoc cref="f4x4(float4)"/>
+        public static uint2x2 u2x2(this uint2 f) => new(f, f);
 
     }
 }
