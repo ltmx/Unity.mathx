@@ -1,4 +1,7 @@
-﻿using System;
+﻿// **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
+// **    (C) 2023 Nicolas Reinhard https://github.com/LTMX
+// **    Repository : https://github.com/LTMX/Unity.Mathematics-Extensions
+
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Unity.Burst;
