@@ -35,8 +35,7 @@ namespace Unity.Mathematics
         public static float smoothstep(this float f, float min, float max) => math.smoothstep(min, max, f);
 
         /// <inheritdoc cref="smoothstep(float,float,float)" />
-        public static double smoothstep(this double f, double min = 0.0, double max = 1.0) =>
-            math.smoothstep(min, max, f);
+        public static double smoothstep(this double f, double min, double max) => math.smoothstep(min, max, f);
 
         /// <inheritdoc cref="smoothstep(float,float,float)" />
         public static float4 smoothstep(this float4 f, float4 min, float4 max) => math.smoothstep(min, max, f);
@@ -65,6 +64,43 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="smoothstep(float,float,float)" />
         public static double2 smoothstep(this double2 f, double2 min, double2 max) => math.smoothstep(min, max, f);
 
+
+
+
+        /// Returns a smooth Hermite interpolation between 0.0 and 1.0 when x is in [a, b].
+        public static float smoothstep(this float f) => f.smoothstep(0, 1);
+
+        /// <inheritdoc cref="smoothstep(float,float,float)" />
+        public static double smoothstep(this double f) => f.smoothstep(0, 1);
+
+        /// <inheritdoc cref="smoothstep(float,float,float)" />
+        public static float4 smoothstep(this float4 f) => f.smoothstep(0, 1);
+
+        /// <inheritdoc cref="smoothstep(float,float,float)" />
+        public static float3 smoothstep(this float3 f) => f.smoothstep(0, 1);
+
+        /// <inheritdoc cref="smoothstep(float,float,float)" />
+        public static float2 smoothstep(this float2 f) => f.smoothstep(0, 1);
+
+        /// <inheritdoc cref="smoothstep(float,float,float)" />
+        public static float4 smoothstep(this Vector4 f) => f.smoothstep(0, 1);
+
+        /// <inheritdoc cref="smoothstep(float,float,float)" />
+        public static float3 smoothstep(this Vector3 f) => f.smoothstep(0, 1);
+
+        /// <inheritdoc cref="smoothstep(float,float,float)" />
+        public static float2 smoothstep(this Vector2 f) => f.smoothstep(0, 1);
+
+        /// <inheritdoc cref="smoothstep(float,float,float)" />
+        public static double4 smoothstep(this double4 f) => f.smoothstep(0, 1);
+
+        /// <inheritdoc cref="smoothstep(float,float,float)" />
+        public static double3 smoothstep(this double3 f) => f.smoothstep(0, 1);
+
+        /// <inheritdoc cref="smoothstep(float,float,float)" />
+        public static double2 smoothstep(this double2 f) => f.smoothstep(0, 1);
+        
+        
         // Unlerp -----------------------------------------------------------------------------
 
         /// Returns the result of normalizing a floating point value x to a range [min, max]. The opposite of lerp. Equivalent to (x - min) / (max - min).
