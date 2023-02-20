@@ -206,7 +206,6 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="inv(float4)"/>
         [MethodImpl(INLINE)]
         public static double inv(this double f) => 1 - f;
-        /// <inheritdoc cref="inv(float4)"/>
         
         /// <inheritdoc cref="inv(float4)"/>
         [MethodImpl(INLINE)]
