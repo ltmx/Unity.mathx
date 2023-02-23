@@ -22,7 +22,7 @@ return v1 * v1;
 ```
 *New Code :*
 ```C#
-return f.length().clamp(0, 10).cos().sqr();
+return f.length().clamp(0, 10).cos().sq();
 ```
 
 
