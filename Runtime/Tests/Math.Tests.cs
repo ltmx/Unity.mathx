@@ -22,7 +22,7 @@ namespace Tests
             Benchmark(Math.frac).Log("fast frac");
             Benchmark(frac).Log("exp");
             Benchmark<float4>(Math.frac).Log("fast frac4");
-            Benchmark<float4>(Math.frac2).Log("fast frac4");
+            // Benchmark<float4>(Math.frac2).Log("fast frac4");
             Benchmark<float4>(frac).Log("frac4");
         }
 
