@@ -10,7 +10,7 @@ namespace Unity.Mathematics
     {
         public static Jobified Jobify(FunctionPointer<FloatIO> d, float input)
         {
-            return new Jobified(d, input);
+            return new(d, input);
         }
         
         public static void ExecuteAndComplete(this Jobified j)
