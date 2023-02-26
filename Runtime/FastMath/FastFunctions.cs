@@ -6,10 +6,12 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Unity.Burst;
 using UnityEngine;
+using static Unity.Mathematics.math;
+using static UnityEditor.Build.Il2CppCodeGeneration;
 
 namespace Unity.Mathematics
 {
-    [BurstCompile]
+    [BurstCompile(FloatPrecision.Low, FloatMode.Fast)]
     public static partial class Math
     {
         // https://gist.github.com/SaffronCR/b0802d102dd7f262118ac853cd5b4901#file-mathutil-cs-L24
@@ -21,7 +23,7 @@ namespace Unity.Mathematics
             [FieldOffset(0)] public int tmp;
         }
 
-        /// <summary>Implementation of the fast inverse square root algorithm</summary>
+        /// <summary>Implementation of the fast inverse square root algorithm - From 2x to 6x faster (even faster for bigger numbers)</summary>
         /// <remarks>https://gist.github.com/SaffronCR/b0802d102dd7f262118ac853cd5b4901#file-mathutil-cs-L24</remarks>
         [MethodImpl(INLINE)]
         public static float fsqrt(this float z)
@@ -39,10 +41,10 @@ namespace Unity.Mathematics
         
         /// <inheritdoc cref="fsqrt(float)"/>
         [MethodImpl(INLINE)]
-        public static float4 fsqrt(this float4 f) => new(f.xy.fsqrt(), f.zw.fsqrt());
+        public static float4 fsqrt(this float4 f) => new(f.x.fsqrt(), f.y.fsqrt(), f.z.fsqrt(), f.w.fsqrt());
         /// <inheritdoc cref="fsqrt(float)"/>
         [MethodImpl(INLINE)]
-        public static float3 fsqrt(this float3 f) => new(f.xy.fsqrt(), f.z.fsqrt());
+        public static float3 fsqrt(this float3 f) => new(f.x.fsqrt(), f.y.fsqrt(), f.z.fsqrt());
         /// <inheritdoc cref="fsqrt(float)"/>
         [MethodImpl(INLINE)]
         public static float2 fsqrt(this float2 f) => new(f.x.fsqrt(), f.y.fsqrt()); // to never simplify to new float2(f.xy.fastsqrt())
@@ -79,7 +81,7 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)]
         public static float flength(this Vector2 f) => fsqrt(f.lengthsq());
         
-        // https://github.com/SunsetQuest/Fast-Integer-Log2 --------------------------
+        /// https://github.com/SunsetQuest/Fast-Integer-Log2 --------------------------
         [StructLayout(LayoutKind.Explicit)]
         private struct ConverterStruct2
         {
@@ -87,7 +89,7 @@ namespace Unity.Mathematics
             [FieldOffset(0)] public double asDouble;
         }
 
-        // Same as Log2_SunsetQuest3 except it uses FP64.
+        /// Same as Log2_SunsetQuest3 except it uses FP64.
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static int log2int(this int value)
         {
@@ -158,31 +160,6 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)]
         public static float2 mod(this float2 f, int mod) => (f / mod).frac() * mod;
 
-
-        [StructLayout(LayoutKind.Explicit)]
-        private struct FloatUInt32Union
-        {
-            [FieldOffset(0)] public float f;
-            [FieldOffset(0)] public uint u;
-        }
-
-        private static Math.FloatUInt32Union fiu;
-        
-        /// returns 1/x using fast math
-        public static float frcp(this float x)
-        {
-            fiu.f = x;
-            fiu.u = (0xbe6eb3beU - fiu.u) >> 1; // pow( x, -0.5 )
-            return fiu.f * fiu.f; // pow( pow(x,-0.5), 2 ) = pow( x, -1 ) = 1.0 / x
-        }
-        
-        /// returns 1/x using fast math
-        public static float frcp(this int x)
-        {
-            fiu.f = x;
-            fiu.u = (0xbe6eb3beU - fiu.u) >> 1; // pow( x, -0.5 )
-            return fiu.f * fiu.f; // pow( pow(x,-0.5), 2 ) = pow( x, -1 ) = 1.0 / x
-        }
         
         
         // frac --------------------------------------------------
@@ -224,5 +201,52 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)]
         public static double frac(this double f) => f - (int)f;
         
+        /// Exp function approximation, around 2x faster than math.exp()
+        [MethodImpl(INLINE)]
+        public static float fexp(float f) => 1 / (f * f * (0.48f + 0.235f * f) + 1 + f);
+        /// <inheritdoc cref="fexp(float)"/>
+        [MethodImpl(INLINE)]
+        public static float2 fexp(float2 f) => new(fexp(f.x), fexp(f.y));
+        /// <inheritdoc cref="fexp(float)"/>
+        [MethodImpl(INLINE)]
+        public static float3 fexp(float3 f) => new(fexp(f.x), fexp(f.y), fexp(f.z));
+        /// <inheritdoc cref="fexp(float)"/>
+        [MethodImpl(INLINE)]
+        public static float4 fexp(float4 f) => new(fexp(f.x), fexp(f.y), fexp(f.z), fexp(f.w));
+        
+        
+        #region Deprecated
+
+        // [BurstCompile]
+        // [StructLayout(LayoutKind.Explicit)]
+        // private struct FloatUInt32Union
+        // {
+        //     [FieldOffset(0)] public float f;
+        //     [FieldOffset(0)] public uint u;
+        // }
+        //
+        //
+        // /// returns 1/x using fast math
+        // [MethodImpl(INLINE)]
+        // public static float frcp(this float x)
+        // {
+        //     FloatUInt32Union fiu = new();
+        //     fiu.f = x;
+        //     fiu.u = (0xbe6eb3beU - fiu.u) >> 1; // pow( x, -0.5 )
+        //     return fiu.f * fiu.f; // pow( pow(x,-0.5), 2 ) = pow( x, -1 ) = 1.0 / x
+        // }
+        //
+        //
+        // /// returns 1/x using fast math
+        // [MethodImpl(INLINE)]
+        // public static float frcp(this int x)
+        // {
+        //     FloatUInt32Union fiu = new();
+        //     fiu.f = x;
+        //     fiu.u = (0xbe6eb3beU - fiu.u) >> 1; // pow( x, -0.5 )
+        //     return fiu.f * fiu.f; // pow( pow(x,-0.5), 2 ) = pow( x, -1 ) = 1.0 / x
+        // }
+
+        #endregion
     }
 }
