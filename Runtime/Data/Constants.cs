@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel;
+
 namespace Unity.Mathematics
 {
     public static partial class Math
@@ -73,6 +75,7 @@ namespace Unity.Mathematics
         // Utility Constants ----------------------------------------------------
         
         /// <summary>MethodImplOptions.AggressiveInlining</summary>
-        public const int INLINE = 256; // Aggressive inlining
+        public const int INLINE = 256; // MethodImpl.AggressiveInlining
+        public const EditorBrowsableState NEVER = EditorBrowsableState.Never; // EditorBrowsableState.Never
     }
 }
