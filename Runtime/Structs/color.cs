@@ -1,4 +1,4 @@
-  using System;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using UnityEngine;
@@ -35,7 +35,7 @@ namespace Unity.Mathematics
         public float3 bgr => zyx;
 
         /// <summary>color zero value.</summary>
-        public static readonly color zero;
+        public static readonly color zero = 0;
 
         /// <summary>Constructs a color vector from four float values.</summary>
         [MethodImpl(INLINE)]
@@ -289,7 +289,6 @@ namespace Unity.Mathematics
         /// <para>Constructs a new color with x in r,g,b components and sets y to alpha.</para>
         /// <param name="x">Red component.</param>
         /// <param name="y">Green component.</param>
-        /// <param name="z">Blue component.</param>
         public color(float x, float y)
         {
             this.x = x;
@@ -385,6 +384,14 @@ namespace Unity.Mathematics
         /// <summary>Implicitly converts a UnityEngine.Color to a color by componentwise conversion.</summary>
         [MethodImpl(INLINE)]
         public static implicit operator color(Color b) => new(b.r, b.g, b.b, b.a);
+        
+        /// <summary>Implicitly converts a UnityEngine.Color32 to a color by componentwise conversion.</summary>
+        [MethodImpl(INLINE)]
+        public static implicit operator color(Color32 b) => new(b.r, b.g, b.b, b.a);
+        
+        /// <summary>Implicitly converts a UnityEngine.Color32 to a color by componentwise conversion.</summary>
+        [MethodImpl(INLINE)]
+        public static implicit operator Color32(color b) => new((byte)b.r, (byte)b.g, (byte)b.b, (byte)b.a);
 
         /// <summary>Explicitly converts a color to a Vector4 by componentwise conversion.</summary>
         [MethodImpl(INLINE)]
@@ -3140,7 +3147,6 @@ namespace Unity.Mathematics
         /// <param name="H">Hue [0..1].</param>
         /// <param name="S">Saturation [0..1].</param>
         /// <param name="V">Brightness value [0..1].</param>
-        /// <param name="hdr">Output HDR colours. If true, the returned colour will not be clamped to [0..1].</param>
         /// <returns>
         ///     <para>An opaque colour with HSV matching the input.</para>
         /// </returns>
@@ -3181,14 +3187,14 @@ namespace Unity.Mathematics
                 var num7 = num2 * (1 - num1 * (1 - num4));
                 _white.xyz = num3 switch
                 {
-                    -1 => new float3(num2, num5, num6),
-                    0 => new float3(num2, num7, num5),
-                    1 => new float3(num6, num2, num5),
-                    2 => new float3(num5, num2, num7),
-                    3 => new float3(num5, num6, num2),
-                    4 => new float3(num7, num5, num2),
-                    5 => new float3(num2, num5, num6),
-                    6 => new float3(num2, num7, num5),
+                    -1 => new(num2, num5, num6),
+                    0 => new(num2, num7, num5),
+                    1 => new(num6, num2, num5),
+                    2 => new(num5, num2, num7),
+                    3 => new(num5, num6, num2),
+                    4 => new(num7, num5, num2),
+                    5 => new(num2, num5, num6),
+                    6 => new(num2, num7, num5),
                     _ => _white.xyz
                 };
                 if (!hdr) _white.xyz = _white.xyz.saturate();
@@ -3505,16 +3511,22 @@ namespace Unity.Mathematics
         public static color rcp(this color f) => new(f.x.rcp(), f.y.rcp(), f.z.rcp(), f.w.rcp());
 
         [MethodImpl(INLINE)]
-        public static color lerp(color a, color b, float f) => a + f * (b - a);
+        public static color lerp(this color a, color b, float f) => a + f * (b - a);
 
         [MethodImpl(INLINE)]
         public static color lerp(this float f, color a, color b) => a + f * (b - a);
 
         [MethodImpl(INLINE)]
         public static color unlerp(this float f, color min, color max) => (f - min) / (max - min);
+        [MethodImpl(INLINE)]
+        public static color unlerp(this color f, float min, float max) => (f - min) / (max - min);
+        [MethodImpl(INLINE)]
+        public static color unlerp(this color f, float2 minmax) => (f - minmax.x) / (minmax.y - minmax.y);
 
         [MethodImpl(INLINE)]
         public static color unlerp(color min, color max, float f) => (f - min) / (max - min);
+        [MethodImpl(INLINE)]
+        public static color remap(color a, float b, float c, float d, float x) => lerp(c, d, unlerp(a, b, x));
 
 
         [MethodImpl(INLINE)]
@@ -3524,11 +3536,9 @@ namespace Unity.Mathematics
         public static float lineartogama(this float c) => c.pow(1 / 2.2f);
 
         [MethodImpl(INLINE)]
-        public static color gammatolinear(this color c) =>
-            new(c.x.gammatolinear(), c.y.gammatolinear(), c.z.gammatolinear(), c.w);
+        public static color gammatolinear(this color c) => new(c.x.gammatolinear(), c.y.gammatolinear(), c.z.gammatolinear(), c.w);
 
         [MethodImpl(INLINE)]
-        public static color lineartogama(this color c) =>
-            new(c.x.lineartogama(), c.y.lineartogama(), c.z.lineartogama(), c.w);
+        public static color lineartogama(this color c) => new(c.x.lineartogama(), c.y.lineartogama(), c.z.lineartogama(), c.w);
     }
 }
