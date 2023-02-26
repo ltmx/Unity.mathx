@@ -15,6 +15,5 @@
     "com.unity.burst": "1.7.3"
   },
   "keywords": [ "unity", "mathematics", "math", "extension", "extensions", "ltmx" ],
-  "type": "library",
   "license": "MIT"
 }
