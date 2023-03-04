@@ -5,10 +5,10 @@
     "url": "https://www.youtube.com/channel/UCKQp3slLtSsRCWtQz67RjYQ"
   },
   "hideInEditor": false,
-  "displayName": "Mathematics Extensions",
-  "name": "com.ltmx.mathematics.extensions",
+  "displayName": "Unity.mathx",
+  "name": "com.ltmx.mathematics.mathx",
   "repository": "github:LTMX/Unity.Mathematics-Extensions",
-  "description": "Extension methods to simplify and extend the Unity.Mathematics library",
+  "description": "Extension library for Unity.Mathematics",
   "version": "1.3.0",
   "dependencies": {
     "com.unity.mathematics": "1.2.6",
