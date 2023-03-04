@@ -1,4 +1,4 @@
-# Unity.mathx
+# Unity.Mathematics.mathx
 
 Extension Library for Unity.Mathematics
 
