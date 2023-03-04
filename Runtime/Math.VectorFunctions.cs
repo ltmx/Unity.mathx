@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Unity.Mathematics
 {
     [SuppressMessage("ReSharper", "InconsistentNaming")]
-    public static partial class Math
+    public static partial class mathx
     {
         // Vector Specific Functions ------------------------------------------------------
 

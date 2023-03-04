@@ -34,7 +34,7 @@
 
 namespace Unity.Mathematics
 {
-    public static partial class Math
+    public static partial class mathx
     {
         /// The order of the
         /// <see cref="GammaLn" />

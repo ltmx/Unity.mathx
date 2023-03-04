@@ -149,7 +149,7 @@
 namespace Unity.Mathematics
 {
     using static math;
-    public static partial class Math
+    public static partial class mathx
     {
         
         // Sign function that doesn't return 0
@@ -595,7 +595,7 @@ namespace Unity.Mathematics
         private static float fOpIntersectionRound(float a, float b, float r)
         {
             var u = float2(r + a, r + b).max(0);
-            return (-r).min(Math.max(a, b)) + u.length();
+            return (-r).min(mathx.max(a, b)) + u.length();
         }
 
         private static float fOpDifferenceRound(float a, float b, float r) => fOpIntersectionRound(a, -b, r);

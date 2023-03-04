@@ -1,7 +1,7 @@
 ﻿
 namespace Unity.Mathematics
 {
-    public partial class Math
+    public partial class mathx
     {
         // Shorthands -----------------------------------------
         

@@ -11,7 +11,7 @@ namespace Unity.Mathematics
     /// **    // (C) 2020 Nicolas Reinhard https://github.com/LTMX
     /// </permission>
     /// <remarks>See also : https://github.com/LTMX/Unity.Mathematics-Extensions</remarks>
-    public static partial class Math
+    public static partial class mathx
     {
         //Specific Functions ------------------------------------------------------------------------------------------
         //Existing In UnityEngine Code, converted

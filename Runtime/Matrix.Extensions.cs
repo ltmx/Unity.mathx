@@ -3,7 +3,7 @@ using static Unity.Mathematics.math;
 
 namespace Unity.Mathematics
 {
-    public static partial class Math
+    public static partial class mathx
     {
         //returns the float3x4 (simpler form) matrix of a RigidTransform
         public static float3x4 matrix(this RigidTransform m) => float3x4(float3x3(m.rot), m.pos);
@@ -86,7 +86,7 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="dot(float4x4,float4x4)" />
         [MethodImpl(INLINE)]
         static float4 dot(this float4x4 m1, float4 f) => new(m1.c0.dot(f), m1.c1.dot(f), m1.c2.dot(f), m1.c3.dot(f));
-        /// <inheritdoc cref="Math.dot(float4x4,float4x4)" />
+        /// <inheritdoc cref="mathx.dot(float4x4,float4x4)" />
         [MethodImpl(INLINE)]
         public static float3 dot(this float4x3 m1, float4x3 m2) => new(m1.c0.dot(m2.c0), m1.c1.dot(m2.c1), m1.c2.dot(m2.c2));
         /// <inheritdoc cref="dot(float4x4,float4x4)" />

@@ -2,7 +2,7 @@
 
 namespace Unity.Mathematics
 {
-    public partial class Math
+    public partial class mathx
     {
         /// Calculate a position between the points specified by current and target, moving no farther than the distance specified by maxDistanceDelta
         public static float4 movetowards(this float4 current, float4 target, float maxDistanceDelta)

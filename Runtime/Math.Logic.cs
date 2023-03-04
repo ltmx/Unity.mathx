@@ -2,7 +2,7 @@ using static Unity.Mathematics.math;
 
 namespace Unity.Mathematics
 {
-    public static partial class Math
+    public static partial class mathx
     {
         // Logic ----------------------------------------------------
 

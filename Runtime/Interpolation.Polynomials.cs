@@ -1,7 +1,7 @@
 ﻿
 namespace Unity.Mathematics
 {
-    public static partial class Math
+    public static partial class mathx
     {
         // Float
         /// <summary>smoothstep unclamped easing(polynomial of degree 3)</summary>

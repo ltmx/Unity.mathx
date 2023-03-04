@@ -3,7 +3,7 @@ using Unity.Burst;
 
 namespace Unity.Mathematics
 {
-    public static partial class Math
+    public static partial class mathx
     {
 
         // Using Maclaurin Series

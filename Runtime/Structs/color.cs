@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using static Unity.Mathematics.math;
-using static Unity.Mathematics.Math;
+using static Unity.Mathematics.mathx;
 
 namespace Unity.Mathematics
 {
@@ -3297,7 +3297,7 @@ namespace Unity.Mathematics
         public float maxcolorComponent => xyz.cmax();
     }
 
-    public static partial class Math
+    public static partial class mathx
     {
         /// <summary>Returns a color vector constructed from four float values.</summary>
         [MethodImpl(INLINE)]

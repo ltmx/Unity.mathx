@@ -11,7 +11,7 @@ using Vector4 = UnityEngine.Vector4;
 
 namespace Unity.Mathematics
 {
-    public static partial class Math
+    public static partial class mathx
     {
         
         // floats to ints

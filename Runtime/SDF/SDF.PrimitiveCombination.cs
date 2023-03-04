@@ -1,8 +1,8 @@
-using static Unity.Mathematics.Math;
+using static Unity.Mathematics.mathx;
 
 namespace Unity.Mathematics
 {
-    using static Math;
+    using static mathx;
     public static partial class SDF
     {
         // Primitive combinations -------------------------------------

@@ -4,7 +4,7 @@ using System;
 
 namespace Unity.Mathematics
 {
-    using static Math;
+    using static mathx;
     using static math;
     public static partial class SDF
     {

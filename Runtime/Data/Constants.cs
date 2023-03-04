@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace Unity.Mathematics
 {
-    public static partial class Math
+    public static partial class mathx
     {
         /// Degrees to Radians
         public const float RAD = 0.0174532925f;

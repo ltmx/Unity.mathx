@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using static Unity.Mathematics.math;
-using static Unity.Mathematics.Math;
+using static Unity.Mathematics.mathx;
 
 #pragma warning disable 0660, 0661
 
@@ -2755,7 +2755,7 @@ namespace Unity.Mathematics
         }
     }
 
-    public static partial class Math
+    public static partial class mathx
     {
         /// <summary>Returns a byte4 vector constructed from four byte values.</summary>
         /// <param name="x">The constructed vector's x component will be set to this value.</param>

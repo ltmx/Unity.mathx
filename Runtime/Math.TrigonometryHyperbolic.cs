@@ -2,7 +2,7 @@
 
 namespace Unity.Mathematics
 {
-    public partial class Math
+    public partial class mathx
     {
 
         // Move Sec To Here or move above to "Trigonometry)

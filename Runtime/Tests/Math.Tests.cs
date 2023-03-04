@@ -6,7 +6,6 @@ using static Unity.Mathematics.math;
 using Debug = UnityEngine.Debug;
 using Object = UnityEngine.Object;
 using static UnityEditor.Build.Il2CppCodeGeneration;
-using Math = Unity.Mathematics.Math;
 
 namespace Tests
 {
@@ -19,9 +18,9 @@ namespace Tests
         [MenuItem("Math/Tests/Exponential")]
         public static void Benchmark()
         {
-            Benchmark(Math.frac).Log("fast frac");
+            Benchmark(mathx.frac).Log("fast frac");
             Benchmark(frac).Log("exp");
-            Benchmark<float4>(Math.frac).Log("fast frac4");
+            Benchmark<float4>(mathx.frac).Log("fast frac4");
             // Benchmark<float4>(Math.frac2).Log("fast frac4");
             Benchmark<float4>(frac).Log("frac4");
         }

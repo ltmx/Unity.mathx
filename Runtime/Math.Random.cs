@@ -2,7 +2,7 @@
 
 namespace Unity.Mathematics
 {
-    public partial class Math
+    public partial class mathx
     {
         // private static uint seed() => (uint) DateTime.Now.Millisecond;
         private static Random r = new(0x6E624EB7u);

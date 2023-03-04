@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using static Unity.Mathematics.math;
-using static Unity.Mathematics.Math;
+using static Unity.Mathematics.mathx;
 using static UnityEditor.Build.Il2CppCodeGeneration;
 
 #pragma warning disable 0660, 0661
@@ -1013,7 +1013,7 @@ namespace Unity.Mathematics
         /// <summary>Returns a hash code for the byte3.</summary>
         /// <returns>The computed hash code.</returns>
         [MethodImpl(INLINE)]
-        public override int GetHashCode() => (int)Math.hash(this);
+        public override int GetHashCode() => (int)mathx.hash(this);
 
         /// <summary>Returns a string representation of the byte3.</summary>
         /// <returns>String representation of the value.</returns>
@@ -1042,7 +1042,7 @@ namespace Unity.Mathematics
         }
     }
 
-    public static partial class Math
+    public static partial class mathx
     {
         /// <summary>Returns a byte3 vector constructed from three byte values.</summary>
         /// <param name="x">The constructed vector's x component will be set to this value.</param>

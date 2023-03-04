@@ -2,7 +2,7 @@
 
 namespace Unity.Mathematics
 {
-    public static partial class Math
+    public static partial class mathx
     {
         private const float t1 = 1.27323954f;
         private const float t2 = 0.405284735f;

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Unity.Mathematics
 {
-    public partial class Math
+    public partial class mathx
     {
         /// <summary> Returns a list containing individual components of this vector </summary>
         public static float[] Array(this float4 f) => new[]{f.x, f.y, f.z, f.w};

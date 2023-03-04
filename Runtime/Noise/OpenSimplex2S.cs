@@ -5,7 +5,7 @@ using static Unity.Mathematics.math;
 
 namespace Unity.Mathematics
 {
-    public static partial class Math
+    public static partial class mathx
     {
         // Gradient set is a normalized expanded rhombic dodecahedron
         private static float3 grad2S(float hash)

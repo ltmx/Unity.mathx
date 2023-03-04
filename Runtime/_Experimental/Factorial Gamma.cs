@@ -1,7 +1,7 @@
 ﻿
 namespace Unity.Mathematics
 {
-    public static partial class Math
+    public static partial class mathx
     {
         // See : https://rosettacode.org/wiki/Gamma_function#C.23
         // Factorial Gamma Function - Lanczos Interpolated -------------------------------------------------

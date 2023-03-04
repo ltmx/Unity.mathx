@@ -27,6 +27,6 @@ namespace Unity.Mathematics
         public const float ε0 = Constants.VacuumPermittivity;
         public const float λ = Constants.Conway;
         public const float μ0 = Constants.VacuumPermeability;
-        public const float φ = Math.PHI;
+        public const float φ = mathx.PHI;
     }
 }

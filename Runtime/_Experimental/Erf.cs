@@ -43,7 +43,7 @@ using static Unity.Mathematics.Polynomial;
 
 namespace Unity.Mathematics
 {
-    public static partial class Math
+    public static partial class mathx
     {
         /// <summary>
         ///     **************************************

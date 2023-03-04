@@ -7,7 +7,7 @@ using static Unity.Mathematics.math;
 
 namespace Unity.Mathematics
 {
-    public static partial class Math
+    public static partial class mathx
     {
         public static float4 smootherstep(this float4 f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();
         public static float3 smootherstep(this float3 f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();

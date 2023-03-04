@@ -12,7 +12,7 @@ using static UnityEditor.Build.Il2CppCodeGeneration;
 namespace Unity.Mathematics
 {
     [BurstCompile(FloatPrecision.Low, FloatMode.Fast)]
-    public static partial class Math
+    public static partial class mathx
     {
         // https://gist.github.com/SaffronCR/b0802d102dd7f262118ac853cd5b4901#file-mathutil-cs-L24
         
@@ -29,7 +29,7 @@ namespace Unity.Mathematics
         public static float fsqrt(this float z)
         {
             if (z == 0) return 0;
-            Math.FloatIntUnion u;
+            mathx.FloatIntUnion u;
             u.tmp = 0;
             u.f = z;
             u.tmp -= 1 << 23; // Subtract 2^m.
@@ -93,7 +93,7 @@ namespace Unity.Mathematics
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static int log2int(this int value)
         {
-            Math.ConverterStruct2 a;  a.asLong = 0; a.asDouble = (uint)value;
+            mathx.ConverterStruct2 a;  a.asLong = 0; a.asDouble = (uint)value;
             return (int)((a.asLong >> 52) + 1) & 0xFF;
         }
         

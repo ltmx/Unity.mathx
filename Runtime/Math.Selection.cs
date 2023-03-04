@@ -2,7 +2,7 @@
 
 namespace Unity.Mathematics
 {
-    public static partial class Math
+    public static partial class mathx
     {
         // Component-wise comparison --------------------------------------------------------------
 

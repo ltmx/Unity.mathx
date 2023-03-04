@@ -5,7 +5,7 @@
 
 namespace Unity.Mathematics
 {
-    public static partial class Math
+    public static partial class mathx
     {
         public static float easeInSine(this float x) => 1 - cos(x * HPI);
         public static float easeOutSine(this float x) => sin(x * HPI);

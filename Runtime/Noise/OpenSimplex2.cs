@@ -5,7 +5,7 @@ using static Unity.Mathematics.math;
 
 namespace Unity.Mathematics
 {
-    public static partial class Math
+    public static partial class mathx
     {
         private static float4 permute(this float4 t) => t * (t * 34 + 133);
 

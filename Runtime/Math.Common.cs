@@ -6,7 +6,7 @@ using static System.Runtime.CompilerServices.MethodImplOptions;
 
 namespace Unity.Mathematics
 {
-    public static partial class Math
+    public static partial class mathx
     {
         /// Returns the sign of the given value.
         [MethodImpl(INLINE)]

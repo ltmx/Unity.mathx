@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Unity.Mathematics
 {
-    public static partial class Math
+    public static partial class mathx
     {
         // https://github.com/FreyaHolmer/Mathfs/blob/master/Runtime/Mathfs.cs
 
