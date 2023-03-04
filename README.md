@@ -57,6 +57,9 @@ using static Unity.Mathematics.mathx;
 - [ ] Complete Documentation `WIP`
 - [ ] Signed Distance Functions `WIP`
 - [ ] Jobify Class `WIP`
+- [ ] Function Pointers `WIP`
+- [ ] Geometry Processing
+- [ ] Function Iterstors
 
 <br>
 
