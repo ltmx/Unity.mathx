@@ -9,7 +9,7 @@ Extension Library for Unity.Mathematics
 
 Extension Library for [`Unity.Mathematics`](https://github.com/Unity-Technologies/Unity.Mathematics) <br>
 & many useful methods to process mathematics !<br>
-Package name : `com.ltmx.unity.mathx`
+Package name : `com.ltmx.mathematics.mathx`
 
 <a href="https://ko-fi.com/I2I0IMQA9">
   <img align="left" src="https://raw.githubusercontent.com/LTMX/Banners-And-Buttons/main/Support%20Me%20Kofi%20Banner%20Shader%20Graph%20Mastery.png" width="140px"/>
