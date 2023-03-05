@@ -1,4 +1,11 @@
-﻿using UnityEngine;
+﻿#region Header
+// **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
+// **    Github Profile: https://github.com/LTMX
+// **    Repository : https://github.com/LTMX/Unity.Mathematics-Extensions
+#endregion
+
+using UnityEngine;
+using static Unity.Mathematics.math;
 
 namespace Unity.Mathematics
 {
@@ -7,58 +14,61 @@ namespace Unity.Mathematics
         // angle() translated from UnityEngine
         
         /// Returns the signed angle between two vectors in radians
-        public static float anglerad(this float2 from, float2 to)
+        [IL] public static float anglerad(this float2 from, float2 to)
         {
             var num = (from.lengthsq() * to.lengthsq()).sqrt();
             return num < 1.00000000362749E-15f ? 0 : (from.dot(to) / num).npsaturate().acos(); // * 57.29578f;
         }
         
         /// <inheritdoc cref="anglerad(float2, float2)" />
-        public static float anglerad(this float3 from, float3 to)
+        [IL] public static float anglerad(this float3 from, float3 to)
         {
             var num = (from.lengthsq() * to.lengthsq()).sqrt();
             return num < 1.00000000362749E-15f ? 0 : (from.dot(to) / num).npsaturate().acos(); // * 57.29578f;
         }
 
         /// <inheritdoc cref="anglerad(float2, float2)" />
-        public static float anglerad(this float4 from, float4 to)
+        [IL] public static float anglerad(this float4 from, float4 to)
         {
             var num = (from.lengthsq() * to.lengthsq()).sqrt();
             return num < 1.00000000362749E-15f ? 0 : (from.dot(to) / num).npsaturate().acos(); // * 57.29578f;
         }
 
-        public static float angledeg(float2 from, float2 to) => from.anglerad(to).deg();
-        public static float angledeg(float3 from, float3 to) => from.anglerad(to).deg();
-        public static float angledeg(float4 from, float4 to) => from.anglerad(to).deg();
+        /// Returns the signed angle between two vectors in degrees
+        [IL] public static float angledeg(float2 from, float2 to) => from.anglerad(to).deg();
+        /// <inheritdoc cref="angledeg(float2, float2)" />
+        [IL] public static float angledeg(float3 from, float3 to) => from.anglerad(to).deg();
+        /// <inheritdoc cref="angledeg(float2, float2)" />s
+        [IL] public static float angledeg(float4 from, float4 to) => from.anglerad(to).deg();
 
 
         /// a fast and accurate way of computing angles
-        public static float fastangle(this float4 from, float4 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).npsaturate().acos();
+        [IL] public static float fastangle(this float4 from, float4 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).npsaturate().acos();
 
-        public static float fastangle(this float3 from, float3 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).npsaturate().acos();
+        [IL] public static float fastangle(this float3 from, float3 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).npsaturate().acos();
 
-        public static float fastangle(this float2 from, float2 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).npsaturate().acos();
+        [IL] public static float fastangle(this float2 from, float2 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).npsaturate().acos();
 
-        // another way of computing angles
-        // public static float otherangle(float2 v1, float2 v2) => math.atan2(v1.x * v2.y - v2.x * v1.y, (v1 * v2).sum()) * (180 / Math.PI);
+        // // another way of computing angles
+        // [IL] public static float otherangle(float2 v1, float2 v2) => math.atan2(v1.x * v2.y - v2.x * v1.y, (v1 * v2).sum()) * (180 / PI);
 
         // https://gist.github.com/SaffronCR/b0802d102dd7f262118ac853cd5b4901#file-Mathutil-cs-L24
 
         /// Determine the signed angle between two vectors, with normal 'n' as the rotation axis.
         /// straightforward formulae to compute the signed angle between two vectors
-        public static float straightsignedangle(float3 f1, float3 f2, float3 n) => n.dot(f1.cross(f2)).atan2(f1.dot(f2));
+        [IL] public static float straightsignedangle(float3 f1, float3 f2, float3 n) => n.dot(f1.cross(f2)).atan2(f1.dot(f2));
 
         /// <inheritdoc cref="straightsignedangle(float3,float3,float3)" />
-        public static double straightsignedangle(double3 f1, double3 f2, double3 n) => n.dot(f1.cross(f2)).atan2(f1.dot(f2));
+        [IL] public static double straightsignedangle(double3 f1, double3 f2, double3 n) => n.dot(f1.cross(f2)).atan2(f1.dot(f2));
 
-        public static float preciseangle(float3 v1, float3 v2)
+        [IL] public static float preciseangle(float3 v1, float3 v2)
         {
             var v3 = v1.norm();
             var v4 = v2.norm();
             return v1.dot(v2) < 0 ? PI - 2 * ((-v3 - v4).length() / 2).asin() : 2 * ((v3 - v4).length() / 2).asin();
         }
 
-        public static float preciseangle(float2 v1, float2 v2)
+        [IL] public static float preciseangle(float2 v1, float2 v2)
         {
             var v3 = v1.norm();
             var v4 = v2.norm();
@@ -66,20 +76,20 @@ namespace Unity.Mathematics
         }
 
         /// Returns the signed angle between two vectors in radians using an axis of rotation
-        public static float signedangle(float4 from, float4 to, float4 axis) =>
+        [IL] public static float signedangle(float4 from, float4 to, float4 axis) =>
             anglerad(from, to) * ((from.yzwx * to.zwxy - from.zwxy * to.yzwx) * axis).sum().sign();
 
         /// Returns the signed angle between two vectors in radians using an axis of rotation
-        public static float signedangle(float3 from, float3 to, float3 axis) =>
+        [IL] public static float signedangle(float3 from, float3 to, float3 axis) =>
             anglerad(from, to) * ((from.yzx * to.zxy - from.zxy * to.yzx) * axis).sum().sign();
 
         /// Returns the signed angle between two vectors in radians;
-        public static float signedangle(Vector2 from, Vector2 to) =>
+        [IL] public static float signedangle(Vector2 from, Vector2 to) =>
             anglerad(from, to) * (from.x * to.y - from.y * to.x).sign();
 
         /// https://gist.github.com/voidqk/fc5a58b7d9fc020ecf7f2f5fc907dfa5
         /// Computes atan2(y,x), fast -->  max err: 0.071115
-        public static float fastatan2(float y, float x)
+        [IL] public static float fastatan2(float y, float x)
         {
             const float c1 = PI / 4;
             const float c2 = PI * 0.75f;
@@ -94,25 +104,28 @@ namespace Unity.Mathematics
         // rotation -----------------------------------------------------
 
         /// Returns the result of rotating a vector by a unit quaternion
-        public static float3 rotate(this float3 f, quaternion rotation) => math.rotate(rotation, f);
+        [IL] public static float3 rotate(this float3 f, quaternion rotation) => math.rotate(rotation, f);
 
         /// Returns the result of rotating a vector by a rotation matrix
-        public static float3 rotate(this float3 f, float3x3 rotation) => rotation.mul(f);
+        [IL] public static float3 rotate(this float3 f, float3x3 rotation) => rotation.mul(f);
 
         /// Returns the result of rotating a vector using euler angles in radians, and an axis of rotation
-        public static float3 rotateAxisAngle(this float3 f, float3 axis, float angle) => f.rotate(quaternion(axis, angle));
+        [IL] public static float3 rotateAxisAngle(this float3 f, float3 axis, float angle) => f.rotate(quaternion(axis, angle));
 
         /// Rotates using euler angles in radians
         /// <param name="f">input vector</param>
         /// <param name="rotation">radians</param>
-        public static float3 rotateRad(this float3 f, float3 rotation) => f.rotate(quaternion(rotation));
+        [IL] public static float3 rotateRad(this float3 f, float3 rotation) => f.rotate(quaternion(rotation));
 
         /// Rotates using euler angles
         /// <param name="f">input vector</param>
         /// <param name="rotation">degrees</param>
-        public static float3 rotateDeg(this float3 f, float3 rotation) => f.rotate(quaternion(rotation * RAD));
+        [IL] public static float3 rotateDeg(this float3 f, float3 rotation) => f.rotate(quaternion(rotation * RAD));
 
-        public static quaternion quaternion(float3 axis, float angle) => Mathematics.quaternion.AxisAngle(axis, angle);
-        public static quaternion quaternion(float3 eulerangles) => Mathematics.quaternion.Euler(eulerangles);
+        // Builds a quaternion rotation from and axis and an angle in radians
+        /// <inheritdoc cref="Mathematics.quaternion.AxisAngle(float3, float)"/>
+        [IL] public static quaternion quaternion(float3 axis, float angle) => Mathematics.quaternion.AxisAngle(axis, angle);
+        /// <inheritdoc cref="Mathematics.quaternion.EulerZXY(float3)"/>
+        [IL] public static quaternion quaternion(float3 eulerangles, RotationOrder rotationOrder = RotationOrder.Default) => Mathematics.quaternion.Euler(eulerangles, rotationOrder);
     }
 }

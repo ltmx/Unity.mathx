@@ -1,5 +1,8 @@
-/////////////// K.jpg's Simplex-like Re-oriented 4-Point BCC Noise ///////////////
-//////////////////// Output: float4(dF/dx, dF/dy, dF/dz, value) ////////////////////
+#region Header
+// **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
+// **    Github Profile: https://github.com/LTMX
+// **    Repository : https://github.com/LTMX/Unity.Mathematics-Extensions
+#endregion
 
 using static Unity.Mathematics.math;
 

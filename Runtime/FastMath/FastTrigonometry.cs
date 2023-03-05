@@ -1,4 +1,8 @@
-﻿//Refactored and optimized by LTMX - from - https://web.archive.org/web/20180616003313/http://lab.polygonal.de/2007/07/18/fast-and-accurate-sinecosine-approximation/
+﻿#region Header
+// **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
+// **    Github Profile: https://github.com/LTMX
+// **    Repository : https://github.com/LTMX/Unity.Mathematics-Extensions
+#endregion
 
 namespace Unity.Mathematics
 {

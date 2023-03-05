@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿#region Header
+// **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
+// **    Github Profile: https://github.com/LTMX
+// **    Repository : https://github.com/LTMX/Unity.Mathematics-Extensions
+#endregion
+
+using UnityEngine;
 using ma = Unity.Mathematics.math;
 using f4 = Unity.Mathematics.float4;
 using f3 = Unity.Mathematics.float3;

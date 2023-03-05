@@ -1,4 +1,8 @@
-//Translated from : https://iquilezles.org/www/articles/distfunctions/distfunctions.htm
+#region Header
+// **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
+// **    Github Profile: https://github.com/LTMX
+// **    Repository : https://github.com/LTMX/Unity.Mathematics-Extensions
+#endregion
 
 using System;
 

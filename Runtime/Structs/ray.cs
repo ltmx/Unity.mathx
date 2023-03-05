@@ -1,9 +1,8 @@
-// Decompiled with JetBrains decompiler
-// Type: UnityEngine.ray
-// Assembly: UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1816B406-9C08-49B9-AE49-5EC06D2F09C6
-// Assembly location: O:\Unity\Versions\2022.2.0a9\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll
-// XML documentation location: O:\Unity\Versions\2022.2.0a9\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.xml
+#region Header
+// **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
+// **    Github Profile: https://github.com/LTMX
+// **    Repository : https://github.com/LTMX/Unity.Mathematics-Extensions
+#endregion
 
 using System;
 using System.Globalization;

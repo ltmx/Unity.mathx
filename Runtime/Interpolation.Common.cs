@@ -1,5 +1,8 @@
-﻿// Some functions are translated from : https://github.com/FreyaHolmer/Mathfs/blob/master/Mathfs.cs
-// Smin from Inigo Quilez https://iquilezles.org/articles/smin/
+﻿#region Header
+// **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
+// **    Github Profile: https://github.com/LTMX
+// **    Repository : https://github.com/LTMX/Unity.Mathematics-Extensions
+#endregion
 
 using System.Runtime.CompilerServices;
 using UnityEngine;

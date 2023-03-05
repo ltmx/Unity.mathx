@@ -1,4 +1,10 @@
-﻿using System;
+﻿#region Header
+// **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
+// **    Github Profile: https://github.com/LTMX
+// **    Repository : https://github.com/LTMX/Unity.Mathematics-Extensions
+#endregion
+
+using System;
 using System.Runtime.Serialization;
 
 
@@ -40,7 +46,7 @@ namespace Unity.Mathematics
         }
 
         /// Evaluate a polynomial at point x.
-        /// <param name="z">Thet location where to evaluate the polynomial a.</param>
+        /// <param name="z">The location where to evaluate the polynomial a.</param>
         public double Evaluate(double z) => Evaluate(z, coefficients);
     }
 }
