@@ -1,4 +1,6 @@
-# Unity.Mathematics Extensions
+# Unity.Mathematics.mathx
+
+Extension Library for Unity.Mathematics
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/LTMX/Unity-Mathematics-Extensions)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/LTMX/Unity.Mathematics-Extensions?color=blueviolet)
@@ -7,7 +9,7 @@
 
 Extension Library for [`Unity.Mathematics`](https://github.com/Unity-Technologies/Unity.Mathematics) <br>
 & many useful methods to process mathematics !<br>
-Package name : `com.ltmx.unitymathematicsextensions`
+Package name : `com.ltmx.mathematics.mathx`
 
 <a href="https://ko-fi.com/I2I0IMQA9">
   <img align="left" src="https://raw.githubusercontent.com/LTMX/Banners-And-Buttons/main/Support%20Me%20Kofi%20Banner%20Shader%20Graph%20Mastery.png" width="140px"/>
@@ -28,8 +30,15 @@ return f.length().clamp(0, 10).cos().sq();
 
 ## Using Declaration
 ```C#
-using static Unity.Mathematics.Math;
+using static Unity.Mathematics.mathx;
 ```
+
+## Guidelines
+
+ - shader like syntax
+ - namespace `Unity.Mathematics`
+ - static class `Unity.Mathematics.mathx`
+
 
 ## Install
 #### Method 1 : <br>
@@ -48,6 +57,9 @@ using static Unity.Mathematics.Math;
 - [ ] Complete Documentation `WIP`
 - [ ] Signed Distance Functions `WIP`
 - [ ] Jobify Class `WIP`
+- [ ] Function Pointers `WIP`
+- [ ] Geometry Processing
+- [ ] Function Iterstors
 
 <br>
 
