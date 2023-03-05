@@ -8,7 +8,6 @@ namespace Unity.Mathematics
 {
     public partial class mathx
     {
-
         #region Direction Shorthands
         
         /// Shorthand for new float2(0,1)
