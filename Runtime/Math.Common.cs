@@ -65,7 +65,8 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="abs(float4)"/>
         [IL] public static double abs(this double f) => math.abs(f);
 
-        // Component-Wise Sum --------------------------------------------------------------------------
+        #region csum
+
         /// Returns the sum of all components of the vector
         [IL] public static float sum(this float4 f) => math.csum(f);
         /// <inheritdoc cref="sum(float4)"/> 
@@ -91,7 +92,10 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="sum(float4)"/> 
         [IL] public static double sum(this double2 f) => math.csum(f);
 
-        // Component-Wise Multiplication ---------------------------------------------------------------
+        #endregion
+
+        #region cmul
+
         /// Returns the product of all components of the vector
         [IL] public static float cmul(this float4 f) => f.x * f.y * f.z * f.w;
         /// <inheritdoc cref="cmul(float4)"/>
@@ -117,8 +121,11 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="cmul(float4)"/>
         [IL] public static double cmul(this double2 f) => f.x * f.y;
 
-        // One Minus -----------------------------------------------------------------------------------
-        /// Returns one minus the given value.
+        #endregion
+
+        #region inv
+
+        /// Returns one minus the given value. => ex : color inversion
         [IL] public static float4 inv(this float4 f) => 1 - f;
         /// <inheritdoc cref="inv(float4)"/>
         [IL] public static float3 inv(this float3 f) => 1 - f;
@@ -143,7 +150,10 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="inv(float4)"/>
         [IL] public static float2 inv(this Vector2 f) => 1 - f.asfloat();
 
-        // Negate -----------------------------------------------------------------------------------
+        #endregion
+
+        #region neg
+
         /// Returns the negation of the given value.
         [IL] public static float4 neg(this float4 f) => -f;
         /// <inheritdoc cref="neg(float4)"/>
@@ -168,9 +178,12 @@ namespace Unity.Mathematics
         [IL] public static float3 neg(this Vector3 f) => -f;
         /// <inheritdoc cref="neg(float4)"/>
         [IL] public static float2 neg(this Vector2 f) => -f;
+        #endregion
 
-        // Reciprocal ----------------------------------------------------------------------------------
-        /// <summary>Returns the componentwise reciprocal a float4 vector.</summary>
+
+        #region rcp
+
+        /// Returns the componentwise reciprocal a vector.
         [IL] public static float4 rcp(this float4 f) => math.rcp(f);
         /// <inheritdoc cref="rcp(float4)"/>
         [IL] public static float3 rcp(this float3 f) => math.rcp(f);
@@ -194,8 +207,11 @@ namespace Unity.Mathematics
         [IL] public static double2 rcp(this double2 f) => math.rcp(f);
         /// <inheritdoc cref="rcp(float4)"/>
         [IL] public static double rcp(this double f) => math.rcp(f);
+        
+        #endregion
 
-        // Power ---------------------------------------------------------------------------------
+        #region pow
+
         /// <summary>Returns the componentwise result of raising x to the power y.</summary>
         public static float4 pow(this float4 f, float4 pow) => math.pow(f, pow);
         /// <inheritdoc cref="pow(float4, float4)"/>
@@ -223,7 +239,10 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="pow(float4, float4)"/>
         [IL] public static double pow(this double f, double min) => math.pow(f, min);
 
-        // Square ---------------------------------------------------------------------------------
+        #endregion
+
+        #region sq
+
         /// Returns x^2
         [IL] public static float4 sq(this float4 f) => f * f;
         /// <inheritdoc cref="sq(float4)"/>
@@ -249,8 +268,11 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="sq(float4)"/>
         [IL] public static double sq(this double f) => f * f;
 
-        // Cube --------------------------------------------------
-        /// <summary> returns x^3 </summary>
+        #endregion
+
+        #region cube
+
+        /// <summary> Returns x^3 </summary>
         public static float4 cube(this float4 f) => f * f * f;
         /// <inheritdoc cref="cube(float4)"/>
         [IL] public static float3 cube(this float3 f) => f * f * f;
@@ -275,8 +297,11 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="cube(float4)"/>
         [IL] public static double cube(this double f) => f * f * f;
 
-        // Pow4 --------------------------------------------------
-        /// <summary> returns x^4 </summary>
+        #endregion
+
+        #region pow4
+
+        /// <summary> Returns x^4 </summary>
         public static float4 pow4(this float4 f) => f.sq().sq();
         /// <inheritdoc cref="pow4(float4)"/>
         [IL] public static float3 pow4(this float3 f) => f.sq().sq();
@@ -301,8 +326,11 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="pow4(float4)"/>
         [IL] public static double pow4(this double f) => f.sq().sq();
 
-        // Pow5 --------------------------------------------------
-        /// <summary> returns x^5 </summary>
+        #endregion
+
+        #region pow5
+
+        /// <summary> Returns x^5 </summary>
         public static float4 pow5(this float4 f) => f.sq().sq() * f;
         /// <inheritdoc cref="pow5(float4)" />
         [IL] public static float3 pow5(this float3 f) => f.sq().sq() * f;
@@ -326,5 +354,7 @@ namespace Unity.Mathematics
         [IL] public static double2 pow5(this double2 f) => f.sq().sq() * f;
         /// <inheritdoc cref="pow5(float4)" />
         [IL] public static double pow5(this double f) => f.sq().sq() * f;
+
+        #endregion
     }
 }

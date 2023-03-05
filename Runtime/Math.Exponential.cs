@@ -71,8 +71,7 @@ namespace Unity.Mathematics
         public static double nexp(this double f) => math.exp(-f);
 
         #endregion
-
-
+        
 
         #region exp2
 
