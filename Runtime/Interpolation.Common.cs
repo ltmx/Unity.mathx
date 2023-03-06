@@ -250,7 +250,7 @@ namespace Unity.Mathematics
         
         /// <inheritdoc cref="smax(float, float,float)" />
         [BurstCompile, MonoPInvokeCallback(typeof(mathx.process2floatsAndParam))]
-        [IL] public static float4 smaxOP(this float t, float4 a, float4 b) => ParallelWithParam(smax_exp, a, b, t);
+        [IL] public static float4 smaxOP(this float t, float4 a, float4 b) => ParallelAndParam(smax_exp, a, b, t);
 
 
         
