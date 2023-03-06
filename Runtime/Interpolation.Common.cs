@@ -7,9 +7,11 @@
 #endregion
 
 using System.Runtime.CompilerServices;
+using Unity.Burst;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.UIElements.Experimental;
+using static Unity.Burst.BurstCompiler;
 using static Unity.Mathematics.math;
 
 namespace Unity.Mathematics
@@ -239,11 +241,11 @@ namespace Unity.Mathematics
             var h = (0.5f + (b - a) / (t * 2)).saturate();
             return h.lerp(a, b) + t * h * (1 - h);
         }
-        
+
         /// <inheritdoc cref="smax(float, float,float)" />
-        [IL] public static float4 smaxOP(this float4 t, float4 a, float4 b) => Operations.Process(a, b, smax_exp)
+        [IL] public static float4 smaxOP(this float t, float4 a, float4 b) => smax_expFP.ParallelOperationAndParam(a, b, t);
 
-
+        public static FunctionPointer<process2floatsAndParam> smax_expFP => ToPointer<process2floatsAndParam>(smax_exp);
 
         public static float smax_exp(float a, float b, float t)
         {

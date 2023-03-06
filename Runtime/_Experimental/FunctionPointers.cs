@@ -5,6 +5,7 @@
 #endregion
 
 using System;
+using System.Runtime.CompilerServices;
 using AOT;
 using Unity.Burst;
 using static Unity.Burst.BurstCompiler;
@@ -41,13 +42,13 @@ namespace Unity.Mathematics
         
         // Delegates
         delegate float delf1(float a, float b, FunctionPointer<p2f1> function);
-        // delegate float2 delf2(float2 a, float2 b, FunctionPointer<p2f1> function);
-        // delegate float3 delf3(float3 a, float3 b, FunctionPointer<p2f1> function);
-        // delegate float4 delf4(float4 a, float4 b, FunctionPointer<p2f1> function);
+        delegate float2 delf2(float2 a, float2 b, FunctionPointer<p2f1> function);
+        delegate float3 delf3(float3 a, float3 b, FunctionPointer<p2f1> function);
+        delegate float4 delf4(float4 a, float4 b, FunctionPointer<p2f1> function);
         
-        [BurstCompile] [MonoPInvokeCallback(typeof(delfpt<float>))]
-        static T OP<T>(T f1, T f2, FunctionPointer<p2f1> func) => funct<T>().Invoke(f1,f2, func);
-        static FunctionPointer<delfpt<T>> funct<T>() => CompileFunctionPointer<delfpt<T>>(OP);
+        // [BurstCompile] [MonoPInvokeCallback(typeof(delfpt<float>))]
+        // static T OP<T>(T f1, T f2, FunctionPointer<p2f1> func) => funct<T>().Invoke(f1,f2, func);
+        // static FunctionPointer<delfpt<T>> funct<T>() => CompileFunctionPointer<delfpt<T>>(OP);
         
         // Operation Interfaces
         [BurstCompile] [MonoPInvokeCallback(typeof(float))]
@@ -63,10 +64,10 @@ namespace Unity.Mathematics
 
         // Compiled function pointers
         // static FunctionPointer<T> funct<T>() => Comp(OP);
-        // static FunctionPointer<delf1> funcf1 = Comp<delf1>(OP);
-        // static FunctionPointer<delf2> funcf2 = Comp<delf2>(OP);
-        // static FunctionPointer<delf3> funcf3 = Comp<delf3>(OP);
-        // static FunctionPointer<delf4> funcf4 = Comp<delf4>(OP);
+        static FunctionPointer<delf1> funcf1 = Comp<delf1>(OP);
+        static FunctionPointer<delf2> funcf2 = Comp<delf2>(OP);
+        static FunctionPointer<delf3> funcf3 = Comp<delf3>(OP);
+        static FunctionPointer<delf4> funcf4 = Comp<delf4>(OP);
         // static FunctionPointer<p2f2> funcF2OP = Comp<p2f2>(mul);
             
         static FunctionPointer<p2f1> FP_mul = Comp<p2f1>(math.mul);
@@ -83,7 +84,7 @@ namespace Unity.Mathematics
 
 
         // public static float2 test = OP(1.0f, 2.0f, Compile(mathx.mul));
-        // public static float2 test2 = Process((float2)1.0f, 2.0f, mathx.mul);
+        // public static float2 test2 = Process((float2)1.0f, 2.0f, mathx.mul);`
         // public static float3 test3 = Process((float3)1.0f, 2.0f, mathx.mul);
         // public static float4 test4 = Process((float4)1.0f, 2.0f, mathx.mul);
         // public static float4 test5 = Process(1.0f, 2.0f, mathx.mul);
@@ -92,7 +93,7 @@ namespace Unity.Mathematics
         // public static float2 Process(float2 f1, float2 f2, p2f1 func) => funcf2.Invoke(f1, f2, Compile(func));
         // public static float3 Process(float3 f1, float3 f2, p2f1 func) => funcf3.Invoke(f1, f2, Compile(func));
         // public static float4 Process(float4 f1, float4 f2, p2f1 func) => funcf4.Invoke(f1, f2, Compile(func));
-        //
+        // //
         // public static T Process<T>(T f1, T f2, delfpt<T> func) where T : struct => funct<T>().Invoke(f1, f2, func);
         // public static T Process<T>(T f1, T f2, p2f1 func) where T : struct => funcf1.Invoke(f1, f2, Compile(func));
 
@@ -114,7 +115,76 @@ namespace Unity.Mathematics
         // Todo: move these inside 
         [BurstCompile, MonoPInvokeCallback(typeof(p2f1))] public static float mul(float a, float b) => a * b;
         [BurstCompile, MonoPInvokeCallback(typeof(p2f1))] public static float sum(float a, float b) => a + b;
-        // [BurstCompile, MonoPInvokeCallback(typeof(p2f))] static float max(float a, float b) => math.max(a, b);
-        // [BurstCompile, MonoPInvokeCallback(typeof(p2f))] static float min(float a, float b) => math.min(a, b);
+
+        public delegate T process2vectors<T>(T a, T b) where T : struct;
+        public delegate float process2floats(float a, float b);
+        public delegate float process2floatsAndParam(float a, float b, float t);
+        public delegate float processfloat(float a);
+        // generic function pointer compiler
+        // public static FunctionPointer<Delegate> ToPointer(Delegate function) => CompileFunctionPointer(function);
+        // public static FunctionPointer<process2floats> ToPointer(process2floats function) => CompileFunctionPointer(function); // Infered Type
+        public static FunctionPointer<T> ToPointer<T>(T function) where T : Delegate => CompileFunctionPointer<T>(function); // Infered Type
+
+        public static float4 ParallelOperation(process2floats func, float4 a, float4 b) => ToPointer(func).ParallelOperation(a, b);
+        public static float3 ParallelOperation(process2floats func, float3 a, float3 b) => ToPointer(func).ParallelOperation(a, b);
+        public static float2 ParallelOperation(process2floats func, float2 a, float2 b) => ToPointer(func).ParallelOperation(a, b);
+        public static float ParallelOperation(process2floats func, float a, float b) => ToPointer(func).ParallelOperation(a, b);
+
+        // With method Compilation :
+        public static float4 ParallelOperation(this FunctionPointer<process2floats> func, float4 a, float4 b) => new(func.Invoke(a.x, b.x), func.Invoke(a.y, b.y), func.Invoke(a.z, b.z), func.Invoke(a.w, b.w));
+        public static float3 ParallelOperation(this FunctionPointer<process2floats> func, float3 a, float3 b) => new(func.Invoke(a.x, b.x), func.Invoke(a.y, b.y), func.Invoke(a.z, b.z));
+        public static float2 ParallelOperation(this FunctionPointer<process2floats> func, float2 a, float2 b) => new(func.Invoke(a.x, b.x), func.Invoke(a.y, b.y));
+        public static float ParallelOperation(this FunctionPointer<process2floats> func, float a, float b) => func.Invoke(a, b);
+        
+        
+        public static float4 ParallelOperationAndParam(this process2floatsAndParam func, float4 a, float4 b, float t) => ToPointer(func).ParallelOperationAndParam(a, b, t);
+        public static float3 ParallelOperationAndParam(this process2floatsAndParam func, float3 a, float3 b, float t) => ToPointer(func).ParallelOperationAndParam(a, b, t);
+        public static float2 ParallelOperationAndParam(this process2floatsAndParam func, float2 a, float2 b, float t) => ToPointer(func).ParallelOperationAndParam(a, b, t);
+        public static float ParallelOperationAndParam(this process2floatsAndParam func, float a, float b, float t) => ToPointer(func).ParallelOperationAndParam(a, b, t);
+        
+        // With method Compilation :
+        public static float4 ParallelOperationAndParam(this FunctionPointer<process2floatsAndParam> func, float4 a, float4 b, float t) => new(func.Invoke(a.x, b.x, t), func.Invoke(a.y, b.y, t), func.Invoke(a.z, b.z, t), func.Invoke(a.w, b.w, t));
+        public static float3 ParallelOperationAndParam(this FunctionPointer<process2floatsAndParam> func, float3 a, float3 b, float t) => new(func.Invoke(a.x, b.x, t), func.Invoke(a.y, b.y, t), func.Invoke(a.z, b.z, t));
+        public static float2 ParallelOperationAndParam(this FunctionPointer<process2floatsAndParam> func, float2 a, float2 b, float t) => new(func.Invoke(a.x, b.x, t), func.Invoke(a.y, b.y, t));
+        public static float ParallelOperationAndParam(this FunctionPointer<process2floatsAndParam> func, float a, float b, float t) => func.Invoke(a, b, t);
+        
+        // Now generic parallel operation using these method overloads
+        // public static T ParallelOperation<T>(process2vectors<T> func, T a, T b) where T : struct
+        // {
+        //     if (typeof(T) == typeof(float4)) return (T)(object)ParallelOperation(func as process2floats, (float4)(object)a, (float4)(object)b);
+        //     if (typeof(T) == typeof(float3)) return (T)(object)ParallelOperation(func as process2floats, (float3)(object)a, (float3)(object)b);
+        //     if (typeof(T) == typeof(float2)) return (T)(object)ParallelOperation(func as process2floats, (float2)(object)a, (float2)(object)b);
+        //     if (typeof(T) == typeof(float)) return (T)(object)ParallelOperation(func as process2floats, (float)(object)a, (float)(object)b);
+        //     throw new NotImplementedException();
+        // }
+        
+        public static float SumOperations(process2floats func, float4 a, float4 b) => func.Invoke(a.x, b.x) + func.Invoke(a.y, b.y) + func.Invoke(a.z, b.z) + func.Invoke(a.w, b.w);
+        public static float SumOperations(process2floats func, float3 a, float3 b) => func.Invoke(a.x, b.x) + func.Invoke(a.y, b.y) + func.Invoke(a.z, b.z);
+        public static float SumOperations(process2floats func, float2 a, float2 b) => func.Invoke(a.x, b.x) + func.Invoke(a.y, b.y);
+        public static float SumOperations(process2floats func, float a, float b) => func.Invoke(a, b);
+
+        public static float SequentialOperation(process2floats func, float4 a) => func.Invoke(func.Invoke(func.Invoke(a.x, a.y), a.z), a.w);
+
+        // Simple operations :
+
+        // public delegate float process2float2s<T>(float2 a, float2 b);
+        // public delegate float process2float3s<T>(float3 a, float3 b);
+        // public delegate float process2float4s<T>(float4 a, float4 b);
+
+        public static float Seq<T>(this T value, FunctionPointer<process2floats> operation) where T : unmanaged
+        {
+            float result = 0;
+            int length = Unsafe.SizeOf<T>() / sizeof(float);
+            for (int i = 0; i < length; i++)
+            {
+                float component = Unsafe.Add(ref Unsafe.As<T, float>(ref Unsafe.AsRef(in value)), i);
+                result = operation.Invoke(result, component);
+            }
+            return result;
+        }
+
+
+
+
     }
 }

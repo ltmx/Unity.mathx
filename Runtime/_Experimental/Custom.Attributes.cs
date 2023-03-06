@@ -14,6 +14,11 @@ using Unity.Burst;
 
 namespace Unity.Mathematics
 {
+
+    // public partial struct float4
+    // {
+    //     
+    // }
     public interface IMetadataAttribute
     {
         Attribute[] Process();
