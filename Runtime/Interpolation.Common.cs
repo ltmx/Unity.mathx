@@ -6,7 +6,12 @@
 
 #endregion
 
+using System;
+using System.Reflection;
+using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
+using AOT;
+using Mono.Cecil;
 using Unity.Burst;
 using UnityEditor.PackageManager;
 using UnityEngine;
@@ -242,15 +247,26 @@ namespace Unity.Mathematics
             return h.lerp(a, b) + t * h * (1 - h);
         }
 
+        
         /// <inheritdoc cref="smax(float, float,float)" />
-        [IL] public static float4 smaxOP(this float t, float4 a, float4 b) => smax_expFP.ParallelOperationAndParam(a, b, t);
+        [BurstCompile, MonoPInvokeCallback(typeof(mathx.process2floatsAndParam))]
+        [IL] public static float4 smaxOP(this float t, float4 a, float4 b) => ParallelWithParam(smax_exp, a, b, t);
 
-        public static FunctionPointer<process2floatsAndParam> smax_expFP => ToPointer<process2floatsAndParam>(smax_exp);
 
-        public static float smax_exp(float a, float b, float t)
+        
+        public static FunctionPointer<process3<float>> smax_expFP => ToPointer<process3<float>>(smax_exp);
+        // public static MethodInfo myMethod = typeof(mathx).GetMethod("smax_exp");
+
+        [IL] public static float smax_exp(float a, float b, float t)
         {
             var o = (float2(a - b, b - a) / t).exp();
             return float2(a, b).dot(o) / o.sum();
+        }
+        
+        [IL] public static void smax_exp(out float input, float a, float b, float t)
+        {
+            var o = (float2(a - b, b - a) / t).exp();
+            input = float2(a, b).dot(o) / o.sum();
         }
         
 
