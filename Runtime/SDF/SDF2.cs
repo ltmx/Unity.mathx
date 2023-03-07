@@ -4,6 +4,9 @@
 // **    Repository : https://github.com/LTMX/Unity.Mathematics-Extensions
 #endregion
 
+using Unity.Burst;
+using Unity.Collections;
+
 namespace Unity.Mathematics
 {
     using static math;
@@ -158,7 +161,7 @@ namespace Unity.Mathematics
         // which seems to happen for fIcosahedron und fTruncatedIcosahedron on nvidia 350.12 at least.
         // Specialized implementations can well be faster in all cases.
 
-        private static readonly float3[] GDFVectors = new float3[19]
+        private static readonly NativeArray<float3> GDFVectors = new(new[]
         {
             float3(1, 0, 0).norm(), 
             float3(0, 1, 0).norm(), 
@@ -179,7 +182,8 @@ namespace Unity.Mathematics
             float3(-1, 0, PHI).norm(), 
             float3(PHI, 1, 0).norm(),
             float3(-PHI, 1, 0).norm()
-        };
+        }, Allocator.Persistent);
+
 
         // Version with variable exponent.
         // This is slow and does not produce correct distances, but allows for bulging of objects.

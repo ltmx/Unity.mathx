@@ -21,11 +21,11 @@ namespace Unity.Mathematics
         // Interface
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate float FloatIO(float f); // float in-out
-        // Interface
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate float2 Float2IO(float2 f);
-        // Interface
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate float3 Float3IO(float3 f);
-        // Interface
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate float4 Float4IO(float4 f);
         
         
@@ -59,9 +59,6 @@ namespace Unity.Mathematics
         [BurstCompile, MonoPInvokeCallback(typeof(FloatIO))]
         public static float AddFloat(float a) => a + 2;
 
-        public static FunctionPointer<T> CompileFP<T>(T d) where T : class
-        {
-            return CompileFunctionPointer(d);
-        }
+        public static FunctionPointer<T> CompileFP<T>(T d) where T : class => CompileFunctionPointer(d);
     }
 }

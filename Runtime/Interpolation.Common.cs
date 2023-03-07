@@ -6,9 +6,7 @@
 
 #endregion
 
-
-using System;
-using System.Reflection;
+using System.Runtime.CompilerServices;
 using AOT;
 using Unity.Burst;
 using UnityEngine;
@@ -17,23 +15,43 @@ using static Unity.Mathematics.math;
 
 namespace Unity.Mathematics
 {
+    [BurstCompile]
     public static partial class mathx
     {
+        ///<summary>Quintic Smoothstep</summary>
         [IL] public static  float4 smootherstep(this float4 f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();
+        ///<inheritdoc cref="smootherstep(float4)"/>
         [IL] public static  float3 smootherstep(this float3 f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();
+        ///<inheritdoc cref="smootherstep(float4)"/>
         [IL] public static  float2 smootherstep(this float2 f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();
+        ///<inheritdoc cref="smootherstep(float4)"/>
         [IL] public static  float smootherstep(this float f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();
+        
+        ///<summary>Smoothstep using Cosine function to interpolate smoothly</summary>
         [IL] public static  float4 smoothstepcos(this float4 f) => (f.saturate() * PI).cos().inv() * 0.5f;
+        ///<inheritdoc cref="smoothstepcos(float4)"/>
         [IL] public static  float3 smoothstepcos(this float3 f) => (f.saturate() * PI).cos().inv() * 0.5f;
+        ///<inheritdoc cref="smoothstepcos(float4)"/>
         [IL] public static  float2 smoothstepcos(this float2 f) => (f.saturate() * PI).cos().inv() * 0.5f;
+        ///<inheritdoc cref="smoothstepcos(float4)"/>
         [IL] public static  float smoothstepcos(this float f) => (f.saturate() * PI).cos().inv() * 0.5f;
+        
+        ///<summary>Lerp with a custom power</summary>
         [IL] public static  float4 eerp(this float4 f, float4 a, float4 b) => a.pow(1 - f) * b.pow(f);
+        ///<inheritdoc cref="eerp(float4,float4,float4)"/>
         [IL] public static  float3 eerp(this float3 f, float3 a, float3 b) => a.pow(1 - f) * b.pow(f);
+        ///<inheritdoc cref="eerp(float4,float4,float4)"/>
         [IL] public static  float2 eerp(this float2 f, float2 a, float2 b) => a.pow(1 - f) * b.pow(f);
+        ///<inheritdoc cref="eerp(float4,float4,float4)"/>
         [IL] public static  float eerp(this float f, float a, float b) => a.pow(1 - f) * b.pow(f);
+        
+        ///<summary>Inverse-Lerp with a custom power</summary>
         [IL] public static  float4 uneerp(this float4 f, float4 a, float4 b) => (a / f).ln() / (a / b).ln();
+        ///<inheritdoc cref="uneerp(float4,float4,float4)"/>
         [IL] public static  float3 uneerp(this float3 f, float3 a, float3 b) => (a / f).ln() / (a / b).ln();
+        ///<inheritdoc cref="uneerp(float4,float4,float4)"/>
         [IL] public static  float2 uneerp(this float2 f, float2 a, float2 b) => (a / f).ln() / (a / b).ln();
+        ///<inheritdoc cref="uneerp(float4,float4,float4)"/>
         [IL] public static  float uneerp(this float f, float a, float b) => (a / f).ln() / (a / b).ln();
 
         // SmoothStep -----------------------------------------------------------------------------
@@ -227,15 +245,13 @@ namespace Unity.Mathematics
         [IL] public static float4 smax(this float4 t, float4 a, float4 b) => float4(t.x.smax(a.x, b.x), t.y.smax(a.y, b.y), t.z.smax(a.z, b.z), t.w.smax(a.w, b.w));
 
         
-        [BurstCompile, MonoPInvokeCallback(typeof(process3))]
+        
         [IL] public static float smax_exp(this float t, float a, float b) {
             var o = (float2(a - b, b - a) / t).exp();
             return float2(a, b).dot(o) / o.sum();
         }
-        public static readonly FunctionPointer<process3> smax_expFP = CompileFunctionPointer<process3>(smax_exp);
         public static float2 smax_exp2(this float2 t, float2 a, float2 b) => float2(t.x.smax_exp(a.x, b.x), t.y.smax_exp(a.y, b.y));
-        [BurstCompile, MonoPInvokeCallback(typeof(process3))]
-        public static float2 smax_expOP(this float2 t, float2 a, float2 b) => smax_expFP.ParallelAndParam(a, b, t);
+        public static float2 smax_expOP(this float2 t, float2 a, float2 b) => FunctionPointers.FP_smax_exp.InvokeParallelAndParam(a, b, t);
         public static float3 smax_exp(this float3 t, float3 a, float3 b) => float3(t.x.smax_exp(a.x, b.x), t.y.smax_exp(a.y, b.y), t.z.smax_exp(a.z, b.z));
         public static float4 smax_exp(this float4 t, float4 a, float4 b) => float4(t.x.smax_exp(a.x, b.x), t.y.smax_exp(a.y, b.y), t.z.smax_exp(a.z, b.z), t.w.smax_exp(a.w, b.w));
         

@@ -49,6 +49,14 @@ namespace Unity.Mathematics
     {
         public Attribute Process() => new MethodImplAttribute(MethodImplOptions.AggressiveInlining);
     }
+    public class ILBurstAttribute : Attribute, IMetadataAttribute
+    {
+        public Attribute[] Process() => new Attribute[]
+        {
+            new MethodImplAttribute(MethodImplOptions.AggressiveInlining),
+            new BurstCompileAttribute(FloatPrecision.Low, FloatMode.Fast)
+        };
+    }
 
     public class MathxPointerAttribute : Attribute, IMetadataAttribute
     {
