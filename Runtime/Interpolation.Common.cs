@@ -6,16 +6,12 @@
 
 #endregion
 
+
 using System;
 using System.Reflection;
-using System.Reflection.Emit;
-using System.Runtime.CompilerServices;
 using AOT;
-using Mono.Cecil;
 using Unity.Burst;
-using UnityEditor.PackageManager;
 using UnityEngine;
-using UnityEngine.UIElements.Experimental;
 using static Unity.Burst.BurstCompiler;
 using static Unity.Mathematics.math;
 
@@ -217,118 +213,142 @@ namespace Unity.Mathematics
             return h.lerp(a, b) + t * h * (1 - h);
         }
         /// <inheritdoc cref="smax(float, float,float)" />
-        [IL] public static float2 smax(this float t, float2 a, float2 b) {
-            var h = (0.5f + (b - a) / (t * 2)).saturate();
-            return h.lerp(a, b) + t * h * (1 - h);
-        }
+        [IL] public static float2 smax(this float t, float2 a, float2 b) => float2(t.smax(a.x, b.x), t.smax(a.y, b.y));
         /// <inheritdoc cref="smax(float, float,float)" />
-        [IL] public static float3 smax(this float t, float3 a, float3 b) {
-            var h = (0.5f + (b - a) / (t * 2)).saturate();
-            return h.lerp(a, b) + t * h * (1 - h);
-        }
+        [IL] public static float3 smax(this float t, float3 a, float3 b) => float3(t.smax(a.x, b.x), t.smax(a.y, b.y), t.smax(a.z, b.z));
         /// <inheritdoc cref="smax(float, float,float)" />
-        [IL] public static float4 smax(this float t, float4 a, float4 b) {
-            var h = (0.5f + (b - a) / (t * 2)).saturate();
-            return h.lerp(a, b) + t * h * (1 - h);
-        }
-        /// <inheritdoc cref="smax(float, float,float)" />
-        [IL] public static float2 smax(this float2 t, float2 a, float2 b) {
-            var h = (0.5f + (b - a) / (t * 2)).saturate();
-            return h.lerp(a, b) + t * h * (1 - h);
-        }
-        /// <inheritdoc cref="smax(float, float,float)" />
-        [IL] public static float3 smax(this float3 t, float3 a, float3 b) {
-            var h = (0.5f + (b - a) / (t * 2)).saturate();
-            return h.lerp(a, b) + t * h * (1 - h);
-        }
-        /// <inheritdoc cref="smax(float, float,float)" />
-        [IL] public static float4 smax(this float4 t, float4 a, float4 b) {
-            var h = (0.5f + (b - a) / (t * 2)).saturate();
-            return h.lerp(a, b) + t * h * (1 - h);
-        }
-
+        [IL] public static float4 smax(this float t, float4 a, float4 b) => float4(t.smax(a.x, b.x), t.smax(a.y, b.y), t.smax(a.z, b.z), t.smax(a.w, b.w));
         
         /// <inheritdoc cref="smax(float, float,float)" />
-        [BurstCompile, MonoPInvokeCallback(typeof(mathx.process2floatsAndParam))]
-        [IL] public static float4 smaxOP(this float t, float4 a, float4 b) => ParallelAndParam(smax_exp, a, b, t);
-
+        [IL] public static float2 smax(this float2 t, float2 a, float2 b) => float2(t.x.smax(a.x, b.x), t.y.smax(a.y, b.y));
+        /// <inheritdoc cref="smax(float, float,float)" />
+        [IL] public static float3 smax(this float3 t, float3 a, float3 b) => float3(t.x.smax(a.x, b.x), t.y.smax(a.y, b.y), t.z.smax(a.z, b.z));
+        /// <inheritdoc cref="smax(float, float,float)" />
+        [IL] public static float4 smax(this float4 t, float4 a, float4 b) => float4(t.x.smax(a.x, b.x), t.y.smax(a.y, b.y), t.z.smax(a.z, b.z), t.w.smax(a.w, b.w));
 
         
-        public static FunctionPointer<process3<float>> smax_expFP => ToPointer<process3<float>>(smax_exp);
-        // public static MethodInfo myMethod = typeof(mathx).GetMethod("smax_exp");
-
-        [IL] public static float smax_exp(float a, float b, float t)
-        {
+        [BurstCompile, MonoPInvokeCallback(typeof(process3))]
+        [IL] public static float smax_exp(this float t, float a, float b) {
             var o = (float2(a - b, b - a) / t).exp();
             return float2(a, b).dot(o) / o.sum();
         }
+        public static readonly FunctionPointer<process3> smax_expFP = CompileFunctionPointer<process3>(smax_exp);
+        public static float2 smax_exp2(this float2 t, float2 a, float2 b) => float2(t.x.smax_exp(a.x, b.x), t.y.smax_exp(a.y, b.y));
+        [BurstCompile, MonoPInvokeCallback(typeof(process3))]
+        public static float2 smax_expOP(this float2 t, float2 a, float2 b) => smax_expFP.ParallelAndParam(a, b, t);
+        public static float3 smax_exp(this float3 t, float3 a, float3 b) => float3(t.x.smax_exp(a.x, b.x), t.y.smax_exp(a.y, b.y), t.z.smax_exp(a.z, b.z));
+        public static float4 smax_exp(this float4 t, float4 a, float4 b) => float4(t.x.smax_exp(a.x, b.x), t.y.smax_exp(a.y, b.y), t.z.smax_exp(a.z, b.z), t.w.smax_exp(a.w, b.w));
         
-        [IL] public static void smax_exp(out float input, float a, float b, float t)
-        {
-            var o = (float2(a - b, b - a) / t).exp();
-            input = float2(a, b).dot(o) / o.sum();
-        }
-        
-
         #endregion
 
         // Smooth Min Functions https://iquilezles.org/articles/smin/
         /// exponential smooth min (t=32)
-        [IL] public static  float smin_exp(float a, float b, float t) {
+        [IL] public static  float smin_exp(this float t, float a, float b) {
             var res = (-t * a).exp2() + (-t * b).exp2();
             return -res.log2() / t;
         }
+        public static float2 smin_exp(this float2 t, float2 a, float2 b) => float2(t.x.smin_exp(a.x, b.x), t.y.smin_exp(a.y, b.y));
+        public static float3 smin_exp(this float3 t, float3 a, float3 b) => float3(t.x.smin_exp(a.x, b.x), t.y.smin_exp(a.y, b.y), t.z.smin_exp(a.z, b.z));
+        public static float4 smin_exp(this float4 t, float4 a, float4 b) => float4(t.x.smin_exp(a.x, b.x), t.y.smin_exp(a.y, b.y), t.z.smin_exp(a.z, b.z), t.w.smin_exp(a.w, b.w));
+
         /// power smooth min (t=8)
-        [IL] public static  float smin_pow(float a, float b, float t) {
+        [IL] public static  float smin_pow(this float t, float a, float b) {
             a = a.pow(t);
             b = b.pow(t);
             return (a * b / (a + b)).pow(t.rcp());
         }
+        public static float2 smin_pow(this float2 t, float2 a, float2 b) => float2(t.x.smin_pow(a.x, b.x), t.y.smin_pow(a.y, b.y));
+        public static float3 smin_pow(this float3 t, float3 a, float3 b) => float3(t.x.smin_pow(a.x, b.x), t.y.smin_pow(a.y, b.y), t.z.smin_pow(a.z, b.z));
+        public static float4 smin_pow(this float4 t, float4 a, float4 b) => float4(t.x.smin_pow(a.x, b.x), t.y.smin_pow(a.y, b.y), t.z.smin_pow(a.z, b.z), t.w.smin_pow(a.w, b.w));
+
         /// root smooth min (t=0.01)
-        [IL] public static  float smin_root(float a, float b, float t) {
+        [IL] public static  float smin_root(this float t, float a, float b) {
             var h = a - b;
             return 0.5f * (a + b - (h * h + t).sqrt());
         }
+        public static float2 smin_root(this float2 t, float2 a, float2 b) => float2(t.x.smin_root(a.x, b.x), t.y.smin_root(a.y, b.y));
+        public static float3 smin_root(this float3 t, float3 a, float3 b) => float3(t.x.smin_root(a.x, b.x), t.y.smin_root(a.y, b.y), t.z.smin_root(a.z, b.z));
+        public static float4 smin_root(this float4 t, float4 a, float4 b) => float4(t.x.smin_root(a.x, b.x), t.y.smin_root(a.y, b.y), t.z.smin_root(a.z, b.z), t.w.smin_root(a.w, b.w));
+
         /// polynomial smooth min 1 (t=0.1)
-        [IL] public static  float smin_polynomial(float a, float b, float t) {
+        [IL] public static  float smin_polynomial(this float t, float a, float b) {
             var h = (0.5f + (b - a) / (t * 2)).saturate();
             return b.lerp(a, h) - t * h * (1 - h);
         }
+        public static float2 smin_polynomial(this float2 t, float2 a, float2 b) => float2(t.x.smin_polynomial(a.x, b.x), t.y.smin_polynomial(a.y, b.y));
+        public static float3 smin_polynomial(this float3 t, float3 a, float3 b) => float3(t.x.smin_polynomial(a.x, b.x), t.y.smin_polynomial(a.y, b.y), t.z.smin_polynomial(a.z, b.z));
+        public static float4 smin_polynomial(this float4 t, float4 a, float4 b) => float4(t.x.smin_polynomial(a.x, b.x), t.y.smin_polynomial(a.y, b.y), t.z.smin_polynomial(a.z, b.z), t.w.smin_polynomial(a.w, b.w));
+
         /// polynomial smooth min 2 (t=0.1) - this is the one used in the paper
-        [IL] public static  float smin_quadratic(float a, float b, float t) {
+        [IL] public static  float smin_quadratic(this float t, float a, float b) {
             var h = (t - (a - b).abs()).p() / t;
             return a.min(b) - h * h * t * 0.25f;
         }
+        public static float2 smin_quadratic(this float2 t, float2 a, float2 b) => float2(t.x.smin_quadratic(a.x, b.x), t.y.smin_quadratic(a.y, b.y));
+        public static float3 smin_quadratic(this float3 t, float3 a, float3 b) => float3(t.x.smin_quadratic(a.x, b.x), t.y.smin_quadratic(a.y, b.y), t.z.smin_quadratic(a.z, b.z));
+        public static float4 smin_quadratic(this float4 t, float4 a, float4 b) => float4(t.x.smin_quadratic(a.x, b.x), t.y.smin_quadratic(a.y, b.y), t.z.smin_quadratic(a.z, b.z), t.w.smin_quadratic(a.w, b.w));
+        
         /// polynomial smooth min
-        /// As noted by Shadertoy user TinyTexel, this can be generalized to higher levels of continuity than
+        /// As noted by ShaderToy user TinyTexel, this can be generalized to higher levels of continuity than
         /// the quadratic polynomial offers (C1), which might be important for preventing lighting artifacts.
         /// Moving on to a cubic curve gives us C2 continuity, and doesn't get a lot more expensive
         /// than the quadratic one anyways
-        [IL] public static  float smin_cubic(float a, float b, float t) {
+        [IL] public static  float smin_cubic(this float t, float a, float b) {
             var h = (t - (a - b).abs()).p() / t;
             return a.min(b) - h.cube() * t * (1 / 6f);
         }
+        public static float2 smin_cubic(this float2 t, float2 a, float2 b) => float2(t.x.smin_cubic(a.x, b.x), t.y.smin_cubic(a.y, b.y));
+        public static float3 smin_cubic(this float3 t, float3 a, float3 b) => float3(t.x.smin_cubic(a.x, b.x), t.y.smin_cubic(a.y, b.y), t.z.smin_cubic(a.z, b.z));
+        public static float4 smin_cubic(this float4 t, float4 a, float4 b) => float4(t.x.smin_cubic(a.x, b.x), t.y.smin_cubic(a.y, b.y), t.z.smin_cubic(a.z, b.z), t.w.smin_cubic(a.w, b.w));
+        
         /// Transition Factor
         /// Besides smoothly blending values, it might be useful to compute also a blending factor that can be used for shading. For example, if the smooth-minimum is being used to blend SDF shapes, having a blend factor could be useful to blend the material properties of the two shapes during the transition area. For example, the image below shows the mix of a red and a blue materials based on this mix factor as computed by the code below, which returns the smooth-minimum in .x and the blend factor in .y:
-        [IL] public static  float2 smin_factor(float a, float b, float t) {
+        [IL] public static  float smin_factor(this float t, float a, float b, out float factor) {
             var h = (t - (a - b).abs()).p() / t;
             var m = h * h * 0.5f;
             var s = m * t * 0.5f;
-            return a < b ? float2(a - s, m) : float2(b - s, m.inv());
+            if (a < b) {
+                factor = m;
+                return a - s;
+            }
+            factor = m.inv();
+            return b - s;
         }
-        [IL] public static  float2 smin_cubic_factor(float a, float b, float t) {
+        public static float2 smin_factor(this float2 t, float2 a, float2 b, out float2 factor) => float2(t.x.smin_factor(a.x, b.x, out factor.x), t.y.smin_factor(a.y, b.y, out factor.y));
+        public static float3 smin_factor(this float3 t, float3 a, float3 b, out float3 factor) => float3(t.x.smin_factor(a.x, b.x, out factor.x), t.y.smin_factor(a.y, b.y, out factor.y), t.z.smin_factor(a.z, b.z, out factor.z));
+        public static float4 smin_factor(this float4 t, float4 a, float4 b, out float4 factor) => float4(t.x.smin_factor(a.x, b.x, out factor.x), t.y.smin_factor(a.y, b.y, out factor.y), t.z.smin_factor(a.z, b.z, out factor.z), t.w.smin_factor(a.w, b.w, out factor.w));
+
+        [IL] public static  float smin_cubic_factor(this float t, float a, float b, out float factor) {
             var h = (t - (a - b).abs()).p() / t;
             var m = h * h * h * 0.5f;
             var s = m * t * (1 / 3f);
-            return a < b ? float2(a - s, m) : float2(b - s, m.inv());
+            if (a < b) {
+                factor = m;
+                return a - s;
+            }
+            factor = m.inv();
+            return b - s;
         }
+        public static float2 smin_cubic_factor(this float2 t, float2 a, float2 b, out float2 factor) => float2(t.x.smin_cubic_factor(a.x, b.x, out factor.x), t.y.smin_cubic_factor(a.y, b.y, out factor.y));
+        public static float3 smin_cubic_factor(this float3 t, float3 a, float3 b, out float3 factor) => float3(t.x.smin_cubic_factor(a.x, b.x, out factor.x), t.y.smin_cubic_factor(a.y, b.y, out factor.y), t.z.smin_cubic_factor(a.z, b.z, out factor.z));
+        public static float4 smin_cubic_factor(this float4 t, float4 a, float4 b, out float4 factor) => float4(t.x.smin_cubic_factor(a.x, b.x, out factor.x), t.y.smin_cubic_factor(a.y, b.y, out factor.y), t.z.smin_cubic_factor(a.z, b.z, out factor.z), t.w.smin_cubic_factor(a.w, b.w, out factor.w));
+            
+        
         /// Smin generalization to any power n
-        [IL] public static  float2 smin_N_factor(float a, float b, float t, float n) {
+        [IL] public static  float smin_N_factor(this float t, float a, float b, float n, out float factor) {
             var h = (t - (a - b).abs()).p() / t;
             var m = h.pow(n) * 0.5f;
             var s = m * t / n;
-            return a < b ? float2(a - s, m) : float2(b - s, m.inv());
+            if (a < b) {
+                factor = m;
+                return a - s;
+            }
+            factor = m.inv();
+            return b - s;
         }
+        public static float2 smin_N_factor(this float2 t, float2 a, float2 b, float2 n, out float2 factor) => float2(t.x.smin_N_factor(a.x, b.x, n.x, out factor.x), t.y.smin_N_factor(a.y, b.y, n.y, out factor.y));
+        public static float3 smin_N_factor(this float3 t, float3 a, float3 b, float3 n, out float3 factor) => float3(t.x.smin_N_factor(a.x, b.x, n.x, out factor.x), t.y.smin_N_factor(a.y, b.y, n.y, out factor.y), t.z.smin_N_factor(a.z, b.z, n.z, out factor.z));
+        public static float4 smin_N_factor(this float4 t, float4 a, float4 b, float4 n, out float4 factor) => float4(t.x.smin_N_factor(a.x, b.x, n.x, out factor.x), t.y.smin_N_factor(a.y, b.y, n.y, out factor.y), t.z.smin_N_factor(a.z, b.z, n.z, out factor.z), t.w.smin_N_factor(a.w, b.w, n.w, out factor.w));
 
     }
 }

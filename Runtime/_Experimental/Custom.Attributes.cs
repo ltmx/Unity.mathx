@@ -50,9 +50,11 @@ namespace Unity.Mathematics
         public Attribute Process() => new MethodImplAttribute(MethodImplOptions.AggressiveInlining);
     }
 
-    public class IL2CPPBurstCompiledAttribute : Attribute, IMetadataAttribute
+    public class MathxPointerAttribute : Attribute, IMetadataAttribute
     {
-        public Attribute[] Process() => new Attribute[]{ new BurstCompileAttribute(), new MonoPInvokeCallbackAttribute(typeof(Operations.p2f1)) };
+        private Type _type;
+        public MathxPointerAttribute(Type type) => _type = type;
+        public Attribute[] Process() => new Attribute[]{ new BurstCompileAttribute(), new MonoPInvokeCallbackAttribute(_type) };
     }
     
     public class MathxAttribute : Attribute
@@ -102,7 +104,7 @@ namespace Unity.Mathematics
         public override bool IsReadOnly { get; }
         public override Type PropertyType { get; }
     }
-
+    
     public class MyTypeDescriptor : CustomTypeDescriptor
     {
         private ICustomTypeDescriptor original;
@@ -121,7 +123,7 @@ namespace Unity.Mathematics
         public MyTypeDescriptionProvider() : base(TypeDescriptor.GetProvider(typeof(object))) { }
         public override ICustomTypeDescriptor GetTypeDescriptor(Type objectType, object instance) => new MyTypeDescriptor(base.GetTypeDescriptor(objectType, instance));
     }
-
+    
     [TypeDescriptionProvider(typeof(MyTypeDescriptionProvider))]
     public class MySampleClass
     {

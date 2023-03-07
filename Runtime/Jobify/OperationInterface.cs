@@ -8,6 +8,9 @@ using System;
 using System.Runtime.InteropServices;
 using AOT;
 using Unity.Burst;
+using UnityEditor;
+using UnityEngine;
+using static Unity.Burst.BurstCompiler;
 
 namespace Unity.Mathematics
 {
@@ -42,7 +45,12 @@ namespace Unity.Mathematics
 
         [BurstCompile, MonoPInvokeCallback(typeof(FloatIO))]
         public static float mulx2(float a) => a * 2;
-        public static FunctionPointer<FloatIO> mulx2Pointer = CompileFP<FloatIO>(mulx2);
+        public static FunctionPointer<FloatIO> mulx2Pointer = CompileFunctionPointer<FloatIO>(mulx2);
+
+        [MenuItem("Math/Tests/Miam")]
+        public static void poop(){
+            Debug.Log(mulx2Pointer.Invoke(2.6f));
+        }
 
         [BurstCompile, MonoPInvokeCallback(typeof(FloatIO))]
         public static float mul(float a, float b) => a * b;
@@ -53,7 +61,7 @@ namespace Unity.Mathematics
 
         public static FunctionPointer<T> CompileFP<T>(T d) where T : class
         {
-            return BurstCompiler.CompileFunctionPointer(d);
+            return CompileFunctionPointer(d);
         }
     }
 }
