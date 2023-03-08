@@ -15,8 +15,6 @@ Package name : `com.ltmx.mathematics.mathx`
   <img align="left" src="https://raw.githubusercontent.com/LTMX/Banners-And-Buttons/main/Support%20Me%20Kofi%20Banner%20Shader%20Graph%20Mastery.png" width="140px"/>
 </a><br><br>
 
-https://raw.githubusercontent.com/LTMX/Unity.Mathematics-Extensions/master/.branding/LTMX_Unity_Mathematics_Mathx_Github_Banner_Thin.png
-
 
 ## Exension Method Syntax
 *Old Code :*
