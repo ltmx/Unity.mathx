@@ -1,9 +1,9 @@
-![Banner](https://raw.githubusercontent.com/LTMX/Unity.Mathematics-Extensions/master/.branding/LTMX_Unity_Mathematics_Mathx_Github_Banner_Thin.png)
+![Banner](https://raw.githubusercontent.com/LTMX/Unity.mathx/master/.branding/LTMX_Unity_Mathematics_Mathx_Github_Banner_Thin.png)
 
-![GitHub repo size](https://img.shields.io/github/repo-size/LTMX/Unity-Mathematics-Extensions)
-![GitHub package.json version](https://img.shields.io/github/package-json/v/LTMX/Unity.Mathematics-Extensions?color=blueviolet)
-![GitHub top language](https://img.shields.io/github/languages/top/LTMX/Unity.Mathematics-Extensions?color=success)
-![GitHub](https://img.shields.io/github/license/LTMX/Unity.Mathematics-Extensions)
+![GitHub repo size](https://img.shields.io/github/repo-size/LTMX/Unity.mathx)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/LTMX/Unity.mathx?color=blueviolet)
+![GitHub top language](https://img.shields.io/github/languages/top/LTMX/Unity.mathx?color=success)
+![GitHub](https://img.shields.io/github/license/LTMX/Unity.mathx)
 
 ## Extension Library for Unity.Mathematics
 
@@ -42,7 +42,7 @@ using static Unity.Mathematics.mathx;
 
 ## Install
 #### Method 1 : <br>
-1. Copy Git Package URL : `https://github.com/LTMX/Unity.Mathematics-Extensions.git`
+1. Copy Git Package URL : `https://github.com/LTMX/Unity.mathx.git`
 2. In Unity : `Window > Package Manager > Add Package From Git URL`
 
 #### Method 2 : <br>
@@ -64,5 +64,5 @@ using static Unity.Mathematics.mathx;
 <br>
 
 ## LICENSING
-<p>This project is licensed under the MIT License (<a href="https://github.com/LTMX/Unity.Mathematics-Extensions/blob/master/LICENSE">License</a>)</p>
-<p>Unity.Mathematics Companion License (<a href="https://github.com/Unity-Technologies/Unity.Mathematics/blob/master/LICENSE.md">Unity Companion License</a>)</p>
+<p>This project is licensed under the MIT License (<a href="https://github.com/LTMX/Unity.mathx/blob/master/LICENSE">License</a>)</p>
+<p>Unity.Mathematics Companion License (<a href="https://github.com/Unity-Technologies/Unity.mathx/blob/master/LICENSE.md">Unity Companion License</a>)</p>
