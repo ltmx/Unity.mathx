@@ -56,12 +56,12 @@ using static Unity.Mathematics.mathx;
 
 ## Roadmap
 - [x] Add Fast Functions
+- [x] Signed Distance Functions
 - [ ] Complete Documentation `WIP`
-- [ ] Signed Distance Functions `WIP`
 - [ ] Jobify Class `WIP`
-- [ ] Function Pointers `WIP`
+- [ ] Burst Compiled Function Pointers `WIP`
+- [ ] Function Iterators `WIP`
 - [ ] Geometry Processing
-- [ ] Function Iterstors
 
 <br>
 
