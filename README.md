@@ -28,12 +28,6 @@ return v1 * v1;
 return f.length().clamp(0, 10).cos().sq();
 ```
 
-
-## Using Declaration
-```C#
-using static Unity.Mathematics.mathx;
-```
-
 ## Using Declaration
 ```C#
 using static Unity.Mathematics.mathx;
