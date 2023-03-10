@@ -34,10 +34,14 @@ return f.length().clamp(0, 10).cos().sq();
 using static Unity.Mathematics.mathx;
 ```
 
+## Using Declaration
+```C#
+using static Unity.Mathematics.mathx;
+```
+
 ## Guidelines
 
- - shader like syntax
- - namespace `Unity.Mathematics`
+ - namespace `Unity.Mathematics` (for ease of use, no need additional "using" declarations !)
  - static class `Unity.Mathematics.mathx`
 
 
@@ -54,13 +58,25 @@ using static Unity.Mathematics.mathx;
 
 
 ## Roadmap
-- [x] Add Fast Functions
+- [x] Fast Functions
+- [x] Constants (PI, HPI, EULER, TAU, 
+- [x] `Mathf` functions missing from `Unity.Mathematics`
+- [x] Random Extensions (`Random.range` and others)
+- [x] Component based functions (`cmax`, `cmin`, `cmul`, `cmaxAxis`, `cminAxis`, `sum`)
 - [x] Signed Distance Functions
-- [ ] Complete Documentation `WIP`
-- [ ] Jobify Class `WIP`
+- [x] Component based logic (`any`, `all`, `select`, `approx`, `odd`, `even`, `isnan`, `anynan`)
+- [x] Multidimentional Array data accessors => `anyfloat4[,,].Get(anyInt3)`
+- [x] Interpolation Functions (`InOutCubic`, `smoothstep`, `smoothstep11`, `smoothstep9`, and others)
+- [x] `smoothmin`, `smoothmax`
+- [x] Shorthands (`3D Directions`, `2D Directions`, and others)
+- [x] Data Construction (`append`, `float2.xyzw()`, matrix construction, etc)
+- [x] Data Conversion (`anyColortArray.tofloat4Array()`, and others)
+- [ ] Noise Functions `WIP` (`Simplex`, `Perlin`, `Whorley`, `Layered`, `Voronoi`)
+- [ ] Documentation `80% Complete``
+- [ ] Job Helpers `WIP`
 - [ ] Burst Compiled Function Pointers `WIP`
-- [ ] Function Iterators `WIP`
-- [ ] Geometry Processing
+- [ ] Function Iterators (prevents nested loops) `WIP`
+- [ ] Mesh Processing
 
 <br>
 
