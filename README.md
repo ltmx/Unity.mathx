@@ -78,6 +78,26 @@ using static Unity.Mathematics.mathx;
 - [ ] Function Iterators (prevents nested loops) `WIP`
 - [ ] Mesh Processing
 
+## New Structs
+```C#
+struct bounds // UnityEngine translation compatible with Unity.Mathematics (implicit cast to "UnityEngine.Bounds")
+```
+```C#
+struct ray    // UnityEngine translation compatible with Unity.Mathematics (implicit cast to "UnityEngine.Ray")
+```
+```C#
+struct color  // UnityEngine translation compatible with Unity.Mathematics (implicit cast to "UnityEngine.Color")
+```
+```C#
+struct byte4  // useful for Color to byte conversion for image file export (implicit cast to "UnityEngine.Color32")
+```
+```C#
+struct byte3
+```
+```C#
+struct byte2
+```
+
 <br>
 
 ## LICENSING
