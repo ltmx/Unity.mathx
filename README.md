@@ -66,7 +66,7 @@ using static Unity.Mathematics.mathx;
 - [x] Data Construction (`append`, `float2.xyzw()`, matrix construction, etc)
 - [x] Data Conversion (`anyColortArray.tofloat4Array()`, and others)
 - [ ] Noise Functions `WIP` (`Simplex`, `Perlin`, `Whorley`, `Layered`, `Voronoi`)
-- [ ] Documentation `80% Complete``
+- [ ] Documentation `80% Complete`
 - [ ] Job Helpers `WIP`
 - [ ] Burst Compiled Function Pointers `WIP`
 - [ ] Function Iterators (prevents nested loops) `WIP`
