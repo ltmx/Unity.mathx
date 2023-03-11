@@ -81,6 +81,7 @@ namespace Unity.Mathematics
         
         /// <summary>MethodImplOptions.AggressiveInlining</summary>
         public const int INLINE = 256; // MethodImpl.AggressiveInlining
+        public const int IL = 256; // MethodImpl.AggressiveInlining
         public const EditorBrowsableState NEVER = EditorBrowsableState.Never; // EditorBrowsableState.Never
     }
 }

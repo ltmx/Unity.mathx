@@ -78,11 +78,7 @@ namespace Unity.Mathematics
         /// Performs a matrix multiplication of the form: m * f
         [MethodImpl(INLINE)]
         public static float3 mul(this float3x4 m, float4 p) => m[0] * p.x + m[1] * p.y + m[2] * p.z + m[3] * p.w;
-
-        /// Returns the result of transforming a vector by a quaternion
-        [MethodImpl(INLINE)]
-        public static float3 mul(this float3 f, quaternion rotation) => math.mul(rotation, f);
-
+        
         
         // float4xN --------------------------------------------------
 

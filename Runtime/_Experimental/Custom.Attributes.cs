@@ -8,9 +8,17 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Runtime.Remoting.Messaging;
 using AOT;
+using NUnit.Framework;
+using SolidUtilities.UnityEngineInternals;
 using Unity.Burst;
+
+
+
+
 
 namespace Unity.Mathematics
 {
@@ -40,31 +48,13 @@ namespace Unity.Mathematics
     //     }
     // }
     
-    public class InlineAttribute : Attribute
-    {
-        public Attribute Process() => new MethodImplAttribute(MethodImplOptions.AggressiveInlining);
-    }
     
-    public class ILAttribute : Attribute
-    {
-        public Attribute Process() => new MethodImplAttribute(MethodImplOptions.AggressiveInlining);
-    }
-    public class ILBurstAttribute : Attribute, IMetadataAttribute
-    {
-        public Attribute[] Process() => new Attribute[]
-        {
-            new MethodImplAttribute(MethodImplOptions.AggressiveInlining),
-            new BurstCompileAttribute(FloatPrecision.Low, FloatMode.Fast)
-        };
-    }
 
-    public class MathxPointerAttribute : Attribute, IMetadataAttribute
-    {
-        private Type _type;
-        public MathxPointerAttribute(Type type) => _type = type;
-        public Attribute[] Process() => new Attribute[]{ new BurstCompileAttribute(), new MonoPInvokeCallbackAttribute(_type) };
-    }
-    
+    // public class InlineAttribute : Attribute
+    // {
+    //     public Attribute Process() => new MethodImplAttribute(MethodImplOptions.AggressiveInlining);
+    // }
+
     public class MathxAttribute : Attribute
     {
         public Attribute Process() => new BurstCompileAttribute(FloatPrecision.Low, FloatMode.Fast);
@@ -141,4 +131,5 @@ namespace Unity.Mathematics
         [DisplayName("My Name")]
         public string Name { get; set; }
     }
+    
 }
