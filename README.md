@@ -44,7 +44,7 @@ using static Unity.Mathematics.mathx;
 1. Copy Git Package URL : `https://github.com/LTMX/Unity.mathx.git`
 2. In Unity : `Window > Package Manager > Add Package From Git URL`
 
-#### Method 2 : <br>
+#### Method 2 : (Not Up To Date) <br>
 1. Download the package in *releases*,
 2. Unzip the file
 3. Unity : `Window > Package Manager > Add Package From Disk`
