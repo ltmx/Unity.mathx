@@ -4,6 +4,7 @@
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/LTMX/Unity.mathx?color=blueviolet)
 ![GitHub top language](https://img.shields.io/github/languages/top/LTMX/Unity.mathx?color=success)
 ![GitHub](https://img.shields.io/github/license/LTMX/Unity.mathx)
+[![openupm](https://img.shields.io/npm/v/com.ltmx.mathematics.mathx?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.ltmx.mathematics.mathx/)
 
 ## Extension Library for Unity.Mathematics
 
