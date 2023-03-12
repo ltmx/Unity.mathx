@@ -4,6 +4,8 @@
 // **    Repository : https://github.com/LTMX/Unity.Mathematics-Extensions
 #endregion
 
+using System;
+using System.Runtime.InteropServices;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
@@ -32,6 +34,29 @@ namespace Unity.Mathematics // Should be defined in the assembly definition // J
             }
             
         }
+        
+        public static FunctionPointer<T> GetFunctionPointerDelegate<T>(T functionPointer) where T : Delegate => new(Marshal.GetFunctionPointerForDelegate(functionPointer));
 
-    } // Jobify class
-}// Namespace
+        public static ActionJob ToActionJob(this Action action) => new(GetFunctionPointerDelegate(action));
+        // Credits to https://github.com/GilbertoGojira/DOTS-Stackray/blob/master/Packages/com.stackray.jobs/ActionJob.cs
+        
+        // public static T ToJob<T>(this Delegate action) where T : struct, IJob => new T(GetFunctionPointerDelegate(action));
+        
+        public delegate void Action();
+
+        /// This job will execute an action
+        [BurstCompile]
+        public struct ActionJob : IJob {
+
+            public static JobHandle Schedule(Action action, JobHandle inputDeps) 
+                => action.ToActionJob().Schedule(inputDeps);
+            private FunctionPointer<Action> Action;
+            public ActionJob(FunctionPointer<Action> action) {
+                Action = action;
+            }
+            public void Execute() => Action.Invoke();
+        }
+
+    }
+    
+}

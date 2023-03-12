@@ -175,6 +175,16 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float4 xyzw(this float2 xy, float2 zw) => new(xy, zw);
         /// appends a float3 to a float to create a float4
         [MethodImpl(IL)] public static float4 xyzw(this float x, float3 yzw) => new(x, yzw);
+        
+        public static float2x3 append(this float2x2 m, float2 c) => new(m.c0, m.c1, c);
+        public static float2x4 append(this float2x3 m, float2 c) => new(m.c0, m.c1, m.c2, c);
+        public static float3x3 append(this float3x2 m, float3 c) => new(m.c0, m.c1, c);
+        public static float3x4 append(this float3x3 m, float3 c) => new(m.c0, m.c1, m.c2, c);
+        public static float4x3 append(this float4x2 m, float4 c) => new(m.c0, m.c1, c);
+        public static float4x4 append(this float4x3 m, float4 c) => new(m.c0, m.c1, m.c2, c);
+        public static float2x2 f2x2(this float2 c1, float2 c2) => new(c1, c2);
+        public static float3x2 f3x2(this float3 c1, float3 c2) => new(c1, c2);
+        public static float4x2 f4x2(this float4 c1, float4 c2) => new(c1, c2);
 
         #endregion
         

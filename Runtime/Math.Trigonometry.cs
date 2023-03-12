@@ -4,6 +4,7 @@
 // **    Repository : https://github.com/LTMX/Unity.Mathematics-Extensions
 #endregion
 
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using ma = Unity.Mathematics.math;
 using f4 = Unity.Mathematics.float4;
@@ -490,5 +491,8 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="sincos(float2, float)"/>
         public static void sincos(this float4x2 f2, float4 f) => math.sincos(f, out f2.c0, out f2.c1);
 
+        [MethodImpl(IL)] private static float3 mod360(this ref float3 angles) => angles = new float3(angles.x.mod360(), angles.y.mod360(), angles.z.mod360());
+        [MethodImpl(IL)] private static float mod360(this float angle) => angle.mod(360);
+        [MethodImpl(IL)] private static float mod2PI(this float angle) => angle.mod(TAU);
     }
 }
