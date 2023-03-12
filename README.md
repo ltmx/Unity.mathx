@@ -8,8 +8,7 @@
 
 ## Extension Library for Unity.Mathematics
 
-Extension Library for [`Unity.Mathematics`](https://github.com/Unity-Technologies/Unity.Mathematics) <br>
-& many useful methods to process mathematics !<br>
+Extension Library for [`Unity.Mathematics`](https://github.com/Unity-Technologies/Unity.Mathematics) & many useful methods to process mathematics !<br><br>
 Package name : `com.ltmx.mathematics.mathx`
 
 <!--
