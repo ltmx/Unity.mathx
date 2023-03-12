@@ -256,6 +256,63 @@ namespace Unity.Mathematics
         ///<inheritdoc cref="f4x4(float4)"/>
         [MethodImpl(IL)] public static uint2x2 u2x2(this uint2 f) => new(f, f);
 
+
+
+        #region Matrix Truncation
+
+        /// Truncates the matrix to the specified size
+        [MethodImpl(IL)] public static float2x2 f2x2(this float2x3 m) => new(m.c0.xy, m.c1.xy);
+        /// <inheritdoc cref="f2x2(float2x3)"/>
+        [MethodImpl(IL)] public static float2x2 f2x2(this float3x3 m) => new(m.c0.xy, m.c1.xy);
+        /// <inheritdoc cref="f2x2(float2x3)"/>
+        [MethodImpl(IL)] public static float2x2 f2x2(this float4x3 m) => new(m.c0.xy, m.c1.xy);
+        /// <inheritdoc cref="f2x2(float2x3)"/>
+        [MethodImpl(IL)] public static float2x2 f2x2(this float2x4 m) => new(m.c0.xy, m.c1.xy);
+        /// <inheritdoc cref="f2x2(float2x3)"/>
+        [MethodImpl(IL)] public static float2x2 f2x2(this float3x4 m) => new(m.c0.xy, m.c1.xy);
+        /// <inheritdoc cref="f2x2(float2x3)"/>
+        [MethodImpl(IL)] public static float2x2 f2x2(this float4x4 m) => new(m.c0.xy, m.c1.xy);
+        /// <inheritdoc cref="f2x2(float2x3)"/>
+        [MethodImpl(IL)] public static float2x3 f2x3(this float3x3 m) => new(m.c0.xy, m.c1.xy, m.c2.xy);
+        /// <inheritdoc cref="f2x2(float2x3)"/>
+        [MethodImpl(IL)] public static float2x3 f2x3(this float4x3 m) => new(m.c0.xy, m.c1.xy, m.c2.xy);
+        /// <inheritdoc cref="f2x2(float2x3)"/>
+        [MethodImpl(IL)] public static float2x3 f2x3(this float3x4 m) => new(m.c0.xy, m.c1.xy, m.c2.xy);
+        /// <inheritdoc cref="f2x2(float2x3)"/>
+        [MethodImpl(IL)] public static float2x3 f2x3(this float4x4 m) => new(m.c0.xy, m.c1.xy, m.c2.xy);
+        /// <inheritdoc cref="f2x2(float2x3)"/>
+        [MethodImpl(IL)] public static float2x4 f2x4(this float3x4 m) => new(m.c0.xy, m.c1.xy, m.c2.xy, m.c3.xy);
+        /// <inheritdoc cref="f2x2(float2x3)"/>
+        [MethodImpl(IL)] public static float2x4 f2x4(this float4x4 m) => new(m.c0.xy, m.c1.xy, m.c2.xy, m.c3.xy);
+        
+        /// <inheritdoc cref="f2x2(float2x3)"/>
+        [MethodImpl(IL)] public static float3x2 f3x2(this float3x3 m) => new(m.c0.xyz, m.c1.xyz);
+        /// <inheritdoc cref="f2x2(float2x3)"/>
+        [MethodImpl(IL)] public static float3x2 f3x2(this float4x3 m) => new(m.c0.xyz, m.c1.xyz);
+        /// <inheritdoc cref="f2x2(float2x3)"/>
+        [MethodImpl(IL)] public static float3x2 f3x2(this float3x4 m) => new(m.c0.xyz, m.c1.xyz);
+        /// <inheritdoc cref="f2x2(float2x3)"/>
+        [MethodImpl(IL)] public static float3x2 f3x2(this float4x4 m) => new(m.c0.xyz, m.c1.xyz);
+        /// <inheritdoc cref="f2x2(float2x3)"/>
+        [MethodImpl(IL)] public static float3x3 f3x3(this float4x3 m) => new(m.c0.xyz, m.c1.xyz, m.c2.xyz);
+        /// <inheritdoc cref="f2x2(float2x3)"/>
+        [MethodImpl(IL)] public static float3x3 f3x3(this float3x4 m) => new(m.c0.xyz, m.c1.xyz, m.c2.xyz);
+        /// <inheritdoc cref="f2x2(float2x3)"/>
+        [MethodImpl(IL)] public static float3x3 f3x3(this float4x4 m) => new(m.c0.xyz, m.c1.xyz, m.c2.xyz);
+        /// <inheritdoc cref="f2x2(float2x3)"/>
+        [MethodImpl(IL)] public static float3x4 f3x4(this float4x4 m) => new(m.c0.xyz, m.c1.xyz, m.c2.xyz, m.c3.xyz);
+        
+        /// <inheritdoc cref="f2x2(float2x3)"/>
+        [MethodImpl(IL)] public static float4x2 f4x2(this float4x3 m) => new(m.c0, m.c1);
+        /// <inheritdoc cref="f2x2(float2x3)"/>
+        [MethodImpl(IL)] public static float4x2 f4x2(this float4x4 m) => new(m.c0, m.c1);
+        /// <inheritdoc cref="f2x2(float2x3)"/>
+        [MethodImpl(IL)] public static float4x3 f4x3(this float4x4 m) => new(m.c0, m.c1, m.c2);
+
+        #endregion
+
+
+
         #endregion
     }
 }
