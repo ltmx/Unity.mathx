@@ -85,9 +85,7 @@ namespace Unity.Mathematics
         private static float4 openSimplex2SDerivatives_Conventional(float3 X)
         {
             X = X.dot(float3(2 / 3)) - X;
-
             var result = openSimplex2SDerivativesPart(X) + openSimplex2SDerivativesPart(X + 144.5f);
-
             return float4(result.xyz.dot(float3(2 / 3)) - result.xyz, result.w);
         }
 
