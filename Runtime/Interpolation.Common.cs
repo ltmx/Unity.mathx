@@ -161,6 +161,25 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static  double3 lerp(this double f, double3 min, double3 max) => math.lerp(min, max, f);
         /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static  double2 lerp(this double f, double2 min, double2 max) => math.lerp(min, max, f);
+        
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        [MethodImpl(IL)] public static float2x2 lerp(this float t, float2x2 f1, float2x2 f2) => t.inv() * f1 + t * f2;
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        [MethodImpl(IL)] public static float2x3 lerp(this float t, float2x3 f1, float2x3 f2) => t.inv() * f1 + t * f2;
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        [MethodImpl(IL)] public static float2x4 lerp(this float t, float2x4 f1, float2x4 f2) => t.inv() * f1 + t * f2;
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        [MethodImpl(IL)] public static float3x2 lerp(this float t, float3x2 f1, float3x2 f2) => t.inv() * f1 + t * f2;
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        [MethodImpl(IL)] public static float3x3 lerp(this float t, float3x3 f1, float3x3 f2) => t.inv() * f1 + t * f2;
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        [MethodImpl(IL)] public static float3x4 lerp(this float t, float3x4 f1, float3x4 f2) => t.inv() * f1 + t * f2;
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        [MethodImpl(IL)] public static float4x2 lerp(this float t, float4x2 f1, float4x2 f2) => t.inv() * f1 + t * f2;
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        [MethodImpl(IL)] public static float4x3 lerp(this float t, float4x3 f1, float4x3 f2) => t.inv() * f1 + t * f2;
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        [MethodImpl(IL)] public static float4x4 lerp(this float t, float4x4 f1, float4x4 f2) => t.inv() * f1 + t * f2;
 
         // Lerp Angle -------------------------------------------
         [MethodImpl(IL)] public static  float lerpAngle(this float x, float a, float b) {
