@@ -233,6 +233,10 @@ namespace Unity.Mathematics
         public static float dot(this Vector3 f, float3 f2) => math.dot(f, f2);
         public static float dot(this Vector2 f, float2 f2) => math.dot(f, f2);
         
+        public static int dot(this int4 f, int4 f2) => math.dot(f, f2);
+        public static int dot(this int3 f, int3 f2) => math.dot(f, f2);
+        public static int dot(this int2 f, int2 f2) => math.dot(f, f2);
+        
         
         // Reflect
         
