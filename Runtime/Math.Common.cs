@@ -470,5 +470,49 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float4 dim(this float a, int4 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
 
         #endregion
+
+        /// Returns input * 2 - 1
+        /// Effectively remaps the range [0, 1] to [-1, 1]
+        [MethodImpl(IL)] public static float m2n1(this float f) => f * 2 - 1;
+        /// <inheritdoc cref="m2n1(float)"/>
+        [MethodImpl(IL)] public static float2 m2n1(this float2 f) => f * 2 - 1;
+        /// <inheritdoc cref="m2n1(float)"/>
+        [MethodImpl(IL)] public static float3 m2n1(this float3 f) => f * 2 - 1;
+        /// <inheritdoc cref="m2n1(float)"/>
+        [MethodImpl(IL)] public static float4 m2n1(this float4 f) => f * 2 - 1;
+        /// <inheritdoc cref="m2n1(float)"/>
+        [MethodImpl(IL)] public static int m2n1(this int f) => f * 2 - 1;
+        /// <inheritdoc cref="m2n1(float)"/>
+        [MethodImpl(IL)] public static int2 m2n1(this int2 f) => f * 2 - 1;
+        /// <inheritdoc cref="m2n1(float)"/>
+        [MethodImpl(IL)] public static int3 m2n1(this int3 f) => f * 2 - 1;
+        /// <inheritdoc cref="m2n1(float)"/>
+        [MethodImpl(IL)] public static int4 m2n1(this int4 f) => f * 2 - 1;
+        /// <inheritdoc cref="m2n1(float)"/>
+        [MethodImpl(IL)] public static double m2n1(this double f) => f * 2 - 1;
+        /// <inheritdoc cref="m2n1(float)"/>
+        [MethodImpl(IL)] public static double2 m2n1(this double2 f) => f * 2 - 1;
+        /// <inheritdoc cref="m2n1(float)"/>
+        [MethodImpl(IL)] public static double3 m2n1(this double3 f) => f * 2 - 1;
+        /// <inheritdoc cref="m2n1(float)"/>
+        [MethodImpl(IL)] public static double4 m2n1(this double4 f) => f * 2 - 1;
+        /// <inheritdoc cref="m2n1(float)"/>
+        [MethodImpl(IL)] public static float2x2 m2n1(this float2x2 f) => f * 2 - 1;
+        /// <inheritdoc cref="m2n1(float)"/>
+        [MethodImpl(IL)] public static float2x3 m2n1(this float2x3 f) => f * 2 - 1;
+        /// <inheritdoc cref="m2n1(float)"/>
+        [MethodImpl(IL)] public static float2x4 m2n1(this float2x4 f) => f * 2 - 1;
+        /// <inheritdoc cref="m2n1(float)"/>
+        [MethodImpl(IL)] public static float3x2 m2n1(this float3x2 f) => f * 2 - 1;
+        /// <inheritdoc cref="m2n1(float)"/>
+        [MethodImpl(IL)] public static float3x3 m2n1(this float3x3 f) => f * 2 - 1;
+        /// <inheritdoc cref="m2n1(float)"/>
+        [MethodImpl(IL)] public static float3x4 m2n1(this float3x4 f) => f * 2 - 1;
+        /// <inheritdoc cref="m2n1(float)"/>
+        [MethodImpl(IL)] public static float4x2 m2n1(this float4x2 f) => f * 2 - 1;
+        /// <inheritdoc cref="m2n1(float)"/>
+        [MethodImpl(IL)] public static float4x3 m2n1(this float4x3 f) => f * 2 - 1;
+        /// <inheritdoc cref="m2n1(float)"/>
+        [MethodImpl(IL)] public static float4x4 m2n1(this float4x4 f) => f * 2 - 1;
     }
 }
