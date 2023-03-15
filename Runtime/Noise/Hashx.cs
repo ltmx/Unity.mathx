@@ -204,18 +204,35 @@ namespace Unity.Mathematics
             fp = fp * fp * fp * (fp * (fp * 6 - 15) + 10);
             return lerp(lerp(d00, d01, fp.y), lerp(d10, d11, fp.y), fp.x);
         }
+
+        private const float F = 0.61803398875f; // golden ratio
+        public static float hashx(this float4 p) {
+            p = frac(p * F);
+            p += dot(p, p.shuffle() + 37);
+            return frac(p.cmul() * p.sum());
+        }
+        public static float hashx(this float3 p) {
+            p = (p * F).frac();
+            p += p.dot(p.shuffle() + 37);
+            return (p.cmul() * p.sum()).frac();
+        }
+
+        public static float hashx(this float2 p) {
+            return p
+                .dim(F)
+                .frac()
+                .set(out p)
+                .add(p.shuffle().add(37).dot(p))
+                .set(out p)
+                .cmul()
+                .dim(p.sum())
+                .frac();
+        }
+
+        private static float hashx(float p) {
+            p = frac(p * F + 0.1f) + p * p * 34.53f;
+            return frac(p * (p + 1));
+        }
         
-        const float F = 0.61803398875f; // golden ratio
-        public static float hashx(this float3 coord) {
-            coord = frac(coord * F);
-            coord += dot(coord, coord.yzx + 37);
-            return frac(coord.cmul() * coord.sum());
-        }
-        public static float hashx(this float2 coord)
-        {
-            coord = frac(coord * F);
-            coord += dot(coord, coord.yx + 37);
-            return frac(coord.cmul() * coord.sum());
-        }
     }
 }
