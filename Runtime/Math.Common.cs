@@ -514,5 +514,76 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float4x3 m2n1(this float4x3 f) => f * 2 - 1;
         /// <inheritdoc cref="m2n1(float)"/>
         [MethodImpl(IL)] public static float4x4 m2n1(this float4x4 f) => f * 2 - 1;
+        
+        /// Addition Operation
+        [MethodImpl(IL)]
+        public static float add(this float x, float y) => x + y;
+        /// <inheritdoc cref="add(float, float)"/>
+        [MethodImpl(IL)] public static float2 add(this float2 x, float2 y) => x + y;
+        /// <inheritdoc cref="add(float, float)"/>
+        [MethodImpl(IL)] public static float3 add(this float3 x, float3 y) => x + y;
+        /// <inheritdoc cref="add(float, float)"/>
+        [MethodImpl(IL)] public static float4 add(this float4 x, float4 y) => x + y;
+        /// <inheritdoc cref="add(float, float)"/>
+        [MethodImpl(IL)] public static float2 add(this float2 x, float y) => x + y;
+        /// <inheritdoc cref="add(float, float)"/>
+        [MethodImpl(IL)] public static float3 add(this float3 x, float y) => x + y;
+        /// <inheritdoc cref="add(float, float)"/>
+        [MethodImpl(IL)] public static float4 add(this float4 x, float y) => x + y;
+        /// <inheritdoc cref="add(float, float)"/>
+        [MethodImpl(IL)] public static float2 add(this float x, float2 y) => x + y;
+        /// <inheritdoc cref="add(float, float)"/>
+        [MethodImpl(IL)] public static float3 add(this float x, float3 y) => x + y;
+        /// <inheritdoc cref="add(float, float)"/>
+        [MethodImpl(IL)] public static float4 add(this float x, float4 y) => x + y;
+        
+        /// Subtraction Operation
+        [MethodImpl(IL)] public static float sub(this float x, float y) => x - y;
+        /// <inheritdoc cref="sub(float, float)"/>
+        [MethodImpl(IL)] public static float2 sub(this float2 x, float2 y) => x - y;
+        /// <inheritdoc cref="sub(float, float)"/>
+        [MethodImpl(IL)] public static float3 sub(this float3 x, float3 y) => x - y;
+        /// <inheritdoc cref="sub(float, float)"/>
+        [MethodImpl(IL)] public static float4 sub(this float4 x, float4 y) => x - y;
+        /// <inheritdoc cref="sub(float, float)"/>
+        [MethodImpl(IL)] public static float2 sub(this float2 x, float y) => x - y;
+        /// <inheritdoc cref="sub(float, float)"/>
+        [MethodImpl(IL)] public static float3 sub(this float3 x, float y) => x - y;
+        /// <inheritdoc cref="sub(float, float)"/>
+        [MethodImpl(IL)] public static float4 sub(this float4 x, float y) => x - y;
+        /// <inheritdoc cref="sub(float, float)"/>
+        [MethodImpl(IL)] public static float2 sub(this float x, float2 y) => x - y;
+        /// <inheritdoc cref="sub(float, float)"/>
+        [MethodImpl(IL)] public static float3 sub(this float x, float3 y) => x - y;
+        /// <inheritdoc cref="sub(float, float)"/>
+        [MethodImpl(IL)] public static float4 sub(this float x, float4 y) => x - y;
+        
+        /// Division Operation
+        [MethodImpl(IL)] public static float div(this float x, float y) => x / y;
+        /// <inheritdoc cref="div(float, float)"/>
+        [MethodImpl(IL)] public static float2 div(this float2 x, float2 y) => x / y;
+        /// <inheritdoc cref="div(float, float)"/>
+        [MethodImpl(IL)] public static float3 div(this float3 x, float3 y) => x / y;
+        /// <inheritdoc cref="div(float, float)"/>
+        [MethodImpl(IL)] public static float4 div(this float4 x, float4 y) => x / y;
+        /// <inheritdoc cref="div(float, float)"/>
+        [MethodImpl(IL)] public static float2 div(this float2 x, float y) => x / y;
+        /// <inheritdoc cref="div(float, float)"/>
+        [MethodImpl(IL)] public static float3 div(this float3 x, float y) => x / y;
+        /// <inheritdoc cref="div(float, float)"/>
+        [MethodImpl(IL)] public static float4 div(this float4 x, float y) => x / y;
+        /// <inheritdoc cref="div(float, float)"/>
+        [MethodImpl(IL)] public static float2 div(this float x, float2 y) => x / y;
+        /// <inheritdoc cref="div(float, float)"/>
+        [MethodImpl(IL)] public static float3 div(this float x, float3 y) => x / y;
+        /// <inheritdoc cref="div(float, float)"/>
+        [MethodImpl(IL)] public static float4 div(this float x, float4 y) => x / y;
+        
+        /// Shuffle Components
+        [MethodImpl(IL)] public static float2 shuffle(this float2 f) => new(f.y, f.x);
+        /// <inheritdoc cref="shuffle(float2)"/>
+        [MethodImpl(IL)] public static float3 shuffle(this float3 f) => new(f.y, f.z, f.x);
+        /// <inheritdoc cref="shuffle(float2)"/>
+        [MethodImpl(IL)] public static float4 shuffle(this float4 f) => new(f.y, f.z, f.w, f.x);
     }
 }

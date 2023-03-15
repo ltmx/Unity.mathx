@@ -10,7 +10,7 @@ namespace Unity.Mathematics
 {
     public static partial class mathx
     {
-        // private static uint hashx(uint seed, uint x, uint y)
+        // private static uint hashx (uint seed, uint x, uint y)
         // {
         //     seed ^= x;
         //     seed *= 0x51d7348d;
@@ -175,18 +175,16 @@ namespace Unity.Mathematics
             );
 
             float3x4 blend_x = frac.z.lerp(corners, corners_z1);
-
             float3x2 blend_xy = frac.y.lerp(new float3x2(blend_x.c0, blend_x.c1), new float3x2(blend_x.c2, blend_x.c3));
-
             float3 blend_xyz = frac.x.lerp(blend_xy.c0, blend_xy.c1);
 
-            return math.dot(blend_xyz, new float3(0.25f, 0.25f, 0.25f));
+            return blend_xyz.dot(0.25f);
         }
 
-        private static float3 GenerateGradient(int3 cell) => cell.hashnp01();
+        public static float3 GenerateGradient(int3 cell) => cell.hashnp01();
 
 
-        private static float2 unity_gradientNoise_dir(float2 p)
+        public static float2 unity_gradientNoise_dir(float2 p)
         {
             p = p % 289;
             float x = (34 * p.x + 1) * p.x % 289 + p.y;
@@ -195,7 +193,7 @@ namespace Unity.Mathematics
             return normalize(float2(x - floor(x + 0.5f), abs(x) - 0.5f));
         }
 
-        private static float unity_gradientNoise(float2 p)
+        public static float unity_gradientNoise(float2 p)
         {
             float2 ip = floor(p);
             float2 fp = frac(p);
@@ -206,7 +204,18 @@ namespace Unity.Mathematics
             fp = fp * fp * fp * (fp * (fp * 6 - 15) + 10);
             return lerp(lerp(d00, d01, fp.y), lerp(d10, d11, fp.y), fp.x);
         }
-
         
+        const float F = 0.61803398875f; // golden ratio
+        public static float hashx(this float3 coord) {
+            coord = frac(coord * F);
+            coord += dot(coord, coord.yzx + 37);
+            return frac(coord.cmul() * coord.sum());
+        }
+        public static float hashx(this float2 coord)
+        {
+            coord = frac(coord * F);
+            coord += dot(coord, coord.yx + 37);
+            return frac(coord.cmul() * coord.sum());
+        }
     }
 }
