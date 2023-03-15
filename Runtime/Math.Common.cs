@@ -585,5 +585,9 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float3 shuffle(this float3 f) => new(f.y, f.z, f.x);
         /// <inheritdoc cref="shuffle(float2)"/>
         [MethodImpl(IL)] public static float4 shuffle(this float4 f) => new(f.y, f.z, f.w, f.x);
+        
+        /// sets the value of x to f and returns f
+        [MethodImpl(IL)] public static T set<T>(this T f, out T x) { x = f; return f; }
+
     }
 }
