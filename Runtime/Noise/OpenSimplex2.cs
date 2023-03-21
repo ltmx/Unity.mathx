@@ -10,7 +10,7 @@ namespace Unity.Mathematics
 {
     public static partial class mathx
     {
-        private static float4 permute(this float4 t) => t * (t * 34 + 133);
+        private static float4 permutesimplex(this float4 t) => t * (t * 34 + 133);
 
         // Gradient set is a normalized expanded rhombic-dodecahedron
         private static float3 grad(float hash)

@@ -4,6 +4,7 @@
 // **    Repository : https://github.com/LTMX/Unity.Mathematics-Extensions
 #endregion
 
+using System.Runtime.CompilerServices;
 using static Unity.Mathematics.math;
 
 namespace Unity.Mathematics
@@ -137,8 +138,8 @@ namespace Unity.Mathematics
             return frac(n.cmul() * n.sum());
         }
         
-        public static float hashnp01(this float2 coord)
-        {
+        public static float Hash(this float2 coord) {
+            return coord.seedrand() * 2 -1;
             float2 n = frac(coord * F1);
             n += dot(n, n.yx + 19.19f) + F2;
             n = frac(n * F3);
@@ -184,55 +185,23 @@ namespace Unity.Mathematics
         public static float3 GenerateGradient(int3 cell) => cell.hashnp01();
 
 
-        public static float2 unity_gradientNoise_dir(float2 p)
-        {
-            p = p % 289;
-            float x = (34 * p.x + 1) * p.x % 289 + p.y;
-            x = (34 * x + 1) * x % 289;
-            x = frac(x / 41) * 2 - 1;
-            return normalize(float2(x - floor(x + 0.5f), abs(x) - 0.5f));
-        }
+        public static float2 randdir(float2 p) => p.seedrand2() * 2 -1; // haha lol symetry on both axis
 
         public static float unity_gradientNoise(float2 p)
         {
             float2 ip = floor(p);
             float2 fp = frac(p);
-            float d00 = dot(unity_gradientNoise_dir(ip), fp);
-            float d01 = dot(unity_gradientNoise_dir(ip + float2(0, 1)), fp - float2(0, 1));
-            float d10 = dot(unity_gradientNoise_dir(ip + float2(1, 0)), fp - float2(1, 0));
-            float d11 = dot(unity_gradientNoise_dir(ip + float2(1, 1)), fp - float2(1, 1));
-            fp = fp * fp * fp * (fp * (fp * 6 - 15) + 10);
-            return lerp(lerp(d00, d01, fp.y), lerp(d10, d11, fp.y), fp.x);
+            float2 d0 = float2(dot(randdir(ip), fp), dot(randdir(ip + f2right), fp - f2right));
+            float2 d1 = float2(dot(randdir(ip + f2up), fp - f2up), dot(randdir(ip + 1), fp - 1));
+            fp = smooth5(fp);
+            d1 = fp.y.lerp(d0, d1);
+            return fp.x.lerp(d1.x, d1.y) + 0.5f;
         }
 
         private const float F = 0.61803398875f; // golden ratio
-        public static float hashx(this float4 p) {
-            p = frac(p * F);
-            p += dot(p, p.shuffle() + 37);
-            return frac(p.cmul() * p.sum());
-        }
-        public static float hashx(this float3 p) {
-            p = (p * F).frac();
-            p += p.dot(p.shuffle() + 37);
-            return (p.cmul() * p.sum()).frac();
-        }
-
-        public static float hashx(this float2 p) {
-            return p
-                .dim(F)
-                .frac()
-                .set(out p)
-                .add(p.shuffle().add(37).dot(p))
-                .set(out p)
-                .cmul()
-                .dim(p.sum())
-                .frac();
-        }
-
-        private static float hashx(float p) {
-            p = frac(p * F + 0.1f) + p * p * 34.53f;
-            return frac(p * (p + 1));
-        }
-        
+        [MethodImpl(IL)] public static float hashx(this float2 p) => p.dim(F).frac().set(out p).add(p.shuffle().add(37).dot(p)).set(out p).cmul().dim(p.sum()).frac();
+        [MethodImpl(IL)] public static float hashx(this float3 p) => p.dim(F).frac().set(out p).add(p.shuffle().add(37).dot(p)).set(out p).cmul().dim(p.sum()).frac();
+        [MethodImpl(IL)] public static float hashx(this float4 p) => p.dim(F).frac().set(out p).add(p.shuffle().add(37).dot(p)).set(out p).cmul().dim(p.sum()).frac();
+        [MethodImpl(IL)] public static float hashx(this float p) => frac(p * F + 0.1f).add(p.sq().dim(34.53f)).set(out p).dim(p + 1).frac();
     }
 }

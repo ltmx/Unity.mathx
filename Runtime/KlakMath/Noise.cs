@@ -3,7 +3,7 @@
 // using Unity.Mathematics;
 
 using System.Runtime.CompilerServices;
-using static Unity.Mathematics.math;
+// using static Unity.Mathematics.math;
 using static Unity.Mathematics.mathx;
 
 namespace Unity.Mathematics {
@@ -38,11 +38,11 @@ public static partial class Noise
     {
         var hash = new XXHash(seed);
         var i = (uint2)((int2)p + 0x10000000);
-        var x = frac(p);
+        var x = p.frac();
         var x0 = x.sq().inv().cube() + x.inv().sq().inv().cube() * 2.82842712475f;
         var g0 = hash.Float2(-1, 1, i);
         var g1 = hash.Float2(-1, 1, i + 1);
-        return lerp(g0, g1, x) * x0;
+        return x.lerp(g0, g1) * x0;
     }
 
     public static float3 Float3(float3 p, uint seed)
@@ -50,7 +50,7 @@ public static partial class Noise
         var hash = new XXHash(seed);
 
         var i = (uint3)((int3)p + 0x10000000);
-        var x = frac(p);
+        var x = p.frac();
 
         var x0 = x.sq().inv().cube();
         var x1 = x.inv().sq().inv().cube();
@@ -67,7 +67,7 @@ public static partial class Noise
         var hash = new XXHash(seed);
 
         var i = (uint4)((int4)p + 0x10000000);
-        var x = frac(p);
+        var x = p.frac();
 
         var x0 = x.sq().inv().cube();
         var x1 = x.inv().sq().inv().cube();
@@ -111,7 +111,7 @@ public static partial class Noise
 
     public static float3 Fractal3(float3 p, int octave, uint seed)
     {
-        var f = (float3)0;
+        float3 f = 0;
         float w = 1;
         for (var i = 0; i < octave; i++)
         {
