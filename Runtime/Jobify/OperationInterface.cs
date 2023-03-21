@@ -4,7 +4,6 @@
 // **    Repository : https://github.com/LTMX/Unity.Mathematics-Extensions
 #endregion
 
-using System;
 using System.Runtime.InteropServices;
 using AOT;
 using Unity.Burst;
