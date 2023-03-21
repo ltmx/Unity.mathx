@@ -166,6 +166,7 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="asfloat(double4)"/>
         [MethodImpl(IL)] public static float asfloat(this double f) => (float)f;
         
+        
         // floats as doubles -------------------------------------------
         /// Returns a double type equivalent
         [MethodImpl(IL)] public static double4 asdouble(this float4 f) => Convert.ToDouble(f);
