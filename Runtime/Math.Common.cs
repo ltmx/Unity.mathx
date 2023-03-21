@@ -468,22 +468,36 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float4 dim(this float a, int4 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
         
         /// <inheritdoc cref="dim(float, float)"/>
-        [MethodImpl(IL)] public static float dim(this float a, bool b) => a * b.asfloat();
+        [MethodImpl(IL)] public static float dim(this float a, bool b) => a * b.asint();
         /// <inheritdoc cref="dim(float, float)"/>
-        [MethodImpl(IL)] public static float2 dim(this float2 a, bool2 b) => a * b.asfloat();
+        [MethodImpl(IL)] public static float2 dim(this float2 a, bool2 b) => a * b.asint();
         /// <inheritdoc cref="dim(float, float)"/>
-        [MethodImpl(IL)] public static float3 dim(this float3 a, bool3 b) => a * b.asfloat();
+        [MethodImpl(IL)] public static float3 dim(this float3 a, bool3 b) => a * b.asint();
         /// <inheritdoc cref="dim(float, float)"/>
-        [MethodImpl(IL)] public static float4 dim(this float4 a, bool4 b) => a * b.asfloat();
+        [MethodImpl(IL)] public static float4 dim(this float4 a, bool4 b) => a * b.asint();
         
         /// <inheritdoc cref="dim(float, float)"/>
-        [MethodImpl(IL)] public static float dim(this bool a, float b) => a.asfloat() * b;
+        [MethodImpl(IL)] public static float2 dim(this float2 a, bool b) => a * b.asint();
+        /// <inheritdoc cref="dim(float, float)"/>
+        [MethodImpl(IL)] public static float3 dim(this float3 a, bool b) => a * b.asint();
+        /// <inheritdoc cref="dim(float, float)"/>
+        [MethodImpl(IL)] public static float4 dim(this float4 a, bool b) => a * b.asint();
+        
+        /// <inheritdoc cref="dim(float, float)"/>
+        [MethodImpl(IL)] public static float dim(this bool a, float b) => b.asint() * b;
         /// <inheritdoc cref="dim(float, float)"/>
         [MethodImpl(IL)] public static float2 dim(this bool2 a, float2 b) => a.asfloat() * b;
         /// <inheritdoc cref="dim(float, float)"/>
         [MethodImpl(IL)] public static float3 dim(this bool3 a, float3 b) => a.asfloat() * b;
         /// <inheritdoc cref="dim(float, float)"/>
         [MethodImpl(IL)] public static float4 dim(this bool4 a, float4 b) => a.asfloat() * b;
+        
+        /// <inheritdoc cref="dim(float, float)"/>
+        [MethodImpl(IL)] public static float2 dim(this bool a, float2 b) => a.asint() * b;
+        /// <inheritdoc cref="dim(float, float)"/>
+        [MethodImpl(IL)] public static float3 dim(this bool a, float3 b) => a.asint() * b;
+        /// <inheritdoc cref="dim(float, float)"/>
+        [MethodImpl(IL)] public static float4 dim(this bool a, float4 b) => a.asint() * b;
         
         /// <inheritdoc cref="dim(float, float)"/>
         [MethodImpl(IL)] public static int dim(this bool a, int b) => a.asint() * b;
@@ -495,6 +509,13 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static int4 dim(this bool4 a, int4 b) => a.asint() * b;
         
         /// <inheritdoc cref="dim(float, float)"/>
+        [MethodImpl(IL)] public static int2 dim(this bool a, int2 b) => a.asint() * b;
+        /// <inheritdoc cref="dim(float, float)"/>
+        [MethodImpl(IL)] public static int3 dim(this bool a, int3 b) => a.asint() * b;
+        /// <inheritdoc cref="dim(float, float)"/>
+        [MethodImpl(IL)] public static int4 dim(this bool a, int4 b) => a.asint() * b;
+        
+        /// <inheritdoc cref="dim(float, float)"/>
         [MethodImpl(IL)] public static int dim(this int a, bool b) => a * b.asint();
         /// <inheritdoc cref="dim(float, float)"/>
         [MethodImpl(IL)] public static int2 dim(this int2 a, bool2 b) => a * b.asint();
@@ -502,6 +523,13 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static int3 dim(this int3 a, bool3 b) => a * b.asint();
         /// <inheritdoc cref="dim(float, float)"/>
         [MethodImpl(IL)] public static int4 dim(this int4 a, bool4 b) => a * b.asint();
+        
+        /// <inheritdoc cref="dim(float, float)"/>
+        [MethodImpl(IL)] public static int2 dim(this int2 a, bool b) => a * b.asint();
+        /// <inheritdoc cref="dim(float, float)"/>
+        [MethodImpl(IL)] public static int3 dim(this int3 a, bool b) => a * b.asint();
+        /// <inheritdoc cref="dim(float, float)"/>
+        [MethodImpl(IL)] public static int4 dim(this int4 a, bool b) => a * b.asint();
         
         /// <inheritdoc cref="dim(float, float)"/>
         [MethodImpl(IL)] public static uint dim(this bool a, uint b) => a.asuint() * b;
@@ -513,6 +541,13 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static uint4 dim(this bool4 a, uint4 b) => a.asuint() * b;
         
         /// <inheritdoc cref="dim(float, float)"/>
+        [MethodImpl(IL)] public static uint2 dim(this bool a, uint2 b) => a.asuint() * b;
+        /// <inheritdoc cref="dim(float, float)"/>
+        [MethodImpl(IL)] public static uint3 dim(this bool a, uint3 b) => a.asuint() * b;
+        /// <inheritdoc cref="dim(float, float)"/>
+        [MethodImpl(IL)] public static uint4 dim(this bool a, uint4 b) => a.asuint() * b;
+        
+        /// <inheritdoc cref="dim(float, float)"/>
         [MethodImpl(IL)] public static uint dim(this uint a, bool b) => a * b.asuint();
         /// <inheritdoc cref="dim(float, float)"/>
         [MethodImpl(IL)] public static uint2 dim(this uint2 a, bool2 b) => a * b.asuint();
@@ -520,6 +555,13 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static uint3 dim(this uint3 a, bool3 b) => a * b.asuint();
         /// <inheritdoc cref="dim(float, float)"/>
         [MethodImpl(IL)] public static uint4 dim(this uint4 a, bool4 b) => a * b.asuint();
+        
+        /// <inheritdoc cref="dim(float, float)"/>
+        [MethodImpl(IL)] public static uint2 dim(this uint2 a, bool b) => a * b.asuint();
+        /// <inheritdoc cref="dim(float, float)"/>
+        [MethodImpl(IL)] public static uint3 dim(this uint3 a, bool b) => a * b.asuint();
+        /// <inheritdoc cref="dim(float, float)"/>
+        [MethodImpl(IL)] public static uint4 dim(this uint4 a, bool b) => a * b.asuint();
 
         #endregion
 
@@ -588,7 +630,7 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float3 add(this float x, float3 y) => x + y;
         /// <inheritdoc cref="add(float, float)"/>
         [MethodImpl(IL)] public static float4 add(this float x, float4 y) => x + y;
-        
+
         /// Subtraction Operation
         [MethodImpl(IL)] public static float sub(this float x, float y) => x - y;
         /// <inheritdoc cref="sub(float, float)"/>
@@ -641,6 +683,8 @@ namespace Unity.Mathematics
         /// sets the value of x to f and returns f
         [MethodImpl(IL)] public static T set<T>(this T f, out T x) { x = f; return f; }
 
+        #region Type Building
+
         ///<inheritdoc cref="math.float4(float)"/>
         public static float4 float4(float f) => math.float4(f);
         /// Returns a float4 with the first two components set to f, and the last two set to 0
@@ -651,25 +695,45 @@ namespace Unity.Mathematics
         public static float4 float4(float a, float b, float c, float d) => math.float4(a, b, c, d);
         /// <inheritdoc cref="math.float4(Mathematics.float2, Mathematics.float2)"/>
         public static float4 float4(float2 a, float2 b) => math.float4(a, b);
+        /// <inheritdoc cref="math.float4(Mathematics.float3, float)"/>
         public static float4 float4(float3 a, float b) => math.float4(a, b);
+        /// <inheritdoc cref="math.float4(float, Mathematics.float3)"/>
         public static float4 float4(float a, float3 b) => math.float4(a, b);
+        /// <inheritdoc cref="math.float4(float, float, Mathematics.float2)"/>
         public static float4 float4(float a, float2 b, float c) => math.float4(a, b, c);
+        /// <inheritdoc cref="math.float4(float, float, float, float)"/>
         public static float4 float4(float a, float b, float2 c) => math.float4(a, b, c);
+        /// <inheritdoc cref="math.float4(float, float, float, float)"/>
         public static float4 float4(float2 a, float b, float c) => math.float4(a, b, c);
         
+        /// <inheritdoc cref="math.float3(float, float, float)"/>
         public static float3 float3(float a, float b, float c) => math.float3(a, b, c);
+        /// <inheritdoc cref="math.float3(Mathematics.float2, float)"/>
         public static float3 float3(float2 a, float b) => math.float3(a, b);
+        /// <inheritdoc cref="math.float3(float, Mathematics.float2)"/>
         public static float3 float3(float a, float2 b) => math.float3(a, b);
+        /// <inheritdoc cref="math.float3(float)"/>
         public static float3 float3(float f) => math.float3(f);
+        /// <inheritdoc cref="math.float3(Mathematics.float2)"/>
         public static float3 float3(float2 f) => math.float3(f, 0);
+        /// Returns a float3 with containing the first three components of a float4
         public static float3 float3(float4 f) => math.float3(f.xyz); // crop w
         
+        /// <inheritdoc cref="math.float2(float, float)"/>
         public static float2 float2(float a, float b) => math.float2(a, b);
+        /// <inheritdoc cref="math.float2(float)"/>
         public static float2 float2(float f) => math.float2(f);
+        /// Returns a float2 with containing the first two components of a float3
         public static float2 float2(float3 f) => math.float2(f.xy); // crop z
+        /// Returns a float2 with containing the first two components of a float4
         public static float2 float2(float4 f) => math.float2(f.xy); // crop zw
-        
-        
+
+
+        #endregion
+
+
+
+
 
     }
 }
