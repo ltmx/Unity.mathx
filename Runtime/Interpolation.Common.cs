@@ -7,11 +7,8 @@
 #endregion
 
 using System.Runtime.CompilerServices;
-using AOT;
 using Unity.Burst;
 using UnityEngine;
-using static Unity.Burst.BurstCompiler;
-using static Unity.Mathematics.math;
 
 namespace Unity.Mathematics
 {
@@ -20,38 +17,38 @@ namespace Unity.Mathematics
     {
         ///<summary>Quintic Smoothstep</summary>
         [MethodImpl(IL)] public static  float4 smootherstep(this float4 f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();
-        ///<inheritdoc cref="smootherstep(float4)"/>
+        ///<inheritdoc cref="smootherstep(Mathematics.float4)"/>
         [MethodImpl(IL)] public static  float3 smootherstep(this float3 f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();
-        ///<inheritdoc cref="smootherstep(float4)"/>
+        ///<inheritdoc cref="smootherstep(Mathematics.float4)"/>
         [MethodImpl(IL)] public static  float2 smootherstep(this float2 f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();
-        ///<inheritdoc cref="smootherstep(float4)"/>
+        ///<inheritdoc cref="smootherstep(Mathematics.float4)"/>
         [MethodImpl(IL)] public static  float smootherstep(this float f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();
         
         ///<summary>Smoothstep using Cosine function to interpolate smoothly</summary>
         [MethodImpl(IL)] public static  float4 smoothstepcos(this float4 f) => (f.saturate() * PI).cos().inv() * 0.5f;
-        ///<inheritdoc cref="smoothstepcos(float4)"/>
+        ///<inheritdoc cref="smoothstepcos(Mathematics.float4)"/>
         [MethodImpl(IL)] public static  float3 smoothstepcos(this float3 f) => (f.saturate() * PI).cos().inv() * 0.5f;
-        ///<inheritdoc cref="smoothstepcos(float4)"/>
+        ///<inheritdoc cref="smoothstepcos(Mathematics.float4)"/>
         [MethodImpl(IL)] public static  float2 smoothstepcos(this float2 f) => (f.saturate() * PI).cos().inv() * 0.5f;
-        ///<inheritdoc cref="smoothstepcos(float4)"/>
+        ///<inheritdoc cref="smoothstepcos(Mathematics.float4)"/>
         [MethodImpl(IL)] public static  float smoothstepcos(this float f) => (f.saturate() * PI).cos().inv() * 0.5f;
         
         ///<summary>Lerp with a custom power</summary>
         [MethodImpl(IL)] public static  float4 eerp(this float4 f, float4 a, float4 b) => a.pow(1 - f) * b.pow(f);
-        ///<inheritdoc cref="eerp(float4,float4,float4)"/>
+        ///<inheritdoc cref="eerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)"/>
         [MethodImpl(IL)] public static  float3 eerp(this float3 f, float3 a, float3 b) => a.pow(1 - f) * b.pow(f);
-        ///<inheritdoc cref="eerp(float4,float4,float4)"/>
+        ///<inheritdoc cref="eerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)"/>
         [MethodImpl(IL)] public static  float2 eerp(this float2 f, float2 a, float2 b) => a.pow(1 - f) * b.pow(f);
-        ///<inheritdoc cref="eerp(float4,float4,float4)"/>
+        ///<inheritdoc cref="eerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)"/>
         [MethodImpl(IL)] public static  float eerp(this float f, float a, float b) => a.pow(1 - f) * b.pow(f);
         
         ///<summary>Inverse-Lerp with a custom power</summary>
         [MethodImpl(IL)] public static  float4 uneerp(this float4 f, float4 a, float4 b) => (a / f).ln() / (a / b).ln();
-        ///<inheritdoc cref="uneerp(float4,float4,float4)"/>
+        ///<inheritdoc cref="uneerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)"/>
         [MethodImpl(IL)] public static  float3 uneerp(this float3 f, float3 a, float3 b) => (a / f).ln() / (a / b).ln();
-        ///<inheritdoc cref="uneerp(float4,float4,float4)"/>
+        ///<inheritdoc cref="uneerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)"/>
         [MethodImpl(IL)] public static  float2 uneerp(this float2 f, float2 a, float2 b) => (a / f).ln() / (a / b).ln();
-        ///<inheritdoc cref="uneerp(float4,float4,float4)"/>
+        ///<inheritdoc cref="uneerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)"/>
         [MethodImpl(IL)] public static  float uneerp(this float f, float a, float b) => (a / f).ln() / (a / b).ln();
 
         // SmoothStep -----------------------------------------------------------------------------
@@ -131,54 +128,54 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static  double lerp(this double f, double min = 0.0, double max = 1.0) => math.lerp(min, max, f);
         /// Returns the result of a componentwise linear interpolating from min to max using the interpolation parameter f.
         [MethodImpl(IL)] public static  float4 lerp(this float4 f, float4 min, float4 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
         [MethodImpl(IL)] public static  float3 lerp(this float3 f, float3 min, float3 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
         [MethodImpl(IL)] public static  float2 lerp(this float2 f, float2 min, float2 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref=="lerp(float4,float4,float4)" />
+        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
         [MethodImpl(IL)] public static  float4 lerp(this Vector4 f, float4 min, float4 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref=="lerp(float4,float4,float4)" />
+        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
         [MethodImpl(IL)] public static  float3 lerp(this Vector3 f, float3 min, float3 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref=="lerp(float4,float4,float4)" />
+        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
         [MethodImpl(IL)] public static  float2 lerp(this Vector2 f, float2 min, float2 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
         [MethodImpl(IL)] public static  double4 lerp(this double4 f, double4 min, double4 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
         [MethodImpl(IL)] public static  double3 lerp(this double3 f, double3 min, double3 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
         [MethodImpl(IL)] public static  double2 lerp(this double2 f, double2 min, double2 max) => math.lerp(min, max, f);
 
         //using vectors as interpolation parameter
-        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
         [MethodImpl(IL)] public static  float4 lerp(this float f, float4 min, float4 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
         [MethodImpl(IL)] public static  float3 lerp(this float f, float3 min, float3 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
         [MethodImpl(IL)] public static  float2 lerp(this float f, float2 min, float2 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
         [MethodImpl(IL)] public static  double4 lerp(this double f, double4 min, double4 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
         [MethodImpl(IL)] public static  double3 lerp(this double f, double3 min, double3 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
         [MethodImpl(IL)] public static  double2 lerp(this double f, double2 min, double2 max) => math.lerp(min, max, f);
         
-        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
         [MethodImpl(IL)] public static float2x2 lerp(this float t, float2x2 f1, float2x2 f2) => t.inv() * f1 + t * f2;
-        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
         [MethodImpl(IL)] public static float2x3 lerp(this float t, float2x3 f1, float2x3 f2) => t.inv() * f1 + t * f2;
-        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
         [MethodImpl(IL)] public static float2x4 lerp(this float t, float2x4 f1, float2x4 f2) => t.inv() * f1 + t * f2;
-        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
         [MethodImpl(IL)] public static float3x2 lerp(this float t, float3x2 f1, float3x2 f2) => t.inv() * f1 + t * f2;
-        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
         [MethodImpl(IL)] public static float3x3 lerp(this float t, float3x3 f1, float3x3 f2) => t.inv() * f1 + t * f2;
-        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
         [MethodImpl(IL)] public static float3x4 lerp(this float t, float3x4 f1, float3x4 f2) => t.inv() * f1 + t * f2;
-        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
         [MethodImpl(IL)] public static float4x2 lerp(this float t, float4x2 f1, float4x2 f2) => t.inv() * f1 + t * f2;
-        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
         [MethodImpl(IL)] public static float4x3 lerp(this float t, float4x3 f1, float4x3 f2) => t.inv() * f1 + t * f2;
-        /// <inheritdoc cref="lerp(float4,float4,float4)" />
+        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
         [MethodImpl(IL)] public static float4x4 lerp(this float t, float4x4 f1, float4x4 f2) => t.inv() * f1 + t * f2;
 
         // Lerp Angle -------------------------------------------
