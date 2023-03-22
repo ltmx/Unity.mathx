@@ -180,7 +180,7 @@ removed duplicate constants
 - [ ] Mesh Processing
 
 ## New Structs
-  ```c#
+  ```c++
   struct bounds; // UnityEngine translation compatible with Unity.Mathematics (implicit cast to "UnityEngine.Bounds")
   struct ray;    // UnityEngine translation compatible with Unity.Mathematics (implicit cast to "UnityEngine.Ray")
   struct color;  // UnityEngine translation compatible with Unity.Mathematics (implicit cast to "UnityEngine.Color")
@@ -191,7 +191,7 @@ removed duplicate constants
   ```
   
 ## Method List
-```C#
+```c#
 // most methods have at least a dozen overloads
 asint asbool asfloat asdouble ascolor asfloat4 asfloat3 toVectorList 
 tofloatList toColorList tocolorList toColorArray tocolorArray tofloat4List
