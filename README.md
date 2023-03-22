@@ -33,13 +33,120 @@ return f.length().clamp(0, 10).cos().sq();
 using static Unity.Mathematics.mathx;
 ```
 
-## Guidelines
+# New in 1.3.1
 
- - namespace `Unity.Mathematics` (for ease of use, no need additional "using" declarations !)
- - static class `Unity.Mathematics.mathx`
+## Features
+- Matrix Truncation => `float3x2(float4x4)` // Truncates the input matrix to the desired size... can also be written as : `float4x4.f3x2()`
+```c#
+/// sets the value of x to f and returns f // Useful for modifying a variable in line.
+public static T set<T>(this T f, out T x) {  x = f; return f; }
+
+// Example :
+float3 x = new float3(1,1,1);
+
+// here x is set before computing lengthsq()
+var x = x.dim(4.2f).shuffle().set(out x).lengthsq() + x; 
+
+// we would have to write two lines instead
+x = x.dim(4.2f).shuffle();
+x = x.lengthsq() + x;
+```
+
+- Burst Compiled Function Pointers
+
+ ## Mew Methods
+```c#
+anyType.dim(otherType) => anyType* otherType // to add functionality missing from internal operator overloads // named dim to not confuse with mul()
+anyType.greater(otherType) => anyType > otherType
+anyType.less(otherType) =>  anyType < otherType
+anyType.greatereq(otherType) =>  anyType >= otherType
+anyType.lesseq(otherType) =>  anyType <= otherType
+anyType.eq(otherType) =>  anyType == otherType
+anyType.neq(otherType) =>  anyType != otherType
+randseed(seed)  => random float generated from a seed  // internally : Random.Init(seed).Nextfloat()
+randseed2(seed) => random float2 generated from a seed // internally : Random.Init(seed).Nextfloat()
+randseed3(seed) => random float3 generated from a seed // internally : Random.Init(seed).Nextfloat()
+randseed4(seed) => random float4 generated from a seed // internally : Random.Init(seed).Nextfloat()
+anyType.append()
+anyType.m2n1() => anyType* 2 - 1 // remaps anything from [0, 1] to [-1, 1]
+quaternion generation functions
+matrix generation functions
+transformation functions
+dot() // for int types
+value.lerp(MatrixA, MatrixB) // functionality to interpolate any matrix
+anyType.dim(otherType) => anyType * otherType // to add functionality for missing from operator overloads // 'dim' to not confuse with mul()
+anyType.div(otherType) => anyType / otherType
+anyType.add(otherType) => anyType + otherType
+anyType.sub(otherType) => anyType - otherType
+anyType.shuffle() // only for float2, float3 and float4
+anyType.hash() // math.hash(anyType)
+type generation methods float4(), float2(), float4x4(), etc
+asuint() // new overloads
+asbool() // new overloads
+```
+
+## Fixed
+```c#
+rand(float)
+rand(float float)
+rand(float4 float)
+randseed()
+Burst Compiled Function Pointers
+```
+
+## New Structs
+```c#
+struct byte1
+```
+
+## Structs Updates
+```c++
+struct byte1;  // Added Conversions, constructors / implicit and explicit casts / operator overloads + (New)
+struct byte2;  // Added Conversions, constructors / implicit and explicit casts / operator overloads + Using byte1 as unit type
+struct byte3;  // Added Conversions, constructors / implicit and explicit casts / operator overloads + Using byte1 as unit type
+struct byte4;  // Added Conversions, constructors / implicit and explicit casts / operator overloads + Using byte1 as unit type
+struct bounds; // Added methods : Corners() , FaceCenters
+```
+
+## Renamings
+```c#
+const Sqrt2Over2 => SQRT2_2
+changed all double precision constant suffix from _D to _DBL for consistency
+removed duplicate constants
+```
+
+## Random Updates
+- Fixed Broken Documentation
+- Added Tons of Documentation
+
+## WIP
+- Multidimensional Noise Function
+- Signed Distance Functions
+- SDF Processing Functions
+- Hashing Functions
+- Function Iterators
+- Generic Jobs
 
 
-## Install
+# Guidelines
+
+ - All code must adhere to the `Unity.Mathematics` namespace (for ease of use, no need additional "using" declarations !)
+ - All methods should exist in the `Unity.Mathematics.mathx` class (To prevent multiple using declarations)
+ - All Methods should follow a lower case syntax (shader like syntax)
+ - All methods names should be as short as possible while conserving their meaning or naming convension
+ - Everything must be Open Source
+ - Credits should (if the author can be found) figure above code snipets or in the file header (if reusing existing code)
+ - file mames should follow this convention : mathx.<usage>.<differentiation>
+      Example : mathx.interpolation.common (common methods for interpolation) or mathx.logix.floatx (float type related logic functions)
+    - File names for base types such as `bounds` or `byte2` should only have their type as a title : bounds.cs // byte2.cs
+ - Every method should be static (if applicable)
+ - Dependencies should not exist if applicable
+    - Code must be rewritten and optimized for Unity.Mathematics, compatibility checked
+    - Unification is key : if some functions are already available in math or Unity.Mathematics.math (sometimes under another name), use them !
+ - Documentation should be inherited from Unity.Mathematics.math methods for direct extension method translations
+    
+
+# Install
 #### Method 1 : <br>
 1. Copy Git Package URL : `https://github.com/LTMX/Unity.mathx.git`
 2. In Unity : `Window > Package Manager > Add Package From Git URL`
@@ -51,7 +158,7 @@ using static Unity.Mathematics.mathx;
 4. Select the `.json` file inside the unzipped package
 
 
-## Roadmap
+# Roadmap
 - [x] Fast Functions
 - [x] Constants (PI, HPI, EULER, TAU, 
 - [x] `Mathf` functions missing from `Unity.Mathematics`
@@ -73,23 +180,14 @@ using static Unity.Mathematics.mathx;
 - [ ] Mesh Processing
 
 ## New Structs
-  ```C#
-  struct bounds // UnityEngine translation compatible with Unity.Mathematics (implicit cast to "UnityEngine.Bounds")
-  ```
-  ```C#
-  struct ray    // UnityEngine translation compatible with Unity.Mathematics (implicit cast to "UnityEngine.Ray")
-  ```
-  ```C#
-  struct color  // UnityEngine translation compatible with Unity.Mathematics (implicit cast to "UnityEngine.Color")
-  ```
-  ```C#
-  struct byte4  // useful for Color to byte conversion for image file export (implicit cast to "UnityEngine.Color32")
-  ```
-  ```C#
-  struct byte3
-  ```
-  ```C#
-  struct byte2
+  ```c#
+  struct bounds; // UnityEngine translation compatible with Unity.Mathematics (implicit cast to "UnityEngine.Bounds")
+  struct ray;    // UnityEngine translation compatible with Unity.Mathematics (implicit cast to "UnityEngine.Ray")
+  struct color;  // UnityEngine translation compatible with Unity.Mathematics (implicit cast to "UnityEngine.Color")
+  struct byte4;  // Useful for Color32 to byte conversion, Useful for image file export (implicit cast to "UnityEngine.Color32") //For Unity.QOI
+  struct byte3;  // For Unity.QOI
+  struct byte2;
+  struct byte1;
   ```
   
 ## Method List
@@ -137,4 +235,3 @@ movetowards Erf Erfc ErfInv ErfcInv GammaLn Gamma DiGamma DiGammaInv
 
 ## LICENSING
 <p>This project is licensed under the MIT License (<a href="https://github.com/LTMX/Unity.mathx/blob/master/LICENSE">License</a>)</p>
-<p>Unity.Mathematics Companion License (<a href="https://github.com/Unity-Technologies/Unity.mathx/blob/master/LICENSE.md">Unity Companion License</a>)</p>
