@@ -190,7 +190,7 @@ removed duplicate constants
   struct byte1;
   ```
   
-## Method List
+## Method List (from 1.3.0... needs updating)
 ```c#
 // most methods have at least a dozen overloads
 asint asbool asfloat asdouble ascolor asfloat4 asfloat3 toVectorList 
