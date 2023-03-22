@@ -54,7 +54,7 @@ x = x.lengthsq() + x;
 
 - Burst Compiled Function Pointers
 
- ## Mew Methods
+ ## New Methods
 ```c#
 anyType.dim(otherType) => anyType* otherType // to add functionality missing from internal operator overloads // named dim to not confuse with mul()
 anyType.greater(otherType) => anyType > otherType
