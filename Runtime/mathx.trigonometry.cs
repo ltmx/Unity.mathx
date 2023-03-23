@@ -184,83 +184,83 @@ namespace Unity.Mathematics
         
         /// Arc cotangent
         public static f4 acot(this f4 f) => f.rcp().atan();
-        /// <inheritdoc cref="acot(f4)"/>
+        /// <inheritdoc cref="acot(float4)"/>
         public static f3 acot(this f3 f) => f.rcp().atan();
-        /// <inheritdoc cref="acot(f4)"/>
+        /// <inheritdoc cref="acot(float4)"/>
         public static f2 acot(this f2 f) => f.rcp().atan();
-        /// <inheritdoc cref="acot(f4)"/>
+        /// <inheritdoc cref="acot(float4)"/>
         public static f1 acot(this f1 f) => f.rcp().atan();
-        /// <inheritdoc cref="acot(f4)"/>
+        /// <inheritdoc cref="acot(float4)"/>
         public static f1 acot(this int f) => f.rcp().atan();
         
-        /// <inheritdoc cref="acot(f4)"/>
+        /// <inheritdoc cref="acot(float4)"/>
         public static d4 acot(this d4 f) => f.rcp().atan();
-        /// <inheritdoc cref="acot(f4)"/>
+        /// <inheritdoc cref="acot(float4)"/>
         public static d3 acot(this d3 f) => f.rcp().atan();
-        /// <inheritdoc cref="acot(f4)"/>
+        /// <inheritdoc cref="acot(float4)"/>
         public static d2 acot(this d2 f) => f.rcp().atan();
-        /// <inheritdoc cref="acot(f4)"/>
+        /// <inheritdoc cref="acot(float4)"/>
         public static d1 acot(this d1 f) => f.rcp().atan();
         
-        /// <inheritdoc cref="acot(f4)"/>
+        /// <inheritdoc cref="acot(float4)"/>
         public static f4 acot(this Vector4 f) => f.rcp().atan();
-        /// <inheritdoc cref="acot(f4)"/>
+        /// <inheritdoc cref="acot(float4)"/>
         public static f3 acot(this Vector3 f) => f.rcp().atan();
-        /// <inheritdoc cref="acot(f4)"/>
+        /// <inheritdoc cref="acot(float4)"/>
         public static f2 acot(this Vector2 f) => f.rcp().atan();
         
         /// Arc secant
         public static f4 asec(this f4 f) => f.rcp().acos();
-        /// <inheritdoc cref="asec(f4)"/>
+        /// <inheritdoc cref="asec(float4)"/>
         public static f3 asec(this f3 f) => f.rcp().acos();
-        /// <inheritdoc cref="asec(f4)"/>
+        /// <inheritdoc cref="asec(float4)"/>
         public static f2 asec(this f2 f) => f.rcp().acos();
-        /// <inheritdoc cref="asec(f4)"/>
+        /// <inheritdoc cref="asec(float4)"/>
         public static f1 asec(this f1 f) => f.rcp().acos();
-        /// <inheritdoc cref="asec(f4)"/>
+        /// <inheritdoc cref="asec(float4)"/>
         public static f1 asec(this int f) => f.rcp().acos();
         
-        /// <inheritdoc cref="asec(f4)"/>
+        /// <inheritdoc cref="asec(float4)"/>
         public static d4 asec(this d4 f) => f.rcp().acos();
-        /// <inheritdoc cref="asec(f4)"/>
+        /// <inheritdoc cref="asec(float4)"/>
         public static d3 asec(this d3 f) => f.rcp().acos();
-        /// <inheritdoc cref="asec(f4)"/>
+        /// <inheritdoc cref="asec(float4)"/>
         public static d2 asec(this d2 f) => f.rcp().acos();
-        /// <inheritdoc cref="asec(f4)"/>
+        /// <inheritdoc cref="asec(float4)"/>
         public static d1 asec(this d1 f) => f.rcp().acos();
         
-        /// <inheritdoc cref="asec(f4)"/>
+        /// <inheritdoc cref="asec(float4)"/>
         public static f4 asec(this Vector4 f) => f.rcp().acos();
-        /// <inheritdoc cref="asec(f4)"/>
+        /// <inheritdoc cref="asec(float4)"/>
         public static f3 asec(this Vector3 f) => f.rcp().acos();
-        /// <inheritdoc cref="asec(f4)"/>
+        /// <inheritdoc cref="asec(float4)"/>
         public static f2 asec(this Vector2 f) => f.rcp().acos();
         
         /// Arc cosecant
         public static f4 acsc(this f4 f) => f.rcp().asin();
-        /// <inheritdoc cref="acsc(f4)"/>
+        /// <inheritdoc cref="acsc(float4)"/>
         public static f3 acsc(this f3 f) => f.rcp().asin();
-        /// <inheritdoc cref="acsc(f4)"/>
+        /// <inheritdoc cref="acsc(float4)"/>
         public static f2 acsc(this f2 f) => f.rcp().asin();
-        /// <inheritdoc cref="acsc(f4)"/>
+        /// <inheritdoc cref="acsc(float4)"/>
         public static f1 acsc(this f1 f) => f.rcp().asin();
-        /// <inheritdoc cref="acsc(f4)"/>
+        /// <inheritdoc cref="acsc(float4)"/>
         public static f1 acsc(this int f) => f.rcp().asin();
         
-        /// <inheritdoc cref="acsc(f4)"/>
+        /// <inheritdoc cref="acsc(float4)"/>
         public static d4 acsc(this d4 f) => f.rcp().asin();
-        /// <inheritdoc cref="acsc(f4)"/>
+        /// <inheritdoc cref="acsc(float4)"/>
         public static d3 acsc(this d3 f) => f.rcp().asin();
-        /// <inheritdoc cref="acsc(f4)"/>
+        /// <inheritdoc cref="acsc(float4)"/>
         public static d2 acsc(this d2 f) => f.rcp().asin();
-        /// <inheritdoc cref="acsc(f4)"/>
+        /// <inheritdoc cref="acsc(float4)"/>
         public static d1 acsc(this d1 f) => f.rcp().asin();
         
-        /// <inheritdoc cref="acsc(f4)"/>
+        /// <inheritdoc cref="acsc(float4)"/>
         public static f4 acsc(this Vector4 f) => f.rcp().asin();
-        /// <inheritdoc cref="acsc(f4)"/>
+        /// <inheritdoc cref="acsc(float4)"/>
         public static f3 acsc(this Vector3 f) => f.rcp().asin();
-        /// <inheritdoc cref="acsc(f4)"/>
+        /// <inheritdoc cref="acsc(float4)"/>
         public static f2 acsc(this Vector2 f) => f.rcp().asin();
 
 
@@ -303,58 +303,58 @@ namespace Unity.Mathematics
             var a = cos(f * 2);
             return (1 - a) / (1 + a);
         }
-        /// <inheritdoc cref="tan2(f4)"/>
+        /// <inheritdoc cref="tan2(float4)"/>
         public static f3 tan2(this f3 f) {
             var a = cos(f * 2);
             return (1 - a) / (1 + a);
         }
-        /// <inheritdoc cref="tan2(f4)"/>
+        /// <inheritdoc cref="tan2(float4)"/>
         public static f2 tan2(this f2 f) {
             var a = cos(f * 2);
             return (1 - a) / (1 + a);
         }
-        /// <inheritdoc cref="tan2(f4)"/>
+        /// <inheritdoc cref="tan2(float4)"/>
         public static f1 tan2(this f1 f) {
             var a = cos(f * 2);
             return (1 - a) / (1 + a);
         }
-        /// <inheritdoc cref="tan2(f4)"/>
+        /// <inheritdoc cref="tan2(float4)"/>
         public static f1 tan2(this int f) {
             var a = cos(f * 2);
             return (1 - a) / (1 + a);
         }
         
-        /// <inheritdoc cref="tan2(f4)"/>
+        /// <inheritdoc cref="tan2(float4)"/>
         public static f4 tan2(this Vector4 f) {
             var a = cos(f * 2);
             return (1 - a) / (1 + a);
         }
-        /// <inheritdoc cref="tan2(f4)"/>
+        /// <inheritdoc cref="tan2(float4)"/>
         public static f3 tan2(this Vector3 f) {
             var a = cos(f * 2);
             return (1 - a) / (1 + a);
         }
-        /// <inheritdoc cref="tan2(f4)"/>
+        /// <inheritdoc cref="tan2(float4)"/>
         public static f2 tan2(this Vector2 f) {
             var a = cos(f * 2);
             return (1 - a) / (1 + a);
         }
-        /// <inheritdoc cref="tan2(f4)"/>
+        /// <inheritdoc cref="tan2(float4)"/>
         public static d4 tan2(this d4 f) {
             var a = cos(f * 2);
             return (1 - a) / (1 + a);
         }
-        /// <inheritdoc cref="tan2(f4)"/>
+        /// <inheritdoc cref="tan2(float4)"/>
         public static d3 tan2(this d3 f) {
             var a = cos(f * 2);
             return (1 - a) / (1 + a);
         }
-        /// <inheritdoc cref="tan2(f4)"/>
+        /// <inheritdoc cref="tan2(float4)"/>
         public static d2 tan2(this d2 f) {
             var a = cos(f * 2);
             return (1 - a) / (1 + a);
         }
-        /// <inheritdoc cref="tan2(f4)"/>
+        /// <inheritdoc cref="tan2(float4)"/>
         public static d1 tan2(this d1 f) {
             var a = cos(f * 2);
             return (1 - a) / (1 + a);
@@ -362,97 +362,97 @@ namespace Unity.Mathematics
         
         /// Secant²
         public static f4 sec2(this f4 f) => f.cos2().rcp();
-        /// <inheritdoc cref="sec2(f4)"/>
+        /// <inheritdoc cref="sec2(float4)"/>
         public static f3 sec2(this f3 f) => f.cos2().rcp();
-        /// <inheritdoc cref="sec2(f4)"/>
+        /// <inheritdoc cref="sec2(float4)"/>
         public static f2 sec2(this f2 f) => f.cos2().rcp();
-        /// <inheritdoc cref="sec2(f4)"/>
+        /// <inheritdoc cref="sec2(float4)"/>
         public static f1 sec2(this f1 f) => f.cos2().rcp();
-        /// <inheritdoc cref="sec2(f4)"/>
+        /// <inheritdoc cref="sec2(float4)"/>
         public static f1 sec2(this int f) => f.cos2().rcp();
         
-        /// <inheritdoc cref="sec2(f4)"/>
+        /// <inheritdoc cref="sec2(float4)"/>
         public static f4 sec2(this Vector4 f) => f.cos2().rcp();
-        /// <inheritdoc cref="sec2(f4)"/>
+        /// <inheritdoc cref="sec2(float4)"/>
         public static f3 sec2(this Vector3 f) => f.cos2().rcp();
-        /// <inheritdoc cref="sec2(f4)"/>
+        /// <inheritdoc cref="sec2(float4)"/>
         public static f2 sec2(this Vector2 f) => f.cos2().rcp();
         
-        /// <inheritdoc cref="sec2(f4)"/>
+        /// <inheritdoc cref="sec2(float4)"/>
         public static d4 sec2(this d4 f) => f.cos2().rcp();
-        /// <inheritdoc cref="sec2(f4)"/>
+        /// <inheritdoc cref="sec2(float4)"/>
         public static d3 sec2(this d3 f) => f.cos2().rcp();
-        /// <inheritdoc cref="sec2(f4)"/>
+        /// <inheritdoc cref="sec2(float4)"/>
         public static d2 sec2(this d2 f) => f.cos2().rcp();
-        /// <inheritdoc cref="sec2(f4)"/>
+        /// <inheritdoc cref="sec2(float4)"/>
         public static d1 sec2(this d1 f) => f.cos2().rcp();
         
         
         /// Radians to Degrees
         public static f4 deg(this f4 f) => ma.degrees(f);
-        /// <inheritdoc cref="deg(f4)"/>
+        /// <inheritdoc cref="deg(float4)"/>
         public static f3 deg(this f3 f) => ma.degrees(f);
-        /// <inheritdoc cref="deg(f4)"/>
+        /// <inheritdoc cref="deg(float4)"/>
         public static f2 deg(this f2 f) => ma.degrees(f);
-        /// <inheritdoc cref="deg(f4)"/>
+        /// <inheritdoc cref="deg(float4)"/>
         public static f1 deg(this f1 f) => ma.degrees(f);
-        /// <inheritdoc cref="deg(f4)"/>
+        /// <inheritdoc cref="deg(float4)"/>
         public static f1 deg(this int f) => ma.degrees(f);
         
-        /// <inheritdoc cref="deg(f4)"/>
+        /// <inheritdoc cref="deg(float4)"/>
         public static f4 deg(this Vector4 f) => ma.degrees(f);
-        /// <inheritdoc cref="deg(f4)"/>
+        /// <inheritdoc cref="deg(float4)"/>
         public static f3 deg(this Vector3 f) => ma.degrees(f);
-        /// <inheritdoc cref="deg(f4)"/>
+        /// <inheritdoc cref="deg(float4)"/>
         public static f2 deg(this Vector2 f) => ma.degrees(f);
         
-        /// <inheritdoc cref="deg(f4)"/>
+        /// <inheritdoc cref="deg(float4)"/>
         public static d4 deg(this d4 f) => ma.degrees(f);
-        /// <inheritdoc cref="deg(f4)"/>
+        /// <inheritdoc cref="deg(float4)"/>
         public static d3 deg(this d3 f) => ma.degrees(f);
-        /// <inheritdoc cref="deg(f4)"/>
+        /// <inheritdoc cref="deg(float4)"/>
         public static d2 deg(this d2 f) => ma.degrees(f);
-        /// <inheritdoc cref="deg(f4)"/>
+        /// <inheritdoc cref="deg(float4)"/>
         public static d1 deg(this d1 f) => ma.degrees(f);
         
         
         // Degrees To Radians
         public static f4 rad(this f4 f) => ma.radians(f);
-        /// <inheritdoc cref="rad(f4)"/>
+        /// <inheritdoc cref="rad(float4)"/>
         public static f3 rad(this f3 f) => ma.radians(f);
-        /// <inheritdoc cref="rad(f4)"/>
+        /// <inheritdoc cref="rad(float4)"/>
         public static f2 rad(this f2 f) => ma.radians(f);
-        /// <inheritdoc cref="rad(f4)"/>
+        /// <inheritdoc cref="rad(float4)"/>
         public static f1 rad(this f1 f) => ma.radians(f);
-        /// <inheritdoc cref="rad(f4)"/>
+        /// <inheritdoc cref="rad(float4)"/>
         public static f1 rad(this int f) => ma.radians(f);
         
-        /// <inheritdoc cref="rad(f4)"/>
+        /// <inheritdoc cref="rad(float4)"/>
         public static f4 rad(this Vector4 f) => ma.radians(f);
-        /// <inheritdoc cref="rad(f4)"/>
+        /// <inheritdoc cref="rad(float4)"/>
         public static f3 rad(this Vector3 f) => ma.radians(f);
-        /// <inheritdoc cref="rad(f4)"/>
+        /// <inheritdoc cref="rad(float4)"/>
         public static f2 rad(this Vector2 f) => ma.radians(f);
         
-        /// <inheritdoc cref="rad(f4)"/>
+        /// <inheritdoc cref="rad(float4)"/>
         public static d4 rad(this d4 f) => ma.radians(f);
-        /// <inheritdoc cref="rad(f4)"/>
+        /// <inheritdoc cref="rad(float4)"/>
         public static d3 rad(this d3 f) => ma.radians(f);
-        /// <inheritdoc cref="rad(f4)"/>
+        /// <inheritdoc cref="rad(float4)"/>
         public static d2 rad(this d2 f) => ma.radians(f);
-        /// <inheritdoc cref="rad(f4)"/>
+        /// <inheritdoc cref="rad(float4)"/>
         public static d1 rad(this d1 f) => ma.radians(f);
         
         
         /// Cosine-Sine combined
         public static float2 cossin(this float f) => new(f.cos(), f.sin());
-        /// <inheritdoc cref="cossin(f4)"/>
+        /// <inheritdoc cref="cossin(float4)"/>
         public static float2 cossin(this int f) => new(f.cos(), f.sin());
-        /// <inheritdoc cref="cossin(f4)"/>
+        /// <inheritdoc cref="cossin(float4)"/>
         public static float2x2 cossin(this float2 f) => new(f.cos(), f.sin());
-        /// <inheritdoc cref="cossin(f4)"/>
+        /// <inheritdoc cref="cossin(float4)"/>
         public static float3x2 cossin(this float3 f) => new(f.cos(), f.sin());
-        /// <inheritdoc cref="cossin(f4)"/>
+        /// <inheritdoc cref="cossin(float4)"/>
         public static float4x2 cossin(this float4 f) => new(f.cos(), f.sin());
         
         
