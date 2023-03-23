@@ -54,7 +54,7 @@ x = x.lengthsq() + x;
 
 - Burst Compiled Function Pointers
 
- ## Mew Methods
+ ## New Methods
 ```c#
 anyType.dim(otherType) => anyType* otherType // to add functionality missing from internal operator overloads // named dim to not confuse with mul()
 anyType.greater(otherType) => anyType > otherType
@@ -180,7 +180,7 @@ removed duplicate constants
 - [ ] Mesh Processing
 
 ## New Structs
-  ```c#
+  ```c++
   struct bounds; // UnityEngine translation compatible with Unity.Mathematics (implicit cast to "UnityEngine.Bounds")
   struct ray;    // UnityEngine translation compatible with Unity.Mathematics (implicit cast to "UnityEngine.Ray")
   struct color;  // UnityEngine translation compatible with Unity.Mathematics (implicit cast to "UnityEngine.Color")
@@ -190,8 +190,8 @@ removed duplicate constants
   struct byte1;
   ```
   
-## Method List
-```C#
+## Method List (from 1.3.0... needs updating)
+```c#
 // most methods have at least a dozen overloads
 asint asbool asfloat asdouble ascolor asfloat4 asfloat3 toVectorList 
 tofloatList toColorList tocolorList toColorArray tocolorArray tofloat4List
