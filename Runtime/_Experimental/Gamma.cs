@@ -51,9 +51,9 @@ namespace Unity.Mathematics
         ///         This implementation of the computation of the gamma and logarithm of the gamma function follows the derivation
         ///         in
         ///         "An Analysis Of The Lanczos Gamma Approximation", Glendon Ralph Pugh, 2004.
-        ///         We use the implementation listed on p. 116 which achieves an accuracy of 16 floating point digits. Although 16
+        ///         We use the implementation listed on real. 116 which achieves an accuracy of 16 floating point digits. Although 16
         ///         digit accuracy
-        ///         should be sufficient for double values, improving accuracy is possible (see p. 126 in Pugh).
+        ///         should be sufficient for double values, improving accuracy is possible (see real. 126 in Pugh).
         ///     </para>
         ///     <para>Our unit tests suggest that the accuracy of the Gamma function is correct up to 14 floating point digits.</para>
         /// </remarks>
@@ -89,9 +89,9 @@ namespace Unity.Mathematics
         ///         This implementation of the computation of the gamma and logarithm of the gamma function follows the derivation
         ///         in
         ///         "An Analysis Of The Lanczos Gamma Approximation", Glendon Ralph Pugh, 2004.
-        ///         We use the implementation listed on p. 116 which should achieve an accuracy of 16 floating point digits.
+        ///         We use the implementation listed on real. 116 which should achieve an accuracy of 16 floating point digits.
         ///         Although 16 digit accuracy
-        ///         should be sufficient for double values, improving accuracy is possible (see p. 126 in Pugh).
+        ///         should be sufficient for double values, improving accuracy is possible (see real. 126 in Pugh).
         ///     </para>
         ///     <para>Our unit tests suggest that the accuracy of the Gamma function is correct up to 13 floating point digits.</para>
         /// </remarks>

@@ -18,7 +18,7 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float3x3 matrix(this quaternion q) => math.float3x3(q);
         /// Returns the inverse of a float3x4 matrix
         [MethodImpl(IL)] public static float3x4 inverse(this float3x4 m) => float3x4(m.rotation(), m[3].rotate(-m.rotation()));
-        /// Returns a float3x4 matrix from a float3x3 rotation matrix and a float3 translation vector
+        /// Returns a float3x4 matrix from a float3x3 rotation matrix and a f3 translation vector
         [MethodImpl(IL)] public static float3x4 float3x4(float3x3 r, float3 t) => math.float3x4(r.c0, r.c1, r.c2, t);
         /// Returns the rotation component of a float3x4 matrix
         [MethodImpl(IL)] public static float3x3 rotation(this float3x4 m) => m.f3x3();
@@ -32,9 +32,9 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float3 translation(this float4x4 m) => m[3].xyz;
         /// Returns the translation component of a float3x4 matrix
         [MethodImpl(IL)] public static float3 translation(this float3x4 m) => m[3];
-        /// Transform a float3 point by a float3x4 matrix;
+        /// Transform a f3 point by a float3x4 matrix;
         [MethodImpl(IL)] public static float3 transform(this float3x4 m, float3 p) => m[0] * p.x + m[1] * p.y + m[2] * p.z + m[3];
-        /// Transform a float3 point by a float3x4 matrix;
+        /// Transform a f3 point by a float3x4 matrix;
         [MethodImpl(IL)] public static float3 transform(this float3x4 m, float4 p) => m[0] * p.x + m[1] * p.y + m[2] * p.z + m[3] * p.w;
 
         

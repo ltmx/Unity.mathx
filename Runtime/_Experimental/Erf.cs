@@ -11,7 +11,7 @@
 //
 // In particular the following functions are based on Boost:
 //  * double ErfImp(double z, bool invert)
-//  * double ErfInvImpl(double p, double q, double s)
+//  * double ErfInvImpl(double real, double q, double s)
 // </copyright>
 
 using static Unity.Mathematics.Polynomial;
@@ -491,9 +491,9 @@ namespace Unity.Mathematics
             if (p <= 0.5) {
                 // Evaluate inverse erf using the rational approximation:
                 //
-                // x = p(p+10)(Y+R(p))
+                // x = real(real+10)(Y+R(real))
                 //
-                // Where Y is a constant, and R(p) is optimized for a low
+                // Where Y is a constant, and R(real) is optimized for a low
                 // absolute error compared to |Y|.
                 //
                 // double: Max error found: 2.001849e-18

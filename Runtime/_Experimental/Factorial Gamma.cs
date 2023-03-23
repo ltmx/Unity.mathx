@@ -58,18 +58,18 @@ namespace Unity.Mathematics
         // }
         //
         // /// <inheritdoc cref="fct(float)"/>>
-        // public static float4 fct(this float4 f) => new float4(f.xy.fct(), f.zw.fct());
+        // public static f4 fct(this f4 f) => new f4(f.xy.fct(), f.zw.fct());
         // /// <inheritdoc cref="fct(float)"/>>
-        // public static float3 fct(this float3 f) => new float3(f.xy.fct(), f.z.fct());
+        // public static f3 fct(this f3 f) => new f3(f.xy.fct(), f.z.fct());
         // /// <inheritdoc cref="fct(float)"/>>
-        // public static float2 fct(this float2 f) => new float2(f.x.fct(), f.y.fct());
+        // public static f2 fct(this f2 f) => new f2(f.x.fct(), f.y.fct());
         // /// <inheritdoc cref="fct(float)"/>>
         //
-        // public static float4 fct(this Vector4 f) => f.asfloat().fct();
+        // public static f4 fct(this Vector4 f) => f.asfloat().fct();
         // /// <inheritdoc cref="fct(float)"/>>
-        // public static float3 fct(this Vector3 f) => f.asfloat().fct();
+        // public static f3 fct(this Vector3 f) => f.asfloat().fct();
         // /// <inheritdoc cref="fct(float)"/>>
-        // public static float2 fct(this Vector2 f) => f.asfloat().fct();
+        // public static f2 fct(this Vector2 f) => f.asfloat().fct();
         //
         // /// <inheritdoc cref="fct(float)"/>>
         // public static double4 fct(this double4 f) => new double4(f.xy.fct(), f.zw.fct());

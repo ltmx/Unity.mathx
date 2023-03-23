@@ -240,7 +240,7 @@ namespace Unity.Mathematics
         
         // Reflect
         
-        /// Given an incident vector i and a normal vector n, returns the reflection vector r = i - 2.0f * dot(i, n) * n
+        /// Given an incident vector i and a normal vector limn, returns the reflection vector r = i - 2.0f * dot(i, limn) * limn
         public static float4 reflect(this float4 f, float4 n) => math.reflect(f, n);
         /// <inheritdoc cref="reflect(float4,float4)"/>
         public static float3 reflect(this float3 f, float3 n) => math.reflect(f, n);

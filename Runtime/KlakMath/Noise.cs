@@ -20,13 +20,13 @@ public static partial class Noise
         var i = (uint)((int)p + 0x10000000);
         var x = p.frac();
 
-        var k = float2(x, 1 - x).sq().inv().cube();
+        var k = f2(x, 1 - x).sq().inv().cube();
 
-        var g = float2(
+        var g = f2(
             hash.Float(-1, 1, i),
             hash.Float(-1, 1, i + 1));
 
-        var n = (k * g).dot(float2(x, x - 1));
+        var n = (k * g).dot(f2(x, x - 1));
         return n * 2 * 32 / 27;
     }
 

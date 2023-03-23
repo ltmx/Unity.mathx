@@ -68,14 +68,14 @@ namespace Unity.Mathematics
 //
 // Usage:
 //		float ns = snoise(v);
-//		v is any of: float2, float3, float4
+//		v is any of: f2, f3, f4
 // Return type is float.
 // To generate 2 or more components of noise(colorful noise),
 // call these functions several times with different
 // constant offsets for the arguments.
 // E.g.:
 
-// float3 colorNs = float3(
+// f3 colorNs = f3(
 //	snoise(v),
 //	snoise(v + 17),
 //	snoise(v - 43),
@@ -86,7 +86,7 @@ namespace Unity.Mathematics
 
 
         private static float snoise(float2 v)
-        { var C = float4(0.211324865405187f, // (3-sqrt(3))/6
+        { var C = f4(0.211324865405187f, // (3-sqrt(3))/6
               0.366025403784439f, // 0.5f*(sqrt(3)-1)
               -0.577350269189626f, // -1 + 2 * C.x
               024390243902439f); // 1 / 41
@@ -106,10 +106,10 @@ namespace Unity.Mathematics
 
           // Permutations
           i = mod289(i); // Avoid truncation effects in permutation
-          var p = permute(permute(i.y + float3(0, i1.y, 1))
-                          + i.x + float3(0, i1.x, 1));
+          var p = permute(permute(i.y + f3(0, i1.y, 1))
+                          + i.x + f3(0, i1.x, 1));
 
-          var m = (0.5f - float3(x0.dot(x0), x1.dot(x1), x2.dot(x2))).max(0);
+          var m = (0.5f - f3(x0.dot(x0), x1.dot(x1), x2.dot(x2))).max(0);
           m = m * m;
           m = m * m;
 
@@ -131,7 +131,7 @@ namespace Unity.Mathematics
           return 130 * m.dot(g); }
 
         private static float3 snoise_grad(float2 v)
-        { var C = float4(0.211324865405187f, // (3-sqrt(3))/6
+        { var C = f4(0.211324865405187f, // (3-sqrt(3))/6
               0.366025403784439f, // 0.5f*(sqrt(3)-1)
               -0.577350269189626f, // -1 + 2 * C.x
               024390243902439f); // 1 / 41
@@ -151,10 +151,10 @@ namespace Unity.Mathematics
 
           // Permutations
           i = mod289(i); // Avoid truncation effects in permutation
-          var p = permute(permute(i.y + float3(0, i1.y, 1))
-                          + i.x + float3(0, i1.x, 1));
+          var p = permute(permute(i.y + f3(0, i1.y, 1))
+                          + i.x + f3(0, i1.x, 1));
 
-          var m = (0.5f - float3(x0.dot(x0), x1.dot(x1), x2.dot(x2))).max(0);
+          var m = (0.5f - f3(x0.dot(x0), x1.dot(x1), x2.dot(x2))).max(0);
           var m2 = m * m;
           var m3 = m2 * m;
           var m4 = m2 * m2;
@@ -168,22 +168,22 @@ namespace Unity.Mathematics
 
           // Normalise gradients
           var norm = taylorInvSqrt(a0 * a0 + h * h);
-          var g0 = float2(a0.x, h.x) * norm.x;
-          var g1 = float2(a0.y, h.y) * norm.y;
-          var g2 = float2(a0.z, h.z) * norm.z;
+          var g0 = f2(a0.x, h.x) * norm.x;
+          var g1 = f2(a0.y, h.y) * norm.y;
+          var g2 = f2(a0.z, h.z) * norm.z;
 
           // Compute noise and gradient at P
           var grad = -6 * m3.x * x0 * x0.dot(g0) + m4.x * g0 +
                      -6 * m3.y * x1 * x1.dot(g1) + m4.y * g1 +
                      -6 * m3.z * x2 * x2.dot(g2) + m4.z * g2;
-          var px = float3(x0.dot(g0), x1.dot(g1), x2.dot(g2));
-          return 130 * float3(grad, m4.dot(px)); }
+          var px = f3(x0.dot(g0), x1.dot(g1), x2.dot(g2));
+          return 130 * f3(grad, m4.dot(px)); }
 
 
 //---------------------------------------------------[1.2] 3D Simplex Noise ---------------------------------------------
 
         private static float snoise(float3 v)
-        { var C = float2(1 / 6f, 1 / 3);
+        { var C = f2(1 / 6f, 1 / 3);
 
           // First corner
           var i = (v + v.dot(C.yyy)).floor();
@@ -204,13 +204,13 @@ namespace Unity.Mathematics
 
           // Permutations
           i = mod289(i); // Avoid truncation effects in permutation
-          var p = permute(permute(permute(i.z + float4(0, i1.z, i2.z, 1))
-                                  + i.y + float4(0, i1.y, i2.y, 1))
-                          + i.x + float4(0, i1.x, i2.x, 1));
+          var p = permute(permute(permute(i.z + f4(0, i1.z, i2.z, 1))
+                                  + i.y + f4(0, i1.y, i2.y, 1))
+                          + i.x + f4(0, i1.x, i2.x, 1));
 
           // Gradients: 7x7 points over a square, mapped onto an octahedron.
           // The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)
-          var j = p - 49 * (p / 49).floor(); // mod(p,7*7)
+          var j = p - 49 * (p / 49).floor(); // mod(real,7*7)
 
           var x_ = (j / 7).floor();
           var y_ = (j - 7 * x_).floor(); // mod(j,N)
@@ -220,11 +220,11 @@ namespace Unity.Mathematics
 
           var h = 1 - x.abs() - y.abs();
 
-          var b0 = float4(x.xy, y.xy);
-          var b1 = float4(x.zw, y.zw);
+          var b0 = f4(x.xy, y.xy);
+          var b1 = f4(x.zw, y.zw);
 
-          //float4 s0 = float4(lessThan(b0, 0)) * 2 - 1;
-          //float4 s1 = float4(lessThan(b1, 0)) * 2 - 1;
+          //f4 s0 = f4(lessThan(b0, 0)) * 2 - 1;
+          //f4 s1 = f4(lessThan(b1, 0)) * 2 - 1;
           var s0 = b0.floor() * 2 + 1;
           var s1 = b1.floor() * 2 + 1;
           var sh = -h.step(0);
@@ -232,28 +232,28 @@ namespace Unity.Mathematics
           var a0 = b0.xzyw + s0.xzyw * sh.xxyy;
           var a1 = b1.xzyw + s1.xzyw * sh.zzww;
 
-          var g0 = float3(a0.xy, h.x);
-          var g1 = float3(a0.zw, h.y);
-          var g2 = float3(a1.xy, h.z);
-          var g3 = float3(a1.zw, h.w);
+          var g0 = f3(a0.xy, h.x);
+          var g1 = f3(a0.zw, h.y);
+          var g2 = f3(a1.xy, h.z);
+          var g3 = f3(a1.zw, h.w);
 
           // Normalise gradients
-          var norm = taylorInvSqrt(float4(g0.dot(g0), g1.dot(g1), g2.dot(g2), g3.dot(g3)));
+          var norm = taylorInvSqrt(f4(g0.dot(g0), g1.dot(g1), g2.dot(g2), g3.dot(g3)));
           g0 *= norm.x;
           g1 *= norm.y;
           g2 *= norm.z;
           g3 *= norm.w;
 
           // Mix final noise value
-          var m = (0.6f - float4(x0.dot(x0), x1.dot(x1), x2.dot(x2), x3.dot(x3))).max(0);
+          var m = (0.6f - f4(x0.dot(x0), x1.dot(x1), x2.dot(x2), x3.dot(x3))).max(0);
           m = m * m;
           m = m * m;
 
-          var px = float4(x0.dot(g0), x1.dot(g1), x2.dot(g2), x3.dot(g3));
+          var px = f4(x0.dot(g0), x1.dot(g1), x2.dot(g2), x3.dot(g3));
           return 42 * m.dot(px); }
 
         private static float4 snoise_grad(float3 v)
-        { var C = float2(1 / 6f, 1 / 3f);
+        { var C = f2(1 / 6f, 1 / 3f);
 
           // First corner
           var i = (v + v.dot(C.yyy)).floor();
@@ -274,13 +274,13 @@ namespace Unity.Mathematics
 
           // Permutations
           i = mod289(i); // Avoid truncation effects in permutation
-          var p = permute(permute(permute(i.z + float4(0, i1.z, i2.z, 1))
-                                  + i.y + float4(0, i1.y, i2.y, 1))
-                          + i.x + float4(0, i1.x, i2.x, 1));
+          var p = permute(permute(permute(i.z + f4(0, i1.z, i2.z, 1))
+                                  + i.y + f4(0, i1.y, i2.y, 1))
+                          + i.x + f4(0, i1.x, i2.x, 1));
 
           // Gradients: 7x7 points over a square, mapped onto an octahedron.
           // The ring size 17*17 = 289 is close to a multiple of 49 (49*6 = 294)
-          var j = p - 49 * (p / 49).floor(); // mod(p,7*7)
+          var j = p - 49 * (p / 49).floor(); // mod(real,7*7)
 
           var x_ = (j / 7).floor();
           var y_ = (j - 7 * x_).floor(); // mod(j,N)
@@ -290,11 +290,11 @@ namespace Unity.Mathematics
 
           var h = 1 - x.abs() - y.abs();
 
-          var b0 = float4(x.xy, y.xy);
-          var b1 = float4(x.zw, y.zw);
+          var b0 = f4(x.xy, y.xy);
+          var b1 = f4(x.zw, y.zw);
 
-          //float4 s0 = float4(lessThan(b0, 0)) * 2 - 1;
-          //float4 s1 = float4(lessThan(b1, 0)) * 2 - 1;
+          //f4 s0 = f4(lessThan(b0, 0)) * 2 - 1;
+          //f4 s1 = f4(lessThan(b1, 0)) * 2 - 1;
           var s0 = b0.floor() * 2 + 1;
           var s1 = b1.floor() * 2 + 1;
           var sh = -h.step(0);
@@ -302,20 +302,20 @@ namespace Unity.Mathematics
           var a0 = b0.xzyw + s0.xzyw * sh.xxyy;
           var a1 = b1.xzyw + s1.xzyw * sh.zzww;
 
-          var g0 = float3(a0.xy, h.x);
-          var g1 = float3(a0.zw, h.y);
-          var g2 = float3(a1.xy, h.z);
-          var g3 = float3(a1.zw, h.w);
+          var g0 = f3(a0.xy, h.x);
+          var g1 = f3(a0.zw, h.y);
+          var g2 = f3(a1.xy, h.z);
+          var g3 = f3(a1.zw, h.w);
 
           // Normalise gradients
-          var norm = taylorInvSqrt(float4(g0.dot(g0), g1.dot(g1), g2.dot(g2), g3.dot(g3)));
+          var norm = taylorInvSqrt(f4(g0.dot(g0), g1.dot(g1), g2.dot(g2), g3.dot(g3)));
           g0 *= norm.x;
           g1 *= norm.y;
           g2 *= norm.z;
           g3 *= norm.w;
 
           // Compute noise and gradient at P
-          var m = (0.6f - float4(x0.dot(x0), x1.dot(x1), x2.dot(x2), x3.dot(x3))).max(0);
+          var m = (0.6f - f4(x0.dot(x0), x1.dot(x1), x2.dot(x2), x3.dot(x3))).max(0);
           var m2 = m * m;
           var m3 = m2 * m;
           var m4 = m2 * m2;
@@ -323,14 +323,14 @@ namespace Unity.Mathematics
                      -6 * m3.y * x1 * x1.dot(g1) + m4.y * g1 +
                      -6 * m3.z * x2 * x2.dot(g2) + m4.z * g2 +
                      -6 * m3.w * x3 * x3.dot(g3) + m4.w * g3;
-          var px = float4(x0.dot(g0), x1.dot(g1), x2.dot(g2), x3.dot(g3));
-          return 42 * float4(grad, m4.dot(px)); }
+          var px = f4(x0.dot(g0), x1.dot(g1), x2.dot(g2), x3.dot(g3));
+          return 42 * f4(grad, m4.dot(px)); }
 
 
 //----------------------------------------------------[1.3]  4D Simplex Noise ----------------------------------------------------
 
         private static float4 grad4(float j, float4 ip)
-        { var ones = float4(1, 1, 1, -1);
+        { var ones = f4(1, 1, 1, -1);
           float4 p = new();
 
           p.xyz = (frac(j * ip.xyz) * 7).floor() * ip.z - 1;
@@ -343,7 +343,7 @@ namespace Unity.Mathematics
           return p; }
 
         private static float snoise(float4 v)
-        { var C = float4(
+        { var C = f4(
               0.138196601125011f, // (5 - sqrt(5))/20 G4
               0.276393202250021f, // 2 * G4
               0.414589803375032f, // 3 * G4
@@ -385,11 +385,11 @@ namespace Unity.Mathematics
           // Permutations
           i = mod289(i);
           var j0 = permute(permute(permute(permute(i.w) + i.z) + i.y) + i.x);
-          var j1 = permute(permute(permute(permute(i.w + float4(i1.w, i2.w, i3.w, 1)) + i.z + float4(i1.z, i2.z, i3.z, 1)) + i.y + float4(i1.y, i2.y, i3.y, 1)) + i.x + float4(i1.x, i2.x, i3.x, 1));
+          var j1 = permute(permute(permute(permute(i.w + f4(i1.w, i2.w, i3.w, 1)) + i.z + f4(i1.z, i2.z, i3.z, 1)) + i.y + f4(i1.y, i2.y, i3.y, 1)) + i.x + f4(i1.x, i2.x, i3.x, 1));
 
           // Gradients: 7x7x6 points over a cube, mapped onto a 4-cross polytope
           // 7*7*6 = 294, which is close to the ring size 17*17 = 289.
-          var ip = float4(003401360544217687075f, // 1/294
+          var ip = f4(003401360544217687075f, // 1/294
               020408163265306122449f, // 1/49
               0.142857142857142857143f, // 1/7
               0);
@@ -401,7 +401,7 @@ namespace Unity.Mathematics
           var p4 = grad4(j1.w, ip);
 
           // Normalise gradients
-          var norm = rsqrt(float4(p0.dot(p0), p1.dot(p1), p2.dot(p2), p3.dot(p3)));
+          var norm = rsqrt(f4(p0.dot(p0), p1.dot(p1), p2.dot(p2), p3.dot(p3)));
           p0 *= norm.x;
           p1 *= norm.y;
           p2 *= norm.z;
@@ -409,12 +409,12 @@ namespace Unity.Mathematics
           p4 *= rsqrt(p4.dot(p4));
 
           // Mix contributions from the five corners
-          var m0 = (0.6f - float3(x0.dot(x0), x1.dot(x1), x2.dot(x2))).max(0);
-          var m1 = (0.6f - float2(x3.dot(x3), x4.dot(x4))).max(0);
+          var m0 = (0.6f - f3(x0.dot(x0), x1.dot(x1), x2.dot(x2))).max(0);
+          var m1 = (0.6f - f2(x3.dot(x3), x4.dot(x4))).max(0);
           m0 = m0 * m0;
           m1 = m1 * m1;
 
-          return 49 * ((m0 * m0).dot(float3(p0.dot(x0), p1.dot(x1), p2.dot(x2))) + (m1 * m1).dot(float2(p3.dot(x3), p4.dot(x4)))); }
+          return 49 * ((m0 * m0).dot(f3(p0.dot(x0), p1.dot(x1), p2.dot(x2))) + (m1 * m1).dot(f2(p3.dot(x3), p4.dot(x4)))); }
 
 
 //==================================================================================================================================
@@ -437,8 +437,8 @@ namespace Unity.Mathematics
 //-------------------------------------------------------[2.1] 2D  Classic Noise---------------------------------------------
 // Classic Perlin noise
         private static float cnoise(float2 P)
-        { var Pi = P.xyxy.floor() + float4(0, 0, 1, 1);
-          var Pf = P.xyxy.frac() - float4(0, 0, 1, 1);
+        { var Pi = P.xyxy.floor() + f4(0, 0, 1, 1);
+          var Pf = P.xyxy.frac() - f4(0, 0, 1, 1);
           Pi = mod289(Pi); // To avoid truncation effects in permutation
           var ix = Pi.xzxz;
           var iy = Pi.yyww;
@@ -452,31 +452,31 @@ namespace Unity.Mathematics
           var tx = (gx + 0.5f).floor();
           gx = gx - tx;
 
-          var g00 = float2(gx.x, gy.x);
-          var g10 = float2(gx.y, gy.y);
-          var g01 = float2(gx.z, gy.z);
-          var g11 = float2(gx.w, gy.w);
+          var g00 = f2(gx.x, gy.x);
+          var g10 = f2(gx.y, gy.y);
+          var g01 = f2(gx.z, gy.z);
+          var g11 = f2(gx.w, gy.w);
 
-          var norm = taylorInvSqrt(float4(g00.dot(g00), g01.dot(g01), g10.dot(g10), g11.dot(g11)));
+          var norm = taylorInvSqrt(f4(g00.dot(g00), g01.dot(g01), g10.dot(g10), g11.dot(g11)));
           g00 *= norm.x;
           g01 *= norm.y;
           g10 *= norm.z;
           g11 *= norm.w;
 
-          var n00 = g00.dot(float2(fx.x, fy.x));
-          var n10 = g10.dot(float2(fx.y, fy.y));
-          var n01 = g01.dot(float2(fx.z, fy.z));
-          var n11 = g11.dot(float2(fx.w, fy.w));
+          var n00 = g00.dot(f2(fx.x, fy.x));
+          var n10 = g10.dot(f2(fx.y, fy.y));
+          var n01 = g01.dot(f2(fx.z, fy.z));
+          var n11 = g11.dot(f2(fx.w, fy.w));
 
           var fade_xy = fade(Pf.xy);
-          var n_x = lerp(float2(n00, n01), float2(n10, n11), fade_xy.x);
+          var n_x = lerp(f2(n00, n01), f2(n10, n11), fade_xy.x);
           var n_xy = lerp(n_x.x, n_x.y, fade_xy.y);
           return 2.3f * n_xy; }
 
 // Classic Perlin noise, periodic variant
         private static float pnoise(float2 P, float2 rep)
-        { var Pi = P.xyxy.floor() + float4(0, 0, 1, 1);
-          var Pf = P.xyxy.frac() - float4(0, 0, 1, 1);
+        { var Pi = P.xyxy.floor() + f4(0, 0, 1, 1);
+          var Pf = P.xyxy.frac() - f4(0, 0, 1, 1);
           Pi = mod(Pi, rep.xyxy); // To create noise with explicit period
           Pi = mod289(Pi); // To avoid truncation effects in permutation
           var ix = Pi.xzxz;
@@ -491,24 +491,24 @@ namespace Unity.Mathematics
           var tx = (gx + 0.5f).floor();
           gx = gx - tx;
 
-          var g00 = float2(gx.x, gy.x);
-          var g10 = float2(gx.y, gy.y);
-          var g01 = float2(gx.z, gy.z);
-          var g11 = float2(gx.w, gy.w);
+          var g00 = f2(gx.x, gy.x);
+          var g10 = f2(gx.y, gy.y);
+          var g01 = f2(gx.z, gy.z);
+          var g11 = f2(gx.w, gy.w);
 
-          var norm = taylorInvSqrt(float4(g00.dot(g00), g01.dot(g01), g10.dot(g10), g11.dot(g11)));
+          var norm = taylorInvSqrt(f4(g00.dot(g00), g01.dot(g01), g10.dot(g10), g11.dot(g11)));
           g00 *= norm.x;
           g01 *= norm.y;
           g10 *= norm.z;
           g11 *= norm.w;
 
-          var n00 = g00.dot(float2(fx.x, fy.x));
-          var n10 = g10.dot(float2(fx.y, fy.y));
-          var n01 = g01.dot(float2(fx.z, fy.z));
-          var n11 = g11.dot(float2(fx.w, fy.w));
+          var n00 = g00.dot(f2(fx.x, fy.x));
+          var n10 = g10.dot(f2(fx.y, fy.y));
+          var n01 = g01.dot(f2(fx.z, fy.z));
+          var n11 = g11.dot(f2(fx.w, fy.w));
 
           var fade_xy = fade(Pf.xy);
-          var n_x = lerp(float2(n00, n01), float2(n10, n11), fade_xy.x);
+          var n_x = lerp(f2(n00, n01), f2(n10, n11), fade_xy.x);
           var n_xy = lerp(n_x.x, n_x.y, fade_xy.y);
           return 2.3f * n_xy; }
 
@@ -522,8 +522,8 @@ namespace Unity.Mathematics
           Pi1 = mod289(Pi1);
           var Pf0 = P.frac(); //mathx.fractional part for interpolation
           var Pf1 = Pf0 - (float3)1; //mathx.fractional part - 1
-          var ix = float4(Pi0.x, Pi1.x, Pi0.x, Pi1.x);
-          var iy = float4(Pi0.y, Pi0.y, Pi1.y, Pi1.y);
+          var ix = f4(Pi0.x, Pi1.x, Pi0.x, Pi1.x);
+          var iy = f4(Pi0.y, Pi0.y, Pi1.y, Pi1.y);
           float4 iz0 = Pi0.z;
           float4 iz1 = Pi1.z;
 
@@ -547,38 +547,38 @@ namespace Unity.Mathematics
           gx1 -= sz1 * (step(0, gx1) - 0.5f);
           gy1 -= sz1 * (step(0, gy1) - 0.5f);
 
-          var g000 = float3(gx0.x, gy0.x, gz0.x);
-          var g100 = float3(gx0.y, gy0.y, gz0.y);
-          var g010 = float3(gx0.z, gy0.z, gz0.z);
-          var g110 = float3(gx0.w, gy0.w, gz0.w);
-          var g001 = float3(gx1.x, gy1.x, gz1.x);
-          var g101 = float3(gx1.y, gy1.y, gz1.y);
-          var g011 = float3(gx1.z, gy1.z, gz1.z);
-          var g111 = float3(gx1.w, gy1.w, gz1.w);
+          var g000 = f3(gx0.x, gy0.x, gz0.x);
+          var g100 = f3(gx0.y, gy0.y, gz0.y);
+          var g010 = f3(gx0.z, gy0.z, gz0.z);
+          var g110 = f3(gx0.w, gy0.w, gz0.w);
+          var g001 = f3(gx1.x, gy1.x, gz1.x);
+          var g101 = f3(gx1.y, gy1.y, gz1.y);
+          var g011 = f3(gx1.z, gy1.z, gz1.z);
+          var g111 = f3(gx1.w, gy1.w, gz1.w);
 
-          var norm0 = taylorInvSqrt(float4(g000.dot(g000), g010.dot(g010), g100.dot(g100), g110.dot(g110)));
+          var norm0 = taylorInvSqrt(f4(g000.dot(g000), g010.dot(g010), g100.dot(g100), g110.dot(g110)));
           g000 *= norm0.x;
           g010 *= norm0.y;
           g100 *= norm0.z;
           g110 *= norm0.w;
 
-          var norm1 = taylorInvSqrt(float4(g001.dot(g001), g011.dot(g011), g101.dot(g101), g111.dot(g111)));
+          var norm1 = taylorInvSqrt(f4(g001.dot(g001), g011.dot(g011), g101.dot(g101), g111.dot(g111)));
           g001 *= norm1.x;
           g011 *= norm1.y;
           g101 *= norm1.z;
           g111 *= norm1.w;
 
           var n000 = g000.dot(Pf0);
-          var n100 = g100.dot(float3(Pf1.x, Pf0.y, Pf0.z));
-          var n010 = g010.dot(float3(Pf0.x, Pf1.y, Pf0.z));
-          var n110 = g110.dot(float3(Pf1.x, Pf1.y, Pf0.z));
-          var n001 = g001.dot(float3(Pf0.x, Pf0.y, Pf1.z));
-          var n101 = g101.dot(float3(Pf1.x, Pf0.y, Pf1.z));
-          var n011 = g011.dot(float3(Pf0.x, Pf1.y, Pf1.z));
+          var n100 = g100.dot(f3(Pf1.x, Pf0.y, Pf0.z));
+          var n010 = g010.dot(f3(Pf0.x, Pf1.y, Pf0.z));
+          var n110 = g110.dot(f3(Pf1.x, Pf1.y, Pf0.z));
+          var n001 = g001.dot(f3(Pf0.x, Pf0.y, Pf1.z));
+          var n101 = g101.dot(f3(Pf1.x, Pf0.y, Pf1.z));
+          var n011 = g011.dot(f3(Pf0.x, Pf1.y, Pf1.z));
           var n111 = g111.dot(Pf1);
 
           var fade_xyz = fade(Pf0);
-          var n_z = lerp(float4(n000, n100, n010, n110), float4(n001, n101, n011, n111), fade_xyz.z);
+          var n_z = lerp(f4(n000, n100, n010, n110), f4(n001, n101, n011, n111), fade_xyz.z);
           var n_yz = lerp(n_z.xy, n_z.zw, fade_xyz.y);
           var n_xyz = lerp(n_yz.x, n_yz.y, fade_xyz.x);
           return 2.2f * n_xyz; }
@@ -591,8 +591,8 @@ namespace Unity.Mathematics
           Pi1 = mod289(Pi1);
           var Pf0 = P.frac(); //mathx.fractional part for interpolation
           var Pf1 = Pf0 - (float3)1; //mathx.fractional part - 1
-          var ix = float4(Pi0.x, Pi1.x, Pi0.x, Pi1.x);
-          var iy = float4(Pi0.y, Pi0.y, Pi1.y, Pi1.y);
+          var ix = f4(Pi0.x, Pi1.x, Pi0.x, Pi1.x);
+          var iy = f4(Pi0.y, Pi0.y, Pi1.y, Pi1.y);
           float4 iz0 = Pi0.z;
           float4 iz1 = Pi1.z;
 
@@ -616,37 +616,37 @@ namespace Unity.Mathematics
           gx1 -= sz1 * (step(0, gx1) - 0.5f);
           gy1 -= sz1 * (step(0, gy1) - 0.5f);
 
-          var g000 = float3(gx0.x, gy0.x, gz0.x);
-          var g100 = float3(gx0.y, gy0.y, gz0.y);
-          var g010 = float3(gx0.z, gy0.z, gz0.z);
-          var g110 = float3(gx0.w, gy0.w, gz0.w);
-          var g001 = float3(gx1.x, gy1.x, gz1.x);
-          var g101 = float3(gx1.y, gy1.y, gz1.y);
-          var g011 = float3(gx1.z, gy1.z, gz1.z);
-          var g111 = float3(gx1.w, gy1.w, gz1.w);
+          var g000 = f3(gx0.x, gy0.x, gz0.x);
+          var g100 = f3(gx0.y, gy0.y, gz0.y);
+          var g010 = f3(gx0.z, gy0.z, gz0.z);
+          var g110 = f3(gx0.w, gy0.w, gz0.w);
+          var g001 = f3(gx1.x, gy1.x, gz1.x);
+          var g101 = f3(gx1.y, gy1.y, gz1.y);
+          var g011 = f3(gx1.z, gy1.z, gz1.z);
+          var g111 = f3(gx1.w, gy1.w, gz1.w);
 
-          var norm0 = taylorInvSqrt(float4(g000.dot(g000), g010.dot(g010), g100.dot(g100), g110.dot(g110)));
+          var norm0 = taylorInvSqrt(f4(g000.dot(g000), g010.dot(g010), g100.dot(g100), g110.dot(g110)));
           g000 *= norm0.x;
           g010 *= norm0.y;
           g100 *= norm0.z;
           g110 *= norm0.w;
-          var norm1 = taylorInvSqrt(float4(g001.dot(g001), g011.dot(g011), g101.dot(g101), g111.dot(g111)));
+          var norm1 = taylorInvSqrt(f4(g001.dot(g001), g011.dot(g011), g101.dot(g101), g111.dot(g111)));
           g001 *= norm1.x;
           g011 *= norm1.y;
           g101 *= norm1.z;
           g111 *= norm1.w;
 
           var n000 = g000.dot(Pf0);
-          var n100 = g100.dot(float3(Pf1.x, Pf0.y, Pf0.z));
-          var n010 = g010.dot(float3(Pf0.x, Pf1.y, Pf0.z));
-          var n110 = g110.dot(float3(Pf1.x, Pf1.y, Pf0.z));
-          var n001 = g001.dot(float3(Pf0.x, Pf0.y, Pf1.z));
-          var n101 = g101.dot(float3(Pf1.x, Pf0.y, Pf1.z));
-          var n011 = g011.dot(float3(Pf0.x, Pf1.y, Pf1.z));
+          var n100 = g100.dot(f3(Pf1.x, Pf0.y, Pf0.z));
+          var n010 = g010.dot(f3(Pf0.x, Pf1.y, Pf0.z));
+          var n110 = g110.dot(f3(Pf1.x, Pf1.y, Pf0.z));
+          var n001 = g001.dot(f3(Pf0.x, Pf0.y, Pf1.z));
+          var n101 = g101.dot(f3(Pf1.x, Pf0.y, Pf1.z));
+          var n011 = g011.dot(f3(Pf0.x, Pf1.y, Pf1.z));
           var n111 = g111.dot(Pf1);
 
           var fade_xyz = fade(Pf0);
-          var n_z = lerp(float4(n000, n100, n010, n110), float4(n001, n101, n011, n111), fade_xyz.z);
+          var n_z = lerp(f4(n000, n100, n010, n110), f4(n001, n101, n011, n111), fade_xyz.z);
           var n_yz = lerp(n_z.xy, n_z.zw, fade_xyz.y);
           var n_xyz = lerp(n_yz.x, n_yz.y, fade_xyz.x);
           return 2.2f * n_xyz; }
@@ -673,19 +673,19 @@ namespace Unity.Mathematics
 
 //--------------------------------------------------[3.1] 4-Point BCC Noise-----------------------------------------------
 // K.jpg's Smooth Re-oriented 8-Point BCC Noise
-// Output: float4(dF/dx, dF/dy, dF/dz, value)
+// Output: f4(dF/dx, dF/dy, dF/dz, value)
 
 
 // Gradient set is a normalized expanded rhombic dodecahedron
         private static float3 bcc4_grad(float hash)
         { // Random vertex of a cube, +/- 1 each
-          var cube = ((hash / float3(1, 2, 4)).floor() * 0.5f).frac() * 4 - 1;
+          var cube = ((hash / f3(1, 2, 4)).floor() * 0.5f).frac() * 4 - 1;
 
           // Random edge of the three edges connected to that vertex
           // Also a cuboctahedral vertex
           // And corresponds to the face of its dual, the rhombic dodecahedron
           var cuboct = cube;
-          cuboct *= (float3(0, 1, 2) != (int)(hash / 16)).asfloat();
+          cuboct *= (f3(0, 1, 2) != (int)(hash / 16)).asfloat();
 
           // In a funky way, pick one of the four points on the rhombic face
           var type = ((hash / 8).floor() * 0.5f).frac() * 2;
@@ -722,31 +722,31 @@ namespace Unity.Mathematics
           var d4 = X2 - v4;
 
           // Gradient hashes for the four points, two from each half-lattice
-          var hashes = bcc4_permute(bcc4_mod(float4(v1.x, v2.x, v3.x, v4.x), 289));
-          hashes = bcc4_permute(bcc4_mod(hashes + float4(v1.y, v2.y, v3.y, v4.y), 289));
-          hashes = bcc4_mod(bcc4_permute(bcc4_mod(hashes + float4(v1.z, v2.z, v3.z, v4.z), 289)), 48);
+          var hashes = bcc4_permute(bcc4_mod(f4(v1.x, v2.x, v3.x, v4.x), 289));
+          hashes = bcc4_permute(bcc4_mod(hashes + f4(v1.y, v2.y, v3.y, v4.y), 289));
+          hashes = bcc4_mod(bcc4_permute(bcc4_mod(hashes + f4(v1.z, v2.z, v3.z, v4.z), 289)), 48);
 
           // Gradient extrapolations & kernel function
-          var a = (0.5f - float4(d1.dot(d1), d2.dot(d2), d3.dot(d3), d4.dot(d4))).max(0);
+          var a = (0.5f - f4(d1.dot(d1), d2.dot(d2), d3.dot(d3), d4.dot(d4))).max(0);
           var aa = a * a;
           var aaaa = aa * aa;
           var g1 = bcc4_grad(hashes.x);
           var g2 = bcc4_grad(hashes.y);
           var g3 = bcc4_grad(hashes.z);
           var g4 = bcc4_grad(hashes.w);
-          var extrapolations = float4(d1.dot(g1), d2.dot(g2), d3.dot(g3), d4.dot(g4));
+          var extrapolations = f4(d1.dot(g1), d2.dot(g2), d3.dot(g3), d4.dot(g4));
 
           // Derivatives of the noise
           var derivative = -8 * mul(aa * a * extrapolations, float3x4(d1, d2, d3, d4)) + mul(aaaa, float3x4(g1, g2, g3, g4));
 
-          // Return it all as a float4
-          return float4(derivative, aaaa.dot(extrapolations)); }
+          // Return it all as a f4
+          return f4(derivative, aaaa.dot(extrapolations)); }
 
 // Use this if you don't want Z to look different from X and Y
         private static float4 Bcc4NoiseClassic(float3 X)
         { // Rotate around the main diagonal. Not a skew transform.
           var result = Bcc4NoiseBase(X.dot(2 / 3) - X);
-          return float4(result.xyz.dot(2 / 3) - result.xyz, result.w); }
+          return f4(result.xyz.dot(2 / 3) - result.xyz, result.w); }
 
 // Use this if you want to show X and Y in a plane, and use Z for time, etc.
         private static float4 Bcc4NoisePlaneFirst(float3 X)
@@ -757,12 +757,12 @@ namespace Unity.Mathematics
               0.577350269189626f, 0.577350269189626f, 0.577350269189626f);
 
           var result = Bcc4NoiseBase(mul(X, orthonormalMap));
-          return float4(mul(orthonormalMap, result.xyz), result.w); }
+          return f4(mul(orthonormalMap, result.xyz), result.w); }
 
 
 //------------------------------------------------[3.2] 8-Point BCC Noise------------------------------------------------------
 // K.jpg's Smooth Re-oriented 8-Point BCC Noise
-// Output: float4(dF/dx, dF/dy, dF/dz, value)
+// Output: f4(dF/dx, dF/dy, dF/dz, value)
 
 
         private static float4 bcc8_mod(float4 x, float4 y) => x - y * (x / y).floor();
@@ -773,7 +773,7 @@ namespace Unity.Mathematics
 // Gradient set is a normalized expanded rhombic dodecahedron
         private static float3 bcc8_grad(float hash)
         { // Random vertex of a cube, +/- 1 each
-          var cube = ((hash / float3(1, 2, 4)).floor() * 0.5f).frac() * 4 - 1;
+          var cube = ((hash / f3(1, 2, 4)).floor() * 0.5f).frac() * 4 - 1;
 
           // Random edge of the three edges connected to that vertex
           // Also a cuboctahedral vertex
@@ -799,38 +799,38 @@ namespace Unity.Mathematics
 // BCC lattice split up into 2 cube lattices
         private static float4 Bcc8NoiseBase(float3 X)
         { var b = X.floor();
-          var i4 = float4(X - b, 2.5f);
+          var i4 = f4(X - b, 2.5f);
 
           // Pick between each pair of oppposite corners in the cube.
           var v1 = b + i4.dot(0.25f).floor();
-          var v2 = b + float3(1, 0, 0) + float3(-1, 1, 1) * i4.dot(float4(-.25f, .25f, .25f, .35f)).floor();
-          var v3 = b + float3(0, 1, 0) + float3(1, -1, 1) * i4.dot(float4(.25f, -.25f, .25f, .35f)).floor();
-          var v4 = b + float3(0, 0, 1) + float3(1, 1, -1) * i4.dot(float4(.25f, .25f, -.25f, .35f)).floor();
+          var v2 = b + f3(1, 0, 0) + f3(-1, 1, 1) * i4.dot(f4(-.25f, .25f, .25f, .35f)).floor();
+          var v3 = b + f3(0, 1, 0) + f3(1, -1, 1) * i4.dot(f4(.25f, -.25f, .25f, .35f)).floor();
+          var v4 = b + f3(0, 0, 1) + f3(1, 1, -1) * i4.dot(f4(.25f, .25f, -.25f, .35f)).floor();
 
           // Gradient hashes for the four vertices in this half-lattice.
-          var hashes = bcc8_permute(bcc8_mod(float4(v1.x, v2.x, v3.x, v4.x), 289));
-          hashes = bcc8_permute(bcc8_mod(hashes + float4(v1.y, v2.y, v3.y, v4.y), 289));
-          hashes = bcc8_mod(bcc8_permute(bcc8_mod(hashes + float4(v1.z, v2.z, v3.z, v4.z), 289)), 48);
+          var hashes = bcc8_permute(bcc8_mod(f4(v1.x, v2.x, v3.x, v4.x), 289));
+          hashes = bcc8_permute(bcc8_mod(hashes + f4(v1.y, v2.y, v3.y, v4.y), 289));
+          hashes = bcc8_mod(bcc8_permute(bcc8_mod(hashes + f4(v1.z, v2.z, v3.z, v4.z), 289)), 48);
 
           // Gradient extrapolations & kernel function
           var d1 = X - v1;
           var d2 = X - v2;
           var d3 = X - v3;
           var d4 = X - v4;
-          var a = (0.75f - float4(d1.dot(d1), d2.dot(d2), d3.dot(d3), d4.dot(d4))).max(0);
+          var a = (0.75f - f4(d1.dot(d1), d2.dot(d2), d3.dot(d3), d4.dot(d4))).max(0);
           var aa = a * a;
           var aaaa = aa * aa;
           var g1 = bcc8_grad(hashes.x);
           var g2 = bcc8_grad(hashes.y);
           var g3 = bcc8_grad(hashes.z);
           var g4 = bcc8_grad(hashes.w);
-          var extrapolations = float4(d1.dot(g1), d2.dot(g2), d3.dot(g3), d4.dot(g4));
+          var extrapolations = f4(d1.dot(g1), d2.dot(g2), d3.dot(g3), d4.dot(g4));
 
           // Derivatives of the noise
-          var derivative = -8 * mul(aa * a * extrapolations, float3x4(d1, d2, d3, d4)) + mul(aaaa, float4(g1.x, g2.x, g3.x, g4.x)).xyz();
+          var derivative = -8 * mul(aa * a * extrapolations, float3x4(d1, d2, d3, d4)) + mul(aaaa, f4(g1.x, g2.x, g3.x, g4.x)).xyz();
 
-          // Return it all as a float4
-          return float4(derivative, aaaa.dot(extrapolations)); }
+          // Return it all as a f4
+          return f4(derivative, aaaa.dot(extrapolations)); }
 
 // Rotates domain, but preserve shape. Hides grid better in cardinal slices.
 // Good for texturing 3D objects with lots of flat parts along cardinal planes.
@@ -839,7 +839,7 @@ namespace Unity.Mathematics
 
           var result = Bcc8NoiseBase(X) + Bcc8NoiseBase(X + 144.5f);
 
-          return float4(result.xyz.dot(2 / 3) - result.xyz, result.w); }
+          return f4(result.xyz.dot(2 / 3) - result.xyz, result.w); }
 
 // Gives X and Y a triangular alignment, and lets Z move up the main diagonal.
 // Might be good for terrain, or a time varying X/Y plane. Z repeats.
@@ -853,6 +853,6 @@ namespace Unity.Mathematics
           X = mul(X, orthonormalMap);
           var result = Bcc8NoiseBase(X) + Bcc8NoiseBase(X + 144.5f);
 
-          return float4(mul(orthonormalMap, result.xyz), result.w); }
+          return f4(mul(orthonormalMap, result.xyz), result.w); }
     }
 }

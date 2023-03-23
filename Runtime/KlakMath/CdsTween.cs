@@ -23,7 +23,7 @@ public static class CdsTween
 
     #endregion
 
-    #region float2 support
+    #region f2 support
 
     public static (float2 x, float2 v)
       Step((float2 x, float2 v) state, float2 target, float speed)
@@ -40,7 +40,7 @@ public static class CdsTween
 
     #endregion
 
-    #region float3 support
+    #region f3 support
 
     public static (float3 x, float3 v)
       Step((float3 x, float3 v) state, float3 target, float speed)
@@ -57,7 +57,7 @@ public static class CdsTween
 
     #endregion
 
-    #region float4 support
+    #region f4 support
 
     public static (float4 x, float4 v)
       Step((float4 x, float4 v) state, float4 target, float speed)

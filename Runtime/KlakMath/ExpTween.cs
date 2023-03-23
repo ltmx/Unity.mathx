@@ -15,7 +15,7 @@ public static class ExpTween
 
     #endregion
 
-    #region float2 support
+    #region f2 support
 
     public static float2 Step(float2 x, float2 target, float speed)
       => Step(x, target, speed, UnityEngine.Time.deltaTime);
@@ -25,7 +25,7 @@ public static class ExpTween
 
     #endregion
 
-    #region float3 support
+    #region f3 support
 
     public static float3 Step(float3 x, float3 target, float speed)
       => Step(x, target, speed, UnityEngine.Time.deltaTime);
@@ -35,7 +35,7 @@ public static class ExpTween
 
     #endregion
 
-    #region float4 support
+    #region f4 support
 
     public static float4 Step(float4 x, float4 target, float speed)
       => Step(x, target, speed, UnityEngine.Time.deltaTime);

@@ -1,5 +1,5 @@
 ////////////////// K.jpg's Smooth Re-oriented 8-Point BCC Noise //////////////////
-//////////////////// Output: float4(dF/dx, dF/dy, dF/dz, value) ////////////////////
+//////////////////// Output: f4(dF/dx, dF/dy, dF/dz, value) ////////////////////
 
 using Unity.Mathematics;
 using static Unity.Mathematics.math;
@@ -88,7 +88,7 @@ public static class OpenSimplex
       // Derivatives of the noise
       var derivative = -8 * mul(derivativeMatrix, aa * a * extrapolations) + mul(gradientMatrix, aaaa);
 
-      // Return it all as a float4
+      // Return it all as a f4
       return float4(derivative, dot(aaaa, extrapolations)); }
 
 // Use this if you don't want Z to look different from X and Y
