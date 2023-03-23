@@ -26,7 +26,7 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float fsqrt(this float z)
         {
             if (z == 0) return 0;
-            mathx.FloatIntUnion u;
+            FloatIntUnion u;
             u.tmp = 0;
             u.f = z;
             u.tmp -= 1 << 23; // Subtract 2^m.
@@ -41,7 +41,7 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="fsqrt(float)"/>
         [MethodImpl(IL)] public static float3 fsqrt(this float3 f) => new(f.x.fsqrt(), f.y.fsqrt(), f.z.fsqrt());
         /// <inheritdoc cref="fsqrt(float)"/>
-        [MethodImpl(IL)] public static float2 fsqrt(this float2 f) => new(f.x.fsqrt(), f.y.fsqrt()); // to never simplify to new float2(f.xy.fastsqrt())
+        [MethodImpl(IL)] public static float2 fsqrt(this float2 f) => new(f.x.fsqrt(), f.y.fsqrt()); // to never simplify to new f2(f.xy.fastsqrt())
 
 
         /// Returns the distance between a and b (fast but low accuracy)
@@ -110,16 +110,17 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float mod(this float f, int mod) => (f / mod).frac() * mod;
         /// <inheritdoc cref="mod(float4, float4)"/>
         [MethodImpl(IL)] public static float mod(this int f, int mod) => frac(f / mod) * mod;
-        
 
-        /// <inheritdoc cref="mod(float4, float4)"/>
-        [MethodImpl(IL)] public static float2 mod(this float2 f, float mod) => (f / mod).frac() * mod;
-        /// <inheritdoc cref="mod(float4, float4)"/>
-        [MethodImpl(IL)] public static float3 mod(this float3 f, float mod) => (f / mod).frac() * mod;
+        
         /// <inheritdoc cref="mod(float4, float4)"/>
         [MethodImpl(IL)] public static float4 mod(this float4 f, float mod) => (f / mod).frac() * mod;
         /// <inheritdoc cref="mod(float4, float4)"/>
-        [MethodImpl(IL)] public static float2 mod(this int f, float mod) => (f / mod).frac() * mod;
+        [MethodImpl(IL)] public static float3 mod(this float3 f, float mod) => (f / mod).frac() * mod;
+        /// <inheritdoc cref="mod(float4, float4)"/>
+        [MethodImpl(IL)] public static float2 mod(this float2 f, float mod) => (f / mod).frac() * mod;
+        /// <inheritdoc cref="mod(float4, float4)"/>
+        [MethodImpl(IL)] public static float mod(this int f, float mod) => (f / mod).frac() * mod;
+
         
         /// <inheritdoc cref="mod(float4, float4)"/>
         [MethodImpl(IL)] public static float4 mod(this float4 f, int mod) => (f / mod).frac() * mod;
