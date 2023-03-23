@@ -17,13 +17,13 @@ namespace Unity.Mathematics
         public static float sdBox(float3 p, float3 b)
         {
             var q = p.abs() - b;
-            return q.p().length() + q.cmax().n();
+            return q.limp().length() + q.cmax().limn();
         }
 
         public static float sdRoundBox(float3 p, float3 b, float r)
         {
             var q = p.abs() - b;
-            return q.p().length() + q.cmax().n() - r;
+            return q.limp().length() + q.cmax().limn() - r;
         }
 
         public static float sdBoxFrame(float3 p, float3 b, float e)
@@ -33,9 +33,9 @@ namespace Unity.Mathematics
             var f = float3(p.x, q.yz);
             var g = float3(p.y, q.xz);
             var h = float3(q.x, p.yz);
-            return (f.p().length() + f.cmax().n())
-                .min(g.p().length() + g.cmax().n())
-                .min(h.p().length() + h.cmax().n());
+            return (f.limp().length() + f.cmax().limn())
+                .min(g.limp().length() + g.cmax().limn())
+                .min(h.limp().length() + h.cmax().limn());
         }
 
         public static float sdTorus(float3 p, float2 t)
@@ -53,7 +53,7 @@ namespace Unity.Mathematics
 
         public static float sdLink(float3 p, float le, float r1, float r2)
         {
-            var q = float3(p.x, (p.y.abs() - le).p(), p.z);
+            var q = float3(p.x, (p.y.abs() - le).limp(), p.z);
             return float2(q.xy.length() - r1, q.z).length() - r2;
         }
 
@@ -88,12 +88,12 @@ namespace Unity.Mathematics
         {
             // c is the sin/cos of the angle
             var q = float2(p.xz.length(), -p.y);
-            var d = (q - c * q.dot(c).p()).length();
+            var d = (q - c * q.dot(c).limp()).length();
             return d * (q.x * c.y - q.y * c.x < 0 ? -1 : 1);
         }
 
         public static float sdPlane(float3 p, float3 n, float h) =>
-            // n must be normalized
+            // limn must be normalized
             p.dot(n) + h;
 
 
@@ -102,12 +102,12 @@ namespace Unity.Mathematics
         {
             var k = new float3(-0.8660254f, 0.5f, 0.5773503f);
             p = p.abs();
-            p.xy -= 2 * k.xy.dot(p.xy).n() * k.xy;
+            p.xy -= 2 * k.xy.dot(p.xy).limn() * k.xy;
             var d = float2(
                 (p.xy - float2(clamp(p.x, -k.z * h.x, k.z * h.x), 
                     h.x)).length() * (p.y - h.x).sign(),
                     p.z - h.y);
-            return d.x.max(d.y).n() + d.p().length();
+            return d.x.max(d.y).limn() + d.limp().length();
         }
 
         public static float sdTriPrism(float3 p, float2 h)
@@ -132,7 +132,7 @@ namespace Unity.Mathematics
         public static float sdCappedCylinder(float3 p, float h, float r)
         {
             var d = float2(p.xz.length(), p.y).abs() - float2(r, h);
-            return d.x.max(d.y).n() + d.p().length();
+            return d.x.max(d.y).limn() + d.limp().length();
         }
 
         //Arbitrary capped Cylinder
@@ -153,7 +153,7 @@ namespace Unity.Mathematics
         public static float sdRoundedCylinder(float3 p, float ra, float rb, float h)
         {
             var d = float2(p.xz.length() - 2 * ra + rb, p.y.abs() - h);
-            return d.cmax().asint().n() + d.p().length() - rb;
+            return d.cmax().asint().limn() + d.limp().length() - rb;
         }
 
         // Vertical Version
@@ -175,7 +175,7 @@ namespace Unity.Mathematics
             var papa = (p - a).lengthsq();
             var paba = (p - a).dot(b - a) / baba;
             var x = (papa - paba.sq() * baba).sqrt();
-            var cax = (x - (paba < 0.5f ? ra : rb)).p();
+            var cax = (x - (paba < 0.5f ? ra : rb)).limp();
             var cay = (paba - 0.5f).abs() - 0.5f;
             var k = rba.sq() + baba;
             var f = ((rba * (x - ra) + paba * baba) / k).saturate();
@@ -221,11 +221,11 @@ namespace Unity.Mathematics
         {
             // sampling independent computations (only depend on shape)
             var a = (ra - rb * rb + d * d) / (2 * d);
-            var b = (ra.sq() - a.sq()).p().sqrt();
+            var b = (ra.sq() - a.sq()).limp().sqrt();
 
             // sampling dependant computations
             var p = float2(p2.x, p2.yz.length());
-            if (p.x * b - p.y * a > d * (b - p.y).p())
+            if (p.x * b - p.y * a > d * (b - p.y).limp())
                 return (p - float2(a, b)).length();
             return (p.length() - ra).max(-((p - float2(d, 0)).length() - rb));
         }
@@ -286,11 +286,11 @@ namespace Unity.Mathematics
         {
             p = p.abs();
             var b = float2(la, lb);
-            var f = (ndot(b, b - 2 * p.xz) / b.dot(b)).npsaturate();
+            var f = (ndot(b, b - 2 * p.xz) / b.dot(b)).npsat();
             var q = float2(
                 (p.xz - 0.5f * b * float2(1 - f, 1 + f)).length() * (p.x * b.y + p.z * b.x - b.x * b.y).sign() - ra,
                 p.y - h);
-            return q.cmax().asint().n() + q.p().length();
+            return q.cmax().asint().limn() + q.limp().length();
         }
 
         //Octahedron exact
@@ -325,7 +325,7 @@ namespace Unity.Mathematics
 
             var q = float3(p.z, h * p.y - 0.5f * p.x, h * p.x + 0.5f * p.y);
 
-            var s = (-q.x).p();
+            var s = (-q.x).limp();
             var t = ((q.y - 0.5f * p.z) / (m2 + 0.25f)).saturate();
 
             var a = m2 * (q.x + s).sq() + q.y.sq();
@@ -384,11 +384,11 @@ namespace Unity.Mathematics
 
         // Change of Metric - bound -----------------------------------
 
-        /// Most of these functions can be modified to use other norms than the euclidean. By replacing Math.length(p),
-        /// which computes (x2+y2+z2)1/2 by (xn+yn+zn)1/n one can get variations of the basic primitives that have
+        /// Most of these functions can be modified to use other norms than the euclidean. By replacing Math.length(limp),
+        /// which computes (x2+y2+z2)1/2 by (xn+yn+zn)1/limn one can get variations of the basic primitives that have
         /// rounded edges rather than sharp ones. I do not recommend this technique though, since these primitives
         /// require more raymarching steps until an intersection is found than euclidean primitives. Since they
-        /// only give a bound to the real SDF, this kind of primitive alteration also doesn't play well with shadows
+        /// only give a bound to the limp SDF, this kind of primitive alteration also doesn't play well with shadows
         /// and occlusion algorithms that rely on true SDFs for measuring distance to occluders.
         public static float _length2(this float3 p) => p.sq().sum().sqrt();
         public static float _length6(this float3 p) => p.cube().sq().sum().pow(1 / 6f);

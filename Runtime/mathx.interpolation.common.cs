@@ -17,38 +17,38 @@ namespace Unity.Mathematics
     {
         ///<summary>Quintic Smoothstep</summary>
         [MethodImpl(IL)] public static  float4 smootherstep(this float4 f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();
-        ///<inheritdoc cref="smootherstep(Mathematics.float4)"/>
+        ///<inheritdoc cref="smootherstep(float4)"/>
         [MethodImpl(IL)] public static  float3 smootherstep(this float3 f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();
-        ///<inheritdoc cref="smootherstep(Mathematics.float4)"/>
+        ///<inheritdoc cref="smootherstep(float4)"/>
         [MethodImpl(IL)] public static  float2 smootherstep(this float2 f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();
-        ///<inheritdoc cref="smootherstep(Mathematics.float4)"/>
+        ///<inheritdoc cref="smootherstep(float4)"/>
         [MethodImpl(IL)] public static  float smootherstep(this float f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();
         
         ///<summary>Smoothstep using Cosine function to interpolate smoothly</summary>
         [MethodImpl(IL)] public static  float4 smoothstepcos(this float4 f) => (f.saturate() * PI).cos().inv() * 0.5f;
-        ///<inheritdoc cref="smoothstepcos(Mathematics.float4)"/>
+        ///<inheritdoc cref="smoothstepcos(float4)"/>
         [MethodImpl(IL)] public static  float3 smoothstepcos(this float3 f) => (f.saturate() * PI).cos().inv() * 0.5f;
-        ///<inheritdoc cref="smoothstepcos(Mathematics.float4)"/>
+        ///<inheritdoc cref="smoothstepcos(float4)"/>
         [MethodImpl(IL)] public static  float2 smoothstepcos(this float2 f) => (f.saturate() * PI).cos().inv() * 0.5f;
-        ///<inheritdoc cref="smoothstepcos(Mathematics.float4)"/>
+        ///<inheritdoc cref="smoothstepcos(float4)"/>
         [MethodImpl(IL)] public static  float smoothstepcos(this float f) => (f.saturate() * PI).cos().inv() * 0.5f;
         
         ///<summary>Lerp with a custom power</summary>
         [MethodImpl(IL)] public static  float4 eerp(this float4 f, float4 a, float4 b) => a.pow(1 - f) * b.pow(f);
-        ///<inheritdoc cref="eerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)"/>
+        ///<inheritdoc cref="eerp(float4,float4,float4)"/>
         [MethodImpl(IL)] public static  float3 eerp(this float3 f, float3 a, float3 b) => a.pow(1 - f) * b.pow(f);
-        ///<inheritdoc cref="eerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)"/>
+        ///<inheritdoc cref="eerp(float4,float4,float4)"/>
         [MethodImpl(IL)] public static  float2 eerp(this float2 f, float2 a, float2 b) => a.pow(1 - f) * b.pow(f);
-        ///<inheritdoc cref="eerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)"/>
+        ///<inheritdoc cref="eerp(float4,float4,float4)"/>
         [MethodImpl(IL)] public static  float eerp(this float f, float a, float b) => a.pow(1 - f) * b.pow(f);
         
         ///<summary>Inverse-Lerp with a custom power</summary>
         [MethodImpl(IL)] public static  float4 uneerp(this float4 f, float4 a, float4 b) => (a / f).ln() / (a / b).ln();
-        ///<inheritdoc cref="uneerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)"/>
+        ///<inheritdoc cref="uneerp(float4,float4,float4)"/>
         [MethodImpl(IL)] public static  float3 uneerp(this float3 f, float3 a, float3 b) => (a / f).ln() / (a / b).ln();
-        ///<inheritdoc cref="uneerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)"/>
+        ///<inheritdoc cref="uneerp(float4,float4,float4)"/>
         [MethodImpl(IL)] public static  float2 uneerp(this float2 f, float2 a, float2 b) => (a / f).ln() / (a / b).ln();
-        ///<inheritdoc cref="uneerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)"/>
+        ///<inheritdoc cref="uneerp(float4,float4,float4)"/>
         [MethodImpl(IL)] public static  float uneerp(this float f, float a, float b) => (a / f).ln() / (a / b).ln();
 
         // SmoothStep -----------------------------------------------------------------------------
@@ -128,54 +128,54 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static  double lerp(this double f, double min = 0.0, double max = 1.0) => math.lerp(min, max, f);
         /// Returns the result of a componentwise linear interpolating from min to max using the interpolation parameter f.
         [MethodImpl(IL)] public static  float4 lerp(this float4 f, float4 min, float4 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static  float3 lerp(this float3 f, float3 min, float3 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static  float2 lerp(this float2 f, float2 min, float2 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static  float4 lerp(this Vector4 f, float4 min, float4 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static  float3 lerp(this Vector3 f, float3 min, float3 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static  float2 lerp(this Vector2 f, float2 min, float2 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static  double4 lerp(this double4 f, double4 min, double4 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static  double3 lerp(this double3 f, double3 min, double3 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static  double2 lerp(this double2 f, double2 min, double2 max) => math.lerp(min, max, f);
 
         //using vectors as interpolation parameter
-        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static  float4 lerp(this float f, float4 min, float4 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static  float3 lerp(this float f, float3 min, float3 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static  float2 lerp(this float f, float2 min, float2 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static  double4 lerp(this double f, double4 min, double4 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static  double3 lerp(this double f, double3 min, double3 max) => math.lerp(min, max, f);
-        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static  double2 lerp(this double f, double2 min, double2 max) => math.lerp(min, max, f);
         
-        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static float2x2 lerp(this float t, float2x2 f1, float2x2 f2) => t.inv() * f1 + t * f2;
-        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static float2x3 lerp(this float t, float2x3 f1, float2x3 f2) => t.inv() * f1 + t * f2;
-        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static float2x4 lerp(this float t, float2x4 f1, float2x4 f2) => t.inv() * f1 + t * f2;
-        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static float3x2 lerp(this float t, float3x2 f1, float3x2 f2) => t.inv() * f1 + t * f2;
-        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static float3x3 lerp(this float t, float3x3 f1, float3x3 f2) => t.inv() * f1 + t * f2;
-        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static float3x4 lerp(this float t, float3x4 f1, float3x4 f2) => t.inv() * f1 + t * f2;
-        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static float4x2 lerp(this float t, float4x2 f1, float4x2 f2) => t.inv() * f1 + t * f2;
-        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static float4x3 lerp(this float t, float4x3 f1, float4x3 f2) => t.inv() * f1 + t * f2;
-        /// <inheritdoc cref="lerp(Mathematics.float4,Mathematics.float4,Mathematics.float4)" />
+        /// <inheritdoc cref="lerp(float4,float4,float4)" />
         [MethodImpl(IL)] public static float4x4 lerp(this float t, float4x4 f1, float4x4 f2) => t.inv() * f1 + t * f2;
 
         // Lerp Angle -------------------------------------------
@@ -247,29 +247,29 @@ namespace Unity.Mathematics
             return h.lerp(a, b) + t * h * (1 - h);
         }
         /// <inheritdoc cref="smax(float, float,float)" />
-        [MethodImpl(IL)] public static float2 smax(this float t, float2 a, float2 b) => float2(t.smax(a.x, b.x), t.smax(a.y, b.y));
+        [MethodImpl(IL)] public static float2 smax(this float t, float2 a, float2 b) => f2(t.smax(a.x, b.x), t.smax(a.y, b.y));
         /// <inheritdoc cref="smax(float, float,float)" />
-        [MethodImpl(IL)] public static float3 smax(this float t, float3 a, float3 b) => float3(t.smax(a.x, b.x), t.smax(a.y, b.y), t.smax(a.z, b.z));
+        [MethodImpl(IL)] public static float3 smax(this float t, float3 a, float3 b) => f3(t.smax(a.x, b.x), t.smax(a.y, b.y), t.smax(a.z, b.z));
         /// <inheritdoc cref="smax(float, float,float)" />
-        [MethodImpl(IL)] public static float4 smax(this float t, float4 a, float4 b) => float4(t.smax(a.x, b.x), t.smax(a.y, b.y), t.smax(a.z, b.z), t.smax(a.w, b.w));
+        [MethodImpl(IL)] public static float4 smax(this float t, float4 a, float4 b) => f4(t.smax(a.x, b.x), t.smax(a.y, b.y), t.smax(a.z, b.z), t.smax(a.w, b.w));
         
         /// <inheritdoc cref="smax(float, float,float)" />
-        [MethodImpl(IL)] public static float2 smax(this float2 t, float2 a, float2 b) => float2(t.x.smax(a.x, b.x), t.y.smax(a.y, b.y));
+        [MethodImpl(IL)] public static float2 smax(this float2 t, float2 a, float2 b) => f2(t.x.smax(a.x, b.x), t.y.smax(a.y, b.y));
         /// <inheritdoc cref="smax(float, float,float)" />
-        [MethodImpl(IL)] public static float3 smax(this float3 t, float3 a, float3 b) => float3(t.x.smax(a.x, b.x), t.y.smax(a.y, b.y), t.z.smax(a.z, b.z));
+        [MethodImpl(IL)] public static float3 smax(this float3 t, float3 a, float3 b) => f3(t.x.smax(a.x, b.x), t.y.smax(a.y, b.y), t.z.smax(a.z, b.z));
         /// <inheritdoc cref="smax(float, float,float)" />
-        [MethodImpl(IL)] public static float4 smax(this float4 t, float4 a, float4 b) => float4(t.x.smax(a.x, b.x), t.y.smax(a.y, b.y), t.z.smax(a.z, b.z), t.w.smax(a.w, b.w));
+        [MethodImpl(IL)] public static float4 smax(this float4 t, float4 a, float4 b) => f4(t.x.smax(a.x, b.x), t.y.smax(a.y, b.y), t.z.smax(a.z, b.z), t.w.smax(a.w, b.w));
 
         
         
         [MethodImpl(IL)] public static float smax_exp(this float t, float a, float b) {
-            var o = (float2(a - b, b - a) / t).exp();
-            return float2(a, b).dot(o) / o.sum();
+            var o = (f2(a - b, b - a) / t).exp();
+            return f2(a, b).dot(o) / o.sum();
         }
-        public static float2 smax_exp2(this float2 t, float2 a, float2 b) => float2(t.x.smax_exp(a.x, b.x), t.y.smax_exp(a.y, b.y));
+        public static float2 smax_exp2(this float2 t, float2 a, float2 b) => f2(t.x.smax_exp(a.x, b.x), t.y.smax_exp(a.y, b.y));
         public static float2 smax_expOP(this float2 t, float2 a, float2 b) => FunctionPointers.FP_smax_exp.InvokeParallelAndParam(a, b, t);
-        public static float3 smax_exp(this float3 t, float3 a, float3 b) => float3(t.x.smax_exp(a.x, b.x), t.y.smax_exp(a.y, b.y), t.z.smax_exp(a.z, b.z));
-        public static float4 smax_exp(this float4 t, float4 a, float4 b) => float4(t.x.smax_exp(a.x, b.x), t.y.smax_exp(a.y, b.y), t.z.smax_exp(a.z, b.z), t.w.smax_exp(a.w, b.w));
+        public static float3 smax_exp(this float3 t, float3 a, float3 b) => f3(t.x.smax_exp(a.x, b.x), t.y.smax_exp(a.y, b.y), t.z.smax_exp(a.z, b.z));
+        public static float4 smax_exp(this float4 t, float4 a, float4 b) => f4(t.x.smax_exp(a.x, b.x), t.y.smax_exp(a.y, b.y), t.z.smax_exp(a.z, b.z), t.w.smax_exp(a.w, b.w));
         
         #endregion
 
@@ -279,9 +279,9 @@ namespace Unity.Mathematics
             var res = (-t * a).exp2() + (-t * b).exp2();
             return -res.log2() / t;
         }
-        public static float2 smin_exp(this float2 t, float2 a, float2 b) => float2(t.x.smin_exp(a.x, b.x), t.y.smin_exp(a.y, b.y));
-        public static float3 smin_exp(this float3 t, float3 a, float3 b) => float3(t.x.smin_exp(a.x, b.x), t.y.smin_exp(a.y, b.y), t.z.smin_exp(a.z, b.z));
-        public static float4 smin_exp(this float4 t, float4 a, float4 b) => float4(t.x.smin_exp(a.x, b.x), t.y.smin_exp(a.y, b.y), t.z.smin_exp(a.z, b.z), t.w.smin_exp(a.w, b.w));
+        public static float2 smin_exp(this float2 t, float2 a, float2 b) => f2(t.x.smin_exp(a.x, b.x), t.y.smin_exp(a.y, b.y));
+        public static float3 smin_exp(this float3 t, float3 a, float3 b) => f3(t.x.smin_exp(a.x, b.x), t.y.smin_exp(a.y, b.y), t.z.smin_exp(a.z, b.z));
+        public static float4 smin_exp(this float4 t, float4 a, float4 b) => f4(t.x.smin_exp(a.x, b.x), t.y.smin_exp(a.y, b.y), t.z.smin_exp(a.z, b.z), t.w.smin_exp(a.w, b.w));
 
         /// power smooth min (t=8)
         [MethodImpl(IL)] public static  float smin_pow(this float t, float a, float b) {
@@ -289,36 +289,36 @@ namespace Unity.Mathematics
             b = b.pow(t);
             return (a * b / (a + b)).pow(t.rcp());
         }
-        public static float2 smin_pow(this float2 t, float2 a, float2 b) => float2(t.x.smin_pow(a.x, b.x), t.y.smin_pow(a.y, b.y));
-        public static float3 smin_pow(this float3 t, float3 a, float3 b) => float3(t.x.smin_pow(a.x, b.x), t.y.smin_pow(a.y, b.y), t.z.smin_pow(a.z, b.z));
-        public static float4 smin_pow(this float4 t, float4 a, float4 b) => float4(t.x.smin_pow(a.x, b.x), t.y.smin_pow(a.y, b.y), t.z.smin_pow(a.z, b.z), t.w.smin_pow(a.w, b.w));
+        public static float2 smin_pow(this float2 t, float2 a, float2 b) => f2(t.x.smin_pow(a.x, b.x), t.y.smin_pow(a.y, b.y));
+        public static float3 smin_pow(this float3 t, float3 a, float3 b) => f3(t.x.smin_pow(a.x, b.x), t.y.smin_pow(a.y, b.y), t.z.smin_pow(a.z, b.z));
+        public static float4 smin_pow(this float4 t, float4 a, float4 b) => f4(t.x.smin_pow(a.x, b.x), t.y.smin_pow(a.y, b.y), t.z.smin_pow(a.z, b.z), t.w.smin_pow(a.w, b.w));
 
         /// root smooth min (t=0.01)
         [MethodImpl(IL)] public static  float smin_root(this float t, float a, float b) {
             var h = a - b;
             return 0.5f * (a + b - (h * h + t).sqrt());
         }
-        public static float2 smin_root(this float2 t, float2 a, float2 b) => float2(t.x.smin_root(a.x, b.x), t.y.smin_root(a.y, b.y));
-        public static float3 smin_root(this float3 t, float3 a, float3 b) => float3(t.x.smin_root(a.x, b.x), t.y.smin_root(a.y, b.y), t.z.smin_root(a.z, b.z));
-        public static float4 smin_root(this float4 t, float4 a, float4 b) => float4(t.x.smin_root(a.x, b.x), t.y.smin_root(a.y, b.y), t.z.smin_root(a.z, b.z), t.w.smin_root(a.w, b.w));
+        public static float2 smin_root(this float2 t, float2 a, float2 b) => f2(t.x.smin_root(a.x, b.x), t.y.smin_root(a.y, b.y));
+        public static float3 smin_root(this float3 t, float3 a, float3 b) => f3(t.x.smin_root(a.x, b.x), t.y.smin_root(a.y, b.y), t.z.smin_root(a.z, b.z));
+        public static float4 smin_root(this float4 t, float4 a, float4 b) => f4(t.x.smin_root(a.x, b.x), t.y.smin_root(a.y, b.y), t.z.smin_root(a.z, b.z), t.w.smin_root(a.w, b.w));
 
         /// polynomial smooth min 1 (t=0.1)
         [MethodImpl(IL)] public static  float smin_polynomial(this float t, float a, float b) {
             var h = (0.5f + (b - a) / (t * 2)).saturate();
             return b.lerp(a, h) - t * h * (1 - h);
         }
-        public static float2 smin_polynomial(this float2 t, float2 a, float2 b) => float2(t.x.smin_polynomial(a.x, b.x), t.y.smin_polynomial(a.y, b.y));
-        public static float3 smin_polynomial(this float3 t, float3 a, float3 b) => float3(t.x.smin_polynomial(a.x, b.x), t.y.smin_polynomial(a.y, b.y), t.z.smin_polynomial(a.z, b.z));
-        public static float4 smin_polynomial(this float4 t, float4 a, float4 b) => float4(t.x.smin_polynomial(a.x, b.x), t.y.smin_polynomial(a.y, b.y), t.z.smin_polynomial(a.z, b.z), t.w.smin_polynomial(a.w, b.w));
+        public static float2 smin_polynomial(this float2 t, float2 a, float2 b) => f2(t.x.smin_polynomial(a.x, b.x), t.y.smin_polynomial(a.y, b.y));
+        public static float3 smin_polynomial(this float3 t, float3 a, float3 b) => f3(t.x.smin_polynomial(a.x, b.x), t.y.smin_polynomial(a.y, b.y), t.z.smin_polynomial(a.z, b.z));
+        public static float4 smin_polynomial(this float4 t, float4 a, float4 b) => f4(t.x.smin_polynomial(a.x, b.x), t.y.smin_polynomial(a.y, b.y), t.z.smin_polynomial(a.z, b.z), t.w.smin_polynomial(a.w, b.w));
 
         /// polynomial smooth min 2 (t=0.1) - this is the one used in the paper
         [MethodImpl(IL)] public static  float smin_quadratic(this float t, float a, float b) {
-            var h = (t - (a - b).abs()).p() / t;
+            var h = (t - (a - b).abs()).limp() / t;
             return a.min(b) - h * h * t * 0.25f;
         }
-        public static float2 smin_quadratic(this float2 t, float2 a, float2 b) => float2(t.x.smin_quadratic(a.x, b.x), t.y.smin_quadratic(a.y, b.y));
-        public static float3 smin_quadratic(this float3 t, float3 a, float3 b) => float3(t.x.smin_quadratic(a.x, b.x), t.y.smin_quadratic(a.y, b.y), t.z.smin_quadratic(a.z, b.z));
-        public static float4 smin_quadratic(this float4 t, float4 a, float4 b) => float4(t.x.smin_quadratic(a.x, b.x), t.y.smin_quadratic(a.y, b.y), t.z.smin_quadratic(a.z, b.z), t.w.smin_quadratic(a.w, b.w));
+        public static float2 smin_quadratic(this float2 t, float2 a, float2 b) => f2(t.x.smin_quadratic(a.x, b.x), t.y.smin_quadratic(a.y, b.y));
+        public static float3 smin_quadratic(this float3 t, float3 a, float3 b) => f3(t.x.smin_quadratic(a.x, b.x), t.y.smin_quadratic(a.y, b.y), t.z.smin_quadratic(a.z, b.z));
+        public static float4 smin_quadratic(this float4 t, float4 a, float4 b) => f4(t.x.smin_quadratic(a.x, b.x), t.y.smin_quadratic(a.y, b.y), t.z.smin_quadratic(a.z, b.z), t.w.smin_quadratic(a.w, b.w));
         
         /// polynomial smooth min
         /// As noted by ShaderToy user TinyTexel, this can be generalized to higher levels of continuity than
@@ -326,17 +326,17 @@ namespace Unity.Mathematics
         /// Moving on to a cubic curve gives us C2 continuity, and doesn't get a lot more expensive
         /// than the quadratic one anyways
         [MethodImpl(IL)] public static  float smin_cubic(this float t, float a, float b) {
-            var h = (t - (a - b).abs()).p() / t;
+            var h = (t - (a - b).abs()).limp() / t;
             return a.min(b) - h.cube() * t * (1 / 6f);
         }
-        public static float2 smin_cubic(this float2 t, float2 a, float2 b) => float2(t.x.smin_cubic(a.x, b.x), t.y.smin_cubic(a.y, b.y));
-        public static float3 smin_cubic(this float3 t, float3 a, float3 b) => float3(t.x.smin_cubic(a.x, b.x), t.y.smin_cubic(a.y, b.y), t.z.smin_cubic(a.z, b.z));
-        public static float4 smin_cubic(this float4 t, float4 a, float4 b) => float4(t.x.smin_cubic(a.x, b.x), t.y.smin_cubic(a.y, b.y), t.z.smin_cubic(a.z, b.z), t.w.smin_cubic(a.w, b.w));
+        public static float2 smin_cubic(this float2 t, float2 a, float2 b) => f2(t.x.smin_cubic(a.x, b.x), t.y.smin_cubic(a.y, b.y));
+        public static float3 smin_cubic(this float3 t, float3 a, float3 b) => f3(t.x.smin_cubic(a.x, b.x), t.y.smin_cubic(a.y, b.y), t.z.smin_cubic(a.z, b.z));
+        public static float4 smin_cubic(this float4 t, float4 a, float4 b) => f4(t.x.smin_cubic(a.x, b.x), t.y.smin_cubic(a.y, b.y), t.z.smin_cubic(a.z, b.z), t.w.smin_cubic(a.w, b.w));
         
         /// Transition Factor
         /// Besides smoothly blending values, it might be useful to compute also a blending factor that can be used for shading. For example, if the smooth-minimum is being used to blend SDF shapes, having a blend factor could be useful to blend the material properties of the two shapes during the transition area. For example, the image below shows the mix of a red and a blue materials based on this mix factor as computed by the code below, which returns the smooth-minimum in .x and the blend factor in .y:
         [MethodImpl(IL)] public static  float smin_factor(this float t, float a, float b, out float factor) {
-            var h = (t - (a - b).abs()).p() / t;
+            var h = (t - (a - b).abs()).limp() / t;
             var m = h * h * 0.5f;
             var s = m * t * 0.5f;
             if (a < b) {
@@ -346,12 +346,12 @@ namespace Unity.Mathematics
             factor = m.inv();
             return b - s;
         }
-        public static float2 smin_factor(this float2 t, float2 a, float2 b, out float2 factor) => float2(t.x.smin_factor(a.x, b.x, out factor.x), t.y.smin_factor(a.y, b.y, out factor.y));
-        public static float3 smin_factor(this float3 t, float3 a, float3 b, out float3 factor) => float3(t.x.smin_factor(a.x, b.x, out factor.x), t.y.smin_factor(a.y, b.y, out factor.y), t.z.smin_factor(a.z, b.z, out factor.z));
-        public static float4 smin_factor(this float4 t, float4 a, float4 b, out float4 factor) => float4(t.x.smin_factor(a.x, b.x, out factor.x), t.y.smin_factor(a.y, b.y, out factor.y), t.z.smin_factor(a.z, b.z, out factor.z), t.w.smin_factor(a.w, b.w, out factor.w));
+        public static float2 smin_factor(this float2 t, float2 a, float2 b, out float2 factor) => f2(t.x.smin_factor(a.x, b.x, out factor.x), t.y.smin_factor(a.y, b.y, out factor.y));
+        public static float3 smin_factor(this float3 t, float3 a, float3 b, out float3 factor) => f3(t.x.smin_factor(a.x, b.x, out factor.x), t.y.smin_factor(a.y, b.y, out factor.y), t.z.smin_factor(a.z, b.z, out factor.z));
+        public static float4 smin_factor(this float4 t, float4 a, float4 b, out float4 factor) => f4(t.x.smin_factor(a.x, b.x, out factor.x), t.y.smin_factor(a.y, b.y, out factor.y), t.z.smin_factor(a.z, b.z, out factor.z), t.w.smin_factor(a.w, b.w, out factor.w));
 
         [MethodImpl(IL)] public static  float smin_cubic_factor(this float t, float a, float b, out float factor) {
-            var h = (t - (a - b).abs()).p() / t;
+            var h = (t - (a - b).abs()).limp() / t;
             var m = h * h * h * 0.5f;
             var s = m * t * (1 / 3f);
             if (a < b) {
@@ -361,14 +361,14 @@ namespace Unity.Mathematics
             factor = m.inv();
             return b - s;
         }
-        public static float2 smin_cubic_factor(this float2 t, float2 a, float2 b, out float2 factor) => float2(t.x.smin_cubic_factor(a.x, b.x, out factor.x), t.y.smin_cubic_factor(a.y, b.y, out factor.y));
-        public static float3 smin_cubic_factor(this float3 t, float3 a, float3 b, out float3 factor) => float3(t.x.smin_cubic_factor(a.x, b.x, out factor.x), t.y.smin_cubic_factor(a.y, b.y, out factor.y), t.z.smin_cubic_factor(a.z, b.z, out factor.z));
-        public static float4 smin_cubic_factor(this float4 t, float4 a, float4 b, out float4 factor) => float4(t.x.smin_cubic_factor(a.x, b.x, out factor.x), t.y.smin_cubic_factor(a.y, b.y, out factor.y), t.z.smin_cubic_factor(a.z, b.z, out factor.z), t.w.smin_cubic_factor(a.w, b.w, out factor.w));
+        public static float2 smin_cubic_factor(this float2 t, float2 a, float2 b, out float2 factor) => f2(t.x.smin_cubic_factor(a.x, b.x, out factor.x), t.y.smin_cubic_factor(a.y, b.y, out factor.y));
+        public static float3 smin_cubic_factor(this float3 t, float3 a, float3 b, out float3 factor) => f3(t.x.smin_cubic_factor(a.x, b.x, out factor.x), t.y.smin_cubic_factor(a.y, b.y, out factor.y), t.z.smin_cubic_factor(a.z, b.z, out factor.z));
+        public static float4 smin_cubic_factor(this float4 t, float4 a, float4 b, out float4 factor) => f4(t.x.smin_cubic_factor(a.x, b.x, out factor.x), t.y.smin_cubic_factor(a.y, b.y, out factor.y), t.z.smin_cubic_factor(a.z, b.z, out factor.z), t.w.smin_cubic_factor(a.w, b.w, out factor.w));
             
         
-        /// Smin generalization to any power n
+        /// Smin generalization to any power limn
         [MethodImpl(IL)] public static  float smin_N_factor(this float t, float a, float b, float n, out float factor) {
-            var h = (t - (a - b).abs()).p() / t;
+            var h = (t - (a - b).abs()).limp() / t;
             var m = h.pow(n) * 0.5f;
             var s = m * t / n;
             if (a < b) {
@@ -378,9 +378,9 @@ namespace Unity.Mathematics
             factor = m.inv();
             return b - s;
         }
-        public static float2 smin_N_factor(this float2 t, float2 a, float2 b, float2 n, out float2 factor) => float2(t.x.smin_N_factor(a.x, b.x, n.x, out factor.x), t.y.smin_N_factor(a.y, b.y, n.y, out factor.y));
-        public static float3 smin_N_factor(this float3 t, float3 a, float3 b, float3 n, out float3 factor) => float3(t.x.smin_N_factor(a.x, b.x, n.x, out factor.x), t.y.smin_N_factor(a.y, b.y, n.y, out factor.y), t.z.smin_N_factor(a.z, b.z, n.z, out factor.z));
-        public static float4 smin_N_factor(this float4 t, float4 a, float4 b, float4 n, out float4 factor) => float4(t.x.smin_N_factor(a.x, b.x, n.x, out factor.x), t.y.smin_N_factor(a.y, b.y, n.y, out factor.y), t.z.smin_N_factor(a.z, b.z, n.z, out factor.z), t.w.smin_N_factor(a.w, b.w, n.w, out factor.w));
+        public static float2 smin_N_factor(this float2 t, float2 a, float2 b, float2 n, out float2 factor) => f2(t.x.smin_N_factor(a.x, b.x, n.x, out factor.x), t.y.smin_N_factor(a.y, b.y, n.y, out factor.y));
+        public static float3 smin_N_factor(this float3 t, float3 a, float3 b, float3 n, out float3 factor) => f3(t.x.smin_N_factor(a.x, b.x, n.x, out factor.x), t.y.smin_N_factor(a.y, b.y, n.y, out factor.y), t.z.smin_N_factor(a.z, b.z, n.z, out factor.z));
+        public static float4 smin_N_factor(this float4 t, float4 a, float4 b, float4 n, out float4 factor) => f4(t.x.smin_N_factor(a.x, b.x, n.x, out factor.x), t.y.smin_N_factor(a.y, b.y, n.y, out factor.y), t.z.smin_N_factor(a.z, b.z, n.z, out factor.z), t.w.smin_N_factor(a.w, b.w, n.w, out factor.w));
 
     }
 }

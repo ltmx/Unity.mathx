@@ -18,21 +18,21 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float anglerad(this float2 from, float2 to)
         {
             var num = (from.lengthsq() * to.lengthsq()).sqrt();
-            return num < 1.00000000362749E-15f ? 0 : (from.dot(to) / num).npsaturate().acos(); // * 57.29578f;
+            return num < 1.00000000362749E-15f ? 0 : (from.dot(to) / num).npsat().acos(); // * 57.29578f;
         }
         
         /// <inheritdoc cref="anglerad(float2, float2)" />
         [MethodImpl(IL)] public static float anglerad(this float3 from, float3 to)
         {
             var num = (from.lengthsq() * to.lengthsq()).sqrt();
-            return num < 1.00000000362749E-15f ? 0 : (from.dot(to) / num).npsaturate().acos(); // * 57.29578f;
+            return num < 1.00000000362749E-15f ? 0 : (from.dot(to) / num).npsat().acos(); // * 57.29578f;
         }
 
         /// <inheritdoc cref="anglerad(float2, float2)" />
         [MethodImpl(IL)] public static float anglerad(this float4 from, float4 to)
         {
             var num = (from.lengthsq() * to.lengthsq()).sqrt();
-            return num < 1.00000000362749E-15f ? 0 : (from.dot(to) / num).npsaturate().acos(); // * 57.29578f;
+            return num < 1.00000000362749E-15f ? 0 : (from.dot(to) / num).npsat().acos(); // * 57.29578f;
         }
 
         /// Returns the signed angle between two vectors in degrees
@@ -44,18 +44,18 @@ namespace Unity.Mathematics
 
 
         /// a fast and accurate way of computing angles
-        [MethodImpl(IL)] public static float fastangle(this float4 from, float4 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).npsaturate().acos();
+        [MethodImpl(IL)] public static float fastangle(this float4 from, float4 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).npsat().acos();
 
-        [MethodImpl(IL)] public static float fastangle(this float3 from, float3 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).npsaturate().acos();
+        [MethodImpl(IL)] public static float fastangle(this float3 from, float3 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).npsat().acos();
 
-        [MethodImpl(IL)] public static float fastangle(this float2 from, float2 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).npsaturate().acos();
+        [MethodImpl(IL)] public static float fastangle(this float2 from, float2 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).npsat().acos();
 
         // // another way of computing angles
-        // [MethodImpl(IL)] public static float otherangle(float2 v1, float2 v2) => math.atan2(v1.x * v2.y - v2.x * v1.y, (v1 * v2).sum()) * (180 / PI);
+        // [MethodImpl(IL)] public static float otherangle(f2 v1, f2 v2) => math.atan2(v1.x * v2.y - v2.x * v1.y, (v1 * v2).sum()) * (180 / PI);
 
         // https://gist.github.com/SaffronCR/b0802d102dd7f262118ac853cd5b4901#file-Mathutil-cs-L24
 
-        /// Determine the signed angle between two vectors, with normal 'n' as the rotation axis.
+        /// Determine the signed angle between two vectors, with normal 'limn' as the rotation axis.
         /// straightforward formulae to compute the signed angle between two vectors
         [MethodImpl(IL)] public static float straightsignedangle(float3 f1, float3 f2, float3 n) => n.dot(f1.cross(f2)).atan2(f1.dot(f2));
 

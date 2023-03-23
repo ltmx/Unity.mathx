@@ -55,7 +55,7 @@ namespace Unity.Mathematics
         /// Constructs a byte3 vector from a single double value by converting it to byte1 and assigning it to every component.
         [MethodImpl(INLINE)] public byte3(double v) { x = v; y = v; z = v; }
 
-        /// Constructs a byte3 vector from a float3 vector by componentwise conversion.
+        /// Constructs a byte3 vector from a f3 vector by componentwise conversion.
         [MethodImpl(INLINE)] public byte3(float3 v) { x = v.x; y = v.y; z = v.z; }
         /// Constructs a byte3 vector from a uint3 vector by componentwise conversion.
         [MethodImpl(INLINE)] public byte3(uint3 v) { x = v.x; y = v.y; z = v.z; }
@@ -81,7 +81,7 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)] public static implicit operator byte3(int3 v) => new(v);
         /// Implicitly converts an int3 vector to a byte3 vector by componentwise conversion.
         [MethodImpl(INLINE)] public static implicit operator byte3(uint3 v) => new(v);
-        /// Explicitly converts a float3 vector to a byte3 vector by componentwise conversion.
+        /// Explicitly converts a f3 vector to a byte3 vector by componentwise conversion.
         [MethodImpl(INLINE)] public static explicit operator byte3(float3 v) => new(v);
         /// Explicitly converts a double3 vector to a byte3 vector by componentwise conversion.
         [MethodImpl(INLINE)] public static explicit operator byte3(double3 v) => new(v);
@@ -121,7 +121,7 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="operator -(byte3, byte3)"/>
         [MethodImpl(INLINE)] public static int3 operator -(byte1 lhs, byte3 rhs) => new(lhs - rhs.x, lhs - rhs.y, lhs - rhs.z);
         
-        /// Returns the result of a componentwise division into an float4 vector.
+        /// Returns the result of a componentwise division into an f4 vector.
         [MethodImpl(INLINE)] public static float3 operator /(byte3 lhs, byte3 rhs) => new(lhs.x / rhs.x, lhs.y / rhs.y, lhs.z / rhs.z);
         /// <inheritdoc cref="operator /(byte3, byte3)"/>
         [MethodImpl(INLINE)] public static float3 operator /(byte3 lhs, byte1 rhs) => new(lhs.x / rhs, lhs.y / rhs, lhs.z / rhs);
@@ -677,7 +677,7 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)] public static byte3 byte3(uint3 v) => new(v);
         /// Returns a byte3 vector constructed from a single float value by converting it to byte1 and assigning it to every component.
         [MethodImpl(INLINE)] public static byte3 byte3(float v) => new(v);
-        /// Return a byte3 vector constructed from a float3 vector by componentwise conversion.
+        /// Return a byte3 vector constructed from a f3 vector by componentwise conversion.
         [MethodImpl(INLINE)] public static byte3 byte3(float3 v) => new(v);
         /// Returns a byte3 vector constructed from a single double value by converting it to byte1 and assigning it to every component.
         [MethodImpl(INLINE)] public static byte3 byte3(double v) => new(v);

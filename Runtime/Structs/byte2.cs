@@ -58,7 +58,7 @@ namespace Unity.Mathematics
         ///Constructs a byte2 vector from a single uint value by assigning it to every component.
         [MethodImpl(INLINE)] public byte2(uint v) { x = v; y = v; }
         
-        ///Constructs a byte2 from a float2
+        ///Constructs a byte2 from a f2
         [MethodImpl(INLINE)] public byte2(float2 v) { x = v.x; y = v.y; }
         /// Constructs a byte2 from a int2
         [MethodImpl(INLINE)] public byte2(int2 v) { x = v.x; y = v.y; }
@@ -88,7 +88,7 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)] public static implicit operator byte2(int2 v) => new(v);
         /// Implicitly converts an int2 vector to a byte2 vector by componentwise conversion.
         [MethodImpl(INLINE)] public static implicit operator byte2(uint2 v) => new(v);
-        /// Explicitly converts a float2 vector to a byte2 vector by componentwise conversion.
+        /// Explicitly converts a f2 vector to a byte2 vector by componentwise conversion.
         [MethodImpl(INLINE)] public static explicit operator byte2(float2 v) => new(v);
         /// Explicitly converts a double2 vector to a byte2 vector by componentwise conversion.
         [MethodImpl(INLINE)] public static explicit operator byte2(double2 v) => new(v);
@@ -108,7 +108,7 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)] public static bool2 operator !=(byte1 lhs, byte2 rhs) => new(lhs != rhs.x, lhs != rhs.y);
 
 
-        ///Returns the result of a componentwise multiplication operation on two float2 vectors.
+        ///Returns the result of a componentwise multiplication operation on two f2 vectors.
         [MethodImpl(INLINE)] public static int2 operator *(byte2 lhs, byte2 rhs) => new(lhs.x * rhs.x, lhs.y * rhs.y);
         ///Returns the result of a componentwise multiplication operation on a byte2 vector and a float value.
         [MethodImpl(INLINE)] public static int2 operator *(byte2 lhs, byte1 rhs) => new(lhs.x * rhs, lhs.y * rhs);
@@ -278,7 +278,7 @@ namespace Unity.Mathematics
         /// Returns a byte2 vector constructed from a single float value by assigning it to every component.
         [MethodImpl(INLINE)] public static byte2 byte2(float v) => new(v);
 
-        ///Return a byte2 vector constructed from a float2 vector by componentwise conversion.
+        ///Return a byte2 vector constructed from a f2 vector by componentwise conversion.
         [MethodImpl(INLINE)] public static byte2 byte2(float2 v) => new(v);
 
         /// Returns a byte2 vector constructed from a single double value by assigning it to

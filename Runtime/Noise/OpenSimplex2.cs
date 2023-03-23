@@ -16,7 +16,7 @@ namespace Unity.Mathematics
         private static float3 grad(float hash)
         {
             // Random vertex of a cube, +/- 1 each
-            var cube = (hash / float3(1, 2, 4)).floor().mod(2) * 2 - 1;
+            var cube = (hash / f3(1, 2, 4)).floor().mod(2) * 2 - 1;
 
             // Random edge of the three edges connected to that vertex
             // Also a cuboctahedral-vertex
@@ -80,14 +80,14 @@ namespace Unity.Mathematics
             var gx = new float3x4(grad(hashes.x), grad(hashes.y), grad(hashes.z), grad(hashes.w));
             var extrapolations = dx.dot(gx);
 
-            var a = (0.5f - dx.lengthsq()).p();
+            var a = (0.5f - dx.lengthsq()).limp();
             var aa = a * a;
             var aaaa = aa * aa;
             // Derivatives of the noise
             var derivative = - 8 * (aa * a * extrapolations).mul(dx) + aaaa.mul(gx);
 
-            // Return it all as a float4
-            return float4(derivative, aaaa.dot(extrapolations));
+            // Return it all as a f4
+            return f4(derivative, aaaa.dot(extrapolations));
         }
 
         // Use this if you don't want Z to look different from X and Y
@@ -95,7 +95,7 @@ namespace Unity.Mathematics
         {
             // Rotate around the main diagonal. Not a skew transform.
             var result = openSimplex2Base(X.sum() * 2/3 - X);
-            return float4(result.xyz.sum() * 2/3 - result.xyz, result.w);
+            return f4(result.xyz.sum() * 2/3 - result.xyz, result.w);
         }
 
         // Use this if you want to show X and Y in a plane, then use Z for time, vertical, etc.
@@ -109,7 +109,7 @@ namespace Unity.Mathematics
             );
 
             var result = openSimplex2Base(X.mul(orthonormalMap));
-            return float4(orthonormalMap.mul(result.xyz), result.w);
+            return f4(orthonormalMap.mul(result.xyz), result.w);
         }
     }
 }

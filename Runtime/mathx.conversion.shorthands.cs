@@ -13,40 +13,40 @@ namespace Unity.Mathematics
     {
         #region Direction Shorthands
         
-        /// Shorthand for new float2(0,1)
+        /// Shorthand for new f2(0,1)
         public static readonly float2 f2up = new(0, 1);
-        /// Shorthand for new float2(0,-1)
+        /// Shorthand for new f2(0,-1)
         public static readonly float2 f2down = new(0, -1);
-        /// Shorthand for new float2(1,0)
+        /// Shorthand for new f2(1,0)
         public static readonly float2 f2right = new(1, 0);
-        /// Shorthand for new float2(-1,0)
+        /// Shorthand for new f2(-1,0)
         public static readonly float2 f2left = new(-1, 0);
 
-        /// Shorthand for new float3(0,1,0)
+        /// Shorthand for new f3(0,1,0)
         public static readonly float3 f3up = new(0, 1, 0);
-        /// Shorthand for new float3(1,0,0);
+        /// Shorthand for new f3(1,0,0);
         public static readonly float3 f3right = new(1, 0, 0);
-        /// Shorthand for new float3(0,0,1)
+        /// Shorthand for new f3(0,0,1)
         public static readonly float3 f3forward = new(0, 0, 1);
-        /// Shorthand for new new float3(0,-1,0)
+        /// Shorthand for new new f3(0,-1,0)
         public static readonly float3 f3down = new(0, -1, 0);
-        /// Shorthand for new float3(-1,0,0)
+        /// Shorthand for new f3(-1,0,0)
         public static readonly float3 f3left = new(-1, 0, 0);
-        /// Shorthand for new float3(0,0,-1)
+        /// Shorthand for new f3(0,0,-1)
         public static readonly float3 f3back = new(0, 0, -1);
 
-        // float3 with implicit naming
-        /// Shorthand for new float3(0,1,0)
+        // f3 with implicit naming
+        /// Shorthand for new f3(0,1,0)
         public static readonly float3 up3 = new(0, 1, 0);
-        /// Shorthand for new float3(1,0,0);
+        /// Shorthand for new f3(1,0,0);
         public static readonly float3 right3 = new(1, 0, 0);
-        /// Shorthand for new float3(0,0,1)
+        /// Shorthand for new f3(0,0,1)
         public static readonly float3 forward3 = new(0, 0, 1);
-        /// Shorthand for new new float3(0,-1,0)
+        /// Shorthand for new new f3(0,-1,0)
         public static readonly float3 down3 = new(0, -1, 0);
-        /// Shorthand for new float3(-1,0,0)
+        /// Shorthand for new f3(-1,0,0)
         public static readonly float3 left3 = new(-1, 0, 0);
-        /// Shorthand for new float3(0,0,-1)
+        /// Shorthand for new f3(0,0,-1)
         public static readonly float3 back3 = new(0, 0, -1);
         
         /// Shorthand for new int3(0,1,0)
@@ -55,7 +55,7 @@ namespace Unity.Mathematics
         public static readonly int3 i3right = new(1, 0, 0);
         /// Shorthand for new int3(0,0,1)
         public static readonly int3 i3forward = new(0, 0, 1);
-        /// Shorthand for new new float3(0,-1,0)
+        /// Shorthand for new new f3(0,-1,0)
         public static readonly int3 i3down = new(0, -1, 0);
         /// Shorthand for new int3(-1,0,0)
         public static readonly int3 i3left = new(-1, 0, 0);
@@ -86,17 +86,17 @@ namespace Unity.Mathematics
     
         // One and Zero -----------------------------------------------------
         
-        /// Shorthand for new float2(1,1)
+        /// Shorthand for new f2(1,1)
         public static readonly float2 f2one = 1;
-        /// Shorthand for new float2(0,0)
+        /// Shorthand for new f2(0,0)
         public static readonly float2 f2zero = 0;
-        /// Shorthand for new float3(1,1,1)
+        /// Shorthand for new f3(1,1,1)
         public static readonly float3 f3one = 1;
-        /// Shorthand for new float3(0,0,0)
+        /// Shorthand for new f3(0,0,0)
         public static readonly float3 f3zero = 0;
-        /// Shorthand for new float4(1,1,1,1)
+        /// Shorthand for new f4(1,1,1,1)
         public static readonly float4 f4one = 1;
-        /// Shorthand for new float4(0,0,0,0)
+        /// Shorthand for new f4(0,0,0,0)
         public static readonly float4 f4zero = 0;
         /// Shorthand for new int3(1,1,1)
         public static readonly int3 i3one = 1;
@@ -112,18 +112,18 @@ namespace Unity.Mathematics
         public static readonly double3 d3zero = 0;
         /// Shorthand for new double4(1,1,1,1)
         public static readonly double4 d4one = 1;
-        /// Shorthand for new float4(0,0,0,0)
+        /// Shorthand for new f4(0,0,0,0)
         public static readonly double4 d4zero = 0;
 
         #endregion
         
         #region .xxxx Shader Syntax
 
-        /// Shorthand for new float2(f)
+        /// Shorthand for new f2(f)
         [MethodImpl(IL)] public static float2 xx(this float f) => new(f);
-        /// Shorthand for new float3(f)
+        /// Shorthand for new f3(f)
         [MethodImpl(IL)] public static float3 xxx(this float f) => new(f);
-        /// Shorthand for new float4(f)
+        /// Shorthand for new f4(f)
         [MethodImpl(IL)] public static float4 xxxx(this float f) => new(f);
         
         /// Shorthand for new double2(f)
@@ -151,37 +151,37 @@ namespace Unity.Mathematics
         
         #region Appending
 
-        /// appends a float to a float to create a float2
+        /// appends a float to a float to create a f2
         [MethodImpl(IL)] public static float2 append(this float x, float y) => new(x, y);
-        /// appends a float to a float2 to create a float3
+        /// appends a float to a f2 to create a f3
         [MethodImpl(IL)] public static float3 append(this float2 xy, float z) => new(xy, z);
-        /// appends a float2 to a float to create a float3
+        /// appends a f2 to a float to create a f3
         [MethodImpl(IL)] public static float3 append(this float x, float2 yz) => new(x, yz);
-        /// appends a float to a float3 to create a float4
+        /// appends a float to a f3 to create a f4
         [MethodImpl(IL)] public static float4 append(this float3 xyz, float w) => new(xyz, w);
-        /// appends a float2 to a float2 to create a float4
+        /// appends a f2 to a f2 to create a f4
         [MethodImpl(IL)] public static float4 append(this float2 xy, float2 zw) => new(xy, zw);
-        /// appends a float3 to a float to create a float4
+        /// appends a f3 to a float to create a f4
         [MethodImpl(IL)] public static float4 append(this float x, float3 yzw) => new(x, yzw);
         
-        /// appends a float to a float to create a float2
+        /// appends a float to a float to create a f2
         [MethodImpl(IL)] public static float2 xy(this float x, float y) => new(x, y);
-        /// appends a float to a float2 to create a float3
+        /// appends a float to a f2 to create a f3
         [MethodImpl(IL)] public static float3 xyz(this float2 xy, float z) => new(xy, z);
-        /// appends a float2 to a float to create a float3
+        /// appends a f2 to a float to create a f3
         [MethodImpl(IL)] public static float3 xyz(this float x, float2 yz) => new(x, yz);
-        /// appends a float to a float3 to create a float4
+        /// appends a float to a f3 to create a f4
         [MethodImpl(IL)] public static float4 xyzw(this float3 xyz, float w) => new(xyz, w);
-        /// appends a float2 to a float2 to create a float4
+        /// appends a f2 to a f2 to create a f4
         [MethodImpl(IL)] public static float4 xyzw(this float2 xy, float2 zw) => new(xy, zw);
-        /// appends a float3 to a float to create a float4
+        /// appends a f3 to a float to create a f4
         [MethodImpl(IL)] public static float4 xyzw(this float x, float3 yzw) => new(x, yzw);
         
-        /// Returns the xyzw components of the quaternion as a float4
+        /// Returns the xyzw components of the quaternion as a f4
         [MethodImpl(IL)] public static float4 xyzw(this quaternion q) => new(q.value);
-        /// Returns the xyz components of the quaternion as a float3
+        /// Returns the xyz components of the quaternion as a f3
         [MethodImpl(IL)] public static float3 xyz(this quaternion q) => new(q.value.xyz);
-        /// Returns the xy components of the quaternion as a float2
+        /// Returns the xy components of the quaternion as a f2
         [MethodImpl(IL)] public static float2 xy(this quaternion q) => new(q.value.xy);
         /// Returns the x component of the quaternion as a float
         [MethodImpl(IL)] public static float x(this quaternion q) => q.value.x;
@@ -195,22 +195,22 @@ namespace Unity.Mathematics
         
         /// appends a float to a float2x2 to create a float2x3
         [MethodImpl(IL)] public static float2x3 append(this float2x2 m, float2 c) => new(m.c0, m.c1, c);
-        /// appends a float2 to a float2x3 to create a float2x4
+        /// appends a f2 to a float2x3 to create a float2x4
         [MethodImpl(IL)] public static float2x4 append(this float2x3 m, float2 c) => new(m.c0, m.c1, m.c2, c);
-        /// appends a float3 to a float3x2 to create a float3x3
+        /// appends a f3 to a float3x2 to create a float3x3
         [MethodImpl(IL)] public static float3x3 append(this float3x2 m, float3 c) => new(m.c0, m.c1, c);
-        /// appends a float3 to a float3x3 to create a float3x4
+        /// appends a f3 to a float3x3 to create a float3x4
         [MethodImpl(IL)] public static float3x4 append(this float3x3 m, float3 c) => new(m.c0, m.c1, m.c2, c);
-        /// appends a float4 to a float4x2 to create a float4x3
+        /// appends a f4 to a float4x2 to create a float4x3
         [MethodImpl(IL)] public static float4x3 append(this float4x2 m, float4 c) => new(m.c0, m.c1, c);
-        /// appends a float4 to a float4x3 to create a float4x4
+        /// appends a f4 to a float4x3 to create a float4x4
         [MethodImpl(IL)] public static float4x4 append(this float4x3 m, float4 c) => new(m.c0, m.c1, m.c2, c);
         
-        /// appends a float2 to a float2 to create a float2x2
+        /// appends a f2 to a f2 to create a float2x2
         [MethodImpl(IL)] public static float2x2 f2x2(this float2 c1, float2 c2) => new(c1, c2);
-        /// appends a float3 to a float3 to create a float3x3
+        /// appends a f3 to a f3 to create a float3x3
         [MethodImpl(IL)] public static float3x2 f3x2(this float3 c1, float3 c2) => new(c1, c2);
-        /// appends a float4 to a float4 to create a float4x4
+        /// appends a f4 to a f4 to create a float4x4
         [MethodImpl(IL)] public static float4x2 f4x2(this float4 c1, float4 c2) => new(c1, c2);
 
         #endregion

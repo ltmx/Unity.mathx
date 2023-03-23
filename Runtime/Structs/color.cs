@@ -52,28 +52,28 @@ namespace Unity.Mathematics
             this.z = z;
             this.w = w;
         }
-        /// <summary>Constructs a color vector from two float values and a float2 vector.</summary>
+        /// <summary>Constructs a color vector from two float values and a f2 vector.</summary>
         [MethodImpl(INLINE)] public color(float x, float y, float2 zw) {
             this.x = x;
             this.y = y;
             z = zw.x;
             w = zw.y;
         }
-        /// <summary>Constructs a color vector from a float value, a float2 vector and a float value.</summary>
+        /// <summary>Constructs a color vector from a float value, a f2 vector and a float value.</summary>
         [MethodImpl(INLINE)] public color(float x, float2 yz, float w) {
             this.x = x;
             y = yz.x;
             z = yz.y;
             this.w = w;
         }
-        /// <summary>Constructs a color vector from a float value and a float3 vector.</summary>
+        /// <summary>Constructs a color vector from a float value and a f3 vector.</summary>
         [MethodImpl(INLINE)] public color(float x, float3 yzw) {
             this.x = x;
             y = yzw.x;
             z = yzw.y;
             w = yzw.z;
         }
-        /// <summary>Constructs a color vector from a float2 vector and two float values.</summary>
+        /// <summary>Constructs a color vector from a f2 vector and two float values.</summary>
         [MethodImpl(INLINE)] public color(float2 xy, float z, float w) {
             x = xy.x;
             y = xy.y;
@@ -87,7 +87,7 @@ namespace Unity.Mathematics
             z = zw.x;
             w = zw.y;
         }
-        /// <summary>Constructs a color vector from a float3 vector and a float value.</summary>
+        /// <summary>Constructs a color vector from a f3 vector and a float value.</summary>
         [MethodImpl(INLINE)] public color(float3 xyz, float w) {
             x = xyz.x;
             y = xyz.y;
@@ -280,9 +280,9 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)] public static implicit operator color(float3 v) => new(v);
 
         // Additions --------------------------------------------------------------
-        /// <summary>Implicitly converts a color vector to a float4 by componentwise conversion.</summary>
+        /// <summary>Implicitly converts a color vector to a f4 by componentwise conversion.</summary>
         [MethodImpl(INLINE)] public static implicit operator float4(color v) => new(v.x, v.y, v.z, v.w);
-        /// <summary>Explicitly converts a color vector to a float3 by componentwise conversion.</summary>
+        /// <summary>Explicitly converts a color vector to a f3 by componentwise conversion.</summary>
         [MethodImpl(INLINE)] public static explicit operator float3(color v) => new(v.x, v.y, v.z);
         /// <summary>Explicitly converts a color to a UnityEngine.Color by componentwise conversion.</summary>
         [MethodImpl(INLINE)] public static implicit operator Color(color b) => new(b.x, b.y, b.z, b.w);
@@ -1572,13 +1572,13 @@ namespace Unity.Mathematics
         /// </summary>
         [MethodImpl(INLINE)] public static uint4 hashwide(color v) => asuint(v) * new uint4(0xB130C137u, 0x54834775u, 0x7C022221u, 0xA2D00EDFu) + 0xA8977779u;
         /// <summary>Returns the result of specified shuffling of the components from two color vectors into a float value.</summary>
-        [MethodImpl(INLINE)] public static float shuffle(color a, color b, ShuffleComponent x) => select_shuffle_component(a, b, x);
-        /// <summary>Returns the result of specified shuffling of the components from two color vectors into a float2 vector.</summary>
-        [MethodImpl(INLINE)] public static float2 shuffle(color a, color b, ShuffleComponent x, ShuffleComponent y) => float2(select_shuffle_component(a, b, x), select_shuffle_component(a, b, y));
-        /// <summary>Returns the result of specified shuffling of the components from two color vectors into a float3 vector.</summary>
-        [MethodImpl(INLINE)] public static float3 shuffle(color a, color b, ShuffleComponent x, ShuffleComponent y, ShuffleComponent z) => float3(select_shuffle_component(a, b, x), select_shuffle_component(a, b, y), select_shuffle_component(a, b, z));
+        [MethodImpl(INLINE)] public static float cycle(color a, color b, ShuffleComponent x) => select_shuffle_component(a, b, x);
+        /// <summary>Returns the result of specified shuffling of the components from two color vectors into a f2 vector.</summary>
+        [MethodImpl(INLINE)] public static float2 cycle(color a, color b, ShuffleComponent x, ShuffleComponent y) => f2(select_shuffle_component(a, b, x), select_shuffle_component(a, b, y));
+        /// <summary>Returns the result of specified shuffling of the components from two color vectors into a f3 vector.</summary>
+        [MethodImpl(INLINE)] public static float3 cycle(color a, color b, ShuffleComponent x, ShuffleComponent y, ShuffleComponent z) => f3(select_shuffle_component(a, b, x), select_shuffle_component(a, b, y), select_shuffle_component(a, b, z));
         /// <summary>Returns the result of specified shuffling of the components from two color vectors into a color vector.</summary>
-        [MethodImpl(INLINE)] public static color shuffle(color a, color b, ShuffleComponent x, ShuffleComponent y, ShuffleComponent z, ShuffleComponent w) => color(select_shuffle_component(a, b, x), select_shuffle_component(a, b, y), select_shuffle_component(a, b, z), select_shuffle_component(a, b, w));
+        [MethodImpl(INLINE)] public static color cycle(color a, color b, ShuffleComponent x, ShuffleComponent y, ShuffleComponent z, ShuffleComponent w) => color(select_shuffle_component(a, b, x), select_shuffle_component(a, b, y), select_shuffle_component(a, b, z), select_shuffle_component(a, b, w));
         [MethodImpl(INLINE)] internal static float select_shuffle_component(color a, color b, ShuffleComponent component) {
             return component switch
             {
@@ -1590,7 +1590,7 @@ namespace Unity.Mathematics
                 ShuffleComponent.RightY => b.y,
                 ShuffleComponent.RightZ => b.z,
                 ShuffleComponent.RightW => b.w,
-                _ => throw new ArgumentException("Invalid shuffle component: " + component)
+                _ => throw new ArgumentException("Invalid cycle component: " + component)
             };
         }
     }

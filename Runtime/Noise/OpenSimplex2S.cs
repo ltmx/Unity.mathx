@@ -14,7 +14,7 @@ namespace Unity.Mathematics
         private static float3 grad2S(float hash)
         {
             // Random vertex of a cube, +/- 1 each
-            var cube = (hash / float3(1, 2, 4)).floor().mod(2) * 2 - 1;
+            var cube = (hash / f3(1, 2, 4)).floor().mod(2) * 2 - 1;
 
             // Random edge of the three edges connected to that vertex
             // Also a cuboctahedral vertex
@@ -49,14 +49,14 @@ namespace Unity.Mathematics
         private static float4 openSimplex2SDerivativesPart(float3 X)
         {
             var b = X.floor();
-            var i4 = float4(X - b, 2.5f);
+            var i4 = f4(X - b, 2.5f);
 
             // Pick between each pair of opposite corners in the cube.
             float3x4 vx = new(
-                b + i4.dot(float4(.25f, .25f, .25f, .25f)).floor(),
-                b + float3(1, 0, 0) + float3(-1, 1, 1) * i4.dot(float4(-.25f, .25f, .25f, .35f)).floor(),
-                b + float3(0, 1, 0) + float3(1, -1, 1) * i4.dot(float4(.25f, -.25f, .25f, .35f)).floor(),
-                b + float3(0, 0, 1) + float3(1, 1, -1) * i4.dot(float4(.25f, .25f, -.25f, .35f)).floor()
+                b + i4.dot(f4(.25f, .25f, .25f, .25f)).floor(),
+                b + f3(1, 0, 0) + f3(-1, 1, 1) * i4.dot(f4(-.25f, .25f, .25f, .35f)).floor(),
+                b + f3(0, 1, 0) + f3(1, -1, 1) * i4.dot(f4(.25f, -.25f, .25f, .35f)).floor(),
+                b + f3(0, 0, 1) + f3(1, 1, -1) * i4.dot(f4(.25f, .25f, -.25f, .35f)).floor()
             );
 
             // Gradient hashes for the four vertices in this half-lattice.
@@ -77,16 +77,16 @@ namespace Unity.Mathematics
             var aaaa = aa * aa;
             var derivative = -8 * (aa * a * extrapolations).mul(dx) + aaaa.mul(gx);
 
-            // Return it all as a float4
+            // Return it all as a f4
             return derivative.append(aaaa.dot(extrapolations));
         }
 
         // Use this if you don't want Z to look different from X and Y
         private static float4 openSimplex2SDerivatives_Conventional(float3 X)
         {
-            X = X.dot(float3(2 / 3)) - X;
+            X = X.dot(f3(2 / 3)) - X;
             var result = openSimplex2SDerivativesPart(X) + openSimplex2SDerivativesPart(X + 144.5f);
-            return float4(result.xyz.dot(float3(2 / 3)) - result.xyz, result.w);
+            return f4(result.xyz.dot(f3(2 / 3)) - result.xyz, result.w);
         }
 
         // Use this if you want to show X and Y in a plane, then use Z for time, vertical, etc.
@@ -103,7 +103,7 @@ namespace Unity.Mathematics
             X = mul(X, orthonormalMap);
             var result = openSimplex2SDerivativesPart(X) + openSimplex2SDerivativesPart(X + 144.5f);
 
-            return float4(orthonormalMap.mul(result.xyz), result.w);
+            return f4(orthonormalMap.mul(result.xyz), result.w);
         }
     }
 }

@@ -22,24 +22,24 @@ namespace Unity.Mathematics
         //     seed ^= seed >> 16;
         //     return seed;
         // }
-        // private static uint hashx(uint seed, uint2 p)
+        // private static uint hashx(uint seed, uint2 real)
         // {
-        //     seed ^= p.x;
+        //     seed ^= real.x;
         //     seed *= 0x51d7348d;
-        //     seed ^= p.y;
+        //     seed ^= real.y;
         //     seed *= 0x85dbdda2;
         //     seed ^= seed >> 16;
         //     seed *= 0x78e5d257;
         //     seed ^= seed >> 16;
         //     return seed;
         // }
-        // private static uint hashx(uint seed, uint3 p)
+        // private static uint hashx(uint seed, uint3 real)
         // {
-        //     seed ^= p.x;
+        //     seed ^= real.x;
         //     seed *= 0x51d7348d;
-        //     seed ^= p.y;
+        //     seed ^= real.y;
         //     seed *= 0x85dbdda2;
-        //     seed ^= p.z;
+        //     seed ^= real.z;
         //     seed *= 0x7e78a65f;
         //     seed ^= seed >> 16;
         //     seed *= 0x7e78a65f;
@@ -48,15 +48,15 @@ namespace Unity.Mathematics
         //     seed ^= seed >> 16;
         //     return seed;
         // }
-        // private static uint hashx(uint seed, uint4 p)
+        // private static uint hashx(uint seed, uint4 real)
         // {
-        //     seed ^= p.x;
+        //     seed ^= real.x;
         //     seed *= 0x51d7348d;
-        //     seed ^= p.y;
+        //     seed ^= real.y;
         //     seed *= 0x85dbdda2;
-        //     seed ^= p.z;
+        //     seed ^= real.z;
         //     seed *= 0x7e78a65f;
-        //     seed ^= p.w;
+        //     seed ^= real.w;
         //     seed *= 0x8ebc6af1;
         //     seed ^= seed >> 16;
         //     seed *= 0x7e78a65f;
@@ -107,7 +107,7 @@ namespace Unity.Mathematics
         private static float hash01(this int4 coord) => coord.dot(prime) % primef.y / primef.y;
         
         public static float hashnp01(this float value) => value.hash01().m2n1();
-        // public static float hashnp01(this float2 coord) => coord.hash01().m2n1();
+        // public static float hashnp01(this f2 coord) => coord.hash01().m2n1();
         public static float hashnp01(this float3 coord) => coord.hash01().m2n1();
         public static float hashnp01(this float4 coord) => coord.hash01().m2n1();
         public static float hashnp01(this int value) => value.hash01().m2n1();
@@ -115,7 +115,7 @@ namespace Unity.Mathematics
         public static float hashnp01(this int3 coord) => coord.hash01().m2n1();
         public static float hashnp01(this int4 coord) => coord.hash01().m2n1();
         
-        // public static float hashnp01(this float2 coord)
+        // public static float hashnp01(this f2 coord)
         // {
         //     const int prime1 = 73856093;
         //     const int prime2 = 19349663; 
@@ -191,17 +191,17 @@ namespace Unity.Mathematics
         {
             float2 ip = floor(p);
             float2 fp = frac(p);
-            float2 d0 = float2(dot(randdir(ip), fp), dot(randdir(ip + f2right), fp - f2right));
-            float2 d1 = float2(dot(randdir(ip + f2up), fp - f2up), dot(randdir(ip + 1), fp - 1));
+            float2 d0 = f2(dot(randdir(ip), fp), dot(randdir(ip + f2right), fp - f2right));
+            float2 d1 = f2(dot(randdir(ip + f2up), fp - f2up), dot(randdir(ip + 1), fp - 1));
             fp = smooth5(fp);
             d1 = fp.y.lerp(d0, d1);
             return fp.x.lerp(d1.x, d1.y) + 0.5f;
         }
 
         private const float F = 0.61803398875f; // golden ratio
-        [MethodImpl(IL)] public static float hashx(this float2 p) => p.dim(F).frac().set(out p).add(p.shuffle().add(37).dot(p)).set(out p).cmul().dim(p.sum()).frac();
-        [MethodImpl(IL)] public static float hashx(this float3 p) => p.dim(F).frac().set(out p).add(p.shuffle().add(37).dot(p)).set(out p).cmul().dim(p.sum()).frac();
-        [MethodImpl(IL)] public static float hashx(this float4 p) => p.dim(F).frac().set(out p).add(p.shuffle().add(37).dot(p)).set(out p).cmul().dim(p.sum()).frac();
+        [MethodImpl(IL)] public static float hashx(this float2 p) => p.dim(F).frac().set(out p).add(p.cycle().add(37).dot(p)).set(out p).cmul().dim(p.sum()).frac();
+        [MethodImpl(IL)] public static float hashx(this float3 p) => p.dim(F).frac().set(out p).add(p.cycle().add(37).dot(p)).set(out p).cmul().dim(p.sum()).frac();
+        [MethodImpl(IL)] public static float hashx(this float4 p) => p.dim(F).frac().set(out p).add(p.cycle().add(37).dot(p)).set(out p).cmul().dim(p.sum()).frac();
         [MethodImpl(IL)] public static float hashx(this float p) => frac(p * F + 0.1f).add(p.sq().dim(34.53f)).set(out p).dim(p + 1).frac();
     }
 }

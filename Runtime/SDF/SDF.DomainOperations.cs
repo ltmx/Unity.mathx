@@ -29,7 +29,7 @@ namespace Unity.Mathematics
         /// that don't have function pointers or lambdas need to be implemented a bit differently
         public static float3 opElongateAlternate(float3 p, float3 h)
         { var q = p.abs() - h;
-          return q.p() + q.x.max(q.y.max(q.z)).n(); }
+          return q.limp() + q.x.max(q.y.max(q.z)).limn(); }
 
 
         // Positioning -----------------------------------------------------------------------------------------------
@@ -60,17 +60,17 @@ namespace Unity.Mathematics
         // You have to be aware however that the resulting SDF might not be an exact SDF but a bound,
         // if the object you are mirroring crosses the mirroring plane.
         /// Symmetry in Y axis
-        private static float3 opSymX(this float3 p) => float3(p.x.abs(), p.yz);
+        private static float3 opSymX(this float3 p) => f3(p.x.abs(), p.yz);
         /// Symmetry on Y axis
-        private static float3 opSymY(this float3 p) => float3(p.x, p.y.abs(), p.z);
+        private static float3 opSymY(this float3 p) => f3(p.x, p.y.abs(), p.z);
         /// Symmetry on Z axis
-        private static float3 opSymZ(this float3 p) => float3(p.xy, p.z.abs());
+        private static float3 opSymZ(this float3 p) => f3(p.xy, p.z.abs());
         /// Symmetry on X and Y axis
-        private static float3 opSymXY(this float3 p) => float3(p.xy.abs(), p.z);
+        private static float3 opSymXY(this float3 p) => f3(p.xy.abs(), p.z);
         /// Symmetry on X and Z axis
-        private static float3 opSymYZ(this float3 p) => float3(p.x, p.yz.abs());
+        private static float3 opSymYZ(this float3 p) => f3(p.x, p.yz.abs());
         /// Symmetry on X and Z axis
-        private static float3 opSymXZ(this float3 p) => float3(p.x.abs(), p.y, p.z.abs());
+        private static float3 opSymXZ(this float3 p) => f3(p.x.abs(), p.y, p.z.abs());
 
 
         // Infinite Repetition ----------------------------------------------------------------------
@@ -86,7 +86,7 @@ namespace Unity.Mathematics
         /// Infinite domain-repetition is great, but sometimes you only need a few copies or instances of a given SDF,
         /// not infinite. A frequently seen but suboptimal solution is to generate infinite copies
         /// and then clip the unwanted areas away with a box SDF. This is not ideal because the resulting SDF
-        /// is not a real SDF but just a bound, since clipping through Math.max() only produces a bound.
+        /// is not a limp SDF but just a bound, since clipping through Math.max() only produces a bound.
         /// A much better approach is to clamp the indices of the instances instead of the SDF,
         /// and let a correct SDF emerge from the truncated/clamped indices.
         private static float3 opRepLim(this float3 p, float c, float3 l) => p - c * (p / c).round().clamp(-l, l);
@@ -109,7 +109,7 @@ namespace Unity.Mathematics
 
         // Displacement --------------------------------------------------------------------------------
 
-        /// The displacement example below is using sin(20*p.x)*sin(20*p.y)*sin(20*p.z) as displacement pattern,
+        /// The displacement example below is using sin(20*limp.x)*sin(20*limp.y)*sin(20*limp.z) as displacement pattern,
         /// ut you can of course use anything you might imagine.
         private static float3 opDisplace(this float3 p, float3 displacement) => p + displacement;
 
@@ -119,7 +119,7 @@ namespace Unity.Mathematics
         private static float3 opTwist(float3 p, float twist)
         { sincos(twist * p.y, out var s, out var c);
           var m = float2x2(c, -s, s, c);
-          var q = float3(m.mul(p.xz), p.y);
+          var q = f3(m.mul(p.xz), p.y);
           return q; }
 
         // Bend ---------------------------------------------------------------------------------------
@@ -127,7 +127,7 @@ namespace Unity.Mathematics
         private static float3 opCheapBend(this float3 p, float bend)
         { sincos(bend * p.x, out var s, out var c);
           var m = float2x2(c, -s, s, c);
-          var q = float3(m.mul(p.xy), p.z);
+          var q = f3(m.mul(p.xy), p.z);
           return q; }
 
         // Revolution and extrusion from -----------------
@@ -137,11 +137,11 @@ namespace Unity.Mathematics
         /// operations on other volumes. Two of the most simplest way to make volumes out of flat shapes is to use
         /// extrusion and revolution (generalizations of these are easy to build, but we we'll keep simple here)
         public static float3 revolveY(this float3 p)
-        { var c = float2(p.xz.length(), p.y);
+        { var c = f2(p.xz.length(), p.y);
           var a = p.z.atan2(p.x);
           sincos(a, out var sin, out var cos);
-          return float3(c.x * cos, c.y, c.x * sin); }
+          return f3(c.x * cos, c.y, c.x * sin); }
 
-        public static float3 extrudeZ(this float3 p, float h) => float3(p.xy, p.z.abs() - h);
+        public static float3 extrudeZ(this float3 p, float h) => f3(p.xy, p.z.abs() - h);
     }
 }

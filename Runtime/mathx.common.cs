@@ -6,6 +6,7 @@
 
 #endregion
 
+using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -18,78 +19,78 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float4 sign(this float4 f) => math.sign(f);
         ///<inheritdoc cref="sign(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float3 sign(this float3 f) => math.sign(f);
-        ///<inheritdoc cref="sign(float4)"/>
+        ///<inheritdoc cref="sign(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float2 sign(this float2 f) => math.sign(f);
-        ///<inheritdoc cref="sign(float4)"/>
+        ///<inheritdoc cref="sign(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float sign(this float f) => math.sign(f);
-        ///<inheritdoc cref="sign(float4)"/>
+        ///<inheritdoc cref="sign(Mathematics.float4)"/>
         [MethodImpl(IL)] public static int sign(this int f) => (int)math.sign(f);
-        ///<inheritdoc cref="sign(float4)"/>
+        ///<inheritdoc cref="sign(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float4 sign(this Vector4 f) => math.sign(f);
-        ///<inheritdoc cref="sign(float4)"/>
+        ///<inheritdoc cref="sign(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float3 sign(this Vector3 f) => math.sign(f);
-        ///<inheritdoc cref="sign(float4)"/>
+        ///<inheritdoc cref="sign(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float2 sign(this Vector2 f) => math.sign(f);
-        ///<inheritdoc cref="sign(float4)"/>
+        ///<inheritdoc cref="sign(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double4 sign(this double4 f) => math.sign(f);
-        ///<inheritdoc cref="sign(float4)"/>
+        ///<inheritdoc cref="sign(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double3 sign(this double3 f) => math.sign(f);
-        ///<inheritdoc cref="sign(float4)"/>
+        ///<inheritdoc cref="sign(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double2 sign(this double2 f) => math.sign(f);
-        ///<inheritdoc cref="sign(float4)"/>
+        ///<inheritdoc cref="sign(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double sign(this double f) => math.sign(f);
 
         // Absolute Value ------------------------------------------------------------------------------
         /// The componentwise absolute value of the input.
         [MethodImpl(IL)] public static float4 abs(this float4 f) => math.abs(f);
-        /// <inheritdoc cref="abs(float4)"/>
+        /// <inheritdoc cref="abs(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float3 abs(this float3 f) => math.abs(f);
-        /// <inheritdoc cref="abs(float4)"/>
+        /// <inheritdoc cref="abs(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float2 abs(this float2 f) => math.abs(f);
-        /// <inheritdoc cref="abs(float4)"/>
+        /// <inheritdoc cref="abs(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float abs(this float f) => math.abs(f);
-        /// <inheritdoc cref="abs(float4)"/>
+        /// <inheritdoc cref="abs(Mathematics.float4)"/>
         [MethodImpl(IL)] public static int abs(this int f) => math.abs(f);
-        /// <inheritdoc cref="abs(float4)"/>
+        /// <inheritdoc cref="abs(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float4 abs(this Vector4 f) => math.abs(f);
-        /// <inheritdoc cref="abs(float4)"/>
+        /// <inheritdoc cref="abs(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float3 abs(this Vector3 f) => math.abs(f);
-        /// <inheritdoc cref="abs(float4)"/>
+        /// <inheritdoc cref="abs(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float2 abs(this Vector2 f) => math.abs(f);
-        /// <inheritdoc cref="abs(float4)"/>
+        /// <inheritdoc cref="abs(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double4 abs(this double4 f) => math.abs(f);
-        /// <inheritdoc cref="abs(float4)"/>
+        /// <inheritdoc cref="abs(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double3 abs(this double3 f) => math.abs(f);
-        /// <inheritdoc cref="abs(float4)"/>
+        /// <inheritdoc cref="abs(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double2 abs(this double2 f) => math.abs(f);
-        /// <inheritdoc cref="abs(float4)"/>
+        /// <inheritdoc cref="abs(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double abs(this double f) => math.abs(f);
 
         #region csum
 
         /// Returns the sum of all components of the vector
         [MethodImpl(IL)] public static float sum(this float4 f) => math.csum(f);
-        /// <inheritdoc cref="sum(float4)"/> 
+        /// <inheritdoc cref="sum(Mathematics.float4)"/> 
         [MethodImpl(IL)] public static float sum(this float3 f) => math.csum(f);
-        /// <inheritdoc cref="sum(float4)"/> 
+        /// <inheritdoc cref="sum(Mathematics.float4)"/> 
         [MethodImpl(IL)] public static float sum(this float2 f) => math.csum(f);
-        /// <inheritdoc cref="sum(float4)"/> 
+        /// <inheritdoc cref="sum(Mathematics.float4)"/> 
         [MethodImpl(IL)] public static float sum(this Vector4 f) => math.csum(f);
-        /// <inheritdoc cref="sum(float4)"/> 
+        /// <inheritdoc cref="sum(Mathematics.float4)"/> 
         [MethodImpl(IL)] public static float sum(this Vector3 f) => math.csum(f);
-        /// <inheritdoc cref="sum(float4)"/> 
+        /// <inheritdoc cref="sum(Mathematics.float4)"/> 
         [MethodImpl(IL)] public static float sum(this Vector2 f) => math.csum(f);
-        /// <inheritdoc cref="sum(float4)"/> 
+        /// <inheritdoc cref="sum(Mathematics.float4)"/> 
         [MethodImpl(IL)] public static int sum(this int4 f) => math.csum(f);
-        /// <inheritdoc cref="sum(float4)"/> 
+        /// <inheritdoc cref="sum(Mathematics.float4)"/> 
         [MethodImpl(IL)] public static int sum(this int3 f) => math.csum(f);
-        /// <inheritdoc cref="sum(float4)"/> 
+        /// <inheritdoc cref="sum(Mathematics.float4)"/> 
         [MethodImpl(IL)] public static int sum(this int2 f) => math.csum(f);
-        /// <inheritdoc cref="sum(float4)"/> 
+        /// <inheritdoc cref="sum(Mathematics.float4)"/> 
         [MethodImpl(IL)] public static double sum(this double4 f) => math.csum(f);
-        /// <inheritdoc cref="sum(float4)"/> 
+        /// <inheritdoc cref="sum(Mathematics.float4)"/> 
         [MethodImpl(IL)] public static double sum(this double3 f) => math.csum(f);
-        /// <inheritdoc cref="sum(float4)"/> 
+        /// <inheritdoc cref="sum(Mathematics.float4)"/> 
         [MethodImpl(IL)] public static double sum(this double2 f) => math.csum(f);
 
         #endregion
@@ -98,27 +99,27 @@ namespace Unity.Mathematics
 
         /// Returns the product of all components of the vector
         [MethodImpl(IL)] public static float cmul(this float4 f) => f.x * f.y * f.z * f.w;
-        /// <inheritdoc cref="cmul(float4)"/>
+        /// <inheritdoc cref="cmul(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float cmul(this float3 f) => f.x * f.y * f.z;
-        /// <inheritdoc cref="cmul(float4)"/>
+        /// <inheritdoc cref="cmul(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float cmul(this float2 f) => f.x * f.y;
-        /// <inheritdoc cref="cmul(float4)"/>
+        /// <inheritdoc cref="cmul(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float cmul(this Vector4 f) => f.x * f.y * f.z * f.w;
-        /// <inheritdoc cref="cmul(float4)"/>
+        /// <inheritdoc cref="cmul(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float cmul(this Vector3 f) => f.x * f.y * f.z;
-        /// <inheritdoc cref="cmul(float4)"/>
+        /// <inheritdoc cref="cmul(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float cmul(this Vector2 f) => f.x * f.y;
-        /// <inheritdoc cref="cmul(float4)"/>
+        /// <inheritdoc cref="cmul(Mathematics.float4)"/>
         [MethodImpl(IL)] public static int cmul(this int4 f) => f.x * f.y * f.z * f.w;
-        /// <inheritdoc cref="cmul(float4)"/>
+        /// <inheritdoc cref="cmul(Mathematics.float4)"/>
         [MethodImpl(IL)] public static int cmul(this int3 f) => f.x * f.y * f.z;
-        /// <inheritdoc cref="cmul(float4)"/>
+        /// <inheritdoc cref="cmul(Mathematics.float4)"/>
         [MethodImpl(IL)] public static int cmul(this int2 f) => f.x * f.y;
-        /// <inheritdoc cref="cmul(float4)"/>
+        /// <inheritdoc cref="cmul(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double cmul(this double4 f) => f.x * f.y * f.z * f.w;
-        /// <inheritdoc cref="cmul(float4)"/>
+        /// <inheritdoc cref="cmul(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double cmul(this double3 f) => f.x * f.y * f.z;
-        /// <inheritdoc cref="cmul(float4)"/>
+        /// <inheritdoc cref="cmul(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double cmul(this double2 f) => f.x * f.y;
 
         #endregion
@@ -127,27 +128,27 @@ namespace Unity.Mathematics
 
         /// Returns one minus the given value. => ex : color inversion
         [MethodImpl(IL)] public static float4 inv(this float4 f) => 1 - f;
-        /// <inheritdoc cref="inv(float4)"/>
+        /// <inheritdoc cref="inv(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float3 inv(this float3 f) => 1 - f;
-        /// <inheritdoc cref="inv(float4)"/>
+        /// <inheritdoc cref="inv(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float2 inv(this float2 f) => 1 - f;
-        /// <inheritdoc cref="inv(float4)"/>
+        /// <inheritdoc cref="inv(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float inv(this float f) => 1 - f;
-        /// <inheritdoc cref="inv(float4)"/>
+        /// <inheritdoc cref="inv(Mathematics.float4)"/>
         [MethodImpl(IL)] public static int inv(this int f) => 1 - f;
-        /// <inheritdoc cref="inv(float4)"/>
+        /// <inheritdoc cref="inv(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double4 inv(this double4 f) => 1 - f;
-        /// <inheritdoc cref="inv(float4)"/>
+        /// <inheritdoc cref="inv(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double3 inv(this double3 f) => 1 - f;
-        /// <inheritdoc cref="inv(float4)"/>
+        /// <inheritdoc cref="inv(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double2 inv(this double2 f) => 1 - f;
-        /// <inheritdoc cref="inv(float4)"/>
+        /// <inheritdoc cref="inv(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double inv(this double f) => 1 - f;
-        /// <inheritdoc cref="inv(float4)"/>
+        /// <inheritdoc cref="inv(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float4 inv(this Vector4 f) => 1 - f.asfloat();
-        /// <inheritdoc cref="inv(float4)"/>
+        /// <inheritdoc cref="inv(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float3 inv(this Vector3 f) => 1 - f.asfloat();
-        /// <inheritdoc cref="inv(float4)"/>
+        /// <inheritdoc cref="inv(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float2 inv(this Vector2 f) => 1 - f.asfloat();
 
         #endregion
@@ -156,27 +157,27 @@ namespace Unity.Mathematics
 
         /// Returns the negation of the given value.
         [MethodImpl(IL)] public static float4 neg(this float4 f) => -f;
-        /// <inheritdoc cref="neg(float4)"/>
+        /// <inheritdoc cref="neg(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float3 neg(this float3 f) => -f;
-        /// <inheritdoc cref="neg(float4)"/>
+        /// <inheritdoc cref="neg(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float2 neg(this float2 f) => -f;
-        /// <inheritdoc cref="neg(float4)"/>
+        /// <inheritdoc cref="neg(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float neg(this float f) => -f;
-        /// <inheritdoc cref="neg(float4)"/>
+        /// <inheritdoc cref="neg(Mathematics.float4)"/>
         [MethodImpl(IL)] public static int neg(this int f) => -f;
-        /// <inheritdoc cref="neg(float4)"/>
+        /// <inheritdoc cref="neg(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double4 neg(this double4 f) => -f;
-        /// <inheritdoc cref="neg(float4)"/>
+        /// <inheritdoc cref="neg(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double3 neg(this double3 f) => -f;
-        /// <inheritdoc cref="neg(float4)"/>
+        /// <inheritdoc cref="neg(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double2 neg(this double2 f) => -f;
-        /// <inheritdoc cref="neg(float4)"/>
+        /// <inheritdoc cref="neg(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double neg(this double f) => -f;
-        /// <inheritdoc cref="neg(float4)"/>
+        /// <inheritdoc cref="neg(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float4 neg(this Vector4 f) => -f;
-        /// <inheritdoc cref="neg(float4)"/>
+        /// <inheritdoc cref="neg(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float3 neg(this Vector3 f) => -f;
-        /// <inheritdoc cref="neg(float4)"/>
+        /// <inheritdoc cref="neg(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float2 neg(this Vector2 f) => -f;
         #endregion
 
@@ -185,27 +186,27 @@ namespace Unity.Mathematics
 
         /// Returns the componentwise reciprocal a vector.
         [MethodImpl(IL)] public static float4 rcp(this float4 f) => math.rcp(f);
-        /// <inheritdoc cref="rcp(float4)"/>
+        /// <inheritdoc cref="rcp(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float3 rcp(this float3 f) => math.rcp(f);
-        /// <inheritdoc cref="rcp(float4)"/>
+        /// <inheritdoc cref="rcp(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float2 rcp(this float2 f) => math.rcp(f);
-        /// <inheritdoc cref="rcp(float4)"/>
+        /// <inheritdoc cref="rcp(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float rcp(this float f) => math.rcp(f);
-        /// <inheritdoc cref="rcp(float4)"/>
+        /// <inheritdoc cref="rcp(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float rcp(this int f) => math.rcp(f);
-        /// <inheritdoc cref="rcp(float4)"/>
+        /// <inheritdoc cref="rcp(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float4 rcp(this Vector4 f) => math.rcp(f);
-        /// <inheritdoc cref="rcp(float4)"/>
+        /// <inheritdoc cref="rcp(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float3 rcp(this Vector3 f) => math.rcp(f);
-        /// <inheritdoc cref="rcp(float4)"/>
+        /// <inheritdoc cref="rcp(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float2 rcp(this Vector2 f) => math.rcp(f);
-        /// <inheritdoc cref="rcp(float4)"/>
+        /// <inheritdoc cref="rcp(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double4 rcp(this double4 f) => math.rcp(f);
-        /// <inheritdoc cref="rcp(float4)"/>
+        /// <inheritdoc cref="rcp(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double3 rcp(this double3 f) => math.rcp(f);
-        /// <inheritdoc cref="rcp(float4)"/>
+        /// <inheritdoc cref="rcp(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double2 rcp(this double2 f) => math.rcp(f);
-        /// <inheritdoc cref="rcp(float4)"/>
+        /// <inheritdoc cref="rcp(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double rcp(this double f) => math.rcp(f);
         
         #endregion
@@ -214,29 +215,29 @@ namespace Unity.Mathematics
 
         /// <summary>Returns the componentwise result of raising x to the power y.</summary>
         public static float4 pow(this float4 f, float4 pow) => math.pow(f, pow);
-        /// <inheritdoc cref="pow(float4, float4)"/>
+        /// <inheritdoc cref="pow(Mathematics.float4,Mathematics.float4)"/>
         [MethodImpl(IL)] public static float3 pow(this float3 f, float3 pow) => math.pow(f, pow);
-        /// <inheritdoc cref="pow(float4, float4)"/>
+        /// <inheritdoc cref="pow(Mathematics.float4,Mathematics.float4)"/>
         [MethodImpl(IL)] public static float2 pow(this float2 f, float2 pow) => math.pow(f, pow);
-        /// <inheritdoc cref="pow(float4, float4)"/>
+        /// <inheritdoc cref="pow(Mathematics.float4,Mathematics.float4)"/>
         [MethodImpl(IL)] public static float pow(this float f, float pow) => math.pow(f, pow);
-        /// <inheritdoc cref="pow(float4, float4)"/>
+        /// <inheritdoc cref="pow(Mathematics.float4,Mathematics.float4)"/>
         [MethodImpl(IL)] public static float pow(this int f, float pow) => math.pow(f, pow);
-        /// <inheritdoc cref="pow(float4, float4)"/>
+        /// <inheritdoc cref="pow(Mathematics.float4,Mathematics.float4)"/>
         [MethodImpl(IL)] public static int pow(this int f, int pow) => (int)math.pow(f, pow);
-        /// <inheritdoc cref="pow(float4, float4)"/>
+        /// <inheritdoc cref="pow(Mathematics.float4,Mathematics.float4)"/>
         [MethodImpl(IL)] public static float4 pow(this Vector4 f, float4 pow) => math.pow(f, pow);
-        /// <inheritdoc cref="pow(float4, float4)"/>
+        /// <inheritdoc cref="pow(Mathematics.float4,Mathematics.float4)"/>
         [MethodImpl(IL)] public static float3 pow(this Vector3 f, float3 pow) => math.pow(f, pow);
-        /// <inheritdoc cref="pow(float4, float4)"/>
+        /// <inheritdoc cref="pow(Mathematics.float4,Mathematics.float4)"/>
         [MethodImpl(IL)] public static float2 pow(this Vector2 f, float2 pow) => math.pow(f, pow);
-        /// <inheritdoc cref="pow(float4, float4)"/>
+        /// <inheritdoc cref="pow(Mathematics.float4,Mathematics.float4)"/>
         [MethodImpl(IL)] public static double4 pow(this double4 f, double4 min) => math.pow(f, min);
-        /// <inheritdoc cref="pow(float4, float4)"/>
+        /// <inheritdoc cref="pow(Mathematics.float4,Mathematics.float4)"/>
         [MethodImpl(IL)] public static double3 pow(this double3 f, double3 min) => math.pow(f, min);
-        /// <inheritdoc cref="pow(float4, float4)"/>
+        /// <inheritdoc cref="pow(Mathematics.float4,Mathematics.float4)"/>
         [MethodImpl(IL)] public static double2 pow(this double2 f, double2 min) => math.pow(f, min);
-        /// <inheritdoc cref="pow(float4, float4)"/>
+        /// <inheritdoc cref="pow(Mathematics.float4,Mathematics.float4)"/>
         [MethodImpl(IL)] public static double pow(this double f, double min) => math.pow(f, min);
 
         #endregion
@@ -245,27 +246,27 @@ namespace Unity.Mathematics
 
         /// Returns x^2
         [MethodImpl(IL)] public static float4 sq(this float4 f) => f * f;
-        /// <inheritdoc cref="sq(float4)"/>
+        /// <inheritdoc cref="sq(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float3 sq(this float3 f) => f * f;
-        /// <inheritdoc cref="sq(float4)"/>
+        /// <inheritdoc cref="sq(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float2 sq(this float2 f) => f * f;
-        /// <inheritdoc cref="sq(float4)"/>
+        /// <inheritdoc cref="sq(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float sq(this float f) => f * f;
-        /// <inheritdoc cref="sq(float4)"/>
+        /// <inheritdoc cref="sq(Mathematics.float4)"/>
         [MethodImpl(IL)] public static int sq(this int f) => f * f;
-        /// <inheritdoc cref="sq(float4)"/>
+        /// <inheritdoc cref="sq(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float4 sq(this Vector4 f) => f.cast() * f;
-        /// <inheritdoc cref="sq(float4)"/>
+        /// <inheritdoc cref="sq(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float3 sq(this Vector3 f) => f.cast() * f;
-        /// <inheritdoc cref="sq(float4)"/>
+        /// <inheritdoc cref="sq(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float2 sq(this Vector2 f) => f * f;
-        /// <inheritdoc cref="sq(float4)"/>
+        /// <inheritdoc cref="sq(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double4 sq(this double4 f) => f * f;
-        /// <inheritdoc cref="sq(float4)"/>
+        /// <inheritdoc cref="sq(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double3 sq(this double3 f) => f * f;
-        /// <inheritdoc cref="sq(float4)"/>
+        /// <inheritdoc cref="sq(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double2 sq(this double2 f) => f * f;
-        /// <inheritdoc cref="sq(float4)"/>
+        /// <inheritdoc cref="sq(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double sq(this double f) => f * f;
 
         #endregion
@@ -274,27 +275,27 @@ namespace Unity.Mathematics
 
         /// <summary> Returns x^3 </summary>
         public static float4 cube(this float4 f) => f * f * f;
-        /// <inheritdoc cref="cube(float4)"/>
+        /// <inheritdoc cref="cube(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float3 cube(this float3 f) => f * f * f;
-        /// <inheritdoc cref="cube(float4)"/>
+        /// <inheritdoc cref="cube(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float2 cube(this float2 f) => f * f * f;
-        /// <inheritdoc cref="cube(float4)"/>
+        /// <inheritdoc cref="cube(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float cube(this float f) => f * f * f;
-        /// <inheritdoc cref="cube(float4)"/>
+        /// <inheritdoc cref="cube(Mathematics.float4)"/>
         [MethodImpl(IL)] public static int cube(this int f) => f * f * f;
-        /// <inheritdoc cref="cube(float4)"/>
+        /// <inheritdoc cref="cube(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float4 cube(this Vector4 f) => f.cast().cube();
-        /// <inheritdoc cref="cube(float4)"/>
+        /// <inheritdoc cref="cube(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float3 cube(this Vector3 f) => f.cast().cube();
-        /// <inheritdoc cref="cube(float4)"/>
+        /// <inheritdoc cref="cube(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float2 cube(this Vector2 f) => f.cast().cube();
-        /// <inheritdoc cref="cube(float4)"/>
+        /// <inheritdoc cref="cube(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double4 cube(this double4 f) => f * f * f;
-        /// <inheritdoc cref="cube(float4)"/>
+        /// <inheritdoc cref="cube(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double3 cube(this double3 f) => f * f * f;
-        /// <inheritdoc cref="cube(float4)"/>
+        /// <inheritdoc cref="cube(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double2 cube(this double2 f) => f * f * f;
-        /// <inheritdoc cref="cube(float4)"/>
+        /// <inheritdoc cref="cube(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double cube(this double f) => f * f * f;
 
         #endregion
@@ -303,27 +304,27 @@ namespace Unity.Mathematics
 
         /// <summary> Returns x^4 </summary>
         public static float4 pow4(this float4 f) => f.sq().sq();
-        /// <inheritdoc cref="pow4(float4)"/>
+        /// <inheritdoc cref="pow4(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float3 pow4(this float3 f) => f.sq().sq();
-        /// <inheritdoc cref="pow4(float4)"/>
+        /// <inheritdoc cref="pow4(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float2 pow4(this float2 f) => f.sq().sq();
-        /// <inheritdoc cref="pow4(float4)"/>
+        /// <inheritdoc cref="pow4(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float pow4(this float f) => f.sq().sq();
-        /// <inheritdoc cref="pow4(float4)"/>
+        /// <inheritdoc cref="pow4(Mathematics.float4)"/>
         [MethodImpl(IL)] public static int pow4(this int f) => f.sq().sq();
-        /// <inheritdoc cref="pow4(float4)"/>
+        /// <inheritdoc cref="pow4(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float4 pow4(this Vector4 f) => f.cast().pow4();
-        /// <inheritdoc cref="pow4(float4)"/>
+        /// <inheritdoc cref="pow4(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float3 pow4(this Vector3 f) => f.cast().pow4();
-        /// <inheritdoc cref="pow4(float4)"/>
+        /// <inheritdoc cref="pow4(Mathematics.float4)"/>
         [MethodImpl(IL)] public static float2 pow4(this Vector2 f) => f.cast().pow4();
-        /// <inheritdoc cref="pow4(float4)"/>
+        /// <inheritdoc cref="pow4(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double4 pow4(this double4 f) => f.sq().sq();
-        /// <inheritdoc cref="pow4(float4)"/>
+        /// <inheritdoc cref="pow4(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double3 pow4(this double3 f) => f.sq().sq();
-        /// <inheritdoc cref="pow4(float4)"/>
+        /// <inheritdoc cref="pow4(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double2 pow4(this double2 f) => f.sq().sq();
-        /// <inheritdoc cref="pow4(float4)"/>
+        /// <inheritdoc cref="pow4(Mathematics.float4)"/>
         [MethodImpl(IL)] public static double pow4(this double f) => f.sq().sq();
 
         #endregion
@@ -332,27 +333,27 @@ namespace Unity.Mathematics
 
         /// <summary> Returns x^5 </summary>
         public static float4 pow5(this float4 f) => f.sq().sq() * f;
-        /// <inheritdoc cref="pow5(float4)" />
+        /// <inheritdoc cref="pow5(Mathematics.float4)" />
         [MethodImpl(IL)] public static float3 pow5(this float3 f) => f.sq().sq() * f;
-        /// <inheritdoc cref="pow5(float4)" />
+        /// <inheritdoc cref="pow5(Mathematics.float4)" />
         [MethodImpl(IL)] public static float2 pow5(this float2 f) => f.sq().sq() * f;
-        /// <inheritdoc cref="pow5(float4)" />
+        /// <inheritdoc cref="pow5(Mathematics.float4)" />
         [MethodImpl(IL)] public static float pow5(this float f) => f.sq().sq() * f;
-        /// <inheritdoc cref="pow5(float4)" />
+        /// <inheritdoc cref="pow5(Mathematics.float4)" />
         [MethodImpl(IL)] public static int pow5(this int f) => f.sq().sq() * f;
-        /// <inheritdoc cref="pow5(float4)" />
+        /// <inheritdoc cref="pow5(Mathematics.float4)" />
         [MethodImpl(IL)] public static float4 pow5(this Vector4 f) => f.cast().pow5();
-        /// <inheritdoc cref="pow5(float4)" />
+        /// <inheritdoc cref="pow5(Mathematics.float4)" />
         [MethodImpl(IL)] public static float3 pow5(this Vector3 f) => f.cast().pow5();
-        /// <inheritdoc cref="pow5(float4)" />
+        /// <inheritdoc cref="pow5(Mathematics.float4)" />
         [MethodImpl(IL)] public static float2 pow5(this Vector2 f) => f.cast().pow5();
-        /// <inheritdoc cref="pow5(float4)" />
+        /// <inheritdoc cref="pow5(Mathematics.float4)" />
         [MethodImpl(IL)] public static double4 pow5(this double4 f) => f.sq().sq() * f;
-        /// <inheritdoc cref="pow5(float4)" />
+        /// <inheritdoc cref="pow5(Mathematics.float4)" />
         [MethodImpl(IL)] public static double3 pow5(this double3 f) => f.sq().sq() * f;
-        /// <inheritdoc cref="pow5(float4)" />
+        /// <inheritdoc cref="pow5(Mathematics.float4)" />
         [MethodImpl(IL)] public static double2 pow5(this double2 f) => f.sq().sq() * f;
-        /// <inheritdoc cref="pow5(float4)" />
+        /// <inheritdoc cref="pow5(Mathematics.float4)" />
         [MethodImpl(IL)] public static double pow5(this double f) => f.sq().sq() * f;
 
         #endregion
@@ -431,6 +432,7 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float3 dim(this float3 a, int b) => a * b;
         /// <inheritdoc cref="dim(float, float)"/>
         [MethodImpl(IL)] public static float4 dim(this float4 a, int b) => a * b;
+        /// <inheritdoc cref="dim(float, float)"/>
         [MethodImpl(IL)] public static float2 dim(this float a, float2 b) => b * a;
         /// <inheritdoc cref="dim(float, float)"/>
         [MethodImpl(IL)] public static float3 dim(this float a, float3 b) => b * a;
@@ -673,60 +675,64 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="div(float, float)"/>
         [MethodImpl(IL)] public static float4 div(this float x, float4 y) => x / y;
         
-        /// Shuffle Components
-        [MethodImpl(IL)] public static float2 shuffle(this float2 f) => new(f.y, f.x);
-        /// <inheritdoc cref="shuffle(Mathematics.float2)"/>
-        [MethodImpl(IL)] public static float3 shuffle(this float3 f) => new(f.y, f.z, f.x);
-        /// <inheritdoc cref="shuffle(Mathematics.float2)"/>
-        [MethodImpl(IL)] public static float4 shuffle(this float4 f) => new(f.y, f.z, f.w, f.x);
-        
+        /// Cycle components from x to y to z to w and back to x
+        [MethodImpl(IL)] public static float2 cycle(this float2 f) => new(f.y, f.x);
+        /// <inheritdoc cref="cycle(Mathematics.float2)"/>
+        [MethodImpl(IL)] public static float3 cycle(this float3 f) => new(f.y, f.z, f.x);
+        /// <inheritdoc cref="cycle(Mathematics.float2)"/>
+        [MethodImpl(IL)] public static float4 cycle(this float4 f) => new(f.y, f.z, f.w, f.x);
+        public static float2 cycle(this float2 f, int n) => f.apply(cycle, n);
+
+
         /// sets the value of x to f and returns f
         [MethodImpl(IL)] public static T set<T>(this T f, out T x) { x = f; return f; }
 
         #region Type Building
 
+        // as extensions method when using a single input
+        
         ///<inheritdoc cref="math.float4(float)"/>
-        public static float4 float4(float f) => math.float4(f);
-        /// Returns a float4 with the first two components set to f, and the last two set to 0
-        public static float4 float4(float2 f) => math.float4(f, 0, 0);
-        /// Returns a float4 with the first three components set to f, and the last one set to 0
-        public static float4 float4(float3 f) => math.float4(f, 0);
+        public static float4 f4(this float f) => math.float4(f);
+        /// Returns a f4 with the first two components set to f, and the last two set to 0
+        public static float4 f4(this float2 f) => math.float4(f, 0, 0);
+        /// Returns a f4 with the first three components set to f, and the last one set to 0
+        public static float4 f4(this float3 f) => math.float4(f, 0);
         /// <inheritdoc cref="math.float4(float, float, float, float)"/>
-        public static float4 float4(float a, float b, float c, float d) => math.float4(a, b, c, d);
+        public static float4 f4(float a, float b, float c, float d) => math.float4(a, b, c, d);
         /// <inheritdoc cref="math.float4(Mathematics.float2, Mathematics.float2)"/>
-        public static float4 float4(float2 a, float2 b) => math.float4(a, b);
+        public static float4 f4(float2 a, float2 b) => math.float4(a, b);
         /// <inheritdoc cref="math.float4(Mathematics.float3, float)"/>
-        public static float4 float4(float3 a, float b) => math.float4(a, b);
+        public static float4 f4(float3 a, float b) => math.float4(a, b);
         /// <inheritdoc cref="math.float4(float, Mathematics.float3)"/>
-        public static float4 float4(float a, float3 b) => math.float4(a, b);
+        public static float4 f4(float a, float3 b) => math.float4(a, b);
         /// <inheritdoc cref="math.float4(float, float, Mathematics.float2)"/>
-        public static float4 float4(float a, float2 b, float c) => math.float4(a, b, c);
+        public static float4 f4(float a, float2 b, float c) => math.float4(a, b, c);
         /// <inheritdoc cref="math.float4(float, float, float, float)"/>
-        public static float4 float4(float a, float b, float2 c) => math.float4(a, b, c);
+        public static float4 f4(float a, float b, float2 c) => math.float4(a, b, c);
         /// <inheritdoc cref="math.float4(float, float, float, float)"/>
-        public static float4 float4(float2 a, float b, float c) => math.float4(a, b, c);
+        public static float4 f4(float2 a, float b, float c) => math.float4(a, b, c);
         
         /// <inheritdoc cref="math.float3(float, float, float)"/>
-        public static float3 float3(float a, float b, float c) => math.float3(a, b, c);
+        public static float3 f3(float a, float b, float c) => math.float3(a, b, c);
         /// <inheritdoc cref="math.float3(Mathematics.float2, float)"/>
-        public static float3 float3(float2 a, float b) => math.float3(a, b);
+        public static float3 f3(float2 a, float b) => math.float3(a, b);
         /// <inheritdoc cref="math.float3(float, Mathematics.float2)"/>
-        public static float3 float3(float a, float2 b) => math.float3(a, b);
+        public static float3 f3(float a, float2 b) => math.float3(a, b);
         /// <inheritdoc cref="math.float3(float)"/>
-        public static float3 float3(float f) => math.float3(f);
-        /// <inheritdoc cref="math.float3(Mathematics.float2)"/>
-        public static float3 float3(float2 f) => math.float3(f, 0);
-        /// Returns a float3 with containing the first three components of a float4
-        public static float3 float3(float4 f) => math.float3(f.xyz); // crop w
+        public static float3 f3(this float f) => math.float3(f);
+        /// <inheritdoc cref="math.float3(Mathematics.float2, float)"/>
+        public static float3 f3(this float2 f) => math.float3(f, 0);
+        /// Returns a f3 with containing the first three components of a f4
+        public static float3 f3(this float4 f) => math.float3(f.xyz); // crop w
         
         /// <inheritdoc cref="math.float2(float, float)"/>
-        public static float2 float2(float a, float b) => math.float2(a, b);
+        public static float2 f2(float a, float b) => math.float2(a, b);
         /// <inheritdoc cref="math.float2(float)"/>
-        public static float2 float2(float f) => math.float2(f);
-        /// Returns a float2 with containing the first two components of a float3
-        public static float2 float2(float3 f) => math.float2(f.xy); // crop z
-        /// Returns a float2 with containing the first two components of a float4
-        public static float2 float2(float4 f) => math.float2(f.xy); // crop zw
+        public static float2 f2(this float f) => math.float2(f);
+        /// Returns a f2 with containing the first two components of a f3
+        public static float2 f2(this float3 f) => math.float2(f.xy); // crop z
+        /// Returns a f2 with containing the first two components of a f4
+        public static float2 f2(this float4 f) => math.float2(f.xy); // crop zw
 
 
         #endregion

@@ -79,13 +79,13 @@ namespace Unity.Mathematics
         // Complex conversions -------------------------------------------
         /// Returns a double2 equivalent
         [MethodImpl(IL)] public static double2 asdouble(this Complex f) => new(f.Real, f.Imaginary);
-        /// Returns a float2 equivalent
+        /// Returns a f2 equivalent
         [MethodImpl(IL)] public static float2 asfloat(this Complex f) => (float2)f.asdouble();
 
         // Color to floats -------------------------------------------
-        /// Returns a float4 equivalent
+        /// Returns a f4 equivalent
         [MethodImpl(IL)] public static float4 asfloat(this Color f) => f.cast();
-        /// Returns a float4 equivalent
+        /// Returns a f4 equivalent
         [MethodImpl(IL)] public static float4 asfloat(this color f) => f; // Compatibility
         
         // bools as ints -------------------------------------------
@@ -177,7 +177,7 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="asdouble(float4)"/>
         [MethodImpl(IL)] public static double asdouble(this float f) => Convert.ToDouble(f);
         
-        /// Returns a float4 from the quaternion's components
+        /// Returns a f4 from the quaternion's components
         [MethodImpl(IL)] public static float4 asfloat(quaternion q) => q.value;
         
 
@@ -193,11 +193,11 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static color ascolor(this float f) => f;
 
         // Color as floats
-        /// Converts to a float4
+        /// Converts to a f4
         [MethodImpl(IL)] public static float4 asfloat4(this Color f) => new(f.r, f.g, f.b, f.a); // compatibility
-        /// Converts to a float3
+        /// Converts to a f3
         [MethodImpl(IL)] public static float3 asfloat3(this Color f) => new(f.r, f.g, f.b);
-        /// Converts to a float3
+        /// Converts to a f3
         [MethodImpl(IL)] public static float3 asfloat3(this color f) => (float3) f;
 
 
@@ -249,14 +249,14 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="tocolorArray(IEnumerable{float4})"/>
         [MethodImpl(IL)] public static color[] tocolorArray(this IEnumerable<float2> f) => f.tocolorIE().ToArray();
 
-        /// Converts to a float4 List
+        /// Converts to a f4 List
         [MethodImpl(IL)] public static List<float4> tofloat4List(this IEnumerable<Color> colors) => colors.tofloat4IE().ToList();
         /// <inheritdoc cref="tofloat4List(IEnumerable{Color})"/>
         [MethodImpl(IL)] public static List<float3> tofloat3List(this IEnumerable<Color> colors) => colors.tofloat3IE().ToList();
 
-        /// Converts to a float4 Array
+        /// Converts to a f4 Array
         [MethodImpl(IL)] public static float4[] tofloat4Array(this IEnumerable<Color> colors) => colors.tofloat4IE().ToArray();
-        /// Converts to a float3 Array
+        /// Converts to a f3 Array
         [MethodImpl(IL)] public static float3[] tofloat3Array(this IEnumerable<Color> colors) => colors.tofloat3IE().ToArray();
 
         /// Converts to a Unity Vector Array

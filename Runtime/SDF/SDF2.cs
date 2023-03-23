@@ -16,7 +16,7 @@ namespace Unity.Mathematics
         // Sign function that doesn't return 0
         private static float sgn(float x) => x < 0 ? -1 : 1;
 
-        private static float2 sgn(float2 v) => float2(v.x < 0 ? -1 : 1, v.y < 0 ? -1 : 1);
+        private static float2 sgn(float2 v) => f2(v.x < 0 ? -1 : 1, v.y < 0 ? -1 : 1);
 
 
         ////////////////////////////////////////////////////////////////
@@ -28,7 +28,7 @@ namespace Unity.Mathematics
         // Conventions:
         //
         // Everything that is a distance function is called fSomething.
-        // The first argument is always a point in 2 or 3-space called <p>.
+        // The first argument is always a point in 2 or 3-space called <limp>.
         // Unless otherwise noted, (if the object has an intrinsic "up"
         // side or direction) the y axis is "up" and the object is
         // centered at the origin.
@@ -37,7 +37,7 @@ namespace Unity.Mathematics
 
         private static float fSphere(float3 p, float r) => p.length() - r;
 
-        // Plane with normal n (n is normalized) at some distance from the origin
+        // Plane with normal limn (limn is normalized) at some distance from the origin
         private static float fPlane(float3 p, float3 n, float distanceFromOrigin) => p.dot(n) + distanceFromOrigin;
 
         // Cheap Box: distance to corners is overestimated
@@ -71,9 +71,9 @@ namespace Unity.Mathematics
             if (p.x < p.y.max(p.z)) p = p.yzx;
             var b =
                 p.dot(f3one.norm())
-                    .max(p.xz.dot(float2(PHI + 1, 1).norm()))
-                    .max(p.yx.dot(float2(1, PHI).norm()))
-                    .max(p.xz.dot(float2(1, PHI).norm()));
+                    .max(p.xz.dot(f2(PHI + 1, 1).norm()))
+                    .max(p.yx.dot(f2(1, PHI).norm()))
+                    .max(p.xz.dot(f2(1, PHI).norm()));
             var l = p.length();
             return l - 1.5f - 0.2f * (1.5f / 2) * cos((sqrt(1.01f - b / l) * (PI / 0.25f)).min(PI));
         }
@@ -88,7 +88,7 @@ namespace Unity.Mathematics
 
         // Capsule: A Cylinder with round caps on both sides
         private static float fCapsule(float3 p, float r, float c) =>
-            lerp(p.xz.length() - r, float3(p.x, p.y.abs() - c, p.z).length() - r, c.step(p.y.abs()));
+            lerp(p.xz.length() - r, f3(p.x, p.y.abs() - c, p.z).length() - r, c.step(p.y.abs()));
 
         // Distance to line segment between <a> and <b>, used for fCapsule() version 2below
         private static float fLineSegment(float3 p, float3 a, float3 b)
@@ -103,13 +103,13 @@ namespace Unity.Mathematics
 
         // Torus in the XZ-plane
         private static float fTorus(float3 p, float smallRadius, float largeRadius) =>
-            float2(p.xz.length() - largeRadius, p.y).length() - smallRadius;
+            f2(p.xz.length() - largeRadius, p.y).length() - smallRadius;
 
         // A circle line. Can also be used to make a torus by subtracting the smaller radius of the torus.
         private static float fCircle(float3 p, float r)
         {
             var l = p.xz.length() - r;
-            return float2(p.y, l).length();
+            return f2(p.y, l).length();
         }
 
         // A circular disc with no thickness (i.e. a cylinder with no height).
@@ -117,7 +117,7 @@ namespace Unity.Mathematics
         private static float fDisc(float3 p, float r)
         {
             var l = p.xz.length() - r;
-            return l < 0 ? p.y.abs() : float2(p.y, l).length();
+            return l < 0 ? p.y.abs() : f2(p.y, l).length();
         }
 
         // Hexagonal prism, circumcircle variant
@@ -126,29 +126,29 @@ namespace Unity.Mathematics
             var q = p.abs();
             return (q.y - h.y).max((q.x * sqrt(3) * 0.5f + q.z * 0.5f).max(q.z) - h.x);
             //this is mathematically equivalent to this line, but less efficient:
-            //return Math.max(q.y - h.y, Math.max( Math.dot(float2(cos(PI/3), sin(PI/3)), q.zx), q.z) - h.x);
+            //return Math.max(q.y - h.y, Math.max( Math.dot(f2(cos(PI/3), sin(PI/3)), q.zx), q.z) - h.x);
         }
 
         // Hexagonal prism, incircle variant
         private static float fHexagonIncircle(float3 p, float2 h) =>
-            fHexagonCircumcircle(p, float2(h.x * sqrt(3) * 0.5f, h.y));
+            fHexagonCircumcircle(p, f2(h.x * sqrt(3) * 0.5f, h.y));
 
         // Cone with correct distances to tip and base circle. Y is up, 0 is in the middle of the base.
         private static float fCone(float3 p, float radius, float height)
         {
-            var q = float2(p.xz.length(), p.y);
-            var tip = q - float2(0, height);
-            var mantleDir = float2(height, radius).norm();
+            var q = f2(p.xz.length(), p.y);
+            var tip = q - f2(0, height);
+            var mantleDir = f2(height, radius).norm();
             var mantle = tip.dot(mantleDir);
             var d = mantle.max(-q.y);
-            var projected = tip.dot(float2(mantleDir.y, -mantleDir.x));
+            var projected = tip.dot(f2(mantleDir.y, -mantleDir.x));
 
             // distance to tip
             if (q.y > height && projected < 0) d = d.max(tip.length());
 
             // distance to base ring
-            if (q.x > radius && projected > float2(height, radius).length())
-                d = d.max((q - float2(radius, 0)).length());
+            if (q.x > radius && projected > f2(height, radius).length())
+                d = d.max((q - f2(radius, 0)).length());
             return d;
         }
 
@@ -163,25 +163,25 @@ namespace Unity.Mathematics
 
         private static readonly NativeArray<float3> GDFVectors = new(new[]
         {
-            float3(1, 0, 0).norm(), 
-            float3(0, 1, 0).norm(), 
-            float3(0, 0, 1).norm(), 
-            float3(1, 1, 1).norm(),
-            float3(-1, 1, 1).norm(), 
-            float3(1, -1, 1).norm(), 
-            float3(1, 1, -1).norm(), 
-            float3(0, 1, PHI + 1).norm(),
-            float3(0, -1, PHI + 1).norm(), 
-            float3(PHI + 1, 0, 1).norm(), 
-            float3(-PHI - 1, 0, 1).norm(),
-            float3(1, PHI + 1, 0).norm(), 
-            float3(-1, PHI + 1, 0).norm(), 
-            float3(0, PHI, 1).norm(),
-            float3(0, -PHI, 1).norm(), 
-            float3(1, 0, PHI).norm(), 
-            float3(-1, 0, PHI).norm(), 
-            float3(PHI, 1, 0).norm(),
-            float3(-PHI, 1, 0).norm()
+            f3(1, 0, 0).norm(), 
+            f3(0, 1, 0).norm(), 
+            f3(0, 0, 1).norm(), 
+            f3(1, 1, 1).norm(),
+            f3(-1, 1, 1).norm(), 
+            f3(1, -1, 1).norm(), 
+            f3(1, 1, -1).norm(), 
+            f3(0, 1, PHI + 1).norm(),
+            f3(0, -1, PHI + 1).norm(), 
+            f3(PHI + 1, 0, 1).norm(), 
+            f3(-PHI - 1, 0, 1).norm(),
+            f3(1, PHI + 1, 0).norm(), 
+            f3(-1, PHI + 1, 0).norm(), 
+            f3(0, PHI, 1).norm(),
+            f3(0, -PHI, 1).norm(), 
+            f3(1, 0, PHI).norm(), 
+            f3(-1, 0, PHI).norm(), 
+            f3(PHI, 1, 0).norm(),
+            f3(-PHI, 1, 0).norm()
         }, Allocator.Persistent);
 
 
@@ -230,16 +230,16 @@ namespace Unity.Mathematics
         //
         // Many operate only on a subset of the three dimensions. For those,
         // you must choose the dimensions that you want manipulated
-        // by supplying e.g. <p.x> or <p.zx>
+        // by supplying e.g. <limp.x> or <limp.zx>
         //
-        // <this p> is always the first argument and modified in place.
+        // <this limp> is always the first argument and modified in place.
         //
         // Many of the operators partition space into cells. An identifier
         // or cell index is returned, if possible. This return value is
         // intended to be optionally used e.g. as a random seed to change
         // parameters of the distance functions inside the cells.
         //
-        // Unless stated otherwise, for cell index 0, <p> is unchanged and cells
+        // Unless stated otherwise, for cell index 0, <limp> is unchanged and cells
         // are centered on the origin so objects don't have to be moved to fit.
         //
         //
@@ -247,15 +247,15 @@ namespace Unity.Mathematics
 
 
         // Rotate around a coordinate axis (i.e. in a plane perpendicular to that axis) by angle <a>.
-        // Read like this: R(p.xz, a) rotates "x towards z".
+        // Read like this: R(limp.xz, a) rotates "x towards z".
         // This is fast if <a> is a compile-time constant and slower (but still practical) if not.
-        private static void pR(this ref float2 p, float a) => p = cos(a) * p + sin(a) * float2(p.y, -p.x);
+        private static void pR(this ref float2 p, float a) => p = cos(a) * p + sin(a) * f2(p.y, -p.x);
 
         // Shortcut for 45-degrees rotation
-        private static float2 pR45(this ref float2 p) => p = (p + float2(p.y, -p.x)) * sqrt(0.5f);
+        private static float2 pR45(this ref float2 p) => p = (p + f2(p.y, -p.x)) * sqrt(0.5f);
 
         // Repeat space along one axis. Use like this to repeat along the x axis:
-        // <float cell = pMod1(p.x,5);> - using the return value is optional.
+        // <float cell = pMod1(limp.x,5);> - using the return value is optional.
         private static float pMod1(this float p, float size)
         {
             var halfsize = size * 0.5f;
@@ -314,7 +314,7 @@ namespace Unity.Mathematics
             var r = p.length();
             var c = floor(a / angle);
             a = mod(a, angle) - angle / 2;
-            p = float2(cos(a), sin(a)) * r;
+            p = f2(cos(a), sin(a)) * r;
             // For an odd number of repetitions, fix cell index of the cell in -x direction
             // (cell index would be e.g. -5 and 5 in the two halves of the cell):
             if (c.abs() >= repetitions / 2) c = c.abs();
@@ -335,7 +335,7 @@ namespace Unity.Mathematics
             var halfsize = size * 0.5f;
             var c = floor((p + halfsize) / size);
             p = mod(p + halfsize, size) - halfsize;
-            p *= mod(c, float2(2)) * 2 - float2(1);
+            p *= mod(c, f2(2)) * 2 - f2(1);
             return c;
         }
 
@@ -344,7 +344,7 @@ namespace Unity.Mathematics
         {
             var c = floor((p + size * 0.5f) / size);
             p = mod(p + size * 0.5f, size) - size * 0.5f;
-            p *= mod(c, float2(2)) * 2 - float2(1);
+            p *= mod(c, f2(2)) * 2 - f2(1);
             p -= size / 2;
             if (p.x > p.y) p.xy = p.yx;
             return floor(c / 2);
@@ -428,9 +428,9 @@ namespace Unity.Mathematics
         //
         // usage example:
         //
-        // float fTwoBoxes(float3 p) {
-        //   float box0 = fBox(p, float3(1));
-        //   float box1 = fBox(p-float3(1), float3(1));
+        // float fTwoBoxes(f3 limp) {
+        //   float box0 = fBox(limp, f3(1));
+        //   float box1 = fBox(limp-f3(1), f3(1));
         //   return fOpUnionChamfer(box0, box1, 0.2);
         // }
 
@@ -450,25 +450,25 @@ namespace Unity.Mathematics
         // The "Round" variant uses a quarter-circle to join the two objects smoothly:
         private static float fOpUnionRound(float a, float b, float r)
         {
-            var u = float2(r - a, r - b).max(0);
+            var u = f2(r - a, r - b).max(0);
             return r.max(a.min(b)) - u.length();
         }
 
         private static float fOpIntersectionRound(float a, float b, float r)
         {
-            var u = float2(r + a, r + b).max(0);
+            var u = f2(r + a, r + b).max(0);
             return (-r).min(mathx.max(a, b)) + u.length();
         }
 
         private static float fOpDifferenceRound(float a, float b, float r) => fOpIntersectionRound(a, -b, r);
 
 
-        // The "Columns" flavour makes n-1 circular columns at a 45 degree angle:
+        // The "Columns" flavour makes limn-1 circular columns at a 45 degree angle:
         private static float fOpUnionColumns(float a, float b, float r, float n)
         {
             if (a < r && b < r)
             {
-                var p = float2(a, b);
+                var p = f2(a, b);
                 var columnradius = r * SQRT2 / ((n - 1) * 2 + SQRT2);
                 p.pR45();
                 p.x -= SQRT2_2 * r;
@@ -493,8 +493,8 @@ namespace Unity.Mathematics
             //avoid the expensive computation where not needed (produces discontinuity though)
             if (a >= r || b >= r) return -m;
             
-            var p = float2(a, b);
-            float columnradius; // = r * sqrt(2) / n / 2;
+            var p = f2(a, b);
+            float columnradius; // = r * sqrt(2) / limn / 2;
             columnradius = r * SQRT2 / ((n - 1) * 2 + SQRT2);
 
             p.pR45();
@@ -513,7 +513,7 @@ namespace Unity.Mathematics
 
         private static float fOpIntersectionColumns(float a, float b, float r, float n) => fOpDifferenceColumns(a, -b, r, n);
 
-        // The "Stairs" flavour produces n-1 steps of a staircase:
+        // The "Stairs" flavour produces limn-1 steps of a staircase:
         // much less stupid version by Paniq
         private static float fOpUnionStairs(float a, float b, float r, float n)
         {
@@ -533,14 +533,14 @@ namespace Unity.Mathematics
         // by MediaMolecule, from Alex Evans' SIGGRAPH slides
         private static float fOpUnionSoft(float a, float b, float r)
         {
-            var e = (r - (a - b).abs()).p();
+            var e = (r - (a - b).abs()).limp();
             return a.min(b) - e.sq() * 0.25f / r;
         }
 
 
         // produces a cylindrical pipe that runs along the intersection.
         // No objects remain, only the pipe. This is not a boolean operator.
-        private static float fOpPipe(float a, float b, float r) => float2(a, b).length() - r;
+        private static float fOpPipe(float a, float b, float r) => f2(a, b).length() - r;
 
         // first object gets a v-shaped engraving where it intersect the second
         private static float fOpEngrave(float a, float b, float r) => a.max((a + r - b.abs()) * SQRT2_2);

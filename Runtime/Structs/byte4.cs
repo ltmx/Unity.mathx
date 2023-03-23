@@ -133,7 +133,7 @@ namespace Unity.Mathematics
             z = v;
             w = v;
         }
-        /// Constructs a byte4 vector from a float4 vector by componentwise conversion.
+        /// Constructs a byte4 vector from a f4 vector by componentwise conversion.
         [MethodImpl(INLINE)] public byte4(float4 v) {
             x = v.x;
             y = v.y;
@@ -165,7 +165,7 @@ namespace Unity.Mathematics
         
         /// Explicitly converts a single float value to a byte4 vector by converting it to byte1 and assigning it to every component.
         [MethodImpl(INLINE)] public static explicit operator byte4(float v) => new(v);
-        /// Explicitly converts a float4 vector to a byte4 vector by componentwise conversion.
+        /// Explicitly converts a f4 vector to a byte4 vector by componentwise conversion.
         [MethodImpl(INLINE)] public static explicit operator byte4(float4 v) => new(v);
         /// Explicitly converts a single double value to a byte4 vector by converting it to byte1 and assigning it to every component.
         [MethodImpl(INLINE)] public static explicit operator byte4(double v) => new(v);
@@ -211,7 +211,7 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="operator -(byte4, byte4)"/>
         [MethodImpl(INLINE)] public static int4 operator -(byte1 lhs, byte4 rhs) => new(lhs - rhs.x, lhs - rhs.y, lhs - rhs.z, lhs - rhs.w);
         
-        /// Returns the result of a componentwise division into an float4 vector.
+        /// Returns the result of a componentwise division into an f4 vector.
         [MethodImpl(INLINE)] public static float4 operator /(byte4 lhs, byte4 rhs) => new(lhs.x / rhs.x, lhs.y / rhs.y, lhs.z / rhs.z, lhs.w / rhs.w);
         /// <inheritdoc cref="operator /(byte4, byte4)"/>
         [MethodImpl(INLINE)] public static float4 operator /(byte4 lhs, byte1 rhs) => new(lhs.x / rhs, lhs.y / rhs, lhs.z / rhs, lhs.w / rhs);
@@ -1842,8 +1842,8 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)] public static byte4 byte4(byte1 v) => new(v);
         /// Returns a byte4 vector constructed from a single float value by converting it to byte1 and assigning it to every component.
         [MethodImpl(INLINE)] public static byte4 byte4(float v) => new(v);
-        /// Return a byte4 vector constructed from a float4 vector by componentwise conversion.
-        /// <param name="v">float4 to convert to byte4</param>
+        /// Return a byte4 vector constructed from a f4 vector by componentwise conversion.
+        /// <param name="v">f4 to convert to byte4</param>
         /// <returns>Converted value.</returns>
         [MethodImpl(INLINE)] public static byte4 byte4(float4 v) => new(v);
         /// Returns a byte4 vector constructed from a single double value by converting it to byte1 and assigning it to
