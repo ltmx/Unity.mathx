@@ -737,7 +737,7 @@ namespace Unity.Mathematics
           var extrapolations = f4(d1.dot(g1), d2.dot(g2), d3.dot(g3), d4.dot(g4));
 
           // Derivatives of the noise
-          var derivative = -8 * mul(aa * a * extrapolations, float3x4(d1, d2, d3, d4)) + mul(aaaa, float3x4(g1, g2, g3, g4));
+          var derivative = -8 * mul(aa * a * extrapolations, f3x4(d1, d2, d3, d4)) + mul(aaaa, f3x4(g1, g2, g3, g4));
 
           // Return it all as a f4
           return f4(derivative, aaaa.dot(extrapolations)); }
@@ -827,7 +827,7 @@ namespace Unity.Mathematics
           var extrapolations = f4(d1.dot(g1), d2.dot(g2), d3.dot(g3), d4.dot(g4));
 
           // Derivatives of the noise
-          var derivative = -8 * mul(aa * a * extrapolations, float3x4(d1, d2, d3, d4)) + mul(aaaa, f4(g1.x, g2.x, g3.x, g4.x)).xyz();
+          var derivative = -8 * mul(aa * a * extrapolations, f3x4(d1, d2, d3, d4)) + mul(aaaa, f4(g1.x, g2.x, g3.x, g4.x)).xyz();
 
           // Return it all as a f4
           return f4(derivative, aaaa.dot(extrapolations)); }
@@ -845,7 +845,7 @@ namespace Unity.Mathematics
 // Might be good for terrain, or a time varying X/Y plane. Z repeats.
         private static float4 Bcc8NoisePlaneFirst(float3 X)
         { // Not a skew transform.
-          var orthonormalMap = float3x3(
+          var orthonormalMap = f3x3(
               0.788675134594813f, -0.211324865405187f, -0.577350269189626f,
               -0.211324865405187f, 0.788675134594813f, -0.577350269189626f,
               0.577350269189626f, 0.577350269189626f, 0.577350269189626f);

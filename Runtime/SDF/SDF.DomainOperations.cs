@@ -1,9 +1,7 @@
 #region Header
-
 // **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
 // **    Github Profile: https://github.com/LTMX
-// **    Repository : https://github.com/LTMX/Unity.Mathematics-Extensions
-
+// **    Repository : https://github.com/LTMX/Unity.mathx
 #endregion
 
 using static Unity.Mathematics.math;
@@ -118,7 +116,7 @@ namespace Unity.Mathematics
         // todo : add params such as the axis of twist
         private static float3 opTwist(float3 p, float twist)
         { sincos(twist * p.y, out var s, out var c);
-          var m = float2x2(c, -s, s, c);
+          var m = f2x2(c, -s, s, c);
           var q = f3(m.mul(p.xz), p.y);
           return q; }
 
@@ -126,7 +124,7 @@ namespace Unity.Mathematics
 
         private static float3 opCheapBend(this float3 p, float bend)
         { sincos(bend * p.x, out var s, out var c);
-          var m = float2x2(c, -s, s, c);
+          var m = f2x2(c, -s, s, c);
           var q = f3(m.mul(p.xy), p.z);
           return q; }
 

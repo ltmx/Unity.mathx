@@ -4,9 +4,6 @@
 // **    Repository : https://github.com/LTMX/Unity.Mathematics-Extensions
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using UnityEngine;
@@ -19,6 +16,8 @@ namespace Unity.Mathematics
 {
     public static partial class mathx
     {
+        #region asint
+
         /// Returns an equivalent int-type
         [MethodImpl(IL)] public static int4 asint(this float4 f) => (int4)f;
         /// <inheritdoc cref="asint(float4)"/>>
@@ -44,52 +43,6 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="asint(float4)"/>>
         [MethodImpl(IL)] public static int asint(this double f) => (int) f;
         
-        
-
-        /// Return an equivalent bool-type
-        [MethodImpl(IL)] public static bool4 asbool(this int4 f) => f != 0;
-        /// <inheritdoc cref="asbool(int4)"/>
-        [MethodImpl(IL)] public static bool3 asbool(this int3 f) => f != 0;
-        /// <inheritdoc cref="asbool(int4)"/>
-        [MethodImpl(IL)] public static bool2 asbool(this int2 f) => f != 0;
-        /// <inheritdoc cref="asbool(int4)"/>
-        [MethodImpl(IL)] public static bool asbool(this int f) => f != 0;
-
-        
-        // ints to floats -------------------------------------------
-        /// Returns equivalent float-type
-        [MethodImpl(IL)] public static float4 asfloat(this int4 f) => f;
-        /// <inheritdoc cref="asfloat(int4)"/>
-        [MethodImpl(IL)] public static float3 asfloat(this int3 f) => f;
-        /// <inheritdoc cref="asfloat(int4)"/>
-        [MethodImpl(IL)] public static float2 asfloat(this int2 f) => f;
-        /// <inheritdoc cref="asfloat(int4)"/>
-        [MethodImpl(IL)] public static float asfloat(this int f) => f;
-
-        
-        // Vectors to floats -------------------------------------------
-        /// Returns a float-type equivalent
-        [MethodImpl(IL)] public static float4 asfloat(this Vector4 f) => f;
-        /// <inheritdoc cref="asfloat(Vector4)"/>
-        [MethodImpl(IL)] public static float3 asfloat(this Vector3 f) => f;
-        /// <inheritdoc cref="asfloat(Vector4)"/>
-        [MethodImpl(IL)] public static float2 asfloat(this Vector2 f) => f;
-
-
-        // Complex conversions -------------------------------------------
-        /// Returns a double2 equivalent
-        [MethodImpl(IL)] public static double2 asdouble(this Complex f) => new(f.Real, f.Imaginary);
-        /// Returns a f2 equivalent
-        [MethodImpl(IL)] public static float2 asfloat(this Complex f) => (float2)f.asdouble();
-
-        // Color to floats -------------------------------------------
-        /// Returns a f4 equivalent
-        [MethodImpl(IL)] public static float4 asfloat(this Color f) => f.cast();
-        /// Returns a f4 equivalent
-        [MethodImpl(IL)] public static float4 asfloat(this color f) => f; // Compatibility
-        
-        // bools as ints -------------------------------------------
-        
         /// Returns 1 when true, zero otherwise, componentwise
         [MethodImpl(IL)] public static int4 asint(this bool4 b) => (int4) b;
         /// <inheritdoc cref="asint(bool4)"/>
@@ -99,32 +52,6 @@ namespace Unity.Mathematics
         /// Returns 1 when true, zero otherwise
         [MethodImpl(IL)] public static int asint(this bool b) => b ? 1 : 0;
         
-        
-        /// Returns 1 when true, zero otherwise componentwise
-        [MethodImpl(IL)] public static uint4 asuint(this bool4 b) => (uint4) b;
-        /// <inheritdoc cref="asuint(bool4)"/>
-        [MethodImpl(IL)] public static uint3 asuint(this bool3 b) => (uint3) b;
-        /// <inheritdoc cref="asuint(bool4)"/>
-        [MethodImpl(IL)] public static uint2 asuint(this bool2 b) => (uint2) b;
-        /// Returns 1 when true, zero otherwise
-        [MethodImpl(IL)] public static uint asuint(this bool b) => b ? 1u : 0u;
-        
-        // ints as uints -------------------------------------------
-        [MethodImpl(IL)] public static uint4 asuint(this int4 b) => (uint4)b;
-        [MethodImpl(IL)] public static uint3 asuint(this int3 b) => (uint3)b;
-        [MethodImpl(IL)] public static uint2 asuint(this int2 b) => (uint2)b;
-        [MethodImpl(IL)] public static uint asuint(this int b) => (uint)b;
-        
-        /// Cast to uint4
-        [MethodImpl(IL)] public static uint4 asuint(this float4 b) => (uint4)b;
-        /// Cast to uint3
-        [MethodImpl(IL)] public static uint3 asuint(this float3 b) => (uint3)b;
-        /// Cast to uint2
-        [MethodImpl(IL)] public static uint2 asuint(this float2 b) => (uint2)b;
-        /// Cast to uint
-        [MethodImpl(IL)] public static uint asuint(this float b) => (uint)b;
-        
-        
         /// Cast to int4
         [MethodImpl(IL)] public static int4 asint(this uint4 b) => (int4)b;
         /// Cast to int3
@@ -133,7 +60,19 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static int2 asint(this uint2 b) => (int2)b;
         /// Cast to int
         [MethodImpl(IL)] public static int asint(this uint b) => (int)b;
+
+        #endregion
         
+        #region asbool
+
+        /// Return an equivalent bool-type
+        [MethodImpl(IL)] public static bool4 asbool(this int4 f) => f != 0;
+        /// <inheritdoc cref="asbool(int4)"/>
+        [MethodImpl(IL)] public static bool3 asbool(this int3 f) => f != 0;
+        /// <inheritdoc cref="asbool(int4)"/>
+        [MethodImpl(IL)] public static bool2 asbool(this int2 f) => f != 0;
+        /// <inheritdoc cref="asbool(int4)"/>
+        [MethodImpl(IL)] public static bool asbool(this int f) => f != 0;
         
         /// Returns 1 when true, zero otherwise componentwise
         [MethodImpl(IL)] public static bool4 asbool(this uint4 b) => b != 0;
@@ -156,6 +95,30 @@ namespace Unity.Mathematics
         /// Returns true when not zero
         [MethodImpl(IL)] public static bool asbool(this byte b) => b != 0;
 
+        #endregion
+
+        #region asfloat
+
+        /// Returns equivalent float-type
+        [MethodImpl(IL)] public static float4 asfloat(this int4 f) => f;
+        /// <inheritdoc cref="asfloat(int4)"/>
+        [MethodImpl(IL)] public static float3 asfloat(this int3 f) => f;
+        /// <inheritdoc cref="asfloat(int4)"/>
+        [MethodImpl(IL)] public static float2 asfloat(this int2 f) => f;
+        /// <inheritdoc cref="asfloat(int4)"/>
+        [MethodImpl(IL)] public static float asfloat(this int f) => f;
+        
+        /// Returns a float-type equivalent
+        [MethodImpl(IL)] public static float4 asfloat(this Vector4 f) => f;
+        /// <inheritdoc cref="asfloat(Vector4)"/>
+        [MethodImpl(IL)] public static float3 asfloat(this Vector3 f) => f;
+        /// <inheritdoc cref="asfloat(Vector4)"/>
+        [MethodImpl(IL)] public static float2 asfloat(this Vector2 f) => f;
+
+        /// Returns a f4 equivalent
+        [MethodImpl(IL)] public static float4 asfloat(this Color f) => f.cast();
+        /// Returns a f4 equivalent
+        [MethodImpl(IL)] public static float4 asfloat(this color f) => f; // Compatibility
         
         
         /// Returns 1 when true, zero otherwise, componentwise
@@ -177,7 +140,13 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="asfloat(double4)"/>
         [MethodImpl(IL)] public static float asfloat(this double f) => (float)f;
         
+        /// Returns a f4 from the quaternion's components
+        [MethodImpl(IL)] public static float4 asfloat(this quaternion q) => q.value;
+
+        #endregion
         
+        #region asdouble
+
         /// Cast to double4
         [MethodImpl(IL)] public static double4 asdouble(this float4 f) => f;
         /// Cast to double3
@@ -187,12 +156,43 @@ namespace Unity.Mathematics
         /// Cast to double
         [MethodImpl(IL)] public static double asdouble(this float f) => f;
         
-        
-        /// Returns a f4 from the quaternion's components
-        [MethodImpl(IL)] public static float4 asfloat(quaternion q) => q.value;
-        
+        /// Returns a double2 equivalent
+        [MethodImpl(IL)] public static double2 asdouble(this Complex f) => new(f.Real, f.Imaginary);
 
-        // floats as Color -------------------------------------------
+        #endregion
+
+        #region asuint
+
+        /// Returns 1 when true, zero otherwise componentwise
+        [MethodImpl(IL)] public static uint4 asuint(this bool4 b) => (uint4) b;
+        /// <inheritdoc cref="asuint(bool4)"/>
+        [MethodImpl(IL)] public static uint3 asuint(this bool3 b) => (uint3) b;
+        /// <inheritdoc cref="asuint(bool4)"/>
+        [MethodImpl(IL)] public static uint2 asuint(this bool2 b) => (uint2) b;
+        /// Returns 1 when true, zero otherwise
+        [MethodImpl(IL)] public static uint asuint(this bool b) => b ? 1u : 0u;
+        
+        /// Cast to uint4
+        [MethodImpl(IL)] public static uint4 asuint(this int4 b) => (uint4)b;
+        /// Cast to uint3
+        [MethodImpl(IL)] public static uint3 asuint(this int3 b) => (uint3)b;
+        /// Cast to uint2
+        [MethodImpl(IL)] public static uint2 asuint(this int2 b) => (uint2)b;
+        /// Cast to uint
+        [MethodImpl(IL)] public static uint asuint(this int b) => (uint)b;
+        
+        /// Cast to uint4
+        [MethodImpl(IL)] public static uint4 asuint(this float4 b) => (uint4)b;
+        /// Cast to uint3
+        [MethodImpl(IL)] public static uint3 asuint(this float3 b) => (uint3)b;
+        /// Cast to uint2
+        [MethodImpl(IL)] public static uint2 asuint(this float2 b) => (uint2)b;
+        /// Cast to uint
+        [MethodImpl(IL)] public static uint asuint(this float b) => (uint)b;
+
+        #endregion
+
+        #region ascolor and others
 
         /// Converts a float-type to a Unity.Mathematics.color
         [MethodImpl(IL)] public static color ascolor(this float4 f) => f;
@@ -202,8 +202,16 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static color ascolor(this float2 f) => new(f.xy, 0, 1);
         /// <inheritdoc cref="ascolor(float4)"/>
         [MethodImpl(IL)] public static color ascolor(this float f) => f;
-
-        // Color as floats
+        
+        /// Converts a float-type to a Unity.Mathematics.color
+        [MethodImpl(IL)] public static Color asColor(this float4 f) => new(f.x, f.y, f.z, f.w);
+        /// <inheritdoc cref="asColor(float4)"/>
+        [MethodImpl(IL)] public static Color asColor(this float3 f) => new(f.x, f.y, f.z, 1);
+        /// <inheritdoc cref="asColor(float4)"/>
+        [MethodImpl(IL)] public static Color asColor(this float2 f) => new(f.x, f.y, 0, 1);
+        /// <inheritdoc cref="asColor(float4)"/>
+        [MethodImpl(IL)] public static Color asColor(this float f) => new(f,f,f, 1);
+        
         /// Converts to a f4
         [MethodImpl(IL)] public static float4 asfloat4(this Color f) => new(f.r, f.g, f.b, f.a); // compatibility
         /// Converts to a f3
@@ -211,132 +219,10 @@ namespace Unity.Mathematics
         /// Converts to a f3
         [MethodImpl(IL)] public static float3 asfloat3(this color f) => (float3) f;
 
+        #endregion
 
-        //IEnumerable Type Conversion -------------------------------------------------------------------
+        #region cast
 
-        /// Converts to a Unity Vector type List
-        [MethodImpl(IL)] public static List<Vector4> toVectorList(this IEnumerable<float4> f) => f.toVectorIE().ToList();
-        /// <inheritdoc cref="toVectorList(IEnumerable{float4})"/>
-        [MethodImpl(IL)] public static List<Vector3> toVectorList(this IEnumerable<float3> f) => f.toVectorIE().ToList();
-        /// <inheritdoc cref="toVectorList(IEnumerable{float4})"/>
-        [MethodImpl(IL)] public static List<Vector2> toVectorList(this IEnumerable<float2> f) => f.toVectorIE().ToList();
-
-        /// Converts to a float-type List
-        [MethodImpl(IL)] public static List<float4> tofloatList(this IEnumerable<Vector4> f) => f.tofloatIE().ToList();
-        /// <inheritdoc cref="tofloatList(IEnumerable{Vector4})"/>
-        [MethodImpl(IL)] public static List<float3> tofloatList(this IEnumerable<Vector3> f) => f.tofloatIE().ToList();
-        /// <inheritdoc cref="tofloatList(IEnumerable{Vector4})"/>
-        [MethodImpl(IL)] public static List<float2> tofloatList(this IEnumerable<Vector2> f) => f.tofloatIE().ToList();
-
-        /// Converts to a UnityEngine.Color List
-        [MethodImpl(IL)] public static List<Color> toColorList(this IEnumerable<float4> f) => f.toColorIE().ToList();
-        /// <inheritdoc cref="toColorList(IEnumerable{float4})"/>
-        [MethodImpl(IL)] public static List<Color> toColorList(this IEnumerable<float3> f) => f.toColorIE().ToList();
-        /// <inheritdoc cref="toColorList(IEnumerable{float4})"/>
-        [MethodImpl(IL)] public static List<Color> toColorList(this IEnumerable<float2> f) => f.toColorIE().ToList();
-        /// <inheritdoc cref="toColorList(IEnumerable{float4})"/>
-        [MethodImpl(IL)] public static List<Color> toColorList(this IEnumerable<float> f) => f.toColorIE().ToList();
-
-        /// Converts to a Unity.Mathematics.color List
-        [MethodImpl(IL)] public static List<color> tocolorList(this IEnumerable<float4> f) => f.tocolorIE().ToList();
-        /// <inheritdoc cref="tocolorList(IEnumerable{float4})"/>
-        [MethodImpl(IL)] public static List<color> tocolorList(this IEnumerable<float3> f) => f.tocolorIE().ToList();
-        /// <inheritdoc cref="tocolorList(IEnumerable{float4})"/>
-        [MethodImpl(IL)] public static List<color> tocolorList(this IEnumerable<float2> f) => f.tocolorIE().ToList();
-
-        /// Converts to a UnityEngine.Color Array
-        [MethodImpl(IL)] public static Color[] toColorArray(this IEnumerable<float4> f) => f.toColorIE().ToArray();
-        /// <inheritdoc cref="toColorArray(IEnumerable{float4})"/>
-        [MethodImpl(IL)] public static Color[] toColorArray(this IEnumerable<float3> f) => f.toColorIE().ToArray();
-        /// <inheritdoc cref="toColorArray(IEnumerable{float4})"/>
-        [MethodImpl(IL)] public static Color[] toColorArray(this IEnumerable<float2> f) => f.toColorIE().ToArray();
-        /// <inheritdoc cref="toColorArray(IEnumerable{float4})"/>
-        [MethodImpl(IL)] public static Color[] toColorArray(this IEnumerable<float> f) => f.toColorIE().ToArray();
-
-        /// Converts to a color Array
-        [MethodImpl(IL)] public static color[] tocolorArray(this IEnumerable<float4> f) => f.tocolorIE().ToArray();
-        /// <inheritdoc cref="tocolorArray(IEnumerable{float4})"/>
-        [MethodImpl(IL)] public static color[] tocolorArray(this IEnumerable<float3> f) => f.tocolorIE().ToArray();
-        /// <inheritdoc cref="tocolorArray(IEnumerable{float4})"/>
-        [MethodImpl(IL)] public static color[] tocolorArray(this IEnumerable<float2> f) => f.tocolorIE().ToArray();
-
-        /// Converts to a f4 List
-        [MethodImpl(IL)] public static List<float4> tofloat4List(this IEnumerable<Color> colors) => colors.tofloat4IE().ToList();
-        /// <inheritdoc cref="tofloat4List(IEnumerable{Color})"/>
-        [MethodImpl(IL)] public static List<float3> tofloat3List(this IEnumerable<Color> colors) => colors.tofloat3IE().ToList();
-
-        /// Converts to a f4 Array
-        [MethodImpl(IL)] public static float4[] tofloat4Array(this IEnumerable<Color> colors) => colors.tofloat4IE().ToArray();
-        /// Converts to a f3 Array
-        [MethodImpl(IL)] public static float3[] tofloat3Array(this IEnumerable<Color> colors) => colors.tofloat3IE().ToArray();
-
-        /// Converts to a Unity Vector Array
-        [MethodImpl(IL)] public static Vector4[] toVectorArray(this IEnumerable<float4> f) => f.toVectorIE().ToArray();
-        /// <inheritdoc cref="toVectorArray(IEnumerable{float4})"/>
-        [MethodImpl(IL)] public static Vector3[] toVectorArray(this IEnumerable<float3> f) => f.toVectorIE().ToArray();
-        /// <inheritdoc cref="toVectorArray(IEnumerable{float4})"/>
-        [MethodImpl(IL)] public static Vector2[] toVectorArray(this IEnumerable<float2> f) => f.toVectorIE().ToArray();
-
-        /// Converts to a float-type Array
-        [MethodImpl(IL)] public static float4[] tofloatArray(this IEnumerable<Vector4> f) => f.tofloatIE().ToArray();
-        /// <inheritdoc cref="tofloatArray(IEnumerable{Vector4})"/>
-        [MethodImpl(IL)] public static float3[] tofloatArray(this IEnumerable<Vector3> f) => f.tofloatIE().ToArray();
-        /// <inheritdoc cref="tofloatArray(IEnumerable{Vector4})"/>
-        [MethodImpl(IL)] public static float2[] tofloatArray(this IEnumerable<Vector2> f) => f.tofloatIE().ToArray();
-
-        /// Converts to a Unity.Mathematics.color Array
-        [MethodImpl(IL)] public static color[] tocolorArray(this IEnumerable<Color> f) => f.tocolorIE().ToArray();
-        /// <inheritdoc cref="tocolorArray(IEnumerable{Color})"/>
-        [MethodImpl(IL)] public static Color[] toColorArray(this IEnumerable<color> f) => f.toColorIE().ToArray();
-        
-        
-        // Type Conversion SubMethods -------------------------------------------
-        
-        /// Converts to a Unity Vector IEnumerable
-        [MethodImpl(IL)] private static IEnumerable<Vector4> toVectorIE(this IEnumerable<float4> f2s) => f2s.Select(f => f.cast());
-        /// <inheritdoc cref="toVectorIE(IEnumerable{float4})"/>
-        [MethodImpl(IL)] public static IEnumerable<Vector3> toVectorIE(this IEnumerable<float3> f2s) => f2s.Select(f => f.cast());
-        /// <inheritdoc cref="toVectorIE(IEnumerable{float4})"/>
-        [MethodImpl(IL)] public static IEnumerable<Vector2> toVectorIE(this IEnumerable<float2> f2s) => f2s.Select(f => f.cast());
-        
-        /// Converts to a float-type IEnumerable
-        [MethodImpl(IL)] public static IEnumerable<float4> tofloatIE(this IEnumerable<Vector4> f2s) => f2s.Select(f => f.cast());
-        /// <inheritdoc cref="tofloatIE(IEnumerable{Vector4})"/>
-        [MethodImpl(IL)] public static IEnumerable<float3> tofloatIE(this IEnumerable<Vector3> f2s) => f2s.Select(f => f.cast());
-        /// <inheritdoc cref="tofloatIE(IEnumerable{Vector4})"/>
-        [MethodImpl(IL)] public static IEnumerable<float2> tofloatIE(this IEnumerable<Vector2> f2s) => f2s.Select(f => f.cast());
-        
-        /// Converts to a UnityEngine.Color IEnumerable
-        [MethodImpl(IL)] private static IEnumerable<Color> toColorIE(this IEnumerable<float4> f2s) => f2s.Select(f => f.ascolor().cast());
-        /// <inheritdoc cref="toColorIE(IEnumerable{float4})"/>
-        [MethodImpl(IL)] private static IEnumerable<Color> toColorIE(this IEnumerable<float3> f2s) => f2s.Select(f => f.ascolor().cast());
-        /// <inheritdoc cref="toColorIE(IEnumerable{float4})"/>
-        [MethodImpl(IL)] private static IEnumerable<Color> toColorIE(this IEnumerable<float2> f2s) => f2s.Select(f => f.ascolor().cast());
-        /// <inheritdoc cref="toColorIE(IEnumerable{float4})"/>
-        [MethodImpl(IL)] private static IEnumerable<Color> toColorIE(this IEnumerable<float> f2s) => f2s.Select(f => f.ascolor().cast());
-        
-        /// Converts to a Unity.Mathematics.color IEnumerable
-        [MethodImpl(IL)] private static IEnumerable<color> tocolorIE(this IEnumerable<float4> f2s) => f2s.Select(f => f.ascolor());
-        /// <inheritdoc cref="tocolorIE(IEnumerable{float4})"/>
-        [MethodImpl(IL)] private static IEnumerable<color> tocolorIE(this IEnumerable<float3> f2s) => f2s.Select(f => f.ascolor());
-        /// <inheritdoc cref="tocolorIE(IEnumerable{float4})"/>
-        [MethodImpl(IL)] private static IEnumerable<color> tocolorIE(this IEnumerable<float2> f2s) => f2s.Select(f => f.ascolor());
-        
-        /// Converts to a float-type IEnumerable
-        [MethodImpl(IL)] private static IEnumerable<float4> tofloat4IE(this IEnumerable<Color> f2s) => f2s.Select(f => f.asfloat());
-        /// <inheritdoc cref="tofloat4IE(IEnumerable{Color})"/>
-        [MethodImpl(IL)] private static IEnumerable<float3> tofloat3IE(this IEnumerable<Color> f2s) => f2s.Select(f => f.asfloat3());
-        /// <inheritdoc cref="tofloat4IE(IEnumerable{Color})"/>
-        [MethodImpl(IL)] private static IEnumerable<float4> tofloat4IE(this IEnumerable<color> f2s) => f2s.Select(f => f.asfloat());
-        /// <inheritdoc cref="tofloat4IE(IEnumerable{Color})"/>
-        [MethodImpl(IL)] private static IEnumerable<float3> tofloat3IE(this IEnumerable<color> f2s) => f2s.Select(f => f.asfloat3());
-        
-        /// Converts to a UnityEngine.Color IEnumerable
-        [MethodImpl(IL)] private static IEnumerable<Color> toColorIE(this IEnumerable<color> f2s) => f2s.Select(f => f.cast());
-        /// Converts to a Unity.Mathematics.color IEnumerable
-        [MethodImpl(IL)] private static IEnumerable<color> tocolorIE(this IEnumerable<Color> f2s) => f2s.Select(f => f.cast());
-        
-        
         // Simple Casts to Classic Types -------------------------------------------
         
         /// Casts to and from Unity's Vector Types
@@ -369,6 +255,8 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static color cast(this Color f) => f;
         /// casts to a UnityEngine.Color
         [MethodImpl(IL)] public static Color cast(this color f) => f;
+        
 
+        #endregion
     }
 }

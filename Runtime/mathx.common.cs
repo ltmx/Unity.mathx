@@ -2,7 +2,7 @@
 
 // **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
 // **    Github Profile: https://github.com/LTMX
-// **    Repository : https://github.com/LTMX/Unity.Mathematics-Extensions
+// **    Repository : https://github.com/LTMX/Unity.mathx
 
 #endregion
 
@@ -12,7 +12,12 @@ using UnityEngine;
 
 namespace Unity.Mathematics
 {
-    
+    /// <summary>Extension Library for Unity.Mathematics</summary>
+    /// <permission>
+    /// **    Copyright (C) 2020 Nicolas Reinhard, @LTMX. All rights reserved.
+    /// **    // (C) 2020 Nicolas Reinhard https://github.com/LTMX
+    /// </permission>
+    /// <remarks>See also : https://github.com/LTMX/Unity.Unity.mathx</remarks>
     public static partial class mathx
     {
         /// Returns the sign of the given value.
@@ -687,59 +692,6 @@ namespace Unity.Mathematics
         /// sets the value of x to f and returns f
         [MethodImpl(IL)] public static T set<T>(this T f, out T x) { x = f; return f; }
 
-        #region Type Building
-
         // as extensions method when using a single input
-        
-        ///<inheritdoc cref="math.float4(float)"/>
-        public static float4 f4(this float f) => math.float4(f);
-        /// Returns a f4 with the first two components set to f, and the last two set to 0
-        public static float4 f4(this float2 f) => math.float4(f, 0, 0);
-        /// Returns a f4 with the first three components set to f, and the last one set to 0
-        public static float4 f4(this float3 f) => math.float4(f, 0);
-        /// <inheritdoc cref="math.float4(float, float, float, float)"/>
-        public static float4 f4(float a, float b, float c, float d) => math.float4(a, b, c, d);
-        /// <inheritdoc cref="math.float4(Mathematics.float2, Mathematics.float2)"/>
-        public static float4 f4(float2 a, float2 b) => math.float4(a, b);
-        /// <inheritdoc cref="math.float4(Mathematics.float3, float)"/>
-        public static float4 f4(float3 a, float b) => math.float4(a, b);
-        /// <inheritdoc cref="math.float4(float, Mathematics.float3)"/>
-        public static float4 f4(float a, float3 b) => math.float4(a, b);
-        /// <inheritdoc cref="math.float4(float, float, Mathematics.float2)"/>
-        public static float4 f4(float a, float2 b, float c) => math.float4(a, b, c);
-        /// <inheritdoc cref="math.float4(float, float, float, float)"/>
-        public static float4 f4(float a, float b, float2 c) => math.float4(a, b, c);
-        /// <inheritdoc cref="math.float4(float, float, float, float)"/>
-        public static float4 f4(float2 a, float b, float c) => math.float4(a, b, c);
-        
-        /// <inheritdoc cref="math.float3(float, float, float)"/>
-        public static float3 f3(float a, float b, float c) => math.float3(a, b, c);
-        /// <inheritdoc cref="math.float3(Mathematics.float2, float)"/>
-        public static float3 f3(float2 a, float b) => math.float3(a, b);
-        /// <inheritdoc cref="math.float3(float, Mathematics.float2)"/>
-        public static float3 f3(float a, float2 b) => math.float3(a, b);
-        /// <inheritdoc cref="math.float3(float)"/>
-        public static float3 f3(this float f) => math.float3(f);
-        /// <inheritdoc cref="math.float3(Mathematics.float2, float)"/>
-        public static float3 f3(this float2 f) => math.float3(f, 0);
-        /// Returns a f3 with containing the first three components of a f4
-        public static float3 f3(this float4 f) => math.float3(f.xyz); // crop w
-        
-        /// <inheritdoc cref="math.float2(float, float)"/>
-        public static float2 f2(float a, float b) => math.float2(a, b);
-        /// <inheritdoc cref="math.float2(float)"/>
-        public static float2 f2(this float f) => math.float2(f);
-        /// Returns a f2 with containing the first two components of a f3
-        public static float2 f2(this float3 f) => math.float2(f.xy); // crop z
-        /// Returns a f2 with containing the first two components of a f4
-        public static float2 f2(this float4 f) => math.float2(f.xy); // crop zw
-
-
-        #endregion
-
-
-
-
-
     }
 }

@@ -1,17 +1,12 @@
 ﻿#region Header
 // **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
 // **    Github Profile: https://github.com/LTMX
-// **    Repository : https://github.com/LTMX/Unity.Mathematics-Extensions
+// **    Repository : https://github.com/LTMX/Unity.mathx
 #endregion
 
 namespace Unity.Mathematics
 {
-    /// <summary>Extension Library for Unity.Mathematics</summary>
-    /// <permission>
-    /// **    Copyright (C) 2020 Nicolas Reinhard, @LTMX. All rights reserved.
-    /// **    // (C) 2020 Nicolas Reinhard https://github.com/LTMX
-    /// </permission>
-    /// <remarks>See also : https://github.com/LTMX/Unity.Mathematics-Extensions</remarks>
+
     public static partial class mathx
     {
         /// PingPongs the value t, so that it is never larger than length and never smaller than 0.
