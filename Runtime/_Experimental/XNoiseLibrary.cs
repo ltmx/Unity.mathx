@@ -368,9 +368,9 @@ namespace Unity.Mathematics
           i0.w += 1 - isYZ.z;
 
           // i0 now contains the unique values 0,1,2,3 in each channel
-          var i3 = saturate(i0);
-          var i2 = saturate(i0 - 1);
-          var i1 = saturate(i0 - 2);
+          var i3 = sat(i0);
+          var i2 = sat(i0 - 1);
+          var i1 = sat(i0 - 2);
 
           //    x0 = x0 - 0 + 0 * C.xxxx
           //    x1 = x0 - i1  + 1 * C.xxxx

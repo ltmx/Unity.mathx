@@ -90,23 +90,23 @@ namespace Unity.Mathematics
         
         // bools as ints -------------------------------------------
         
-        /// Returns 1 when true, componentwise
+        /// Returns 1 when true, zero otherwise, componentwise
         [MethodImpl(IL)] public static int4 asint(this bool4 b) => (int4) b;
         /// <inheritdoc cref="asint(bool4)"/>
         [MethodImpl(IL)] public static int3 asint(this bool3 b) => (int3) b;
         /// <inheritdoc cref="asfloat(bool4)"/>
         [MethodImpl(IL)] public static int2 asint(this bool2 b) => (int2) b;
-        /// Returns 1 when true
+        /// Returns 1 when true, zero otherwise
         [MethodImpl(IL)] public static int asint(this bool b) => b ? 1 : 0;
         
         
-        // bools as uints -------------------------------------------
         /// Returns 1 when true, zero otherwise componentwise
         [MethodImpl(IL)] public static uint4 asuint(this bool4 b) => (uint4) b;
         /// <inheritdoc cref="asuint(bool4)"/>
         [MethodImpl(IL)] public static uint3 asuint(this bool3 b) => (uint3) b;
         /// <inheritdoc cref="asuint(bool4)"/>
         [MethodImpl(IL)] public static uint2 asuint(this bool2 b) => (uint2) b;
+        /// Returns 1 when true, zero otherwise
         [MethodImpl(IL)] public static uint asuint(this bool b) => b ? 1u : 0u;
         
         // ints as uints -------------------------------------------
@@ -115,26 +115,26 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static uint2 asuint(this int2 b) => (uint2)b;
         [MethodImpl(IL)] public static uint asuint(this int b) => (uint)b;
         
-        // floats as uints -------------------------------------------
-        /// Returns 1 when true, zero otherwise componentwise
+        /// Cast to uint4
         [MethodImpl(IL)] public static uint4 asuint(this float4 b) => (uint4)b;
-        /// <inheritdoc cref="asuint(float4)"/>
+        /// Cast to uint3
         [MethodImpl(IL)] public static uint3 asuint(this float3 b) => (uint3)b;
-        /// <inheritdoc cref="asuint(float4)"/>
+        /// Cast to uint2
         [MethodImpl(IL)] public static uint2 asuint(this float2 b) => (uint2)b;
+        /// Cast to uint
         [MethodImpl(IL)] public static uint asuint(this float b) => (uint)b;
         
-        // uints as ints -------------------------------------------
+        
         /// Cast to int4
         [MethodImpl(IL)] public static int4 asint(this uint4 b) => (int4)b;
-        /// Cast to int
+        /// Cast to int3
         [MethodImpl(IL)] public static int3 asint(this uint3 b) => (int3)b;
         /// Cast to int2
         [MethodImpl(IL)] public static int2 asint(this uint2 b) => (int2)b;
         /// Cast to int
         [MethodImpl(IL)] public static int asint(this uint b) => (int)b;
         
-        // uints as floats -------------------------------------------
+        
         /// Returns 1 when true, zero otherwise componentwise
         [MethodImpl(IL)] public static bool4 asbool(this uint4 b) => b != 0;
         /// <inheritdoc cref="asuint(bool4)"/>
@@ -144,18 +144,29 @@ namespace Unity.Mathematics
         /// Returns true when not zero
         [MethodImpl(IL)] public static bool asbool(this uint b) => b != 0;
         
-        // bools as floats -------------------------------------------
         
-        /// Returns 1 when true, componentwise
+        /// Returns 1 when true, zero otherwise componentwise
+        [MethodImpl(IL)] public static bool4 asbool(this byte4 b) => b != 0;
+        /// <inheritdoc cref="asuint(bool4)"/>
+        [MethodImpl(IL)] public static bool3 asbool(this byte3 b) => b != 0;
+        /// <inheritdoc cref="asuint(bool4)"/>
+        [MethodImpl(IL)] public static bool2 asbool(this byte2 b) => b != 0;
+        /// Returns true when not zero
+        [MethodImpl(IL)] public static bool asbool(this byte1 b) => b != 0;
+        /// Returns true when not zero
+        [MethodImpl(IL)] public static bool asbool(this byte b) => b != 0;
+
+        
+        
+        /// Returns 1 when true, zero otherwise, componentwise
         [MethodImpl(IL)] public static float4 asfloat(this bool4 b) => (float4) b;
         /// <inheritdoc cref="asfloat(bool4)"/>
         [MethodImpl(IL)] public static float3 asfloat(this bool3 b) => (float3) b;
         /// <inheritdoc cref="asfloat(bool4)"/>
         [MethodImpl(IL)] public static float2 asfloat(this bool2 b) => (float2) b;
-        /// Returns 1 when true
-        [MethodImpl(IL)] public static float asfloat(this bool b) => b ? 1f : 0f;
+        /// Returns 1 when true, zero otherwise
+        [MethodImpl(IL)] public static float asfloat(this bool b) => b ? 1 : 0;
         
-        // doubles as floats -------------------------------------------
         
         /// Returns a float-type equivalent
         [MethodImpl(IL)] public static float4 asfloat(this double4 f) => (float4)f;
@@ -167,15 +178,15 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float asfloat(this double f) => (float)f;
         
         
-        // floats as doubles -------------------------------------------
-        /// Returns a double type equivalent
-        [MethodImpl(IL)] public static double4 asdouble(this float4 f) => Convert.ToDouble(f);
-        /// <inheritdoc cref="asdouble(float4)"/>
-        [MethodImpl(IL)] public static double3 asdouble(this float3 f) => Convert.ToDouble(f);
-        /// <inheritdoc cref="asdouble(float4)"/>
-        [MethodImpl(IL)] public static double2 asdouble(this float2 f) => Convert.ToDouble(f);
-        /// <inheritdoc cref="asdouble(float4)"/>
-        [MethodImpl(IL)] public static double asdouble(this float f) => Convert.ToDouble(f);
+        /// Cast to double4
+        [MethodImpl(IL)] public static double4 asdouble(this float4 f) => f;
+        /// Cast to double3
+        [MethodImpl(IL)] public static double3 asdouble(this float3 f) => f;
+        /// Cast to double2
+        [MethodImpl(IL)] public static double2 asdouble(this float2 f) => f;
+        /// Cast to double
+        [MethodImpl(IL)] public static double asdouble(this float f) => f;
+        
         
         /// Returns a f4 from the quaternion's components
         [MethodImpl(IL)] public static float4 asfloat(quaternion q) => q.value;

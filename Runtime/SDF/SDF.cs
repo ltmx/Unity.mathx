@@ -10,7 +10,7 @@ using static Unity.Mathematics.math;
 
 namespace Unity.Mathematics
 {
-    public static partial class SDF
+    public static partial class mathx
     {
         public static float sdSphere(float3 p, float s) => p.length() - s;
 
@@ -68,8 +68,8 @@ namespace Unity.Mathematics
             var q = h * float2(c.x / c.y, -1);
 
             var w = float2(p.xz.length(), p.y);
-            var a = w - q * (w.dot(q) / q.lengthsq()).saturate();
-            var b = w - q * float2((w.x / q.x).saturate(), 1);
+            var a = w - q * (w.dot(q) / q.lengthsq()).sat();
+            var b = w - q * float2((w.x / q.x).sat(), 1);
             var k = q.y.sign();
             var d = a.lengthsq().min(b.lengthsq());
             var s = (k * (w.x * q.y - w.y * q.x)).max(k * (w.y - q.y));
@@ -119,7 +119,7 @@ namespace Unity.Mathematics
         public static float sdCapsule(float3 p, float3 a, float3 b, float r)
         {
             float3 pa = p - a, ba = b - a;
-            var h = (pa.dot(ba) / ba.lengthsq()).saturate();
+            var h = (pa.dot(ba) / ba.lengthsq()).sat();
             return (pa - ba * h).length() - r;
         }
 
@@ -163,7 +163,7 @@ namespace Unity.Mathematics
             var k1 = float2(r2, h);
             var k2 = float2(r2 - r1, 2 * h);
             var ca = float2(q.x - q.x.min(q.y < 0 ? r1 : r2), q.y.abs() - h);
-            var cb = q - k1 + k2 * ((k1 - q).dot(k2) / k2.lengthsq()).saturate();
+            var cb = q - k1 + k2 * ((k1 - q).dot(k2) / k2.lengthsq()).sat();
             float s = cb.x < 0 && ca.y < 0 ? -1 : 1;
             return s * ca.lengthsq().min(cb.lengthsq()).sqrt();
         }
@@ -178,7 +178,7 @@ namespace Unity.Mathematics
             var cax = (x - (paba < 0.5f ? ra : rb)).limp();
             var cay = (paba - 0.5f).abs() - 0.5f;
             var k = rba.sq() + baba;
-            var f = ((rba * (x - ra) + paba * baba) / k).saturate();
+            var f = ((rba * (x - ra) + paba * baba) / k).sat();
             var cbx = x - ra - f * rba;
             var cby = paba - f;
             float s = cbx < 0 && cay < 0 ? -1 : 1;
@@ -326,7 +326,7 @@ namespace Unity.Mathematics
             var q = float3(p.z, h * p.y - 0.5f * p.x, h * p.x + 0.5f * p.y);
 
             var s = (-q.x).limp();
-            var t = ((q.y - 0.5f * p.z) / (m2 + 0.25f)).saturate();
+            var t = ((q.y - 0.5f * p.z) / (m2 + 0.25f)).sat();
 
             var a = m2 * (q.x + s).sq() + q.y.sq();
             var b = m2 * (q.x + 0.5f * t).sq() + (q.y - m2 * t).sq();
@@ -350,9 +350,9 @@ namespace Unity.Mathematics
             return (ba.cross(nor).dot(pa).sign() +
                 cb.cross(nor).dot(pb).sign() +
                 ac.cross(nor).dot(pc).sign() < 2
-                    ? (ba * (ba.dot(pa) / ba.lengthsq()).saturate() - pa).lengthsq()
-                    .min((cb * (cb.dot(pb) / cb.lengthsq()).saturate() - pb).lengthsq())
-                    .min((ac * (ac.dot(pc) / ac.lengthsq()).saturate() - pc).lengthsq())
+                    ? (ba * (ba.dot(pa) / ba.lengthsq()).sat() - pa).lengthsq()
+                    .min((cb * (cb.dot(pb) / cb.lengthsq()).sat() - pb).lengthsq())
+                    .min((ac * (ac.dot(pc) / ac.lengthsq()).sat() - pc).lengthsq())
                     : nor.dot(pa) * nor.dot(pa) / nor.lengthsq()).sqrt();
         }
 
@@ -374,10 +374,10 @@ namespace Unity.Mathematics
                 cb.cross(nor).dot(pb).sign() +
                 dc.cross(nor).dot(pc).sign() +
                 ad.cross(nor).dot(pd).sign() < 3
-                    ? (ba * (ba.dot(pa) / ba.lengthsq()).saturate() - pa).lengthsq()
-                    .min((cb * (cb.dot(pb) / cb.lengthsq()).saturate() - pb).lengthsq())
-                    .min((dc * (dc.dot(pc) / dc.lengthsq()).saturate() - pc).lengthsq())
-                    .min((ad * (ad.dot(pd) / ad.lengthsq()).saturate() - pd).lengthsq())
+                    ? (ba * (ba.dot(pa) / ba.lengthsq()).sat() - pa).lengthsq()
+                    .min((cb * (cb.dot(pb) / cb.lengthsq()).sat() - pb).lengthsq())
+                    .min((dc * (dc.dot(pc) / dc.lengthsq()).sat() - pc).lengthsq())
+                    .min((ad * (ad.dot(pd) / ad.lengthsq()).sat() - pd).lengthsq())
                     : nor.dot(pa) * nor.dot(pa) / nor.lengthsq()).sqrt();
         }
         

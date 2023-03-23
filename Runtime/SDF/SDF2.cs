@@ -94,7 +94,7 @@ namespace Unity.Mathematics
         private static float fLineSegment(float3 p, float3 a, float3 b)
         {
             var ab = b - a;
-            var t = saturate((p - a).dot(ab) / ab.dot(ab));
+            var t = sat((p - a).dot(ab) / ab.dot(ab));
             return (ab * t + a - p).length();
         }
 

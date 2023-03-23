@@ -16,22 +16,22 @@ namespace Unity.Mathematics
     public static partial class mathx
     {
         ///<summary>Quintic Smoothstep</summary>
-        [MethodImpl(IL)] public static  float4 smootherstep(this float4 f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();
+        [MethodImpl(IL)] public static  float4 smootherstep(this float4 f) => f.cube() * (f * (f * 6 - 15) + 10).sat();
         ///<inheritdoc cref="smootherstep(float4)"/>
-        [MethodImpl(IL)] public static  float3 smootherstep(this float3 f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();
+        [MethodImpl(IL)] public static  float3 smootherstep(this float3 f) => f.cube() * (f * (f * 6 - 15) + 10).sat();
         ///<inheritdoc cref="smootherstep(float4)"/>
-        [MethodImpl(IL)] public static  float2 smootherstep(this float2 f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();
+        [MethodImpl(IL)] public static  float2 smootherstep(this float2 f) => f.cube() * (f * (f * 6 - 15) + 10).sat();
         ///<inheritdoc cref="smootherstep(float4)"/>
-        [MethodImpl(IL)] public static  float smootherstep(this float f) => f.cube() * (f * (f * 6 - 15) + 10).saturate();
+        [MethodImpl(IL)] public static  float smootherstep(this float f) => f.cube() * (f * (f * 6 - 15) + 10).sat();
         
         ///<summary>Smoothstep using Cosine function to interpolate smoothly</summary>
-        [MethodImpl(IL)] public static  float4 smoothstepcos(this float4 f) => (f.saturate() * PI).cos().inv() * 0.5f;
+        [MethodImpl(IL)] public static  float4 smoothstepcos(this float4 f) => (f.sat() * PI).cos().inv() * 0.5f;
         ///<inheritdoc cref="smoothstepcos(float4)"/>
-        [MethodImpl(IL)] public static  float3 smoothstepcos(this float3 f) => (f.saturate() * PI).cos().inv() * 0.5f;
+        [MethodImpl(IL)] public static  float3 smoothstepcos(this float3 f) => (f.sat() * PI).cos().inv() * 0.5f;
         ///<inheritdoc cref="smoothstepcos(float4)"/>
-        [MethodImpl(IL)] public static  float2 smoothstepcos(this float2 f) => (f.saturate() * PI).cos().inv() * 0.5f;
+        [MethodImpl(IL)] public static  float2 smoothstepcos(this float2 f) => (f.sat() * PI).cos().inv() * 0.5f;
         ///<inheritdoc cref="smoothstepcos(float4)"/>
-        [MethodImpl(IL)] public static  float smoothstepcos(this float f) => (f.saturate() * PI).cos().inv() * 0.5f;
+        [MethodImpl(IL)] public static  float smoothstepcos(this float f) => (f.sat() * PI).cos().inv() * 0.5f;
         
         ///<summary>Lerp with a custom power</summary>
         [MethodImpl(IL)] public static  float4 eerp(this float4 f, float4 a, float4 b) => a.pow(1 - f) * b.pow(f);
@@ -182,7 +182,7 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static  float lerpAngle(this float x, float a, float b) {
             var num = (b - a).repeat(360);
             if (num > 180.0) num -= 360;
-            return a + num * x.saturate();
+            return a + num * x.sat();
         }
 
         // Remap --------------------------------------------------------------------
@@ -243,7 +243,7 @@ namespace Unity.Mathematics
 
         /// Smooth max is a smooth version of math.max() that accepts a smoothness parameter t
         [MethodImpl(IL)] public static float smax(this float t, float a, float b) {
-            var h = (0.5f + (b - a) / (t * 2)).saturate();
+            var h = (0.5f + (b - a) / (t * 2)).sat();
             return h.lerp(a, b) + t * h * (1 - h);
         }
         /// <inheritdoc cref="smax(float, float,float)" />
@@ -304,7 +304,7 @@ namespace Unity.Mathematics
 
         /// polynomial smooth min 1 (t=0.1)
         [MethodImpl(IL)] public static  float smin_polynomial(this float t, float a, float b) {
-            var h = (0.5f + (b - a) / (t * 2)).saturate();
+            var h = (0.5f + (b - a) / (t * 2)).sat();
             return b.lerp(a, h) - t * h * (1 - h);
         }
         public static float2 smin_polynomial(this float2 t, float2 a, float2 b) => f2(t.x.smin_polynomial(a.x, b.x), t.y.smin_polynomial(a.y, b.y));

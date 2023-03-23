@@ -1435,7 +1435,7 @@ namespace Unity.Mathematics
                     6 => new(num2, num7, num5),
                     _ => _white.xyz
                 };
-                if (!hdr) _white.xyz = _white.xyz.saturate();
+                if (!hdr) _white.xyz = _white.xyz.sat();
             }
 
             return _white;
@@ -1601,7 +1601,7 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)] public static color clamp(this color f, float min, float max) => new(f.x.clamp(min, max), f.y.clamp(min, max), f.z.clamp(min, max), f.w.clamp(min, max));
         [MethodImpl(INLINE)] public static color min(this color f, color m) => new(f.x.min(m.x), f.y.min(m.y), f.z.min(m.z), f.w.min(m.w));
         [MethodImpl(INLINE)] public static color max(this color f, color m) => new(f.x.max(m.x), f.y.max(m.y), f.z.max(m.z), f.w.max(m.w));
-        [MethodImpl(INLINE)] public static color saturate(this color f) => new(saturate(f.x), saturate(f.y), saturate(f.z), saturate(f.w));
+        [MethodImpl(INLINE)] public static color sat(this color f) => new(sat(f.x), sat(f.y), sat(f.z), sat(f.w));
         [MethodImpl(INLINE)] public static color sqrt(this color f) => new(sqrt(f.x), sqrt(f.y), sqrt(f.z), sqrt(f.w));
         [MethodImpl(INLINE)] public static color pow(this color f, float p) => new(f.x.pow(p), f.y.pow(p), f.z.pow(p), f.w.pow(p));
         [MethodImpl(INLINE)] public static color pow(this color f, float4 p) => new(f.x.pow(p.x), f.y.pow(p.y), f.z.pow(p.z), f.w.pow(p.w));
