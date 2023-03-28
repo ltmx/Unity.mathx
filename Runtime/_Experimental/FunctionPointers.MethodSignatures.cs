@@ -7,6 +7,7 @@
 #endregion
 
 using System.Runtime.InteropServices;
+using UnityEngine;
 
 namespace Unity.Mathematics
 {
@@ -15,25 +16,122 @@ namespace Unity.Mathematics
         public static class MethodSignatures
         {
             // Method Signatures
-            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float p1(float t);
-            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float p2(float t1, float t2);
-            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float p3(float t1, float t2, float t3);
-            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float p4(float t1, float t2, float t3, float t4);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float f1(float t);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float f2(float t1, float t2);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float f3(float t1, float t2, float t3);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float f4(float t1, float t2, float t3, float t4);
             
-            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float2 p1x2(float2 t);
-            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float2 p2x2(float2 t1, float2 t2);
-            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float2 p3x2(float2 t1, float2 t2, float2 t3);
-            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float2 p4x2(float2 t1, float2 t2, float2 t3, float2 t4);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float2 f1x2(float2 t);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float2 f2x2(float2 t1, float2 t2);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float2 f3x2(float2 t1, float2 t2, float2 t3);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float2 f4x2(float2 t1, float2 t2, float2 t3, float2 t4);
             
-            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float3 p1x3(float3 t);
-            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float3 p2x3(float3 t1, float3 t2);
-            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float3 p3x3(float3 t1, float3 t2, float3 t3);
-            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float3 p4x3(float3 t1, float3 t2, float3 t3, float3 t4);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float3 f1x3(float3 t);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float3 f2x3(float3 t1, float3 t2);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float3 f3x3(float3 t1, float3 t2, float3 t3);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float3 f4x3(float3 t1, float3 t2, float3 t3, float3 t4);
             
-            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float4 p1x4(float4 t);
-            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float4 p2x4(float4 t1, float4 t2);
-            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float4 p3x4(float4 t1, float4 t2, float4 t3);
-            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float4 p4x4(float4 t1, float4 t2, float4 t3, float4 t4);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float4 f1x4(float4 t);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float4 f2x4(float4 t1, float4 t2);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float4 f3x4(float4 t1, float4 t2, float4 t3);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float4 f4x4(float4 t1, float4 t2, float4 t3, float4 t4);
+            
+
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate U fxf<T, U>(T t1) where U : struct where T : struct;
+
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float f1_f1(float f);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float f2_f1(float2 f);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float f3_f1(float3 f);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float f4_f1(float4 f);
+            
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float f1x2_f1(float f, float f1);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float f2x2_f1(float2 f, float2 f1);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float f3x2_f1(float3 f, float3 f1);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float f4x2_f1(float4 f, float4 f1);
+            
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float f1x3_f1(float f, float f1, float f2);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float f2x3_f1(float2 f, float2 f1, float2 f2);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float f3x3_f1(float3 f, float3 f1, float3 f2);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float f4x3_f1(float4 f, float4 f1, float4 f2);
+            
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float f1x4_f1(float f, float f1, float f2, float f3);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float f2x4_f1(float2 f, float2 f1, float2 f2, float2 f3);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float f3x4_f1(float3 f, float3 f1, float3 f2, float3 f3);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float f4x4_f1(float4 f, float4 f1, float4 f2, float4 f3);
+            
+            
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float u1_f1(uint f);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float u2_f1(uint2 f);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float u3_f1(uint3 f);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float u4_f1(uint4 f);
+            
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float u1x2_f1(uint f,  uint f1);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float u2x2_f1(uint2 f, uint2 f1);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float u3x2_f1(uint3 f, uint3 f1);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float u4x2_f1(uint4 f, uint4 f1);
+            
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float u1x3_f1(uint f,  uint f1,  uint f2);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float u2x3_f1(uint2 f, uint2 f1, uint2 f2);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float u3x3_f1(uint3 f, uint3 f1, uint3 f2);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float u4x3_f1(uint4 f, uint4 f1, uint4 f2);
+            
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float u1x4_f1(uint f,  uint f1,  uint f2,  uint f3);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float u2x4_f1(uint2 f, uint2 f1, uint2 f2, uint2 f3);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float u3x4_f1(uint3 f, uint3 f1, uint3 f2, uint3 f3);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float u4x4_f1(uint4 f, uint4 f1, uint4 f2, uint4 f3);
+            
+            
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float i1_f1(int f);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float i2_f1(int2 f);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float i3_f1(int3 f);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float i4_f1(int4 f);
+            
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float i1x2_f1(int f,  int f1);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float i2x2_f1(int2 f, int2 f1);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float i3x2_f1(int3 f, int3 f1);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float i4x2_f1(int4 f, int4 f1);
+            
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float i1x3_f1(int f,  int f1,  int f2);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float i2x3_f1(int2 f, int2 f1, int2 f2);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float i3x3_f1(int3 f, int3 f1, int3 f2);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float i4x3_f1(int4 f, int4 f1, int4 f2);
+            
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float i1x4_f1(int f,  int f1,  int f2,  int f3);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float i2x4_f1(int2 f, int2 f1, int2 f2, int2 f3);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float i3x4_f1(int3 f, int3 f1, int3 f2, int3 f3);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float i4x4_f1(int4 f, int4 f1, int4 f2, int4 f3);
+            
+            
+
+
+
+
+
+
+
+            // [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float i1x2_f1(int f1, int f2);
+            // [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float2 i2x2_f2(int2 f1, int2 f2);
+            // [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float3 i3x2_f3(int3 f1, int3 f2);
+            // [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float4 i4x2_f4(int4 f1, int4 f2);
+            //
+            // [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float f1x2_f1(float f1, float f2);
+            // [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float2 f2x2_f2(float2 f1, float2 f2);
+            // [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float3 f3x2_f3(float3 f1, float3 f2);
+            // [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float4 f4x2_f4(float4 f1, float4 f2);
+            
+            
+            
+
+
+
+
+
+
+
+
+
+
+
         }
     }
 }

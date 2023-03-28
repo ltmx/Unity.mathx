@@ -19,11 +19,12 @@ namespace Unity.Mathematics
     {
         //generic function pointer compiler
         public static T ToPointerInvoke<T>(T function) where T : Delegate => CompileFunctionPointer(function).Invoke; // Inferred Type
+        
         // ** Very important to cache the function pointer for performance reasons
-        public readonly static p3 FP_smax_exp = ToPointerInvoke<p3>(mathx.smax_exp);
-        public readonly static p3 FP_smin_exp = ToPointerInvoke<p3>(mathx.smin_exp);
-        public readonly static p3 FP_smax = ToPointerInvoke<p3>(mathx.smax);
-        public readonly static p3 FP_smin = ToPointerInvoke<p3>(mathx.smin);
+        public readonly static f3 FP_smax_exp = ToPointerInvoke<f3>(mathx.smax_exp);
+        public readonly static f3 FP_smin_exp = ToPointerInvoke<f3>(mathx.smin_exp);
+        public readonly static f3 FP_smax = ToPointerInvoke<f3>(mathx.smax);
+        public readonly static f3 FP_smin = ToPointerInvoke<f3>(mathx.smin);
         // public readonly static p1x2 FP_dot = ToPointerInvoke<p1x2>(mathx.cmul);
         
 

@@ -12,6 +12,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Unity.Burst;
+using static Unity.Mathematics.FunctionPointers;
+using static Unity.Mathematics.FunctionPointers.MethodSignatures;
 
 namespace Unity.Mathematics
 {
@@ -39,5 +41,75 @@ namespace Unity.Mathematics
 
         public static FunctionPointer<T> GetFunctionPointerDelegate<T>(T functionPointer) where T : Delegate => new(Marshal.GetFunctionPointerForDelegate(functionPointer));
         // public static ActionJob ToActionJob(this Action action) => new(GetFunctionPointerDelegate(action));
+        
+        /// Returns the Manhattan distance between two float4a
+        [MethodImpl(IL)] public static float manhattan(this float4 a, float4 b) => a.sub(b).abs().sum();
+        // Returns the Manhattan distance between two float3s
+        [MethodImpl(IL)] public static float manhattan(this float3 a, float3 b) => a.sub(b).abs().sum();
+        // Returns the Manhattan distance between two float2s
+        [MethodImpl(IL)] public static float manhattan(this float2 a, float2 b) => a.sub(b).abs().sum();
+        // Returns the Manhattan distance between two floats
+        [MethodImpl(IL)] public static float manhattan(this float a, float b) => a.sub(b).abs();
     }
+    
+    
+    public static class RandomUtils
+    {
+        private const uint PRIME1 = 2654435761u;
+        private const uint PRIME2 = 2246822519u;
+        private const uint PRIME3 = 3266489917u;
+        private const uint PRIME4 = 668265263u;
+        private const uint PRIME5 = 374761393u;
+        
+        private static readonly uint4 PRIMEX = new(2654435761u, 2246822519u, 3266489917u, 668265263u);
+
+        public static float normalizeuint(this uint value) => value / (float)uint.MaxValue;
+
+        private static float randf(int seed) => xxhash32((uint)seed).normalizeuint();
+        private static float2 randf(int2 seed) => new();
+        private static float3 randf(int3 seed) => new(randf(seed.x), randf(seed.y), randf(seed.z));
+        private static float4 randf(int4 seed) => new(randf(seed.x), randf(seed.y), randf(seed.z), randf(seed.w));
+
+        private static float rand(uint seed) => xxhash32(seed) / (float)uint.MaxValue;
+        // private static float2 randf(uint2 seed) => new(randf(seed.x), randf(seed.y));
+        // private static float3 randf(uint3 seed) => new(randf(seed.x), randf(seed.y), randf(seed.z));
+
+        private static u1_f1 test_fp = ToPointerInvoke<u1_f1>(rand);
+        private static float4 randf(uint4 seed) => makef(seed, test_fp);
+        private static float3 randf(uint3 seed) => makef(seed, test_fp);
+        private static float2 randf(uint2 seed) => makef(seed, test_fp);
+        private static float randf(uint seed) => makef(seed, test_fp);
+        
+        public static float4 randfx(uint4 seed) => randf(seed + PRIMEX);
+        public static float3 randfx(uint3 seed) => randf(seed + PRIMEX.xyz);
+        public static float2 randfx(uint2 seed) => randf(seed + PRIMEX.xy);
+        public static float randfx(uint seed) => randf(seed + PRIMEX.x);
+        
+        
+        public static float4 makef4(int4 f, i1_f1 func) => new(func.Invoke(f.x), func.Invoke(f.y), func.Invoke(f.z), func.Invoke(f.w));
+        public static float3 makef3(int3 f, i1_f1 func) => new(func.Invoke(f.x), func.Invoke(f.y), func.Invoke(f.z));
+        public static float2 makef2(int2 f, i1_f1 func) => new(func.Invoke(f.x), func.Invoke(f.y));
+        public static float makef1(int f, i1_f1 func) => func.Invoke(f);
+        
+        public static float4 makef(uint4 f, u1_f1 func) => new(func.Invoke(f.x), func.Invoke(f.y), func.Invoke(f.z), func.Invoke(f.w));
+        public static float3 makef(uint3 f, u1_f1 func) => new(func.Invoke(f.x), func.Invoke(f.y), func.Invoke(f.z));
+        public static float2 makef(uint2 f, u1_f1 func) => new(func.Invoke(f.x), func.Invoke(f.y));
+        public static float makef(uint f, u1_f1 func) => func.Invoke(f);
+
+        private static uint xxhash32(uint seed) {
+            var hash = seed + PRIME5;
+            hash *= PRIME1;
+            hash = rotl(hash, 17) * PRIME2;
+            hash *= PRIME3;
+            hash = rotl(hash, 17) * PRIME4;
+            hash ^= hash >> 15;
+            hash *= PRIME5;
+            hash ^= hash >> 13;
+            hash *= PRIME2;
+            hash ^= hash >> 16;
+            return hash;
+        }
+
+        private static uint rotl(uint value, int count) => value << count | value >> 32 - count;
+    }  
 }
