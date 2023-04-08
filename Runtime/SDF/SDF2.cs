@@ -357,7 +357,7 @@ namespace Unity.Mathematics
             return floor((p + size * 0.5f) / size);;
         }
 
-        // Mirror at an axis-aligned plane which is at a specified distance <dist> from the origin.
+        // Mirror at an axis-aligned plane which is at a specified distance <distance> from the origin.
         private static float2 pMirror(this float2 p, float2 dist)
         {
             p = p.abs() - dist;
@@ -365,7 +365,7 @@ namespace Unity.Mathematics
         }
 
         // Mirror in both dimensions and at the diagonal, yielding one eighth of the space.
-        // translate by dist before mirroring.
+        // translate by distance before mirroring.
         private static float2 pMirrorOctant(this float2 p, float2 dist)
         {
             var s = sgn(p);

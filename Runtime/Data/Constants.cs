@@ -10,6 +10,12 @@ namespace Unity.Mathematics
 {
     public static partial class mathx
     {
+        
+        /// 1/3 double precision
+        private const double third_DBL = 0.333333333333333333333;
+        /// 1/3
+        private const float THIRD = 0.3333333333f;
+        
         /// Degrees to Radians
         public const float RAD = 0.0174532925f;
         /// Radians to Degrees

@@ -75,44 +75,5 @@ namespace Unity.Mathematics
                 return target;
             return (current.asfloat() + delta) / deltaLength.sqrt() * maxDistanceDelta;
         }
-
-        /// <inheritdoc cref="movetowards(Mathematics.float4,Mathematics.float4,float)"/>
-        public static double4 movetowards(this double4 current, double4 target, float maxDistanceDelta)
-        {
-            var delta = target - current;
-            var deltaLength = delta.lengthsq();
-            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sq())
-                return target;
-            return (current + delta) / deltaLength.sqrt() * maxDistanceDelta;
-        }
-        /// <inheritdoc cref="movetowards(Mathematics.float4,Mathematics.float4,float)"/>
-        public static double3 movetowards(this double3 current, double3 target, double maxDistanceDelta)
-        {
-            var delta = target - current;
-            var deltaLength = delta.lengthsq();
-            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sq())
-                return target;
-            return (current + delta) / deltaLength.sqrt() * maxDistanceDelta;
-        }
-        /// <inheritdoc cref="movetowards(Mathematics.float4,Mathematics.float4,float)"/>
-        public static double2 movetowards(this double2 current, double2 target, double maxDistanceDelta)
-        {
-            var delta = target - current;
-            var deltaLength = delta.lengthsq();
-            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sq())
-                return target;
-            return (current + delta) / deltaLength.sqrt() * maxDistanceDelta;
-        }
-        /// <inheritdoc cref="movetowards(Mathematics.float4,Mathematics.float4,float)"/>
-        public static double movetowards(this double current, double target, double maxDistanceDelta)
-        {
-            var delta = target - current;
-            var deltaLength = delta.sq();
-            if (deltaLength == 0 || maxDistanceDelta >= 0 && deltaLength <= maxDistanceDelta.sq())
-                return target;
-            return (current + delta) / deltaLength.sqrt() * maxDistanceDelta;
-        }
-
-
     }
 }

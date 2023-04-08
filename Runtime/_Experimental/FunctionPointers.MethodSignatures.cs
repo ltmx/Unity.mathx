@@ -102,6 +102,48 @@ namespace Unity.Mathematics
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate float i4x4_f1(int4 f, int4 f1, int4 f2, int4 f3);
             
             
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate int i1_i1(int f);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate int2 i2_i2(int2 f);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate int3 i3_i3(int3 f);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate int4 i4_i4(int4 f);
+            
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate int i1x2_i1(int f,  int f1);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate int2 i2x2_i2(int2 f, int2 f1);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate int3 i3x2_i3(int3 f, int3 f1);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate int4 i4x2_i4(int4 f, int4 f1);
+            
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate int i1x3_i1(int f,  int f1,  int f2);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate int2 i2x3_i2(int2 f, int2 f1, int2 f2);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate int3 i3x3_i3(int3 f, int3 f1, int3 f2);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate int4 i4x3_i4(int4 f, int4 f1, int4 f2);
+            
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate int i1x4_i1(int f,  int f1,  int f2,  int f3);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate int2 i2x4_i2(int2 f, int2 f1, int2 f2, int2 f3);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate int3 i3x4_i3(int3 f, int3 f1, int3 f2, int3 f3);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate int4 i4x4_i4(int4 f, int4 f1, int4 f2, int4 f3);
+            
+            
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate double d1_d1(double f);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate double2 d2_d2(double2 f);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate double3 d3_d3(double3 f);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate double4 d4_d4(double4 f);
+            
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate double d1x2_d1(double f,  double f1);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate double2 d2x2_d2(double2 f, double2 f1);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate double3 d3x2_d3(double3 f, double3 f1);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate double4 d4x2_d4(double4 f, double4 f1);
+            
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate double d1x3_d1(double f,  double f1,  double f2);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate double2 d2x3_d2(double2 f, double2 f1, double2 f2);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate double3 d3x3_d3(double3 f, double3 f1, double3 f2);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate double4 d4x3_d4(double4 f, double4 f1, double4 f2);
+            
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate double d1x4_d1(double f,  double f1,  double f2,  double f3);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate double2 d2x4_d2(double2 f, double2 f1, double2 f2, double2 f3);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate double3 d3x4_d3(double3 f, double3 f1, double3 f2, double3 f3);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)] public delegate double4 d4x4_d4(double4 f, double4 f1, double4 f2, double4 f3);
+            
+            
 
 
 

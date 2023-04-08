@@ -59,8 +59,6 @@ namespace Unity.Mathematics
         /// straightforward formulae to compute the signed angle between two vectors
         [MethodImpl(IL)] public static float straightsignedangle(float3 f1, float3 f2, float3 n) => n.dot(f1.cross(f2)).atan2(f1.dot(f2));
 
-        /// <inheritdoc cref="straightsignedangle(float3,float3,float3)" />
-        [MethodImpl(IL)] public static double straightsignedangle(double3 f1, double3 f2, double3 n) => n.dot(f1.cross(f2)).atan2(f1.dot(f2));
 
         [MethodImpl(IL)] public static float preciseangle(float3 v1, float3 v2)
         {
