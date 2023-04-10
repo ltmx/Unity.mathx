@@ -1,6 +1,6 @@
 ![Banner](https://raw.githubusercontent.com/LTMX/Unity.mathx/master/.branding/LTMX_Unity_Mathematics_Mathx_Github_Banner_Thin.png)
 
-![GitHub repo size](https://img.shields.io/github/repo-size/LTMX/Unity.mathx)
+<!-- ![GitHub repo size](https://img.shields.io/github/repo-size/LTMX/Unity.mathx) -->
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/LTMX/Unity.mathx?color=blueviolet)
 ![GitHub top language](https://img.shields.io/github/languages/top/LTMX/Unity.mathx?color=success)
 ![GitHub](https://img.shields.io/github/license/LTMX/Unity.mathx)
