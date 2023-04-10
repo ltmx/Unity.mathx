@@ -6,9 +6,10 @@
 ![GitHub](https://img.shields.io/github/license/LTMX/Unity.mathx)
 [![openupm](https://img.shields.io/npm/v/com.ltmx.mathematics.mathx?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.ltmx.mathematics.mathx/)
 
-## Extension Library for Unity.Mathematics
+<br>
 
-Extension Library for [`Unity.Mathematics`](https://github.com/Unity-Technologies/Unity.Mathematics) & many useful methods to process mathematics !<br><br>
+## Extension Library for [`Unity.Mathematics`](https://github.com/Unity-Technologies/Unity.Mathematics)
+& many useful methods !<br><br>
 Package name : `com.ltmx.mathematics.mathx`
 
 <!--
@@ -191,7 +192,7 @@ removed duplicate constants
   ```
   
 ## Method List (from 1.3.0... needs updating)
-```c#
+```purple
 // most methods have at least a dozen overloads
 asint asbool asfloat asdouble ascolor asfloat4 asfloat3 toVectorList 
 tofloatList toColorList tocolorList toColorArray tocolorArray tofloat4List
@@ -231,6 +232,8 @@ openSimplex2_ImproveXY openSimplex2SDerivatives_ImproveXY byte2
 hash hashwide byte3 byte4 color shuffle gammatolinear lineartogama 
 movetowards Erf Erfc ErfInv ErfcInv GammaLn Gamma DiGamma DiGammaInv
 ```
+
+
 <br>
 
 ## LICENSING
