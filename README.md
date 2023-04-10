@@ -18,19 +18,13 @@ Package name : `com.ltmx.mathematics.mathx`
 </a><br><br>
 -->
 
-## Exension Method Syntax
-*Old Code :*
-```C#
-var v1 = math.cos(math.clamp(f.magnitude, 0, 10));
-return v1 * v1;
-```
-*New Code :*
-```C#
-return f.length().clamp(0, 10).cos().sq();
+## Chained Method Syntax
+```cs
+return anyVector.length().clamp(0, 10).cos().sq().cube().sum().cmul().rotate(anyQuaternion).clint().div(3.2f).rcp();
 ```
 
 ## Using Declaration
-```C#
+```cs
 using static Unity.Mathematics.mathx;
 ```
 
