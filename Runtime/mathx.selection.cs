@@ -4,6 +4,7 @@
 // **    Repository : https://github.com/LTMX/Unity.Mathematics-Extensions
 #endregion
 
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace Unity.Mathematics
@@ -12,61 +13,35 @@ namespace Unity.Mathematics
     {
         // Component-wise comparison --------------------------------------------------------------
 
-        public static float cmax(this float4 f) => math.cmax(f);
-        public static float cmax(this float3 f) => math.cmax(f);
-        public static float cmax(this float2 f) => math.cmax(f);
+        /// <inheritdoc cref="math.cmax(float4)"/>  
+        [MethodImpl(IL)] public static float cmax(this float4 f) => math.cmax(f);
+        /// <inheritdoc cref="math.cmax(float4)"/>
+        [MethodImpl(IL)] public static float cmax(this float3 f) => math.cmax(f);
+        /// <inheritdoc cref="math.cmax(float4)"/>
+        [MethodImpl(IL)] public static float cmax(this float2 f) => math.cmax(f);
         
-        public static double cmax(this double4 f) => math.cmax(f);
-        public static double cmax(this double3 f) => math.cmax(f);
-        public static double cmax(this double2 f) => math.cmax(f);
+        /// <inheritdoc cref="math.cmin(float4)"/>
+        [MethodImpl(IL)] public static float cmin(this float4 f) => math.cmin(f);
+        /// <inheritdoc cref="math.cmin(float4)"/>
+        [MethodImpl(IL)] public static float cmin(this float3 f) => math.cmin(f);
+        /// <inheritdoc cref="math.cmin(float4)"/>
+        [MethodImpl(IL)] public static float cmin(this float2 f) => math.cmin(f);
         
-        public static float cmax(this Vector4 f) => math.cmax(f);
-        public static float cmax(this Vector3 f) => math.cmax(f);
-        public static float cmax(this Vector2 f) => math.cmax(f);
+        /// returns the greatest absolute value of the components
+        [MethodImpl(IL)] public static float acmax(this float4 f) => f.abs().cmax();
+        /// <inheritdoc cref="acmax(float4)"/>
+        [MethodImpl(IL)] public static float acmax(this float3 f) => f.abs().cmax();
+        /// <inheritdoc cref="acmax(float4)"/>
+        [MethodImpl(IL)] public static float acmax(this float2 f) => f.abs().cmax();
         
-        public static float cmax(this color f) => math.cmax(f);
+        /// returns the smallest absolute value of the components
+        [MethodImpl(IL)] public static float acmin(this float4 f) => f.abs().cmin();
+        /// <inheritdoc cref="acmin(float4)"/>
+        [MethodImpl(IL)] public static float acmin(this float3 f) => f.abs().cmin();
+        /// <inheritdoc cref="acmin(float4)"/>
+        [MethodImpl(IL)] public static float acmin(this float2 f) => f.abs().cmin();
+        
 
-        public static float cmin(this float4 f) => math.cmin(f);
-        public static float cmin(this float3 f) => math.cmin(f);
-        public static float cmin(this float2 f) => math.cmin(f);
-        
-        public static float cmin(this Vector4 f) => math.cmin(f);
-        public static float cmin(this Vector3 f) => math.cmin(f);
-        public static float cmin(this Vector2 f) => math.cmin(f);
-        
-        public static double cmin(this double4 f) => math.cmin(f);
-        public static double cmin(this double3 f) => math.cmin(f);
-        public static double cmin(this double2 f) => math.cmin(f);
-        
-        public static double cmin(this color f) => math.cmin(f);
-        
-        
-        /// Returns 1 inside the longest(s) axis(es) and 0 in the others
-        public static bool4 cmaxAxis(this float4 f) => f == f.cmax();
-        /// <inheritdoc cref="cmaxAxis(Unity.Mathematics.float4)"/>
-        public static bool3 cmaxAxis(this float3 f) => f == f.cmax();
-        /// <inheritdoc cref="cmaxAxis(Unity.Mathematics.float4)"/>
-        public static bool2 cmaxAxis(this float2 f) => f == f.cmax();
-        
-        /// <inheritdoc cref="cmaxAxis(Unity.Mathematics.float4)"/>
-        public static bool4 cmaxAxis(this Vector4 f) => f.asfloat().cmaxAxis();
-        /// <inheritdoc cref="cmaxAxis(Unity.Mathematics.float4)"/>
-        public static bool3 cmaxAxis(this Vector3 f) => f.asfloat().cmaxAxis();
-        /// <inheritdoc cref="cmaxAxis(Unity.Mathematics.float4)"/>
-        public static bool2 cmaxAxis(this Vector2 f) => f.asfloat().cmaxAxis();
 
-        /// Returns true inside the shortest axes
-        public static bool4 cminAxis(this float4 f)  => f == f.cmin();
-        /// <inheritdoc cref="cminAxis(Unity.Mathematics.float4)"/>
-        public static bool3 cminAxis(this float3 f) => f == f.cmin();
-        /// <inheritdoc cref="cminAxis(Unity.Mathematics.float4)"/>
-        public static bool2 cminAxis(this float2 f) => f == f.cmin();
-        
-        /// <inheritdoc cref="cminAxis(Unity.Mathematics.float4)"/>
-        public static bool4 cminAxis(this Vector4 f) => f.asfloat().cminAxis();
-        /// <inheritdoc cref="cminAxis(Unity.Mathematics.float4)"/>
-        public static bool3 cminAxis(this Vector3 f) => f.asfloat().cminAxis();
-        /// <inheritdoc cref="cminAxis(Unity.Mathematics.float4)"/>
-        public static bool2 cminAxis(this Vector2 f) => f.asfloat().cminAxis();
     }
 }
