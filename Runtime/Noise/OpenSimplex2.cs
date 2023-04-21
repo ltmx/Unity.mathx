@@ -94,8 +94,8 @@ namespace Unity.Mathematics
         private static float4 openSimplex2_Conventional(float3 X)
         {
             // Rotate around the main diagonal. Not a skew transform.
-            var result = openSimplex2Base(X.sum() * 2/3 - X);
-            return f4(result.xyz.sum() * 2/3 - result.xyz, result.w);
+            var result = openSimplex2Base(X.csum() * 2/3 - X);
+            return f4(result.xyz.csum() * 2/3 - result.xyz, result.w);
         }
 
         // Use this if you want to show X and Y in a plane, then use Z for time, vertical, etc.

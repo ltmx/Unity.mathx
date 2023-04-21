@@ -135,7 +135,7 @@ namespace Unity.Mathematics
             n += dot(n, n.yxz + 19.19f) + F2;
             n = frac(n * F3);
             n += dot(n, n.yxz + 57.57f) + F1;
-            return frac(n.cmul() * n.sum());
+            return frac(n.cmul() * n.csum());
         }
         
         public static float Hash(this float2 coord) {
@@ -144,7 +144,7 @@ namespace Unity.Mathematics
             n += dot(n, n.yx + 19.19f) + F2;
             n = frac(n * F3);
             n += dot(n, n.yx + 57.57f) + F1;
-            return frac(n.cmul() * n.sum());
+            return frac(n.cmul() * n.csum());
         }
         private static float Hash(float coord)
         {
@@ -199,9 +199,9 @@ namespace Unity.Mathematics
         }
 
         private const float F = 0.61803398875f; // golden ratio
-        [MethodImpl(IL)] public static float hashx(this float2 p) => p.dim(F).frac().set(out p).add(p.cycle().add(37).dot(p)).set(out p).cmul().dim(p.sum()).frac();
-        [MethodImpl(IL)] public static float hashx(this float3 p) => p.dim(F).frac().set(out p).add(p.cycle().add(37).dot(p)).set(out p).cmul().dim(p.sum()).frac();
-        [MethodImpl(IL)] public static float hashx(this float4 p) => p.dim(F).frac().set(out p).add(p.cycle().add(37).dot(p)).set(out p).cmul().dim(p.sum()).frac();
+        [MethodImpl(IL)] public static float hashx(this float2 p) => p.dim(F).frac().set(out p).add(p.cycle().add(37).dot(p)).set(out p).cmul().dim(p.csum()).frac();
+        [MethodImpl(IL)] public static float hashx(this float3 p) => p.dim(F).frac().set(out p).add(p.cycle().add(37).dot(p)).set(out p).cmul().dim(p.csum()).frac();
+        [MethodImpl(IL)] public static float hashx(this float4 p) => p.dim(F).frac().set(out p).add(p.cycle().add(37).dot(p)).set(out p).cmul().dim(p.csum()).frac();
         [MethodImpl(IL)] public static float hashx(this float p) => frac(p * F + 0.1f).add(p.sq().dim(34.53f)).set(out p).dim(p + 1).frac();
     }
 }

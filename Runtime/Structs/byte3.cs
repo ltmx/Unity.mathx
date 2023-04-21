@@ -685,7 +685,7 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)] public static byte3 byte3(double3 v) => new(v);
         
         /// Returns a uint hash code of a byte3 vector.
-        [MethodImpl(INLINE)] public static uint hash(byte3 v) => csum(uint3(v.x, v.y, v.z) * uint3(0x685835CFu, 0xC3D32AE1u, 0xB966942Fu)) + 0xFE9856B3u;
+        [MethodImpl(INLINE)] public static uint hash(byte3 v) => math.csum(uint3(v.x, v.y, v.z) * uint3(0x685835CFu, 0xC3D32AE1u, 0xB966942Fu)) + 0xFE9856B3u;
         
         /// Returns a uint3 vector hash code of a byte3 vector.
         [MethodImpl(INLINE)] public static uint3 hashwide(byte3 v) => uint3(v.x, v.y, v.z) * uint3(0xFA3A3285u, 0xAD55999Du, 0xDCDD5341u) + 0x94DDD769u;

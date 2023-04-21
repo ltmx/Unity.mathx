@@ -68,7 +68,7 @@ namespace Unity.Mathematics
             // [BurstCompile] [MonoPInvokeCallback(typeof(process21))]
             // public static float mul(float a, float b) => a * b;
             // [BurstCompile] [MonoPInvokeCallback(typeof(process21))]
-            // public static float sum(float a, float b) => a + b;
+            // public static float csum(float a, float b) => a + b;
             //
             //  // [BurstCompile]
             // // [MonoPInvokeCallback(typeof(process2))]
@@ -130,7 +130,7 @@ namespace Unity.Mathematics
             // // static FunctionPointer<process22> funcF2OP = Comp<process22>(mul);
             //
             // private static FunctionPointer<process21> FP_mul = Comp<process21>(math.mul);
-            // private static FunctionPointer<process21> FP_sum = Comp<process21>(mathx.sum);
+            // private static FunctionPointer<process21> FP_sum = Comp<process21>(mathx.csum);
             // private static FunctionPointer<process21> FP_max = Comp<process21>(math.max);
             //
             // private static FunctionPointer<process21> FP_min = Comp<process21>(math.min);

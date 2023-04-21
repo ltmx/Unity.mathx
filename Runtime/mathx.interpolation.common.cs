@@ -264,7 +264,7 @@ namespace Unity.Mathematics
         
         [MethodImpl(IL)] public static float smax_exp(this float t, float a, float b) {
             var o = (f2(a - b, b - a) / t).exp();
-            return f2(a, b).dot(o) / o.sum();
+            return f2(a, b).dot(o) / o.csum();
         }
         public static float2 smax_exp2(this float2 t, float2 a, float2 b) => f2(t.x.smax_exp(a.x, b.x), t.y.smax_exp(a.y, b.y));
         public static float2 smax_expOP(this float2 t, float2 a, float2 b) => FunctionPointers.FP_smax_exp.InvokeParallelAndParam(a, b, t);

@@ -95,11 +95,11 @@ namespace Unity.Mathematics
         
         
         /// Returns the Manhattan distance between two float4a
-        [MethodImpl(IL)] public static int manhattan(this int4 a, int4 b) => a.sub(b).abs().sum();
+        [MethodImpl(IL)] public static int manhattan(this int4 a, int4 b) => a.sub(b).abs().csum();
         /// Returns the Manhattan distance between two int3s
-        [MethodImpl(IL)] public static int manhattan(this int3 a, int3 b) => a.sub(b).abs().sum();
+        [MethodImpl(IL)] public static int manhattan(this int3 a, int3 b) => a.sub(b).abs().csum();
         /// Returns the Manhattan distance between two int2s
-        [MethodImpl(IL)] public static int manhattan(this int2 a, int2 b) => a.sub(b).abs().sum();
+        [MethodImpl(IL)] public static int manhattan(this int2 a, int2 b) => a.sub(b).abs().csum();
         /// Returns the Manhattan distance between two ints
         [MethodImpl(IL)] public static int manhattan(this int a, int b) => a.sub(b).abs();
 

@@ -106,12 +106,12 @@ namespace Unity.Mathematics
         
         #region csum
 
-        /// Returns the sum of all components of the vector
-        [MethodImpl(IL)] public static int sum(this int4 f) => csum(f);
-        /// <inheritdoc cref="sum(int4)"/> 
-        [MethodImpl(IL)] public static int sum(this int3 f) => csum(f);
-        /// <inheritdoc cref="sum(int4)"/> 
-        [MethodImpl(IL)] public static int sum(this int2 f) => csum(f);
+        /// Returns the csum of all components of the vector
+        [MethodImpl(IL)] public static int csum(this int4 f) => math.csum(f);
+        /// <inheritdoc cref="csum(Unity.Mathematics.int4)"/> 
+        [MethodImpl(IL)] public static int csum(this int3 f) => math.csum(f);
+        /// <inheritdoc cref="csum(Unity.Mathematics.int4)"/> 
+        [MethodImpl(IL)] public static int csum(this int2 f) => math.csum(f);
 
         #endregion
 

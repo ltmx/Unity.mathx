@@ -7,7 +7,6 @@
 #endregion
 
 using System.Runtime.CompilerServices;
-using static Unity.Mathematics.math;
 
 namespace Unity.Mathematics
 {
@@ -106,12 +105,12 @@ namespace Unity.Mathematics
         
         #region csum
 
-        /// Returns the sum of all components of the vector
-        [MethodImpl(IL)] public static float sum(this float4 f) => csum(f);
-        /// <inheritdoc cref="sum(float4)"/> 
-        [MethodImpl(IL)] public static float sum(this float3 f) => csum(f);
-        /// <inheritdoc cref="sum(float4)"/> 
-        [MethodImpl(IL)] public static float sum(this float2 f) => csum(f);
+        /// Returns the csum of all components of the vector
+        [MethodImpl(IL)] public static float csum(this float4 f) => math.csum(f);
+        /// <inheritdoc cref="csum(float4)"/> 
+        [MethodImpl(IL)] public static float csum(this float3 f) => math.csum(f);
+        /// <inheritdoc cref="csum(float4)"/>
+        [MethodImpl(IL)] public static float csum(this float2 f) => math.csum(f);
 
         #endregion
 

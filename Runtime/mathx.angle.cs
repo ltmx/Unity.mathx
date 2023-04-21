@@ -51,7 +51,7 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float fastangle(this float2 from, float2 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).npsat().acos();
 
         // // another way of computing angles
-        // [MethodImpl(IL)] public static float otherangle(f2 v1, f2 v2) => math.atan2(v1.x * v2.y - v2.x * v1.y, (v1 * v2).sum()) * (180 / PI);
+        // [MethodImpl(IL)] public static float otherangle(f2 v1, f2 v2) => math.atan2(v1.x * v2.y - v2.x * v1.y, (v1 * v2).csum()) * (180 / PI);
 
         // https://gist.github.com/SaffronCR/b0802d102dd7f262118ac853cd5b4901#file-Mathutil-cs-L24
 
@@ -76,11 +76,11 @@ namespace Unity.Mathematics
 
         /// Returns the signed angle between two vectors in radians using an axis of rotation
         [MethodImpl(IL)] public static float signedangle(float4 from, float4 to, float4 axis) =>
-            anglerad(from, to) * ((from.yzwx * to.zwxy - from.zwxy * to.yzwx) * axis).sum().sign();
+            anglerad(from, to) * ((from.yzwx * to.zwxy - from.zwxy * to.yzwx) * axis).csum().sign();
 
         /// Returns the signed angle between two vectors in radians using an axis of rotation
         [MethodImpl(IL)] public static float signedangle(float3 from, float3 to, float3 axis) =>
-            anglerad(from, to) * ((from.yzx * to.zxy - from.zxy * to.yzx) * axis).sum().sign();
+            anglerad(from, to) * ((from.yzx * to.zxy - from.zxy * to.yzx) * axis).csum().sign();
 
         /// Returns the signed angle between two vectors in radians;
         [MethodImpl(IL)] public static float signedangle(Vector2 from, Vector2 to) =>

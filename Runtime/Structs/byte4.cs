@@ -1852,7 +1852,7 @@ namespace Unity.Mathematics
         /// Return a byte4 vector constructed from a double4 vector by componentwise conversion.
         [MethodImpl(INLINE)] public static byte4 byte4(double4 v) => new(v);
         /// Returns a uint hash code of a byte4 vector.
-        [MethodImpl(INLINE)] public static uint hash(byte4 v) => csum(uint4(v.x, v.y, v.z, v.w) * uint4(0x745ED837u, 0x9CDC88F5u, 0xFA62D721u, 0x7E4DB1CFu)) + 0x68EEE0F5u;
+        [MethodImpl(INLINE)] public static uint hash(byte4 v) => math.csum(uint4(v.x, v.y, v.z, v.w) * uint4(0x745ED837u, 0x9CDC88F5u, 0xFA62D721u, 0x7E4DB1CFu)) + 0x68EEE0F5u;
         /// Returns a uint4 vector hash code of a byte4 vector.
         /// When multiple elements are to be hashes together, it can more efficient to calculate and combine wide hash
         /// that are only reduced to a narrow uint hash at the very end instead of at every step.

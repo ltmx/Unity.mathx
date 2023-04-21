@@ -1562,7 +1562,7 @@ namespace Unity.Mathematics
         /// <summary>Return a color vector constructed from a double4 vector by componentwise conversion.</summary>
         [MethodImpl(INLINE)] public static color color(double4 v) => new(v);
         /// <summary>Returns a uint hash code of a color vector.</summary>
-        [MethodImpl(INLINE)] public static uint hash(color v) => csum(asuint(v) * new uint4(0xE69626FFu, 0xBD010EEBu, 0x9CEDE1D1u, 0x43BE0B51u)) + 0xAF836EE1u;
+        [MethodImpl(INLINE)] public static uint hash(color v) => math.csum(asuint(v) * new uint4(0xE69626FFu, 0xBD010EEBu, 0x9CEDE1D1u, 0x43BE0B51u)) + 0xAF836EE1u;
         /// <summary>
         ///     Returns a uint4 vector hash code of a color vector.
         ///     When multiple elements are to be hashes together, it can more efficient to calculate and combine wide hash
@@ -1610,7 +1610,7 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)] public static color frac(this color f) => new(f.x.frac(), f.y.frac(), f.z.frac(), f.w.frac());
         [MethodImpl(INLINE)] public static color sign(this color f) => new(f.x.sign(), f.y.sign(), f.z.sign(), f.w.sign());
         [MethodImpl(INLINE)] public static color abs(this color f) => new(f.x.abs(), f.y.abs(), f.z.abs(), f.w.abs());
-        [MethodImpl(INLINE)] public static float sum(this color f) => f.x + f.y + f.z + f.w;
+        [MethodImpl(INLINE)] public static float csum(this color f) => f.x + f.y + f.z + f.w;
         [MethodImpl(INLINE)] public static float cmul(this color f) => f.x * f.y * f.z * f.w;
         [MethodImpl(INLINE)] public static color inv(this color f) => 1 - f;
         [MethodImpl(INLINE)] public static color neg(this color f) => -f;

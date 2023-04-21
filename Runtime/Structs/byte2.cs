@@ -289,7 +289,7 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)] public static byte2 byte2(double2 v) => new(v);
 
         ///Returns a uint hash code of a byte2 vector.
-        [MethodImpl(INLINE)] public static uint hash(byte2 v) => csum(uint2(v.x, v.y) * uint2(0x6E624EB7u, 0x7383ED49u)) + 0xDD49C23Bu;
+        [MethodImpl(INLINE)] public static uint hash(byte2 v) => math.csum(uint2(v.x, v.y) * uint2(0x6E624EB7u, 0x7383ED49u)) + 0xDD49C23Bu;
 
         /// Returns a uint2 vector hash code of a byte2 vector.
         /// When multiple elements are to be hashes together, it can more efficient to calculate and combine wide hash

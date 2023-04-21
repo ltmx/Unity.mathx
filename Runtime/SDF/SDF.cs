@@ -297,7 +297,7 @@ namespace Unity.Mathematics
         public static float sdOctahedron(float3 p, float s)
         {
             p = p.abs();
-            var m = p.sum() - s;
+            var m = p.csum() - s;
             float3 q;
             if (3 * p.x < m) q = p.xyz;
             else if (3 * p.y < m) q = p.yzx;
@@ -312,7 +312,7 @@ namespace Unity.Mathematics
         public static float sdOctahedronBound(float3 p, float s)
         {
             p = p.abs();
-            return (p.sum() - s) * 0.57735027f;
+            return (p.csum() - s) * 0.57735027f;
         }
 
         public static float sdPyramid(float3 p, float h)
@@ -390,8 +390,8 @@ namespace Unity.Mathematics
         /// require more raymarching steps until an intersection is found than euclidean primitives. Since they
         /// only give a bound to the limp SDF, this kind of primitive alteration also doesn't play well with shadows
         /// and occlusion algorithms that rely on true SDFs for measuring distance to occluders.
-        public static float _length2(this float3 p) => p.sq().sum().sqrt();
-        public static float _length6(this float3 p) => p.cube().sq().sum().pow(1 / 6f);
-        public static float _length8(this float3 p) => p.sq().sq().sq().sum().pow(1 / 8f);
+        public static float _length2(this float3 p) => p.sq().csum().sqrt();
+        public static float _length6(this float3 p) => p.cube().sq().csum().pow(1 / 6f);
+        public static float _length8(this float3 p) => p.sq().sq().sq().csum().pow(1 / 8f);
     }
 }
