@@ -94,16 +94,39 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float2 projectsafe(this float2 f, float2 n, float2 defaultValue = default) => math.projectsafe(f, n, defaultValue);
 
         
-        /// Returns the Manhattan distance between two float4a
-        [MethodImpl(IL)] public static float manhattan(this float4 a, float4 b) => (a-b).abs().sum();
-        /// Returns the Manhattan distance between two float3s
-        [MethodImpl(IL)] public static float manhattan(this float3 a, float3 b) => (a-b).abs().sum();
-        /// Returns the Manhattan distance between two float2s
-        [MethodImpl(IL)] public static float manhattan(this float2 a, float2 b) => (a-b).abs().sum();
-        /// Returns the Manhattan distance between two floats
-        [MethodImpl(IL)] public static float manhattan(this float a, float b) => (a-b).abs();
-        
-        
+        /// Returns the Manhattan distance between two vectors
+        /// <remarks>Manhattan distance is the sum of the absolute differences of the components</remarks>
+        /// <see href="https://en.wikipedia.org/wiki/Taxicab_geometry"/>
+        [MethodImpl(IL)] public static float manhattan(this float4 a, float4 b) => (a-b).abs().csum();
+        /// <inheritdoc cref="manhattan(float4,float4)"/>
+        [MethodImpl(IL)] public static float manhattan(this float3 a, float3 b) => (a-b).abs().csum();
+        /// <inheritdoc cref="manhattan(float4,float4)"/>
+        [MethodImpl(IL)] public static float manhattan(this float2 a, float2 b) => (a-b).abs().csum();
+        /// <inheritdoc cref="manhattan(float4,float4)"/>
+        [MethodImpl(IL)] public static float manhattan(this float a, float b) => (a - b).abs();
+
+        /// Returns the Minkowski distance between two vectors
+        [MethodImpl(IL)] public static float minkowski(this float4 a, float4 b, float p) => (a - b).abs().pow(p).csum().pow(1 / p);
+        /// <inheritdoc cref="minkowski(float4,float4,float)"/>
+        [MethodImpl(IL)] public static float minkowski(this float3 a, float3 b, float p) => (a - b).abs().pow(p).csum().pow(1 / p);
+        /// <inheritdoc cref="minkowski(float4,float4,float)"/>
+        [MethodImpl(IL)] public static float minkowski(this float2 a, float2 b, float p) => (a - b).abs().pow(p).csum().pow(1 / p);
+        /// <inheritdoc cref="minkowski(float4,float4,float)"/>
+        [MethodImpl(IL)] public static float minkowski(this float a, float b) => (a - b).abs();
+
+        /// Returns the Chebyshev distance between two vectors
+        /// <remarks>Also known as the Chessboard distance</remarks>
+        /// <see href="wikipedia"/>https://en.wikipedia.org/wiki/Chebyshev_distance
+        [MethodImpl(IL)] public static float chebyshev(this float4 a, float4 b) => (a - b).acmax();
+        /// <inheritdoc cref="chebyshev(float4,float4)"/>
+        [MethodImpl(IL)] public static float chebyshev(this float3 a, float3 b) => (a - b).acmax();
+        /// <inheritdoc cref="chebyshev(float4,float4)"/>
+        [MethodImpl(IL)] public static float chebyshev(this float2 a, float2 b) => (a - b).acmax();
+        /// <inheritdoc cref="chebyshev(float4,float4)"/>
+        [MethodImpl(IL)] public static float chebyshev(this float a, float b) => (a - b).abs();
+
+
+
         #region Single Purpose Functions
 
         ///<inheritdoc cref="math.cross(float3,float3)"/>
