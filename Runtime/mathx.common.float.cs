@@ -246,6 +246,17 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="arc(float4)" />
         [MethodImpl(IL)] public static float arc(this float x) => abs(sine(x));
         #endregion
+
+        #region arch2
+        /// <summary> Returns x multiplied by inv(x) </summary>
+        [MethodImpl(IL)] public static float4 arch2(float4 x) => x * inv(x);
+        /// <inheritdoc cref="arch2(float4)" />
+        [MethodImpl(IL)] public static float3 arch2(float3 x) => x * inv(x);
+        /// <inheritdoc cref="arch2(float4)" />
+        [MethodImpl(IL)] public static float2 arch2(float2 x) => x * inv(x);
+        /// <inheritdoc cref="arch2(float4)" />
+        [MethodImpl(IL)] public static float arch2(float x) => x * inv(x);
+        #endregion
         #endregion
         #endregion
         
