@@ -336,6 +336,16 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="bitwave(float4)" />
         [MethodImpl(IL)] public static float bitwave(float t) => floor(math.fmod(t, 2));
         #endregion
+
+        #region triwave
+        /// <summary> Samples a triangle wave between +0.5f and -0.5f. </summary>
+        [MethodImpl(IL)] public static float4 triwave(float4 x) => abs(frac(x) - 0.5f);
+        /// <inheritdoc cref="triwave(float4)" />
+        [MethodImpl(IL)] public static float3 triwave(float3 x) => abs(frac(x) - 0.5f);
+        /// <inheritdoc cref="triwave(float4)" />
+        [MethodImpl(IL)] public static float2 triwave(float2 x) => abs(frac(x) - 0.5f);
+        /// <inheritdoc cref="triwave(float4)" />
+        [MethodImpl(IL)] public static float triwave(float x) => abs(frac(x) - 0.5f);
         #endregion
         
         #region Component-wise Math
