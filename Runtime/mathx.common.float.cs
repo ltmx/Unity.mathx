@@ -325,6 +325,17 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="sine(float4,float4)" />
         [MethodImpl(IL)] public static float snap(float x, float snap) => round(x / snap) * snap;
         #endregion
+
+        #region bitwave
+        /// <summary> Samples a square wave that goes between 0 and 1. </summary>
+        [MethodImpl(IL)] public static float4 bitwave(float4 t) => floor(math.fmod(t, 2));
+        /// <inheritdoc cref="bitwave(float4)" />
+        [MethodImpl(IL)] public static float3 bitwave(float3 t) => floor(math.fmod(t, 2));
+        /// <inheritdoc cref="bitwave(float4)" />
+        [MethodImpl(IL)] public static float2 bitwave(float2 t) => floor(math.fmod(t, 2));
+        /// <inheritdoc cref="bitwave(float4)" />
+        [MethodImpl(IL)] public static float bitwave(float t) => floor(math.fmod(t, 2));
+        #endregion
         #endregion
         
         #region Component-wise Math
