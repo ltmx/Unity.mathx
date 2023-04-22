@@ -257,6 +257,17 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="arch2(float4)" />
         [MethodImpl(IL)] public static float arch2(float x) => x * inv(x);
         #endregion
+
+        #region clamp01
+        /// <summary> Clamps a value between zero and one. </summary>
+        [MethodImpl(IL)] public static float4 clamp01(float4 value) => clamp(value,0,1);
+        /// <inheritdoc cref="clamp01(float4)" />
+        [MethodImpl(IL)] public static float3 clamp01(float3 value) => clamp(value,0,1);
+        /// <inheritdoc cref="clamp01(float4)" />
+        [MethodImpl(IL)] public static float2 clamp01(float2 value) => clamp(value,0,1);
+        /// <inheritdoc cref="clamp01(float4)" />
+        [MethodImpl(IL)] public static float clamp01(float value) => clamp(value,0,1);
+        #endregion
         #endregion
         #endregion
         
