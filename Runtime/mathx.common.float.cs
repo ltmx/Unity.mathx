@@ -1,4 +1,4 @@
-﻿#region Header
+#region Header
 
 // **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
 // **    Github Profile: https://github.com/LTMX
@@ -235,7 +235,19 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float pow5(this float f) => f.sq().sq() * f;
 
         #endregion
-        
+
+        #region arc
+        /// <summary> Returns the absolute version of sin(x) </summary>
+        [MethodImpl(IL)] public static float4 arc(this float4 x) => abs(sine(x));
+        /// <inheritdoc cref="arc(float4)" />
+        [MethodImpl(IL)] public static float3 arc(this float3 x) => abs(sine(x));
+        /// <inheritdoc cref="arc(float4)" />
+        [MethodImpl(IL)] public static float2 arc(this float2 x) => abs(sine(x));
+        /// <inheritdoc cref="arc(float4)" />
+        [MethodImpl(IL)] public static float arc(this float x) => abs(sine(x));
+        #endregion
+        #endregion
+        #endregion
         
         #region Component-wise Math
 
