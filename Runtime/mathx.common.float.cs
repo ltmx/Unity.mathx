@@ -297,6 +297,17 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="clamp01(float4, float4, float4)" />
         [MethodImpl(IL)] public static float normal(float value, float zero, float one) => clamp01(math.unlerp(zero, one, value));
         #endregion
+
+        #region sine
+        /// <summary> Returns the sin of x multiplied by PI. </summary>
+        [MethodImpl(IL)] public static float4 sine(float4 x) => sin(x*PI);
+        /// <inheritdoc cref="sine(float4)" />
+        [MethodImpl(IL)] public static float3 sine(float3 x) => sin(x*PI);
+        /// <inheritdoc cref="sine(float4)" />
+        [MethodImpl(IL)] public static float2 sine(float2 x) => sin(x*PI);
+        /// <inheritdoc cref="sine(float4)" />
+        [MethodImpl(IL)] public static float sine(float x) => sin(x*PI);
+        #endregion
         #endregion
         #endregion
         
