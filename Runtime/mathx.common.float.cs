@@ -308,6 +308,22 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="sine(float4)" />
         [MethodImpl(IL)] public static float sine(float x) => sin(x*PI);
         #endregion
+
+        #region snap
+        /// <summary> Rounds a value to the closest multiplier of snap. </summary>
+        [MethodImpl(IL)] public static float4 snap(float4 x, float4 snap) => round(x / snap) * snap;
+        /// <inheritdoc cref="sine(float4,float4)" />
+        [MethodImpl(IL)] public static float4 snap(float4 x, float snap) => round(x / snap) * snap;
+        /// <inheritdoc cref="sine(float4,float4)" />
+        [MethodImpl(IL)] public static float3 snap(float3 x, float3 snap) => round(x / snap) * snap;
+        /// <inheritdoc cref="sine(float4,float4)" />
+        [MethodImpl(IL)] public static float3 snap(float3 x, float snap) => round(x / snap) * snap;
+        /// <inheritdoc cref="sine(float4,float4)" />
+        [MethodImpl(IL)] public static float2 snap(float2 x, float2 snap) => round(x / snap) * snap;
+        /// <inheritdoc cref="sine(float4,float4)" />
+        [MethodImpl(IL)] public static float2 snap(float2 x, float snap) => round(x / snap) * snap;
+        /// <inheritdoc cref="sine(float4,float4)" />
+        [MethodImpl(IL)] public static float snap(float x, float snap) => round(x / snap) * snap;
         #endregion
         #endregion
         
