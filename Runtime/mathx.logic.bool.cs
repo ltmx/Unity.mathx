@@ -87,10 +87,12 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)] public static bool approx(this float a, float b) => (b - a).abs() < (1E-06f * a.abs().max(b.abs())).max(EPSILON * 8);
         /// Compares two floating point values and returns true if they are similar.
         [MethodImpl(INLINE)] public static bool approx(this double a, double b) => (b - a).abs() < (1E-06f * a.abs().max(b.abs())).max(EPSILON_DBL * 8);
+        /// Compares two floating point values and returns true if they are within a certain distance of each other (tolerance)
+        [MethodImpl(INLINE)] public static bool approx(this float a, float b, float tolerance) => abs(a - b) <= abs(tolerance);
+        /// Compares two floating point values and returns true if they are within a certain distance of each other (tolerance)
+        [MethodImpl(INLINE)] public static bool approx(this double a, double b, double tolerance) => abs(a - b) <= abs(tolerance);
         
         // Odd & Even ----------------------------------------------
-        
-
     }
 }
 
