@@ -411,5 +411,26 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float mix(float a, float b, float weightB, float t) => math.mad(weightB,b,math.mad(-weightB,a,a));
         #endregion
 
+        #region smoothstart
+        // <summary>Returns a smoother version of the value at the start.</summary>
+        [MethodImpl(IL)] public static float4 smoothstart(float4 t, int n) => pow(t,n);
+        /// <inheritdoc cref="smoothstart(float4,int)" />
+        [MethodImpl(IL)] public static float3 smoothstart(float3 t, int n) => pow(t,n);
+        /// <inheritdoc cref="smoothstart(float4,int)" />
+        [MethodImpl(IL)] public static float2 smoothstart(float2 t, int n) => pow(t,n);
+        /// <inheritdoc cref="smoothstart(float4,int)" />
+        [MethodImpl(IL)] public static float smoothstart(float t, int n) => pow(t,n);
+        #endregion
+
+        #region smoothstop
+        // <summary>Returns a smoother version of the value at the end.</summary>
+        [MethodImpl(IL)] public static float4 smoothstop(float4 t, int n) => inv(pow(inv(t), n));
+        /// <inheritdoc cref="smoothstop(float4,int)" />
+        [MethodImpl(IL)] public static float3 smoothstop(float3 t, int n) => inv(pow(inv(t), n));
+        /// <inheritdoc cref="smoothstop(float4,int)" />
+        [MethodImpl(IL)] public static float2 smoothstop(float2 t, int n) => inv(pow(inv(t), n));
+        /// <inheritdoc cref="smoothstop(float4,int)" />
+        [MethodImpl(IL)] public static float smoothstop(float t, int n) => inv(pow(inv(t), n));
+        #endregion
     }
 }
