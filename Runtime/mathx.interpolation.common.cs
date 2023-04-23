@@ -1,4 +1,4 @@
-﻿#region Header
+#region Header
 
 // **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
 // **    Github Profile: https://github.com/LTMX
@@ -381,6 +381,35 @@ namespace Unity.Mathematics
         public static float2 smin_N_factor(this float2 t, float2 a, float2 b, float2 n, out float2 factor) => f2(t.x.smin_N_factor(a.x, b.x, n.x, out factor.x), t.y.smin_N_factor(a.y, b.y, n.y, out factor.y));
         public static float3 smin_N_factor(this float3 t, float3 a, float3 b, float3 n, out float3 factor) => f3(t.x.smin_N_factor(a.x, b.x, n.x, out factor.x), t.y.smin_N_factor(a.y, b.y, n.y, out factor.y), t.z.smin_N_factor(a.z, b.z, n.z, out factor.z));
         public static float4 smin_N_factor(this float4 t, float4 a, float4 b, float4 n, out float4 factor) => f4(t.x.smin_N_factor(a.x, b.x, n.x, out factor.x), t.y.smin_N_factor(a.y, b.y, n.y, out factor.y), t.z.smin_N_factor(a.z, b.z, n.z, out factor.z), t.w.smin_N_factor(a.w, b.w, n.w, out factor.w));
+
+        #region mix
+        // <summary>Returns (1-weightB)*a + weightB*b.</summary>
+        [MethodImpl(IL)] public static float4 mix(float4 a, float4 b, float4 weightB, float4 t) => math.mad(weightB,b,math.mad(-weightB,a,a));
+        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
+        [MethodImpl(IL)] public static float4 mix(float4 a, float4 b, float4 weightB, float t) => math.mad(weightB,b,math.mad(-weightB,a,a));
+        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
+        [MethodImpl(IL)] public static float4 mix(float4 a, float4 b, float weightB, float4 t) => math.mad(weightB,b,math.mad(-weightB,a,a));
+        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
+        [MethodImpl(IL)] public static float4 mix(float4 a, float4 b, float weightB, float t) => math.mad(weightB,b,math.mad(-weightB,a,a));
+        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
+        [MethodImpl(IL)] public static float3 mix(float3 a, float3 b, float3 weightB, float3 t) => math.mad(weightB,b,math.mad(-weightB,a,a));
+        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
+        [MethodImpl(IL)] public static float3 mix(float3 a, float3 b, float3 weightB, float t) => math.mad(weightB,b,math.mad(-weightB,a,a));
+        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
+        [MethodImpl(IL)] public static float3 mix(float3 a, float3 b, float weightB, float3 t) => math.mad(weightB,b,math.mad(-weightB,a,a));
+        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
+        [MethodImpl(IL)] public static float3 mix(float3 a, float3 b, float weightB, float t) => math.mad(weightB,b,math.mad(-weightB,a,a));
+        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
+        [MethodImpl(IL)] public static float2 mix(float2 a, float2 b, float2 weightB, float2 t) => math.mad(weightB,b,math.mad(-weightB,a,a));
+        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
+        [MethodImpl(IL)] public static float2 mix(float2 a, float2 b, float2 weightB, float t) => math.mad(weightB,b,math.mad(-weightB,a,a));
+        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
+        [MethodImpl(IL)] public static float2 mix(float2 a, float2 b, float weightB, float2 t) => math.mad(weightB,b,math.mad(-weightB,a,a));
+        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
+        [MethodImpl(IL)] public static float2 mix(float2 a, float2 b, float weightB, float t) => math.mad(weightB,b,math.mad(-weightB,a,a));
+        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
+        [MethodImpl(IL)] public static float mix(float a, float b, float weightB, float t) => math.mad(weightB,b,math.mad(-weightB,a,a));
+        #endregion
 
     }
 }
