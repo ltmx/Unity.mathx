@@ -54,8 +54,6 @@ x = x.lengthsq() + x;
 # 🌱 Contribute !
 
 ## 👉 Guidelines
-
- - All code must adhere to the `Unity.Mathematics` namespace (for ease of use, no need additional "using" declarations !)
  - All methods should exist in the `Unity.Mathematics.mathx` class (To prevent multiple using declarations)
  - All Methods should follow a lower case syntax (shader like syntax)
  - All methods names should be as short as possible while conserving their meaning or naming convension
