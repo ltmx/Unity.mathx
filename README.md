@@ -8,8 +8,9 @@
 
 <br>
 
-## Extension Library for [` Unity.Mathematics `](https://github.com/Unity-Technologies/Unity.Mathematics)
-& many useful methods !<br><br>
+## Extension Library for [` Unity.Mathematics `](https://github.com/Unity-Technologies/Unity.Mathematics) & many useful methods !
+<br>
+
 Package name : `com.ltmx.mathematics.mathx`
 
 <!--
@@ -18,19 +19,20 @@ Package name : `com.ltmx.mathematics.mathx`
 </a><br><br>
 -->
 
-## Chained Method Syntax
-```cs
-return anyVector.length().clamp(0, 10).cos().sq().cube().sum().cmul().rotate(anyQuaternion).clint().div(3.2f).rcp();
-```
-
 ## Using Declaration
 ```cs
 using static Unity.Mathematics.mathx;
 ```
 
+## Chained Method Syntax
+```cs
+return anyVector.length().clamp(0, 10).cos().sq().cube().sum().cmul().rotate(anyQuaternion).clint().div(3.2f).rcp();
+```
 
-## Some Neat Features
+## A Few Neat Features
+
 - Matrix Truncation => `float3x2(float4x4)` // Truncates the input matrix to the desired size... can also be written as : `float4x4.f3x2()`
+- Burst Compiled Function Pointers
 ```c#
 /// sets the value of x to f and returns f // Useful for modifying a variable in line.
 public static T set<T>(this T f, out T x) {  x = f; return f; }
@@ -44,39 +46,6 @@ var x = x.dim(4.2f).shuffle().set(out x).lengthsq() + x;
 // we would have to write two lines instead
 x = x.dim(4.2f).shuffle();
 x = x.lengthsq() + x;
-```
-
-- Burst Compiled Function Pointers
-
-## New Methods
-```c#
-anyType.dim(otherType) => anyType* otherType // to add functionality missing from internal operator overloads // named dim to not confuse with mul()
-anyType.greater(otherType) => anyType > otherType
-anyType.less(otherType) =>  anyType < otherType
-anyType.greatereq(otherType) =>  anyType >= otherType
-anyType.lesseq(otherType) =>  anyType <= otherType
-anyType.eq(otherType) =>  anyType == otherType
-anyType.neq(otherType) =>  anyType != otherType
-randseed(seed)  => random float generated from a seed  // internally : Random.Init(seed).Nextfloat()
-randseed2(seed) => random float2 generated from a seed // internally : Random.Init(seed).Nextfloat()
-randseed3(seed) => random float3 generated from a seed // internally : Random.Init(seed).Nextfloat()
-randseed4(seed) => random float4 generated from a seed // internally : Random.Init(seed).Nextfloat()
-anyType.append()
-anyType.m2n1() => anyType* 2 - 1 // remaps anything from [0, 1] to [-1, 1]
-quaternion generation functions
-matrix generation functions
-transformation functions
-dot() // for int types
-value.lerp(MatrixA, MatrixB) // functionality to interpolate any matrix
-anyType.dim(otherType) => anyType * otherType // to add functionality for missing from operator overloads // 'dim' to not confuse with mul()
-anyType.div(otherType) => anyType / otherType
-anyType.add(otherType) => anyType + otherType
-anyType.sub(otherType) => anyType - otherType
-anyType.shuffle() // only for float2, float3 and float4
-anyType.hash() // math.hash(anyType)
-type generation methods float4(), float2(), float4x4(), etc
-asuint() // new overloads
-asbool() // new overloads
 ```
 
 ## HELP NEEDED !
@@ -152,6 +121,37 @@ asbool() // new overloads
   struct byte2;
   struct byte1;
   ```
+  
+## New Methods in 1.3.0
+```c#
+anyType.dim(otherType) => anyType* otherType // to add functionality missing from internal operator overloads // named dim to not confuse with mul()
+anyType.greater(otherType) => anyType > otherType
+anyType.less(otherType) =>  anyType < otherType
+anyType.greatereq(otherType) =>  anyType >= otherType
+anyType.lesseq(otherType) =>  anyType <= otherType
+anyType.eq(otherType) =>  anyType == otherType
+anyType.neq(otherType) =>  anyType != otherType
+randseed(seed)  => random float generated from a seed  // internally : Random.Init(seed).Nextfloat()
+randseed2(seed) => random float2 generated from a seed // internally : Random.Init(seed).Nextfloat()
+randseed3(seed) => random float3 generated from a seed // internally : Random.Init(seed).Nextfloat()
+randseed4(seed) => random float4 generated from a seed // internally : Random.Init(seed).Nextfloat()
+anyType.append()
+anyType.m2n1() => anyType* 2 - 1 // remaps anything from [0, 1] to [-1, 1]
+quaternion generation functions
+matrix generation functions
+transformation functions
+dot() // for int types
+value.lerp(MatrixA, MatrixB) // functionality to interpolate any matrix
+anyType.dim(otherType) => anyType * otherType // to add functionality for missing from operator overloads // 'dim' to not confuse with mul()
+anyType.div(otherType) => anyType / otherType
+anyType.add(otherType) => anyType + otherType
+anyType.sub(otherType) => anyType - otherType
+anyType.shuffle() // only for float2, float3 and float4
+anyType.hash() // math.hash(anyType)
+type generation methods float4(), float2(), float4x4(), etc
+asuint() // new overloads
+asbool() // new overloads
+```
   
 ## Method List (from 1.3.0... needs updating)
 ```cs
