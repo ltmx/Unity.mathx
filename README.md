@@ -8,7 +8,7 @@
 
 <br>
 
-## Extension Library for [` Unity.Mathematics `](https://github.com/Unity-Technologies/Unity.Mathematics) & many useful methods !
+# 🔣 Extension Library for [` Unity.Mathematics `](https://github.com/Unity-Technologies/Unity.Mathematics) & many useful methods !
 <br>
 
 Package name : `com.ltmx.mathematics.mathx`
@@ -19,17 +19,20 @@ Package name : `com.ltmx.mathematics.mathx`
 </a><br><br>
 -->
 
-## Using Declaration
+## #️⃣ Using Declaration
 ```cs
 using static Unity.Mathematics.mathx;
 ```
 
-## Chained Method Syntax
+## ♾ Chained Method Syntax
 ```cs
 return anyVector.length().clamp(0, 10).cos().sq().cube().sum().cmul().rotate(anyQuaternion).clint().div(3.2f).rcp();
 ```
 
-## A Few Neat Features
+## 📢 HELP NEEDED !
+- Documentation website generation with docfx ;) ... I can't seem to make it work and compile anything
+
+## 📈 A Few Neat Features
 
 - Matrix Truncation => `float3x2(float4x4)` // Truncates the input matrix to the desired size... can also be written as : `float4x4.f3x2()`
 - Burst Compiled Function Pointers
@@ -48,19 +51,9 @@ x = x.dim(4.2f).shuffle();
 x = x.lengthsq() + x;
 ```
 
-## HELP NEEDED !
-- Documentation website generation with docfx ;) ... I can't seem to make it work and compile anything
+# 🌱 Contribute !
 
-## WIP
-- Multidimensional Noise Function
-- Signed Distance Functions
-- SDF Processing Functions
-- Hashing Functions
-- Function Iterators
-- Generic Jobs
-
-
-# Guidelines
+## 👉 Guidelines
 
  - All code must adhere to the `Unity.Mathematics` namespace (for ease of use, no need additional "using" declarations !)
  - All methods should exist in the `Unity.Mathematics.mathx` class (To prevent multiple using declarations)
@@ -78,7 +71,7 @@ x = x.lengthsq() + x;
  - Documentation should be inherited from Unity.Mathematics.math methods for direct extension method translations
     
 
-# Install
+# ⬇️ Install
 #### Method 1 : <br>
 1. Copy Git Package URL : `https://github.com/LTMX/Unity.mathx.git`
 2. In Unity : `Window > Package Manager > Add Package From Git URL`
@@ -90,7 +83,7 @@ x = x.lengthsq() + x;
 4. Select the `.json` file inside the unzipped package
 
 
-# Roadmap
+# 🏛 Roadmap
 - [x] Fast Functions
 - [x] Constants (PI, HPI, EULER, TAU, 
 - [x] `Mathf` functions missing from `Unity.Mathematics`
@@ -107,11 +100,15 @@ x = x.lengthsq() + x;
 - [ ] Noise Functions `WIP` (`Simplex`, `Perlin`, `Whorley`, `Layered`, `Voronoi`)
 - [ ] Documentation `80% Complete`
 - [ ] Job Helpers `WIP`
-- [ ] Burst Compiled Function Pointers `WIP`
-- [ ] Function Iterators (prevents nested loops) `WIP`
-- [ ] Mesh Processing
+- [ ] Burst Compiled Function Pointers `WIP 50%`
+- [ ] Function Iterators (prevents nested loops) `WIP 50%`
+- [ ] Hashing Functions `WIP 80%`
+- [ ] Vector Function Builders `WIP 50%`
+- [ ] Generic Jobs `WIP 50%`
+- [ ] Mesh Processing `WIP 0%`
 
-## New Structs
+
+## 🎇 New Structs
   ```c++
   struct bounds; // UnityEngine translation compatible with Unity.Mathematics (implicit cast to "UnityEngine.Bounds")
   struct ray;    // UnityEngine translation compatible with Unity.Mathematics (implicit cast to "UnityEngine.Ray")
@@ -122,7 +119,7 @@ x = x.lengthsq() + x;
   struct byte1;
   ```
   
-## New Methods in 1.3.0
+## 🎇 New Methods in 1.3.0
 ```c#
 anyType.dim(otherType) => anyType* otherType // to add functionality missing from internal operator overloads // named dim to not confuse with mul()
 anyType.greater(otherType) => anyType > otherType
@@ -153,7 +150,7 @@ asuint() // new overloads
 asbool() // new overloads
 ```
   
-## Method List (from 1.3.0... needs updating)
+##  Method List (from 1.3.0... needs updating)
 ```cs
 // most methods have at least a dozen overloads
 asint asbool asfloat asdouble ascolor asfloat4 asfloat3 toVectorList 
@@ -198,5 +195,5 @@ movetowards Erf Erfc ErfInv ErfcInv GammaLn Gamma DiGamma DiGammaInv
 
 <br>
 
-## LICENSING
+## 📜 LICENSING
 <p>This project is licensed under the MIT License (<a href="https://github.com/LTMX/Unity.mathx/blob/master/LICENSE">License</a>)</p>
