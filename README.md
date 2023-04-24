@@ -8,7 +8,7 @@
 
 <br>
 
-## Extension Library for [`Unity.Mathematics`](https://github.com/Unity-Technologies/Unity.Mathematics)
+## Extension Library for [` Unity.Mathematics `](https://github.com/Unity-Technologies/Unity.Mathematics)
 & many useful methods !<br><br>
 Package name : `com.ltmx.mathematics.mathx`
 
@@ -28,9 +28,8 @@ return anyVector.length().clamp(0, 10).cos().sq().cube().sum().cmul().rotate(any
 using static Unity.Mathematics.mathx;
 ```
 
-# New in 1.3.1
 
-## Features
+## Some Neat Features
 - Matrix Truncation => `float3x2(float4x4)` // Truncates the input matrix to the desired size... can also be written as : `float4x4.f3x2()`
 ```c#
 /// sets the value of x to f and returns f // Useful for modifying a variable in line.
@@ -49,7 +48,7 @@ x = x.lengthsq() + x;
 
 - Burst Compiled Function Pointers
 
- ## New Methods
+## New Methods
 ```c#
 anyType.dim(otherType) => anyType* otherType // to add functionality missing from internal operator overloads // named dim to not confuse with mul()
 anyType.greater(otherType) => anyType > otherType
@@ -80,39 +79,8 @@ asuint() // new overloads
 asbool() // new overloads
 ```
 
-## Fixed
-```c#
-rand(float)
-rand(float float)
-rand(float4 float)
-randseed()
-Burst Compiled Function Pointers
-```
-
-## New Structs
-```c#
-struct byte1
-```
-
-## Structs Updates
-```c++
-struct byte1;  // Added Conversions, constructors / implicit and explicit casts / operator overloads + (New)
-struct byte2;  // Added Conversions, constructors / implicit and explicit casts / operator overloads + Using byte1 as unit type
-struct byte3;  // Added Conversions, constructors / implicit and explicit casts / operator overloads + Using byte1 as unit type
-struct byte4;  // Added Conversions, constructors / implicit and explicit casts / operator overloads + Using byte1 as unit type
-struct bounds; // Added methods : Corners() , FaceCenters
-```
-
-## Renamings
-```c#
-const Sqrt2Over2 => SQRT2_2
-changed all double precision constant suffix from _D to _DBL for consistency
-removed duplicate constants
-```
-
-## Random Updates
-- Fixed Broken Documentation
-- Added Tons of Documentation
+## HELP NEEDED !
+- Documentation website generation with docfx ;) ... I can't seem to make it work and compile anything
 
 ## WIP
 - Multidimensional Noise Function
@@ -186,7 +154,7 @@ removed duplicate constants
   ```
   
 ## Method List (from 1.3.0... needs updating)
-```purple
+```cs
 // most methods have at least a dozen overloads
 asint asbool asfloat asdouble ascolor asfloat4 asfloat3 toVectorList 
 tofloatList toColorList tocolorList toColorArray tocolorArray tofloat4List
