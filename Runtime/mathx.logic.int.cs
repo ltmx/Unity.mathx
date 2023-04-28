@@ -28,13 +28,13 @@ namespace Unity.Mathematics
         /// Returns true if a is even component-wise
         public static bool4 even(this int4 a) => (a & 1) != 1;
         
-        /// <inheritdoc cref="math.isnan(int4)"/>
+        /// <inheritdoc cref="math.isnan(float4)"/>
         public static bool4 isnan(this int4 f) => math.isnan(f.x);
-        /// <inheritdoc cref="math.isnan(int4)"/>
+        /// <inheritdoc cref="math.isnan(float3)"/>
         public static bool3 isnan(this int3 f) => math.isnan(f);
-        /// <inheritdoc cref="math.isnan(int4)"/>
+        /// <inheritdoc cref="math.isnan(float2)"/>
         public static bool2 isnan(this int2 f) => math.isnan(f);
-        /// <inheritdoc cref="math.isnan(int4)"/>
+        /// <inheritdoc cref="math.isnan(float)"/>
         public static bool isnan(this int f) => math.isnan(f);
 
         /// returns true if the any component is NAN, otherwise false
@@ -44,22 +44,22 @@ namespace Unity.Mathematics
         /// returns true if the any component is NAN, otherwise false
         public static bool anynan(this int2 f) => f.x.isnan() || f.y.isnan();
         
-        /// <inheritdoc cref="math.isinf(int4)"/>
+        /// <inheritdoc cref="math.isinf(float4)"/>
         public static bool4 isinf(this int4 f) => math.isinf(f);
-        /// <inheritdoc cref="math.isinf(int4)"/>
+        /// <inheritdoc cref="math.isinf(float3)"/>
         public static bool3 isinf(this int3 f) => math.isinf(f);
-        /// <inheritdoc cref="math.isinf(int4)"/>
+        /// <inheritdoc cref="math.isinf(float2)"/>
         public static bool2 isinf(this int2 f) => math.isinf(f);
-        /// <inheritdoc cref="math.isinf(int4)"/>
+        /// <inheritdoc cref="math.isinf(float)"/>
         public static bool isinf(this int f) => math.isinf(f);
         
-        /// <inheritdoc cref="math.isfinite(int4)"/>
+        /// <inheritdoc cref="math.isfinite(float4)"/>
         public static bool4 isfinite(this int4 f) => math.isfinite(f);
-        /// <inheritdoc cref="math.isfinite(int4)"/>
+        /// <inheritdoc cref="math.isfinite(float3)"/>
         public static bool3 isfinite(this int3 f) => math.isfinite(f);
-        /// <inheritdoc cref="math.isfinite(int4)"/>
+        /// <inheritdoc cref="math.isfinite(float2)"/>
         public static bool2 isfinite(this int2 f) => math.isfinite(f);
-        /// <inheritdoc cref="math.isfinite(int4)"/>
+        /// <inheritdoc cref="math.isfinite(float)"/>
         public static bool isfinite(this int f) => math.isfinite(f);
 
         /// returns true component-wise if the any component is greater to the other value, otherwise false
