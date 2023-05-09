@@ -60,15 +60,15 @@ namespace Unity.Mathematics
             return math.mad(min(deltaLength,maxDistanceDelta),sign(delta),current);
         }
         /// <inheritdoc cref="movetowards(Mathematics.float4,Mathematics.float4,float)"/>
+        public static float2 movetowards(this Vector2 current, float2 target, float maxDistanceDelta)
+        {
+            return movetowards(current.asfloat(), target, maxDistanceDelta);
+        }
+        /// <inheritdoc cref="movetowards(Mathematics.float4,Mathematics.float4,float)"/>
         public static float movetowards(this float current, float target, float maxDistanceDelta)
         {
             var delta = target - current;
             return math.mad(min(abs(delta),maxDistanceDelta),sign(delta),current);
-        }
-        /// <inheritdoc cref="movetowards(Mathematics.float4,Mathematics.float4,float)"/>
-        public static float2 movetowards(this Vector2 current, float2 target, float maxDistanceDelta)
-        {
-            return movetowards(current.asfloat(), target, maxDistanceDelta);
         }
     }
 }
