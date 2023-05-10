@@ -1,4 +1,4 @@
-﻿#region Header
+#region Header
 // **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
 // **    Github Profile: https://github.com/LTMX
 // **    Repository : https://github.com/LTMX/Unity.Mathematics-Extensions
@@ -36,6 +36,11 @@ namespace Unity.Mathematics
         }
         /// <inheritdoc cref="movetowards(Mathematics.float4,Mathematics.float4,float)"/>
         public static float3 movetowards(this float3 current, float3 target, float maxDistanceDelta)
+        {
+            return movetowards(current.asfloat(), target, maxDistanceDelta);
+        }
+        /// <inheritdoc cref="movetowards(Mathematics.float4,Mathematics.float4,float)"/>
+        public static float2 movetowards(this float2 current, float2 target, float2 maxDistanceDelta)
         {
             var delta = target - current;
             var deltaLength = delta.length();
