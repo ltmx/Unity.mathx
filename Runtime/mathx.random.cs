@@ -12,7 +12,7 @@ namespace Unity.Mathematics
     {
         // private static uint seed() => (uint) DateTime.Now.Millisecond;
         private static Random r = new(0x6E624EB7u);
-        private static XXHash xxhash = new XXHash(0x6E624EB7u);
+        // private static XXHash xxhash = new XXHash(0x6E624EB7u);
         
         public static Random init(this Random rand){
             rand.InitState();
