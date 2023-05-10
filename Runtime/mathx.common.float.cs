@@ -328,13 +328,13 @@ namespace Unity.Mathematics
 
         #region bitwave
         /// <summary> Samples a square wave that goes between 0 and 1. </summary>
-        [MethodImpl(IL)] public static float4 bitwave(float4 t) => floor(math.fmod(t, 2));
+        [MethodImpl(IL)] public static float4 bitwave(float4 x) => floor(math.fmod(x, 2));
         /// <inheritdoc cref="bitwave(float4)" />
-        [MethodImpl(IL)] public static float3 bitwave(float3 t) => floor(math.fmod(t, 2));
+        [MethodImpl(IL)] public static float3 bitwave(float3 x) => floor(math.fmod(x, 2));
         /// <inheritdoc cref="bitwave(float4)" />
-        [MethodImpl(IL)] public static float2 bitwave(float2 t) => floor(math.fmod(t, 2));
+        [MethodImpl(IL)] public static float2 bitwave(float2 x) => floor(math.fmod(x, 2));
         /// <inheritdoc cref="bitwave(float4)" />
-        [MethodImpl(IL)] public static float bitwave(float t) => floor(math.fmod(t, 2));
+        [MethodImpl(IL)] public static float bitwave(float x) => floor(math.fmod(x, 2));
         #endregion
 
         #region triwave
