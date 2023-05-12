@@ -45,7 +45,6 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float abs(this float f) => math.abs(f);
 
         #endregion
-
         
         #region mod
 
@@ -258,44 +257,36 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float arch2(float x) => x * inv(x);
         #endregion
 
-        #region clamp01
-        /// <summary> Clamps a value between zero and one. </summary>
-        [MethodImpl(IL)] public static float4 clamp01(float4 value) => clamp(value,0,1);
-        /// <inheritdoc cref="clamp01(float4)" />
-        [MethodImpl(IL)] public static float3 clamp01(float3 value) => clamp(value,0,1);
-        /// <inheritdoc cref="clamp01(float4)" />
-        [MethodImpl(IL)] public static float2 clamp01(float2 value) => clamp(value,0,1);
-        /// <inheritdoc cref="clamp01(float4)" />
-        [MethodImpl(IL)] public static float clamp01(float value) => clamp(value,0,1);
+        #region saturate
+        /// <inheritdoc cref="math.saturate(float4)" />
+        [MethodImpl(IL)] public static float4 saturate(float4 value) => math.saturate(value);
+        /// <inheritdoc cref="math.saturate(float3)" />
+        [MethodImpl(IL)] public static float3 saturate(float3 value) => math.saturate(value);
+        /// <inheritdoc cref="math.saturate(float2)" />
+        [MethodImpl(IL)] public static float2 saturate(float2 value) => math.saturate(value);
+        /// <inheritdoc cref="math.saturate(float)" />
+        [MethodImpl(IL)] public static float saturate(float value) => math.saturate(value);
         #endregion
 
         #region normal
-        /// <summary> Remaps and clamps a value between zero and one. </summary>
-        [MethodImpl(IL)] public static float4 normal(float4 value, float4 zero, float4 one) => clamp01(math.unlerp(zero, one, value));
-        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float4 normal(float4 value, float4 zero, float one) => clamp01(math.unlerp(zero, one, value));
-        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float4 normal(float4 value, float zero, float4 one) => clamp01(math.unlerp(zero, one, value));
-        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float4 normal(float4 value, float zero, float one) => clamp01(math.unlerp(zero, one, value));
-        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float3 normal(float3 value, float3 zero, float3 one) => clamp01(math.unlerp(zero, one, value));
-        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float3 normal(float3 value, float3 zero, float one) => clamp01(math.unlerp(zero, one, value));
-        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float3 normal(float3 value, float zero, float3 one) => clamp01(math.unlerp(zero, one, value));
-        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float3 normal(float3 value, float zero, float one) => clamp01(math.unlerp(zero, one, value));
-        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float2 normal(float2 value, float2 zero, float2 one) => clamp01(math.unlerp(zero, one, value));
-        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float2 normal(float2 value, float2 zero, float one) => clamp01(math.unlerp(zero, one, value));
-        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float2 normal(float2 value, float zero, float2 one) => clamp01(math.unlerp(zero, one, value));
-        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float2 normal(float2 value, float zero, float one) => clamp01(math.unlerp(zero, one, value));
-        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float normal(float value, float zero, float one) => clamp01(math.unlerp(zero, one, value));
+        /// <summary> Remaps a value from a min to max to tih </summary>
+        [MethodImpl(IL)] public static float4 normal(float4 value, float4 zero, float4 one) => saturate(value.unlerp(zero, one));
+        /// <inheritdoc cref="normal(float4, float4, float4)" />
+        [MethodImpl(IL)] public static float4 normal(float4 value, float4 zero, float one) => saturate(value.unlerp(zero, one));
+        /// <inheritdoc cref="normal(float4, float4, float4)" />
+        [MethodImpl(IL)] public static float3 normal(float3 value, float3 zero, float3 one) => saturate(value.unlerp(zero, one));
+        /// <inheritdoc cref="normal(float4, float4, float4)" />
+        [MethodImpl(IL)] public static float3 normal(float3 value, float3 zero, float one) => saturate(value.unlerp(zero, one));
+        /// <inheritdoc cref="normal(float4, float4, float4)" />
+        [MethodImpl(IL)] public static float2 normal(float2 value, float2 zero, float2 one) => saturate(value.unlerp(zero, one));
+        /// <inheritdoc cref="normal(float4, float4, float4)" />
+        [MethodImpl(IL)] public static float2 normal(float2 value, float2 zero, float one) => saturate(value.unlerp(zero, one));
+        /// <inheritdoc cref="normal(float4, float4, float4)" />
+        [MethodImpl(IL)] public static float2 normal(float2 value, float zero, float2 one) => saturate(value.unlerp(zero, one));
+        /// <inheritdoc cref="normal(float4, float4, float4)" />
+        [MethodImpl(IL)] public static float2 normal(float2 value, float zero, float one) => saturate(value.unlerp(zero, one));
+        /// <inheritdoc cref="normal(float4, float4, float4)" />
+        [MethodImpl(IL)] public static float normal(float value, float zero, float one) => saturate(zero.unlerp(one, value));
         #endregion
 
         #region sine
