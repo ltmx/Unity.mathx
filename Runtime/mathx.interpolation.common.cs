@@ -161,7 +161,6 @@ namespace Unity.Mathematics
             return a + num * x.sat();
         }
 
-        // Remap --------------------------------------------------------------------
         /// Remapping function identical as in HLSL
         [MethodImpl(IL)] public static  float4 remap(this float t, float4 oldMin, float4 oldMax, float4 newMin, float4 newMax) => math.remap(oldMin, oldMax, newMin, newMax, t);
         /// <inheritdoc cref="remap(float,float,float,float,float)" />
@@ -171,7 +170,6 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="remap(float,float,float,float,float)" />
         [MethodImpl(IL)] public static  float remap(this float t, float oldMin, float oldMax, float newMin, float newMax) => math.remap(oldMin, oldMax, newMin, newMax, t);
 
-        // step ---------------------------------------------------------------------
         /// <inheritdoc cref="math.step(float, float)" />
         [MethodImpl(IL)] public static  float step(this float f, float step) => math.step(f, step);
         /// <inheritdoc cref="step(float,float)" />
@@ -190,6 +188,7 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static  double2 step(this double2 f, double2 step) => math.step(f, step);
         
         #region arc
+       
         /// <summary> Returns the absolute version of sin(x) </summary>
         [MethodImpl(IL)] public static float4 arc(this float4 x) => abs(sine01(x));
         /// <inheritdoc cref="arc(float4)" />
@@ -198,9 +197,24 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float2 arc(this float2 x) => abs(sine01(x));
         /// <inheritdoc cref="arc(float4)" />
         [MethodImpl(IL)] public static float arc(this float x) => abs(sine01(x));
+        
+        #endregion
+        
+        #region arch2
+       
+        /// <summary> Returns x multiplied by inv(x) </summary>
+        [MethodImpl(IL)] public static float4 arch2(float4 x) => x * inv(x);
+        /// <inheritdoc cref="arch2(float4)" />
+        [MethodImpl(IL)] public static float3 arch2(float3 x) => x * inv(x);
+        /// <inheritdoc cref="arch2(float4)" />
+        [MethodImpl(IL)] public static float2 arch2(float2 x) => x * inv(x);
+        /// <inheritdoc cref="arch2(float4)" />
+        [MethodImpl(IL)] public static float arch2(float x) => x * inv(x);
+        
         #endregion
         
         #region linstep
+        
         /// <summary> Remaps a value from a min to max to tih </summary>
         [MethodImpl(IL)] public static float4 linstep(float4 value, float4 zero, float4 one) => saturate(value.unlerp(zero, one));
         /// <inheritdoc cref="linstep(float4,float4,float4)" />
@@ -219,9 +233,11 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float2 linstep(float2 value, float zero, float one) => saturate(value.unlerp(zero, one));
         /// <inheritdoc cref="linstep(float4,float4,float4)" />
         [MethodImpl(IL)] public static float linstep(float value, float zero, float one) => saturate(zero.unlerp(one, value));
+        
         #endregion
 
         #region sine01
+        
         /// <summary> Returns the sin of x multiplied by PI. </summary>
         [MethodImpl(IL)] public static float4 sine01(float4 x) => sin(x*PI);
         /// <inheritdoc cref="sine01(float4)" />
@@ -230,20 +246,10 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float2 sine01(float2 x) => sin(x*PI);
         /// <inheritdoc cref="sine01(float4)" />
         [MethodImpl(IL)] public static float sine01(float x) => sin(x*PI);
+        
         #endregion
 
-        #region arch2
-        /// <summary> Returns x multiplied by inv(x) </summary>
-        [MethodImpl(IL)] public static float4 arch2(float4 x) => x * inv(x);
-        /// <inheritdoc cref="arch2(float4)" />
-        [MethodImpl(IL)] public static float3 arch2(float3 x) => x * inv(x);
-        /// <inheritdoc cref="arch2(float4)" />
-        [MethodImpl(IL)] public static float2 arch2(float2 x) => x * inv(x);
-        /// <inheritdoc cref="arch2(float4)" />
-        [MethodImpl(IL)] public static float arch2(float x) => x * inv(x);
-        #endregion
-
-
+        
         #region Smooth Min
 
         /// Smooth min is a smooth version of math.min() that accepts a smoothness parameter t
