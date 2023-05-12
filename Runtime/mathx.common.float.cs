@@ -235,7 +235,118 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float pow5(this float f) => f.sq().sq() * f;
 
         #endregion
-        
+
+        #region arc
+        /// <summary> Returns the absolute version of sin(x) </summary>
+        [MethodImpl(IL)] public static float4 arc(this float4 x) => abs(sine(x));
+        /// <inheritdoc cref="arc(float4)" />
+        [MethodImpl(IL)] public static float3 arc(this float3 x) => abs(sine(x));
+        /// <inheritdoc cref="arc(float4)" />
+        [MethodImpl(IL)] public static float2 arc(this float2 x) => abs(sine(x));
+        /// <inheritdoc cref="arc(float4)" />
+        [MethodImpl(IL)] public static float arc(this float x) => abs(sine(x));
+        #endregion
+
+        #region arch2
+        /// <summary> Returns x multiplied by inv(x) </summary>
+        [MethodImpl(IL)] public static float4 arch2(float4 x) => x * inv(x);
+        /// <inheritdoc cref="arch2(float4)" />
+        [MethodImpl(IL)] public static float3 arch2(float3 x) => x * inv(x);
+        /// <inheritdoc cref="arch2(float4)" />
+        [MethodImpl(IL)] public static float2 arch2(float2 x) => x * inv(x);
+        /// <inheritdoc cref="arch2(float4)" />
+        [MethodImpl(IL)] public static float arch2(float x) => x * inv(x);
+        #endregion
+
+        #region clamp01
+        /// <summary> Clamps a value between zero and one. </summary>
+        [MethodImpl(IL)] public static float4 clamp01(float4 value) => clamp(value,0,1);
+        /// <inheritdoc cref="clamp01(float4)" />
+        [MethodImpl(IL)] public static float3 clamp01(float3 value) => clamp(value,0,1);
+        /// <inheritdoc cref="clamp01(float4)" />
+        [MethodImpl(IL)] public static float2 clamp01(float2 value) => clamp(value,0,1);
+        /// <inheritdoc cref="clamp01(float4)" />
+        [MethodImpl(IL)] public static float clamp01(float value) => clamp(value,0,1);
+        #endregion
+
+        #region normal
+        /// <summary> Remaps and clamps a value between zero and one. </summary>
+        [MethodImpl(IL)] public static float4 normal(float4 value, float4 zero, float4 one) => clamp01(math.unlerp(zero, one, value));
+        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
+        [MethodImpl(IL)] public static float4 normal(float4 value, float4 zero, float one) => clamp01(math.unlerp(zero, one, value));
+        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
+        [MethodImpl(IL)] public static float4 normal(float4 value, float zero, float4 one) => clamp01(math.unlerp(zero, one, value));
+        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
+        [MethodImpl(IL)] public static float4 normal(float4 value, float zero, float one) => clamp01(math.unlerp(zero, one, value));
+        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
+        [MethodImpl(IL)] public static float3 normal(float3 value, float3 zero, float3 one) => clamp01(math.unlerp(zero, one, value));
+        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
+        [MethodImpl(IL)] public static float3 normal(float3 value, float3 zero, float one) => clamp01(math.unlerp(zero, one, value));
+        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
+        [MethodImpl(IL)] public static float3 normal(float3 value, float zero, float3 one) => clamp01(math.unlerp(zero, one, value));
+        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
+        [MethodImpl(IL)] public static float3 normal(float3 value, float zero, float one) => clamp01(math.unlerp(zero, one, value));
+        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
+        [MethodImpl(IL)] public static float2 normal(float2 value, float2 zero, float2 one) => clamp01(math.unlerp(zero, one, value));
+        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
+        [MethodImpl(IL)] public static float2 normal(float2 value, float2 zero, float one) => clamp01(math.unlerp(zero, one, value));
+        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
+        [MethodImpl(IL)] public static float2 normal(float2 value, float zero, float2 one) => clamp01(math.unlerp(zero, one, value));
+        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
+        [MethodImpl(IL)] public static float2 normal(float2 value, float zero, float one) => clamp01(math.unlerp(zero, one, value));
+        /// <inheritdoc cref="clamp01(float4, float4, float4)" />
+        [MethodImpl(IL)] public static float normal(float value, float zero, float one) => clamp01(math.unlerp(zero, one, value));
+        #endregion
+
+        #region sine
+        /// <summary> Returns the sin of x multiplied by PI. </summary>
+        [MethodImpl(IL)] public static float4 sine(float4 x) => sin(x*PI);
+        /// <inheritdoc cref="sine(float4)" />
+        [MethodImpl(IL)] public static float3 sine(float3 x) => sin(x*PI);
+        /// <inheritdoc cref="sine(float4)" />
+        [MethodImpl(IL)] public static float2 sine(float2 x) => sin(x*PI);
+        /// <inheritdoc cref="sine(float4)" />
+        [MethodImpl(IL)] public static float sine(float x) => sin(x*PI);
+        #endregion
+
+        #region snap
+        /// <summary> Rounds a value to the closest multiplier of snap. </summary>
+        [MethodImpl(IL)] public static float4 snap(float4 x, float4 snap) => round(x / snap) * snap;
+        /// <inheritdoc cref="sine(float4,float4)" />
+        [MethodImpl(IL)] public static float4 snap(float4 x, float snap) => round(x / snap) * snap;
+        /// <inheritdoc cref="sine(float4,float4)" />
+        [MethodImpl(IL)] public static float3 snap(float3 x, float3 snap) => round(x / snap) * snap;
+        /// <inheritdoc cref="sine(float4,float4)" />
+        [MethodImpl(IL)] public static float3 snap(float3 x, float snap) => round(x / snap) * snap;
+        /// <inheritdoc cref="sine(float4,float4)" />
+        [MethodImpl(IL)] public static float2 snap(float2 x, float2 snap) => round(x / snap) * snap;
+        /// <inheritdoc cref="sine(float4,float4)" />
+        [MethodImpl(IL)] public static float2 snap(float2 x, float snap) => round(x / snap) * snap;
+        /// <inheritdoc cref="sine(float4,float4)" />
+        [MethodImpl(IL)] public static float snap(float x, float snap) => round(x / snap) * snap;
+        #endregion
+
+        #region bitwave
+        /// <summary> Samples a square wave that goes between 0 and 1. </summary>
+        [MethodImpl(IL)] public static float4 bitwave(float4 x) => floor(math.fmod(x, 2));
+        /// <inheritdoc cref="bitwave(float4)" />
+        [MethodImpl(IL)] public static float3 bitwave(float3 x) => floor(math.fmod(x, 2));
+        /// <inheritdoc cref="bitwave(float4)" />
+        [MethodImpl(IL)] public static float2 bitwave(float2 x) => floor(math.fmod(x, 2));
+        /// <inheritdoc cref="bitwave(float4)" />
+        [MethodImpl(IL)] public static float bitwave(float x) => floor(math.fmod(x, 2));
+        #endregion
+
+        #region triwave
+        /// <summary> Samples a triangle wave between +0.5f and -0.5f. </summary>
+        [MethodImpl(IL)] public static float4 triwave(float4 x) => abs(frac(x) - 0.5f);
+        /// <inheritdoc cref="triwave(float4)" />
+        [MethodImpl(IL)] public static float3 triwave(float3 x) => abs(frac(x) - 0.5f);
+        /// <inheritdoc cref="triwave(float4)" />
+        [MethodImpl(IL)] public static float2 triwave(float2 x) => abs(frac(x) - 0.5f);
+        /// <inheritdoc cref="triwave(float4)" />
+        [MethodImpl(IL)] public static float triwave(float x) => abs(frac(x) - 0.5f);
+        #endregion
         
         #region Component-wise Math
 

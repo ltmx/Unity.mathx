@@ -96,7 +96,7 @@ namespace Unity.Mathematics
         
         /// Returns the Manhattan distance between two vectors
         /// <remarks>Manhattan distance is the sum of the absolute differences of the components</remarks>
-        /// <see href="https://en.wikipedia.org/wiki/Taxicab_geometry"/>
+        /// <see href="https://simple.wikipedia.org/wiki/Manhattan_Distance"/>
         [MethodImpl(IL)] public static float manhattan(this float4 a, float4 b) => (a-b).abs().csum();
         /// <inheritdoc cref="manhattan(float4,float4)"/>
         [MethodImpl(IL)] public static float manhattan(this float3 a, float3 b) => (a-b).abs().csum();
@@ -104,8 +104,10 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float manhattan(this float2 a, float2 b) => (a-b).abs().csum();
         /// <inheritdoc cref="manhattan(float4,float4)"/>
         [MethodImpl(IL)] public static float manhattan(this float a, float b) => (a - b).abs();
-
+        
         /// Returns the Minkowski distance between two vectors
+        /// <remarks>Minkowski distance is the generalized version of the Manhattan and Euclidean distances</remarks>
+        /// <see href="https://en.wikipedia.org/wiki/Minkowski_distance"/>
         [MethodImpl(IL)] public static float minkowski(this float4 a, float4 b, float p) => (a - b).abs().pow(p).csum().pow(1 / p);
         /// <inheritdoc cref="minkowski(float4,float4,float)"/>
         [MethodImpl(IL)] public static float minkowski(this float3 a, float3 b, float p) => (a - b).abs().pow(p).csum().pow(1 / p);
