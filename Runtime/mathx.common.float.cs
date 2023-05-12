@@ -235,28 +235,6 @@ namespace Unity.Mathematics
 
         #endregion
 
-        #region arc
-        /// <summary> Returns the absolute version of sin(x) </summary>
-        [MethodImpl(IL)] public static float4 arc(this float4 x) => abs(sine(x));
-        /// <inheritdoc cref="arc(float4)" />
-        [MethodImpl(IL)] public static float3 arc(this float3 x) => abs(sine(x));
-        /// <inheritdoc cref="arc(float4)" />
-        [MethodImpl(IL)] public static float2 arc(this float2 x) => abs(sine(x));
-        /// <inheritdoc cref="arc(float4)" />
-        [MethodImpl(IL)] public static float arc(this float x) => abs(sine(x));
-        #endregion
-
-        #region arch2
-        /// <summary> Returns x multiplied by inv(x) </summary>
-        [MethodImpl(IL)] public static float4 arch2(float4 x) => x * inv(x);
-        /// <inheritdoc cref="arch2(float4)" />
-        [MethodImpl(IL)] public static float3 arch2(float3 x) => x * inv(x);
-        /// <inheritdoc cref="arch2(float4)" />
-        [MethodImpl(IL)] public static float2 arch2(float2 x) => x * inv(x);
-        /// <inheritdoc cref="arch2(float4)" />
-        [MethodImpl(IL)] public static float arch2(float x) => x * inv(x);
-        #endregion
-
         #region saturate
         /// <inheritdoc cref="math.saturate(float4)" />
         [MethodImpl(IL)] public static float4 saturate(float4 value) => math.saturate(value);
@@ -268,52 +246,20 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float saturate(float value) => math.saturate(value);
         #endregion
 
-        #region normal
-        /// <summary> Remaps a value from a min to max to tih </summary>
-        [MethodImpl(IL)] public static float4 normal(float4 value, float4 zero, float4 one) => saturate(value.unlerp(zero, one));
-        /// <inheritdoc cref="normal(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float4 normal(float4 value, float4 zero, float one) => saturate(value.unlerp(zero, one));
-        /// <inheritdoc cref="normal(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float3 normal(float3 value, float3 zero, float3 one) => saturate(value.unlerp(zero, one));
-        /// <inheritdoc cref="normal(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float3 normal(float3 value, float3 zero, float one) => saturate(value.unlerp(zero, one));
-        /// <inheritdoc cref="normal(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float2 normal(float2 value, float2 zero, float2 one) => saturate(value.unlerp(zero, one));
-        /// <inheritdoc cref="normal(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float2 normal(float2 value, float2 zero, float one) => saturate(value.unlerp(zero, one));
-        /// <inheritdoc cref="normal(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float2 normal(float2 value, float zero, float2 one) => saturate(value.unlerp(zero, one));
-        /// <inheritdoc cref="normal(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float2 normal(float2 value, float zero, float one) => saturate(value.unlerp(zero, one));
-        /// <inheritdoc cref="normal(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float normal(float value, float zero, float one) => saturate(zero.unlerp(one, value));
-        #endregion
-
-        #region sine
-        /// <summary> Returns the sin of x multiplied by PI. </summary>
-        [MethodImpl(IL)] public static float4 sine(float4 x) => sin(x*PI);
-        /// <inheritdoc cref="sine(float4)" />
-        [MethodImpl(IL)] public static float3 sine(float3 x) => sin(x*PI);
-        /// <inheritdoc cref="sine(float4)" />
-        [MethodImpl(IL)] public static float2 sine(float2 x) => sin(x*PI);
-        /// <inheritdoc cref="sine(float4)" />
-        [MethodImpl(IL)] public static float sine(float x) => sin(x*PI);
-        #endregion
-
         #region snap
         /// <summary> Rounds a value to the closest multiplier of snap. </summary>
         [MethodImpl(IL)] public static float4 snap(float4 x, float4 snap) => round(x / snap) * snap;
-        /// <inheritdoc cref="sine(float4,float4)" />
+        /// <inheritdoc cref="snap(float4,float4)" />
         [MethodImpl(IL)] public static float4 snap(float4 x, float snap) => round(x / snap) * snap;
-        /// <inheritdoc cref="sine(float4,float4)" />
+        /// <inheritdoc cref="snap(float4,float4)" />
         [MethodImpl(IL)] public static float3 snap(float3 x, float3 snap) => round(x / snap) * snap;
-        /// <inheritdoc cref="sine(float4,float4)" />
+        /// <inheritdoc cref="snap(float4,float4)" />
         [MethodImpl(IL)] public static float3 snap(float3 x, float snap) => round(x / snap) * snap;
-        /// <inheritdoc cref="sine(float4,float4)" />
+        /// <inheritdoc cref="snap(float4,float4)" />
         [MethodImpl(IL)] public static float2 snap(float2 x, float2 snap) => round(x / snap) * snap;
-        /// <inheritdoc cref="sine(float4,float4)" />
+        /// <inheritdoc cref="snap(float4,float4)" />
         [MethodImpl(IL)] public static float2 snap(float2 x, float snap) => round(x / snap) * snap;
-        /// <inheritdoc cref="sine(float4,float4)" />
+        /// <inheritdoc cref="snap(float4,float4)" />
         [MethodImpl(IL)] public static float snap(float x, float snap) => round(x / snap) * snap;
         #endregion
 
