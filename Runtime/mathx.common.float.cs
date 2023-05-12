@@ -273,6 +273,18 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="bitwave(float4)" />
         [MethodImpl(IL)] public static float bitwave(float x) => floor(math.fmod(x, 2));
         #endregion
+        
+        #region bitwave
+
+        /// <summary> Samples a square wave that goes between 0 and 1. </summary>
+        [MethodImpl(IL)] public static float4 bitwave2(float4 x) => (int4)x & 1;
+        /// <inheritdoc cref="bitwave2(float4)" />
+        [MethodImpl(IL)] public static float3 bitwave2(float3 x) => (int3)x & 1;
+        /// <inheritdoc cref="bitwave2(float4)" />
+        [MethodImpl(IL)] public static float2 bitwave2(float2 x) => (int2)x & 1;
+        /// <inheritdoc cref="bitwave2(float4)" />
+        [MethodImpl(IL)] public static float bitwave2(float x) => (int)x & 1;
+        #endregion
 
         #region triwave
         /// <summary> Samples a triangle wave between +0.5f and -0.5f. </summary>
