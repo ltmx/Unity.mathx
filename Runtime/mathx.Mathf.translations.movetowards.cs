@@ -16,17 +16,13 @@ namespace Unity.Mathematics
             var delta = target - current;
             return math.mad(min(abs(delta),maxDistanceDelta),sign(delta),current);
         }
+
         /// <inheritdoc cref="movetowards(Mathematics.float4,Mathematics.float4,float4)"/>
         public static float4 movetowards(this float4 current, float4 target, float maxDistanceDelta)
         {
             var delta = target - current;
             var deltaLength = delta.length();
             return math.mad(min(deltaLength,maxDistanceDelta),sign(delta),current);
-        }
-        /// <inheritdoc cref="movetowards(Mathematics.float4,Mathematics.float4,float)"/>
-        public static float4 movetowards(this Vector4 current, float4 target, float maxDistanceDelta)
-        {
-            return movetowards(current.asfloat(),target,maxDistanceDelta);
         }
         /// <inheritdoc cref="movetowards(Mathematics.float4,Mathematics.float4,float)"/>
         public static float3 movetowards(this float3 current, float3 target, float3 maxDistanceDelta)
@@ -37,20 +33,15 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="movetowards(Mathematics.float4,Mathematics.float4,float)"/>
         public static float3 movetowards(this float3 current, float3 target, float maxDistanceDelta)
         {
-            return movetowards(current.asfloat(), target, maxDistanceDelta);
+            return movetowards(current, target, maxDistanceDelta);
         }
-        /// <inheritdoc cref="movetowards(Mathematics.float4,Mathematics.float4,float)"/>
-        public static float2 movetowards(this float2 current, float2 target, float2 maxDistanceDelta)
-        {
-            var delta = target - current;
-            var deltaLength = delta.length();
-            return math.mad(min(deltaLength,maxDistanceDelta),sign(delta),current);
-        }
-        /// <inheritdoc cref="movetowards(Mathematics.float4,Mathematics.float4,float)"/>
-        public static float3 movetowards(this Vector3 current, float3 target, float maxDistanceDelta)
-        {
-            return movetowards(current.asfloat(), target, maxDistanceDelta);
-        }
+        // /// <inheritdoc cref="movetowards(Mathematics.float4,Mathematics.float4,float)"/>
+        // public static float2 movetowards(this float2 current, float2 target, float2 maxDistanceDelta)
+        // {
+        //     var delta = target - current;
+        //     var deltaLength = delta.length();
+        //     return math.mad(min(deltaLength,maxDistanceDelta),sign(delta),current);
+        // }
         /// <inheritdoc cref="movetowards(Mathematics.float4,Mathematics.float4,float)"/>
         public static float2 movetowards(this float2 current, float2 target, float2 maxDistanceDelta)
         {
@@ -65,15 +56,17 @@ namespace Unity.Mathematics
             return math.mad(min(deltaLength,maxDistanceDelta),sign(delta),current);
         }
         /// <inheritdoc cref="movetowards(Mathematics.float4,Mathematics.float4,float)"/>
-        public static float2 movetowards(this Vector2 current, float2 target, float maxDistanceDelta)
-        {
-            return movetowards(current.asfloat(), target, maxDistanceDelta);
-        }
-        /// <inheritdoc cref="movetowards(Mathematics.float4,Mathematics.float4,float)"/>
         public static float movetowards(this float current, float target, float maxDistanceDelta)
         {
             var delta = target - current;
             return math.mad(min(abs(delta),maxDistanceDelta),sign(delta),current);
         }
+        
+        // float3 MoveTowards(float3 current, float3 target, float maxDistanceDelta)
+        // {
+        //     float3 delta = target - current;
+        //     float invDeltaLength = math.rsqrt(math.lengthsq(delta)); // Reciprocal square root
+        //     return current + (delta * invDeltaLength) * maxDistanceDelta;
+        // }
     }
 }
