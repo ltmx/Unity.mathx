@@ -200,28 +200,28 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float arc(this float x) => abs(sine01(x));
         #endregion
         
-        #region normal
+        #region linstep
         /// <summary> Remaps a value from a min to max to tih </summary>
-        [MethodImpl(IL)] public static float4 normal(float4 value, float4 zero, float4 one) => saturate(value.unlerp(zero, one));
-        /// <inheritdoc cref="normal(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float4 normal(float4 value, float4 zero, float one) => saturate(value.unlerp(zero, one));
-        /// <inheritdoc cref="normal(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float3 normal(float3 value, float3 zero, float3 one) => saturate(value.unlerp(zero, one));
-        /// <inheritdoc cref="normal(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float3 normal(float3 value, float3 zero, float one) => saturate(value.unlerp(zero, one));
-        /// <inheritdoc cref="normal(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float2 normal(float2 value, float2 zero, float2 one) => saturate(value.unlerp(zero, one));
-        /// <inheritdoc cref="normal(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float2 normal(float2 value, float2 zero, float one) => saturate(value.unlerp(zero, one));
-        /// <inheritdoc cref="normal(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float2 normal(float2 value, float zero, float2 one) => saturate(value.unlerp(zero, one));
-        /// <inheritdoc cref="normal(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float2 normal(float2 value, float zero, float one) => saturate(value.unlerp(zero, one));
-        /// <inheritdoc cref="normal(float4, float4, float4)" />
-        [MethodImpl(IL)] public static float normal(float value, float zero, float one) => saturate(zero.unlerp(one, value));
+        [MethodImpl(IL)] public static float4 linstep(float4 value, float4 zero, float4 one) => saturate(value.unlerp(zero, one));
+        /// <inheritdoc cref="linstep(float4,float4,float4)" />
+        [MethodImpl(IL)] public static float4 linstep(float4 value, float4 zero, float one) => saturate(value.unlerp(zero, one));
+        /// <inheritdoc cref="linstep(float4,float4,float4)" />
+        [MethodImpl(IL)] public static float3 linstep(float3 value, float3 zero, float3 one) => saturate(value.unlerp(zero, one));
+        /// <inheritdoc cref="linstep(float4,float4,float4)" />
+        [MethodImpl(IL)] public static float3 linstep(float3 value, float3 zero, float one) => saturate(value.unlerp(zero, one));
+        /// <inheritdoc cref="linstep(float4,float4,float4)" />
+        [MethodImpl(IL)] public static float2 linstep(float2 value, float2 zero, float2 one) => saturate(value.unlerp(zero, one));
+        /// <inheritdoc cref="linstep(float4,float4,float4)" />
+        [MethodImpl(IL)] public static float2 linstep(float2 value, float2 zero, float one) => saturate(value.unlerp(zero, one));
+        /// <inheritdoc cref="linstep(float4,float4,float4)" />
+        [MethodImpl(IL)] public static float2 linstep(float2 value, float zero, float2 one) => saturate(value.unlerp(zero, one));
+        /// <inheritdoc cref="linstep(float4,float4,float4)" />
+        [MethodImpl(IL)] public static float2 linstep(float2 value, float zero, float one) => saturate(value.unlerp(zero, one));
+        /// <inheritdoc cref="linstep(float4,float4,float4)" />
+        [MethodImpl(IL)] public static float linstep(float value, float zero, float one) => saturate(zero.unlerp(one, value));
         #endregion
 
-        #region sine
+        #region sine01
         /// <summary> Returns the sin of x multiplied by PI. </summary>
         [MethodImpl(IL)] public static float4 sine01(float4 x) => sin(x*PI);
         /// <inheritdoc cref="sine01(float4)" />
@@ -407,32 +407,20 @@ namespace Unity.Mathematics
         public static float4 smin_N_factor(this float4 t, float4 a, float4 b, float4 n, out float4 factor) => f4(t.x.smin_N_factor(a.x, b.x, n.x, out factor.x), t.y.smin_N_factor(a.y, b.y, n.y, out factor.y), t.z.smin_N_factor(a.z, b.z, n.z, out factor.z), t.w.smin_N_factor(a.w, b.w, n.w, out factor.w));
 
         #region mix
-        // <summary>Returns (1-weightB)*a + weightB*b.</summary>
-        [MethodImpl(IL)] public static float4 mix(float4 a, float4 b, float4 weightB, float4 t) => math.mad(weightB,b,math.mad(-weightB,a,a));
-        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
-        [MethodImpl(IL)] public static float4 mix(float4 a, float4 b, float4 weightB, float t) => math.mad(weightB,b,math.mad(-weightB,a,a));
-        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
-        [MethodImpl(IL)] public static float4 mix(float4 a, float4 b, float weightB, float4 t) => math.mad(weightB,b,math.mad(-weightB,a,a));
-        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
-        [MethodImpl(IL)] public static float4 mix(float4 a, float4 b, float weightB, float t) => math.mad(weightB,b,math.mad(-weightB,a,a));
-        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
-        [MethodImpl(IL)] public static float3 mix(float3 a, float3 b, float3 weightB, float3 t) => math.mad(weightB,b,math.mad(-weightB,a,a));
-        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
-        [MethodImpl(IL)] public static float3 mix(float3 a, float3 b, float3 weightB, float t) => math.mad(weightB,b,math.mad(-weightB,a,a));
-        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
-        [MethodImpl(IL)] public static float3 mix(float3 a, float3 b, float weightB, float3 t) => math.mad(weightB,b,math.mad(-weightB,a,a));
-        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
-        [MethodImpl(IL)] public static float3 mix(float3 a, float3 b, float weightB, float t) => math.mad(weightB,b,math.mad(-weightB,a,a));
-        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
-        [MethodImpl(IL)] public static float2 mix(float2 a, float2 b, float2 weightB, float2 t) => math.mad(weightB,b,math.mad(-weightB,a,a));
-        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
-        [MethodImpl(IL)] public static float2 mix(float2 a, float2 b, float2 weightB, float t) => math.mad(weightB,b,math.mad(-weightB,a,a));
-        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
-        [MethodImpl(IL)] public static float2 mix(float2 a, float2 b, float weightB, float2 t) => math.mad(weightB,b,math.mad(-weightB,a,a));
-        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
-        [MethodImpl(IL)] public static float2 mix(float2 a, float2 b, float weightB, float t) => math.mad(weightB,b,math.mad(-weightB,a,a));
-        /// <inheritdoc cref="mix(float4,float4,float4,float4)" />
-        [MethodImpl(IL)] public static float mix(float a, float b, float weightB, float t) => math.mad(weightB,b,math.mad(-weightB,a,a));
+        // <summary>Returns (1-t)*a + t*b.</summary>
+        [MethodImpl(IL)] public static float4 mix(float4 a, float4 b, float4 t) => math.mad(t,b,math.mad(-t,a,a));
+        /// <inheritdoc cref="mix(float4,float4,float4)" />
+        [MethodImpl(IL)] public static float4 mix(float4 a, float4 b, float t) => math.mad(t,b,math.mad(-t,a,a));
+        /// <inheritdoc cref="mix(float4,float4,float4)" />
+        [MethodImpl(IL)] public static float3 mix(float3 a, float3 b, float3 t) => math.mad(t,b,math.mad(-t,a,a));
+        /// <inheritdoc cref="mix(float4,float4,float4)" />
+        [MethodImpl(IL)] public static float3 mix(float3 a, float3 b, float t) => math.mad(t,b,math.mad(-t,a,a));
+        /// <inheritdoc cref="mix(float4,float4,float4)" />
+        [MethodImpl(IL)] public static float2 mix(float2 a, float2 b, float2 t) => math.mad(t,b,math.mad(-t,a,a));
+        /// <inheritdoc cref="mix(float4,float4,float4)" />
+        [MethodImpl(IL)] public static float2 mix(float2 a, float2 b, float t) => math.mad(t,b,math.mad(-t,a,a));
+        /// <inheritdoc cref="mix(float4,float4,float4)" />
+        [MethodImpl(IL)] public static float mix(float a, float b, float t) => math.mad(t,b,math.mad(-t,a,a));
         #endregion
 
         #region smoothstart
