@@ -1520,6 +1520,12 @@ namespace Unity.Mathematics
 
     public static partial class mathx
     {
+        /// <summary>Returns a color vector constructed from three float values</summary>
+        [MethodImpl(INLINE)] public static color color(float x, float y, float z) => new(x, y, z);
+        /// <summary>Returns a color vector constructed from a float value and a float2 vector.</summary>
+        [MethodImpl(INLINE)] public static color color(float x, float2 yz) => new(x, yz);
+        /// <summary>Returns a color vector constructed from a float2 vector and a float value.</summary>
+        [MethodImpl(INLINE)] public static color color(float2 xy, float z) => new(xy, z);
         /// <summary>Returns a color vector constructed from four float values.</summary>
         [MethodImpl(INLINE)] public static color color(float x, float y, float z, float w) => new(x, y, z, w);
         /// <summary>Returns a color vector constructed from two float values and a float2 vector.</summary>
