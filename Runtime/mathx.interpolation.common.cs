@@ -460,17 +460,17 @@ namespace Unity.Mathematics
         #region xfade (crossfade)
         // <summary>Fades between values a and b.</summary>
         [MethodImpl(IL)] public static float4 xfade(float4 a, float4 b, float4 t) => math.mad(b-a,t,a);
-        /// <inheritdoc cref="smoothstop(float4,float4,float)" />
+        /// <inheritdoc cref="xfade(float4,float4,float)" />
         [MethodImpl(IL)] public static float4 xfade(float4 a, float4 b, float t) => math.mad(b-a,t,a);
-        /// <inheritdoc cref="smoothstop(float4,float4,float)" />
+        /// <inheritdoc cref="xfade(float4,float4,float)" />
         [MethodImpl(IL)] public static float3 xfade(float3 a, float3 b, float3 t) => math.mad(b-a,t,a);
-        /// <inheritdoc cref="smoothstop(float4,float4,float)" />
+        /// <inheritdoc cref="xfade(float4,float4,float)" />
         [MethodImpl(IL)] public static float3 xfade(float3 a, float3 b, float t) => math.mad(b-a,t,a);
-        /// <inheritdoc cref="smoothstop(float4,float4,float)" />
+        /// <inheritdoc cref="xfade(float4,float4,float)" />
         [MethodImpl(IL)] public static float2 xfade(float2 a, float2 b, float2 t) => math.mad(b-a,t,a);
-        /// <inheritdoc cref="smoothstop(float4,float4,float)" />
+        /// <inheritdoc cref="xfade(float4,float4,float)" />
         [MethodImpl(IL)] public static float2 xfade(float2 a, float2 b, float t) => math.mad(b-a,t,a);
-        /// <inheritdoc cref="smoothstop(float4,float4,float)" />
+        /// <inheritdoc cref="xfade(float4,float4,float)" />
         [MethodImpl(IL)] public static float xfade(float a, float b, float t) => math.mad(b-a,t,a);
         #endregion
     }
