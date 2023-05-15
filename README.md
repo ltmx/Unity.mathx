@@ -118,7 +118,7 @@ x = x.lengthsq() + x;
   ```
   
 ## 🎇 New Methods in 1.3.0
-```c#
+```python
 anyType.dim(otherType) => anyType* otherType // to add functionality missing from internal operator overloads // named dim to not confuse with mul()
 anyType.greater(otherType) => anyType > otherType
 anyType.less(otherType) =>  anyType < otherType
@@ -149,7 +149,7 @@ asbool() // new overloads
 ```
   
 ##  Method List (from 1.3.0... needs updating)
-```cs
+```c++
 // most methods have at least a dozen overloads
 asint asbool asfloat asdouble ascolor asfloat4 asfloat3 toVectorList 
 tofloatList toColorList tocolorList toColorArray tocolorArray tofloat4List
