@@ -19,7 +19,6 @@ namespace Tests
     public static class MathTests
     {
         static Stopwatch stopwatch = new ();
-        private static Object staticObject;
         private static float staticfloat;
         private static float2 staticfloat2;
         [MenuItem("Math/Tests/Exponential")]
