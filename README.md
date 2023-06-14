@@ -106,8 +106,8 @@ x = x.lengthsq() + x;
 - [ ] Mesh Processing `WIP 0%`
 
 
-## 🎇 New Structs
-  ```c++
+## 🎇 Structs
+  ```c#
   struct bounds; // UnityEngine translation compatible with Unity.Mathematics (implicit cast to "UnityEngine.Bounds")
   struct ray;    // UnityEngine translation compatible with Unity.Mathematics (implicit cast to "UnityEngine.Ray")
   struct color;  // UnityEngine translation compatible with Unity.Mathematics (implicit cast to "UnityEngine.Color")
@@ -148,46 +148,67 @@ asuint() // new overloads
 asbool() // new overloads
 ```
   
-##  Method List (from 1.3.0... needs updating)
-```c++
+##  Method List 1.3.6
+```python
 // most methods have at least a dozen overloads
-asint asbool asfloat asdouble ascolor asfloat4 asfloat3 toVectorList 
-tofloatList toColorList tocolorList toColorArray tocolorArray tofloat4List
-tofloat3List tofloat4Array tofloat3Array toVectorArray tofloatArray
-toVectorIE tofloatIE cast List xx xxx xxxx append xy xyz xyzw 
-f4x4 f4x3 f4x2 f3x4 f3x3 f3x2 f2x4 f2x3 f2x2 
-b4x4 b4x3 b4x2 b3x4 b3x3 b3x2 b2x4 b2x3 b2x2 
-i4x4 i4x3 i4x2 i3x4 i3x3 i3x2 i2x4 i2x3 i2x2 
-u4x4 u4x3 u4x2 u3x4 u3x3 u3x2 u2x4 u2x3 u2x2 
-fcos veryFastCos ultraFastCos CosLoop SinLoop sfcos fsqrt fdistance flength 
-log2int fastmodinv mod frac fexp sfastsine sfastcosine fastsine fastcosine 
-smootherstep smoothstepcos eerp uneerp smoothstep unlerp lerp lerpAngle 
-remap step smin smax smax_exp smax_exp2 smax_expOP smin_exp smin_pow 
-smin_root smin_polynomial smin_quadratic smin_cubic smin_factor 
-smin_cubic_factor smin_N_factor easeInSine easeOutSine easeInOutSine 
-easeInQuad easeOutQuad easeInOutQuad easeInCubic easeOutCubic easeInOutCubic 
-easeInQuart easeOutQuart easeInOutQuart easeInQuint easeOutQuint easeInOutQuint 
-easeInExpo easeOutExpo easeInOutExpo easeInCirc easeOutCirc easeInOutCirc 
-easeInBack easeOutBack easeInOutBack easeInElastic easeOutElastic 
-easeInOutElastic easeInBounce easeOutBounce easeInOutBounce smooth 
-smoothstepD smooth5 smooth5D smooth7 smooth7D smooth9 smooth9D smooth11 
-smooth11D smoothD smoother7D smoothdamp anglerad angledeg fastangle 
-straightsignedangle preciseangle signedangle fastatan2 rotate rotateAxisAngle 
-rotateRad rotateDeg quaternion sign abs sum cmul inv neg rcp pow sq 
-cube pow4 pow5 exp nexp exp2 exp10 ln log2 log10 any all select approx 
-odd even get anynan isnan isgreaterthan init rand varyrand addrand 
-randomint randomInSphere randomInCircle randomDir3D randomDir2D 
-randomrotation round rint clamp min max ceil clint floor flint saturate 
-npsaturate p n under1 cmax cmin cmaxAxis cminAxis sin cos tan sec cot 
-csc asin acos atan atan2 acot asec acsc sin2 cos2 tan2 sec2 deg rad 
-cossin sincos sinh cosh tanh sech coth csch acosh asinh atanh acoth 
-asech acsch norm normsafe distance distancesq cross orthonormalize 
-length lengthsq sqrt cbrt rcbrt rsqrt dot reflect refract project 
-projectsafe repeat pingpong SampleParabola matrix inverse float3x4 
-rotation translation transform mul sub add mult div transpose 
-openSimplex2_ImproveXY openSimplex2SDerivatives_ImproveXY byte2 
-hash hashwide byte3 byte4 color shuffle gammatolinear lineartogama 
-movetowards Erf Erfc ErfInv ErfcInv GammaLn Gamma DiGamma DiGammaInv
+fcos() veryFastCos() ultraFastCos() CosLoop() SinLoop() sfcos() fsqrt()
+fdistance() flength() log2int() fastmodinv() fexp() sfastsine() sfastcosine()
+fastsine() fastcosine() anglerad() angledeg() fastangle() straightsignedangle()
+preciseangle() signedangle() fastatan2() sign() abs() mod() frac() csum() cmul()
+inv() neg() rcp() pow() sq() cube() pow4() pow5() sqrt() cbrt() rcbrt() rsqrt()
+m2n1() add() sub() div() cycle() saturate() snap() bitwave() bitwave2()
+triwave() set() Array() toColorArray() tocolorArray() tofloat4List()
+tofloat3List() tofloat4Array() tofloat3Array() toVectorArray() tofloatArray()
+CopyFrom() asint() asbool() asfloat() asdouble() asuint() ascolor() asColor()
+asfloat4() asfloat3() cast() List() toVectorList() tofloatList() toColorList()
+tocolorList() toVectorIE() tofloatIE() xx() xxx() xxxx() dim() exp() nexp()
+exp2() exp10() ln() log2() log10() f4() f3() f2() append() y() z() yz() w() zw()
+yzw() xyzw() xyz() xy() x() smootherstep() smoothstepcos() eerp() uneerp()
+smoothstep() unlerp() lerp() lerpAngle() remap() step() arc() arch2() linstep()
+sine01() smin() smax() smax_exp() smax_exp2() smax_expOP() smin_exp() smin_pow()
+smin_root() smin_polynomial() smin_quadratic() smin_cubic() smin_factor()
+smin_cubic_factor() smin_N_factor() mix() smoothstart() smoothstop() xfade()
+easeInSine() easeOutSine() easeInOutSine() easeInQuad() easeOutQuad()
+easeInOutQuad() easeInCubic() easeOutCubic() easeInOutCubic() easeInQuart()
+easeOutQuart() easeInOutQuart() easeInQuint() easeOutQuint() easeInOutQuint()
+easeInExpo() easeOutExpo() easeInOutExpo() easeInCirc() easeOutCirc()
+easeInOutCirc() easeInBack() easeOutBack() easeInOutBack() easeInElastic()
+easeOutElastic() easeInOutElastic() easeInBounce() easeOutBounce()
+easeInOutBounce() smooth() smoothstepD() smooth5() smooth5D() smooth7()
+smooth7D() smooth9() smooth9D() smooth11() smooth11D() smoothD() smoother7D()
+any() all() select() approx() odd() even() isnan() anynan() isinf() isfinite()
+greater() less() lesseq() greatereq() eq() neq() isgreatest() isshortest() get()
+pingpong() SampleParabola() movetowards() repeat() smoothdamp() b4x4() b4x3()
+b4x2() b3x4() b3x3() b3x2() b2x4() b2x3() b2x2() d4x4() d4x3() d4x2() d3x4()
+d3x3() d3x2() d2x4() d2x3() d2x2() mul() dot() lengthsq() mult() transpose()
+f4x4() f4x3() f4x2() f3x4() f3x3() f3x2() f2x4() f2x3() f2x2() i4x4() i4x3()
+i4x2() i3x4() i3x3() i3x2() i2x4() i2x3() i2x2() u4x4() u4x3() u4x2() u3x4()
+u3x3() u3x2() u2x4() u2x3() u2x2() init() randf() randf2() randf3() randf4()
+seedrand() seedrand2() seedrand3() seedrand4() randmax() setseed() hash()
+hashwide() varyrand() addrand() rand() randomint() randomInSphere()
+randomInCircle() randomDir3D() randomDir2D() randomrotation() rotate()
+rotateAxisAngle() rotateRad() rotateDeg() quaternion() rotateAround() round()
+rint() clamp() min() max() ceil() clint() floor() flint() sat() npsat() limp()
+limn() under1() cmax() cmin() acmax() acmin() sin() cos() tan() sec() cot()
+csc() asin() acos() atan() atan2() acot() asec() acsc() sin2() cos2() tan2()
+sec2() deg() rad() cossin() sincos() mod360() mod2PI() sinh() cosh() tanh()
+sech() coth() csch() acosh() asinh() atanh() acoth() asech() acsch() norm()
+normsafe() distance() distancesq() length() reflect() refract() project()
+projectsafe() manhattan() minkowski() chebyshev() cross() perp() exterior()
+orthonorm() cdistance() cdistancesq() ccross() cdot() hashnp01() Hash()
+GradientNoise() GenerateGradient() randdir() unity_gradientNoise() hashx()
+openSimplex2_ImproveXY() openSimplex2SDerivatives_ImproveXY() sdSphere() sdBox()
+sdRoundBox() sdBoxFrame() sdTorus() sdCappedTorus() sdLink() sdCylinder()
+sdCone() sdConeBound() sdPlane() sdHexPrism() sdTriPrism() sdCapsule()
+sdVerticalCapsule() sdCappedCylinder() sdRoundedCylinder() sdCappedCone()
+sdSolidAngle() sdCutSphere() sdCutHollowSphere() sdDeathStar() sdRoundCone()
+sdEllipsoid() sdbEllipsoid_2() sdaEllipsoid_3() sdRhombus() sdOctahedron()
+sdOctahedronBound() sdPyramid() udTriangle() udQuad() _length2() _length6()
+_length8() byte1() byte2() byte3() byte4() color() gammatolinear()
+lineartogama() Erf() Erfc() ErfInv() ErfcInv() GammaLn() Gamma() DiGamma()
+DiGammaInv() conjugate() inverse() unitexp() unitlog() log() nlerp() slerp()
+forward() matrix() float3x4() rotation() translation() transform() up() right()
+scale() projectplane() apply() GetFunctionPointerDelegate()
 ```
 
 
