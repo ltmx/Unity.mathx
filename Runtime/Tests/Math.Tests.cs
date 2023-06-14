@@ -21,11 +21,11 @@ namespace Tests
         static Stopwatch stopwatch = new ();
         private static float staticfloat;
         private static float2 staticfloat2;
-        [MenuItem("Math/Tests/Exponential")]
+        // [MenuItem("Math/Tests/Exponential")]
         public static void Benchmark()
         {
-            Benchmark(mathx.smax_exp2).Log("smax");
-            Benchmark(mathx.smax_expOP).Log("smaxOP");
+            // Benchmark(mathx.smax_exp2).Log("smax");
+            // Benchmark(mathx.smax_expOP).Log("smaxOP");
             // Benchmark<float4>(mathx.frac).Log("fast frac4");
             // // Benchmark<float4>(Math.frac2).Log("fast frac4");
             // Benchmark<float4>(frac).Log("frac4");
@@ -75,12 +75,12 @@ namespace Tests
         }
         private static long Benchmark(Func<float, float, float> function)
         {
-            
+            var nanosecPerTick = (1000L*1000L*1000L) / Stopwatch.Frequency;
             stopwatch.Reset();
             stopwatch.Start();
             Run(function, staticfloat);
             stopwatch.Stop();
-            return stopwatch.ElapsedMilliseconds;
+            return stopwatch.ElapsedTicks / nanosecPerTick;
         }
         private static long Benchmark(Func<float2, float2, float2> function)
         {
@@ -93,21 +93,21 @@ namespace Tests
         }
         private static long Benchmark(Func<float, float, float, float> function)
         {
-            
+            var nanosecPerTick = (1000L*1000L*1000L) / Stopwatch.Frequency;
             stopwatch.Reset();
             stopwatch.Start();
             Run(function, staticfloat);
             stopwatch.Stop();
-            return stopwatch.ElapsedMilliseconds;
+            return stopwatch.ElapsedTicks / nanosecPerTick;
         }
-        private static long Benchmark(Func<float2, float2, float2, float2> function)
+        private static long NanoSeconds(Func<float2, float2, float2, float2> function)
         {
-            
+            var nanosecPerTick = (1000L*1000L*1000L) / Stopwatch.Frequency;
             stopwatch.Reset();
             stopwatch.Start();
             Run(function, staticfloat2);
             stopwatch.Stop();
-            return stopwatch.ElapsedMilliseconds;
+            return stopwatch.ElapsedTicks / nanosecPerTick;
         }
         
         
