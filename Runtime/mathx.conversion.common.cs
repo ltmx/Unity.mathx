@@ -222,8 +222,6 @@ namespace Unity.Mathematics
         #endregion
 
         #region cast
-
-        // Simple Casts to Classic Types -------------------------------------------
         
         /// Casts to and from Unity's Vector Types
         [MethodImpl(IL)] public static Vector2 cast(this float2 f) => f;
@@ -256,6 +254,12 @@ namespace Unity.Mathematics
         /// casts to a UnityEngine.Color
         [MethodImpl(IL)] public static Color cast(this color f) => f;
         
+        ///<inheritdoc cref="cast(float2)"/>
+        [MethodImpl(IL)] public static float4 f(this Vector4 v) => v;
+        ///<inheritdoc cref="cast(float2)"/>
+        [MethodImpl(IL)] public static float3 f(this Vector3 v) => v;
+        ///<inheritdoc cref="cast(float2)"/>
+        [MethodImpl(IL)] public static float2 f(this Vector2 v) => v;
 
         #endregion
     }

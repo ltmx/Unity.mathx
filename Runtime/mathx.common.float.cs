@@ -237,64 +237,64 @@ namespace Unity.Mathematics
 
         #region saturate
         /// <inheritdoc cref="math.saturate(float4)" />
-        [MethodImpl(IL)] public static float4 saturate(float4 value) => math.saturate(value);
+        [MethodImpl(IL)] public static float4 saturate(this float4 value) => math.saturate(value);
         /// <inheritdoc cref="math.saturate(float3)" />
-        [MethodImpl(IL)] public static float3 saturate(float3 value) => math.saturate(value);
+        [MethodImpl(IL)] public static float3 saturate(this float3 value) => math.saturate(value);
         /// <inheritdoc cref="math.saturate(float2)" />
-        [MethodImpl(IL)] public static float2 saturate(float2 value) => math.saturate(value);
+        [MethodImpl(IL)] public static float2 saturate(this float2 value) => math.saturate(value);
         /// <inheritdoc cref="math.saturate(float)" />
-        [MethodImpl(IL)] public static float saturate(float value) => math.saturate(value);
+        [MethodImpl(IL)] public static float saturate(this float value) => math.saturate(value);
         #endregion
 
         #region snap
         /// <summary> Rounds a value to the closest multiplier of snap. </summary>
-        [MethodImpl(IL)] public static float4 snap(float4 x, float4 snap) => round(x / snap) * snap;
+        [MethodImpl(IL)] public static float4 snap(this float4 x, float4 snap) => round(x / snap) * snap;
         /// <inheritdoc cref="snap(float4,float4)" />
-        [MethodImpl(IL)] public static float4 snap(float4 x, float snap) => round(x / snap) * snap;
+        [MethodImpl(IL)] public static float4 snap(this float4 x, float snap) => round(x / snap) * snap;
         /// <inheritdoc cref="snap(float4,float4)" />
-        [MethodImpl(IL)] public static float3 snap(float3 x, float3 snap) => round(x / snap) * snap;
+        [MethodImpl(IL)] public static float3 snap(this float3 x, float3 snap) => round(x / snap) * snap;
         /// <inheritdoc cref="snap(float4,float4)" />
-        [MethodImpl(IL)] public static float3 snap(float3 x, float snap) => round(x / snap) * snap;
+        [MethodImpl(IL)] public static float3 snap(this float3 x, float snap) => round(x / snap) * snap;
         /// <inheritdoc cref="snap(float4,float4)" />
-        [MethodImpl(IL)] public static float2 snap(float2 x, float2 snap) => round(x / snap) * snap;
+        [MethodImpl(IL)] public static float2 snap(this float2 x, float2 snap) => round(x / snap) * snap;
         /// <inheritdoc cref="snap(float4,float4)" />
-        [MethodImpl(IL)] public static float2 snap(float2 x, float snap) => round(x / snap) * snap;
+        [MethodImpl(IL)] public static float2 snap(this float2 x, float snap) => round(x / snap) * snap;
         /// <inheritdoc cref="snap(float4,float4)" />
-        [MethodImpl(IL)] public static float snap(float x, float snap) => round(x / snap) * snap;
+        [MethodImpl(IL)] public static float snap(this float x, float snap) => round(x / snap) * snap;
         #endregion
 
         #region bitwave
         /// <summary> Samples a square wave that goes between 0 and 1. </summary>
-        [MethodImpl(IL)] public static float4 bitwave(float4 x) => floor(math.fmod(x, 2));
+        [MethodImpl(IL)] public static float4 bitwave(this float4 x) => floor(math.fmod(x, 2));
         /// <inheritdoc cref="bitwave(float4)" />
-        [MethodImpl(IL)] public static float3 bitwave(float3 x) => floor(math.fmod(x, 2));
+        [MethodImpl(IL)] public static float3 bitwave(this float3 x) => floor(math.fmod(x, 2));
         /// <inheritdoc cref="bitwave(float4)" />
-        [MethodImpl(IL)] public static float2 bitwave(float2 x) => floor(math.fmod(x, 2));
+        [MethodImpl(IL)] public static float2 bitwave(this float2 x) => floor(math.fmod(x, 2));
         /// <inheritdoc cref="bitwave(float4)" />
-        [MethodImpl(IL)] public static float bitwave(float x) => floor(math.fmod(x, 2));
+        [MethodImpl(IL)] public static float bitwave(this float x) => floor(math.fmod(x, 2));
         #endregion
         
         #region bitwave
 
         /// <summary> Samples a square wave that goes between 0 and 1. </summary>
-        [MethodImpl(IL)] public static float4 bitwave2(float4 x) => (int4)x & 1;
+        [MethodImpl(IL)] public static float4 bitwave2(this float4 x) => (int4)x & 1;
         /// <inheritdoc cref="bitwave2(float4)" />
-        [MethodImpl(IL)] public static float3 bitwave2(float3 x) => (int3)x & 1;
+        [MethodImpl(IL)] public static float3 bitwave2(this float3 x) => (int3)x & 1;
         /// <inheritdoc cref="bitwave2(float4)" />
-        [MethodImpl(IL)] public static float2 bitwave2(float2 x) => (int2)x & 1;
+        [MethodImpl(IL)] public static float2 bitwave2(this float2 x) => (int2)x & 1;
         /// <inheritdoc cref="bitwave2(float4)" />
-        [MethodImpl(IL)] public static float bitwave2(float x) => (int)x & 1;
+        [MethodImpl(IL)] public static float bitwave2(this float x) => (int)x & 1;
         #endregion
 
         #region triwave
         /// <summary> Samples a triangle wave between +0.5f and -0.5f. </summary>
-        [MethodImpl(IL)] public static float4 triwave(float4 x) => abs(frac(x) - 0.5f);
+        [MethodImpl(IL)] public static float4 triwave(this float4 x) => abs(frac(x) - 0.5f);
         /// <inheritdoc cref="triwave(float4)" />
-        [MethodImpl(IL)] public static float3 triwave(float3 x) => abs(frac(x) - 0.5f);
+        [MethodImpl(IL)] public static float3 triwave(this float3 x) => abs(frac(x) - 0.5f);
         /// <inheritdoc cref="triwave(float4)" />
-        [MethodImpl(IL)] public static float2 triwave(float2 x) => abs(frac(x) - 0.5f);
+        [MethodImpl(IL)] public static float2 triwave(this float2 x) => abs(frac(x) - 0.5f);
         /// <inheritdoc cref="triwave(float4)" />
-        [MethodImpl(IL)] public static float triwave(float x) => abs(frac(x) - 0.5f);
+        [MethodImpl(IL)] public static float triwave(this float x) => abs(frac(x) - 0.5f);
         #endregion
         
         #region Component-wise Math

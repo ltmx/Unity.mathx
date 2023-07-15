@@ -140,11 +140,11 @@ namespace Unity.Mathematics
         
         public static float Hash(this float2 coord) {
             return coord.seedrand() * 2 -1;
-            float2 n = frac(coord * F1);
-            n += dot(n, n.yx + 19.19f) + F2;
-            n = frac(n * F3);
-            n += dot(n, n.yx + 57.57f) + F1;
-            return frac(n.cmul() * n.csum());
+            // float2 n = frac(coord * F1);
+            // n += dot(n, n.yx + 19.19f) + F2;
+            // n = frac(n * F3);
+            // n += dot(n, n.yx + 57.57f) + F1;
+            // return frac(n.cmul() * n.csum());
         }
         private static float Hash(float coord)
         {
