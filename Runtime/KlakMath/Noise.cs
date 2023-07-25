@@ -1,7 +1,9 @@
-// // 1D gradient noise functions
-//
-// // using Unity.Mathematics;
-//
+#region Header
+// **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
+// **    Github Profile: https://github.com/LTMX
+// **    Repository : https://github.com/LTMX/Unity.mathx
+#endregion
+
 // using System.Runtime.CompilerServices;
 // // using static Unity.Mathematics.math;
 // using static Unity.Mathematics.mathx;

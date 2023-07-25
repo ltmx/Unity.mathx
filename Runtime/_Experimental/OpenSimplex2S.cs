@@ -1,5 +1,8 @@
-////////////////// K.jpg's Smooth Re-oriented 8-Point BCC Noise //////////////////
-//////////////////// Output: f4(dF/dx, dF/dy, dF/dz, value) ////////////////////
+#region Header
+// **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
+// **    Github Profile: https://github.com/LTMX
+// **    Repository : https://github.com/LTMX/Unity.mathx
+#endregion
 
 using Unity.Mathematics;
 using static Unity.Mathematics.math;
