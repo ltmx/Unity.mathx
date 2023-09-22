@@ -19,72 +19,52 @@ Package name : `com.ltmx.mathematics.mathx`
 </a><br><br>
 -->
 
-## #️⃣ Using Declaration
-```cs
-using static Unity.Mathematics.mathx;
-```
-
-## ♾ Chained Method Syntax
-```cs
-return anyVector.length().clamp(0, 10).cos().sq().cube().sum().cmul().rotate(anyQuaternion).clint().div(3.2f).rcp();
-```
-
-## 📢 HELP NEEDED !
-- Documentation website generation with docfx ;) ... I can't seem to make it work and compile anything
-
-## 📈 A Few Neat Features
-
-- Matrix Truncation => `float3x2(float4x4)` // Truncates the input matrix to the desired size... can also be written as : `float4x4.f3x2()`
-- Burst Compiled Function Pointers
-```c#
-/// sets the value of x to f and returns f // Useful for modifying a variable in line.
-public static T set<T>(this T f, out T x) {  x = f; return f; }
-
-// Example :
-float3 x = new float3(1,1,1);
-
-// here x is set before computing lengthsq()
-var x = x.dim(4.2f).shuffle().set(out x).lengthsq() + x; 
-
-// we would have to write two lines instead
-x = x.dim(4.2f).shuffle();
-x = x.lengthsq() + x;
-```
-
-# 🌱 Contribute !
-
-## 👉 Guidelines
- - All methods should exist in the `Unity.Mathematics.mathx` class (To prevent multiple using declarations)
- - All Methods should follow a lower case syntax (shader like syntax)
- - All methods names should be as short as possible while conserving their meaning or naming convension
- - Everything must be Open Source
- - Credits should (if the author can be found) figure above code snipets or in the file header (if reusing existing code)
- - file mames should follow this convention : mathx.<usage>.<differentiation>
-      Example : mathx.interpolation.common (common methods for interpolation) or mathx.logix.floatx (float type related logic functions)
-    - File names for base types such as `bounds` or `byte2` should only have their type as a title : bounds.cs // byte2.cs
- - Every method should be static (if applicable)
- - Dependencies should not exist if applicable
-    - Code must be rewritten and optimized for Unity.Mathematics, compatibility checked
-    - Unification is key : if some functions are already available in math or Unity.Mathematics.math (sometimes under another name), use them !
- - Documentation should be inherited from Unity.Mathematics.math methods for direct extension method translations
-    
 
 # ⬇️ Install
 #### Method 1 : <br>
 1. Copy Git Package URL : `https://github.com/LTMX/Unity.mathx.git`
 2. In Unity : `Window > Package Manager > Add Package From Git URL`
 
-#### Method 2 : (Not Up To Date) <br>
-1. Download the package in *releases*,
-2. Unzip the file
-3. Unity : `Window > Package Manager > Add Package From Disk`
-4. Select the `.json` file inside the unzipped package
+#### Method 2 : <br>
+1. Download the package in *releases*
+2. Unity : `Window > Package Manager > Add Package From Disk`
+3. Select the `.json` file inside the unzipped package
 
+<br>
+
+## #️⃣ Using Declaration
+```cs
+using static Unity.Mathematics.mathx;
+```
+<br>
+
+## ♾ Linq-Style Syntax
+```cs
+return anyVector.length().clamp(0, 10).cos().sq().cube().sum().cmul().rotate(anyQuaternion).clint().div(3.2f).rcp();
+```
+
+<br>
+
+## 📈 A Few Neat Features
+
+```c#
+// Example
+float3 x = new float3(1,1,1);
+
+// here x is set before computing lengthsq()
+var x = x.dim(4.2f).shuffle().set(out x).lengthsq() + x; 
+
+// we would have to write two lines instead
+x = x.div(4.2f).shuffle();
+x = x.lengthsq() + x;
+```
+
+<br>
 
 # 🏛 Roadmap
 - [x] Fast Functions
-- [x] Constants (PI, HPI, EULER, TAU, 
-- [x] `Mathf` functions missing from `Unity.Mathematics`
+- [x] Constants (PI, HPI, EULER, TAU, and `many scientific constants`
+- [x] `Mathf` function implementations missing from `Unity.Mathematics`
 - [x] Random Extensions (`Random.range` and others)
 - [x] Component based functions (`cmax`, `cmin`, `cmul`, `cmaxAxis`, `cminAxis`, `sum`)
 - [x] Signed Distance Functions
@@ -105,6 +85,7 @@ x = x.lengthsq() + x;
 - [ ] Generic Jobs `WIP 50%`
 - [ ] Mesh Processing `WIP 0%`
 
+<br>
 
 ## 🎇 Structs
   ```c#
@@ -116,38 +97,9 @@ x = x.lengthsq() + x;
   struct byte2;
   struct byte1;
   ```
-  
-## 🎇 New Methods in 1.3.0
-```python
-anyType.dim(otherType) => anyType* otherType // to add functionality missing from internal operator overloads // named dim to not confuse with mul()
-anyType.greater(otherType) => anyType > otherType
-anyType.less(otherType) =>  anyType < otherType
-anyType.greatereq(otherType) =>  anyType >= otherType
-anyType.lesseq(otherType) =>  anyType <= otherType
-anyType.eq(otherType) =>  anyType == otherType
-anyType.neq(otherType) =>  anyType != otherType
-randseed(seed)  => random float generated from a seed  // internally : Random.Init(seed).Nextfloat()
-randseed2(seed) => random float2 generated from a seed // internally : Random.Init(seed).Nextfloat()
-randseed3(seed) => random float3 generated from a seed // internally : Random.Init(seed).Nextfloat()
-randseed4(seed) => random float4 generated from a seed // internally : Random.Init(seed).Nextfloat()
-anyType.append()
-anyType.m2n1() => anyType* 2 - 1 // remaps anything from [0, 1] to [-1, 1]
-quaternion generation functions
-matrix generation functions
-transformation functions
-dot() // for int types
-value.lerp(MatrixA, MatrixB) // functionality to interpolate any matrix
-anyType.dim(otherType) => anyType * otherType // to add functionality for missing from operator overloads // 'dim' to not confuse with mul()
-anyType.div(otherType) => anyType / otherType
-anyType.add(otherType) => anyType + otherType
-anyType.sub(otherType) => anyType - otherType
-anyType.shuffle() // only for float2, float3 and float4
-anyType.hash() // math.hash(anyType)
-type generation methods float4(), float2(), float4x4(), etc
-asuint() // new overloads
-asbool() // new overloads
-```
-  
+
+<br>
+
 ##  Method List 1.3.6
 ```python
 // most methods have at least a dozen overloads
@@ -211,6 +163,58 @@ forward() matrix() float3x4() rotation() translation() transform() up() right()
 scale() projectplane() apply() GetFunctionPointerDelegate()
 ```
 
+
+# 🌱 Contribute !
+
+## 👉 Guidelines
+ - All methods should exist in the `Unity.Mathematics.mathx` class (To prevent multiple using declarations)
+ - All Methods should follow a lower case syntax (shader like syntax)
+ - All methods names should be as short as possible while conserving their meaning or naming convension
+ - Everything must be Open Source
+ - Credits should (if the author can be found) figure above code snipets or in the file header (if reusing existing code)
+ - file mames should follow this convention : mathx.<usage>.<differentiation>
+      Example : mathx.interpolation.common (common methods for interpolation) or mathx.logix.floatx (float type related logic functions)
+    - File names for base types such as `bounds` or `byte2` should only have their type as a title : bounds.cs // byte2.cs
+ - Every method should be static (if applicable)
+ - Dependencies should not exist if applicable
+    - Code must be rewritten and optimized for Unity.Mathematics, compatibility checked
+    - Unification is key : if some functions are already available in math or Unity.Mathematics.math (sometimes under another name), use them !
+ - Documentation should be inherited from Unity.Mathematics.math methods for direct extension method translations
+
+<!--
+
+## 🎇 New Methods in 1.3.0
+```python
+anyType.dim(otherType) => anyType* otherType // to add functionality missing from internal operator overloads // named dim to not confuse with mul()
+anyType.greater(otherType) => anyType > otherType
+anyType.less(otherType) =>  anyType < otherType
+anyType.greatereq(otherType) =>  anyType >= otherType
+anyType.lesseq(otherType) =>  anyType <= otherType
+anyType.eq(otherType) =>  anyType == otherType
+anyType.neq(otherType) =>  anyType != otherType
+randseed(seed)  => random float generated from a seed  // internally : Random.Init(seed).Nextfloat()
+randseed2(seed) => random float2 generated from a seed // internally : Random.Init(seed).Nextfloat()
+randseed3(seed) => random float3 generated from a seed // internally : Random.Init(seed).Nextfloat()
+randseed4(seed) => random float4 generated from a seed // internally : Random.Init(seed).Nextfloat()
+anyType.append()
+anyType.m2n1() => anyType* 2 - 1 // remaps anything from [0, 1] to [-1, 1]
+quaternion generation functions
+matrix generation functions
+transformation functions
+dot() // for int types
+value.lerp(MatrixA, MatrixB) // functionality to interpolate any matrix
+anyType.dim(otherType) => anyType * otherType // to add functionality for missing from operator overloads // 'dim' to not confuse with mul()
+anyType.div(otherType) => anyType / otherType
+anyType.add(otherType) => anyType + otherType
+anyType.sub(otherType) => anyType - otherType
+anyType.shuffle() // only for float2, float3 and float4
+anyType.hash() // math.hash(anyType)
+type generation methods float4(), float2(), float4x4(), etc
+asuint() // new overloads
+asbool() // new overloads
+```
+
+-->
 
 <br>
 
