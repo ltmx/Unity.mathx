@@ -70,7 +70,7 @@ namespace Unity.Mathematics
             if (p.x < p.y.max(p.z)) p = p.yzx;
             if (p.x < p.y.max(p.z)) p = p.yzx;
             var b =
-                p.dot(f3one.norm())
+                p.dot(onef3.norm())
                     .max(p.xz.dot(f2(PHI + 1, 1).norm()))
                     .max(p.yx.dot(f2(1, PHI).norm()))
                     .max(p.xz.dot(f2(1, PHI).norm()));
