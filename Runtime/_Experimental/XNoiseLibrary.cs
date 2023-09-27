@@ -335,7 +335,7 @@ namespace Unity.Mathematics
 
           // GLSL: lessThan(x, y) = x < y
           // HLSL: 1 -mathx.step(y, x) = x < y
-          p.xyz -= p.xyz.sign().dim(p.w < 0);
+          p.xyz -= p.xyz.sign().mult(p.w < 0);
 
           return p; }
 
@@ -776,7 +776,7 @@ namespace Unity.Mathematics
           // Also a cuboctahedral vertex
           // And corresponds to the face of its dual, the rhombic dodecahedron
           var cuboct = cube;
-          cuboct.dim(new int3(0, 1, 2) != (int)(hash / 16));
+          cuboct.mult(new int3(0, 1, 2) != (int)(hash / 16));
 
           // In a funky way, pick one of the four points on the rhombic face
           var type = ((hash / 8).floor() * 0.5f).frac() * 2;
