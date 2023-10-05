@@ -1,17 +1,18 @@
 ![Banner](https://raw.githubusercontent.com/LTMX/Unity.mathx/master/.branding/LTMX_Unity_Mathematics_Mathx_Github_Banner_Thin.png)
 
 <!-- ![GitHub repo size](https://img.shields.io/github/repo-size/LTMX/Unity.mathx) -->
-![GitHub package.json version](https://img.shields.io/github/package-json/v/LTMX/Unity.mathx?color=blueviolet)
-![GitHub top language](https://img.shields.io/github/languages/top/LTMX/Unity.mathx?color=success)
-![GitHub](https://img.shields.io/github/license/LTMX/Unity.mathx)
-[![openupm](https://img.shields.io/npm/v/com.ltmx.mathematics.mathx?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.ltmx.mathematics.mathx/)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/LTMX/Unity.mathx?color=blueviolet&style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/LTMX/Unity.mathx?style=for-the-badge)
+![GitHub top language](https://img.shields.io/github/languages/top/LTMX/Unity.mathx?color=success&style=for-the-badge)
+![GitHub](https://img.shields.io/github/license/LTMX/Unity.mathx?style=for-the-badge)
+
+[![openupm](https://img.shields.io/npm/v/com.ltmx.mathematics.mathx?label=openupm&style=for-the-badge&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.ltmx.mathematics.mathx)
+
 
 <br>
 
-# Extension Library for [` Unity.Mathematics `](https://github.com/Unity-Technologies/Unity.Mathematics) & many useful methods !
+# Extension Library for [Unity.Mathematics](https://github.com/Unity-Technologies/Unity.Mathematics) & quality of life improvements !
 <br>
-
-Package name : `com.ltmx.mathematics.mathx`
 
 <!--
 <a href="https://ko-fi.com/I2I0IMQA9">
@@ -19,6 +20,10 @@ Package name : `com.ltmx.mathematics.mathx`
 </a><br><br>
 -->
 
+### Package name
+> ```ruby
+> com.ltmx.mathematics.mathx
+> ```
 
 # ⬇️ Install
 #### Method 1 : <br>
@@ -28,11 +33,11 @@ Package name : `com.ltmx.mathematics.mathx`
 #### Method 2 : <br>
 1. Download the package in *releases*
 2. Unity : `Window > Package Manager > Add Package From Disk`
-3. Select the `.json` file inside the unzipped package
+3. Select the `package.json` file inside the unzipped package
 
 <br>
 
-## #️⃣ Using Declaration
+## #️⃣ Usage
 ```cs
 using static Unity.Mathematics.mathx;
 ```
@@ -52,11 +57,14 @@ return anyVector.length().clamp(0, 10).cos().sq().cube().sum().cmul().rotate(any
 float3 x = new float3(1,1,1);
 
 // here x is set before computing lengthsq()
-var x = x.dim(4.2f).shuffle().set(out x).lengthsq() + x; 
+var x = x.mult(4.2f).shuffle().set(out x).lengthsq() + x;
 
 // we would have to write two lines instead
 x = x.div(4.2f).shuffle();
 x = x.lengthsq() + x;
+
+bool4.any(); // returns true if any component is true // or-gate
+bool4.all(); // returns trye if all components are true // and-gate
 ```
 
 <br>
