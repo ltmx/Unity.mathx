@@ -171,7 +171,7 @@ namespace Unity.Mathematics
 
         #region Saturate
 
-        /// Returns the result of clamping f to [0, 1]
+        /// <inheritdoc cref="sat(Unity.Mathematics.float4)" />
         [MethodImpl(INLINE)] public static float4 sat(this float4 f) => math.saturate(f);
         /// <inheritdoc cref="sat(Unity.Mathematics.float3)" />
         [MethodImpl(INLINE)] public static float3 sat(this float3 f) => math.saturate(f);

@@ -237,10 +237,10 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float2x2 transpose(this float2x2 m1) => math.transpose(m1);
         
         /// Creates a 2x2 matrix with the scale vector as the diagonal elements. The remaining spots zeros
-        [MethodImpl(IL)] public static float2x2 diag(float2 scale) => new(scale.x, 0, 0, scale.y);
-        /// Creates a 2x2 matrix with the scale vector as the diagonal elements. The remaining spots zeros
-        [MethodImpl(IL)] public static float3x3 diag(float3 scale) => new(scale.x, 0, 0, 0, scale.y, 0, 0, 0, scale.z);
-        /// Creates a 2x2 matrix with the scale vector as the diagonal elements. The remaining spots zeros
-        [MethodImpl(IL)] public static float4x4 diag(float4 scale) => new(scale.x, 0, 0, 0, 0, scale.y, 0, 0,  0, 0, scale.z, 0, 0, 0, 0, scale.w);
+        [MethodImpl(IL)] public static float2x2 diag(this float2 scale) => new(scale.x, 0, 0, scale.y);
+        /// Creates a 3x3 matrix with the scale vector as the diagonal elements. The remaining spots zeros
+        [MethodImpl(IL)] public static float3x3 diag(this float3 scale) => new(scale.x, 0, 0, 0, scale.y, 0, 0, 0, scale.z);
+        /// Creates a 4x4 matrix with the scale vector as the diagonal elements. The remaining spots zeros
+        [MethodImpl(IL)] public static float4x4 diag(this float4 scale) => new(scale.x, 0, 0, 0, 0, scale.y, 0, 0,  0, 0, scale.z, 0, 0, 0, 0, scale.w);
     }
 }
