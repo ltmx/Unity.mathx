@@ -6,18 +6,18 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using UnityEditor;
-using UnityEngine;
 
 namespace Unity.Mathematics
 {
     /// A 8-bit byte for Unity.Mathematics interoperability
     [Serializable]
-    public struct byte1 : IFormattable, IEquatable<byte1>
+    public struct byte1 :
+        IEquatable<byte1>, 
+        IEquatable<byte>, 
+        IFormattable
     {
         /// The raw 8 bit value of the byte.
-        public byte value;
+        internal byte value;
 
         /// byte zero value.
         public static readonly byte1 zero = 0;
@@ -41,45 +41,21 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)] public byte1(float v) => value = (byte)v;
         [MethodImpl(INLINE)] public byte1(double v) => value = (byte)v;
         
-        // Explicit Casts
+        // Implicit Casts
+        [MethodImpl(INLINE)] public static implicit operator byte1(byte v) => new(v);
         [MethodImpl(INLINE)] public static implicit operator byte1(float v) => new(v);
         [MethodImpl(INLINE)] public static implicit operator byte1(double v) => new(v);
         [MethodImpl(INLINE)] public static implicit operator byte1(int d) => (byte)d;
         [MethodImpl(INLINE)] public static implicit operator byte1(half d) => (byte)d;
         [MethodImpl(INLINE)] public static implicit operator byte(byte1 v) => v.value;
-        // Implicit casts
-        [MethodImpl(INLINE)] public static implicit operator byte1(byte v) => new(v);
-        [MethodImpl(INLINE)] public static implicit operator float(byte1 d) => d.value;
-        [MethodImpl(INLINE)] public static implicit operator double(byte1 d) => d.value;
-        [MethodImpl(INLINE)] public static implicit operator int(byte1 d) => d.value;
-        [MethodImpl(INLINE)] public static implicit operator uint(byte1 d) => d.value;
-        [MethodImpl(INLINE)] public static implicit operator short(byte1 d) => d.value;
-        [MethodImpl(INLINE)] public static implicit operator ushort(byte1 d) => d.value;
-        [MethodImpl(INLINE)] public static implicit operator half(byte1 d) => (half)d.value;
-
-        
-        public static byte asbyte(float x)
-        {
-            uint u = math.asuint(x);
-            uint exponent = (u >> 23) & 0xFFu;
-            uint mantissa = u & 0x7FFFFFu;
-
-            if (exponent == 0xFFu) {
-                // NaN or Infinity, return 0xFF
-                return 0xFF;
-            }
-            else if (exponent == 0u) {
-                // Denormalized number, multiply the mantissa by 2^24 and shift right
-                mantissa |= 0x800000u;
-                uint result = (mantissa >> (1 - 23 - 127)) & 0xFFu;
-                return (byte)result;
-            }
-            else {
-                // Normalized number, subtract bias and shift right
-                uint result = ((mantissa | 0x800000u) + ((exponent - 127) << 23)) >> (23 - 8);
-                return (byte)result;
-            }
-        }
+        // Explicit casts
+        [MethodImpl(INLINE)] public static explicit operator float(byte1 d) => d;
+        [MethodImpl(INLINE)] public static explicit operator double(byte1 d) => d;
+        [MethodImpl(INLINE)] public static explicit operator int(byte1 d) => d;
+        [MethodImpl(INLINE)] public static explicit operator uint(byte1 d) => d;
+        [MethodImpl(INLINE)] public static explicit operator short(byte1 d) => d;
+        [MethodImpl(INLINE)] public static explicit operator ushort(byte1 d) => d;
+        [MethodImpl(INLINE)] public static explicit operator half(byte1 d) => (half)d.value;
 
         // /// <summary>Returns the bit pattern of a float as an int.</summary>
         // /// <param name="x">The float bits to copy.</param>
@@ -117,7 +93,7 @@ namespace Unity.Mathematics
         /// Returns the result of a modulation of two byte1 vectors into a byte1
         [MethodImpl(INLINE)] public static byte1 operator %(byte1 lhs, byte1 rhs) => lhs.value % rhs.value;
         /// Returns the result of a division of two byte1 vectors into a float
-        [MethodImpl(INLINE)] public static float operator /(byte1 lhs, byte1 rhs) => lhs.value / rhs.value;
+        [MethodImpl(INLINE)] public static float operator /(byte1 lhs, byte1 rhs) => lhs.value / (float)rhs.value;
         /// Returns the result of a multiplication of two byte1 vectors into a byte1
         [MethodImpl(INLINE)] public static int operator *(byte1 lhs, byte1 rhs) => lhs.value * rhs.value;
         /// Returns the result of a bitwise XOR of two byte1 vectors into a byte1
@@ -140,7 +116,9 @@ namespace Unity.Mathematics
         /// <returns>True if the byte value is bitwise equivalent to the input, false otherwise.</returns>
         [MethodImpl(INLINE)]
         public bool Equals(byte1 rhs) => value == rhs.value;
-        
+
+        public bool Equals(byte rhs) => value == rhs;
+
         /// Returns true if the byte is equal to a given half, false otherwise.
         /// <param name="o">Right hand side object to use in comparison.</param>
         /// <returns>True if the object is of type byte and is bitwise equivalent, false otherwise.</returns>
@@ -153,7 +131,8 @@ namespace Unity.Mathematics
         /// Returns a string representation of the byte.
         /// <returns>The string representation of the byte.</returns>
         [MethodImpl(INLINE)] public override string ToString() => value.ToString();
-        
+
+
         /// Returns a string representation of the byte using a specified format and culture-specific format information.
         /// <param name="format">The format string to use during string formatting.</param>
         /// <param name="formatProvider">The format provider to use during string formatting.</param>

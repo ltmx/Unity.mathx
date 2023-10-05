@@ -22,58 +22,58 @@ namespace Unity.Mathematics
     public struct byte4 : IEquatable<byte4>, IFormattable
     {
         /// x component of the vector.
-        public byte1 x;
+        public byte x;
 
         /// y component of the vector.
-        public byte1 y;
+        public byte y;
 
         /// z component of the vector.
-        public byte1 z;
+        public byte z;
 
         /// w component of the vector.
-        public byte1 w;
+        public byte w;
 
         /// byte4 zero value.
         public static readonly byte4 zero = 0;
 
-        /// Constructs a byte4 vector from four byte1 values.
-        [MethodImpl(INLINE)] public byte4(byte1 x, byte1 y, byte1 z, byte1 w) {
+        /// Constructs a byte4 vector from four byte values.
+        [MethodImpl(INLINE)] public byte4(byte x, byte y, byte z, byte w) {
             this.x = x;
             this.y = y;
             this.z = z;
             this.w = w;
         }
-
-        /// Constructs a byte4 vector from four byte1 values.
-        [MethodImpl(INLINE)] public byte4(int x, int y, int z, int w) {
-            this.x = x;
-            this.y = y;
-            this.z = z;
-            this.w = w;
+        /// Constructs a byte4 vector from four byte values.
+        [MethodImpl(INLINE)] public byte4(ValueType x, ValueType y, ValueType z, ValueType w) {
+            this.x = (byte)x;
+            this.y = (byte)y;
+            this.z = (byte)z;
+            this.w = (byte)w;
         }
-        /// Constructs a byte4 vector from two byte1 values and a byte2 vector.
-        [MethodImpl(INLINE)] public byte4(byte1 x, byte1 y, byte2 zw) {
+        
+        /// Constructs a byte4 vector from two byte values and a byte2 vector.
+        [MethodImpl(INLINE)] public byte4(byte x, byte y, byte2 zw) {
             this.x = x;
             this.y = y;
             z = zw.x;
             w = zw.y;
         }
-        /// Constructs a byte4 vector from a byte1 value, a byte2 vector and a byte1 value.
-        [MethodImpl(INLINE)] public byte4(byte1 x, byte2 yz, byte1 w) {
+        /// Constructs a byte4 vector from a byte value, a byte2 vector and a byte value.
+        [MethodImpl(INLINE)] public byte4(byte x, byte2 yz, byte w) {
             this.x = x;
             y = yz.x;
             z = yz.y;
             this.w = w;
         }
-        /// Constructs a byte4 vector from a byte1 value and a byte3 vector.
-        [MethodImpl(INLINE)] public byte4(byte1 x, byte3 yzw) {
+        /// Constructs a byte4 vector from a byte value and a byte3 vector.
+        [MethodImpl(INLINE)] public byte4(byte x, byte3 yzw) {
             this.x = x;
             y = yzw.x;
             z = yzw.y;
             w = yzw.z;
         }
-        /// Constructs a byte4 vector from a byte2 vector and two byte1 values.
-        [MethodImpl(INLINE)] public byte4(byte2 xy, byte1 z, byte1 w) {
+        /// Constructs a byte4 vector from a byte2 vector and two byte values.
+        [MethodImpl(INLINE)] public byte4(byte2 xy, byte z, byte w) {
             x = xy.x;
             y = xy.y;
             this.z = z;
@@ -86,86 +86,50 @@ namespace Unity.Mathematics
             z = zw.x;
             w = zw.y;
         }
-        /// Constructs a byte4 vector from a byte3 vector and a byte1 value.
-        [MethodImpl(INLINE)] public byte4(byte3 xyz, byte1 w) {
+        /// Constructs a byte4 vector from a byte3 vector and a byte value.
+        [MethodImpl(INLINE)] public byte4(byte3 xyz, byte w) {
             x = xyz.x;
             y = xyz.y;
             z = xyz.z;
             this.w = w;
         }
-        /// Constructs a byte4 vector from a byte4 vector.
-        [MethodImpl(INLINE)] public byte4(byte4 xyzw) {
-            x = xyzw.x;
-            y = xyzw.y;
-            z = xyzw.z;
-            w = xyzw.w;
-        }
-        /// Constructs a byte4 vector from a single byte1 value by assigning it to every component.
-        [MethodImpl(INLINE)] public byte4(byte1 v) {
-            x = v;
-            y = v;
-            z = v;
-            w = v;
-        }
-        ///     Constructs a byte4 vector from a single float value by converting it to byte1 and assigning it to every
+        
+        /// Constructs a byte4 vector from a single byte value by assigning it to every component.
+        [MethodImpl(INLINE)] public byte4(byte v) => x = y = z = w = v;
+
+        ///     Constructs a byte4 vector from a single float value by converting it to byte and assigning it to every
         ///     component.
-        [MethodImpl(INLINE)] public byte4(float v) {
-            x = v;
-            y = v;
-            z = v;
-            w = v;
-        }
-        ///     Constructs a byte4 vector from a single float value by converting it to byte1 and assigning it to every
-        ///     component.
-        [MethodImpl(INLINE)] public byte4(int v) {
-            x = v;
-            y = v;
-            z = v;
-            w = v;
-        }
-        ///     Constructs a byte4 vector from a single float value by converting it to byte1 and assigning it to every
-        ///     component.
-        [MethodImpl(INLINE)] public byte4(uint v) {
-            x = v;
-            y = v;
-            z = v;
-            w = v;
-        }
+        [MethodImpl(INLINE)] public byte4(ValueType v) => x = y = z = w = (byte)v;
+
+
         /// Constructs a byte4 vector from a f4 vector by componentwise conversion.
         [MethodImpl(INLINE)] public byte4(float4 v) {
-            x = v.x;
-            y = v.y;
-            z = v.z;
-            w = v.w;
+            x = (byte)v.x;
+            y = (byte)v.y;
+            z = (byte)v.z;
+            w = (byte)v.w;
         }
-        ///     Constructs a byte4 vector from a single double value by converting it to byte1 and assigning it to every
-        ///     component.
-        [MethodImpl(INLINE)] public byte4(double v) {
-            x = v;
-            y = v;
-            z = v;
-            w = v;
-        }
+
         /// Constructs a byte4 vector from a double4 vector by componentwise conversion.
         [MethodImpl(INLINE)] public byte4(double4 v) {
-            x = v.x;
-            y = v.y;
-            z = v.z;
-            w = v.w;
+            x = (byte)v.x;
+            y = (byte)v.y;
+            z = (byte)v.z;
+            w = (byte)v.w;
         }
         
-        /// Implicitly converts a single byte1 value to a byte4 vector by assigning it to every component.
-        [MethodImpl(INLINE)] public static implicit operator byte4(byte1 v) => new(v);
+        /// Implicitly converts a single byte value to a byte4 vector by assigning it to every component.
+        [MethodImpl(INLINE)] public static implicit operator byte4(byte v) => new(v);
         /// Implicitly converts a single int value to a byte4 vector by assigning it to every component.
-        [MethodImpl(INLINE)] public static implicit operator byte4(int v) => new(v);
-        /// Implicitly converts a single byte1 value to a byte4 vector by assigning it to every component.
-        [MethodImpl(INLINE)] public static implicit operator byte4(uint v) => new(v);
+        [MethodImpl(INLINE)] public static implicit operator byte4(int v) => new((byte)v);
+        /// Implicitly converts a single byte value to a byte4 vector by assigning it to every component.
+        [MethodImpl(INLINE)] public static implicit operator byte4(uint v) => new((byte)v);
+        /// Explicitly converts a single float value to a byte4 vector by converting it to byte and assigning it to every component.
+        [MethodImpl(INLINE)] public static explicit operator byte4(float v) => new((byte)v);
         
-        /// Explicitly converts a single float value to a byte4 vector by converting it to byte1 and assigning it to every component.
-        [MethodImpl(INLINE)] public static explicit operator byte4(float v) => new(v);
         /// Explicitly converts a f4 vector to a byte4 vector by componentwise conversion.
         [MethodImpl(INLINE)] public static explicit operator byte4(float4 v) => new(v);
-        /// Explicitly converts a single double value to a byte4 vector by converting it to byte1 and assigning it to every component.
+        /// Explicitly converts a single double value to a byte4 vector by converting it to byte and assigning it to every component.
         [MethodImpl(INLINE)] public static explicit operator byte4(double v) => new(v);
         /// Explicitly converts a double4 vector to a byte4 vector by componentwise conversion.
         [MethodImpl(INLINE)] public static explicit operator byte4(double4 v) => new(v);
@@ -175,53 +139,53 @@ namespace Unity.Mathematics
 
         /// Returns the result of a componentwise equality operation on two byte4 vectors.
         [MethodImpl(INLINE)] public static bool4 operator ==(byte4 lhs, byte4 rhs) => new(lhs.x == rhs.x, lhs.y == rhs.y, lhs.z == rhs.z, lhs.w == rhs.w);
-        /// Returns the result of a componentwise equality operation on a byte4 vector and a byte1 value.
-        [MethodImpl(INLINE)] public static bool4 operator ==(byte4 lhs, byte1 rhs) => new(lhs.x == rhs, lhs.y == rhs, lhs.z == rhs, lhs.w == rhs);
-        /// Returns the result of a componentwise equality operation on a byte1 value and a byte4 vector.
-        [MethodImpl(INLINE)] public static bool4 operator ==(byte1 lhs, byte4 rhs) => new(lhs == rhs.x, lhs == rhs.y, lhs == rhs.z, lhs == rhs.w);
+        /// Returns the result of a componentwise equality operation on a byte4 vector and a byte value.
+        [MethodImpl(INLINE)] public static bool4 operator ==(byte4 lhs, byte rhs) => new(lhs.x == rhs, lhs.y == rhs, lhs.z == rhs, lhs.w == rhs);
+        /// Returns the result of a componentwise equality operation on a byte value and a byte4 vector.
+        [MethodImpl(INLINE)] public static bool4 operator ==(byte lhs, byte4 rhs) => new(lhs == rhs.x, lhs == rhs.y, lhs == rhs.z, lhs == rhs.w);
         
         /// Returns the result of a componentwise not equal operation on two byte4 vectors.
         [MethodImpl(INLINE)] public static bool4 operator !=(byte4 lhs, byte4 rhs) => new(lhs.x != rhs.x, lhs.y != rhs.y, lhs.z != rhs.z, lhs.w != rhs.w);
-        /// Returns the result of a componentwise not equal operation on a byte4 vector and a byte1 value.
-        [MethodImpl(INLINE)] public static bool4 operator !=(byte4 lhs, byte1 rhs) => new(lhs.x != rhs, lhs.y != rhs, lhs.z != rhs, lhs.w != rhs);
-        /// Returns the result of a componentwise not equal operation on a byte1 value and a byte4 vector.
-        [MethodImpl(INLINE)] public static bool4 operator !=(byte1 lhs, byte4 rhs) => new(lhs != rhs.x, lhs != rhs.y, lhs != rhs.z, lhs != rhs.w);
+        /// Returns the result of a componentwise not equal operation on a byte4 vector and a byte value.
+        [MethodImpl(INLINE)] public static bool4 operator !=(byte4 lhs, byte rhs) => new(lhs.x != rhs, lhs.y != rhs, lhs.z != rhs, lhs.w != rhs);
+        /// Returns the result of a componentwise not equal operation on a byte value and a byte4 vector.
+        [MethodImpl(INLINE)] public static bool4 operator !=(byte lhs, byte4 rhs) => new(lhs != rhs.x, lhs != rhs.y, lhs != rhs.z, lhs != rhs.w);
         
 
         /// Returns the result of a componentwise multiplication into an int4 vector.
         [MethodImpl(INLINE)] public static int4 operator *(byte4 lhs, byte4 rhs) => new(lhs.x * rhs.x, lhs.y * rhs.y, lhs.z * rhs.z, lhs.w * rhs.w);
         /// <inheritdoc cref="operator *(byte4, byte4)"/>
-        [MethodImpl(INLINE)] public static int4 operator *(byte4 lhs, byte1 rhs) => new(lhs.x * rhs, lhs.y * rhs, lhs.z * rhs, lhs.w * rhs);
+        [MethodImpl(INLINE)] public static int4 operator *(byte4 lhs, byte rhs) => new(lhs.x * rhs, lhs.y * rhs, lhs.z * rhs, lhs.w * rhs);
         /// <inheritdoc cref="operator *(byte4, byte4)"/>
-        [MethodImpl(INLINE)] public static int4 operator *(byte1 lhs, byte4 rhs) => new(lhs * rhs.x, lhs * rhs.y, lhs * rhs.z, lhs * rhs.w);
+        [MethodImpl(INLINE)] public static int4 operator *(byte lhs, byte4 rhs) => new(lhs * rhs.x, lhs * rhs.y, lhs * rhs.z, lhs * rhs.w);
         
         /// Returns the result of a componentwise addition into an int4 vector.
         [MethodImpl(INLINE)] public static int4 operator +(byte4 lhs, byte4 rhs) => new(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z, lhs.w + rhs.w);
         /// <inheritdoc cref="operator +(byte4, byte4)"/>
-        [MethodImpl(INLINE)] public static int4 operator +(byte4 lhs, byte1 rhs) => new(lhs.x + rhs, lhs.y + rhs, lhs.z + rhs, lhs.w + rhs);
+        [MethodImpl(INLINE)] public static int4 operator +(byte4 lhs, byte rhs) => new(lhs.x + rhs, lhs.y + rhs, lhs.z + rhs, lhs.w + rhs);
         /// <inheritdoc cref="operator +(byte4, byte4)"/>
-        [MethodImpl(INLINE)] public static int4 operator +(byte1 lhs, byte4 rhs) => new(lhs + rhs.x, lhs + rhs.y, lhs + rhs.z, lhs + rhs.w);
+        [MethodImpl(INLINE)] public static int4 operator +(byte lhs, byte4 rhs) => new(lhs + rhs.x, lhs + rhs.y, lhs + rhs.z, lhs + rhs.w);
         
         /// Returns the result of a componentwise subtraction into an int4 vector.
         [MethodImpl(INLINE)] public static int4 operator -(byte4 lhs, byte4 rhs) => new(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z, lhs.w - rhs.w);
         /// <inheritdoc cref="operator -(byte4, byte4)"/>
-        [MethodImpl(INLINE)] public static int4 operator -(byte4 lhs, byte1 rhs) => new(lhs.x - rhs, lhs.y - rhs, lhs.z - rhs, lhs.w - rhs);
+        [MethodImpl(INLINE)] public static int4 operator -(byte4 lhs, byte rhs) => new(lhs.x - rhs, lhs.y - rhs, lhs.z - rhs, lhs.w - rhs);
         /// <inheritdoc cref="operator -(byte4, byte4)"/>
-        [MethodImpl(INLINE)] public static int4 operator -(byte1 lhs, byte4 rhs) => new(lhs - rhs.x, lhs - rhs.y, lhs - rhs.z, lhs - rhs.w);
+        [MethodImpl(INLINE)] public static int4 operator -(byte lhs, byte4 rhs) => new(lhs - rhs.x, lhs - rhs.y, lhs - rhs.z, lhs - rhs.w);
         
         /// Returns the result of a componentwise division into an f4 vector.
         [MethodImpl(INLINE)] public static float4 operator /(byte4 lhs, byte4 rhs) => new(lhs.x / rhs.x, lhs.y / rhs.y, lhs.z / rhs.z, lhs.w / rhs.w);
         /// <inheritdoc cref="operator /(byte4, byte4)"/>
-        [MethodImpl(INLINE)] public static float4 operator /(byte4 lhs, byte1 rhs) => new(lhs.x / rhs, lhs.y / rhs, lhs.z / rhs, lhs.w / rhs);
+        [MethodImpl(INLINE)] public static float4 operator /(byte4 lhs, byte rhs) => new(lhs.x / rhs, lhs.y / rhs, lhs.z / rhs, lhs.w / rhs);
         /// <inheritdoc cref="operator /(byte4, byte4)"/>
-        [MethodImpl(INLINE)] public static float4 operator /(byte1 lhs, byte4 rhs) => new(lhs / rhs.x, lhs / rhs.y, lhs / rhs.z, lhs / rhs.w);
+        [MethodImpl(INLINE)] public static float4 operator /(byte lhs, byte4 rhs) => new(lhs / rhs.x, lhs / rhs.y, lhs / rhs.z, lhs / rhs.w);
         
         /// Returns the result of a componentwise modulus operation into an byte4 vector.
         [MethodImpl(INLINE)] public static byte4 operator %(byte4 lhs, byte4 rhs) => new(lhs.x % rhs.x, lhs.y % rhs.y, lhs.z % rhs.z, lhs.w % rhs.w);
         /// <inheritdoc cref="operator %(byte4, byte4)"/>
-        [MethodImpl(INLINE)] public static byte4 operator %(byte4 lhs, byte1 rhs) => new(lhs.x % rhs, lhs.y % rhs, lhs.z % rhs, lhs.w % rhs);
+        [MethodImpl(INLINE)] public static byte4 operator %(byte4 lhs, byte rhs) => new(lhs.x % rhs, lhs.y % rhs, lhs.z % rhs, lhs.w % rhs);
         /// <inheritdoc cref="operator %(byte4, byte4)"/>
-        [MethodImpl(INLINE)] public static byte4 operator %(byte1 lhs, byte4 rhs) => new(lhs % rhs.x, lhs % rhs.y, lhs % rhs.z, lhs % rhs.w);
+        [MethodImpl(INLINE)] public static byte4 operator %(byte lhs, byte4 rhs) => new(lhs % rhs.x, lhs % rhs.y, lhs % rhs.z, lhs % rhs.w);
         
         /// Adds one to each component of the byte4 vector.
         [MethodImpl(INLINE)] public static byte4 operator ++(byte4 val) => new(++val.x, ++val.y, ++val.z, ++val.w);
@@ -230,31 +194,31 @@ namespace Unity.Mathematics
         
         /// Returns the result of a componentwise less than operation on two byte4 vectors.
         [MethodImpl(INLINE)] public static bool4 operator <(byte4 lhs, byte4 rhs) => new(lhs.x < rhs.x, lhs.y < rhs.y, lhs.z < rhs.z, lhs.w < rhs.w);
-        /// Returns the result of a componentwise less than operation on a byte4 vector and a byte1 value.
-        [MethodImpl(INLINE)] public static bool4 operator <(byte4 lhs, byte1 rhs) => new(lhs.x < rhs, lhs.y < rhs, lhs.z < rhs, lhs.w < rhs);
-        /// Returns the result of a componentwise less than operation on a byte1 value and a byte4 vector.
-        [MethodImpl(INLINE)] public static bool4 operator <(byte1 lhs, byte4 rhs) => new(lhs < rhs.x, lhs < rhs.y, lhs < rhs.z, lhs < rhs.w);
+        /// Returns the result of a componentwise less than operation on a byte4 vector and a byte value.
+        [MethodImpl(INLINE)] public static bool4 operator <(byte4 lhs, byte rhs) => new(lhs.x < rhs, lhs.y < rhs, lhs.z < rhs, lhs.w < rhs);
+        /// Returns the result of a componentwise less than operation on a byte value and a byte4 vector.
+        [MethodImpl(INLINE)] public static bool4 operator <(byte lhs, byte4 rhs) => new(lhs < rhs.x, lhs < rhs.y, lhs < rhs.z, lhs < rhs.w);
         
         /// Returns the result of a componentwise less or equal operation on two byte4 vectors.
         [MethodImpl(INLINE)] public static bool4 operator <=(byte4 lhs, byte4 rhs) => new(lhs.x <= rhs.x, lhs.y <= rhs.y, lhs.z <= rhs.z, lhs.w <= rhs.w);
-        /// Returns the result of a componentwise less or equal operation on a byte4 vector and a byte1 value.
-        [MethodImpl(INLINE)] public static bool4 operator <=(byte4 lhs, byte1 rhs) => new(lhs.x <= rhs, lhs.y <= rhs, lhs.z <= rhs, lhs.w <= rhs);
-        /// Returns the result of a componentwise less or equal operation on a byte1 value and a byte4 vector.
-        [MethodImpl(INLINE)] public static bool4 operator <=(byte1 lhs, byte4 rhs) => new(lhs <= rhs.x, lhs <= rhs.y, lhs <= rhs.z, lhs <= rhs.w);
+        /// Returns the result of a componentwise less or equal operation on a byte4 vector and a byte value.
+        [MethodImpl(INLINE)] public static bool4 operator <=(byte4 lhs, byte rhs) => new(lhs.x <= rhs, lhs.y <= rhs, lhs.z <= rhs, lhs.w <= rhs);
+        /// Returns the result of a componentwise less or equal operation on a byte value and a byte4 vector.
+        [MethodImpl(INLINE)] public static bool4 operator <=(byte lhs, byte4 rhs) => new(lhs <= rhs.x, lhs <= rhs.y, lhs <= rhs.z, lhs <= rhs.w);
       
         /// Returns the result of a componentwise greater than operation on two byte4 vectors.
         [MethodImpl(INLINE)] public static bool4 operator >(byte4 lhs, byte4 rhs) => new(lhs.x > rhs.x, lhs.y > rhs.y, lhs.z > rhs.z, lhs.w > rhs.w);
-        /// Returns the result of a componentwise greater than operation on a byte4 vector and a byte1 value.
-        [MethodImpl(INLINE)] public static bool4 operator >(byte4 lhs, byte1 rhs) => new(lhs.x > rhs, lhs.y > rhs, lhs.z > rhs, lhs.w > rhs);
-        /// Returns the result of a componentwise greater than operation on a byte1 value and a byte4 vector.
-        [MethodImpl(INLINE)] public static bool4 operator >(byte1 lhs, byte4 rhs) => new(lhs > rhs.x, lhs > rhs.y, lhs > rhs.z, lhs > rhs.w);
+        /// Returns the result of a componentwise greater than operation on a byte4 vector and a byte value.
+        [MethodImpl(INLINE)] public static bool4 operator >(byte4 lhs, byte rhs) => new(lhs.x > rhs, lhs.y > rhs, lhs.z > rhs, lhs.w > rhs);
+        /// Returns the result of a componentwise greater than operation on a byte value and a byte4 vector.
+        [MethodImpl(INLINE)] public static bool4 operator >(byte lhs, byte4 rhs) => new(lhs > rhs.x, lhs > rhs.y, lhs > rhs.z, lhs > rhs.w);
         
         /// Returns the result of a componentwise greater or equal operation on two byte4 vectors.
         [MethodImpl(INLINE)] public static bool4 operator >=(byte4 lhs, byte4 rhs) => new(lhs.x >= rhs.x, lhs.y >= rhs.y, lhs.z >= rhs.z, lhs.w >= rhs.w);
-        /// Returns the result of a componentwise greater or equal operation on a byte4 vector and a byte1 value.
-        [MethodImpl(INLINE)] public static bool4 operator >=(byte4 lhs, byte1 rhs) => new(lhs.x >= rhs, lhs.y >= rhs, lhs.z >= rhs, lhs.w >= rhs);
-        /// Returns the result of a componentwise greater or equal operation on a byte1 value and a byte4 vector.
-        [MethodImpl(INLINE)] public static bool4 operator >=(byte1 lhs, byte4 rhs) => new(lhs >= rhs.x, lhs >= rhs.y, lhs >= rhs.z, lhs >= rhs.w);
+        /// Returns the result of a componentwise greater or equal operation on a byte4 vector and a byte value.
+        [MethodImpl(INLINE)] public static bool4 operator >=(byte4 lhs, byte rhs) => new(lhs.x >= rhs, lhs.y >= rhs, lhs.z >= rhs, lhs.w >= rhs);
+        /// Returns the result of a componentwise greater or equal operation on a byte value and a byte4 vector.
+        [MethodImpl(INLINE)] public static bool4 operator >=(byte lhs, byte4 rhs) => new(lhs >= rhs.x, lhs >= rhs.y, lhs >= rhs.z, lhs >= rhs.w);
        
         /// Returns the result of a componentwise unary minus operation on a byte4 vector.
         [MethodImpl(INLINE)] public static byte4 operator -(byte4 v) => new(-v.x, -v.y, -v.z, -v.w);
@@ -1761,22 +1725,22 @@ namespace Unity.Mathematics
         /// Swizzles the vector.
         [EditorBrowsable(NEVER)] public byte2 ww { [MethodImpl(INLINE)] get => new(w, w); }
 
-        /// Returns the byte1 element at a specified index.
-        public unsafe byte1 this[int index]
+        /// Returns the byte element at a specified index.
+        public unsafe byte this[int index]
         {
             get {
                 #if ENABLE_UNITY_COLLECTIONS_CHECKS
                 if ((uint)index >= 4) throw new ArgumentException("index must be between[0...3]");
                 #endif
                 fixed (byte4* array = &this) {
-                    return ((byte1*)array)[index];
+                    return ((byte*)array)[index];
                 }
             }
             set {
                 #if ENABLE_UNITY_COLLECTIONS_CHECKS
                 if ((uint)index >= 4) throw new ArgumentException("index must be between[0...3]");
                 #endif
-                fixed (byte1* array = &x) {
+                fixed (byte* array = &x) {
                     array[index] = value;
                 }
             }
@@ -1795,19 +1759,19 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)] public override int GetHashCode() => (int)hash(this);
         /// Returns a string representation of the byte4.
         /// <returns>String representation of the value.</returns>
-        [MethodImpl(INLINE)] public override string ToString() => string.Format("byte4({0}, {1}, {2}, {3})", x, y, z, w);
+        [MethodImpl(INLINE)] public override string ToString() => $"byte4({x}, {y}, {z}, {w})";
         /// Returns a string representation of the byte4 using a specified format and culture-specific format information.
         /// <param name="format">Format string to use during string formatting.</param>
         /// <param name="formatProvider">Format provider to use during string formatting.</param>
         /// <returns>String representation of the value.</returns>
-        [MethodImpl(INLINE)] public string ToString(string format, IFormatProvider formatProvider) => string.Format("byte4({0}, {1}, {2}, {3})", x.ToString(format, formatProvider), y.ToString(format, formatProvider), z.ToString(format, formatProvider), w.ToString(format, formatProvider));
+        [MethodImpl(INLINE)] public string ToString(string format, IFormatProvider formatProvider) => $"byte4({x.ToString(format, formatProvider)}, {y.ToString(format, formatProvider)}, {z.ToString(format, formatProvider)}, {w.ToString(format, formatProvider)})";
 
         internal sealed class DebuggerProxy
         {
-            public byte1 x;
-            public byte1 y;
-            public byte1 z;
-            public byte1 w;
+            public byte x;
+            public byte y;
+            public byte z;
+            public byte w;
             public DebuggerProxy(byte4 v) {
                 x = v.x;
                 y = v.y;
@@ -1819,34 +1783,37 @@ namespace Unity.Mathematics
 
     public static partial class mathx
     {
-        /// Returns a byte4 vector constructed from four byte1 values.
+        /// Returns a byte4 vector constructed from four byte values.
         /// <returns>byte4 constructed from arguments.</returns>
-        [MethodImpl(INLINE)] public static byte4 byte4(byte1 x, byte1 y, byte1 z, byte1 w) => new(x, y, z, w);
-        /// Returns a byte4 vector constructed from two byte1 values and a byte2 vector.
-        [MethodImpl(INLINE)] public static byte4 byte4(byte1 x, byte1 y, byte2 zw) => new(x, y, zw);
-        /// Returns a byte4 vector constructed from a byte1 value, a byte2 vector and a byte1 value.
-        [MethodImpl(INLINE)] public static byte4 byte4(byte1 x, byte2 yz, byte1 w) => new(x, yz, w);
-        /// Returns a byte4 vector constructed from a byte1 value and a byte3 vector.
-        [MethodImpl(INLINE)] public static byte4 byte4(byte1 x, byte3 yzw) => new(x, yzw);
-        /// Returns a byte4 vector constructed from a byte2 vector and two byte1 values.
-        [MethodImpl(INLINE)] public static byte4 byte4(byte2 xy, byte1 z, byte1 w) => new(xy, z, w);
+        [MethodImpl(INLINE)] public static byte4 byte4(byte x, byte y, byte z, byte w) => new(x, y, z, w);
+        [MethodImpl(INLINE)] public static byte4 byte4(ValueType x, ValueType y, ValueType z, ValueType w) => new(x, y, z, w);
+        /// Returns a byte4 vector constructed from two byte values and a byte2 vector.
+        [MethodImpl(INLINE)] public static byte4 byte4(byte x, byte y, byte2 zw) => new(x, y, zw);
+        /// Returns a byte4 vector constructed from a byte value, a byte2 vector and a byte value.
+        [MethodImpl(INLINE)] public static byte4 byte4(byte x, byte2 yz, byte w) => new(x, yz, w);
+        /// Returns a byte4 vector constructed from a byte value and a byte3 vector.
+        [MethodImpl(INLINE)] public static byte4 byte4(byte x, byte3 yzw) => new(x, yzw);
+        /// Returns a byte4 vector constructed from a byte2 vector and two byte values.
+        [MethodImpl(INLINE)] public static byte4 byte4(byte2 xy, byte z, byte w) => new(xy, z, w);
         /// Returns a byte4 vector constructed from two byte2 vectors.
         [MethodImpl(INLINE)] public static byte4 byte4(byte2 xy, byte2 zw) => new(xy, zw);
-        /// Returns a byte4 vector constructed from a byte3 vector and a byte1 value.
-        [MethodImpl(INLINE)] public static byte4 byte4(byte3 xyz, byte1 w) => new(xyz, w);
+        /// Returns a byte4 vector constructed from a byte3 vector and a byte value.
+        [MethodImpl(INLINE)] public static byte4 byte4(byte3 xyz, byte w) => new(xyz, w);
         /// Returns a byte4 vector constructed from a byte4 vector.
         [MethodImpl(INLINE)] public static byte4 byte4(byte4 xyzw) => new(xyzw);
-        /// Returns a byte4 vector constructed from a single byte1 value by assigning it to every component.
-        [MethodImpl(INLINE)] public static byte4 byte4(byte1 v) => new(v);
-        /// Returns a byte4 vector constructed from a single float value by converting it to byte1 and assigning it to every component.
-        [MethodImpl(INLINE)] public static byte4 byte4(float v) => new(v);
+        
+        
+        /// Returns a byte4 vector constructed from a single byte value by assigning it to every component.
+        [MethodImpl(INLINE)] public static byte4 byte4(byte v) => new(v);
+        
+        /// Returns a byte4 vector constructed from a single float value by converting it to byte and assigning it to every component.
+        [MethodImpl(INLINE)] public static byte4 byte4(ValueType v) => new((byte)v);
+        
         /// Return a byte4 vector constructed from a f4 vector by componentwise conversion.
         /// <param name="v">f4 to convert to byte4</param>
         /// <returns>Converted value.</returns>
         [MethodImpl(INLINE)] public static byte4 byte4(float4 v) => new(v);
-        /// Returns a byte4 vector constructed from a single double value by converting it to byte1 and assigning it to
-        /// every component.
-        [MethodImpl(INLINE)] public static byte4 byte4(double v) => new(v);
+        
         /// Return a byte4 vector constructed from a double4 vector by componentwise conversion.
         [MethodImpl(INLINE)] public static byte4 byte4(double4 v) => new(v);
         /// Returns a uint hash code of a byte4 vector.

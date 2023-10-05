@@ -22,59 +22,56 @@ namespace Unity.Mathematics
     public struct byte3 : IEquatable<byte3>, IFormattable
     {
         /// x component of the vector.
-        public byte1 x;
+        public byte x;
 
         /// y component of the vector.
-        public byte1 y;
+        public byte y;
 
         /// z component of the vector.
-        public byte1 z;
+        public byte z;
 
         /// byte3 zero value.
         public static readonly byte3 zero = 0;
 
-        /// Constructs a byte3 vector from three byte1 values.
-        [MethodImpl(INLINE)] public byte3(byte1 x, byte1 y, byte1 z) { this.x = x; this.y = y; this.z = z; }
-        /// Constructs a byte3 vector from a byte1 value and a byte2 vector.
-        [MethodImpl(INLINE)] public byte3(byte1 x, byte2 yz) { this.x = x; y = yz.x; z = yz.y; }
-        /// Constructs a byte3 vector from a byte2 vector and a byte1 value.
-        [MethodImpl(INLINE)] public byte3(byte2 xy, byte1 z) { x = xy.x; y = xy.y; this.z = z; }
+        /// Constructs a byte3 vector from three byte values.
+        // [MethodImpl(INLINE)] public byte3(byte x, byte y, byte z) { this.x = x; this.y = y; this.z = z; }
+        [MethodImpl(INLINE)] public byte3(byte x, byte y, byte z) { this.x = x; this.y = y; this.z = z; }
+        [MethodImpl(INLINE)] public byte3(ValueType x, ValueType y, ValueType z) { this.x = (byte)x; this.y = (byte)y; this.z = (byte)z; }
+        
+        
+        /// Constructs a byte3 vector from a byte value and a byte2 vector.
+        [MethodImpl(INLINE)] public byte3(byte x, byte2 yz) { this.x = x; y = yz.x; z = yz.y; }
+        /// Constructs a byte3 vector from a byte2 vector and a byte value.
+        [MethodImpl(INLINE)] public byte3(byte2 xy, byte z) { x = xy.x; y = xy.y; this.z = z; }
 
-        /// Constructs a byte3 vector from a single byte1 value by assigning it to every component.
-        [MethodImpl(INLINE)] public byte3(byte1 v) { x = v; y = v; z = v; }
         /// Constructs a byte3 vector from a single byte value by assigning it to every component.
-        [MethodImpl(INLINE)] public byte3(byte v) { x = v; y = v; z = v; }
-        /// Constructs a byte3 vector from a single float value by converting it to byte1 and assigning it to every component.
-        [MethodImpl(INLINE)] public byte3(float v) { x = v; y = v; z = v; }
-        /// Constructs a byte3 vector from a single byte1 value by assigning it to every component.
-        [MethodImpl(INLINE)] public byte3(int v) { x = v; y = v; z = v; }
-        /// Constructs a byte3 vector from a single uint value by converting it to byte1 and assigning it to every component.
-        [MethodImpl(INLINE)] public byte3(uint v) { x = v; y = v; z = v; }
-        /// Constructs a byte3 vector from a single double value by converting it to byte1 and assigning it to every component.
-        [MethodImpl(INLINE)] public byte3(double v) { x = v; y = v; z = v; }
+        [MethodImpl(INLINE)] public byte3(byte v) => x = y = z = v;
+
+        /// Constructs a byte3 vector from a single double value by converting it to byte and assigning it to every component.
+        [MethodImpl(INLINE)]
+        public byte3(ValueType v) => x = y = z = (byte)v;
 
         /// Constructs a byte3 vector from a f3 vector by componentwise conversion.
-        [MethodImpl(INLINE)] public byte3(float3 v) { x = v.x; y = v.y; z = v.z; }
+        [MethodImpl(INLINE)] public byte3(float3 v) { x = (byte)v.x; y = (byte)v.y; z = (byte)v.z; }
         /// Constructs a byte3 vector from a uint3 vector by componentwise conversion.
-        [MethodImpl(INLINE)] public byte3(uint3 v) { x = v.x; y = v.y; z = v.z; }
+        [MethodImpl(INLINE)] public byte3(uint3 v) { x = (byte)v.x; y = (byte)v.y; z = (byte)v.z; }
         /// Constructs a byte3 vector from a int3 vector by componentwise conversion.
-        [MethodImpl(INLINE)] public byte3(int3 v) { x = v.x; y = v.y; z = v.z; }
+        [MethodImpl(INLINE)] public byte3(int3 v) { x = (byte)v.x; y = (byte)v.y; z = (byte)v.z; }
         /// Constructs a byte3 vector from a double3 vector by componentwise conversion.
-        [MethodImpl(INLINE)] public byte3(double3 v) { x = v.x; y = v.y; z = v.z; }
-
-        /// Implicitly converts a single byte1 value to a byte3 vector by assigning it to every component.
-        [MethodImpl(INLINE)] public static implicit operator byte3(byte1 v) => new(v);
+        [MethodImpl(INLINE)] public byte3(double3 v) { x = (byte)v.x; y = (byte)v.y; z = (byte)v.z; }
+        
         /// Implicitly converts a single byte value to a byte3 vector by assigning it to every component.
         [MethodImpl(INLINE)] public static implicit operator byte3(byte v) => new(v);
         /// Implicitly converts a single int value to a byte3 vector by assigning it to every component.
-        [MethodImpl(INLINE)] public static implicit operator byte3(int v) => new(v);
-        /// Implicitly converts a single byte1 value to a byte3 vector by assigning it to every component.
-        [MethodImpl(INLINE)] public static implicit operator byte3(uint v) => new(v);
-        /// Explicitly converts a single float value to a byte3 vector by converting it to byte1 and assigning it to every component.
-        [MethodImpl(INLINE)] public static explicit operator byte3(float v) => new(v);
+        [MethodImpl(INLINE)] public static implicit operator byte3(int v) => new((byte)v);
+        /// Implicitly converts a single byte value to a byte3 vector by assigning it to every component.
+        [MethodImpl(INLINE)] public static implicit operator byte3(uint v) => new((byte)v);
+        /// Explicitly converts a single float value to a byte3 vector by converting it to byte and assigning it to every component.
+        [MethodImpl(INLINE)] public static implicit operator byte3(float v) => new((byte)v);
         
-        /// Explicitly converts a single double value to a byte3 vector by converting it to byte1 and assigning it to every component.
-        [MethodImpl(INLINE)] public static explicit operator byte3(double v) => new(v);
+        // /// Explicitly converts a single double value to a byte3 vector by converting it to byte and assigning it to every component.
+        // [MethodImpl(INLINE)] public static explicit operator byte3(double v) => new(v);
+        
         /// Implicitly converts an int3 vector to a byte3 vector by componentwise conversion.
         [MethodImpl(INLINE)] public static implicit operator byte3(int3 v) => new(v);
         /// Implicitly converts an int3 vector to a byte3 vector by componentwise conversion.
@@ -86,52 +83,52 @@ namespace Unity.Mathematics
 
         /// Returns the result of a componentwise equality operation on two byte3 vectors.
         [MethodImpl(INLINE)] public static bool3 operator ==(byte3 lhs, byte3 rhs) => new(lhs.x == rhs.x, lhs.y == rhs.y, lhs.z == rhs.z);
-        /// Returns the result of a componentwise equality operation on a byte3 vector and a byte1 value.
-        [MethodImpl(INLINE)] public static bool3 operator ==(byte3 lhs, byte1 rhs) => new(lhs.x == rhs, lhs.y == rhs, lhs.z == rhs);
-        /// Returns the result of a componentwise equality operation on a byte1 value and a byte3 vector.
-        [MethodImpl(INLINE)] public static bool3 operator ==(byte1 lhs, byte3 rhs) => new(lhs == rhs.x, lhs == rhs.y, lhs == rhs.z);
+        /// Returns the result of a componentwise equality operation on a byte3 vector and a byte value.
+        [MethodImpl(INLINE)] public static bool3 operator ==(byte3 lhs, byte rhs) => new(lhs.x == rhs, lhs.y == rhs, lhs.z == rhs);
+        /// Returns the result of a componentwise equality operation on a byte value and a byte3 vector.
+        [MethodImpl(INLINE)] public static bool3 operator ==(byte lhs, byte3 rhs) => new(lhs == rhs.x, lhs == rhs.y, lhs == rhs.z);
         
         /// Returns the result of a componentwise not equal operation on two byte3 vectors.
         [MethodImpl(INLINE)] public static bool3 operator !=(byte3 lhs, byte3 rhs) => new(lhs.x != rhs.x, lhs.y != rhs.y, lhs.z != rhs.z);
-        /// Returns the result of a componentwise not equal operation on a byte3 vector and a byte1 value.
-        [MethodImpl(INLINE)] public static bool3 operator !=(byte3 lhs, byte1 rhs) => new(lhs.x != rhs, lhs.y != rhs, lhs.z != rhs);
-        /// Returns the result of a componentwise not equal operation on a byte1 value and a byte3 vector.
-        [MethodImpl(INLINE)] public static bool3 operator !=(byte1 lhs, byte3 rhs) => new(lhs != rhs.x, lhs != rhs.y, lhs != rhs.z);
+        /// Returns the result of a componentwise not equal operation on a byte3 vector and a byte value.
+        [MethodImpl(INLINE)] public static bool3 operator !=(byte3 lhs, byte rhs) => new(lhs.x != rhs, lhs.y != rhs, lhs.z != rhs);
+        /// Returns the result of a componentwise not equal operation on a byte value and a byte3 vector.
+        [MethodImpl(INLINE)] public static bool3 operator !=(byte lhs, byte3 rhs) => new(lhs != rhs.x, lhs != rhs.y, lhs != rhs.z);
         
         /// Returns the result of a componentwise multiplication into an int3 vector.
         [MethodImpl(INLINE)] public static int3 operator *(byte3 lhs, byte3 rhs) => new(lhs.x * rhs.x, lhs.y * rhs.y, lhs.z * rhs.z);
         /// <inheritdoc cref="operator *(byte3, byte3)"/>
-        [MethodImpl(INLINE)] public static int3 operator *(byte3 lhs, byte1 rhs) => new(lhs.x * rhs, lhs.y * rhs, lhs.z * rhs);
+        [MethodImpl(INLINE)] public static int3 operator *(byte3 lhs, byte rhs) => new(lhs.x * rhs, lhs.y * rhs, lhs.z * rhs);
         /// <inheritdoc cref="operator *(byte3, byte3)"/>
-        [MethodImpl(INLINE)] public static int3 operator *(byte1 lhs, byte3 rhs) => new(lhs * rhs.x, lhs * rhs.y, lhs * rhs.z);
+        [MethodImpl(INLINE)] public static int3 operator *(byte lhs, byte3 rhs) => new(lhs * rhs.x, lhs * rhs.y, lhs * rhs.z);
         
         /// Returns the result of a componentwise addition into an int3 vector.
         [MethodImpl(INLINE)] public static int3 operator +(byte3 lhs, byte3 rhs) => new(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z);
         /// <inheritdoc cref="operator +(byte3, byte3)"/>
-        [MethodImpl(INLINE)] public static int3 operator +(byte3 lhs, byte1 rhs) => new(lhs.x + rhs, lhs.y + rhs, lhs.z + rhs);
+        [MethodImpl(INLINE)] public static int3 operator +(byte3 lhs, byte rhs) => new(lhs.x + rhs, lhs.y + rhs, lhs.z + rhs);
         /// <inheritdoc cref="operator +(byte3, byte3)"/>
-        [MethodImpl(INLINE)] public static int3 operator +(byte1 lhs, byte3 rhs) => new(lhs + rhs.x, lhs + rhs.y, lhs + rhs.z);
+        [MethodImpl(INLINE)] public static int3 operator +(byte lhs, byte3 rhs) => new(lhs + rhs.x, lhs + rhs.y, lhs + rhs.z);
         
         /// Returns the result of a componentwise subtraction into an int3 vector.
         [MethodImpl(INLINE)] public static int3 operator -(byte3 lhs, byte3 rhs) => new(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z);
         /// <inheritdoc cref="operator -(byte3, byte3)"/>
-        [MethodImpl(INLINE)] public static int3 operator -(byte3 lhs, byte1 rhs) => new(lhs.x - rhs, lhs.y - rhs, lhs.z - rhs);
+        [MethodImpl(INLINE)] public static int3 operator -(byte3 lhs, byte rhs) => new(lhs.x - rhs, lhs.y - rhs, lhs.z - rhs);
         /// <inheritdoc cref="operator -(byte3, byte3)"/>
-        [MethodImpl(INLINE)] public static int3 operator -(byte1 lhs, byte3 rhs) => new(lhs - rhs.x, lhs - rhs.y, lhs - rhs.z);
+        [MethodImpl(INLINE)] public static int3 operator -(byte lhs, byte3 rhs) => new(lhs - rhs.x, lhs - rhs.y, lhs - rhs.z);
         
         /// Returns the result of a componentwise division into an f4 vector.
         [MethodImpl(INLINE)] public static float3 operator /(byte3 lhs, byte3 rhs) => new(lhs.x / rhs.x, lhs.y / rhs.y, lhs.z / rhs.z);
         /// <inheritdoc cref="operator /(byte3, byte3)"/>
-        [MethodImpl(INLINE)] public static float3 operator /(byte3 lhs, byte1 rhs) => new(lhs.x / rhs, lhs.y / rhs, lhs.z / rhs);
+        [MethodImpl(INLINE)] public static float3 operator /(byte3 lhs, byte rhs) => new(lhs.x / rhs, lhs.y / rhs, lhs.z / rhs);
         /// <inheritdoc cref="operator /(byte3, byte3)"/>
-        [MethodImpl(INLINE)] public static float3 operator /(byte1 lhs, byte3 rhs) => new(lhs / rhs.x, lhs / rhs.y, lhs / rhs.z);
+        [MethodImpl(INLINE)] public static float3 operator /(byte lhs, byte3 rhs) => new(lhs / rhs.x, lhs / rhs.y, lhs / rhs.z);
         
         /// Returns the result of a componentwise modulus operation into an byte3 vector.
         [MethodImpl(INLINE)] public static byte3 operator %(byte3 lhs, byte3 rhs) => new(lhs.x % rhs.x, lhs.y % rhs.y, lhs.z % rhs.z);
         /// <inheritdoc cref="operator %(byte3, byte3)"/>
-        [MethodImpl(INLINE)] public static byte3 operator %(byte3 lhs, byte1 rhs) => new(lhs.x % rhs, lhs.y % rhs, lhs.z % rhs);
+        [MethodImpl(INLINE)] public static byte3 operator %(byte3 lhs, byte rhs) => new(lhs.x % rhs, lhs.y % rhs, lhs.z % rhs);
         /// <inheritdoc cref="operator %(byte3, byte3)"/>
-        [MethodImpl(INLINE)] public static byte3 operator %(byte1 lhs, byte3 rhs) => new(lhs % rhs.x, lhs % rhs.y, lhs % rhs.z);
+        [MethodImpl(INLINE)] public static byte3 operator %(byte lhs, byte3 rhs) => new(lhs % rhs.x, lhs % rhs.y, lhs % rhs.z);
         
         /// Adds one to each component of the byte3 vector.
         [MethodImpl(INLINE)] public static byte3 operator ++(byte3 val) => new(++val.x, ++val.y, ++val.z);
@@ -140,31 +137,31 @@ namespace Unity.Mathematics
         
         /// Returns the result of a componentwise less than operation on two byte3 vectors.
         [MethodImpl(INLINE)] public static bool3 operator <(byte3 lhs, byte3 rhs) => new(lhs.x < rhs.x, lhs.y < rhs.y, lhs.z < rhs.z);
-        /// Returns the result of a componentwise less than operation on a byte3 vector and a byte1 value.
-        [MethodImpl(INLINE)] public static bool3 operator <(byte3 lhs, byte1 rhs) => new(lhs.x < rhs, lhs.y < rhs, lhs.z < rhs);
-        /// Returns the result of a componentwise less than operation on a byte1 value and a byte3 vector.
-        [MethodImpl(INLINE)] public static bool3 operator <(byte1 lhs, byte3 rhs) => new(lhs < rhs.x, lhs < rhs.y, lhs < rhs.z);
+        /// Returns the result of a componentwise less than operation on a byte3 vector and a byte value.
+        [MethodImpl(INLINE)] public static bool3 operator <(byte3 lhs, byte rhs) => new(lhs.x < rhs, lhs.y < rhs, lhs.z < rhs);
+        /// Returns the result of a componentwise less than operation on a byte value and a byte3 vector.
+        [MethodImpl(INLINE)] public static bool3 operator <(byte lhs, byte3 rhs) => new(lhs < rhs.x, lhs < rhs.y, lhs < rhs.z);
         
         /// Returns the result of a componentwise less or equal operation on two byte3 vectors.
         [MethodImpl(INLINE)] public static bool3 operator <=(byte3 lhs, byte3 rhs) => new(lhs.x <= rhs.x, lhs.y <= rhs.y, lhs.z <= rhs.z);
-        /// Returns the result of a componentwise less or equal operation on a byte3 vector and a byte1 value.
-        [MethodImpl(INLINE)] public static bool3 operator <=(byte3 lhs, byte1 rhs) => new(lhs.x <= rhs, lhs.y <= rhs, lhs.z <= rhs);
-        /// Returns the result of a componentwise less or equal operation on a byte1 value and a byte3 vector.
-        [MethodImpl(INLINE)] public static bool3 operator <=(byte1 lhs, byte3 rhs) => new(lhs <= rhs.x, lhs <= rhs.y, lhs <= rhs.z);
+        /// Returns the result of a componentwise less or equal operation on a byte3 vector and a byte value.
+        [MethodImpl(INLINE)] public static bool3 operator <=(byte3 lhs, byte rhs) => new(lhs.x <= rhs, lhs.y <= rhs, lhs.z <= rhs);
+        /// Returns the result of a componentwise less or equal operation on a byte value and a byte3 vector.
+        [MethodImpl(INLINE)] public static bool3 operator <=(byte lhs, byte3 rhs) => new(lhs <= rhs.x, lhs <= rhs.y, lhs <= rhs.z);
       
         /// Returns the result of a componentwise greater than operation on two byte3 vectors.
         [MethodImpl(INLINE)] public static bool3 operator >(byte3 lhs, byte3 rhs) => new(lhs.x > rhs.x, lhs.y > rhs.y, lhs.z > rhs.z);
-        /// Returns the result of a componentwise greater than operation on a byte3 vector and a byte1 value.
-        [MethodImpl(INLINE)] public static bool3 operator >(byte3 lhs, byte1 rhs) => new(lhs.x > rhs, lhs.y > rhs, lhs.z > rhs);
-        /// Returns the result of a componentwise greater than operation on a byte1 value and a byte3 vector.
-        [MethodImpl(INLINE)] public static bool3 operator >(byte1 lhs, byte3 rhs) => new(lhs > rhs.x, lhs > rhs.y, lhs > rhs.z);
+        /// Returns the result of a componentwise greater than operation on a byte3 vector and a byte value.
+        [MethodImpl(INLINE)] public static bool3 operator >(byte3 lhs, byte rhs) => new(lhs.x > rhs, lhs.y > rhs, lhs.z > rhs);
+        /// Returns the result of a componentwise greater than operation on a byte value and a byte3 vector.
+        [MethodImpl(INLINE)] public static bool3 operator >(byte lhs, byte3 rhs) => new(lhs > rhs.x, lhs > rhs.y, lhs > rhs.z);
         
         /// Returns the result of a componentwise greater or equal operation on two byte3 vectors.
         [MethodImpl(INLINE)] public static bool3 operator >=(byte3 lhs, byte3 rhs) => new(lhs.x >= rhs.x, lhs.y >= rhs.y, lhs.z >= rhs.z);
-        /// Returns the result of a componentwise greater or equal operation on a byte3 vector and a byte1 value.
-        [MethodImpl(INLINE)] public static bool3 operator >=(byte3 lhs, byte1 rhs) => new(lhs.x >= rhs, lhs.y >= rhs, lhs.z >= rhs);
-        /// Returns the result of a componentwise greater or equal operation on a byte1 value and a byte3 vector.
-        [MethodImpl(INLINE)] public static bool3 operator >=(byte1 lhs, byte3 rhs) => new(lhs >= rhs.x, lhs >= rhs.y, lhs >= rhs.z);
+        /// Returns the result of a componentwise greater or equal operation on a byte3 vector and a byte value.
+        [MethodImpl(INLINE)] public static bool3 operator >=(byte3 lhs, byte rhs) => new(lhs.x >= rhs, lhs.y >= rhs, lhs.z >= rhs);
+        /// Returns the result of a componentwise greater or equal operation on a byte value and a byte3 vector.
+        [MethodImpl(INLINE)] public static bool3 operator >=(byte lhs, byte3 rhs) => new(lhs >= rhs.x, lhs >= rhs.y, lhs >= rhs.z);
        
         /// Returns the result of a componentwise unary minus operation on a byte3 vector.
         [MethodImpl(INLINE)] public static byte3 operator -(byte3 v) => new(-v.x, -v.y, -v.z);
@@ -600,22 +597,22 @@ namespace Unity.Mathematics
         /// Swizzles the vector.
         [EditorBrowsable(NEVER)] public byte2 zz { [MethodImpl(INLINE)] get => new(z, z); }
 
-        /// Returns the byte1 element at a specified index.
-        public unsafe byte1 this[int index]
+        /// Returns the byte element at a specified index.
+        public unsafe byte this[int index]
         {
             get {
                 #if ENABLE_UNITY_COLLECTIONS_CHECKS
                 if ((uint)index >= 3) throw new ArgumentException("index must be between[0...2]");
                 #endif
                 fixed (byte3* array = &this) {
-                    return ((byte1*)array)[index];
+                    return ((byte*)array)[index];
                 }
             }
             set {
                 #if ENABLE_UNITY_COLLECTIONS_CHECKS
                 if ((uint)index >= 3) throw new ArgumentException("index must be between[0...2]");
                 #endif
-                fixed (byte1* array = &x) {
+                fixed (byte* array = &x) {
                     array[index] = value;
                 }
             }
@@ -647,9 +644,9 @@ namespace Unity.Mathematics
 
         internal sealed class DebuggerProxy
         {
-            public byte1 x;
-            public byte1 y;
-            public byte1 z;
+            public byte x;
+            public byte y;
+            public byte z;
 
             public DebuggerProxy(byte3 v) { x = v.x; y = v.y; z = v.z; }
         }
@@ -657,27 +654,27 @@ namespace Unity.Mathematics
 
     public static partial class mathx
     {
-        /// Returns a byte3 vector constructed from three byte1 values.
-        [MethodImpl(INLINE)] public static byte3 byte3(byte1 x, byte1 y, byte1 z) => new(x, y, z);
-        /// Returns a byte3 vector constructed from a byte1 value and a byte2 vector.
-        [MethodImpl(INLINE)] public static byte3 byte3(byte1 x, byte2 yz) => new(x, yz);
-        /// Returns a byte3 vector constructed from a byte2 vector and a byte1 value.
-        [MethodImpl(INLINE)] public static byte3 byte3(byte2 xy, byte1 z) => new(xy, z);
-        /// Returns a byte3 vector constructed from a single byte1 value by assigning it to every component.
-        [MethodImpl(INLINE)] public static byte3 byte3(byte1 v) => new(v);
-        /// Returns a byte3 vector constructed from a single int value by converting it to byte1 and assigning it to every component.
+        /// Returns a byte3 vector constructed from three byte values.
+        [MethodImpl(INLINE)] public static byte3 byte3(byte x, byte y, byte z) => new(x, y, z);
+        /// Returns a byte3 vector constructed from a byte value and a byte2 vector.
+        [MethodImpl(INLINE)] public static byte3 byte3(byte x, byte2 yz) => new(x, yz);
+        /// Returns a byte3 vector constructed from a byte2 vector and a byte value.
+        [MethodImpl(INLINE)] public static byte3 byte3(byte2 xy, byte z) => new(xy, z);
+        /// Returns a byte3 vector constructed from a single byte value by assigning it to every component.
+        [MethodImpl(INLINE)] public static byte3 byte3(byte v) => new(v);
+        /// Returns a byte3 vector constructed from a single int value by converting it to byte and assigning it to every component.
         [MethodImpl(INLINE)] public static byte3 byte3(int v) => new(v);
         /// Return a byte3 vector constructed from a int3 vector by componentwise conversion.
         [MethodImpl(INLINE)] public static byte3 byte3(int3 v) => new(v);
-        /// Returns a byte3 vector constructed from a single uint value by converting it to byte1 and assigning it to every component.
+        /// Returns a byte3 vector constructed from a single uint value by converting it to byte and assigning it to every component.
         [MethodImpl(INLINE)] public static byte3 byte3(uint v) => new(v);
         /// Return a byte3 vector constructed from a uint3 vector by componentwise conversion.
         [MethodImpl(INLINE)] public static byte3 byte3(uint3 v) => new(v);
-        /// Returns a byte3 vector constructed from a single float value by converting it to byte1 and assigning it to every component.
+        /// Returns a byte3 vector constructed from a single float value by converting it to byte and assigning it to every component.
         [MethodImpl(INLINE)] public static byte3 byte3(float v) => new(v);
         /// Return a byte3 vector constructed from a f3 vector by componentwise conversion.
         [MethodImpl(INLINE)] public static byte3 byte3(float3 v) => new(v);
-        /// Returns a byte3 vector constructed from a single double value by converting it to byte1 and assigning it to every component.
+        /// Returns a byte3 vector constructed from a single double value by converting it to byte and assigning it to every component.
         [MethodImpl(INLINE)] public static byte3 byte3(double v) => new(v);
         /// Return a byte3 vector constructed from a double3 vector by componentwise conversion.
         [MethodImpl(INLINE)] public static byte3 byte3(double3 v) => new(v);

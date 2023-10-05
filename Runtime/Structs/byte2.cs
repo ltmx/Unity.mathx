@@ -22,66 +22,50 @@ namespace Unity.Mathematics
     public struct byte2 : IEquatable<byte2>, IFormattable
     {
         ///x component of the vector.
-        public byte1 x;
+        public byte x;
         ///y component of the vector.
-        public byte1 y;
+        public byte y;
 
         ///byte2 zero value.
         public static readonly byte2 zero = 0;
 
-        ///Constructs a byte2 from two byte1 values.
-        [MethodImpl(INLINE)] public byte2(byte1 x, byte1 y) { this.x = x; this.y = x.value; }
-        ///Constructs a byte2 from two byte1 values.
+        ///Constructs a byte2 from two byte values.
         [MethodImpl(INLINE)] public byte2(byte x, byte y) { this.x = x; this.y = y; }
-        ///Constructs a byte2 from two byte1 values.
-        [MethodImpl(INLINE)] public byte2(int a, int b) {x = a; y = b; }
-        ///Constructs a byte2 from two byte1 values.
-        [MethodImpl(INLINE)] public byte2(uint a, uint b) {x = a; y = b; }
-        ///Constructs a byte2 from two byte1 values.
-        [MethodImpl(INLINE)] public byte2(half a, half b) {x = a; y = b; }
-        ///Constructs a byte2 from two byte1 values.
-        [MethodImpl(INLINE)] public byte2(double a, double b) {x = a; y = b; }
+        
+        [MethodImpl(INLINE)] public byte2(ValueType a, ValueType b)
+        {
+            x = (byte)a; 
+            y = (byte)b;
+        }
         
         
-        ///Constructs a byte2 vector from a single byte1 value by assigning it to every component.
-        [MethodImpl(INLINE)] public byte2(byte1 v) { x = v; y = v; }
+        
         ///Constructs a byte2 vector from a single byte value by assigning it to every component.
-        [MethodImpl(INLINE)] public byte2(byte v) { x = v; y = v; }
-        /// Constructs a byte2 vector from a single float value by assigning it to every component.
-        [MethodImpl(INLINE)] public byte2(float v) { x = v; y = v; }
-        /// Constructs a byte2 vector from a single double value by assigning it to every component.
-        [MethodImpl(INLINE)] public byte2(double v) { x = v; y = v; }
-        ///Constructs a byte2 vector from a single int value by assigning it to every component.
-        [MethodImpl(INLINE)] public byte2(int v) { x = v; y = v; }
-        ///Constructs a byte2 vector from a single uint value by assigning it to every component.
-        [MethodImpl(INLINE)] public byte2(uint v) { x = v; y = v; }
+        [MethodImpl(INLINE)] public byte2(byte v) { x = y = v; }
+        [MethodImpl(INLINE)] public byte2(ValueType v) { x = y = (byte)v; }
         
         ///Constructs a byte2 from a f2
-        [MethodImpl(INLINE)] public byte2(float2 v) { x = v.x; y = v.y; }
+        [MethodImpl(INLINE)] public byte2(float2 v) { x = (byte)v.x; y = (byte)v.y; }
         /// Constructs a byte2 from a int2
-        [MethodImpl(INLINE)] public byte2(int2 v) { x = v.x; y = v.y; }
+        [MethodImpl(INLINE)] public byte2(int2 v) { x = (byte)v.x; y = (byte)v.y; }
         /// Constructs a byte2 from a uint2
-        [MethodImpl(INLINE)] public byte2(uint2 v) { x = v.x; y = v.y; }
+        [MethodImpl(INLINE)] public byte2(uint2 v) { x = (byte)v.x; y = (byte)v.y; }
         /// Constructs a byte2 from a half2
-        [MethodImpl(INLINE)] public byte2(half v) { x = v; y = v; }
+        [MethodImpl(INLINE)] public byte2(half2 v) { x = (byte)v.x; y = (byte)v.y; }
         /// Constructs a byte2 from a double2
-        [MethodImpl(INLINE)] public byte2(half2 v) { x = v.x; y = v.y; }
-        /// Constructs a byte2 from a double2
-        [MethodImpl(INLINE)] public byte2(double2 v) { x = v.x; y = v.y; }
+        [MethodImpl(INLINE)] public byte2(double2 v) { x = (byte)v.x; y = (byte)v.y; }
 
-        /// Implicitly converts a single byte1 value to a byte2 vector by assigning it to every component.
-        [MethodImpl(INLINE)] public static implicit operator byte2(byte1 v) => new(v);
         /// Implicitly converts a single byte value to a byte2 vector by assigning it to every component.
         [MethodImpl(INLINE)] public static implicit operator byte2(byte v) => new(v);
         /// Implicitly converts a single int value to a byte2 vector by assigning it to every component.
-        [MethodImpl(INLINE)] public static implicit operator byte2(int v) => new(v);
+        [MethodImpl(INLINE)] public static implicit operator byte2(int v) => new((byte)v);
         /// Implicitly converts a single uint value to a byte2 vector by assigning it to every component.
-        [MethodImpl(INLINE)] public static implicit operator byte2(uint v) => new(v);
+        [MethodImpl(INLINE)] public static implicit operator byte2(uint v) => new((byte)v);
         /// Explicitly converts a single float value to a byte2 vector by assigning it to every component.
-        [MethodImpl(INLINE)] public static explicit operator byte2(float v) => new(v);
-        
+        [MethodImpl(INLINE)] public static explicit operator byte2(float v) => new((byte)v);
         /// Explicitly converts a single double value to a byte2 vector by assigning it to every component.
-        [MethodImpl(INLINE)] public static explicit operator byte2(double v) => new(v);
+        [MethodImpl(INLINE)] public static explicit operator byte2(double v) => new((byte)v);
+        
         /// Implicitly converts an int2 vector to a byte2 vector by componentwise conversion.
         [MethodImpl(INLINE)] public static implicit operator byte2(int2 v) => new(v);
         /// Implicitly converts an int2 vector to a byte2 vector by componentwise conversion.
@@ -93,54 +77,54 @@ namespace Unity.Mathematics
 
         ///Returns the result of a componentwise equality operation on two byte2 vectors.
         [MethodImpl(INLINE)] public static bool2 operator ==(byte2 lhs, byte2 rhs) => new(lhs.x == rhs.x, lhs.y == rhs.y);
-        ///Returns the result of a componentwise equality operation on a byte2 vector and a byte1 value.
-        [MethodImpl(INLINE)] public static bool2 operator ==(byte2 lhs, byte1 rhs) => new(lhs.x == rhs, lhs.y == rhs);
-        ///Returns the result of a componentwise equality operation on a byte1 value and a byte2 vector.
-        [MethodImpl(INLINE)] public static bool2 operator ==(byte1 lhs, byte2 rhs) => new(lhs == rhs.x, lhs == rhs.y);
+        ///Returns the result of a componentwise equality operation on a byte2 vector and a byte value.
+        [MethodImpl(INLINE)] public static bool2 operator ==(byte2 lhs, byte rhs) => new(lhs.x == rhs, lhs.y == rhs);
+        ///Returns the result of a componentwise equality operation on a byte value and a byte2 vector.
+        [MethodImpl(INLINE)] public static bool2 operator ==(byte lhs, byte2 rhs) => new(lhs == rhs.x, lhs == rhs.y);
 
         ///Returns the result of a componentwise not equal operation on two byte2 vectors.
         [MethodImpl(INLINE)] public static bool2 operator !=(byte2 lhs, byte2 rhs) => new(lhs.x != rhs.x, lhs.y != rhs.y);
-        ///Returns the result of a componentwise not equal operation on a byte2 vector and a byte1 value.
-        [MethodImpl(INLINE)] public static bool2 operator !=(byte2 lhs, byte1 rhs) => new(lhs.x != rhs, lhs.y != rhs);
-        ///Returns the result of a componentwise not equal operation on a byte1 value and a byte2 vector.
-        [MethodImpl(INLINE)] public static bool2 operator !=(byte1 lhs, byte2 rhs) => new(lhs != rhs.x, lhs != rhs.y);
+        ///Returns the result of a componentwise not equal operation on a byte2 vector and a byte value.
+        [MethodImpl(INLINE)] public static bool2 operator !=(byte2 lhs, byte rhs) => new(lhs.x != rhs, lhs.y != rhs);
+        ///Returns the result of a componentwise not equal operation on a byte value and a byte2 vector.
+        [MethodImpl(INLINE)] public static bool2 operator !=(byte lhs, byte2 rhs) => new(lhs != rhs.x, lhs != rhs.y);
 
 
         ///Returns the result of a componentwise multiplication operation on two f2 vectors.
         [MethodImpl(INLINE)] public static int2 operator *(byte2 lhs, byte2 rhs) => new(lhs.x * rhs.x, lhs.y * rhs.y);
         ///Returns the result of a componentwise multiplication operation on a byte2 vector and a float value.
-        [MethodImpl(INLINE)] public static int2 operator *(byte2 lhs, byte1 rhs) => new(lhs.x * rhs, lhs.y * rhs);
+        [MethodImpl(INLINE)] public static int2 operator *(byte2 lhs, byte rhs) => new(lhs.x * rhs, lhs.y * rhs);
         ///Returns the result of a componentwise multiplication operation on a float value and a byte2 vector.
-        [MethodImpl(INLINE)] public static int2 operator *(byte1 lhs, byte2 rhs) => new(lhs * rhs.x, lhs * rhs.y);
+        [MethodImpl(INLINE)] public static int2 operator *(byte lhs, byte2 rhs) => new(lhs * rhs.x, lhs * rhs.y);
         
         ///Returns the result of a componentwise addition operation on two byte2 vectors.
         [MethodImpl(INLINE)] public static int2 operator +(byte2 lhs, byte2 rhs) => new(lhs.x + rhs.x, lhs.y + rhs.y);
         ///Returns the result of a componentwise addition operation on a byte2 vector and a float value.
-        [MethodImpl(INLINE)] public static int2 operator +(byte2 lhs, byte1 rhs) => new(lhs.x + rhs, lhs.y + rhs);
+        [MethodImpl(INLINE)] public static int2 operator +(byte2 lhs, byte rhs) => new(lhs.x + rhs, lhs.y + rhs);
         ///Returns the result of a componentwise addition operation on a float value and a byte2 vector.
-        [MethodImpl(INLINE)] public static int2 operator +(byte1 lhs, byte2 rhs) => new(lhs + rhs.x, lhs + rhs.y);
+        [MethodImpl(INLINE)] public static int2 operator +(byte lhs, byte2 rhs) => new(lhs + rhs.x, lhs + rhs.y);
         
         ///Returns the result of a componentwise subtraction operation on two byte2 vectors.
         [MethodImpl(INLINE)] public static int2 operator -(byte2 lhs, byte2 rhs) => new(lhs.x - rhs.x, lhs.y - rhs.y);
         ///Returns the result of a componentwise subtraction operation on a byte2 vector and a float value.
-        [MethodImpl(INLINE)] public static int2 operator -(byte2 lhs, byte1 rhs) => new(lhs.x - rhs, lhs.y - rhs);
+        [MethodImpl(INLINE)] public static int2 operator -(byte2 lhs, byte rhs) => new(lhs.x - rhs, lhs.y - rhs);
         ///Returns the result of a componentwise subtraction operation on a float value and a byte2 vector.
-        [MethodImpl(INLINE)] public static int2 operator -(byte1 lhs, byte2 rhs) => new(lhs - rhs.x, lhs - rhs.y);
+        [MethodImpl(INLINE)] public static int2 operator -(byte lhs, byte2 rhs) => new(lhs - rhs.x, lhs - rhs.y);
         
         ///Returns the result of a componentwise division operation on two byte2 vectors.
         [MethodImpl(INLINE)] public static float2 operator /(byte2 lhs, byte2 rhs) => new(lhs.x / rhs.x, lhs.y / rhs.y);
         ///Returns the result of a componentwise division operation on a byte2 vector and a float value.
-        [MethodImpl(INLINE)] public static float2 operator /(byte2 lhs, byte1 rhs) => new(lhs.x / rhs, lhs.y / rhs);
+        [MethodImpl(INLINE)] public static float2 operator /(byte2 lhs, byte rhs) => new((lhs.x / rhs), lhs.y / rhs);
         ///Returns the result of a componentwise division operation on a float value and a byte2 vector.
-        [MethodImpl(INLINE)] public static float2 operator /(byte1 lhs, byte2 rhs) => new(lhs / rhs.x, lhs / rhs.y);
+        [MethodImpl(INLINE)] public static float2 operator /(byte lhs, byte2 rhs) => new(lhs / rhs.x, lhs / rhs.y);
 
 
         ///Returns the result of a componentwise modulus operation on two byte2 vectors.
         [MethodImpl(INLINE)] public static byte2 operator %(byte2 lhs, byte2 rhs) => new(lhs.x % rhs.x, lhs.y % rhs.y);
         ///Returns the result of a componentwise modulus operation on a byte2 vector and a float value.
-        [MethodImpl(INLINE)] public static byte2 operator %(byte2 lhs, byte1 rhs) => new(lhs.x % rhs, lhs.y % rhs);
+        [MethodImpl(INLINE)] public static byte2 operator %(byte2 lhs, byte rhs) => new(lhs.x % rhs, lhs.y % rhs);
         ///Returns the result of a componentwise modulus operation on a float value and a byte2 vector.
-        [MethodImpl(INLINE)] public static byte2 operator %(byte1 lhs, byte2 rhs) => new(lhs % rhs.x, lhs % rhs.y);
+        [MethodImpl(INLINE)] public static byte2 operator %(byte lhs, byte2 rhs) => new(lhs % rhs.x, lhs % rhs.y);
 
         ///Returns the result of a componentwise increment operation on a byte2 vector.
         [MethodImpl(INLINE)] public static byte2 operator ++(byte2 val) => new(++val.x, ++val.y);
@@ -150,30 +134,30 @@ namespace Unity.Mathematics
         ///Returns the result of a componentwise less than operation on two byte2 vectors.
         [MethodImpl(INLINE)] public static bool2 operator <(byte2 lhs, byte2 rhs) => new(lhs.x < rhs.x, lhs.y < rhs.y);
         ///Returns the result of a componentwise less than operation on a byte2 vector and a float value.
-        [MethodImpl(INLINE)] public static bool2 operator <(byte2 lhs, byte1 rhs) => new(lhs.x < rhs, lhs.y < rhs);
+        [MethodImpl(INLINE)] public static bool2 operator <(byte2 lhs, byte rhs) => new(lhs.x < rhs, lhs.y < rhs);
         ///Returns the result of a componentwise less than operation on a float value and a byte2 vector.
-        [MethodImpl(INLINE)] public static bool2 operator <(byte1 lhs, byte2 rhs) => new(lhs < rhs.x, lhs < rhs.y);
+        [MethodImpl(INLINE)] public static bool2 operator <(byte lhs, byte2 rhs) => new(lhs < rhs.x, lhs < rhs.y);
         
         ///Returns the result of a componentwise less or equal operation on two byte2 vectors.
         [MethodImpl(INLINE)] public static bool2 operator <=(byte2 lhs, byte2 rhs) => new(lhs.x <= rhs.x, lhs.y <= rhs.y);
         ///Returns the result of a componentwise less or equal operation on a byte2 vector and a float value.
-        [MethodImpl(INLINE)] public static bool2 operator <=(byte2 lhs, byte1 rhs) => new(lhs.x <= rhs, lhs.y <= rhs);
+        [MethodImpl(INLINE)] public static bool2 operator <=(byte2 lhs, byte rhs) => new(lhs.x <= rhs, lhs.y <= rhs);
         ///Returns the result of a componentwise less or equal operation on a float value and a byte2 vector.
-        [MethodImpl(INLINE)] public static bool2 operator <=(byte1 lhs, byte2 rhs) => new(lhs <= rhs.x, lhs <= rhs.y);
+        [MethodImpl(INLINE)] public static bool2 operator <=(byte lhs, byte2 rhs) => new(lhs <= rhs.x, lhs <= rhs.y);
         
         ///Returns the result of a componentwise greater than operation on two byte2 vectors.
         [MethodImpl(INLINE)] public static bool2 operator >(byte2 lhs, byte2 rhs) => new(lhs.x > rhs.x, lhs.y > rhs.y);
         ///Returns the result of a componentwise greater than operation on a byte2 vector and a float value.
-        [MethodImpl(INLINE)] public static bool2 operator >(byte2 lhs, byte1 rhs) => new(lhs.x > rhs, lhs.y > rhs);
+        [MethodImpl(INLINE)] public static bool2 operator >(byte2 lhs, byte rhs) => new(lhs.x > rhs, lhs.y > rhs);
         ///Returns the result of a componentwise greater than operation on a float value and a byte2 vector.
-        [MethodImpl(INLINE)] public static bool2 operator >(byte1 lhs, byte2 rhs) => new(lhs > rhs.x, lhs > rhs.y);
+        [MethodImpl(INLINE)] public static bool2 operator >(byte lhs, byte2 rhs) => new(lhs > rhs.x, lhs > rhs.y);
 
         ///Returns the result of a componentwise greater or equal operation on two byte2 vectors.
         [MethodImpl(INLINE)] public static bool2 operator >=(byte2 lhs, byte2 rhs) => new(lhs.x >= rhs.x, lhs.y >= rhs.y);
         ///Returns the result of a componentwise greater or equal operation on a byte2 vector and a float value.
-        [MethodImpl(INLINE)] public static bool2 operator >=(byte2 lhs, byte1 rhs) => new(lhs.x >= rhs, lhs.y >= rhs);
+        [MethodImpl(INLINE)] public static bool2 operator >=(byte2 lhs, byte rhs) => new(lhs.x >= rhs, lhs.y >= rhs);
         ///Returns the result of a componentwise greater or equal operation on a float value and a byte2 vector.
-        [MethodImpl(INLINE)] public static bool2 operator >=(byte1 lhs, byte2 rhs) => new(lhs >= rhs.x, lhs >= rhs.y);
+        [MethodImpl(INLINE)] public static bool2 operator >=(byte lhs, byte2 rhs) => new(lhs >= rhs.x, lhs >= rhs.y);
 
         ///Returns the result of a componentwise unary minus operation on a byte2 vector.
         [MethodImpl(INLINE)] public static byte2 operator -(byte2 val) => new(-val.x, -val.y);
@@ -205,22 +189,22 @@ namespace Unity.Mathematics
             }
         }
 
-        ///Returns the byte1 element at a specified index.
-        public unsafe byte1 this[int index]
+        ///Returns the byte element at a specified index.
+        public unsafe byte this[int index]
         {
             get {
                 #if ENABLE_UNITY_COLLECTIONS_CHECKS
                 if ((uint)index >= 2) throw new ArgumentException("index must be between[0...1]");
                 #endif
                 fixed (byte2* array = &this) {
-                    return ((byte1*)array)[index];
+                    return ((byte*)array)[index];
                 }
             }
             set {
                 #if ENABLE_UNITY_COLLECTIONS_CHECKS
                 if ((uint)index >= 2) throw new ArgumentException("index must be between[0...1]");
                 #endif
-                fixed (byte1* array = &x) {
+                fixed (byte* array = &x) {
                     array[index] = value;
                 }
             }
@@ -252,8 +236,8 @@ namespace Unity.Mathematics
 
         internal sealed class DebuggerProxy
         {
-            public byte1 x;
-            public byte1 y;
+            public byte x;
+            public byte y;
 
             public DebuggerProxy(byte2 v) {
                 x = v.x;
@@ -264,25 +248,16 @@ namespace Unity.Mathematics
 
     public static partial class mathx
     {
-        ///Returns a byte2 vector constructed from two byte1 values.
+        ///Returns a byte2 vector constructed from a single byte value by assigning it to every component.
+        [MethodImpl(INLINE)] public static byte2 byte2(byte v) => new(v);
+        ///Returns a byte2 vector constructed from a single byte value by assigning it to every component.
+        [MethodImpl(INLINE)] public static byte2 byte2(ValueType v) => new(v);
+        
+        ///Returns a byte2 vector constructed from two byte values.
         [MethodImpl(INLINE)] public static byte2 byte2(byte x, byte y) => new(x, y);
-
-        ///Returns a byte2 vector constructed from two byte1 values.
-        [MethodImpl(INLINE)] public static byte2 byte2(byte1 x, byte1 y) => new(x, y);
-
-        ///Returns a byte2 vector constructed from a single byte1 value by assigning it to every component.
-        [MethodImpl(INLINE)] public static byte2 byte2(byte1 v) => new(v);
-
-        /// Returns a byte2 vector constructed from a single float value by assigning it to every component.
-        [MethodImpl(INLINE)] public static byte2 byte2(float v) => new(v);
 
         ///Return a byte2 vector constructed from a f2 vector by componentwise conversion.
         [MethodImpl(INLINE)] public static byte2 byte2(float2 v) => new(v);
-
-        /// Returns a byte2 vector constructed from a single double value by assigning it to
-        /// every component.
-        [MethodImpl(INLINE)] public static byte2 byte2(double v) => new(v);
-
         ///Return a byte2 vector constructed from a double2 vector by componentwise conversion.
         [MethodImpl(INLINE)] public static byte2 byte2(double2 v) => new(v);
 

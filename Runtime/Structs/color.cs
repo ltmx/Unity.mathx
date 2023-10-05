@@ -7,6 +7,7 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using UnityEditor.Search;
 using UnityEngine;
 using static Unity.Mathematics.math;
 using State = System.ComponentModel.EditorBrowsableState;
@@ -50,6 +51,7 @@ namespace Unity.Mathematics
             this.z = z;
             this.w = w;
         }
+        
         /// <summary>Constructs a color vector from two float values and a f2 vector.</summary>
         [MethodImpl(INLINE)] public color(float x, float y, float2 zw) {
             this.x = x;
@@ -99,11 +101,34 @@ namespace Unity.Mathematics
             z = xyzw.z;
             w = xyzw.w;
         }
-        /// <summary>Constructs a color vector from a single float value by assigning it to xyz components, and 1 in w.</summary>
-        [MethodImpl(INLINE)] public color(float v) {
-            x = v;
-            y = v;
-            z = v;
+        /// <summary>Constructs a color vector from a double value.</summary>
+        [MethodImpl(INLINE)] public color(double v)
+        {
+            x = y = z = (float)v;
+            w = 1;
+        }
+        /// <summary>Constructs a color vector from a int value.</summary>
+        [MethodImpl(INLINE)] public color(int v)
+        {
+            x = y = z = v;
+            w = 1;
+        }
+        /// <summary>Constructs a color vector from a uint value.</summary>
+        [MethodImpl(INLINE)] public color(uint v)
+        {
+            x = y = z = v;
+            w = 1;
+        }
+        /// <summary>Constructs a color vector from a float value.</summary>
+        [MethodImpl(INLINE)] public color(float v)
+        {
+            x = y = z = v;
+            w = 1;
+        }
+        /// <summary>Constructs a color vector from a half value.</summary>
+        [MethodImpl(INLINE)] public color(half v)
+        {
+            x = y = z = (float)v;
             w = 1;
         }
         /// <summary>
@@ -111,10 +136,7 @@ namespace Unity.Mathematics
         ///     component.
         /// </summary>
         [MethodImpl(INLINE)] public color(bool v) {
-            x = v ? 1 : 0;
-            y = v ? 1 : 0;
-            z = v ? 1 : 0;
-            w = v ? 1 : 0;
+            x = y = z = w = v ? 1 : 0;
         }
         /// <summary>Constructs a color vector from a bool4 vector by componentwise conversion.</summary>
         [MethodImpl(INLINE)] public color(bool4 v) {
@@ -123,16 +145,6 @@ namespace Unity.Mathematics
             z = v.z ? 1 : 0;
             w = v.w ? 1 : 0;
         }
-        /// <summary>
-        ///     Constructs a color vector from a single int value by converting it to float and assigning it to every
-        ///     component.
-        /// </summary>
-        [MethodImpl(INLINE)] public color(int v) {
-            x = v;
-            y = v;
-            z = v;
-            w = v;
-        }
         /// <summary>Constructs a color vector from a int4 vector by componentwise conversion.</summary>
         [MethodImpl(INLINE)] public color(int4 v) {
             x = v.x;
@@ -140,16 +152,7 @@ namespace Unity.Mathematics
             z = v.z;
             w = v.w;
         }
-        /// <summary>
-        ///     Constructs a color vector from a single uint value by converting it to float and assigning it to every
-        ///     component.
-        /// </summary>
-        [MethodImpl(INLINE)] public color(uint v) {
-            x = v;
-            y = v;
-            z = v;
-            w = v;
-        }
+        
         /// <summary>Constructs a color vector from a uint4 vector by componentwise conversion.</summary>
         [MethodImpl(INLINE)] public color(uint4 v) {
             x = v.x;
@@ -157,16 +160,7 @@ namespace Unity.Mathematics
             z = v.z;
             w = v.w;
         }
-        /// <summary>
-        ///     Constructs a color vector from a single half value by converting it to float and assigning it to every
-        ///     component.
-        /// </summary>
-        [MethodImpl(INLINE)] public color(half v) {
-            x = v;
-            y = v;
-            z = v;
-            w = v;
-        }
+
         /// <summary>Constructs a color vector from a half4 vector by componentwise conversion.</summary>
         [MethodImpl(INLINE)] public color(half4 v) {
             x = v.x;
@@ -174,16 +168,7 @@ namespace Unity.Mathematics
             z = v.z;
             w = v.w;
         }
-        /// <summary>
-        ///     Constructs a color vector from a single double value by converting it to float and assigning it to every
-        ///     component.
-        /// </summary>
-        [MethodImpl(INLINE)] public color(double v) {
-            x = (float)v;
-            y = (float)v;
-            z = (float)v;
-            w = (float)v;
-        }
+
         /// <summary>Constructs a color vector from a double4 vector by componentwise conversion.</summary>
         [MethodImpl(INLINE)] public color(double4 v) {
             x = (float)v.x;
@@ -224,6 +209,17 @@ namespace Unity.Mathematics
             this.z = z;
             w = 1;
         }
+        
+        /// <para>Constructs a new color with given r,g,b components and sets a to 1.</para>
+        /// <param name="x">Red component.</param>
+        /// <param name="y">Green component.</param>
+        /// <param name="z">Blue component.</param>
+        public color(ValueType x, ValueType y, ValueType z) {
+            this.x = (float)x;
+            this.y = (float)y;
+            this.z = (float)z;
+            w = 1;
+        }
         /// <para>Constructs a new color with x in r,g,b components and sets y to alpha.</para>
         /// <param name="x">Red component.</param>
         /// <param name="y">Green component.</param>
@@ -236,7 +232,7 @@ namespace Unity.Mathematics
 
         // End Additions -------------------------------
         /// <summary>Implicitly converts a single float value to a color by assigning it to every component.</summary>
-        [MethodImpl(INLINE)] public static implicit operator color(float v) => new(v);
+        [MethodImpl(INLINE)] public static implicit operator color(float v) => new(v, v, v);
         /// <summary>
         ///     Explicitly converts a single bool value to a color by converting it to float and assigning it to every
         ///     component.
@@ -248,21 +244,21 @@ namespace Unity.Mathematics
         ///     Implicitly converts a single int value to a color by converting it to float and assigning it to every
         ///     component.
         /// </summary>
-        [MethodImpl(INLINE)] public static implicit operator color(int v) => new(v);
+        [MethodImpl(INLINE)] public static implicit operator color(int v) => new(v, v, v);
         /// <summary>Implicitly converts a int4 vector to a color by componentwise conversion.</summary>
         [MethodImpl(INLINE)] public static implicit operator color(int4 v) => new(v);
         /// <summary>
         ///     Implicitly converts a single uint value to a color by converting it to float and assigning it to every
         ///     component.
         /// </summary>
-        [MethodImpl(INLINE)] public static implicit operator color(uint v) => new(v);
+        [MethodImpl(INLINE)] public static implicit operator color(uint v) => new(v, v, v);
         /// <summary>Implicitly converts a uint4 vector to a color by componentwise conversion.</summary>
         [MethodImpl(INLINE)] public static implicit operator color(uint4 v) => new(v);
         /// <summary>
         ///     Implicitly converts a single half value to a color by converting it to float and assigning it to every
         ///     component.
         /// </summary>
-        [MethodImpl(INLINE)] public static implicit operator color(half v) => new(v);
+        [MethodImpl(INLINE)] public static implicit operator color(half v) => new(v, v, v);
         /// <summary>Implicitly converts a half4 vector to a color by componentwise conversion.</summary>
         [MethodImpl(INLINE)] public static implicit operator color(half4 v) => new(v);
         /// <summary>
@@ -1493,10 +1489,10 @@ namespace Unity.Mathematics
         public static color magenta => new(1, 0, 1);
 
         /// <para>Gray. RGBA is (0.5, 0.5, 0.5, 1).</para>
-        public static color gray => new(0.5f);
+        public static color gray => new(0.5f, 0.5f, 0.5f);
 
-        /// <para>English spelling for gray. RGBA is the same (0.5, 0.5, 0.5, 1).</para>
-        public static color grey => new(0.5f);
+        /// <para>Grey. RGBA is (0.5, 0.5, 0.5, 1).</para>
+        public static color grey => gray;
 
         /// <para>Completely transparent. RGBA is (0, 0, 0, 0).</para>
         public static color clear => new(0, 0, 0, 0);
@@ -1506,7 +1502,7 @@ namespace Unity.Mathematics
 
         /// <para>The grayscale value of the color. (Read Only)</para>
         // public float grayscale => (float) (0.29899999499321 * x + 0.587000012397766 * y + 57.0 / 500.0 * z);
-        public float grayscale => math.dot(float3(0.29899999499321f, 0.587000012397766f, 57 / 500f), xyz);
+        public float grayscale => math.dot(float3(0.29899999499321f, 0.587000012397766f, 0.114f), xyz);
 
         /// <para>A linear value of an sRGB color.</para>
         public color linear => xyzw.gammatolinear();
@@ -1583,6 +1579,7 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)] public static float3 cycle(color a, color b, ShuffleComponent x, ShuffleComponent y, ShuffleComponent z) => f3(select_shuffle_component(a, b, x), select_shuffle_component(a, b, y), select_shuffle_component(a, b, z));
         /// <summary>Returns the result of specified shuffling of the components from two color vectors into a color vector.</summary>
         [MethodImpl(INLINE)] public static color cycle(color a, color b, ShuffleComponent x, ShuffleComponent y, ShuffleComponent z, ShuffleComponent w) => color(select_shuffle_component(a, b, x), select_shuffle_component(a, b, y), select_shuffle_component(a, b, z), select_shuffle_component(a, b, w));
+        
         [MethodImpl(INLINE)] internal static float select_shuffle_component(color a, color b, ShuffleComponent component) {
             return component switch
             {
