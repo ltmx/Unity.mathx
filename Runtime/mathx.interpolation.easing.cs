@@ -60,18 +60,18 @@ namespace Unity.Mathematics
             return - exp2(10 * x - 10) * sin((x * 10 - 10.75f) * c4);
         }
         public static float easeOutElastic(this float x) {
-            const float c4 = (2 * PI) / 3;
+            const float c4 = 2 * PI / 3;
             if (x is 0 or 1f) return x;
             return exp2( -10 * x) * sin((x * 10 - 0.75f) * c4) + 1;
         }
         public static float easeInOutElastic(this float x) {
-            const float c5 = (2 * PI) / 4.5f;
+            const float c5 = 2 * PI / 4.5f;
 
             return x switch
             {
                 0 or 1 => x,
                 < 0.5f => -(exp2(20 * x - 10) * sin((20 * x - 11.125f) * c5)) * 0.5f,
-                _ => (exp2(-20 * x + 10) * sin((20 * x - 11.125f) * c5)) * 0.5f + 1
+                _ => exp2(-20 * x + 10) * sin((20 * x - 11.125f) * c5) * 0.5f + 1
             };
         }
         public static float easeInBounce(this float x) => 1 - easeOutBounce(1 - x);

@@ -75,7 +75,7 @@ namespace Tests
         }
         private static long Benchmark(Func<float, float, float> function)
         {
-            var nanosecPerTick = (1000L*1000L*1000L) / Stopwatch.Frequency;
+            var nanosecPerTick = 1000L*1000L*1000L / Stopwatch.Frequency;
             stopwatch.Reset();
             stopwatch.Start();
             Run(function, staticfloat);
@@ -93,7 +93,7 @@ namespace Tests
         }
         private static long Benchmark(Func<float, float, float, float> function)
         {
-            var nanosecPerTick = (1000L*1000L*1000L) / Stopwatch.Frequency;
+            var nanosecPerTick = 1000L*1000L*1000L / Stopwatch.Frequency;
             stopwatch.Reset();
             stopwatch.Start();
             Run(function, staticfloat);
@@ -102,7 +102,7 @@ namespace Tests
         }
         private static long NanoSeconds(Func<float2, float2, float2, float2> function)
         {
-            var nanosecPerTick = (1000L*1000L*1000L) / Stopwatch.Frequency;
+            var nanosecPerTick = 1000L*1000L*1000L / Stopwatch.Frequency;
             stopwatch.Reset();
             stopwatch.Start();
             Run(function, staticfloat2);

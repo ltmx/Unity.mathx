@@ -7,7 +7,6 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using UnityEditor.Search;
 using UnityEngine;
 using static Unity.Mathematics.math;
 using State = System.ComponentModel.EditorBrowsableState;

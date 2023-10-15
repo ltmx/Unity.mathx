@@ -82,91 +82,116 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)] public static explicit operator byte3(double3 v) => new(v);
 
         /// Returns the result of a componentwise equality operation on two byte3 vectors.
-        [MethodImpl(INLINE)] public static bool3 operator ==(byte3 lhs, byte3 rhs) => new(lhs.x == rhs.x, lhs.y == rhs.y, lhs.z == rhs.z);
+        [MethodImpl(INLINE)] public static bool3 operator ==(byte3 a, byte3 b) => new(a.x == b.x, a.y == b.y, a.z == b.z);
         /// Returns the result of a componentwise equality operation on a byte3 vector and a byte value.
-        [MethodImpl(INLINE)] public static bool3 operator ==(byte3 lhs, byte rhs) => new(lhs.x == rhs, lhs.y == rhs, lhs.z == rhs);
+        [MethodImpl(INLINE)] public static bool3 operator ==(byte3 a, byte b) => new(a.x == b, a.y == b, a.z == b);
         /// Returns the result of a componentwise equality operation on a byte value and a byte3 vector.
-        [MethodImpl(INLINE)] public static bool3 operator ==(byte lhs, byte3 rhs) => new(lhs == rhs.x, lhs == rhs.y, lhs == rhs.z);
+        [MethodImpl(INLINE)] public static bool3 operator ==(byte a, byte3 b) => new(a == b.x, a == b.y, a == b.z);
         
         /// Returns the result of a componentwise not equal operation on two byte3 vectors.
-        [MethodImpl(INLINE)] public static bool3 operator !=(byte3 lhs, byte3 rhs) => new(lhs.x != rhs.x, lhs.y != rhs.y, lhs.z != rhs.z);
+        [MethodImpl(INLINE)] public static bool3 operator !=(byte3 a, byte3 b) => new(a.x != b.x, a.y != b.y, a.z != b.z);
         /// Returns the result of a componentwise not equal operation on a byte3 vector and a byte value.
-        [MethodImpl(INLINE)] public static bool3 operator !=(byte3 lhs, byte rhs) => new(lhs.x != rhs, lhs.y != rhs, lhs.z != rhs);
+        [MethodImpl(INLINE)] public static bool3 operator !=(byte3 a, byte b) => new(a.x != b, a.y != b, a.z != b);
         /// Returns the result of a componentwise not equal operation on a byte value and a byte3 vector.
-        [MethodImpl(INLINE)] public static bool3 operator !=(byte lhs, byte3 rhs) => new(lhs != rhs.x, lhs != rhs.y, lhs != rhs.z);
+        [MethodImpl(INLINE)] public static bool3 operator !=(byte a, byte3 b) => new(a != b.x, a != b.y, a != b.z);
         
         /// Returns the result of a componentwise multiplication into an int3 vector.
-        [MethodImpl(INLINE)] public static int3 operator *(byte3 lhs, byte3 rhs) => new(lhs.x * rhs.x, lhs.y * rhs.y, lhs.z * rhs.z);
+        [MethodImpl(INLINE)] public static int3 operator *(byte3 a, byte3 b) => new(a.x * b.x, a.y * b.y, a.z * b.z);
         /// <inheritdoc cref="operator *(byte3, byte3)"/>
-        [MethodImpl(INLINE)] public static int3 operator *(byte3 lhs, byte rhs) => new(lhs.x * rhs, lhs.y * rhs, lhs.z * rhs);
+        [MethodImpl(INLINE)] public static int3 operator *(byte3 a, byte b) => new(a.x * b, a.y * b, a.z * b);
         /// <inheritdoc cref="operator *(byte3, byte3)"/>
-        [MethodImpl(INLINE)] public static int3 operator *(byte lhs, byte3 rhs) => new(lhs * rhs.x, lhs * rhs.y, lhs * rhs.z);
+        [MethodImpl(INLINE)] public static int3 operator *(byte a, byte3 b) => new(a * b.x, a * b.y, a * b.z);
         
         /// Returns the result of a componentwise addition into an int3 vector.
-        [MethodImpl(INLINE)] public static int3 operator +(byte3 lhs, byte3 rhs) => new(lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z);
+        [MethodImpl(INLINE)] public static int3 operator +(byte3 a, byte3 b) => new(a.x + b.x, a.y + b.y, a.z + b.z);
         /// <inheritdoc cref="operator +(byte3, byte3)"/>
-        [MethodImpl(INLINE)] public static int3 operator +(byte3 lhs, byte rhs) => new(lhs.x + rhs, lhs.y + rhs, lhs.z + rhs);
+        [MethodImpl(INLINE)] public static int3 operator +(byte3 a, byte b) => new(a.x + b, a.y + b, a.z + b);
         /// <inheritdoc cref="operator +(byte3, byte3)"/>
-        [MethodImpl(INLINE)] public static int3 operator +(byte lhs, byte3 rhs) => new(lhs + rhs.x, lhs + rhs.y, lhs + rhs.z);
+        [MethodImpl(INLINE)] public static int3 operator +(byte a, byte3 b) => new(a + b.x, a + b.y, a + b.z);
         
         /// Returns the result of a componentwise subtraction into an int3 vector.
-        [MethodImpl(INLINE)] public static int3 operator -(byte3 lhs, byte3 rhs) => new(lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z);
+        [MethodImpl(INLINE)] public static int3 operator -(byte3 a, byte3 b) => new(a.x - b.x, a.y - b.y, a.z - b.z);
         /// <inheritdoc cref="operator -(byte3, byte3)"/>
-        [MethodImpl(INLINE)] public static int3 operator -(byte3 lhs, byte rhs) => new(lhs.x - rhs, lhs.y - rhs, lhs.z - rhs);
+        [MethodImpl(INLINE)] public static int3 operator -(byte3 a, byte b) => new(a.x - b, a.y - b, a.z - b);
         /// <inheritdoc cref="operator -(byte3, byte3)"/>
-        [MethodImpl(INLINE)] public static int3 operator -(byte lhs, byte3 rhs) => new(lhs - rhs.x, lhs - rhs.y, lhs - rhs.z);
+        [MethodImpl(INLINE)] public static int3 operator -(byte a, byte3 b) => new(a - b.x, a - b.y, a - b.z);
         
         /// Returns the result of a componentwise division into an f4 vector.
-        [MethodImpl(INLINE)] public static float3 operator /(byte3 lhs, byte3 rhs) => new(lhs.x / rhs.x, lhs.y / rhs.y, lhs.z / rhs.z);
+        [MethodImpl(INLINE)] public static float3 operator /(byte3 a, byte3 b) => new(a.x / b.x, a.y / b.y, a.z / b.z);
         /// <inheritdoc cref="operator /(byte3, byte3)"/>
-        [MethodImpl(INLINE)] public static float3 operator /(byte3 lhs, byte rhs) => new(lhs.x / rhs, lhs.y / rhs, lhs.z / rhs);
+        [MethodImpl(INLINE)] public static float3 operator /(byte3 a, byte b) => new(a.x / b, a.y / b, a.z / b);
         /// <inheritdoc cref="operator /(byte3, byte3)"/>
-        [MethodImpl(INLINE)] public static float3 operator /(byte lhs, byte3 rhs) => new(lhs / rhs.x, lhs / rhs.y, lhs / rhs.z);
+        [MethodImpl(INLINE)] public static float3 operator /(byte a, byte3 b) => new(a / b.x, a / b.y, a / b.z);
         
         /// Returns the result of a componentwise modulus operation into an byte3 vector.
-        [MethodImpl(INLINE)] public static byte3 operator %(byte3 lhs, byte3 rhs) => new(lhs.x % rhs.x, lhs.y % rhs.y, lhs.z % rhs.z);
+        [MethodImpl(INLINE)] public static byte3 operator %(byte3 a, byte3 b) => new(a.x % b.x, a.y % b.y, a.z % b.z);
         /// <inheritdoc cref="operator %(byte3, byte3)"/>
-        [MethodImpl(INLINE)] public static byte3 operator %(byte3 lhs, byte rhs) => new(lhs.x % rhs, lhs.y % rhs, lhs.z % rhs);
+        [MethodImpl(INLINE)] public static byte3 operator %(byte3 a, byte b) => new(a.x % b, a.y % b, a.z % b);
         /// <inheritdoc cref="operator %(byte3, byte3)"/>
-        [MethodImpl(INLINE)] public static byte3 operator %(byte lhs, byte3 rhs) => new(lhs % rhs.x, lhs % rhs.y, lhs % rhs.z);
+        [MethodImpl(INLINE)] public static byte3 operator %(byte a, byte3 b) => new(a % b.x, a % b.y, a % b.z);
         
         /// Adds one to each component of the byte3 vector.
-        [MethodImpl(INLINE)] public static byte3 operator ++(byte3 val) => new(++val.x, ++val.y, ++val.z);
+        [MethodImpl(INLINE)] public static byte3 operator ++(byte3 v) => new(++v.x, ++v.y, ++v.z);
         ///Subtracts one from each component of the byte3 vector.
-        [MethodImpl(INLINE)] public static byte3 operator --(byte3 val) => new(--val.x, --val.y, --val.z);
+        [MethodImpl(INLINE)] public static byte3 operator --(byte3 v) => new(--v.x, --v.y, --v.z);
         
         /// Returns the result of a componentwise less than operation on two byte3 vectors.
-        [MethodImpl(INLINE)] public static bool3 operator <(byte3 lhs, byte3 rhs) => new(lhs.x < rhs.x, lhs.y < rhs.y, lhs.z < rhs.z);
+        [MethodImpl(INLINE)] public static bool3 operator <(byte3 a, byte3 b) => new(a.x < b.x, a.y < b.y, a.z < b.z);
         /// Returns the result of a componentwise less than operation on a byte3 vector and a byte value.
-        [MethodImpl(INLINE)] public static bool3 operator <(byte3 lhs, byte rhs) => new(lhs.x < rhs, lhs.y < rhs, lhs.z < rhs);
+        [MethodImpl(INLINE)] public static bool3 operator <(byte3 a, byte b) => new(a.x < b, a.y < b, a.z < b);
         /// Returns the result of a componentwise less than operation on a byte value and a byte3 vector.
-        [MethodImpl(INLINE)] public static bool3 operator <(byte lhs, byte3 rhs) => new(lhs < rhs.x, lhs < rhs.y, lhs < rhs.z);
+        [MethodImpl(INLINE)] public static bool3 operator <(byte a, byte3 b) => new(a < b.x, a < b.y, a < b.z);
         
         /// Returns the result of a componentwise less or equal operation on two byte3 vectors.
-        [MethodImpl(INLINE)] public static bool3 operator <=(byte3 lhs, byte3 rhs) => new(lhs.x <= rhs.x, lhs.y <= rhs.y, lhs.z <= rhs.z);
+        [MethodImpl(INLINE)] public static bool3 operator <=(byte3 a, byte3 b) => new(a.x <= b.x, a.y <= b.y, a.z <= b.z);
         /// Returns the result of a componentwise less or equal operation on a byte3 vector and a byte value.
-        [MethodImpl(INLINE)] public static bool3 operator <=(byte3 lhs, byte rhs) => new(lhs.x <= rhs, lhs.y <= rhs, lhs.z <= rhs);
+        [MethodImpl(INLINE)] public static bool3 operator <=(byte3 a, byte b) => new(a.x <= b, a.y <= b, a.z <= b);
         /// Returns the result of a componentwise less or equal operation on a byte value and a byte3 vector.
-        [MethodImpl(INLINE)] public static bool3 operator <=(byte lhs, byte3 rhs) => new(lhs <= rhs.x, lhs <= rhs.y, lhs <= rhs.z);
+        [MethodImpl(INLINE)] public static bool3 operator <=(byte a, byte3 b) => new(a <= b.x, a <= b.y, a <= b.z);
       
         /// Returns the result of a componentwise greater than operation on two byte3 vectors.
-        [MethodImpl(INLINE)] public static bool3 operator >(byte3 lhs, byte3 rhs) => new(lhs.x > rhs.x, lhs.y > rhs.y, lhs.z > rhs.z);
+        [MethodImpl(INLINE)] public static bool3 operator >(byte3 a, byte3 b) => new(a.x > b.x, a.y > b.y, a.z > b.z);
         /// Returns the result of a componentwise greater than operation on a byte3 vector and a byte value.
-        [MethodImpl(INLINE)] public static bool3 operator >(byte3 lhs, byte rhs) => new(lhs.x > rhs, lhs.y > rhs, lhs.z > rhs);
+        [MethodImpl(INLINE)] public static bool3 operator >(byte3 a, byte b) => new(a.x > b, a.y > b, a.z > b);
         /// Returns the result of a componentwise greater than operation on a byte value and a byte3 vector.
-        [MethodImpl(INLINE)] public static bool3 operator >(byte lhs, byte3 rhs) => new(lhs > rhs.x, lhs > rhs.y, lhs > rhs.z);
+        [MethodImpl(INLINE)] public static bool3 operator >(byte a, byte3 b) => new(a > b.x, a > b.y, a > b.z);
         
         /// Returns the result of a componentwise greater or equal operation on two byte3 vectors.
-        [MethodImpl(INLINE)] public static bool3 operator >=(byte3 lhs, byte3 rhs) => new(lhs.x >= rhs.x, lhs.y >= rhs.y, lhs.z >= rhs.z);
+        [MethodImpl(INLINE)] public static bool3 operator >=(byte3 a, byte3 b) => new(a.x >= b.x, a.y >= b.y, a.z >= b.z);
         /// Returns the result of a componentwise greater or equal operation on a byte3 vector and a byte value.
-        [MethodImpl(INLINE)] public static bool3 operator >=(byte3 lhs, byte rhs) => new(lhs.x >= rhs, lhs.y >= rhs, lhs.z >= rhs);
+        [MethodImpl(INLINE)] public static bool3 operator >=(byte3 a, byte b) => new(a.x >= b, a.y >= b, a.z >= b);
         /// Returns the result of a componentwise greater or equal operation on a byte value and a byte3 vector.
-        [MethodImpl(INLINE)] public static bool3 operator >=(byte lhs, byte3 rhs) => new(lhs >= rhs.x, lhs >= rhs.y, lhs >= rhs.z);
+        [MethodImpl(INLINE)] public static bool3 operator >=(byte a, byte3 b) => new(a >= b.x, a >= b.y, a >= b.z);
        
         /// Returns the result of a componentwise unary minus operation on a byte3 vector.
         [MethodImpl(INLINE)] public static byte3 operator -(byte3 v) => new(-v.x, -v.y, -v.z);
         /// Returns the result of a componentwise unary plus operation on a byte3 vector.
         [MethodImpl(INLINE)] public static byte3 operator +(byte3 v) => new(+v.x, +v.y, +v.z);
+        
+        
+        /// <summary>Returns the result of a componentwise bitwise not operation on an byte3 vector.</summary>
+        [MethodImpl(INLINE)]public static byte3 operator ~(byte3 val) => new(~val.x, ~val.y, ~val.z);
+        
+        /// <summary>Returns the result of a componentwise bitwise and operation on two byte3 vectors.</summary>
+        [MethodImpl(INLINE)] public static byte3 operator &(byte3 a, byte3 b) => new(a.x & b.x, a.y & b.y, a.z & b.z);
+        /// <summary>Returns the result of a componentwise bitwise and operation on an byte3 vector and an int value.</summary>
+        [MethodImpl(INLINE)] public static byte3 operator &(byte3 a, int b) => new(a.x & b, a.y & b, a.z & b);
+        /// <summary>Returns the result of a componentwise bitwise and operation on an int value and an byte3 vector.</summary>
+        [MethodImpl(INLINE)] public static byte3 operator &(int a, byte3 b) => new(a & b.x, a & b.y, a & b.z);
+
+        /// <summary>Returns the result of a componentwise bitwise or operation on two byte3 vectors.</summary>
+        [MethodImpl(INLINE)] public static byte3 operator |(byte3 a, byte3 b) => new(a.x | b.x, a.y | b.y, a.z | b.z);
+        /// <summary>Returns the result of a componentwise bitwise or operation on an byte3 vector and an int value.</summary>
+        [MethodImpl(INLINE)] public static byte3 operator |(byte3 a, int b) => new(a.x | b, a.y | b, a.z | b);
+        /// <summary>Returns the result of a componentwise bitwise or operation on an int value and an byte3 vector.</summary>
+        [MethodImpl(INLINE)] public static byte3 operator |(int a, byte3 b) => new(a | b.x, a | b.y, a | b.z);
+
+        /// <summary>Returns the result of a componentwise bitwise exclusive or operation on two byte3 vectors.</summary>
+        [MethodImpl(INLINE)] public static byte3 operator ^(byte3 a, byte3 b) => new(a.x ^ b.x, a.y ^ b.y, a.z ^ b.z);
+        /// <summary>Returns the result of a componentwise bitwise exclusive or operation on an byte3 vector and an int value.</summary>
+        [MethodImpl(INLINE)] public static byte3 operator ^(byte3 a, int b) => new(a.x ^ b, a.y ^ b, a.z ^ b);
+        /// <summary>Returns the result of a componentwise bitwise exclusive or operation on an int value and an byte3 vector.</summary>
+        [MethodImpl(INLINE)] public static byte3 operator ^(int a, byte3 b) => new(a ^ b.x, a ^ b.y, a ^ b.z);
 
         /// Swizzles the vector.
         [EditorBrowsable(NEVER)] public byte4 xxxx { [MethodImpl(INLINE)] get => new(x, x, x, x); }
@@ -619,9 +644,9 @@ namespace Unity.Mathematics
         }
 
         /// Returns true if the byte3 is equal to a given byte3, false otherwise.
-        /// <param name="rhs">Right hand side argument to compare equality with.</param>
+        /// <param name="b">Right hand side argument to compare equality with.</param>
         /// <returns>The result of the equality comparison.</returns>
-        [MethodImpl(INLINE)] public bool Equals(byte3 rhs) => x == rhs.x && y == rhs.y && z == rhs.z;
+        [MethodImpl(INLINE)] public bool Equals(byte3 b) => x == b.x && y == b.y && z == b.z;
 
         /// Returns true if the byte3 is equal to a given byte3, false otherwise.
         /// <param name="o">Right hand side argument to compare equality with.</param>

@@ -98,7 +98,7 @@ namespace Unity.Mathematics
         private static readonly int4 prime = new(73856093, 19349663, 83492791, 16835253);
         
         private static float hash01(this float value) => (value + primef.x) % primef.y / primef.y;
-        private static float hash01(this float2 coord) => (coord.dot(primef.xy) % primef.y) / primef.y;
+        private static float hash01(this float2 coord) => coord.dot(primef.xy) % primef.y / primef.y;
         private static float hash01(this float3 coord) => coord.dot(primef.xyz) % primef.y / primef.y;
         private static float hash01(this float4 coord) => coord.dot(primef) % primef.y / primef.y;
         private static float hash01(this int value) => (value + primef.x) % primef.y / primef.y;

@@ -76,93 +76,118 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)] public static explicit operator byte2(double2 v) => new(v);
 
         ///Returns the result of a componentwise equality operation on two byte2 vectors.
-        [MethodImpl(INLINE)] public static bool2 operator ==(byte2 lhs, byte2 rhs) => new(lhs.x == rhs.x, lhs.y == rhs.y);
+        [MethodImpl(INLINE)] public static bool2 operator ==(byte2 a, byte2 b) => new(a.x == b.x, a.y == b.y);
         ///Returns the result of a componentwise equality operation on a byte2 vector and a byte value.
-        [MethodImpl(INLINE)] public static bool2 operator ==(byte2 lhs, byte rhs) => new(lhs.x == rhs, lhs.y == rhs);
+        [MethodImpl(INLINE)] public static bool2 operator ==(byte2 a, byte b) => new(a.x == b, a.y == b);
         ///Returns the result of a componentwise equality operation on a byte value and a byte2 vector.
-        [MethodImpl(INLINE)] public static bool2 operator ==(byte lhs, byte2 rhs) => new(lhs == rhs.x, lhs == rhs.y);
+        [MethodImpl(INLINE)] public static bool2 operator ==(byte a, byte2 b) => new(a == b.x, a == b.y);
 
         ///Returns the result of a componentwise not equal operation on two byte2 vectors.
-        [MethodImpl(INLINE)] public static bool2 operator !=(byte2 lhs, byte2 rhs) => new(lhs.x != rhs.x, lhs.y != rhs.y);
+        [MethodImpl(INLINE)] public static bool2 operator !=(byte2 a, byte2 b) => new(a.x != b.x, a.y != b.y);
         ///Returns the result of a componentwise not equal operation on a byte2 vector and a byte value.
-        [MethodImpl(INLINE)] public static bool2 operator !=(byte2 lhs, byte rhs) => new(lhs.x != rhs, lhs.y != rhs);
+        [MethodImpl(INLINE)] public static bool2 operator !=(byte2 a, byte b) => new(a.x != b, a.y != b);
         ///Returns the result of a componentwise not equal operation on a byte value and a byte2 vector.
-        [MethodImpl(INLINE)] public static bool2 operator !=(byte lhs, byte2 rhs) => new(lhs != rhs.x, lhs != rhs.y);
+        [MethodImpl(INLINE)] public static bool2 operator !=(byte a, byte2 b) => new(a != b.x, a != b.y);
 
 
         ///Returns the result of a componentwise multiplication operation on two f2 vectors.
-        [MethodImpl(INLINE)] public static int2 operator *(byte2 lhs, byte2 rhs) => new(lhs.x * rhs.x, lhs.y * rhs.y);
+        [MethodImpl(INLINE)] public static int2 operator *(byte2 a, byte2 b) => new(a.x * b.x, a.y * b.y);
         ///Returns the result of a componentwise multiplication operation on a byte2 vector and a float value.
-        [MethodImpl(INLINE)] public static int2 operator *(byte2 lhs, byte rhs) => new(lhs.x * rhs, lhs.y * rhs);
+        [MethodImpl(INLINE)] public static int2 operator *(byte2 a, byte b) => new(a.x * b, a.y * b);
         ///Returns the result of a componentwise multiplication operation on a float value and a byte2 vector.
-        [MethodImpl(INLINE)] public static int2 operator *(byte lhs, byte2 rhs) => new(lhs * rhs.x, lhs * rhs.y);
+        [MethodImpl(INLINE)] public static int2 operator *(byte a, byte2 b) => new(a * b.x, a * b.y);
         
         ///Returns the result of a componentwise addition operation on two byte2 vectors.
-        [MethodImpl(INLINE)] public static int2 operator +(byte2 lhs, byte2 rhs) => new(lhs.x + rhs.x, lhs.y + rhs.y);
+        [MethodImpl(INLINE)] public static int2 operator +(byte2 a, byte2 b) => new(a.x + b.x, a.y + b.y);
         ///Returns the result of a componentwise addition operation on a byte2 vector and a float value.
-        [MethodImpl(INLINE)] public static int2 operator +(byte2 lhs, byte rhs) => new(lhs.x + rhs, lhs.y + rhs);
+        [MethodImpl(INLINE)] public static int2 operator +(byte2 a, byte b) => new(a.x + b, a.y + b);
         ///Returns the result of a componentwise addition operation on a float value and a byte2 vector.
-        [MethodImpl(INLINE)] public static int2 operator +(byte lhs, byte2 rhs) => new(lhs + rhs.x, lhs + rhs.y);
+        [MethodImpl(INLINE)] public static int2 operator +(byte a, byte2 b) => new(a + b.x, a + b.y);
         
         ///Returns the result of a componentwise subtraction operation on two byte2 vectors.
-        [MethodImpl(INLINE)] public static int2 operator -(byte2 lhs, byte2 rhs) => new(lhs.x - rhs.x, lhs.y - rhs.y);
+        [MethodImpl(INLINE)] public static int2 operator -(byte2 a, byte2 b) => new(a.x - b.x, a.y - b.y);
         ///Returns the result of a componentwise subtraction operation on a byte2 vector and a float value.
-        [MethodImpl(INLINE)] public static int2 operator -(byte2 lhs, byte rhs) => new(lhs.x - rhs, lhs.y - rhs);
+        [MethodImpl(INLINE)] public static int2 operator -(byte2 a, byte b) => new(a.x - b, a.y - b);
         ///Returns the result of a componentwise subtraction operation on a float value and a byte2 vector.
-        [MethodImpl(INLINE)] public static int2 operator -(byte lhs, byte2 rhs) => new(lhs - rhs.x, lhs - rhs.y);
+        [MethodImpl(INLINE)] public static int2 operator -(byte a, byte2 b) => new(a - b.x, a - b.y);
         
         ///Returns the result of a componentwise division operation on two byte2 vectors.
-        [MethodImpl(INLINE)] public static float2 operator /(byte2 lhs, byte2 rhs) => new(lhs.x / rhs.x, lhs.y / rhs.y);
+        [MethodImpl(INLINE)] public static float2 operator /(byte2 a, byte2 b) => new(a.x / b.x, a.y / b.y);
         ///Returns the result of a componentwise division operation on a byte2 vector and a float value.
-        [MethodImpl(INLINE)] public static float2 operator /(byte2 lhs, byte rhs) => new((lhs.x / rhs), lhs.y / rhs);
+        [MethodImpl(INLINE)] public static float2 operator /(byte2 a, byte b) => new(a.x / b, a.y / b);
         ///Returns the result of a componentwise division operation on a float value and a byte2 vector.
-        [MethodImpl(INLINE)] public static float2 operator /(byte lhs, byte2 rhs) => new(lhs / rhs.x, lhs / rhs.y);
+        [MethodImpl(INLINE)] public static float2 operator /(byte a, byte2 b) => new(a / b.x, a / b.y);
 
 
         ///Returns the result of a componentwise modulus operation on two byte2 vectors.
-        [MethodImpl(INLINE)] public static byte2 operator %(byte2 lhs, byte2 rhs) => new(lhs.x % rhs.x, lhs.y % rhs.y);
+        [MethodImpl(INLINE)] public static byte2 operator %(byte2 a, byte2 b) => new(a.x % b.x, a.y % b.y);
         ///Returns the result of a componentwise modulus operation on a byte2 vector and a float value.
-        [MethodImpl(INLINE)] public static byte2 operator %(byte2 lhs, byte rhs) => new(lhs.x % rhs, lhs.y % rhs);
+        [MethodImpl(INLINE)] public static byte2 operator %(byte2 a, byte b) => new(a.x % b, a.y % b);
         ///Returns the result of a componentwise modulus operation on a float value and a byte2 vector.
-        [MethodImpl(INLINE)] public static byte2 operator %(byte lhs, byte2 rhs) => new(lhs % rhs.x, lhs % rhs.y);
+        [MethodImpl(INLINE)] public static byte2 operator %(byte a, byte2 b) => new(a % b.x, a % b.y);
 
         ///Returns the result of a componentwise increment operation on a byte2 vector.
-        [MethodImpl(INLINE)] public static byte2 operator ++(byte2 val) => new(++val.x, ++val.y);
+        [MethodImpl(INLINE)] public static byte2 operator ++(byte2 v) => new(++v.x, ++v.y);
         ///Returns the result of a componentwise decrement operation on a byte2 vector.
-        [MethodImpl(INLINE)] public static byte2 operator --(byte2 val) => new(--val.x, --val.y);
+        [MethodImpl(INLINE)] public static byte2 operator --(byte2 v) => new(--v.x, --v.y);
 
         ///Returns the result of a componentwise less than operation on two byte2 vectors.
-        [MethodImpl(INLINE)] public static bool2 operator <(byte2 lhs, byte2 rhs) => new(lhs.x < rhs.x, lhs.y < rhs.y);
+        [MethodImpl(INLINE)] public static bool2 operator <(byte2 a, byte2 b) => new(a.x < b.x, a.y < b.y);
         ///Returns the result of a componentwise less than operation on a byte2 vector and a float value.
-        [MethodImpl(INLINE)] public static bool2 operator <(byte2 lhs, byte rhs) => new(lhs.x < rhs, lhs.y < rhs);
+        [MethodImpl(INLINE)] public static bool2 operator <(byte2 a, byte b) => new(a.x < b, a.y < b);
         ///Returns the result of a componentwise less than operation on a float value and a byte2 vector.
-        [MethodImpl(INLINE)] public static bool2 operator <(byte lhs, byte2 rhs) => new(lhs < rhs.x, lhs < rhs.y);
+        [MethodImpl(INLINE)] public static bool2 operator <(byte a, byte2 b) => new(a < b.x, a < b.y);
         
         ///Returns the result of a componentwise less or equal operation on two byte2 vectors.
-        [MethodImpl(INLINE)] public static bool2 operator <=(byte2 lhs, byte2 rhs) => new(lhs.x <= rhs.x, lhs.y <= rhs.y);
+        [MethodImpl(INLINE)] public static bool2 operator <=(byte2 a, byte2 b) => new(a.x <= b.x, a.y <= b.y);
         ///Returns the result of a componentwise less or equal operation on a byte2 vector and a float value.
-        [MethodImpl(INLINE)] public static bool2 operator <=(byte2 lhs, byte rhs) => new(lhs.x <= rhs, lhs.y <= rhs);
+        [MethodImpl(INLINE)] public static bool2 operator <=(byte2 a, byte b) => new(a.x <= b, a.y <= b);
         ///Returns the result of a componentwise less or equal operation on a float value and a byte2 vector.
-        [MethodImpl(INLINE)] public static bool2 operator <=(byte lhs, byte2 rhs) => new(lhs <= rhs.x, lhs <= rhs.y);
+        [MethodImpl(INLINE)] public static bool2 operator <=(byte a, byte2 b) => new(a <= b.x, a <= b.y);
         
         ///Returns the result of a componentwise greater than operation on two byte2 vectors.
-        [MethodImpl(INLINE)] public static bool2 operator >(byte2 lhs, byte2 rhs) => new(lhs.x > rhs.x, lhs.y > rhs.y);
+        [MethodImpl(INLINE)] public static bool2 operator >(byte2 a, byte2 b) => new(a.x > b.x, a.y > b.y);
         ///Returns the result of a componentwise greater than operation on a byte2 vector and a float value.
-        [MethodImpl(INLINE)] public static bool2 operator >(byte2 lhs, byte rhs) => new(lhs.x > rhs, lhs.y > rhs);
+        [MethodImpl(INLINE)] public static bool2 operator >(byte2 a, byte b) => new(a.x > b, a.y > b);
         ///Returns the result of a componentwise greater than operation on a float value and a byte2 vector.
-        [MethodImpl(INLINE)] public static bool2 operator >(byte lhs, byte2 rhs) => new(lhs > rhs.x, lhs > rhs.y);
+        [MethodImpl(INLINE)] public static bool2 operator >(byte a, byte2 b) => new(a > b.x, a > b.y);
 
         ///Returns the result of a componentwise greater or equal operation on two byte2 vectors.
-        [MethodImpl(INLINE)] public static bool2 operator >=(byte2 lhs, byte2 rhs) => new(lhs.x >= rhs.x, lhs.y >= rhs.y);
+        [MethodImpl(INLINE)] public static bool2 operator >=(byte2 a, byte2 b) => new(a.x >= b.x, a.y >= b.y);
         ///Returns the result of a componentwise greater or equal operation on a byte2 vector and a float value.
-        [MethodImpl(INLINE)] public static bool2 operator >=(byte2 lhs, byte rhs) => new(lhs.x >= rhs, lhs.y >= rhs);
+        [MethodImpl(INLINE)] public static bool2 operator >=(byte2 a, byte b) => new(a.x >= b, a.y >= b);
         ///Returns the result of a componentwise greater or equal operation on a float value and a byte2 vector.
-        [MethodImpl(INLINE)] public static bool2 operator >=(byte lhs, byte2 rhs) => new(lhs >= rhs.x, lhs >= rhs.y);
+        [MethodImpl(INLINE)] public static bool2 operator >=(byte a, byte2 b) => new(a >= b.x, a >= b.y);
 
         ///Returns the result of a componentwise unary minus operation on a byte2 vector.
-        [MethodImpl(INLINE)] public static byte2 operator -(byte2 val) => new(-val.x, -val.y);
+        [MethodImpl(INLINE)] public static byte2 operator -(byte2 v) => new(-v.x, -v.y);
         ///Returns the result of a componentwise unary plus operation on a byte2 vector.
-        [MethodImpl(INLINE)] public static byte2 operator +(byte2 val) => new(+val.x, +val.y);
+        [MethodImpl(INLINE)] public static byte2 operator +(byte2 v) => new(+v.x, +v.y);
+        
+        
+        /// <summary>Returns the result of a componentwise bitwise not operation on an byte2 vector.</summary>
+        [MethodImpl(INLINE)]public static byte2 operator ~(byte2 val) => new(~val.x, ~val.y);
+        
+        /// <summary>Returns the result of a componentwise bitwise and operation on two byte2 vectors.</summary>
+        [MethodImpl(INLINE)] public static byte2 operator &(byte2 a, byte2 b) => new(a.x & b.x, a.y & b.y);
+        /// <summary>Returns the result of a componentwise bitwise and operation on an byte2 vector and an int value.</summary>
+        [MethodImpl(INLINE)] public static byte2 operator &(byte2 a, int b) => new(a.x & b, a.y & b);
+        /// <summary>Returns the result of a componentwise bitwise and operation on an int value and an byte2 vector.</summary>
+        [MethodImpl(INLINE)] public static byte2 operator &(int a, byte2 b) => new(a & b.x, a & b.y);
+
+        /// <summary>Returns the result of a componentwise bitwise or operation on two byte2 vectors.</summary>
+        [MethodImpl(INLINE)] public static byte2 operator |(byte2 a, byte2 b) => new(a.x | b.x, a.y | b.y);
+        /// <summary>Returns the result of a componentwise bitwise or operation on an byte2 vector and an int value.</summary>
+        [MethodImpl(INLINE)] public static byte2 operator |(byte2 a, int b) => new(a.x | b, a.y | b);
+        /// <summary>Returns the result of a componentwise bitwise or operation on an int value and an byte2 vector.</summary>
+        [MethodImpl(INLINE)] public static byte2 operator |(int a, byte2 b) => new(a | b.x, a | b.y);
+
+        /// <summary>Returns the result of a componentwise bitwise exclusive or operation on two byte2 vectors.</summary>
+        [MethodImpl(INLINE)] public static byte2 operator ^(byte2 a, byte2 b) => new(a.x ^ b.x, a.y ^ b.y);
+        /// <summary>Returns the result of a componentwise bitwise exclusive or operation on an byte2 vector and an int value.</summary>
+        [MethodImpl(INLINE)] public static byte2 operator ^(byte2 a, int b) => new(a.x ^ b, a.y ^ b);
+        /// <summary>Returns the result of a componentwise bitwise exclusive or operation on an int value and an byte2 vector.</summary>
+        [MethodImpl(INLINE)] public static byte2 operator ^(int a, byte2 b) => new(a ^ b.x, a ^ b.y);
         
 
 
@@ -211,9 +236,9 @@ namespace Unity.Mathematics
         }
 
         ///Returns true if the byte2 is equal to a given byte2, false otherwise.
-        /// <param name="rhs">Right hand side argument to compare equality with.</param>
+        /// <param name="b">Right hand side argument to compare equality with.</param>
         /// <returns>The result of the equality comparison.</returns>
-        [MethodImpl(INLINE)] public bool Equals(byte2 rhs) => x == rhs.x && y == rhs.y;
+        [MethodImpl(INLINE)] public bool Equals(byte2 b) => x == b.x && y == b.y;
 
         ///Returns true if the byte2 is equal to a given byte2, false otherwise.
         /// <param name="o">Right hand side argument to compare equality with.</param>

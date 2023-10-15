@@ -77,47 +77,67 @@ namespace Unity.Mathematics
         
         /// Returns whether two byte values are bitwise equivalent.
         /// Returns True if the two byte values are bitwise equivalent, false otherwise.
-        [MethodImpl(INLINE)] public static bool operator ==(byte1 lhs, byte1 rhs) => lhs.value == rhs.value;
+        [MethodImpl(INLINE)] public static bool operator ==(byte1 a, byte1 b) => a.value == b.value;
         /// Returns whether two byte values are not bitwise equivalent.
-        [MethodImpl(INLINE)] public static bool operator !=(byte1 lhs, byte1 rhs) => lhs.value != rhs.value;
+        [MethodImpl(INLINE)] public static bool operator !=(byte1 a, byte1 b) => a.value != b.value;
         /// Returns True if the two byte values are not bitwise equivalent, false otherwise.
-        [MethodImpl(INLINE)] public static bool operator <(byte1 lhs, byte1 rhs) => lhs.value < rhs.value;
+        [MethodImpl(INLINE)] public static bool operator <(byte1 a, byte1 b) => a.value < b.value;
         /// Returns True if the two byte values are not bitwise equivalent, false otherwise.
-        [MethodImpl(INLINE)] public static bool operator > (byte1 lhs, byte1 rhs) => lhs.value > rhs.value;
-        /// Returns True if the lhs is less or equal than the rhs, false otherwise.
-        [MethodImpl(INLINE)] public static bool operator <= (byte1 lhs, byte1 rhs) => lhs.value <= rhs.value;
-        /// <returns>True if the lhs is greater or equal than the rhs, false otherwise.</returns>
-        [MethodImpl(INLINE)] public static bool operator >= (byte1 lhs, byte1 rhs) => lhs.value >= rhs.value; 
+        [MethodImpl(INLINE)] public static bool operator > (byte1 a, byte1 b) => a.value > b.value;
+        /// Returns True if the a is less or equal than the b, false otherwise.
+        [MethodImpl(INLINE)] public static bool operator <= (byte1 a, byte1 b) => a.value <= b.value;
+        /// <returns>True if the a is greater or equal than the b, false otherwise.</returns>
+        [MethodImpl(INLINE)] public static bool operator >= (byte1 a, byte1 b) => a.value >= b.value; 
         
         
         /// Returns the result of a modulation of two byte1 vectors into a byte1
-        [MethodImpl(INLINE)] public static byte1 operator %(byte1 lhs, byte1 rhs) => lhs.value % rhs.value;
+        [MethodImpl(INLINE)] public static byte1 operator %(byte1 a, byte1 b) => a.value % b.value;
         /// Returns the result of a division of two byte1 vectors into a float
-        [MethodImpl(INLINE)] public static float operator /(byte1 lhs, byte1 rhs) => lhs.value / (float)rhs.value;
+        [MethodImpl(INLINE)] public static float operator /(byte1 a, byte1 b) => a.value / (float)b.value;
         /// Returns the result of a multiplication of two byte1 vectors into a byte1
-        [MethodImpl(INLINE)] public static int operator *(byte1 lhs, byte1 rhs) => lhs.value * rhs.value;
-        /// Returns the result of a bitwise XOR of two byte1 vectors into a byte1
-        [MethodImpl(INLINE)] public static int operator ^(byte1 lhs, byte1 rhs) => lhs.value ^ rhs.value;
+        [MethodImpl(INLINE)] public static int operator *(byte1 a, byte1 b) => a.value * b.value;
+
+
+        /// Returns the result of a bitwise NOT of a byte1 vector into a byte1
+        [MethodImpl(INLINE)] public static int operator +(byte1 a, byte1 b) => a.value + b.value;
+        /// Returns the result of a bitwise NOT of a byte1 vector into a byte1
+        [MethodImpl(INLINE)] public static int operator -(byte1 a, byte1 b) => a.value - b.value;
+        /// Returns the result of a bitwise NOT of a byte1 vector into a byte1
+        [MethodImpl(INLINE)] public static byte1 operator --(byte1 a) => --a.value;
+        /// Returns the result of a bitwise NOT of a byte1 vector into a byte1
+        [MethodImpl(INLINE)] public static byte1 operator ++(byte1 a) => ++a.value;
+        
+        /// <summary>Returns the result of a componentwise bitwise not operation on an byte1 vector.</summary>
+        [MethodImpl(INLINE)]public static int operator ~(byte1 val) => ~val.value;
+        
         /// Returns the result of a bitwise AND of two byte1 vectors into a byte1
-        [MethodImpl(INLINE)] public static int operator &(byte1 lhs, byte1 rhs) => lhs.value & rhs.value;
+        [MethodImpl(INLINE)] public static int operator &(byte1 a, byte1 b) => a.value & b.value;
+        /// <summary>Returns the result of a componentwise bitwise and operation on an byte1 vector and an int value.</summary>
+        [MethodImpl(INLINE)] public static int operator &(byte1 a, int b) => a.value & b;
+        /// <summary>Returns the result of a componentwise bitwise and operation on an int value and an byte1 vector.</summary>
+        [MethodImpl(INLINE)] public static int operator &(int a, byte1 b) => a & b.value;
+
         /// Returns the result of a bitwise OR of two byte1 vectors into a byte1
-        [MethodImpl(INLINE)] public static int operator |(byte1 lhs, byte1 rhs) => lhs.value | rhs.value;
-        /// Returns the result of a bitwise NOT of a byte1 vector into a byte1
-        [MethodImpl(INLINE)] public static int operator +(byte1 lhs, byte1 rhs) => lhs.value + rhs.value;
-        /// Returns the result of a bitwise NOT of a byte1 vector into a byte1
-        [MethodImpl(INLINE)] public static int operator -(byte1 lhs, byte1 rhs) => lhs.value - rhs.value;
-        /// Returns the result of a bitwise NOT of a byte1 vector into a byte1
-        [MethodImpl(INLINE)] public static byte1 operator --(byte1 lhs) => --lhs.value;
-        /// Returns the result of a bitwise NOT of a byte1 vector into a byte1
-        [MethodImpl(INLINE)] public static byte1 operator ++(byte1 lhs) => ++lhs.value;
+        [MethodImpl(INLINE)] public static int operator |(byte1 a, byte1 b) => a.value | b.value;
+        /// <summary>Returns the result of a componentwise bitwise or operation on an byte1 vector and an int value.</summary>
+        [MethodImpl(INLINE)] public static int operator |(byte1 a, int b) => a.value | b;
+        /// <summary>Returns the result of a componentwise bitwise or operation on an int value and an byte1 vector.</summary>
+        [MethodImpl(INLINE)] public static int operator |(int a, byte1 b) => a | b.value;
+
+        /// Returns the result of a bitwise XOR of two byte1 vectors into a byte1
+        [MethodImpl(INLINE)] public static int operator ^(byte1 a, byte1 b) => a.value ^ b.value;
+        /// <summary>Returns the result of a componentwise bitwise exclusive or operation on an byte1 vector and an int value.</summary>
+        [MethodImpl(INLINE)] public static int operator ^(byte1 a, int b) => a.value ^ b;
+        /// <summary>Returns the result of a componentwise bitwise exclusive or operation on an int value and an byte1 vector.</summary>
+        [MethodImpl(INLINE)] public static int operator ^(int a, byte1 b) => a ^ b.value;
         
 
         /// Returns true if the byte is bitwise equivalent to a given half, false otherwise.
         /// <returns>True if the byte value is bitwise equivalent to the input, false otherwise.</returns>
         [MethodImpl(INLINE)]
-        public bool Equals(byte1 rhs) => value == rhs.value;
+        public bool Equals(byte1 b) => value == b.value;
 
-        public bool Equals(byte rhs) => value == rhs;
+        public bool Equals(byte b) => value == b;
 
         /// Returns true if the byte is equal to a given half, false otherwise.
         /// <param name="o">Right hand side object to use in comparison.</param>

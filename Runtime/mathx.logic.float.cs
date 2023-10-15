@@ -63,64 +63,64 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static bool isfinite(this float f) => math.isfinite(f);
 
         /// returns true component-wise if the any component is greater to the other value, otherwise false
-        [MethodImpl(IL)] public static bool4 greater(this float4 f, float value) => (f > value);
+        [MethodImpl(IL)] public static bool4 greater(this float4 f, float value) => f > value;
         /// <inheritdoc cref="greater(float4,float)"/>
-        [MethodImpl(IL)] public static bool3 greater(this float3 f, float value) => (f > value);
+        [MethodImpl(IL)] public static bool3 greater(this float3 f, float value) => f > value;
         /// <inheritdoc cref="greater(float4,float)"/>
-        [MethodImpl(IL)] public static bool2 greater(this float2 f, float value) => (f > value);
+        [MethodImpl(IL)] public static bool2 greater(this float2 f, float value) => f > value;
         /// <inheritdoc cref="greater(float4,float)"/>
-        [MethodImpl(IL)] public static bool greater(this float f, float value) => (f > value);
+        [MethodImpl(IL)] public static bool greater(this float f, float value) => f > value;
         /// <inheritdoc cref="greater(float4,float)"/>
-        [MethodImpl(IL)] public static bool4 greater(this float4 f, float4 value) => (f > value);
+        [MethodImpl(IL)] public static bool4 greater(this float4 f, float4 value) => f > value;
         /// <inheritdoc cref="greater(float4,float)"/>
-        [MethodImpl(IL)] public static bool3 greater(this float3 f, float3 value) => (f > value);
+        [MethodImpl(IL)] public static bool3 greater(this float3 f, float3 value) => f > value;
         /// <inheritdoc cref="greater(float4,float)"/>
-        [MethodImpl(IL)] public static bool2 greater(this float2 f, float2 value) => (f > value);
+        [MethodImpl(IL)] public static bool2 greater(this float2 f, float2 value) => f > value;
         
         /// returns true component-wise if the any component is less to the other value, otherwise false
-        [MethodImpl(IL)] public static bool4 less(this float4 f, float value) => (f < value);
+        [MethodImpl(IL)] public static bool4 less(this float4 f, float value) => f < value;
         /// <inheritdoc cref="less(float4,float)"/>
-        [MethodImpl(IL)] public static bool3 less(this float3 f, float value) => (f < value);
+        [MethodImpl(IL)] public static bool3 less(this float3 f, float value) => f < value;
         /// <inheritdoc cref="less(float4,float)"/>
-        [MethodImpl(IL)] public static bool2 less(this float2 f, float value) => (f < value);
+        [MethodImpl(IL)] public static bool2 less(this float2 f, float value) => f < value;
         /// <inheritdoc cref="less(float4,float)"/>
-        [MethodImpl(IL)] public static bool less(this float f, float value) => (f < value);
+        [MethodImpl(IL)] public static bool less(this float f, float value) => f < value;
         /// <inheritdoc cref="less(float4,float)"/>
-        [MethodImpl(IL)] public static bool4 less(this float4 f, float4 value) => (f < value);
+        [MethodImpl(IL)] public static bool4 less(this float4 f, float4 value) => f < value;
         /// <inheritdoc cref="less(float4,float)"/>
-        [MethodImpl(IL)] public static bool3 less(this float3 f, float3 value) => (f < value);
+        [MethodImpl(IL)] public static bool3 less(this float3 f, float3 value) => f < value;
         /// <inheritdoc cref="less(float4,float)"/>
-        [MethodImpl(IL)] public static bool2 less(this float2 f, float2 value) => (f < value);
+        [MethodImpl(IL)] public static bool2 less(this float2 f, float2 value) => f < value;
         
         /// returns true component-wise if the any component is less or equal to the other value, otherwise false
-        [MethodImpl(IL)] public static bool4 lesseq(this float4 f, float value) => (f <= value);
+        [MethodImpl(IL)] public static bool4 lesseq(this float4 f, float value) => f <= value;
         /// <inheritdoc cref="lesseq(float4,float)"/>
-        [MethodImpl(IL)] public static bool3 lesseq(this float3 f, float value) => (f <= value);
+        [MethodImpl(IL)] public static bool3 lesseq(this float3 f, float value) => f <= value;
         /// <inheritdoc cref="lesseq(float4,float)"/>
-        [MethodImpl(IL)] public static bool2 lesseq(this float2 f, float value) => (f <= value);
+        [MethodImpl(IL)] public static bool2 lesseq(this float2 f, float value) => f <= value;
         /// <inheritdoc cref="lesseq(float4,float)"/>
-        [MethodImpl(IL)] public static bool lesseq(this float f, float value) => (f <= value);
+        [MethodImpl(IL)] public static bool lesseq(this float f, float value) => f <= value;
         /// <inheritdoc cref="lesseq(float4,float)"/>
-        [MethodImpl(IL)] public static bool4 lesseq(this float4 f, float4 value) => (f <= value);
+        [MethodImpl(IL)] public static bool4 lesseq(this float4 f, float4 value) => f <= value;
         /// <inheritdoc cref="lesseq(float4,float)"/>
-        [MethodImpl(IL)] public static bool3 lesseq(this float3 f, float3 value) => (f <= value);
+        [MethodImpl(IL)] public static bool3 lesseq(this float3 f, float3 value) => f <= value;
         /// <inheritdoc cref="lesseq(float4,float)"/>
-        [MethodImpl(IL)] public static bool2 lesseq(this float2 f, float2 value) => (f <= value);
+        [MethodImpl(IL)] public static bool2 lesseq(this float2 f, float2 value) => f <= value;
         
         /// returns true component-wise if the any component is greater or equal to the other value, otherwise false
-        [MethodImpl(IL)] public static bool4 greatereq(this float4 f, float value) => (f >= value);
+        [MethodImpl(IL)] public static bool4 greatereq(this float4 f, float value) => f >= value;
         /// <inheritdoc cref="greatereq(float4,float)"/>
-        [MethodImpl(IL)] public static bool3 greatereq(this float3 f, float value) => (f >= value);
+        [MethodImpl(IL)] public static bool3 greatereq(this float3 f, float value) => f >= value;
         /// <inheritdoc cref="greatereq(float4,float)"/>
-        [MethodImpl(IL)] public static bool2 greatereq(this float2 f, float value) => (f >= value);
+        [MethodImpl(IL)] public static bool2 greatereq(this float2 f, float value) => f >= value;
         /// <inheritdoc cref="greatereq(float4,float)"/>
-        [MethodImpl(IL)] public static bool greatereq(this float f, float value) => (f >= value);
+        [MethodImpl(IL)] public static bool greatereq(this float f, float value) => f >= value;
         /// <inheritdoc cref="greatereq(float4,float)"/>
-        [MethodImpl(IL)] public static bool4 greatereq(this float4 f, float4 value) => (f >= value);
+        [MethodImpl(IL)] public static bool4 greatereq(this float4 f, float4 value) => f >= value;
         /// <inheritdoc cref="greatereq(float4,float)"/>
-        [MethodImpl(IL)] public static bool3 greatereq(this float3 f, float3 value) => (f >= value);
+        [MethodImpl(IL)] public static bool3 greatereq(this float3 f, float3 value) => f >= value;
         /// <inheritdoc cref="greatereq(float4,float)"/>
-        [MethodImpl(IL)] public static bool2 greatereq(this float2 f, float2 value) => (f >= value);
+        [MethodImpl(IL)] public static bool2 greatereq(this float2 f, float2 value) => f >= value;
         
         /// returns true component-wise if the any component is equal to the other value, otherwise false
         [MethodImpl(IL)] public static bool4 eq(this float4 f, float value) => f == value;
