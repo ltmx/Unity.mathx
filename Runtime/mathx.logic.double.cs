@@ -5,12 +5,12 @@
 #endregion
 
 
+using System.Runtime.CompilerServices;
+
 namespace Unity.Mathematics
 {
-    using global:: System.Runtime.CompilerServices;
     public static partial class mathx
     {
-        
         
         /// Returns true if a is odd
         [MethodImpl(INLINE)] public static bool odd(this double a) => ((int)a & 1) != 0;
@@ -153,5 +153,87 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)] public static bool3 neq(this double3 f, double3 value) => f != value;
         /// <inheritdoc cref="neq(double4,double)"/>
         [MethodImpl(INLINE)] public static bool2 neq(this double2 f, double2 value) => f != value;
+        
+        
+        
+        /// returns true if the any component is greater to the other value, otherwise false
+        [MethodImpl(IL)] public static bool anygreater(this double4 f, double v) => f.x > v || f.y > v || f.z > v || f.w > v;
+        /// <inheritdoc cref="anygreater(double4,double)"/>
+        [MethodImpl(IL)] public static bool anygreater(this double3 f, double v) => f.x > v || f.y > v || f.z > v;
+        /// <inheritdoc cref="anygreater(double4,double)"/>
+        [MethodImpl(IL)] public static bool anygreater(this double2 f, double v) => f.x > v || f.y > v;
+        /// <inheritdoc cref="anygreater(double4,double)"/>
+        [MethodImpl(IL)] public static bool anygreater(this double4 f, double4 v) => f.x > v.x || f.y > v.y || f.z > v.z || f.z > v.z || f.w > v.w;
+        /// <inheritdoc cref="anygreater(double4,double)"/>
+        [MethodImpl(IL)] public static bool anygreater(this double3 f, double3 v) => f.x > v.x || f.y > v.y || f.z > v.z || f.z > v.z;
+        /// <inheritdoc cref="anygreater(double4,double)"/>
+        [MethodImpl(IL)] public static bool anygreater(this double2 f, double2 v) => f.x > v.x || f.y > v.y;
+        
+        /// returns true if the any component is greater or equal to the other value, otherwise false
+        [MethodImpl(IL)] public static bool anygreatereq(this double4 f, double v) => f.x >= v || f.y >= v || f.z >= v || f.w >= v;
+        /// <inheritdoc cref="anygreatereq(double4,double)"/>
+        [MethodImpl(IL)] public static bool anygreatereq(this double3 f, double v) => f.x >= v || f.y >= v || f.z >= v;
+        /// <inheritdoc cref="anygreatereq(double4,double)"/>
+        [MethodImpl(IL)] public static bool anygreatereq(this double2 f, double v) => f.x >= v || f.y >= v;
+        /// <inheritdoc cref="anygreatereq(double4,double)"/>
+        [MethodImpl(IL)] public static bool anygreatereq(this double4 f, double4 v) => f.x >= v.x || f.y >= v.y || f.z >= v.z || f.w >= v.w;
+        /// <inheritdoc cref="anygreatereq(double4,double)"/>
+        [MethodImpl(IL)] public static bool anygreatereq(this double3 f, double3 v) => f.x >= v.x || f.y >= v.y || f.z >= v.z;
+        /// <inheritdoc cref="anygreatereq(double4,double)"/>
+        [MethodImpl(IL)] public static bool anygreatereq(this double2 f, double2 v) => f.x >= v.x || f.y >= v.y;
+                
+        /// returns true if the any component is less to the other value, otherwise false
+        [MethodImpl(IL)] public static bool anyless(this double4 f, double v) => f.x < v || f.y < v || f.z < v || f.w < v;
+        /// <inheritdoc cref="anyless(double4,double)"/>
+        [MethodImpl(IL)] public static bool anyless(this double3 f, double v) => f.x < v || f.y < v || f.z < v;
+        /// <inheritdoc cref="anyless(double4,double)"/>
+        [MethodImpl(IL)] public static bool anyless(this double2 f, double v) => f.x < v || f.y < v;
+        /// <inheritdoc cref="anyless(double4,double)"/>
+        [MethodImpl(IL)] public static bool anyless(this double4 f, double4 v) => f.x < v.x || f.y < v.y || f.z < v.z || f.w < v.w;
+        /// <inheritdoc cref="anyless(double4,double)"/>
+        [MethodImpl(IL)] public static bool anyless(this double3 f, double3 v) => f.x < v.x || f.y < v.y || f.z < v.z;
+        /// <inheritdoc cref="anyless(double4,double)"/>
+        [MethodImpl(IL)] public static bool anyless(this double2 f, double2 v) => f.x < v.x || f.y < v.y;
+        
+        /// returns true if the any component is less or equal to the other value, otherwise false
+        [MethodImpl(IL)] public static bool anylesseq(this double4 f, double v) => f.x <= v || f.y <= v || f.z <= v || f.w <= v;
+        /// <inheritdoc cref="anylesseq(double4,double)"/>
+        [MethodImpl(IL)] public static bool anylesseq(this double3 f, double v) => f.x <= v || f.y <= v || f.z <= v;
+        /// <inheritdoc cref="anylesseq(double4,double)"/>
+        [MethodImpl(IL)] public static bool anylesseq(this double2 f, double v) => f.x <= v || f.y <= v;
+        /// <inheritdoc cref="anylesseq(double4,double)"/>
+        [MethodImpl(IL)] public static bool anylesseq(this double4 f, double4 v) => f.x <= v.x || f.y <= v.y || f.z <= v.z || f.w <= v.w;
+        /// <inheritdoc cref="anylesseq(double4,double)"/>
+        [MethodImpl(IL)] public static bool anylesseq(this double3 f, double3 v) => f.x <= v.x || f.y <= v.y || f.z <= v.z;
+        /// <inheritdoc cref="anylesseq(double4,double)"/>
+        [MethodImpl(IL)] public static bool anylesseq(this double2 f, double2 v) => f.x <= v.x || f.y <= v.y;
+        
+        
+        /// returns true if the any component is equal to the other value, otherwise false
+        [MethodImpl(IL)] public static bool anyeq(this double4 f, double v) => f.x == v || f.y == v || f.z == v || f.w == v;
+        /// <inheritdoc cref="anyeq(double4,double)"/>
+        [MethodImpl(IL)] public static bool anyeq(this double3 f, double v) => f.x == v || f.y == v || f.z == v;
+        /// <inheritdoc cref="anyeq(double4,double)"/>
+        [MethodImpl(IL)] public static bool anyeq(this double2 f, double v) => f.x == v || f.y == v;
+        /// <inheritdoc cref="anyeq(double4,double)"/>
+        [MethodImpl(IL)] public static bool anyeq(this double4 f, double4 v) => f.x == v.x || f.y == v.y || f.z == v.z || f.w == v.w;
+        /// <inheritdoc cref="anyeq(double4,double)"/>
+        [MethodImpl(IL)] public static bool anyeq(this double3 f, double3 v) => f.x == v.x || f.y == v.y || f.z == v.z;
+        /// <inheritdoc cref="anyeq(double4,double)"/>
+        [MethodImpl(IL)] public static bool anyeq(this double2 f, double2 v) => f.x == v.x || f.y == v.y;
+        
+        
+        /// returns true if the any component is not equal to the other value, otherwise false
+        [MethodImpl(IL)] public static bool anyneq(this double4 f, double v) => f.x != v || f.y != v || f.z != v || f.w != v;
+        /// <inheritdoc cref="anyneq(double4,double)"/>
+        [MethodImpl(IL)] public static bool anyneq(this double3 f, double v) => f.x != v || f.y != v || f.z != v;
+        /// <inheritdoc cref="anyneq(double4,double)"/>
+        [MethodImpl(IL)] public static bool anyneq(this double2 f, double v) => f.x != v || f.y != v;
+        /// <inheritdoc cref="anyneq(double4,double)"/>
+        [MethodImpl(IL)] public static bool anyneq(this double4 f, double4 v) => f.x != v.x || f.y != v.y || f.z != v.z || f.w != v.w;
+        /// <inheritdoc cref="anyneq(double4,double)"/>
+        [MethodImpl(IL)] public static bool anyneq(this double3 f, double3 v) => f.x != v.x || f.y != v.y || f.z != v.z;
+        /// <inheritdoc cref="anyneq(double4,double)"/>
+        [MethodImpl(IL)] public static bool anyneq(this double2 f, double2 v) => f.x != v.x || f.y != v.y;
     }
 }

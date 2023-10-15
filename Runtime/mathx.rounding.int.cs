@@ -58,7 +58,6 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)] public static int2 max(this int2 f, int2 max) => math.max(f, max);
         /// <inheritdoc cref="math.max(int, int)"/>
         [MethodImpl(INLINE)] public static int max(this int f, int max) => math.max(f, max);
-        
         /// <inheritdoc cref="math.max(int, int)"/>
         [MethodImpl(INLINE)] public static float max(this int f, float max) => math.max(f, max);
 
