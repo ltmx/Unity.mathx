@@ -1821,8 +1821,8 @@ namespace Unity.Mathematics
     public static partial class mathx
     {
         /// Returns a byte4 vector constructed from four byte values.
-        /// <returns>byte4 constructed from arguments.</returns>
         [MethodImpl(INLINE)] public static byte4 byte4(byte x, byte y, byte z, byte w) => new(x, y, z, w);
+        /// <returns>byte4 constructed from arguments.</returns>
         [MethodImpl(INLINE)] public static byte4 byte4(ValueType x, ValueType y, ValueType z, ValueType w) => new(x, y, z, w);
         /// Returns a byte4 vector constructed from two byte values and a byte2 vector.
         [MethodImpl(INLINE)] public static byte4 byte4(byte x, byte y, byte2 zw) => new(x, y, zw);
