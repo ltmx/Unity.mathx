@@ -46,10 +46,12 @@ namespace Unity.Mathematics
         public static float mulx2(float a) => a * 2;
         public static FunctionPointer<FloatIO> mulx2Pointer = CompileFunctionPointer<FloatIO>(mulx2);
 
-        [MenuItem("Math/Tests/Miam")]
-        public static void poop(){
+        #if UNITY_EDITOR
+        [UnityEditor.MenuItem("Math/Tests/pointer invoker")]
+        public static void test(){
             Debug.Log(mulx2Pointer.Invoke(2.6f));
         }
+        #endif
 
         [BurstCompile, MonoPInvokeCallback(typeof(FloatIO))]
         public static float mul(float a, float b) => a * b;
