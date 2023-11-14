@@ -4,6 +4,9 @@
 // **    Repository : https://github.com/LTMX/Unity.mathx
 #endregion
 
+using System;
+using Unity.Burst;
+
 namespace Unity.Mathematics
 {
     public class FunctionPointers_Experimental
@@ -166,7 +169,7 @@ namespace Unity.Mathematics
             // public static object DynamicCompiledInvoke<T>(T method, object[] args) where T : Delegate => DynamicInvokeCompiled(method).Invoke(args);
 
             #endregion
-
+        //
         // public delegate object processDelegate(object[] args);
         // public static object DelegateOperation(this Delegate func, object[] args) => ToPointer<processDelegate>(func.DynamicInvoke).Invoke(args);
         // public static object DelegateOperation(this FunctionPointer<processDelegate> func, object[] args) => func.Invoke(args);

@@ -10,7 +10,6 @@ using UnityEngine;
 
 namespace Unity.Mathematics
 {
-    [BurstCompile]
     public static partial class mathx
     {
         ///<summary>Quintic Smoothstep</summary>
@@ -200,7 +199,7 @@ namespace Unity.Mathematics
         
         #region arch2
        
-        /// <summary> Returns x multiplied by inv(x) </summary>
+        /// <summary> Returns x * (1-x) , creating an arc going from 0, to 0.25, back to 0 in the interval [0 - 1]</summary>
         [MethodImpl(IL)] public static float4 arch2(float4 x) => x * inv(x);
         /// <inheritdoc cref="arch2(float4)" />
         [MethodImpl(IL)] public static float3 arch2(float3 x) => x * inv(x);
@@ -251,7 +250,7 @@ namespace Unity.Mathematics
         #region Smooth Min
 
         /// Smooth min is a smooth version of math.min() that accepts a smoothness parameter t
-        [MethodImpl(IL)] public static float smin(this float t, float a, float b) => smax(-t, a, b);
+        [MethodImpl(IL), BurstCompile] public static float smin(this float t, float a, float b) => smax(-t, a, b);
         /// <inheritdoc cref="smin(float,float,float)" />
         [MethodImpl(IL)] public static float2 smin(this float t, float2 a, float2 b) => smax(-t, a, b);
         /// <inheritdoc cref="smin(float,float,float)" />
@@ -270,7 +269,7 @@ namespace Unity.Mathematics
         #region Smooth Max
 
         /// Smooth max is a smooth version of math.max() that accepts a smoothness parameter t
-        [MethodImpl(IL)] public static float smax(this float t, float a, float b) {
+        [MethodImpl(IL), BurstCompile] public static float smax(this float t, float a, float b) {
             var h = (0.5f + (b - a) / (t * 2)).sat();
             return h.lerp(a, b) + t * h * (1 - h);
         }
@@ -289,13 +288,15 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float4 smax(this float4 t, float4 a, float4 b) => f4(t.x.smax(a.x, b.x), t.y.smax(a.y, b.y), t.z.smax(a.z, b.z), t.w.smax(a.w, b.w));
 
         
-        
-        [MethodImpl(IL)] public static float smax_exp(this float t, float a, float b) {
+ 
+        [MethodImpl(IL),  BurstCompile] public static float smax_exp(this float t, float a, float b) {
             var o = (f2(a - b, b - a) / t).exp();
             return f2(a, b).dot(o) / o.csum();
         }
         public static float2 smax_exp2(this float2 t, float2 a, float2 b) => f2(t.x.smax_exp(a.x, b.x), t.y.smax_exp(a.y, b.y));
-        public static float2 smax_expOP(this float2 t, float2 a, float2 b) => FunctionPointers.FP_smax_exp.InvokeParallelAndParam(a, b, t);
+        
+        public static float2 smax_expOP(this float2 t, float2 a, float2 b) => FunctionPointers.p_smax_exp.RunPerAxisWithParam(a, b, t);
+        
         public static float3 smax_exp(this float3 t, float3 a, float3 b) => f3(t.x.smax_exp(a.x, b.x), t.y.smax_exp(a.y, b.y), t.z.smax_exp(a.z, b.z));
         public static float4 smax_exp(this float4 t, float4 a, float4 b) => f4(t.x.smax_exp(a.x, b.x), t.y.smax_exp(a.y, b.y), t.z.smax_exp(a.z, b.z), t.w.smax_exp(a.w, b.w));
         
@@ -303,7 +304,7 @@ namespace Unity.Mathematics
 
         // Smooth Min Functions https://iquilezles.org/articles/smin/
         /// exponential smooth min (t=32)
-        [MethodImpl(IL)] public static  float smin_exp(this float t, float a, float b) {
+        [MethodImpl(IL), BurstCompile] public static  float smin_exp(this float t, float a, float b) {
             var res = (-t * a).exp2() + (-t * b).exp2();
             return -res.log2() / t;
         }

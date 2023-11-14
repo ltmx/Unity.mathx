@@ -198,7 +198,7 @@ namespace Unity.Mathematics
             return fp.x.lerp(d1.x, d1.y) + 0.5f;
         }
 
-        private const float F = 0.61803398875f; // golden ratio
+        private const float F = 0.61803398875f; // golden ratio 
         [MethodImpl(IL)] public static float hashx(this float2 p) => p.mult(F).frac().set(out p).add(p.cycle().add(37).dot(p)).set(out p).cmul().mult(p.csum()).frac();
         [MethodImpl(IL)] public static float hashx(this float3 p) => p.mult(F).frac().set(out p).add(p.cycle().add(37).dot(p)).set(out p).cmul().mult(p.csum()).frac();
         [MethodImpl(IL)] public static float hashx(this float4 p) => p.mult(F).frac().set(out p).add(p.cycle().add(37).dot(p)).set(out p).cmul().mult(p.csum()).frac();

@@ -11,7 +11,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using Unity.Burst;
 using static Unity.Mathematics.FunctionPointers;
-using static Unity.Mathematics.FunctionPointers.MethodSignatures;
+using static Unity.Mathematics.FunctionPointers.Signature;
 
 namespace Unity.Mathematics
 {
@@ -28,14 +28,39 @@ namespace Unity.Mathematics
         /// <param name="function">Function</param>
         /// <param name="cycles">number of times to apply the function to the input</param>
         /// <returns>the result of the iterative process</returns>
-        [MethodImpl(IL)]
-        [BurstCompile]
-        public static T apply<T>(this T input, Func<T, T> function, int cycles) {
-            var cachedpointer = GetFunctionPointerDelegate(function).Invoke; // Need to cache the function pointer to avoid the overhead of calling the delegate and be compatible with burst
-            for (var i = 0; i < cycles; i++)
-                input = cachedpointer(input);
+        // [MethodImpl(IL)]
+        // [BurstCompile]
+        // public static float apply(this float input, FunctionPointer<f1_f1> function, int cycles)
+        // {
+        //     for (var i = 0; i < cycles; i++)
+        //         input = function.Invoke(input);
+        //     return input;
+        // }
+
+        // [MethodImpl(IL)]
+        // [BurstCompile]
+        // public static T apply<T>(this T input, Delegate function, int cycles) where T : class
+        // {
+        //     for (var i = 0; i < cycles; i++)
+        //         input = function.Invoke(input);
+        //     return input;
+        // }
+
+        public static T apply<T>(this T input, Func<T, T> function, int cycles)
+        {
+            for (int i = 0; i < cycles; i++) {
+                input = function(input);
+            }
             return input;
         }
+        
+        // [BurstCompile]
+        // public static T apply<T>(this T input, FunctionPointer<t1<T>> function, int cycles) where T : unmanaged
+        // {
+        //     for (var i = 0; i < cycles; i++)
+        //         input = function.Invoke(input);
+        //     return input;
+        // }
 
         public static FunctionPointer<T> GetFunctionPointerDelegate<T>(T functionPointer) where T : Delegate => new(Marshal.GetFunctionPointerForDelegate(functionPointer));
         // public static ActionJob ToActionJob(this Action action) => new(GetFunctionPointerDelegate(action));
@@ -61,20 +86,7 @@ namespace Unity.Mathematics
         private static float4 randf(int4 seed) => new(randf(seed.x), randf(seed.y), randf(seed.z), randf(seed.w));
 
         private static float rand(uint seed) => xxhash32(seed) / (float)uint.MaxValue;
-        // private static float2 randf(uint2 seed) => new(randf(seed.x), randf(seed.y));
-        // private static float3 randf(uint3 seed) => new(randf(seed.x), randf(seed.y), randf(seed.z));
 
-        private static u1_f1 test_fp = ToPointerInvoke<u1_f1>(rand);
-        private static float4 randf(uint4 seed) => make(seed, test_fp);
-        private static float3 randf(uint3 seed) => make(seed, test_fp);
-        private static float2 randf(uint2 seed) => make(seed, test_fp);
-        private static float randf(uint seed) => make(seed, test_fp);
-        
-        public static float4 randfx(uint4 seed) => randf(seed + PRIMEX);
-        public static float3 randfx(uint3 seed) => randf(seed + PRIMEX.xyz);
-        public static float2 randfx(uint2 seed) => randf(seed + PRIMEX.xy);
-        public static float randfx(uint seed) => randf(seed + PRIMEX.x);
-        
         public static float4 make(int4 f, i1_f1 func) => new(func.Invoke(f.x), func.Invoke(f.y), func.Invoke(f.z), func.Invoke(f.w));
         public static float3 make(int3 f, i1_f1 func) => new(func.Invoke(f.x), func.Invoke(f.y), func.Invoke(f.z));
         public static float2 make(int2 f, i1_f1 func) => new(func.Invoke(f.x), func.Invoke(f.y));

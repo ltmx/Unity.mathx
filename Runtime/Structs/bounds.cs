@@ -17,8 +17,8 @@ namespace Unity.Mathematics
     [Serializable]
     public struct bounds : IEquatable<bounds>, IFormattable
     {
-        public float3 Center;
-        public float3 Extents;
+        private float3 Center;
+        private float3 Extents;
 
         private const MethodImplOptions IL = MethodImplOptions.AggressiveInlining;
 

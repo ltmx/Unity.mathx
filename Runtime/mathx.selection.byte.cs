@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Unity.Mathematics
 {
-    public static partial class mathx
+    public static partial class mathx	
     {
         // Component-wise comparison --------------------------------------------------------------
 

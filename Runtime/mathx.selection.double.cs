@@ -5,14 +5,11 @@
 #endregion
 
 using System.Runtime.CompilerServices;
-using UnityEngine;
 
 namespace Unity.Mathematics
 {
     public static partial class mathx
     {
-        // Component-wise comparison --------------------------------------------------------------
-
         /// <inheritdoc cref="math.cmax(double4)"/>  
         [MethodImpl(IL)] public static double cmax(this double4 f) => math.cmax(f);
         /// <inheritdoc cref="math.cmax(double4)"/>
@@ -40,8 +37,5 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static double acmin(this double3 f) => f.abs().cmin();
         /// <inheritdoc cref="acmin(double4)"/>
         [MethodImpl(IL)] public static double acmin(this double2 f) => f.abs().cmin();
-        
-
-
     }
 }

@@ -48,7 +48,7 @@ namespace Unity.Mathematics
         public Attribute Process() => new BurstCompileAttribute(FloatPrecision.Low, FloatMode.Fast);
     }
     
-    public class BurstPerforbanceAttribute : Attribute
+    public class BurstPerformanceAttribute : Attribute
     {
         public Attribute Process() => new BurstCompileAttribute { OptimizeFor = OptimizeFor.Performance };
     }
