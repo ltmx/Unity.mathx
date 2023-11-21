@@ -4,6 +4,7 @@
 // **    Repository : https://github.com/LTMX/Unity.mathx
 #endregion
 
+using System;
 using System.Runtime.CompilerServices;
 using static Unity.Mathematics.math;
 
@@ -53,13 +54,13 @@ namespace Unity.Mathematics
         /// approx 5% faster than math.mod()
         /// It is also exact for negative values of x;
         /// </remarks>
-        [MethodImpl(IL)] public static int4 mod(this int4 f, int4 mod) => (f / mod).frac() * mod;
+        [MethodImpl(IL)] public static int4 mod(this int4 f, int4 mod) => new(f.x.mod(mod.x), f.y.mod(mod.y), f.z.mod(mod.z), f.w.mod(mod.w));
         /// <inheritdoc cref="mod(int4, int4)"/>
-        [MethodImpl(IL)] public static int3 mod(this int3 f, int3 mod) => (f / mod).frac() * mod;
+        [MethodImpl(IL)] public static int3 mod(this int3 f, int3 mod) =>  new(f.x.mod(mod.x), f.y.mod(mod.y), f.z.mod(mod.z));
         /// <inheritdoc cref="mod(int4, int4)"/>
-        [MethodImpl(IL)] public static int2 mod(this int2 f, int2 mod) => (f / mod).frac() * mod;
+        [MethodImpl(IL)] public static int2 mod(this int2 f, int2 mod) => new(f.x.mod(mod.x), f.y.mod(mod.y));
         /// <inheritdoc cref="mod(int4, int4)"/>
-        [MethodImpl(IL)] public static int mod(this int f, int mod) => (f / mod).frac() * mod;
+        [MethodImpl(IL)] public static int mod(this int f, int mod) => f % mod < 0 ? f % mod + mod : f % mod;
         
         /// <inheritdoc cref="mod(int4, int4)"/>
         [MethodImpl(IL)] public static float4 mod(this int4 f, float4 mod) => (f / mod).frac() * mod;
@@ -72,11 +73,11 @@ namespace Unity.Mathematics
 
         
         /// <inheritdoc cref="mod(int4, int4)"/>
-        [MethodImpl(IL)] public static int4 mod(this int4 f, int mod) => (f / mod).frac() * mod;
+        [MethodImpl(IL)] public static int4 mod(this int4 f, int mod) => (int4)((float4)f / mod).frac() * mod;
         /// <inheritdoc cref="mod(int4, int4)"/>
-        [MethodImpl(IL)] public static int3 mod(this int3 f, int mod) => (f / mod).frac() * mod;
+        [MethodImpl(IL)] public static int3 mod(this int3 f, int mod) =>  f % mod;
         /// <inheritdoc cref="mod(int4, int4)"/>
-        [MethodImpl(IL)] public static int2 mod(this int2 f, int mod) => (f / mod).frac() * mod;
+        [MethodImpl(IL)] public static int2 mod(this int2 f, int mod) =>  f % mod;
 
         /// <inheritdoc cref="mod(int4, int4)"/>
         [MethodImpl(IL)] public static float4 mod(this int4 f, float mod) => f.div(mod).frac() * mod;
@@ -89,15 +90,15 @@ namespace Unity.Mathematics
         
         #region frac
 
-        /// <summary>Returns the fractional part of a int value.</summary>
-        /// <remarks>Fractional Remainder (f - (int)f) is x3 faster than math.frac() </remarks>
-        [MethodImpl(IL)] public static int4 frac(this int4 f) => f - f;
-        /// <inheritdoc cref="frac(int4)" />
-        [MethodImpl(IL)] public static int3 frac(this int3 f) => f - f;
-        /// <inheritdoc cref="frac(int4)" />
-        [MethodImpl(IL)] public static int2 frac(this int2 f) => f - f;
-        /// <inheritdoc cref="frac(int4)" />
-        [MethodImpl(IL)] public static int frac(this int f) => f - f;
+        // /// <summary>Returns the fractional part of a int value.</summary>
+        // /// <remarks>Fractional Remainder (f - (int)f) is x3 faster than math.frac() </remarks>
+        // [MethodImpl(IL)] public static int4 frac(this int4 f) => f - f;
+        // /// <inheritdoc cref="frac(int4)" />
+        // [MethodImpl(IL)] public static int3 frac(this int3 f) => f - f;
+        // /// <inheritdoc cref="frac(int4)" />
+        // [MethodImpl(IL)] public static int2 frac(this int2 f) => f - f;
+        // /// <inheritdoc cref="frac(int4)" />
+        // [MethodImpl(IL)] public static int frac(this int f) => f - f;
         
 
         #endregion
