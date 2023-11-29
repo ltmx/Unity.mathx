@@ -34,6 +34,11 @@ namespace Unity.Mathematics
             var num = (from.lengthsq() * to.lengthsq()).sqrt();
             return num < 1.00000000362749E-15f ? 0 : (from.dot(to) / num).npsat().acos(); // * 57.29578f;
         }
+        
+        /// <inheritdoc cref="math.angle(Unity.Mathematics.quaternion, Unity.Mathematics.quaternion)" />
+        [MethodImpl(IL)] public static float anglerad(this quaternion q1, quaternion q2) => math.angle(q1, q2);
+
+        
 
         /// Returns the signed angle between two vectors in degrees
         [MethodImpl(IL)] public static float angledeg(float2 from, float2 to) => from.anglerad(to).deg();
@@ -41,6 +46,11 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float angledeg(float3 from, float3 to) => from.anglerad(to).deg();
         /// <inheritdoc cref="angledeg(float2, float2)" />s
         [MethodImpl(IL)] public static float angledeg(float4 from, float4 to) => from.anglerad(to).deg();
+        /// <summary>Returns the angle in degrees between two unit quaternions.</summary>
+        /// <param name="q1">The first quaternion.</param>
+        /// <param name="q2">The second quaternion.</param>
+        /// <returns>The angle between two unit quaternions.</returns>
+        [MethodImpl(IL)] public static float angledeg(quaternion q1, quaternion q2) => q1.anglerad(q2).deg();
 
 
         /// a fast and accurate way of computing angles

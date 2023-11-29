@@ -6,6 +6,7 @@
 
 using System;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using AOT;
 using Unity.Burst;
 using static Unity.Mathematics.FunctionPointers.Signature;
@@ -21,13 +22,29 @@ namespace Unity.Mathematics
         /// <remarks>
         /// This implementation is 2.6x faster than math.sign.
         /// </remarks>
-        [MethodImpl(IL)] public static float4 sign(this float4 f) => new(sign(f.x), sign(f.y), sign(f.z), sign(f.w));
+        [MethodImpl(IL)] public static float4 sign(this float4 f) => math.sign(f);
         ///<inheritdoc cref="sign(float4)"/>
-        [MethodImpl(IL)] public static float3 sign(this float3 f) => new(sign(f.x), sign(f.y), sign(f.z));
+        [MethodImpl(IL)] public static float3 sign(this float3 f) => math.sign(f);
         ///<inheritdoc cref="sign(float4)"/>
-        [MethodImpl(IL)] public static float2 sign(this float2 f) => new(sign(f.x), sign(f.y));
+        [MethodImpl(IL)] public static float2 sign(this float2 f) => math.sign(f);
         ///<inheritdoc cref="sign(float4)"/>
-        [MethodImpl(IL)] public static float sign(this float f) => fsign(f);
+        [MethodImpl(IL)] public static float sign(this float f) => math.sign(f);
+        
+        ///<inheritdoc cref="math.chgsign(float4,float4)"/>
+        [MethodImpl(IL)] public static float4 chgsign(this float4 f, float4 y) => math.chgsign(f, y);
+        ///<inheritdoc cref="math.chgsign(float3,float3)"/>
+        [MethodImpl(IL)] public static float3 chgsign(this float3 f, float3 y) => math.chgsign(f, y);
+        ///<inheritdoc cref="math.chgsign(float2,float2)"/>
+        [MethodImpl(IL)] public static float2 chgsign(this float2 f, float2 y) => math.chgsign(f, y);
+        ///<inheritdoc cref="math.chgsign(float,float)"/>
+        [MethodImpl(IL)] public static float chgsign(this float f, float y) => math.chgsign(f, y);
+        
+        ///<inheritdoc cref="math.chgsign(float4,float4)"/>
+        [MethodImpl(IL)] public static float4 chgsign(this float4 f, float y) => math.asfloat(math.asuint(f) ^ (math.asuint(y) & 0x80000000));
+        ///<inheritdoc cref="math.chgsign(float3,float3)"/>
+        [MethodImpl(IL)] public static float3 chgsign(this float3 f, float y) => math.asfloat(math.asuint(f) ^ (math.asuint(y) & 0x80000000));
+        ///<inheritdoc cref="math.chgsign(float2,float2)"/>
+        [MethodImpl(IL)] public static float2 chgsign(this float2 f, float y) => math.asfloat(math.asuint(f) ^ (math.asuint(y) & 0x80000000));
 
         #endregion
         
@@ -35,13 +52,13 @@ namespace Unity.Mathematics
 
         /// The componentwise absolute value of the input.
         /// <remarks>This implementation is 2x faster than math.abs</remarks>
-        [MethodImpl(IL)] public static float4 abs(this float4 f) => new(f.x.abs(), f.y.abs(), f.z.abs(), f.w.abs());
+        [MethodImpl(IL)] public static float4 abs(this float4 f) => math.abs(f);
         /// <inheritdoc cref="abs(float4)"/>
-        [MethodImpl(IL)] public static float3 abs(this float3 f) => new(f.x.abs(), f.y.abs(), f.z.abs());
+        [MethodImpl(IL)] public static float3 abs(this float3 f) => math.abs(f);
         /// <inheritdoc cref="abs(float4)"/>
-        [MethodImpl(IL)] public static float2 abs(this float2 f) => new(f.x.abs(), f.y.abs());
+        [MethodImpl(IL)] public static float2 abs(this float2 f) => math.abs(f);
         /// <inheritdoc cref="abs(float4)"/>
-        [MethodImpl(IL)] public static float abs(this float f) => f.fabs();
+        [MethodImpl(IL)] public static float abs(this float f) => math.abs(f);
 
         #endregion
         
@@ -52,44 +69,44 @@ namespace Unity.Mathematics
         /// approx 5% faster than math.mod()
         /// It is also exact for negative values of x;
         /// </remarks>
-        [MethodImpl(IL)] public static float4 mod(this float4 f, float4 mod) => (f / mod).frac() * mod;
+        [MethodImpl(IL)] public static float4 mod(this float4 f, float4 mod) => f % mod;
         /// <inheritdoc cref="mod(float4, float4)"/>
-        [MethodImpl(IL)] public static float3 mod(this float3 f, float3 mod) => (f / mod).frac() * mod;
+        [MethodImpl(IL)] public static float3 mod(this float3 f, float3 mod) => f % mod;
         /// <inheritdoc cref="mod(float4, float4)"/>
-        [MethodImpl(IL)] public static float2 mod(this float2 f, float2 mod) => (f / mod).frac() * mod;
+        [MethodImpl(IL)] public static float2 mod(this float2 f, float2 mod) => f % mod;
         /// <inheritdoc cref="mod(float4, float4)"/>
-        [MethodImpl(IL)] public static float mod(this float f, float mod) => (f / mod).frac() * mod;
+        [MethodImpl(IL)] public static float mod(this float f, float mod) => f % mod;
         
         /// <inheritdoc cref="mod(float4, float4)"/>
-        [MethodImpl(IL)] public static float4 mod(this float4 f, int4 mod) => (f / mod).frac() * mod;
+        [MethodImpl(IL)] public static float4 mod(this float4 f, int4 mod) => f % mod;
         /// <inheritdoc cref="mod(float4, float4)"/>
-        [MethodImpl(IL)] public static float3 mod(this float3 f, int3 mod) => (f / mod).frac() * mod;
+        [MethodImpl(IL)] public static float3 mod(this float3 f, int3 mod) => f % mod;
         /// <inheritdoc cref="mod(float4, float4)"/>
-        [MethodImpl(IL)] public static float2 mod(this float2 f, int2 mod) => (f / mod).frac() * mod;
+        [MethodImpl(IL)] public static float2 mod(this float2 f, int2 mod) => f % mod;
         /// <inheritdoc cref="mod(float4, float4)"/>
-        [MethodImpl(IL)] public static float mod(this float f, int mod) => (f / mod).frac() * mod;
+        [MethodImpl(IL)] public static float mod(this float f, int mod) => f % mod;
 
         
         /// <inheritdoc cref="mod(float4, float4)"/>
-        [MethodImpl(IL)] public static float4 mod(this float4 f, float mod) => (f / mod).frac() * mod;
+        [MethodImpl(IL)] public static float4 mod(this float4 f, float mod) => f % mod;
         /// <inheritdoc cref="mod(float4, float4)"/>
-        [MethodImpl(IL)] public static float3 mod(this float3 f, float mod) => (f / mod).frac() * mod;
+        [MethodImpl(IL)] public static float3 mod(this float3 f, float mod) => f % mod;
         /// <inheritdoc cref="mod(float4, float4)"/>
-        [MethodImpl(IL)] public static float2 mod(this float2 f, float mod) => (f / mod).frac() * mod;
-
+        [MethodImpl(IL)] public static float2 mod(this float2 f, float mod) => f % mod;
+        
         /// <inheritdoc cref="mod(float4, float4)"/>
-        [MethodImpl(IL)] public static float4 mod(this float4 f, int mod) => (f / mod).frac() * mod;
+        [MethodImpl(IL)] public static float4 mod(this float4 f, int mod) => f % mod;
         /// <inheritdoc cref="mod(float4, float4)"/>
-        [MethodImpl(IL)] public static float3 mod(this float3 f, int mod) => (f / mod).frac() * mod;
+        [MethodImpl(IL)] public static float3 mod(this float3 f, int mod) => f % mod;
         /// <inheritdoc cref="mod(float4, float4)"/>
-        [MethodImpl(IL)] public static float2 mod(this float2 f, int mod) => (f / mod).frac() * mod;
+        [MethodImpl(IL)] public static float2 mod(this float2 f, int mod) => f % mod;
 
         #endregion
         
         #region frac
 
         /// <summary>Returns the fractional part of a float value.</summary>
-        /// <remarks>Fractional Remainder (f - (int)f) is x3 faster than math.frac() </remarks>
+        /// <remarks>Fractional Remainder (f - (int)f) is x3 faster than math.frac() (1.3.1)</remarks>
         [MethodImpl(IL)] public static float4 frac(this float4 f) => f - (int4)f;
         /// <inheritdoc cref="frac(float4)"/>
         [MethodImpl(IL)] public static float3 frac(this float3 f) => f - (int3)f;
@@ -236,13 +253,13 @@ namespace Unity.Mathematics
 
         #region saturate
         /// <inheritdoc cref="math.saturate(float4)" />
-        [MethodImpl(IL)] public static float4 saturate(this float4 value) => math.saturate(value);
+        [MethodImpl(IL)] public static float4 saturate(this float4 f) => math.saturate(f);
         /// <inheritdoc cref="math.saturate(float3)" />
-        [MethodImpl(IL)] public static float3 saturate(this float3 value) => math.saturate(value);
+        [MethodImpl(IL)] public static float3 saturate(this float3 f) => math.saturate(f);
         /// <inheritdoc cref="math.saturate(float2)" />
-        [MethodImpl(IL)] public static float2 saturate(this float2 value) => math.saturate(value);
+        [MethodImpl(IL)] public static float2 saturate(this float2 f) => math.saturate(f);
         /// <inheritdoc cref="math.saturate(float)" />
-        [MethodImpl(IL)] public static float saturate(this float value) => math.saturate(value);
+        [MethodImpl(IL)] public static float saturate(this float f) => math.saturate(f);
         #endregion
 
         #region snap

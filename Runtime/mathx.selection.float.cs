@@ -59,6 +59,7 @@ namespace Unity.Mathematics
         
         [BurstCompile, MonoPInvokeCallback(typeof(f1x2_f1))] // and also generate this attribute for the method we added the attribute to
         [MethodImpl(IL)] public static float fmax(this float x, float y) => x <= y ? x : y;
+        
         [MethodImpl(IL)] public static float2 fmax(this float2 x, float y) => p_fmax.RunPerAxis(x, y);
         [MethodImpl(IL)] public static float3 fmax(this float3 x, float y) => p_fmax.RunPerAxis(x, y);
         [MethodImpl(IL)] public static float4 fmax(this float4 x, float y) => p_fmax.RunPerAxis(x, y);
@@ -71,65 +72,30 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float fcmax(this float3 x) => p_fmax.RunNested(x);
         [MethodImpl(IL)] public static float fcmax(this float4 x) => p_fmax.RunNested(x);
         
+        [BurstCompile, MonoPInvokeCallback(typeof(f1x2_f1))]
         [MethodImpl(IL)] public static float fmin(this float x, float y) => x <= y ? x : y;
         
         [MethodImpl(IL)] public static float fcmin(this float2 x) => x.x.fmin(x.y);
         [MethodImpl(IL)] public static float fcmin(this float3 x) =>  x.x.fmin(x.y).fmin(x.z);
         [MethodImpl(IL)] public static float fcmin(this float4 x) =>  fmin(x.x.fmin(x.y), x.z.fmin(x.w));
-
-        /// <summary> 17% faster than math.abs </summary>
-        /// <returns> the absolute value of x </returns>
-        [MethodImpl(IL)] public static float2 fabs(this float2 f) => p_fabs.RunPerAxis(f);
-        [MethodImpl(IL)] public static float3 fabs(this float3 f) => p_fabs.RunPerAxis(f);
-        [MethodImpl(IL)] public static float4 fabs(this float4 f) => p_fabs.RunPerAxis(f);
-        
-        [MethodImpl(IL)] public static int3 fsign(this float3 f) => new(f.x.fsign(), f.y.fsign(), f.z.fsign());
-        [MethodImpl(IL)] public static int3 fsign2(this float3 f) => p_fsign.RunPerAxis(f);
-
-        // Fast absolute value
         
         
-        #region OtherImplementations
-
         // /// <summary>
-        // /// Returns the absolute value of x
+        // /// Returns the sign of x
         // /// </summary>
-        // /// <remarks>1.5x faster than math.abs</remarks>
-        // /// 
-        // [MethodImpl(IL)] public static float fabs(this float f) => math.sign(f) * f;
+        // /// <param name="x"></param>
+        // /// <remarks>2.6x faster than math.sign</remarks>
+        // [BurstCompile(FloatPrecision.Low, FloatMode.Fast), MonoPInvokeCallback(typeof(f1_i1))] 
+        // [MethodImpl(IL)]
+        // public static unsafe int fsign(this float x)
+        // {
+        //     int* valueAsInt = (int*)&x;
+        //     int signBit = *valueAsInt >> 31;
+        //     return (signBit << 1) + 1;
+        // }
+        //
+        // public static readonly f1_i1 p_fsign = compile(fsign);
 
-        #endregion
-
-        /// <summary>
-        /// Returns the absolute value of x
-        /// </summary>
-        /// <remarks>2x faster than math.abs</remarks>
-        [BurstCompile(FloatPrecision.Standard, FloatMode.Fast), MonoPInvokeCallback(typeof(f1_f1))] 
-        [MethodImpl(IL)]
-        public static unsafe float fabs(this float x)
-        {
-            int* intPtr = (int*)&x;
-            *intPtr &= 0x7FFFFFFF;
-            return x;
-        }
-        public static readonly f1_f1 p_fabs = compile(fabs);
-        
-        
-        /// <summary>
-        /// Returns the sign of x
-        /// </summary>
-        /// <param name="x"></param>
-        /// <remarks>2.6x faster than math.sign</remarks>
-        [BurstCompile(FloatPrecision.Standard, FloatMode.Fast), MonoPInvokeCallback(typeof(f1_i1))] 
-        [MethodImpl(IL)]
-        public static unsafe int fsign(this float x)
-        {
-            int* valueAsInt = (int*)&x;
-            int signBit = *valueAsInt >> 31;
-            return (signBit << 1) + 1;
-        }
-        public static readonly f1_i1 p_fsign = compile(fsign);
-        
 
     }
 }

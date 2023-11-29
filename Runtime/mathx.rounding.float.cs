@@ -86,30 +86,32 @@ namespace Unity.Mathematics
 
 
         /// Returns the componentwise maximum of a f4 and a float value
-        [MethodImpl(INLINE)] public static float4 max(this float4 x, float y) => new (max(x.x, y), max(x.y, y), max(x.z, y), max(x.w, y));
+        [MethodImpl(INLINE)] public static float4 max(this float4 x, float y) => math.max(x, y);
         /// Returns the componentwise maximum of a f3 and a float value
-        [MethodImpl(INLINE)] public static float3 max(this float3 x, float y) => new (max(x.x, y), max(x.y, y), max(x.z, y));
+        [MethodImpl(INLINE)] public static float3 max(this float3 x, float y) => math.max(x, y);
         /// Returns the componentwise maximum of a f2 and a float value
-        [MethodImpl(INLINE)] public static float2 max(this float2 x, float y) => new (max(x.x, y), max(x.y, y));
+        [MethodImpl(INLINE)] public static float2 max(this float2 x, float y) => math.max(x, y);
         /// Returns the componentwise maximum of a f4 and a float value
-        [MethodImpl(INLINE)] public static float4 max(this float x, float4 y) => new (max(x, y.x), max(x, y.y), max(x, y.z), max(x, y.w));
+        [MethodImpl(INLINE)] public static float4 max(this float x, float4 y) => math.max(x, y);
         /// Returns the componentwise maximum of a f3 and a float value
-        [MethodImpl(INLINE)] public static float3 max(this float x, float3 y) => new (max(x, y.x), max(x, y.y), max(x, y.z));
+        [MethodImpl(INLINE)] public static float3 max(this float x, float3 y) => math.max(x, y);
+
         /// Returns the componentwise maximum of a f2 and a float value
-        [MethodImpl(INLINE)] public static float2 max(this float x, float2 y) => new (max(x, y.x), max(x, y.y));
+        [MethodImpl(INLINE)] public static float2 max(this float x, float2 y) => math.max(x, y);
         
         /// Returns the componentwise minimum of a f4 and a float value
-        [MethodImpl(INLINE)] public static float4 min(this float4 x, float y) => new (min(x.x, y), min(x.y, y), min(x.z, y), min(x.w, y));
+        [MethodImpl(INLINE)] public static float4 min(this float4 x, float y) => math.min(x, y);
         /// Returns the componentwise minimum of a f3 and a float value
-        [MethodImpl(INLINE)] public static float3 min(this float3 x, float y) => new (min(x.x, y), min(x.y, y), min(x.z, y));
+        [MethodImpl(INLINE)] public static float3 min(this float3 x, float y) => math.min(x, y);
         /// Returns the componentwise minimum of a f2 and a float value
-        [MethodImpl(INLINE)] public static float2 min(this float2 x, float y) => new (min(x.x, y), min(x.y, y));
+        [MethodImpl(INLINE)] public static float2 min(this float2 x, float y) => math.min(x, y);
         /// Returns the componentwise minimum of a f4 and a float value
-        [MethodImpl(INLINE)] public static float4 min(this float x, float4 y) => new (min(x, y.x), min(x, y.y), min(x, y.z), min(x, y.w));
+        [MethodImpl(INLINE)] public static float4 min(this float x, float4 y) => math.min(x, y);
         /// Returns the componentwise minimum of a f3 and a float value
-        [MethodImpl(INLINE)] public static float3 min(this float x, float3 y) => new (min(x, y.x), min(x, y.y), min(x, y.z));
+        [MethodImpl(INLINE)] public static float3 min(this float x, float3 y) => math.min(x, y);
+
         /// Returns the componentwise minimum of a f2 and a float value
-        [MethodImpl(INLINE)] public static float2 min(this float x, float2 y) => new (min(x, y.x), min(x, y.y));
+        [MethodImpl(INLINE)] public static float2 min(this float x, float2 y) => math.min(x, y);
 
         #endregion
 

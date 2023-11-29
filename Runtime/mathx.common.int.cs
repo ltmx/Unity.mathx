@@ -22,14 +22,13 @@ namespace Unity.Mathematics
         #region sign
 
         /// Returns the sign of the given value.
-        [MethodImpl(IL)] public static int4 sign(this int4 f) => new(sign(f.x), sign(f.y), sign(f.z), sign(f.w));
+        [MethodImpl(IL)] public static int4 sign(this int4 f) => math.sign(f);
         ///<inheritdoc cref="sign(int4)"/>
-        [MethodImpl(IL)] public static int3 sign(this int3 f) => new(sign(f.x), sign(f.y), sign(f.z));
+        [MethodImpl(IL)] public static int3 sign(this int3 f) => math.sign(f);
         ///<inheritdoc cref="sign(int4)"/>
-        [MethodImpl(IL)] public static int2 sign(this int2 f) => new(sign(f.x), sign(f.y));
+        [MethodImpl(IL)] public static int2 sign(this int2 f) => math.sign(f);
         ///<inheritdoc cref="sign(int4)"/>
-        [MethodImpl(IL)] public static int sign(this int f) => (f > 0 ? 1 : 0) - (f < 0 ? 1 : 0);
-        
+        [MethodImpl(IL)] public static int sign(this int f) => math.sign(f);
 
         #endregion
         

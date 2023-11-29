@@ -8,9 +8,9 @@
   "name": "com.ltmx.mathematics.mathx",
   "repository": "github:LTMX/Unity.mathx",
   "description": "Extension library for Unity.Mathematics",
-  "version": "1.3.13",
+  "version": "1.4.1",
   "dependencies": {
-    "com.unity.mathematics": "1.2.6",
+    "com.unity.mathematics": "1.3.1",
     "com.unity.burst": "1.7.3"
   },
   "keywords": [

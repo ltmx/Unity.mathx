@@ -100,25 +100,30 @@ namespace Unity.Mathematics
         #region asfloat
 
         /// Returns equivalent float-type
-        [MethodImpl(IL)] public static float4 asfloat(this int4 f) => f;
+        [MethodImpl(IL)] public static float4 asfloat(this int4 f) => math.asfloat(f);
         /// <inheritdoc cref="asfloat(int4)"/>
-        [MethodImpl(IL)] public static float3 asfloat(this int3 f) => f;
+        [MethodImpl(IL)] public static float3 asfloat(this int3 f) => math.asfloat(f);
         /// <inheritdoc cref="asfloat(int4)"/>
-        [MethodImpl(IL)] public static float2 asfloat(this int2 f) => f;
+        [MethodImpl(IL)] public static float2 asfloat(this int2 f) => math.asfloat(f);
         /// <inheritdoc cref="asfloat(int4)"/>
-        [MethodImpl(IL)] public static float asfloat(this int f) => f;
+        [MethodImpl(IL)] public static float asfloat(this int f) => math.asfloat(f);
+        
         
         /// Returns a float-type equivalent
-        [MethodImpl(IL)] public static float4 asfloat(this Vector4 f) => f;
+        
+
+        
+        /// <returns>The float-type vector with the same bit pattern as the input.</returns>
+        [MethodImpl(IL)] public static unsafe float4 asfloat(this Vector4 f) => *(float4*)&f;
         /// <inheritdoc cref="asfloat(Vector4)"/>
-        [MethodImpl(IL)] public static float3 asfloat(this Vector3 f) => f;
+        [MethodImpl(IL)] public static unsafe float3 asfloat(this Vector3 f) => *(float3*)&f;
         /// <inheritdoc cref="asfloat(Vector4)"/>
-        [MethodImpl(IL)] public static float2 asfloat(this Vector2 f) => f;
+        [MethodImpl(IL)] public static unsafe float2 asfloat(this Vector2 f) => *(float2*)&f;
 
         /// Returns a f4 equivalent
-        [MethodImpl(IL)] public static float4 asfloat(this Color f) => f.cast();
+        [MethodImpl(IL)] public static unsafe float4 asfloat(this Color f) => *(float4*)&f;
         /// Returns a f4 equivalent
-        [MethodImpl(IL)] public static float4 asfloat(this color f) => f; // Compatibility
+        [MethodImpl(IL)] public static unsafe float4 asfloat(this color f) => *(float4*)&f;
         
         
         /// Returns 1 when true, zero otherwise, componentwise
@@ -137,8 +142,12 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float3 asfloat(this double3 f) => (float3)f;
         /// <inheritdoc cref="asfloat(double4)"/>
         [MethodImpl(IL)] public static float2 asfloat(this double2 f) => (float2)f;
+
         /// <inheritdoc cref="asfloat(double4)"/>
         [MethodImpl(IL)] public static float asfloat(this double f) => (float)f;
+        
+        
+        
         
         /// Returns a f4 from the quaternion's components
         [MethodImpl(IL)] public static float4 asfloat(this quaternion q) => q.value;
@@ -173,38 +182,38 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static uint asuint(this bool b) => b ? 1u : 0u;
         
         /// Cast to uint4
-        [MethodImpl(IL)] public static uint4 asuint(this int4 b) => (uint4)b;
+        [MethodImpl(IL)] public static uint4 asuint(this int4 f) => math.asuint(f);
         /// Cast to uint3
-        [MethodImpl(IL)] public static uint3 asuint(this int3 b) => (uint3)b;
+        [MethodImpl(IL)] public static uint3 asuint(this int3 f) => math.asuint(f);
         /// Cast to uint2
-        [MethodImpl(IL)] public static uint2 asuint(this int2 b) => (uint2)b;
+        [MethodImpl(IL)] public static uint2 asuint(this int2 f) => math.asuint(f);
         /// Cast to uint
-        [MethodImpl(IL)] public static uint asuint(this int b) => (uint)b;
+        [MethodImpl(IL)] public static uint asuint(this int f) => math.asuint(f);
         
         /// Cast to uint4
-        [MethodImpl(IL)] public static uint4 asuint(this float4 b) => (uint4)b;
+        [MethodImpl(IL)] public static uint4 asuint(this float4 f) => math.asuint(f);
         /// Cast to uint3
-        [MethodImpl(IL)] public static uint3 asuint(this float3 b) => (uint3)b;
+        [MethodImpl(IL)] public static uint3 asuint(this float3 f) => math.asuint(f);
         /// Cast to uint2
-        [MethodImpl(IL)] public static uint2 asuint(this float2 b) => (uint2)b;
+        [MethodImpl(IL)] public static uint2 asuint(this float2 f) => math.asuint(f);
         /// Cast to uint
-        [MethodImpl(IL)] public static uint asuint(this float b) => (uint)b;
+        [MethodImpl(IL)] public static uint asuint(this float f) => math.asuint(f);
 
         #endregion
 
         #region ascolor and others
 
         /// Converts a float-type to a Unity.Mathematics.color
-        [MethodImpl(IL)] public static color ascolor(this float4 f) => f;
+        [MethodImpl(IL)] public static unsafe color ascolor(this float4 f) => *(color*)&f; // bit pattern direct copy
         /// <inheritdoc cref="ascolor(float4)"/>
-        [MethodImpl(IL)] public static color ascolor(this float3 f) => f;
+        [MethodImpl(IL)] public static color ascolor(this float3 f) => new(f);
         /// <inheritdoc cref="ascolor(float4)"/>
         [MethodImpl(IL)] public static color ascolor(this float2 f) => new(f.xy, 0, 1);
         /// <inheritdoc cref="ascolor(float4)"/>
-        [MethodImpl(IL)] public static color ascolor(this float f) => f;
+        [MethodImpl(IL)] public static color ascolor(this float f) => new(f);
         
         /// Converts a float-type to a Unity.Mathematics.color
-        [MethodImpl(IL)] public static Color asColor(this float4 f) => new(f.x, f.y, f.z, f.w);
+        [MethodImpl(IL)] public static unsafe Color asColor(this float4 f) => *(Color*)&f;
         /// <inheritdoc cref="asColor(float4)"/>
         [MethodImpl(IL)] public static Color asColor(this float3 f) => new(f.x, f.y, f.z, 1);
         /// <inheritdoc cref="asColor(float4)"/>
@@ -213,7 +222,7 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static Color asColor(this float f) => new(f,f,f, 1);
         
         /// Converts to a f4
-        [MethodImpl(IL)] public static float4 asfloat4(this Color f) => new(f.r, f.g, f.b, f.a); // compatibility
+        [MethodImpl(IL)] public static unsafe float4 asfloat4(this Color f) => *(float4*)&f; // compatibility
         /// Converts to a f3
         [MethodImpl(IL)] public static float3 asfloat3(this Color f) => new(f.r, f.g, f.b);
         /// Converts to a f3
@@ -224,42 +233,43 @@ namespace Unity.Mathematics
         #region cast
         
         /// Casts to and from Unity's Vector Types
-        [MethodImpl(IL)] public static Vector2 cast(this float2 f) => f;
+        [MethodImpl(IL)] public static unsafe Vector2 cast(this float2 f) => *(Vector2*)&f;
         ///<inheritdoc cref="cast(float2)"/>
-        [MethodImpl(IL)] public static Vector3 cast(this float3 f) => f;
+        [MethodImpl(IL)] public static unsafe Vector3 cast(this float3 f) => *(Vector3*)&f;
         ///<inheritdoc cref="cast(float2)"/>
-        [MethodImpl(IL)] public static Vector4 cast(this float4 f) => f;
+        [MethodImpl(IL)] public static unsafe Vector4 cast(this float4 f) => *(Vector4*)&f;
 
         ///<inheritdoc cref="cast(float2)"/>
-        [MethodImpl(IL)] public static float2 cast(this Vector2 f) => f;
+        [MethodImpl(IL)] public static unsafe float2 cast(this Vector2 f) => *(float2*)&f;
         ///<inheritdoc cref="cast(float2)"/>
-        [MethodImpl(IL)] public static float3 cast(this Vector3 f) => f;
+        [MethodImpl(IL)] public static unsafe float3 cast(this Vector3 f) => *(float3*)&f;
         ///<inheritdoc cref="cast(float2)"/>
-        [MethodImpl(IL)] public static float4 cast(this Vector4 f) => f;
+        [MethodImpl(IL)] public static unsafe float4 cast(this Vector4 f) => *(float4*)&f;
 
         /// Casts to Unity's Vector Type Equivalent
-        [MethodImpl(IL)] public static Vector2 cast(this double2 f) => f.asfloat();
+        [MethodImpl(IL)] public static Vector2 cast(this double2 f) => new((float)f.x, (float)f.y);
         /// <inheritdoc cref="cast(double2)"/>
-        [MethodImpl(IL)] public static Vector3 cast(this double3 f) => f.asfloat();
+        [MethodImpl(IL)] public static Vector3 cast(this double3 f) => new((float)f.x, (float)f.y, (float)f.z);
         /// <inheritdoc cref="cast(double2)"/>
-        [MethodImpl(IL)] public static Vector4 cast(this double4 f) => f.asfloat();
+        [MethodImpl(IL)] public static Vector4 cast(this double4 f) => new((float)f.x, (float)f.y, (float)f.z, (float)f.w);
 
         /// Casts to a float4x4
-        [MethodImpl(IL)] public static float4x4 cast(this Matrix4x4 f) => f;
+        [MethodImpl(IL)] public static unsafe float4x4 cast(this Matrix4x4 f) => *(float4x4*)&f;
+        
         /// Casts to Matrix4x4
-        [MethodImpl(IL)] public static Matrix4x4 cast(this float4x4 f) => f;
+        [MethodImpl(IL)] public static unsafe Matrix4x4 cast(this float4x4 f) => *(Matrix4x4*)&f;
 
         /// casts to a Unity.Mathematics.color (interop created type)
-        [MethodImpl(IL)] public static color cast(this Color f) => f;
+        [MethodImpl(IL)] public static unsafe color cast(this Color f) => *(color*)&f;
         /// casts to a UnityEngine.Color
-        [MethodImpl(IL)] public static Color cast(this color f) => f;
+        [MethodImpl(IL)] public static unsafe Color cast(this color f) => *(Color*)&f;
         
         ///<inheritdoc cref="cast(float2)"/>
-        [MethodImpl(IL)] public static float4 f(this Vector4 v) => v;
+        [MethodImpl(IL)] public static unsafe float4 f(this Vector4 v) => *(float4*)&v;
         ///<inheritdoc cref="cast(float2)"/>
-        [MethodImpl(IL)] public static float3 f(this Vector3 v) => v;
+        [MethodImpl(IL)] public static unsafe float3 f(this Vector3 v) => *(float3*)&v;
         ///<inheritdoc cref="cast(float2)"/>
-        [MethodImpl(IL)] public static float2 f(this Vector2 v) => v;
+        [MethodImpl(IL)] public static unsafe float2 f(this Vector2 v) => *(float2*)&v;
 
         #endregion
     }

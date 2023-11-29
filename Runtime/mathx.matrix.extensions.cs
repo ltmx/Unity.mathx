@@ -114,86 +114,84 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float2 lengthsq(this float2x2 m1) => new(m1.c0.lengthsq(), m1.c1.lengthsq());
 
         
-        /// Subtracts a vector from a  each component of a matrix 
-        [MethodImpl(IL)] public static float4x4 sub(this float4x4 m1, float4 f) => m1 - f.f4x4();
+        /// Subtracts a vector to each component of a matrix
+        [MethodImpl(IL)] public static float4x4 sub(this float4x4 m1, float4 f) => new(m1.c0 - f.x, m1.c1 - f.y, m1.c2 - f.z, m1.c3 - f.w);
         /// <inheritdoc cref="sub(float4x4,float4)" />
-        [MethodImpl(IL)] public static float4x3 sub(this float4x3 m1, float4 f) => m1 - f.f4x3();
+        [MethodImpl(IL)] public static float4x3 sub(this float4x3 m1, float4 f) => new(m1.c0 - f.x, m1.c1 - f.y, m1.c2 - f.z);
         /// <inheritdoc cref="sub(float4x4,float4)" />
-        [MethodImpl(IL)] public static float4x2 sub(this float4x2 m1, float4 f) => m1 - f.f4x2();
+        [MethodImpl(IL)] public static float4x2 sub(this float4x2 m1, float4 f) => new(m1.c0 - f.x, m1.c1 - f.y);
         /// <inheritdoc cref="sub(float4x4,float4)" />
-        [MethodImpl(IL)] public static float3x4 sub(this float3x4 m1, float3 f) => m1 - f.f3x4();
+        [MethodImpl(IL)] public static float3x4 sub(this float3x4 m1, float3 f) => new (m1.c0 - f.x, m1.c1 - f.y, m1.c2 - f.z, m1.c3);
         /// <inheritdoc cref="sub(float4x4,float4)" />
-        [MethodImpl(IL)] public static float3x3 sub(this float3x3 m1, float3 f) => m1 - f.f3x3();
+        [MethodImpl(IL)] public static float3x3 sub(this float3x3 m1, float3 f) => new(m1.c0 - f.x, m1.c1 - f.y, m1.c2 - f.z);
         /// <inheritdoc cref="sub(float4x4,float4)" />
-        [MethodImpl(IL)] public static float3x2 sub(this float3x2 m1, float3 f) => m1 - f.f3x2();
+        [MethodImpl(IL)] public static float3x2 sub(this float3x2 m1, float3 f) => new(m1.c0 - f.x, m1.c1 - f.y);
         /// <inheritdoc cref="sub(float4x4,float4)" />
-        [MethodImpl(IL)] public static float2x4 sub(this float2x4 m1, float2 f) => m1 - f.f2x4();
+        [MethodImpl(IL)] public static float2x4 sub(this float2x4 m1, float2 f) => new (m1.c0 - f.x, m1.c1 - f.y, m1.c2, m1.c3);
         /// <inheritdoc cref="sub(float4x4,float4)" />
-        [MethodImpl(IL)] public static float2x3 sub(this float2x3 m1, float2 f) => m1 - f.f2x3();
+        [MethodImpl(IL)] public static float2x3 sub(this float2x3 m1, float2 f) => new (m1.c0 - f.x, m1.c1 - f.y, m1.c2);
         /// <inheritdoc cref="sub(float4x4,float4)" />
-        [MethodImpl(IL)] public static float2x2 sub(this float2x2 m1, float2 f) => m1 - f.f2x2();
-        
-        
+        [MethodImpl(IL)] public static float2x2 sub(this float2x2 m1, float2 f) => new(m1.c0 - f.x, m1.c1 - f.y);
+
         
         /// Adds a vector to each component of a matrix
-        [MethodImpl(IL)] public static float4x4 add(this float4x4 m1, float4 f) => m1 + f.f4x4();
+        [MethodImpl(IL)] public static float4x4 add(this float4x4 m1, float4 f) => new(m1.c0 + f.x, m1.c1 + f.y, m1.c2 + f.z, m1.c3 + f.w);
         /// <inheritdoc cref="add(float4x4,float4)" />
-        [MethodImpl(IL)] public static float4x3 add(this float4x3 m1, float4 f) => m1 + f.f4x3();
+        [MethodImpl(IL)] public static float4x3 add(this float4x3 m1, float4 f) => new(m1.c0 + f.x, m1.c1 + f.y, m1.c2 + f.z);
         /// <inheritdoc cref="add(float4x4,float4)" />
-        [MethodImpl(IL)] public static float4x2 add(this float4x2 m1, float4 f) => m1 + f.f4x2();
+        [MethodImpl(IL)] public static float4x2 add(this float4x2 m1, float4 f) => new(m1.c0 + f.x, m1.c1 + f.y);
         /// <inheritdoc cref="add(float4x4,float4)" />
-        [MethodImpl(IL)] public static float3x4 add(this float3x4 m1, float3 f) => m1 + f.f3x4();
+        [MethodImpl(IL)] public static float3x4 add(this float3x4 m1, float3 f) => new(m1.c0 + f.x, m1.c1 + f.y, m1.c2 + f.z, m1.c3);
         /// <inheritdoc cref="add(float4x4,float4)" />
-        [MethodImpl(IL)] public static float3x3 add(this float3x3 m1, float3 f) => m1 + f.f3x3();
+        [MethodImpl(IL)] public static float3x3 add(this float3x3 m1, float3 f) => new(m1.c0 + f.x, m1.c1 + f.y, m1.c2 + f.z);
         /// <inheritdoc cref="add(float4x4,float4)" />
-        [MethodImpl(IL)] public static float3x2 add(this float3x2 m1, float3 f) => m1 + f.f3x2();
+        [MethodImpl(IL)] public static float3x2 add(this float3x2 m1, float3 f) => new(m1.c0 + f.x, m1.c1 + f.y);
         /// <inheritdoc cref="add(float4x4,float4)" />
-        [MethodImpl(IL)] public static float2x4 add(this float2x4 m1, float2 f) => m1 + f.f2x4();
+        [MethodImpl(IL)] public static float2x4 add(this float2x4 m1, float2 f) => new(m1.c0 + f.x, m1.c1 + f.y, m1.c2, m1.c3);
         /// <inheritdoc cref="add(float4x4,float4)" />
-        [MethodImpl(IL)] public static float2x3 add(this float2x3 m1, float2 f) => m1 + f.f2x3();
+        [MethodImpl(IL)] public static float2x3 add(this float2x3 m1, float2 f) => new(m1.c0 + f.x, m1.c1 + f.y, m1.c2);
         /// <inheritdoc cref="add(float4x4,float4)" />
-        [MethodImpl(IL)] public static float2x2 add(this float2x2 m1, float2 f) => m1 + f.f2x2();
-
+        [MethodImpl(IL)] public static float2x2 add(this float2x2 m1, float2 f) => new(m1.c0 + f.x, m1.c1 + f.y);
         
         
         /// Multiplies a vector to each component of a matrix
-        [MethodImpl(IL)] public static float4x4 mult(this float4x4 m1, float4 f) => m1 * f.f4x4();
+        [MethodImpl(IL)] public static float4x4 mult(this float4x4 m1, float4 f) => new(m1.c0 * f.x, m1.c1 * f.y, m1.c2 * f.z, m1.c3 * f.w);
         /// <inheritdoc cref="mult(float4x4,float4)" />
-        [MethodImpl(IL)] public static float4x3 mult(this float4x3 m1, float4 f) => m1 * f.f4x3();
+        [MethodImpl(IL)] public static float4x3 mult(this float4x3 m1, float4 f) => new(m1.c0 * f.x, m1.c1 * f.y, m1.c2 * f.z);
         /// <inheritdoc cref="mult(float4x4,float4)" />
-        [MethodImpl(IL)] public static float4x2 mult(this float4x2 m1, float4 f) => m1 * f.f4x2();
+        [MethodImpl(IL)] public static float4x2 mult(this float4x2 m1, float4 f) => new(m1.c0 * f.x, m1.c1 * f.y);
         /// <inheritdoc cref="mult(float4x4,float4)" />
-        [MethodImpl(IL)] public static float3x4 mult(this float3x4 m1, float3 f) => m1 * f.f3x4();
+        [MethodImpl(IL)] public static float3x4 mult(this float3x4 m1, float3 f) => new (m1.c0 * f.x, m1.c1 * f.y, m1.c2 * f.z, m1.c3);
         /// <inheritdoc cref="mult(float4x4,float4)" />
-        [MethodImpl(IL)] public static float3x3 mult(this float3x3 m1, float3 f) => m1 * f.f3x3();
+        [MethodImpl(IL)] public static float3x3 mult(this float3x3 m1, float3 f) => new(m1.c0 * f.x, m1.c1 * f.y, m1.c2 * f.z);
         /// <inheritdoc cref="mult(float4x4,float4)" />
-        [MethodImpl(IL)] public static float3x2 mult(this float3x2 m1, float3 f) => m1 * f.f3x2();
+        [MethodImpl(IL)] public static float3x2 mult(this float3x2 m1, float3 f) => new(m1.c0 * f.x, m1.c1 * f.y);
         /// <inheritdoc cref="mult(float4x4,float4)" />
-        [MethodImpl(IL)] public static float2x4 mult(this float2x4 m1, float2 f) => m1 * f.f2x4();
+        [MethodImpl(IL)] public static float2x4 mult(this float2x4 m1, float2 f) => new (m1.c0 * f.x, m1.c1 * f.y, m1.c2, m1.c3);
         /// <inheritdoc cref="mult(float4x4,float4)" />
-        [MethodImpl(IL)] public static float2x3 mult(this float2x3 m1, float2 f) => m1 * f.f2x3();
+        [MethodImpl(IL)] public static float2x3 mult(this float2x3 m1, float2 f) => new (m1.c0 * f.x, m1.c1 * f.y, m1.c2);
         /// <inheritdoc cref="mult(float4x4,float4)" />
-        [MethodImpl(IL)] public static float2x2 mult(this float2x2 m1, float2 f) => m1 * f.f2x2();
+        [MethodImpl(IL)] public static float2x2 mult(this float2x2 m1, float2 f) => new(m1.c0 * f.x, m1.c1 * f.y);
         
 
         /// Divides a vector to each component of a matrix
-        [MethodImpl(IL)] public static float4x4 div(this float4x4 m1, float4 f) => m1 / f.f4x4();
+        [MethodImpl(IL)] public static float4x4 div(this float4x4 m1, float4 f) => new(m1.c0 / f.x, m1.c1 / f.y, m1.c2 / f.z, m1.c3 / f.w);
         /// <inheritdoc cref="div(float4x4,float4)" />
-        [MethodImpl(IL)] public static float4x3 div(this float4x3 m1, float4 f) => m1 / f.f4x3();
+        [MethodImpl(IL)] public static float4x3 div(this float4x3 m1, float4 f) => new(m1.c0 / f.x, m1.c1 / f.y, m1.c2 / f.z);
         /// <inheritdoc cref="div(float4x4,float4)" />
-        [MethodImpl(IL)] public static float4x2 div(this float4x2 m1, float4 f) => m1 / f.f4x2();
+        [MethodImpl(IL)] public static float4x2 div(this float4x2 m1, float4 f) => new(m1.c0 / f.x, m1.c1 / f.y);
         /// <inheritdoc cref="div(float4x4,float4)" />
-        [MethodImpl(IL)] public static float3x4 div(this float3x4 m1, float3 f) => m1 / f.f3x4();
+        [MethodImpl(IL)] public static float3x4 div(this float3x4 m1, float3 f) => new (m1.c0 / f.x, m1.c1 / f.y, m1.c2 / f.z, m1.c3);
         /// <inheritdoc cref="div(float4x4,float4)" />
-        [MethodImpl(IL)] public static float3x3 div(this float3x3 m1, float3 f) => m1 / f.f3x3();
+        [MethodImpl(IL)] public static float3x3 div(this float3x3 m1, float3 f) => new(m1.c0 / f.x, m1.c1 / f.y, m1.c2 / f.z);
         /// <inheritdoc cref="div(float4x4,float4)" />
-        [MethodImpl(IL)] public static float3x2 div(this float3x2 m1, float3 f) => m1 / f.f3x2();
+        [MethodImpl(IL)] public static float3x2 div(this float3x2 m1, float3 f) => new(m1.c0 / f.x, m1.c1 / f.y);
         /// <inheritdoc cref="div(float4x4,float4)" />
-        [MethodImpl(IL)] public static float2x4 div(this float2x4 m1, float2 f) => m1 / f.f2x4();
+        [MethodImpl(IL)] public static float2x4 div(this float2x4 m1, float2 f) => new (m1.c0 / f.x, m1.c1 / f.y, m1.c2, m1.c3);
         /// <inheritdoc cref="div(float4x4,float4)" />
-        [MethodImpl(IL)] public static float2x3 div(this float2x3 m1, float2 f) => m1 / f.f2x3();
+        [MethodImpl(IL)] public static float2x3 div(this float2x3 m1, float2 f) => new (m1.c0 / f.x, m1.c1 / f.y, m1.c2);
         /// <inheritdoc cref="div(float4x4,float4)" />
-        [MethodImpl(IL)] public static float2x2 div(this float2x2 m1, float2 f) => m1 / f.f2x2();
+        [MethodImpl(IL)] public static float2x2 div(this float2x2 m1, float2 f) => new(m1.c0 / f.x, m1.c1 / f.y);
         
         
         
