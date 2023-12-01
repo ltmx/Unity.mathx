@@ -40,8 +40,6 @@ namespace Unity.Mathematics
 
             TestMethod(()=> f4x4.mult(f4), "mult");
             Debug.Log("mult value of v" + f4x4.mult(f4));
-            TestMethod(()=> f4x4.mult_2(f4), "mult_2");
-            Debug.Log("mult_2 value of v" + f4x4.mult_2(f4));
             // TestMethod(()=> mathx.anglerad(), "asfloat");
             // Debug.Log("sq2 value of v" + d3.sq2());
             // TestMethod(()=> f.fcmin(), "fcmin");
