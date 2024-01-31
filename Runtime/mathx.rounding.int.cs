@@ -42,10 +42,10 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="math.min(int2,int2)"/>
         [MethodImpl(INLINE)] public static int2 min(this int2 f, int2 min) => math.min(f, min);
         /// <inheritdoc cref="math.min(int,int)"/>
-        [MethodImpl(INLINE)] public static int min(this int f, int min) => math.min(f, min);
+        [MethodImpl(INLINE)] public static int min(this int f, int y) => math.min(f, y);
         
         /// <inheritdoc cref="math.min(int,int)"/>
-        [MethodImpl(INLINE)] public static float min(this int f, float min) => math.min(f, min);
+        [MethodImpl(INLINE)] public static float min(this int f, float y) => math.min(f, y);
 
 
         #region Max
@@ -57,9 +57,9 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="math.max(Mathematics.int2, Mathematics.int2)"/>
         [MethodImpl(INLINE)] public static int2 max(this int2 f, int2 max) => math.max(f, max);
         /// <inheritdoc cref="math.max(int, int)"/>
-        [MethodImpl(INLINE)] public static int max(this int f, int max) => math.max(f, max);
+        [MethodImpl(INLINE)] public static int max(this int f, int y) => math.max(f, y);
         /// <inheritdoc cref="math.max(int, int)"/>
-        [MethodImpl(INLINE)] public static float max(this int f, float max) => math.max(f, max);
+        [MethodImpl(INLINE)] public static float max(this int f, float y) => math.max(f, y);
 
 
         /// Returns the componentwise maximum of a f4 and a int value
@@ -113,21 +113,6 @@ namespace Unity.Mathematics
         #endregion
 
         #region Saturate
-
-        #endregion
-
-        // npsat
-
-        #region npSaturate
-
-        /// Returns the result of clamping f to [-1, 1]
-        [MethodImpl(INLINE)] public static int4 npsat(this int4 f) => f.clamp(-1, 1);
-        /// <inheritdoc cref="npsat(Unity.Mathematics.int4)" />
-        [MethodImpl(INLINE)] public static int3 npsat(this int3 f) => f.clamp(-1, 1);
-        /// <inheritdoc cref="npsat(Unity.Mathematics.int4)" />
-        [MethodImpl(INLINE)] public static int2 npsat(this int2 f) => f.clamp(-1, 1);
-        /// <inheritdoc cref="npsat(Unity.Mathematics.int4)" />
-        [MethodImpl(INLINE)] public static int npsat(this int f) => f.clamp(-1, 1);
 
         #endregion
 

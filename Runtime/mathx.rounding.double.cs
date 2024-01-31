@@ -68,7 +68,7 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="math.min(double,double)"/>
         [MethodImpl(INLINE)] public static double min(this double f, double min) => math.min(f, min);
         /// <inheritdoc cref="math.min(double,double)"/>
-        [MethodImpl(INLINE)] public static double min(this double f, int min) => math.min(f, min);
+        [MethodImpl(INLINE)] public static double min(this double f, int y) => math.min(f, y);
 
 
         #region Max
@@ -82,7 +82,7 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="math.max(double, double)"/>
         [MethodImpl(INLINE)] public static double max(this double f, double max) => math.max(f, max);
         /// <inheritdoc cref="math.max(double, double)"/>
-        [MethodImpl(INLINE)] public static double max(this double f, int max) => math.max(f, max);
+        [MethodImpl(INLINE)] public static double max(this double f, int y) => math.max(f, y);
 
 
         /// Returns the componentwise maximum of a f4 and a double value
@@ -183,20 +183,6 @@ namespace Unity.Mathematics
         #endregion
 
         // npsat
-
-        #region npSaturate
-
-        /// Returns the result of clamping f to [-1, 1]
-        [MethodImpl(INLINE)] public static double4 npsat(this double4 f) => f.clamp(-1, 1);
-        /// <inheritdoc cref="npsat(Unity.Mathematics.double4)" />
-        [MethodImpl(INLINE)] public static double3 npsat(this double3 f) => f.clamp(-1, 1);
-        /// <inheritdoc cref="npsat(Unity.Mathematics.double4)" />
-        [MethodImpl(INLINE)] public static double2 npsat(this double2 f) => f.clamp(-1, 1);
-        /// <inheritdoc cref="npsat(Unity.Mathematics.double4)" />
-        [MethodImpl(INLINE)] public static double npsat(this double f) => f.clamp(-1, 1);
-
-        #endregion
-
         
         /// Same as max(f, 0); It can be useful to prevent negative values in some cases
         /// returns 0 if f is negative, otherwise returns f
