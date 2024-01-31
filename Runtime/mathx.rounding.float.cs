@@ -13,7 +13,7 @@ namespace Unity.Mathematics
     {
         // Rounding --------------------------------------------------
 
-        // Round
+        #region Round
         
         /// <inheritdoc cref="math.round(float4)"/>
         [MethodImpl(INLINE)] public static float4 round(this float4 f) => math.round(f);
@@ -24,7 +24,6 @@ namespace Unity.Mathematics
         ///<inheritdoc cref="math.round(float3)"/>
         [MethodImpl(INLINE)] public static float round(this float f) => math.round(f);
         
-
         /// Round to int
         [MethodImpl(INLINE)] public static int4 rint(this float4 f) => f.round().asint();
         ///<inheritdoc cref="rint(float4)"/>
@@ -33,7 +32,10 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)] public static int2 rint(this float2 f) => f.round().asint();
         ///<inheritdoc cref="rint(float4)"/>
         [MethodImpl(INLINE)] public static int rint(this float f) => f.round().asint();
-        
+
+        #endregion
+
+        #region Clamp
 
         // Clamp
         ///<inheritdoc cref="math.clamp(float4, float4, float4)"/>
@@ -56,65 +58,67 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)] public static float clamp(this int f, float min, float max) => min.max(max.min(f));
         /// <inheritdoc cref="clamp(float4, float, float)"/>
         [MethodImpl(INLINE)] public static float clamp(this float f, int min, int max) => math.max(min, math.min(f, max));
-        
-
-        /// <inheritdoc cref="math.min(float4,float4)"/>
-        [MethodImpl(INLINE)] public static float4 min(this float4 f, float4 min) => math.min(f, min);
-        /// <inheritdoc cref="math.min(float3,float3)"/>
-        [MethodImpl(INLINE)] public static float3 min(this float3 f, float3 min) => math.min(f, min);
-        /// <inheritdoc cref="math.min(float2,float2)"/>
-        [MethodImpl(INLINE)] public static float2 min(this float2 f, float2 min) => math.min(f, min);
-
-        /// <inheritdoc cref="math.min(float,float)"/>
-        [MethodImpl(INLINE)] public static float min(this float f, float min) => math.min(f, min);
-        /// <inheritdoc cref="math.min(float,float)"/>
-        [MethodImpl(INLINE)] public static float min(this float f, int min) => math.min(f, min);
-
-
-        #region Max
-
-        /// <inheritdoc cref="math.max(float4, float4)"/>
-        [MethodImpl(INLINE)] public static float4 max(this float4 f, float4 max) => math.max(f, max);
-        /// <inheritdoc cref="math.max(float3, float3)"/>
-        [MethodImpl(INLINE)] public static float3 max(this float3 f, float3 max) => math.max(f, max);
-        /// <inheritdoc cref="math.max(Mathematics.float2, Mathematics.float2)"/>
-        [MethodImpl(INLINE)] public static float2 max(this float2 f, float2 max) => math.max(f, max);
-        /// <inheritdoc cref="math.max(float, float)"/>
-        [MethodImpl(INLINE)] public static float max(this float f, float max) => math.max(f, max);
-        /// <inheritdoc cref="math.max(float, float)"/>
-        [MethodImpl(INLINE)] public static float max(this float f, int max) => math.max(f, max);
-
-
-        /// Returns the componentwise maximum of a f4 and a float value
-        [MethodImpl(INLINE)] public static float4 max(this float4 x, float y) => math.max(x, y);
-        /// Returns the componentwise maximum of a f3 and a float value
-        [MethodImpl(INLINE)] public static float3 max(this float3 x, float y) => math.max(x, y);
-        /// Returns the componentwise maximum of a f2 and a float value
-        [MethodImpl(INLINE)] public static float2 max(this float2 x, float y) => math.max(x, y);
-        /// Returns the componentwise maximum of a f4 and a float value
-        [MethodImpl(INLINE)] public static float4 max(this float x, float4 y) => math.max(x, y);
-        /// Returns the componentwise maximum of a f3 and a float value
-        [MethodImpl(INLINE)] public static float3 max(this float x, float3 y) => math.max(x, y);
-
-        /// Returns the componentwise maximum of a f2 and a float value
-        [MethodImpl(INLINE)] public static float2 max(this float x, float2 y) => math.max(x, y);
-        
-        /// Returns the componentwise minimum of a f4 and a float value
-        [MethodImpl(INLINE)] public static float4 min(this float4 x, float y) => math.min(x, y);
-        /// Returns the componentwise minimum of a f3 and a float value
-        [MethodImpl(INLINE)] public static float3 min(this float3 x, float y) => math.min(x, y);
-        /// Returns the componentwise minimum of a f2 and a float value
-        [MethodImpl(INLINE)] public static float2 min(this float2 x, float y) => math.min(x, y);
-        /// Returns the componentwise minimum of a f4 and a float value
-        [MethodImpl(INLINE)] public static float4 min(this float x, float4 y) => math.min(x, y);
-        /// Returns the componentwise minimum of a f3 and a float value
-        [MethodImpl(INLINE)] public static float3 min(this float x, float3 y) => math.min(x, y);
-
-        /// Returns the componentwise minimum of a f2 and a float value
-        [MethodImpl(INLINE)] public static float2 min(this float x, float2 y) => math.min(x, y);
 
         #endregion
 
+        #region Min
+
+        /// <inheritdoc cref="math.min(float4,float4)"/>
+        [MethodImpl(INLINE)] public static float4 min(this float4 f, float4 y) => math.min(f, y);
+        /// <inheritdoc cref="math.min(float3,float3)"/>
+        [MethodImpl(INLINE)] public static float3 min(this float3 f, float3 y) => math.min(f, y);
+        /// <inheritdoc cref="math.min(float2,float2)"/>
+        [MethodImpl(INLINE)] public static float2 min(this float2 f, float2 y) => math.min(f, y);
+        /// <inheritdoc cref="math.min(float,float)"/>
+        [MethodImpl(INLINE)] public static float min(this float f, float y) => math.min(f, y);
+        /// <inheritdoc cref="math.min(float,float)"/>
+        [MethodImpl(INLINE)] public static float min(this float f, int y) => math.min(f, y);
+                
+        /// Returns the componentwise minimum of a f4 and a float value
+        [MethodImpl(INLINE)] public static float4 min(this float4 f, float y) => math.min(f, y);
+        /// Returns the componentwise minimum of a f3 and a float value
+        [MethodImpl(INLINE)] public static float3 min(this float3 f, float y) => math.min(f, y);
+        /// Returns the componentwise minimum of a f2 and a float value
+        [MethodImpl(INLINE)] public static float2 min(this float2 f, float y) => math.min(f, y);
+        /// Returns the componentwise minimum of a f4 and a float value
+        [MethodImpl(INLINE)] public static float4 min(this float f, float4 y) => math.min(f, y);
+        /// Returns the componentwise minimum of a f3 and a float value
+        [MethodImpl(INLINE)] public static float3 min(this float f, float3 y) => math.min(f, y);
+        /// Returns the componentwise minimum of a f2 and a float value
+        [MethodImpl(INLINE)] public static float2 min(this float f, float2 y) => math.min(f, y);
+        
+        #endregion
+
+        
+        #region Max
+
+        /// <inheritdoc cref="math.max(float4, float4)"/>
+        [MethodImpl(INLINE)] public static float4 max(this float4 f, float4 y) => math.max(f, y);
+        /// <inheritdoc cref="math.max(float3, float3)"/>
+        [MethodImpl(INLINE)] public static float3 max(this float3 f, float3 y) => math.max(f, y);
+        /// <inheritdoc cref="math.max(float2, float2)"/>
+        [MethodImpl(INLINE)] public static float2 max(this float2 f, float2 y) => math.max(f, y);
+        /// <inheritdoc cref="math.max(float, float)"/>
+        [MethodImpl(INLINE)] public static float max(this float f, float y) => math.max(f, y);
+        /// <inheritdoc cref="math.max(float, float)"/>
+        [MethodImpl(INLINE)] public static float max(this float f, int y) => math.max(f, y);
+        
+        /// Returns the componentwise maximum of a f4 and a float value
+        [MethodImpl(INLINE)] public static float4 max(this float4 f, float y) => math.max(f, y);
+        /// Returns the componentwise maximum of a f3 and a float value
+        [MethodImpl(INLINE)] public static float3 max(this float3 f, float y) => math.max(f, y);
+        /// Returns the componentwise maximum of a f2 and a float value
+        [MethodImpl(INLINE)] public static float2 max(this float2 f, float y) => math.max(f, y);
+        /// Returns the componentwise maximum of a f4 and a float value
+        [MethodImpl(INLINE)] public static float4 max(this float f, float4 y) => math.max(f, y);
+        /// Returns the componentwise maximum of a f3 and a float value
+        [MethodImpl(INLINE)] public static float3 max(this float f, float3 y) => math.max(f, y);
+        /// Returns the componentwise maximum of a f2 and a float value
+        [MethodImpl(INLINE)] public static float2 max(this float f, float2 y) => math.max(f, y);
+        
+        #endregion
+        
+        
 
         #region Ceil
 
@@ -129,7 +133,6 @@ namespace Unity.Mathematics
 
 
         #endregion
-
 
         #region CeilToInt
 
@@ -183,22 +186,6 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)] public static float sat(this float f) => math.saturate(f);
 
         #endregion
-
-        // npsat
-
-        #region npSaturate
-
-        /// Returns the result of clamping f to [-1, 1]
-        [MethodImpl(INLINE)] public static float4 npsat(this float4 f) => f.clamp(-1, 1);
-        /// <inheritdoc cref="npsat(Unity.Mathematics.float4)" />
-        [MethodImpl(INLINE)] public static float3 npsat(this float3 f) => f.clamp(-1, 1);
-        /// <inheritdoc cref="npsat(Unity.Mathematics.float4)" />
-        [MethodImpl(INLINE)] public static float2 npsat(this float2 f) => f.clamp(-1, 1);
-        /// <inheritdoc cref="npsat(Unity.Mathematics.float4)" />
-        [MethodImpl(INLINE)] public static float npsat(this float f) => f.clamp(-1, 1);
-
-        #endregion
-
         
         /// Same as max(f, 0); It can be useful to prevent negative values in some cases
         /// returns 0 if f is negative, otherwise returns f

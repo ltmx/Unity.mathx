@@ -18,21 +18,21 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float anglerad(this float2 from, float2 to)
         {
             var num = (from.lengthsq() * to.lengthsq()).sqrt();
-            return num < 1.00000000362749E-15f ? 0 : (from.dot(to) / num).npsat().acos(); // * 57.29578f;
+            return num < 1.00000000362749E-15f ? 0 : (from.dot(to) / num).satsigned().acos(); // * 57.29578f;
         }
         
         /// <inheritdoc cref="anglerad(float2, float2)" />
         [MethodImpl(IL)] public static float anglerad(this float3 from, float3 to)
         {
             var num = (from.lengthsq() * to.lengthsq()).sqrt();
-            return num < 1.00000000362749E-15f ? 0 : (from.dot(to) / num).npsat().acos(); // * 57.29578f;
+            return num < 1.00000000362749E-15f ? 0 : (from.dot(to) / num).satsigned().acos(); // * 57.29578f;
         }
 
         /// <inheritdoc cref="anglerad(float2, float2)" />
         [MethodImpl(IL)] public static float anglerad(this float4 from, float4 to)
         {
             var num = (from.lengthsq() * to.lengthsq()).sqrt();
-            return num < 1.00000000362749E-15f ? 0 : (from.dot(to) / num).npsat().acos(); // * 57.29578f;
+            return num < 1.00000000362749E-15f ? 0 : (from.dot(to) / num).satsigned().acos(); // * 57.29578f;
         }
         
         /// <inheritdoc cref="math.angle(Unity.Mathematics.quaternion, Unity.Mathematics.quaternion)" />
@@ -54,11 +54,11 @@ namespace Unity.Mathematics
 
 
         /// a fast and accurate way of computing angles
-        [MethodImpl(IL)] public static float fastangle(this float4 from, float4 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).npsat().acos();
+        [MethodImpl(IL)] public static float fastangle(this float4 from, float4 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).satsigned().acos();
 
-        [MethodImpl(IL)] public static float fastangle(this float3 from, float3 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).npsat().acos();
+        [MethodImpl(IL)] public static float fastangle(this float3 from, float3 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).satsigned().acos();
 
-        [MethodImpl(IL)] public static float fastangle(this float2 from, float2 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).npsat().acos();
+        [MethodImpl(IL)] public static float fastangle(this float2 from, float2 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).satsigned().acos();
 
         // // another way of computing angles
         // [MethodImpl(IL)] public static float otherangle(f2 v1, f2 v2) => math.atan2(v1.x * v2.y - v2.x * v1.y, (v1 * v2).csum()) * (180 / PI);
