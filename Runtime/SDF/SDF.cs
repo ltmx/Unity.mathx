@@ -286,7 +286,7 @@ namespace Unity.Mathematics
         {
             p = p.abs();
             var b = float2(la, lb);
-            var f = (ndot(b, b - 2 * p.xz) / b.dot(b)).npsat();
+            var f = (ndot(b, b - 2 * p.xz) / b.dot(b)).satsigned();
             var q = float2(
                 (p.xz - 0.5f * b * float2(1 - f, 1 + f)).length() * (p.x * b.y + p.z * b.x - b.x * b.y).sign() - ra,
                 p.y - h);

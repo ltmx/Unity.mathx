@@ -28,11 +28,11 @@ namespace Unity.Mathematics
             x -= HPI;
             return (x - x * x * x * b) * a;
         }
-        [MethodImpl(IL)] public static float CosLoop(this int x) => (x % PI2 - x).abs() - HPI;
+        [MethodImpl(IL)] public static float CosLoop(this int x) => (x % TwoPI - x).abs() - HPI;
         
         [MethodImpl(IL)] public static float SinLoop(this int y) {
             var x = y - HPI;
-            return (x % PI2 - x).abs() - HPI;
+            return (x % TwoPI - x).abs() - HPI;
         }
         // Overloads
         [MethodImpl(IL)]

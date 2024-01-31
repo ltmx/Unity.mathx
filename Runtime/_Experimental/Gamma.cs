@@ -64,10 +64,10 @@ namespace Unity.Mathematics
                 var s = GammaDk[0];
                 for (var i = 1; i <= GammaN; i++) s += GammaDk[i] / (i - z);
 
-                return LnPi
+                return LnPI
                        - (PI * z).sin().ln()
                        - s.ln()
-                       - LogTwoSqrtEOverPi
+                       - LogTwoSqrtEOverPI
                        - (0.5 - z) * ((0.5 - z + GammaR) / E).ln();
             }
             else
@@ -76,7 +76,7 @@ namespace Unity.Mathematics
                 for (var i = 1; i <= GammaN; i++) s += GammaDk[i] / (z + i - 1.0);
 
                 return s.ln()
-                       + LogTwoSqrtEOverPi
+                       + LogTwoSqrtEOverPI
                        + (z - 0.5) * ((z - 0.5 + GammaR) / E).ln();
             }
         }
@@ -104,7 +104,7 @@ namespace Unity.Mathematics
 
                 return PI / ((PI * z).sin()
                              * s
-                             * TwoSqrtEOverPi
+                             * TwoSqrtEOverPI
                              * ((0.5 - z + GammaR) / E).pow(0.5 - z));
             }
             else
@@ -112,7 +112,7 @@ namespace Unity.Mathematics
                 var s = GammaDk[0];
                 for (var i = 1; i <= GammaN; i++) s += GammaDk[i] / (z + i - 1.0);
 
-                return s * TwoSqrtEOverPi * ((z - 0.5 + GammaR) / E).pow(z - 0.5);
+                return s * TwoSqrtEOverPI * ((z - 0.5 + GammaR) / E).pow(z - 0.5);
             }
         }
 
