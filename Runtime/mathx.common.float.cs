@@ -50,8 +50,7 @@ namespace Unity.Mathematics
         
         #region abs
 
-        /// The componentwise absolute value of the input.
-        /// <remarks>This implementation is 2x faster than math.abs</remarks>
+        /// The component-wise absolute value of the input.
         [MethodImpl(IL)] public static float4 abs(this float4 f) => math.abs(f);
         /// <inheritdoc cref="abs(float4)"/>
         [MethodImpl(IL)] public static float3 abs(this float3 f) => math.abs(f);
