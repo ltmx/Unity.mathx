@@ -41,16 +41,16 @@ namespace Unity.Mathematics
         
 
         /// Returns the signed angle between two vectors in degrees
-        [MethodImpl(IL)] public static float angledeg(float2 from, float2 to) => from.anglerad(to).deg();
+        [MethodImpl(IL)] public static float angledeg(this float2 from, float2 to) => from.anglerad(to).deg();
         /// <inheritdoc cref="angledeg(float2, float2)" />
-        [MethodImpl(IL)] public static float angledeg(float3 from, float3 to) => from.anglerad(to).deg();
+        [MethodImpl(IL)] public static float angledeg(this float3 from, float3 to) => from.anglerad(to).deg();
         /// <inheritdoc cref="angledeg(float2, float2)" />s
-        [MethodImpl(IL)] public static float angledeg(float4 from, float4 to) => from.anglerad(to).deg();
+        [MethodImpl(IL)] public static float angledeg(this float4 from, float4 to) => from.anglerad(to).deg();
         /// <summary>Returns the angle in degrees between two unit quaternions.</summary>
         /// <param name="q1">The first quaternion.</param>
         /// <param name="q2">The second quaternion.</param>
         /// <returns>The angle between two unit quaternions.</returns>
-        [MethodImpl(IL)] public static float angledeg(quaternion q1, quaternion q2) => q1.anglerad(q2).deg();
+        [MethodImpl(IL)] public static float angledeg(this quaternion q1, quaternion q2) => q1.anglerad(q2).deg();
 
 
         /// a fast and accurate way of computing angles
@@ -67,17 +67,26 @@ namespace Unity.Mathematics
 
         /// Determine the signed angle between two vectors, with normal 'limn' as the rotation axis.
         /// straightforward formulae to compute the signed angle between two vectors
-        [MethodImpl(IL)] public static float straightsignedangle(float3 f1, float3 f2, float3 n) => n.dot(f1.cross(f2)).atan2(f1.dot(f2));
+        [MethodImpl(IL)] public static float straightsignedangle(this float3 f1, float3 f2, float3 n) => n.dot(f1.cross(f2)).atan2(f1.dot(f2));
 
-
-        [MethodImpl(IL)] public static float preciseangle(float3 v1, float3 v2)
+        /// Returns the precise angle between two vectors in radians
+        [MethodImpl(IL)] public static float preciseangle(this float4 v1, float4 v2)
         {
             var v3 = v1.norm();
             var v4 = v2.norm();
             return v1.dot(v2) < 0 ? PI - 2 * ((-v3 - v4).length() / 2).asin() : 2 * ((v3 - v4).length() / 2).asin();
         }
 
-        [MethodImpl(IL)] public static float preciseangle(float2 v1, float2 v2)
+        /// Returns the precise angle between two vectors in radians
+        [MethodImpl(IL)] public static float preciseangle(this float3 v1, float3 v2)
+        {
+            var v3 = v1.norm();
+            var v4 = v2.norm();
+            return v1.dot(v2) < 0 ? PI - 2 * ((-v3 - v4).length() / 2).asin() : 2 * ((v3 - v4).length() / 2).asin();
+        }
+
+        /// Returns the precise angle between two vectors in radians
+        [MethodImpl(IL)] public static float preciseangle(this float2 v1, float2 v2)
         {
             var v3 = v1.norm();
             var v4 = v2.norm();
@@ -85,20 +94,20 @@ namespace Unity.Mathematics
         }
 
         /// Returns the signed angle between two vectors in radians using an axis of rotation
-        [MethodImpl(IL)] public static float signedangle(float4 from, float4 to, float4 axis) =>
+        [MethodImpl(IL)] public static float signedangle(this float4 from, float4 to, float4 axis) =>
             anglerad(from, to) * ((from.yzwx * to.zwxy - from.zwxy * to.yzwx) * axis).csum().sign();
 
         /// Returns the signed angle between two vectors in radians using an axis of rotation
-        [MethodImpl(IL)] public static float signedangle(float3 from, float3 to, float3 axis) =>
+        [MethodImpl(IL)] public static float signedangle(this float3 from, float3 to, float3 axis) =>
             anglerad(from, to) * ((from.yzx * to.zxy - from.zxy * to.yzx) * axis).csum().sign();
 
         /// Returns the signed angle between two vectors in radians;
-        [MethodImpl(IL)] public static float signedangle(Vector2 from, Vector2 to) =>
+        [MethodImpl(IL)] public static float signedanglethis (Vector2 from, Vector2 to) =>
             anglerad(from, to) * (from.x * to.y - from.y * to.x).sign();
 
         /// https://gist.github.com/voidqk/fc5a58b7d9fc020ecf7f2f5fc907dfa5
         /// Computes atan2(y,x), fast -->  max err: 0.071115
-        [MethodImpl(IL)] public static float fastatan2(float y, float x)
+        [MethodImpl(IL)] public static float fastatan2(this float y, float x)
         {
             const float c1 = PI / 4;
             const float c2 = PI * 0.75f;
