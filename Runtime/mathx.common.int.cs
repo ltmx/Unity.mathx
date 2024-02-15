@@ -172,7 +172,7 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="pow(int4,int4)"/>
         [MethodImpl(IL)] public static float2 pow(this int2 f, int2 y) => math.pow(f, y);
         /// <inheritdoc cref="pow(int4,int4)"/>
-        [MethodImpl(IL)] public static float pow(this int f, int y) => math.pow(f, y);
+        [MethodImpl(IL)] public static float pow(this int f, int y) => math.pow(f, y); // has to return float in case there are negative input values
         
         /// <inheritdoc cref="pow(int4,int4)"/>
         [MethodImpl(IL)] public static float4 pow(this int4 f, int pow) => new(math.pow(f.x, pow), math.pow(f.y, pow), math.pow(f.z, pow), math.pow(f.w, pow));

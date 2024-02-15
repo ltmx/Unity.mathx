@@ -18,7 +18,7 @@ namespace Unity.Mathematics
 {
     public static partial class mathx
     {
-        [MenuItem("Athena/Test")]
+        [MenuItem("Tools/mathx/Test")]
         public static void TestBenchmark()
         {
             var d = 2.3;
