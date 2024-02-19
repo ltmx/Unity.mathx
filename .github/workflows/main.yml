@@ -16,10 +16,9 @@ jobs:
       
       - name: Set up Git tag
         id: tag_version
-        run: echo "::set-output name=TAG_NAME::${GITHUB_REF/refs\/tags\//}"
+        run: echo "::set-output name=TAG_NAME::${GITHUB_REF#refs/tags/}"
         
       - name: Create Release
-        id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
