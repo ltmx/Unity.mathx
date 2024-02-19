@@ -5,25 +5,26 @@ on:
     branches:
       - master
     tags:
-      - '*.*.*'
+      - 'v*.*.*'
 
 jobs:
-  build:
+  create-release:
     runs-on: ubuntu-latest
-    
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
       
-      - name: Set up Git tag
-        id: tag_version
-        run: echo "::set-output name=TAG_NAME::${GITHUB_REF#refs/tags/}"
+      - name: Extract tag name
+        id: extract_tag
+        shell: bash
+        run: echo "::set-output name=tag::$(echo ${GITHUB_REF#refs/tags/})"
         
       - name: Create Release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.tag_version.outputs.TAG_NAME }}
-          release_name: Release ${{ steps.tag_version.outputs.TAG_NAME }}
+          tag_name: ${{ steps.extract_tag.outputs.tag }}
+          release_name: Release ${{ steps.extract_tag.outputs.tag }}
           draft: false
           prerelease: false
