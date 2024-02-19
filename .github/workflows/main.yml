@@ -7,11 +7,11 @@ on:
 
 jobs:
   create-release:
-    name: Publish Zip
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
     - name: Upload Zip to release
       uses: svenstaro/upload-release-action@v2
       with:
