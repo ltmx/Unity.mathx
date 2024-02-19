@@ -1,26 +1,25 @@
-name: Create Release
+name: Publish
+
 on:
   push:
-    branches:
-      - master
     tags:
-      - '*.*.*'
+      - '*'
 
 jobs:
-  create-release:
+  build:
+    name: Publish Zip
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Extract tag name and set as env var
-        run: echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
-      - name: Create Release
-        uses: actions/create-release@v1 # Check for an updated version that supports Node.js 20        env:
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ env.tag }}
-        with:
-          tag_name: ${{ env.tag }}
-          release_name: Release ${{ env.tag }}
-          draft: false
-          prerelease: false
+    - uses: actions/checkout@v3
+    # - name: Build
+      # run: cargo build --release
+    - name: Upload Zip to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: target/release/mything
+        asset_name: mything
+        tag: ${{ github.ref }}
+        overwrite: true
+        body: "This is my release text"
