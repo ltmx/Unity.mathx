@@ -3,17 +3,16 @@ name: Publish
 on:
   push:
     tags:
-      - '*'
+      - '*.*.*'
 
 jobs:
-  build:
+   create-release:
     name: Publish Zip
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout code
     - uses: actions/checkout@v3
-    # - name: Build
-      # run: cargo build --release
     - name: Upload Zip to release
       uses: svenstaro/upload-release-action@v2
       with:
