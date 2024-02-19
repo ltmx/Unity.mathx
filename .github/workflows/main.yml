@@ -1,5 +1,4 @@
 name: Create Release
-
 on:
   push:
     branches:
@@ -12,19 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-      
-      - name: Extract tag name
-        id: extract_tag
-        shell: bash
-        run: echo "::set-output name=tag::$(echo ${GITHUB_REF#refs/tags/})"
-        
+        uses: actions/checkout@v3
+      - name: Extract tag name and set as env var
+        run: echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
       - name: Create Release
-        uses: actions/create-release@v1
+        uses: actions/create-release@v1 # Check for an updated version that supports Node.js 20        env:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ env.tag }}
         with:
-          tag_name: ${{ steps.extract_tag.outputs.tag }}
-          release_name: Release ${{ steps.extract_tag.outputs.tag }}
+          tag_name: ${{ env.tag }}
+          release_name: Release ${{ env.tag }}
           draft: false
           prerelease: false
