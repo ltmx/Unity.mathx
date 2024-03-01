@@ -227,4 +227,4 @@ asbool() // new overloads
 <br>
 
 ## 📜 LICENSING
-<p>This project is licensed under the MIT License (<a href="https://github.com/LTMX/Unity.mathx/blob/master/LICENSE">License</a>)</p>
+<p>This project is licensed under the MIT License (<a href="https://github.com/LTMX/Unity.mathx/blob/master/LICENSE.md">License</a>)</p>

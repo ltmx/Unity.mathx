@@ -67,7 +67,7 @@ namespace Unity.Mathematics
                 action.Invoke();
             }
             stopWatch.Stop();
-            Debug.Log(name + " took "+ stopWatch.ElapsedMilliseconds);
+            Debug.Log(name + " took "+ stopWatch.ElapsedMilliseconds + " ms to complete 1.000.000 times");
         }
     }
 }
