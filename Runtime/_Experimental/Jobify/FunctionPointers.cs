@@ -9,10 +9,9 @@ using static Unity.Mathematics.FunctionPointers.Signature;
 
 namespace Unity.Mathematics
 {
-    [BurstCompile]
     public static partial class FunctionPointers
     {
         // ** Very important to cache the function pointer for performance reasons
-        public static readonly f1x3_f1 p_smax_exp = compile<f1x3_f1>(mathx.smax_exp);
+        // public static readonly f1x3_f1 p_smax_exp = compile<f1x3_f1>(mathx.smax_exp);
     }
 }
