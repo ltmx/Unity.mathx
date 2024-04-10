@@ -4,13 +4,7 @@
 // **    Repository : https://github.com/LTMX/Unity.mathx
 #endregion
 
-using System;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using AOT;
-using Unity.Burst;
-using static Unity.Mathematics.FunctionPointers.Signature;
-
 namespace Unity.Mathematics
 {
     public static partial class mathx

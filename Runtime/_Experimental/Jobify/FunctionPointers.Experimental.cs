@@ -4,6 +4,8 @@
 // **    Repository : https://github.com/LTMX/Unity.mathx
 #endregion
 
+#if MATHX_FUNCTION_POINTERS
+
 using System;
 using Unity.Burst;
 
@@ -222,8 +224,8 @@ namespace Unity.Mathematics
         //             myMethodwithParams.invoke
         //         } 
         
-
-        
         #endregion
     }
 }
+
+#endif

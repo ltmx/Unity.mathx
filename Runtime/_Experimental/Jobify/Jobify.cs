@@ -4,6 +4,8 @@
 // **    Repository : https://github.com/LTMX/Unity.mathx
 #endregion
 
+#if MATHX_FUNCTION_POINTERS
+
 using System;
 using System.Runtime.InteropServices;
 using Unity.Burst;
@@ -58,5 +60,6 @@ namespace Unity.Mathematics // Should be defined in the assembly definition // J
         }
 
     }
-    
 }
+
+#endif

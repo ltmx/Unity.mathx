@@ -8,10 +8,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+
+#if MATHX_FUNCTION_POINTERS
+
 using System.Runtime.InteropServices;
 using Unity.Burst;
 using static Unity.Mathematics.FunctionPointers;
 using static Unity.Mathematics.FunctionPointers.Signature;
+
+#endif
 
 namespace Unity.Mathematics
 {
@@ -21,7 +26,10 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static float3 projectplane(this float3 f, float3 planeNormal) => f - project(f, planeNormal);
         // [MethodImpl(IL)] public static f3 MultiplyPoint(this float4x4 m, f3 v) => v.mul(m) / m[3].xyz;
 
+#if MATHX_FUNCTION_POINTERS
         public static IEnumerable<T> apply<T>(this IEnumerable<T> t, Func<T, T> f) => t.Select(x => GetFunctionPointerDelegate(f).Invoke(x));
+#endif
+
 
         /// <summary>Apply a function to a value a number of times </summary>
         /// <param name="input">input object</param>
@@ -62,9 +70,11 @@ namespace Unity.Mathematics
         //     return input;
         // }
 
-        public static FunctionPointer<T> GetFunctionPointerDelegate<T>(T functionPointer) where T : Delegate => new(Marshal.GetFunctionPointerForDelegate(functionPointer));
+#if MATHX_FUNCTION_POINTERS
+                public static FunctionPointer<T> GetFunctionPointerDelegate<T>(T functionPointer) where T : Delegate => new(Marshal.GetFunctionPointerForDelegate(functionPointer));
         // public static ActionJob ToActionJob(this Action action) => new(GetFunctionPointerDelegate(action));
-        
+
+#endif
     }
     
     
@@ -87,6 +97,7 @@ namespace Unity.Mathematics
 
         private static float rand(uint seed) => xxhash32(seed) / (float)uint.MaxValue;
 
+#if MATHX_FUNCTION_POINTERS
         public static float4 make(int4 f, i1_f1 func) => new(func.Invoke(f.x), func.Invoke(f.y), func.Invoke(f.z), func.Invoke(f.w));
         public static float3 make(int3 f, i1_f1 func) => new(func.Invoke(f.x), func.Invoke(f.y), func.Invoke(f.z));
         public static float2 make(int2 f, i1_f1 func) => new(func.Invoke(f.x), func.Invoke(f.y));
@@ -106,6 +117,7 @@ namespace Unity.Mathematics
         public static float3 make(uint3 f, u1_f1 func) => new(func.Invoke(f.x), func.Invoke(f.y), func.Invoke(f.z));
         public static float2 make(uint2 f, u1_f1 func) => new(func.Invoke(f.x), func.Invoke(f.y));
         public static float make(uint f, u1_f1 func) => func.Invoke(f);
+#endif
 
         private static uint xxhash32(uint seed) {
             var hash = seed + PRIME5;

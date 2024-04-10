@@ -4,6 +4,8 @@
 // **    Repository : https://github.com/LTMX/Unity.mathx
 #endregion
 
+#if MATHX_FUNCTION_POINTERS
+
 using System.Runtime.CompilerServices;
 using static Unity.Mathematics.FunctionPointers.Signature;
 using static Unity.Mathematics.mathx;
@@ -61,3 +63,5 @@ namespace Unity.Mathematics
         
     }
 }
+
+#endif

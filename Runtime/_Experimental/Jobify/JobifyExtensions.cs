@@ -4,6 +4,8 @@
 // **    Repository : https://github.com/LTMX/Unity.mathx
 #endregion
 
+#if MATHX_FUNCTION_POINTERS
+
 using Unity.Burst;
 using Unity.Jobs;
 using static Unity.Mathematics.FunctionPointers.Signature;
@@ -22,3 +24,5 @@ namespace Unity.Mathematics
         }
     }
 }
+
+#endif
