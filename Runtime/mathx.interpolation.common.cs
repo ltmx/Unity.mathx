@@ -295,7 +295,7 @@ namespace Unity.Mathematics
         }
         public static float2 smax_exp2(this float2 t, float2 a, float2 b) => f2(t.x.smax_exp(a.x, b.x), t.y.smax_exp(a.y, b.y));
         
-        public static float2 smax_expOP(this float2 t, float2 a, float2 b) => FunctionPointers.p_smax_exp.RunPerAxisWithParam(a, b, t);
+        // public static float2 smax_expOP(this float2 t, float2 a, float2 b) => FunctionPointers.p_smax_exp.RunPerAxisWithParam(a, b, t);
         
         public static float3 smax_exp(this float3 t, float3 a, float3 b) => f3(t.x.smax_exp(a.x, b.x), t.y.smax_exp(a.y, b.y), t.z.smax_exp(a.z, b.z));
         public static float4 smax_exp(this float4 t, float4 a, float4 b) => f4(t.x.smax_exp(a.x, b.x), t.y.smax_exp(a.y, b.y), t.z.smax_exp(a.z, b.z), t.w.smax_exp(a.w, b.w));
