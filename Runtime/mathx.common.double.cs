@@ -383,5 +383,25 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static double3 cycle(this double3 f, int n) => f.apply(cycle, n);
         /// applies a function to a double4 n times
         [MethodImpl(IL)] public static double4 cycle(this double4 f, int n) => f.apply(cycle, n);
+
+
+        /// <inheritdoc cref="subx(double4, double)"/>
+        [MethodImpl(IL)] public static double2 subx(this double2 f, double x) => new(x, f.y);
+        /// <inheritdoc cref="suby(double4, double)"/>
+        [MethodImpl(IL)] public static double2 suby(this double2 f, double y) => new(f.x, y);
+        /// <inheritdoc cref="subx(double4, double)"/>
+        [MethodImpl(IL)] public static double3 subx(this double3 f, double x) => new(x, f.y, f.z);
+        /// <inheritdoc cref="suby(double4, double)"/>
+        [MethodImpl(IL)] public static double3 suby(this double3 f, double y) => new(f.x, y, f.z);
+        /// <inheritdoc cref="subz(double4, double)"/>
+        [MethodImpl(IL)] public static double3 subz(this double3 f, double z) => new(f.x, f.y, z);
+        /// substitutes the component x
+        [MethodImpl(IL)] public static double4 subx(this double4 f, double x) => new(x, f.y, f.z, f.w);
+        /// substitutes the component y
+        [MethodImpl(IL)] public static double4 suby(this double4 f, double y) => new(f.x, y, f.z, f.w);
+        /// substitutes the component z
+        [MethodImpl(IL)] public static double4 subz(this double4 f, double z) => new(f.x, f.y, z, f.w);
+        /// substitutes the component w
+        [MethodImpl(IL)] public static double4 subw(this double4 f, double w) => new(f.x, f.y, f.z, w);
     }
 }

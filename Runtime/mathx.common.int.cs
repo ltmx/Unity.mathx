@@ -423,5 +423,25 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static int3 cycle(this int3 f, int n) => f.apply(cycle, n);
         /// applies a function to a int4 n times
         [MethodImpl(IL)] public static int4 cycle(this int4 f, int n) => f.apply(cycle, n);
+
+
+        /// <inheritdoc cref="subx(int4, int)"/>
+        [MethodImpl(IL)] public static int2 subx(this int2 f, int x) => new(x, f.y);
+        /// <inheritdoc cref="suby(int4, int)"/>
+        [MethodImpl(IL)] public static int2 suby(this int2 f, int y) => new(f.x, y);
+        /// <inheritdoc cref="subx(int4, int)"/>
+        [MethodImpl(IL)] public static int3 subx(this int3 f, int x) => new(x, f.y, f.z);
+        /// <inheritdoc cref="suby(int4, int)"/>
+        [MethodImpl(IL)] public static int3 suby(this int3 f, int y) => new(f.x, y, f.z);
+        /// <inheritdoc cref="subz(int4, int)"/>
+        [MethodImpl(IL)] public static int3 subz(this int3 f, int z) => new(f.x, f.y, z);
+        /// substitutes the component x
+        [MethodImpl(IL)] public static int4 subx(this int4 f, int x) => new(x, f.y, f.z, f.w);
+        /// substitutes the component y
+        [MethodImpl(IL)] public static int4 suby(this int4 f, int y) => new(f.x, y, f.z, f.w);
+        /// substitutes the component z
+        [MethodImpl(IL)] public static int4 subz(this int4 f, int z) => new(f.x, f.y, z, f.w);
+        /// substitutes the component w
+        [MethodImpl(IL)] public static int4 subw(this int4 f, int w) => new(f.x, f.y, f.z, w);
     }
 }

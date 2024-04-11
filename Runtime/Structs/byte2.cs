@@ -293,5 +293,11 @@ namespace Unity.Mathematics
         /// When multiple elements are to be hashes together, it can more efficient to calculate and combine wide hash
         /// that are only reduced to a narrow uint hash at the very end instead of at every step.
         [MethodImpl(INLINE)] public static uint2 hashwide(byte2 v) => uint2(v.x, v.y) * uint2(0xEBD0D005u, 0x91475DF7u) + 0x55E84827u;
+
+
+        /// <inheritdoc cref="subx(byte4, byte)"/>
+        [MethodImpl(IL)] public static byte2 subx(this byte2 f, byte x) => new(x, f.y);
+        /// <inheritdoc cref="suby(byte4, byte)"/>
+        [MethodImpl(IL)] public static byte2 suby(this byte2 f, byte y) => new(f.x, y);
     }
 }
