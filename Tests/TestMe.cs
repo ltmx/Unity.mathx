@@ -21,7 +21,7 @@ namespace Unity.Mathematics.Tests
         [MenuItem("Tools/mathx/Test")]
         public static void TestBenchmark()
         {
-            var d = 2.3;
+            //var d = 2.3;
             var stopWatch = new Stopwatch();
             var f = new float3(1.4f,5.6f,8.1f);
             var v = new Vector3(1.4f,5.6f,8.1f);
