@@ -8,8 +8,6 @@
 
 using System;
 using System.Runtime.CompilerServices;
-using UnityEditor;
-using UnityEngine;
 
 namespace Unity.Mathematics
 {

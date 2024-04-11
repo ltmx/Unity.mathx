@@ -1,4 +1,4 @@
-﻿#region Header
+#region Header
 
 // **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
 // **    Github Profile: https://github.com/LTMX
@@ -14,7 +14,7 @@ using UnityEditor;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
-namespace Unity.Mathematics
+namespace Unity.Mathematics.Tests
 {
     public static partial class mathx
     {
