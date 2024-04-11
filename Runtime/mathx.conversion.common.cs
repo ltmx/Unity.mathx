@@ -39,7 +39,7 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="asint(float4)"/>>
         [MethodImpl(IL)] public static int3 asint(this Vector3Int f) => new(f.x, f.y, f.z);
         /// <inheritdoc cref="asint(float4)"/>>
-        [MethodImpl(IL)] public static int2 asint(this Vector2Int f) => new((int)f.x, f.y);
+        [MethodImpl(IL)] public static int2 asint(this Vector2Int f) => new(f.x, f.y);
 
         /// <inheritdoc cref="asint(float4)"/>>
         [MethodImpl(IL)] public static int4 asint(this double4 f) => (int4) f;
@@ -252,11 +252,21 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static unsafe Vector4 cast(this float4 f) => *(Vector4*)&f;
 
         ///<inheritdoc cref="cast(float2)"/>
+        [MethodImpl(IL)] public static unsafe Vector2Int cast(this int2 f) => new(f.x, f.y);
+        ///<inheritdoc cref="cast(float2)"/>
+        [MethodImpl(IL)] public static unsafe Vector3Int cast(this int3 f) => new(f.x, f.y, f.z);
+
+        ///<inheritdoc cref="cast(float2)"/>
         [MethodImpl(IL)] public static unsafe float2 cast(this Vector2 f) => *(float2*)&f;
         ///<inheritdoc cref="cast(float2)"/>
         [MethodImpl(IL)] public static unsafe float3 cast(this Vector3 f) => *(float3*)&f;
         ///<inheritdoc cref="cast(float2)"/>
         [MethodImpl(IL)] public static unsafe float4 cast(this Vector4 f) => *(float4*)&f;
+
+        ///<inheritdoc cref="cast(float2)"/>
+        [MethodImpl(IL)] public static unsafe int2 cast(this Vector2Int f) => new(f.x, f.y);
+        ///<inheritdoc cref="cast(float2)"/>
+        [MethodImpl(IL)] public static unsafe int3 cast(this Vector3Int f) => new(f.x, f.y, f.z);
 
         /// Casts to Unity's Vector Type Equivalent
         [MethodImpl(IL)] public static Vector2 cast(this double2 f) => new((float)f.x, (float)f.y);
@@ -282,6 +292,20 @@ namespace Unity.Mathematics
         [MethodImpl(IL)] public static unsafe float3 f(this Vector3 v) => *(float3*)&v;
         ///<inheritdoc cref="cast(float2)"/>
         [MethodImpl(IL)] public static unsafe float2 f(this Vector2 v) => *(float2*)&v;
+        ///<inheritdoc cref="cast(float2)"/>
+        [MethodImpl(IL)] public static unsafe float3 f(this Vector3Int v) => new(v.x, v.y, v.z);
+        ///<inheritdoc cref="cast(float2)"/>
+        [MethodImpl(IL)] public static unsafe float2 f(this Vector2Int v) => new(v.x, v.y);
+
+        ///<inheritdoc cref="cast(float2)"/>
+        [MethodImpl(IL)] public static unsafe int3 i(this Vector3 v) => new((int)v.x, (int)v.y, (int)v.z);
+        ///<inheritdoc cref="cast(float2)"/>
+        [MethodImpl(IL)] public static unsafe int2 i(this Vector2 v) => new((int)v.x, (int)v.y);
+
+        ///<inheritdoc cref="cast(float2)"/>
+        [MethodImpl(IL)] public static unsafe int3 i(this Vector3Int v) => new(v.x, v.y, v.z);
+        ///<inheritdoc cref="cast(float2)"/>
+        [MethodImpl(IL)] public static unsafe int2 i(this Vector2Int v) => new(v.x, v.y);
 
         #endregion
     }
