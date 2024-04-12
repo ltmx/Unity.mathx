@@ -13,7 +13,7 @@ using static Unity.Mathematics.math;
 using Debug = UnityEngine.Debug;
 using Object = UnityEngine.Object;
 
-namespace Tests
+namespace Unity.Mathematics.Tests
 {
     [BurstCompile]
     public static class MathTests

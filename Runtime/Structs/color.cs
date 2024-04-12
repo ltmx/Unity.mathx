@@ -1627,5 +1627,15 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)] public static float lineartogama(this float c) => c.pow(1 / 2.2f);
         [MethodImpl(INLINE)] public static color gammatolinear(this color c) => new(c.x.gammatolinear(), c.y.gammatolinear(), c.z.gammatolinear(), c.w);
         [MethodImpl(INLINE)] public static color lineartogama(this color c) => new(c.x.lineartogama(), c.y.lineartogama(), c.z.lineartogama(), c.w);
+
+
+        /// substitutes the component x
+        [MethodImpl(IL)] public static color subx(this color f, float x) => new(x, f.y, f.z, f.w);
+        /// substitutes the component y
+        [MethodImpl(IL)] public static color suby(this color f, float y) => new(f.x, y, f.z, f.w);
+        /// substitutes the component z
+        [MethodImpl(IL)] public static color subz(this color f, float z) => new(f.x, f.y, z, f.w);
+        /// substitutes the component w
+        [MethodImpl(IL)] public static color subw(this color f, float w) => new(f.x, f.y, f.z, w);
     }
 }

@@ -709,5 +709,13 @@ namespace Unity.Mathematics
         
         /// Returns a uint3 vector hash code of a byte3 vector.
         [MethodImpl(INLINE)] public static uint3 hashwide(byte3 v) => uint3(v.x, v.y, v.z) * uint3(0xFA3A3285u, 0xAD55999Du, 0xDCDD5341u) + 0x94DDD769u;
+
+
+        /// <inheritdoc cref="subx(byte4, byte)"/>
+        [MethodImpl(IL)] public static byte3 subx(this byte3 f, byte x) => new(x, f.y, f.z);
+        /// <inheritdoc cref="suby(byte4, byte)"/>
+        [MethodImpl(IL)] public static byte3 suby(this byte3 f, byte y) => new(f.x, y, f.z);
+        /// <inheritdoc cref="subz(byte4, byte)"/>
+        [MethodImpl(IL)] public static byte3 subz(this byte3 f, byte z) => new(f.x, f.y, z);
     }
 }

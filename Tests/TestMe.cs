@@ -1,4 +1,4 @@
-﻿#region Header
+#region Header
 
 // **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
 // **    Github Profile: https://github.com/LTMX
@@ -14,14 +14,14 @@ using UnityEditor;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
-namespace Unity.Mathematics
+namespace Unity.Mathematics.Tests
 {
     public static partial class mathx
     {
         [MenuItem("Tools/mathx/Test")]
         public static void TestBenchmark()
         {
-            var d = 2.3;
+            //var d = 2.3;
             var stopWatch = new Stopwatch();
             var f = new float3(1.4f,5.6f,8.1f);
             var v = new Vector3(1.4f,5.6f,8.1f);
