@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using static Unity.Mathematics.math;
 using static Unity.Mathematics.mathx;
+using Unity.Mathematics;
 
 #pragma warning disable 0660, 0661
 
@@ -295,9 +296,9 @@ namespace Unity.Mathematics
         [MethodImpl(INLINE)] public static uint2 hashwide(byte2 v) => uint2(v.x, v.y) * uint2(0xEBD0D005u, 0x91475DF7u) + 0x55E84827u;
 
 
-        /// <inheritdoc cref="subx(byte4, byte)"/>
-        [MethodImpl(IL)] public static byte2 subx(this byte2 f, byte x) => new(x, f.y);
-        /// <inheritdoc cref="suby(byte4, byte)"/>
-        [MethodImpl(IL)] public static byte2 suby(this byte2 f, byte y) => new(f.x, y);
+        /// <inheritdoc cref="swapx(Unity.Mathematics.byte4, byte)"/>
+        [MethodImpl(IL)] public static byte2 swapx(this byte2 f, byte x) => new(x, f.y);
+        /// <inheritdoc cref="swapy(Unity.Mathematics.byte4, byte)"/>
+        [MethodImpl(IL)] public static byte2 swapy(this byte2 f, byte y) => new(f.x, y);
     }
 }

@@ -1862,12 +1862,12 @@ namespace Unity.Mathematics
 
 
         /// substitutes the component x
-        [MethodImpl(IL)] public static byte4 subx(this byte4 f, byte x) => new(x, f.y, f.z, f.w);
+        [MethodImpl(IL)] public static byte4 swapx(this byte4 f, byte x) => new(x, f.y, f.z, f.w);
         /// substitutes the component y
-        [MethodImpl(IL)] public static byte4 suby(this byte4 f, byte y) => new(f.x, y, f.z, f.w);
+        [MethodImpl(IL)] public static byte4 swapy(this byte4 f, byte y) => new(f.x, y, f.z, f.w);
         /// substitutes the component z
-        [MethodImpl(IL)] public static byte4 subz(this byte4 f, byte z) => new(f.x, f.y, z, f.w);
+        [MethodImpl(IL)] public static byte4 swapz(this byte4 f, byte z) => new(f.x, f.y, z, f.w);
         /// substitutes the component w
-        [MethodImpl(IL)] public static byte4 subw(this byte4 f, byte w) => new(f.x, f.y, f.z, w);
+        [MethodImpl(IL)] public static byte4 swapw(this byte4 f, byte w) => new(f.x, f.y, f.z, w);
     }
 }
