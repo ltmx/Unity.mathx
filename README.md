@@ -52,7 +52,7 @@ using static Unity.Mathematics.mathx;
 
 ## ♾ Linq-Style Syntax
 ```cs
-return anyVector.length().clamp(0, 10).cos().sq().cube().sum().cmul().rotate(anyQuaternion).clint().div(3.2f).rcp();
+return anyVector.length().clamp(0, 10).cos().sq().cube().rotate(anyQuaternion).clint().div(3.2f).rcp().mul(3.2f).sum();
 ```
 
 <br>
@@ -71,7 +71,7 @@ x = x.div(4.2f).shuffle();
 x = x.lengthsq() + x;
 
 bool4.any(); // returns true if any component is true // or-gate
-bool4.all(); // returns trye if all components are true // and-gate
+bool4.all(); // returns true if all components are true // and-gate
 ```
 
 <br>
@@ -91,9 +91,8 @@ bool4.all(); // returns trye if all components are true // and-gate
 - [x] Data Construction (`append`, `float2.xyzw()`, matrix construction, etc)
 - [x] Data Conversion (`anyColortArray.tofloat4Array()`, and others)
 - [ ] Noise Functions `WIP` (`Simplex`, `Perlin`, `Whorley`, `Layered`, `Voronoi`)
-- [ ] Documentation `80% Complete`
 - [ ] Job Helpers `WIP`
-- [ ] Burst Compiled Function Pointers `WIP 50%`
+- [ ] Burst Compiled Function Pointers `WIP 80%`
 - [ ] Function Iterators (prevents nested loops) `WIP 50%`
 - [ ] Hashing Functions `WIP 80%`
 - [ ] Vector Function Builders `WIP 50%`
