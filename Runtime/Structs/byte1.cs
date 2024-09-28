@@ -7,14 +7,14 @@
 using System;
 using System.Runtime.CompilerServices;
 
+using MI = System.Runtime.CompilerServices.MethodImplAttribute;
+using static Unity.Mathematics.mathx;
+
 namespace Unity.Mathematics
 {
-    /// A 8-bit byte for Unity.Mathematics interoperability
+    /// A 8-bit struct for Unity.Mathematics interoperability
     [Serializable]
-    public struct byte1 :
-        IEquatable<byte1>, 
-        IEquatable<byte>, 
-        IFormattable
+    public struct byte1 : IEquatable<byte1>, IEquatable<byte>, IFormattable
     {
         /// The raw 8 bit value of the byte.
         internal byte value;
@@ -32,35 +32,33 @@ namespace Unity.Mathematics
         /// The minimum finite byte value as a byte.
         public static readonly byte1 MinValueAsByte1 = new(MinValue) ;
         
-        private const MethodImplOptions INLINE = MethodImplOptions.AggressiveInlining;
-        
         // Constructors
-        [MethodImpl(INLINE)] public byte1(byte1 x) => value = x.value;
-        [MethodImpl(INLINE)] public byte1(byte x) => value = x;
-        [MethodImpl(INLINE)] public byte1(int x) => value = (byte)x;
-        [MethodImpl(INLINE)] public byte1(float v) => value = (byte)v;
-        [MethodImpl(INLINE)] public byte1(double v) => value = (byte)v;
+        [MI(IL)] public byte1(byte1 x) => value = x.value;
+        [MI(IL)] public byte1(byte x) => value = x;
+        [MI(IL)] public byte1(int x) => value = (byte)x;
+        [MI(IL)] public byte1(float v) => value = (byte)v;
+        [MI(IL)] public byte1(double v) => value = (byte)v;
         
         // Implicit Casts
-        [MethodImpl(INLINE)] public static implicit operator byte1(byte v) => new(v);
-        [MethodImpl(INLINE)] public static implicit operator byte1(float v) => new(v);
-        [MethodImpl(INLINE)] public static implicit operator byte1(double v) => new(v);
-        [MethodImpl(INLINE)] public static implicit operator byte1(int d) => (byte)d;
-        [MethodImpl(INLINE)] public static implicit operator byte1(half d) => (byte)d;
-        [MethodImpl(INLINE)] public static implicit operator byte(byte1 v) => v.value;
+        [MI(IL)] public static implicit operator byte1(byte v) => new(v);
+        [MI(IL)] public static implicit operator byte1(float v) => new(v);
+        [MI(IL)] public static implicit operator byte1(double v) => new(v);
+        [MI(IL)] public static implicit operator byte1(int d) => (byte)d;
+        [MI(IL)] public static implicit operator byte1(half d) => (byte)d;
+        [MI(IL)] public static implicit operator byte(byte1 v) => v.value;
         // Explicit casts
-        [MethodImpl(INLINE)] public static explicit operator float(byte1 d) => d;
-        [MethodImpl(INLINE)] public static explicit operator double(byte1 d) => d;
-        [MethodImpl(INLINE)] public static explicit operator int(byte1 d) => d;
-        [MethodImpl(INLINE)] public static explicit operator uint(byte1 d) => d;
-        [MethodImpl(INLINE)] public static explicit operator short(byte1 d) => d;
-        [MethodImpl(INLINE)] public static explicit operator ushort(byte1 d) => d;
-        [MethodImpl(INLINE)] public static explicit operator half(byte1 d) => (half)d.value;
+        [MI(IL)] public static explicit operator float(byte1 d) => d;
+        [MI(IL)] public static explicit operator double(byte1 d) => d;
+        [MI(IL)] public static explicit operator int(byte1 d) => d;
+        [MI(IL)] public static explicit operator uint(byte1 d) => d;
+        [MI(IL)] public static explicit operator short(byte1 d) => d;
+        [MI(IL)] public static explicit operator ushort(byte1 d) => d;
+        [MI(IL)] public static explicit operator half(byte1 d) => (half)d.value;
 
         // /// <summary>Returns the bit pattern of a float as an int.</summary>
         // /// <param name="x">The float bits to copy.</param>
         // /// <returns>The byte with the same bit pattern as the input.</returns>
-        // [MethodImpl(INLINE)]
+        // [MI(IL)]
         // public static int asbyte(float x) {
         //     ByteFloatUnion u;
         //     u.byteValue = 0;
@@ -77,64 +75,64 @@ namespace Unity.Mathematics
         
         /// Returns whether two byte values are bitwise equivalent.
         /// Returns True if the two byte values are bitwise equivalent, false otherwise.
-        [MethodImpl(INLINE)] public static bool operator ==(byte1 a, byte1 b) => a.value == b.value;
+        [MI(IL)] public static bool operator ==(byte1 a, byte1 b) => a.value == b.value;
         /// Returns whether two byte values are not bitwise equivalent.
-        [MethodImpl(INLINE)] public static bool operator !=(byte1 a, byte1 b) => a.value != b.value;
+        [MI(IL)] public static bool operator !=(byte1 a, byte1 b) => a.value != b.value;
         /// Returns True if the two byte values are not bitwise equivalent, false otherwise.
-        [MethodImpl(INLINE)] public static bool operator <(byte1 a, byte1 b) => a.value < b.value;
+        [MI(IL)] public static bool operator <(byte1 a, byte1 b) => a.value < b.value;
         /// Returns True if the two byte values are not bitwise equivalent, false otherwise.
-        [MethodImpl(INLINE)] public static bool operator > (byte1 a, byte1 b) => a.value > b.value;
+        [MI(IL)] public static bool operator > (byte1 a, byte1 b) => a.value > b.value;
         /// Returns True if the a is less or equal than the b, false otherwise.
-        [MethodImpl(INLINE)] public static bool operator <= (byte1 a, byte1 b) => a.value <= b.value;
+        [MI(IL)] public static bool operator <= (byte1 a, byte1 b) => a.value <= b.value;
         /// <returns>True if the a is greater or equal than the b, false otherwise.</returns>
-        [MethodImpl(INLINE)] public static bool operator >= (byte1 a, byte1 b) => a.value >= b.value; 
+        [MI(IL)] public static bool operator >= (byte1 a, byte1 b) => a.value >= b.value; 
         
         
         /// Returns the result of a modulation of two byte1 vectors into a byte1
-        [MethodImpl(INLINE)] public static byte1 operator %(byte1 a, byte1 b) => a.value % b.value;
+        [MI(IL)] public static byte1 operator %(byte1 a, byte1 b) => a.value % b.value;
         /// Returns the result of a division of two byte1 vectors into a float
-        [MethodImpl(INLINE)] public static float operator /(byte1 a, byte1 b) => a.value / (float)b.value;
+        [MI(IL)] public static float operator /(byte1 a, byte1 b) => a.value / (float)b.value;
         /// Returns the result of a multiplication of two byte1 vectors into a byte1
-        [MethodImpl(INLINE)] public static int operator *(byte1 a, byte1 b) => a.value * b.value;
+        [MI(IL)] public static int operator *(byte1 a, byte1 b) => a.value * b.value;
 
 
         /// Returns the result of a bitwise NOT of a byte1 vector into a byte1
-        [MethodImpl(INLINE)] public static int operator +(byte1 a, byte1 b) => a.value + b.value;
+        [MI(IL)] public static int operator +(byte1 a, byte1 b) => a.value + b.value;
         /// Returns the result of a bitwise NOT of a byte1 vector into a byte1
-        [MethodImpl(INLINE)] public static int operator -(byte1 a, byte1 b) => a.value - b.value;
+        [MI(IL)] public static int operator -(byte1 a, byte1 b) => a.value - b.value;
         /// Returns the result of a bitwise NOT of a byte1 vector into a byte1
-        [MethodImpl(INLINE)] public static byte1 operator --(byte1 a) => --a.value;
+        [MI(IL)] public static byte1 operator --(byte1 a) => --a.value;
         /// Returns the result of a bitwise NOT of a byte1 vector into a byte1
-        [MethodImpl(INLINE)] public static byte1 operator ++(byte1 a) => ++a.value;
+        [MI(IL)] public static byte1 operator ++(byte1 a) => ++a.value;
         
         /// <summary>Returns the result of a componentwise bitwise not operation on an byte1 vector.</summary>
-        [MethodImpl(INLINE)]public static int operator ~(byte1 val) => ~val.value;
+        [MI(IL)]public static int operator ~(byte1 val) => ~val.value;
         
         /// Returns the result of a bitwise AND of two byte1 vectors into a byte1
-        [MethodImpl(INLINE)] public static int operator &(byte1 a, byte1 b) => a.value & b.value;
+        [MI(IL)] public static int operator &(byte1 a, byte1 b) => a.value & b.value;
         /// <summary>Returns the result of a componentwise bitwise and operation on an byte1 vector and an int value.</summary>
-        [MethodImpl(INLINE)] public static int operator &(byte1 a, int b) => a.value & b;
+        [MI(IL)] public static int operator &(byte1 a, int b) => a.value & b;
         /// <summary>Returns the result of a componentwise bitwise and operation on an int value and an byte1 vector.</summary>
-        [MethodImpl(INLINE)] public static int operator &(int a, byte1 b) => a & b.value;
+        [MI(IL)] public static int operator &(int a, byte1 b) => a & b.value;
 
         /// Returns the result of a bitwise OR of two byte1 vectors into a byte1
-        [MethodImpl(INLINE)] public static int operator |(byte1 a, byte1 b) => a.value | b.value;
+        [MI(IL)] public static int operator |(byte1 a, byte1 b) => a.value | b.value;
         /// <summary>Returns the result of a componentwise bitwise or operation on an byte1 vector and an int value.</summary>
-        [MethodImpl(INLINE)] public static int operator |(byte1 a, int b) => a.value | b;
+        [MI(IL)] public static int operator |(byte1 a, int b) => a.value | b;
         /// <summary>Returns the result of a componentwise bitwise or operation on an int value and an byte1 vector.</summary>
-        [MethodImpl(INLINE)] public static int operator |(int a, byte1 b) => a | b.value;
+        [MI(IL)] public static int operator |(int a, byte1 b) => a | b.value;
 
         /// Returns the result of a bitwise XOR of two byte1 vectors into a byte1
-        [MethodImpl(INLINE)] public static int operator ^(byte1 a, byte1 b) => a.value ^ b.value;
+        [MI(IL)] public static int operator ^(byte1 a, byte1 b) => a.value ^ b.value;
         /// <summary>Returns the result of a componentwise bitwise exclusive or operation on an byte1 vector and an int value.</summary>
-        [MethodImpl(INLINE)] public static int operator ^(byte1 a, int b) => a.value ^ b;
+        [MI(IL)] public static int operator ^(byte1 a, int b) => a.value ^ b;
         /// <summary>Returns the result of a componentwise bitwise exclusive or operation on an int value and an byte1 vector.</summary>
-        [MethodImpl(INLINE)] public static int operator ^(int a, byte1 b) => a ^ b.value;
+        [MI(IL)] public static int operator ^(int a, byte1 b) => a ^ b.value;
         
 
         /// Returns true if the byte is bitwise equivalent to a given half, false otherwise.
         /// <returns>True if the byte value is bitwise equivalent to the input, false otherwise.</returns>
-        [MethodImpl(INLINE)]
+        [MI(IL)]
         public bool Equals(byte1 b) => value == b.value;
 
         public bool Equals(byte b) => value == b;
@@ -142,34 +140,34 @@ namespace Unity.Mathematics
         /// Returns true if the byte is equal to a given half, false otherwise.
         /// <param name="o">Right hand side object to use in comparison.</param>
         /// <returns>True if the object is of type byte and is bitwise equivalent, false otherwise.</returns>
-        [MethodImpl(INLINE)] public override bool Equals(object o) => o is byte1 converted && Equals(converted);
+        [MI(IL)] public override bool Equals(object o) => o is byte1 converted && Equals(converted);
         
         /// Returns a hash code for the byte.
         /// <returns>The computed hash code of the byte.</returns>
-        [MethodImpl(INLINE)] public override int GetHashCode() => value.GetHashCode();
+        [MI(IL)] public override int GetHashCode() => value.GetHashCode();
         
         /// Returns a string representation of the byte.
         /// <returns>The string representation of the byte.</returns>
-        [MethodImpl(INLINE)] public override string ToString() => value.ToString();
+        [MI(IL)] public override string ToString() => value.ToString();
 
 
         /// Returns a string representation of the byte using a specified format and culture-specific format information.
         /// <param name="format">The format string to use during string formatting.</param>
         /// <param name="formatProvider">The format provider to use during string formatting.</param>
         /// <returns>The string representation of the byte.</returns>
-        [MethodImpl(INLINE)] public string ToString(string format, IFormatProvider formatProvider) => value.ToString(format, formatProvider);
+        [MI(IL)] public string ToString(string format, IFormatProvider formatProvider) => value.ToString(format, formatProvider);
     }
 
     public static partial class mathx
     {
         /// Returns a byte value constructed from a byte values.
-        [MethodImpl(INLINE)] public static byte1 byte1(byte1 x) => new(x);
+        [MI(IL)] public static byte1 byte1(byte1 x) => new(x);
         /// Returns a byte value constructed from a float value.
-        [MethodImpl(INLINE)] public static byte1 byte1(float v) => new(v);
+        [MI(IL)] public static byte1 byte1(float v) => new(v);
         /// Returns a byte value constructed from a double value.
-        [MethodImpl(INLINE)] public static byte1 byte1(double v) => new(v);
+        [MI(IL)] public static byte1 byte1(double v) => new(v);
         
         /// Returns a uint hash code of a byte value.
-        [MethodImpl(INLINE)] public static uint hash(this byte1 v) => v.value * 0x745ED837u + 0x816EFB5Du;
+        [MI(IL)] public static uint hash(this byte1 v) => v.value * 0x745ED837u + 0x816EFB5Du;
     }
 }

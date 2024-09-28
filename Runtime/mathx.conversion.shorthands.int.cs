@@ -4,8 +4,7 @@
 // **    Repository : https://github.com/LTMX/Unity.mathx
 #endregion
 
-using System.Runtime.CompilerServices;
-
+using MI = System.Runtime.CompilerServices.MethodImplAttribute;
 
 namespace Unity.Mathematics
 {
@@ -57,15 +56,12 @@ namespace Unity.Mathematics
         #region .xxxx Shader Syntax
 
         /// Shorthand for new i2(f)
-        [MethodImpl(IL)] public static int2 xx(this int f) => new(f);
+        [MI(IL)] public static int2 xx(this int f) => new(f);
         /// Shorthand for new i3(f)
-        [MethodImpl(IL)] public static int3 xxx(this int f) => new(f);
+        [MI(IL)] public static int3 xxx(this int f) => new(f);
         /// Shorthand for new i4(f)
-        [MethodImpl(IL)] public static int4 xxxx(this int f) => new(f);
+        [MI(IL)] public static int4 xxxx(this int f) => new(f);
         
         #endregion
-        
-        
-        
     }
 }

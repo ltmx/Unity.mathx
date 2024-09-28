@@ -4,14 +4,14 @@
 // **    Repository : https://github.com/LTMX/Unity.mathx
 #endregion
 
-using System.Runtime.CompilerServices;
+using MI = System.Runtime.CompilerServices.MethodImplAttribute;
 
 namespace Unity.Mathematics
 {
     public static partial class mathx
     {
         /// sets the value of x to f and returns f
-        [MethodImpl(IL)] public static T set<T>(this T f, out T x) {
+        [MI(IL)] public static T set<T>(this T f, out T x) {
             x = f;
             return f;
         }

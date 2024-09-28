@@ -5,6 +5,7 @@
 #endregion
 
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Unity.Mathematics
 {
@@ -118,8 +119,7 @@ namespace Unity.Mathematics
         // Utility Constants ----------------------------------------------------
         
         ///MethodImplOptions.AggressiveInlining
-        public const int INLINE = 256; // MethodImpl.AggressiveInlining
-        public const int IL = 256; // MethodImpl.AggressiveInlining
+        public const MethodImplOptions IL = MethodImplOptions.AggressiveInlining; // MethodImpl.AggressiveInlining
         public const EditorBrowsableState NEVER = EditorBrowsableState.Never; // EditorBrowsableState.Never
     }
 }

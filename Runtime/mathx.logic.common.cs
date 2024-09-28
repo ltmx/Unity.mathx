@@ -7,21 +7,23 @@
 #endregion
 
 using System;
-using System.Runtime.CompilerServices;
+
+using MI = System.Runtime.CompilerServices.MethodImplAttribute;
+
 
 namespace Unity.Mathematics
 {
     public static partial class mathx
     {
-        [MethodImpl(INLINE)] public static bool ispow2(this short x) => x != 0 && (x & (x - 1)) == 0;
+        [MI(IL)] public static bool ispow2(this short x) => x != 0 && (x & (x - 1)) == 0;
 
-        [MethodImpl(INLINE)] public static bool ispow2(this ushort x) => x != 0 && (x & (x - 1)) == 0;
+        [MI(IL)] public static bool ispow2(this ushort x) => x != 0 && (x & (x - 1)) == 0;
 
-        [MethodImpl(INLINE)] public static bool ispow2(this int x) => x != 0 && (x & (x - 1)) == 0;
+        [MI(IL)] public static bool ispow2(this int x) => x != 0 && (x & (x - 1)) == 0;
 
-        [MethodImpl(INLINE)] public static bool ispow2(this uint x) => x != 0 && (x & (x - 1)) == 0;
+        [MI(IL)] public static bool ispow2(this uint x) => x != 0 && (x & (x - 1)) == 0;
         
-        [MethodImpl(INLINE)] 
+        [MI(IL)] 
         public static bool ispow2(this float x)
         {
             if (x <= 0) return false;

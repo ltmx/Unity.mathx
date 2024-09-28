@@ -7,7 +7,10 @@
 using System;
 using System.Globalization;
 using System.Runtime.CompilerServices;
+using static Unity.Mathematics.mathx;
 using UnityEngine;
+
+using MI = System.Runtime.CompilerServices.MethodImplAttribute;
 
 namespace Unity.Mathematics
 {
@@ -20,7 +23,7 @@ namespace Unity.Mathematics
         /// <para>Creates a ray starting at origin along direction.</para>
         /// <param name="origin"></param>
         /// <param name="direction"></param>
-        [MethodImpl(256)] // MethodImplOptions.AggressiveInlining
+        [MI(IL)]
         public ray(float3 origin, float3 direction)
         {
             m_Origin = origin;
@@ -30,35 +33,32 @@ namespace Unity.Mathematics
         /// <para>The origin point of the ray.</para>
         public float3 origin
         {
-            [MethodImpl(256)] get => m_Origin;
-            [MethodImpl(256)] set => m_Origin = value;
+            [MI(IL)] get => m_Origin;
+            [MI(IL)] set => m_Origin = value;
         }
 
         /// <para>The direction of the ray.</para>
         public float3 direction
         {
-            [MethodImpl(256)] get => m_Direction;
-            [MethodImpl(256)] set => m_Direction = value.normsafe();
+            [MI(IL)] get => m_Direction;
+            [MI(IL)] set => m_Direction = value.normsafe();
         }
 
         /// <para>Returns a point at distance units along the ray.</para>
         /// <param name="distance"></param>
-        [MethodImpl(256)]
-        public float3 GetPoint(float distance) => m_Origin + m_Direction * distance;
+        [MI(IL)] public float3 GetPoint(float distance) => m_Origin + m_Direction * distance;
 
         /// <para>Returns a formatted string for this ray.</para>
-        [MethodImpl(256)]
-        public override string ToString() => ToString(null, null);
+        [MI(IL)] public override string ToString() => ToString(null, null);
 
         /// <para>Returns a formatted string for this ray.</para>
         /// <param name="format">A numeric format string.</param>
-        [MethodImpl(256)]
-        public string ToString(string format) => ToString(format, null);
+        [MI(IL)] public string ToString(string format) => ToString(format, null);
 
         /// <para>Returns a formatted string for this ray.</para>
         /// <param name="format">A numeric format string.</param>
         /// <param name="formatProvider">An object that specifies culture-specific formatting.</param>
-        [MethodImpl(256)]
+        [MI(IL)]
         public string ToString(string format, IFormatProvider formatProvider)
         {
             if (string.IsNullOrEmpty(format)) format = "F2";
@@ -66,7 +66,7 @@ namespace Unity.Mathematics
             return $"Origin: {(object) m_Origin.ToString(format, formatProvider)}, Dir: {(object) m_Direction.ToString(format, formatProvider)}";
         }
         
-        public static implicit operator ray(Ray r) => new(r.origin, r.direction);
-        public static implicit operator Ray(ray r) => new(r.origin, r.direction);
+        [MI(IL)] public static implicit operator ray(Ray r) => new(r.origin, r.direction);
+        [MI(IL)] public static implicit operator Ray(ray r) => new(r.origin, r.direction);
     }
 }

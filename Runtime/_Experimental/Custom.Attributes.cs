@@ -13,8 +13,6 @@ using Unity.Burst;
 
 namespace Unity.Mathematics
 {
-
-
     public interface IMetadataAttribute
     {
         Attribute[] Process();
