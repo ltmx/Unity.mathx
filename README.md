@@ -28,6 +28,9 @@
 -->
 
 ### Package name
+
+> [!NOTE]\
+> 
 > ```ruby
 > com.ltmx.mathematics.mathx
 > ```
@@ -52,7 +55,7 @@ using static Unity.Mathematics.mathx;
 
 ## ♾ Linq-Style Syntax
 ```cs
-return anyVector.length().clamp(0, 10).cos().sq().cube().sum().cmul().rotate(anyQuaternion).clint().div(3.2f).rcp();
+return anyVector.length().clamp(0, 10).cos().sq().cube().rotate(anyQuaternion).clint().div(3.2f).rcp().mul(3.2f).sum();
 ```
 
 <br>
@@ -71,7 +74,7 @@ x = x.div(4.2f).shuffle();
 x = x.lengthsq() + x;
 
 bool4.any(); // returns true if any component is true // or-gate
-bool4.all(); // returns trye if all components are true // and-gate
+bool4.all(); // returns true if all components are true // and-gate
 ```
 
 <br>
@@ -91,9 +94,8 @@ bool4.all(); // returns trye if all components are true // and-gate
 - [x] Data Construction (`append`, `float2.xyzw()`, matrix construction, etc)
 - [x] Data Conversion (`anyColortArray.tofloat4Array()`, and others)
 - [ ] Noise Functions `WIP` (`Simplex`, `Perlin`, `Whorley`, `Layered`, `Voronoi`)
-- [ ] Documentation `80% Complete`
 - [ ] Job Helpers `WIP`
-- [ ] Burst Compiled Function Pointers `WIP 50%`
+- [ ] Burst Compiled Function Pointers `WIP 80%`
 - [ ] Function Iterators (prevents nested loops) `WIP 50%`
 - [ ] Hashing Functions `WIP 80%`
 - [ ] Vector Function Builders `WIP 50%`
@@ -115,25 +117,29 @@ bool4.all(); // returns trye if all components are true // and-gate
 
 <br>
 
-##  Method List 1.3.6
-```python
+##  Method List
+```ruby
 // most methods have at least a dozen overloads
+
 fcos() veryFastCos() ultraFastCos() CosLoop() SinLoop() sfcos() fsqrt()
 fdistance() flength() log2int() fastmodinv() fexp() sfastsine() sfastcosine()
 fastsine() fastcosine() anglerad() angledeg() fastangle() straightsignedangle()
-preciseangle() signedangle() fastatan2() sign() abs() mod() frac() csum() cmul()
-inv() neg() rcp() pow() sq() cube() pow4() pow5() sqrt() cbrt() rcbrt() rsqrt()
-m2n1() add() sub() div() cycle() saturate() snap() bitwave() bitwave2()
-triwave() set() Array() toColorArray() tocolorArray() tofloat4List()
-tofloat3List() tofloat4Array() tofloat3Array() toVectorArray() tofloatArray()
-CopyFrom() asint() asbool() asfloat() asdouble() asuint() ascolor() asColor()
-asfloat4() asfloat3() cast() List() toVectorList() tofloatList() toColorList()
-tocolorList() toVectorIE() tofloatIE() xx() xxx() xxxx() dim() exp() nexp()
-exp2() exp10() ln() log2() log10() f4() f3() f2() append() y() z() yz() w() zw()
-yzw() xyzw() xyz() xy() x() smootherstep() smoothstepcos() eerp() uneerp()
-smoothstep() unlerp() lerp() lerpAngle() remap() step() arc() arch2() linstep()
-sine01() smin() smax() smax_exp() smax_exp2() smax_expOP() smin_exp() smin_pow()
-smin_root() smin_polynomial() smin_quadratic() smin_cubic() smin_factor()
+preciseangle() signedangle() signedanglethis() fastatan2() sign() abs() mod()
+frac() csum() cmul() inv() neg() rcp() pow() sq() cube() pow4() pow5() sqrt()
+cbrt() rcbrt() rsqrt() m2n1() add() sub() div() cycle() swapx() swapy() swapz()
+swapw() chgsign() saturate() snap() bitwave() bitwave2() triwave() set()
+quaternion() conjugate() inverse() dot() length() lengthsq() norm() normsafe()
+unitexp() exp() unitlog() log() mul() nlerp() slerp() hash() hashwide()
+forward() toColorArray() tocolorArray() tofloat4List() tofloat3List()
+tofloat4Array() tofloat3Array() toVectorArray() tofloatArray() CopyFrom()
+asint() asbool() asfloat() asdouble() asuint() ascolor() asColor() asfloat4()
+asfloat3() cast() f() i() List() toVectorList() tofloatList() toColorList()
+tocolorList() toVectorIE() tofloatIE() xx() xxx() xxxx() nexp() exp2() exp10()
+ln() log2() log10() f4() f3() f2() append() y() z() yz() w() zw() yzw() xyzw()
+xyz() xy() x() smootherstep() smoothstepcos() eerp() uneerp() smoothstep()
+unlerp() lerp() lerpAngle() remap() step() arc() arch2() linstep() sine01()
+smin() smax() smax_exp() smax_exp2() smin_exp() smin_pow() smin_root()
+smin_polynomial() smin_quadratic() smin_cubic() smin_factor()
 smin_cubic_factor() smin_N_factor() mix() smoothstart() smoothstop() xfade()
 easeInSine() easeOutSine() easeInOutSine() easeInQuad() easeOutQuad()
 easeInOutQuad() easeInCubic() easeOutCubic() easeInOutCubic() easeInQuart()
@@ -143,39 +149,51 @@ easeInOutCirc() easeInBack() easeOutBack() easeInOutBack() easeInElastic()
 easeOutElastic() easeInOutElastic() easeInBounce() easeOutBounce()
 easeInOutBounce() smooth() smoothstepD() smooth5() smooth5D() smooth7()
 smooth7D() smooth9() smooth9D() smooth11() smooth11D() smoothD() smoother7D()
-any() all() select() approx() odd() even() isnan() anynan() isinf() isfinite()
-greater() less() lesseq() greatereq() eq() neq() isgreatest() isshortest() get()
-pingpong() SampleParabola() movetowards() repeat() smoothdamp() b4x4() b4x3()
-b4x2() b3x4() b3x3() b3x2() b2x4() b2x3() b2x2() d4x4() d4x3() d4x2() d3x4()
-d3x3() d3x2() d2x4() d2x3() d2x2() mul() dot() lengthsq() mult() transpose()
-f4x4() f4x3() f4x2() f3x4() f3x3() f3x2() f2x4() f2x3() f2x2() i4x4() i4x3()
-i4x2() i3x4() i3x3() i3x2() i2x4() i2x3() i2x2() u4x4() u4x3() u4x2() u3x4()
-u3x3() u3x2() u2x4() u2x3() u2x2() init() randf() randf2() randf3() randf4()
-seedrand() seedrand2() seedrand3() seedrand4() randmax() setseed() hash()
-hashwide() varyrand() addrand() rand() randomint() randomInSphere()
+i4() i3() i2() any() all() select() approx() odd() even() greater() less()
+lesseq() greatereq() eq() neq() anygreater() anygreatereq() anyless()
+anylesseq() anyeq() anyneq() isgreatest() isshortest() ispow2() isnan() anynan()
+isinf() isfinite() get() pingpong() SampleParabola() movetowards() repeat()
+smoothdamp() b4x4() b4x3() b4x2() b3x4() b3x3() b3x2() b2x4() b2x3() b2x2()
+d4x4() d4x3() d4x2() d3x4() d3x3() d3x2() d2x4() d2x3() d2x2() mult()
+transpose() diag() f4x4() f4x3() f4x2() f3x4() f3x3() f3x2() f2x4() f2x3()
+f2x2() i4x4() i4x3() i4x2() i3x4() i3x3() i3x2() i2x4() i2x3() i2x2() u4x4()
+u4x3() u4x2() u3x4() u3x3() u3x2() u2x4() u2x3() u2x2() init() randf() randf2()
+randf3() randf4() seedrand() seedrand2() seedrand3() seedrand4() randmax()
+setseed() varyrand() addrand() rand() randomint() randomInSphere()
 randomInCircle() randomDir3D() randomDir2D() randomrotation() rotate()
-rotateAxisAngle() rotateRad() rotateDeg() quaternion() rotateAround() round()
-rint() clamp() min() max() ceil() clint() floor() flint() sat() npsat() limp()
-limn() under1() cmax() cmin() acmax() acmin() sin() cos() tan() sec() cot()
-csc() asin() acos() atan() atan2() acot() asec() acsc() sin2() cos2() tan2()
-sec2() deg() rad() cossin() sincos() mod360() mod2PI() sinh() cosh() tanh()
-sech() coth() csch() acosh() asinh() atanh() acoth() asech() acsch() norm()
-normsafe() distance() distancesq() length() reflect() refract() project()
-projectsafe() manhattan() minkowski() chebyshev() cross() perp() exterior()
-orthonorm() cdistance() cdistancesq() ccross() cdot() hashnp01() Hash()
-GradientNoise() GenerateGradient() randdir() unity_gradientNoise() hashx()
+rotateAxisAngle() rotateRad() rotateDeg() rotateAround() clamp() min() max()
+round() rint() ceil() clint() floor() flint() sat() limp() limn() under1()
+clampsigned() maxsigned() minsigned() satsigned() cmax() cmin() acmax() acmin()
+matrix() float3x4() rotationMatrix() translationMatrix() transform() rotation()
+up() right() scale() sin() cos() tan() sec() cot() csc() asin() acos() atan()
+atan2() acot() asec() acsc() sin2() cos2() tan2() sec2() deg() rad() cossin()
+sincos() mod360() mod2PI() sinh() cosh() tanh() sech() coth() csch() acosh()
+asinh() atanh() acoth() asech() acsch() distance() distancesq() reflect()
+refract() project() projectsafe() manhattan() minkowski() chebyshev() cross()
+perp() exterior() orthonorm() cdistance() cdistancesq() ccross() cdot()
 openSimplex2_ImproveXY() openSimplex2SDerivatives_ImproveXY() sdSphere() sdBox()
 sdRoundBox() sdBoxFrame() sdTorus() sdCappedTorus() sdLink() sdCylinder()
 sdCone() sdConeBound() sdPlane() sdHexPrism() sdTriPrism() sdCapsule()
 sdVerticalCapsule() sdCappedCylinder() sdRoundedCylinder() sdCappedCone()
 sdSolidAngle() sdCutSphere() sdCutHollowSphere() sdDeathStar() sdRoundCone()
 sdEllipsoid() sdbEllipsoid_2() sdaEllipsoid_3() sdRhombus() sdOctahedron()
-sdOctahedronBound() sdPyramid() udTriangle() udQuad() _length2() _length6()
-_length8() byte1() byte2() byte3() byte4() color() gammatolinear()
+sdOctahedronBound() sdPyramid() udTriangle() udQuad() length2() length6()
+length8() byte1() byte2() byte3() byte4() color() gammatolinear()
 lineartogama() Erf() Erfc() ErfInv() ErfcInv() GammaLn() Gamma() DiGamma()
-DiGammaInv() conjugate() inverse() unitexp() unitlog() log() nlerp() slerp()
-forward() matrix() float3x4() rotation() translation() transform() up() right()
-scale() projectplane() apply() GetFunctionPointerDelegate()
+DiGammaInv() projectplane() apply() smin() smax()
+smax_exp() smin_exp()
+```
+
+##  Constant & Static fields
+```ruby
+RAD DEG RAD_DBL DEG_DBL EPSILON EPSILON_DBL FourPI FourPI_DBL TAU TAU_DBL TwoPI
+TwoPI_DBL PI PI_DBL HalfPI HPI HalfPI_DBL HPId PHI_DBL PHI PINF NINF PINF_DBL
+NINF_DBL E_DBL E TwoSqrtEOverPI LnPI LogTwoSqrtEOverPI HalfSQRT2 HSQRT SQRT3
+HalfSQRT3 HSQRT3 InvSQRT2 RSQRT2 INLINE IL NEVER upd2 downd2 rightd2 leftd2 upd3
+rightd3 forwardd3 downd3 leftd3 backd3 oned2 zerod2 oned3 zerod3 oned4 zerod4
+upf2 downf2 rightf2 leftf2 upf3 rightf3 forwardf3 downf3 leftf3 backf3 onef2
+zerof2 onef3 zerof3 onef4 zerof4 upi2 downi2 righti2 lefti2 upi3 righti3
+forwardi3 downi3 lefti3 backi3 onei2 zeroi2 onei3 zeroi3 onei4 zeroi4
 ```
 
 
@@ -195,41 +213,6 @@ scale() projectplane() apply() GetFunctionPointerDelegate()
     - Code must be rewritten and optimized for Unity.Mathematics, compatibility checked
     - Unification is key : if some functions are already available in math or Unity.Mathematics.math (sometimes under another name), use them !
  - Documentation should be inherited from Unity.Mathematics.math methods for direct extension method translations
-
-<!--
-
-## 🎇 New Methods in 1.3.0
-```python
-anyType.dim(otherType) => anyType* otherType // to add functionality missing from internal operator overloads // named dim to not confuse with mul()
-anyType.greater(otherType) => anyType > otherType
-anyType.less(otherType) =>  anyType < otherType
-anyType.greatereq(otherType) =>  anyType >= otherType
-anyType.lesseq(otherType) =>  anyType <= otherType
-anyType.eq(otherType) =>  anyType == otherType
-anyType.neq(otherType) =>  anyType != otherType
-randseed(seed)  => random float generated from a seed  // internally : Random.Init(seed).Nextfloat()
-randseed2(seed) => random float2 generated from a seed // internally : Random.Init(seed).Nextfloat()
-randseed3(seed) => random float3 generated from a seed // internally : Random.Init(seed).Nextfloat()
-randseed4(seed) => random float4 generated from a seed // internally : Random.Init(seed).Nextfloat()
-anyType.append()
-anyType.m2n1() => anyType* 2 - 1 // remaps anything from [0, 1] to [-1, 1]
-quaternion generation functions
-matrix generation functions
-transformation functions
-dot() // for int types
-value.lerp(MatrixA, MatrixB) // functionality to interpolate any matrix
-anyType.dim(otherType) => anyType * otherType // to add functionality for missing from operator overloads // 'dim' to not confuse with mul()
-anyType.div(otherType) => anyType / otherType
-anyType.add(otherType) => anyType + otherType
-anyType.sub(otherType) => anyType - otherType
-anyType.shuffle() // only for float2, float3 and float4
-anyType.hash() // math.hash(anyType)
-type generation methods float4(), float2(), float4x4(), etc
-asuint() // new overloads
-asbool() // new overloads
-```
-
--->
 
 <br>
 
