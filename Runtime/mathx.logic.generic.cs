@@ -16,38 +16,40 @@ namespace Unity.Mathematics
         // packed data accessing ------------------------------------
 
         /// selects an element of an array using an int as index;
-        [MI(IL)] public static T get<T>(this int id, T[] t) => t[id];
+        [MI(IL)] public static T get<T>(this int id, T[] t) where T : unmanaged => t[id];
         /// selects an element of an array of arrays using an int2 as index;
-        [MI(IL)] public static T get<T>(this int2 id, T[][] t) => t[id.x][id.y];
+        [MI(IL)] public static T get<T>(this int2 id, T[][] t) where T : unmanaged => t[id.x][id.y];
         /// selects an element of an array of arrays using an int2 as index;
-        [MI(IL)] public static T get<T>(this int3 id, T[][][] t) => t[id.x][id.y][id.z];
+        [MI(IL)] public static T get<T>(this int3 id, T[][][] t) where T : unmanaged => t[id.x][id.y][id.z];
         /// selects an element of an array using an int2 as index;
-        [MI(IL)] public static T get<T>(this int2 id, T[,] t) => t[id.x, id.y];
+        [MI(IL)] public static T get<T>(this int2 id, T[,] t) where T : unmanaged => t[id.x, id.y];
         /// selects an element of an array using an int3 as index;
-        [MI(IL)] public static T get<T>(this int3 id, T[,,] t) => t[id.x, id.y, id.z];
+        [MI(IL)] public static T get<T>(this int3 id, T[,,] t) where T : unmanaged => t[id.x, id.y, id.z];
         /// selects an element of a multidimensional array of arrays using an int3 as index;
-        [MI(IL)] public static T get<T>(this int3 id, T[,][] t) => t[id.x, id.y][id.z];
+        [MI(IL)] public static T get<T>(this int3 id, T[,][] t) where T : unmanaged => t[id.x, id.y][id.z];
         /// selects an element of an array of multidimensional arrays using an int3 as index;
-        [MI(IL)] public static T get<T>(this int3 id, T[][,] t) => t[id.x][id.y, id.z];
+        [MI(IL)] public static T get<T>(this int3 id, T[][,] t) where T : unmanaged => t[id.x][id.y, id.z];
         
         /// selects an element of an array using an int as index;
-        [MI(IL)] public static T get<T>(this T[] t, int id) => t[id];
+        [MI(IL)] public static T get<T>(this T[] t, int id) where T : unmanaged => t[id];
         /// selects an element of an array of arrays using an int2 as index;
-        [MI(IL)] public static T get<T>(this T[][] t, int2 id) => t[id.x][id.y];
+        [MI(IL)] public static T get<T>(this T[][] t, int2 id) where T : unmanaged => t[id.x][id.y];
         /// selects an element of an array of arrays using an int2 as index;
-        [MI(IL)] public static T get<T>(this T[][][] t, int3 id) => t[id.x][id.y][id.z];
+        [MI(IL)] public static T get<T>(this T[][][] t, int3 id) where T : unmanaged => t[id.x][id.y][id.z];
         /// selects an element of an array using an int2 as index;
-        [MI(IL)] public static T get<T>(this T[,] t, int2 id) => t[id.x, id.y];
+        [MI(IL)] public static T get<T>(this T[,] t, int2 id) where T : unmanaged => t[id.x, id.y];
         /// selects an element of an array using an int3 as index;
-        [MI(IL)] public static T get<T>(this T[,,] t, int3 id) => t[id.x, id.y, id.z];
+        [MI(IL)] public static T get<T>(this T[,,] t, int3 id) where T : unmanaged => t[id.x, id.y, id.z];
         /// selects an element of a multidimensional array of arrays using an int3 as index;
-        [MI(IL)] public static T get<T>(this T[,][] t, int3 id) => t[id.x, id.y][id.z];
+        [MI(IL)] public static T get<T>(this T[,][] t, int3 id) where T : unmanaged => t[id.x, id.y][id.z];
         /// selects an element of an array of multidimensional arrays using an int3 as index;
-        [MI(IL)] public static T get<T>(this T[][,] t, int3 id) => t[id.x][id.y, id.z];
+        [MI(IL)] public static T get<T>(this T[][,] t, int3 id) where T : unmanaged => t[id.x][id.y, id.z];
         
-        /// Returns a if s is true, b otherwise
-        [MI(IL)] public static T select<T>(this bool s, T a, T b) => s ? a : b;
-        /// Returns a if s is true, b otherwise
-        [MI(IL)] public static T select<T>(this int s, T a, T b) => s.asbool() ? a : b;
+        // /// Returns a if s is true, b otherwise
+        // [MI(IL)] public static T select<T>(this bool s, T a, T b) where T : unmanaged
+        //     => s ? a : b;
+        // /// Returns a if s is true, b otherwise
+        // [MI(IL)] public static T select<T>(this int s, T a, T b) where T : unmanaged
+        //     => s.asbool() ? a : b;
     }
 }
