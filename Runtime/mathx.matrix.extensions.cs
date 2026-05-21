@@ -77,7 +77,7 @@ namespace Unity.Mathematics
         /// <inheritdoc cref="dot(float4x4,float4x4)" />
         [MI(IL)] public static float3 dot(this float3x3 m1, float3x3 m2) => new(m1.c0.dot(m2.c0), m1.c1.dot(m2.c1), m1.c2.dot(m2.c2));
         /// <inheritdoc cref="dot(float4x4,float4x4)" />
-        [MI(IL)] public static float3 dot(this float3x3 m1, float3 f) => new(m1.c0.lengthsq(), m1.c1.lengthsq(), m1.c2.lengthsq());
+        [MI(IL)] public static float3 dot(this float3x3 m1, float3 f) => new(m1.c0.dot(f), m1.c1.dot(f), m1.c2.dot(f));
         /// <inheritdoc cref="dot(float4x4,float4x4)" />
         [MI(IL)] public static float2 dot(this float3x2 m1, float3x2 m2) => new(m1.c0.dot(m2.c0), m1.c1.dot(m2.c1));
         /// <inheritdoc cref="dot(float4x4,float4x4)" />
