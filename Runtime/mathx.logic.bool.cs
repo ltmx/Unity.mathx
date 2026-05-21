@@ -31,52 +31,57 @@ namespace Unity.Mathematics
 
         // Select ---------------------------------------------------
         
-        /// Returns a component-wise selection of a or b using s (selector)
-        [MI(IL)] public static float4 select(this bool4 s, float4 a, float4 b) => math.select(b, a, s);
-        /// Returns a component-wise selection of a or b using s (selector)
-        [MI(IL)] public static float3 select(this bool3 s, float3 a, float3 b) => math.select(b, a, s);
-        /// Returns a component-wise selection of a or b using s (selector)
-        [MI(IL)] public static float2 select(this bool2 s, float2 a, float2 b) => math.select(b, a, s);
+        /// Returns a when s is false, b when s is true (component-wise).
+        [MI(IL)] public static float4 select(this bool4 s, float4 a, float4 b) => math.select(a, b, s);
+        /// <inheritdoc cref="select(bool4,float4,float4)"/>
+        [MI(IL)] public static float3 select(this bool3 s, float3 a, float3 b) => math.select(a, b, s);
+        /// <inheritdoc cref="select(bool4,float4,float4)"/>
+        [MI(IL)] public static float2 select(this bool2 s, float2 a, float2 b) => math.select(a, b, s);
         
-        /// Returns a component-wise selection of a or b using s (selector)
-        [MI(IL)] public static double4 select(this bool4 s, double4 a, double4 b) => math.select(b, a, s);
-        /// Returns a component-wise selection of a or b using s (selector)
-        [MI(IL)] public static double3 select(this bool3 s, double3 a, double3 b) => math.select(b, a, s);
-        /// Returns a component-wise selection of a or b using s (selector)
-        [MI(IL)] public static double2 select(this bool2 s, double2 a, double2 b) => math.select(b, a, s);
+        /// <inheritdoc cref="select(bool4,float4,float4)"/>
+        [MI(IL)] public static double4 select(this bool4 s, double4 a, double4 b) => math.select(a, b, s);
+        /// <inheritdoc cref="select(bool4,float4,float4)"/>
+        [MI(IL)] public static double3 select(this bool3 s, double3 a, double3 b) => math.select(a, b, s);
+        /// <inheritdoc cref="select(bool4,float4,float4)"/>
+        [MI(IL)] public static double2 select(this bool2 s, double2 a, double2 b) => math.select(a, b, s);
+        /// <inheritdoc cref="select(bool4,float4,float4)"/>
+        [MI(IL)] public static double select(this bool s, double a, double b) => math.select(a, b, s);
         
-        /// Returns a component-wise selection of a or b using s (selector)
-        [MI(IL)] public static int4 select(this bool4 s, int4 a, int4 b) => math.select(b, a, s);
-        /// Returns a component-wise selection of a or b using s (selector)
-        [MI(IL)] public static int3 select(this bool3 s, int3 a, int3 b) => math.select(b, a, s);
-        /// Returns a component-wise selection of a or b using s (selector)
-        [MI(IL)] public static int2 select(this bool2 s, int2 a, int2 b) => math.select(b, a, s);
+        /// <inheritdoc cref="select(bool4,float4,float4)"/>
+        [MI(IL)] public static int4 select(this bool4 s, int4 a, int4 b) => math.select(a, b, s);
+        /// <inheritdoc cref="select(bool4,float4,float4)"/>
+        [MI(IL)] public static int3 select(this bool3 s, int3 a, int3 b) => math.select(a, b, s);
+        /// <inheritdoc cref="select(bool4,float4,float4)"/>
+        [MI(IL)] public static int2 select(this bool2 s, int2 a, int2 b) => math.select(a, b, s);
         
-        /// Returns a component-wise selection of a or b using s (selector)
-        [MI(IL)] public static uint4 select(this bool4 s, uint4 a, uint4 b) => math.select(b, a, s);
-        /// Returns a component-wise selection of a or b using s (selector)
-        [MI(IL)] public static uint3 select(this bool3 s, uint3 a, uint3 b) => math.select(b, a, s);
-        /// Returns a component-wise selection of a or b using s (selector)
-        [MI(IL)] public static uint2 select(this bool2 s, uint2 a, uint2 b) => math.select(b, a, s);
+        /// <inheritdoc cref="select(bool4,float4,float4)"/>
+        [MI(IL)] public static uint4 select(this bool4 s, uint4 a, uint4 b) => math.select(a, b, s);
+        /// <inheritdoc cref="select(bool4,float4,float4)"/>
+        [MI(IL)] public static uint3 select(this bool3 s, uint3 a, uint3 b) => math.select(a, b, s);
+        /// <inheritdoc cref="select(bool4,float4,float4)"/>
+        [MI(IL)] public static uint2 select(this bool2 s, uint2 a, uint2 b) => math.select(a, b, s);
         
-        /// Returns a component-wise selection of a or b using s (selector)
-        [MI(IL)] public static half4 select(this bool4 c, half4 a, half4 b) => new(c.x ? b.x : a.x, c.y ? b.y : a.y, c.z ? b.z : a.z, c.w ? b.w : a.w);
-        /// Returns a component-wise selection of a or b using s (selector)
-        [MI(IL)] public static half3 select(this bool3 c, half3 a, half3 b) => new(c.x ? b.x : a.x, c.y ? b.y : a.y, c.z ? b.z : a.z);
-        /// Returns a component-wise selection of a or b using s (selector)
-        [MI(IL)] public static half2 select(this bool2 c, half2 a, half2 b) => new(c.x ? b.x : a.x, c.y ? b.y : a.y);
+        /// <inheritdoc cref="select(bool4,float4,float4)"/>
+        [MI(IL)] public static half4 select(this bool4 s, half4 a, half4 b) => new(s.x ? b.x : a.x, s.y ? b.y : a.y, s.z ? b.z : a.z, s.w ? b.w : a.w);
+        /// <inheritdoc cref="select(bool4,float4,float4)"/>
+        [MI(IL)] public static half3 select(this bool3 s, half3 a, half3 b) => new(s.x ? b.x : a.x, s.y ? b.y : a.y, s.z ? b.z : a.z);
+        /// <inheritdoc cref="select(bool4,float4,float4)"/>
+        [MI(IL)] public static half2 select(this bool2 s, half2 a, half2 b) => new(s.x ? b.x : a.x, s.y ? b.y : a.y);
         
-        /// Returns a component-wise selection of a or b using s (selector)
-        [MI(IL)] public static byte4 select(this bool4 c, byte4 a, byte4 b) => new(c.x ? b.x : a.x, c.y ? b.y : a.y, c.z ? b.z : a.z, c.w ? b.w : a.w);
-        /// Returns a component-wise selection of a or b using s (selector)
-        [MI(IL)] public static byte3 select(this bool3 c, byte3 a, byte3 b) => new(c.x ? b.x : a.x, c.y ? b.y : a.y, c.z ? b.z : a.z);
-        /// Returns a component-wise selection of a or b using s (selector)
-        [MI(IL)] public static byte2 select(this bool2 c, byte2 a, byte2 b) => new(c.x ? b.x : a.x, c.y ? b.y : a.y);
         
-        /// Returns a component-wise selection of a or b using s (selector)
-        [MI(IL)] public static color select(this bool4 c, color a, color b) => new(c.x ? b.x : a.x, c.y ? b.y : a.y, c.z ? b.z : a.z, c.w ? b.w : a.w);
-        /// Returns a component-wise selection of a or b using s (selector)
-        [MI(IL)] public static quaternion select(this bool4 c, quaternion a, quaternion b) => new(c.x ? b.value.x : a.value.x, c.y ? b.value.y : a.value.y, c.z ? b.value.z : a.value.z, c.w ? b.value.w : a.value.w);
+        
+        
+        /// <inheritdoc cref="select(bool4,float4,float4)"/>
+        [MI(IL)] public static byte4 select(this bool4 s, byte4 a, byte4 b) => new(s.x ? b.x : a.x, s.y ? b.y : a.y, s.z ? b.z : a.z, s.w ? b.w : a.w);
+        /// <inheritdoc cref="select(bool4,float4,float4)"/>
+        [MI(IL)] public static byte3 select(this bool3 s, byte3 a, byte3 b) => new(s.x ? b.x : a.x, s.y ? b.y : a.y, s.z ? b.z : a.z);
+        /// <inheritdoc cref="select(bool4,float4,float4)"/>
+        [MI(IL)] public static byte2 select(this bool2 s, byte2 a, byte2 b) => new(s.x ? b.x : a.x, s.y ? b.y : a.y);
+        
+        /// <inheritdoc cref="select(bool4,float4,float4)"/>
+        [MI(IL)] public static color select(this bool4 s, color a, color b) => new(s.x ? b.x : a.x, s.y ? b.y : a.y, s.z ? b.z : a.z, s.w ? b.w : a.w);
+        /// <inheritdoc cref="select(bool4,float4,float4)"/>
+        [MI(IL)] public static quaternion select(this bool4 s, quaternion a, quaternion b) => new(s.x ? b.value.x : a.value.x, s.y ? b.value.y : a.value.y, s.z ? b.value.z : a.value.z, s.w ? b.value.w : a.value.w);
 
         
 
