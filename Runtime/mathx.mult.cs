@@ -193,7 +193,7 @@ namespace Unity.Mathematics
         [MI(IL)] public static float4 mult(this float4 a, bool b) => a * b.asint();
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static float mult(this bool a, float b) => b.asint() * b;
+        [MI(IL)] public static float mult(this bool a, float b) => a.asint() * b;
 
         /// <inheritdoc cref="mult(float,float)"/>
         [MI(IL)] public static float2 mult(this bool2 a, float2 b) => a.asfloat() * b;
