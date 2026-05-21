@@ -41,11 +41,11 @@ namespace Unity.Mathematics
         [MI(IL)] public static float cmin(this float2 f) => math.cmin(f);
         
         /// returns the greatest absolute value of the components
-        [MI(IL)] public static float acmax(this float4 f) => f.abs().cmin();
+        [MI(IL)] public static float acmax(this float4 f) => f.abs().cmax();
         /// <inheritdoc cref="acmax(float4)"/>
-        [MI(IL)] public static float acmax(this float3 f) => f.abs().cmin();
+        [MI(IL)] public static float acmax(this float3 f) => f.abs().cmax();
         /// <inheritdoc cref="acmax(float4)"/>
-        [MI(IL)] public static float acmax(this float2 f) => f.abs().cmin();
+        [MI(IL)] public static float acmax(this float2 f) => f.abs().cmax();
         
         /// returns the smallest absolute value of the components
         [MI(IL)] public static float acmin(this float4 f) => f.abs().cmin();
@@ -66,7 +66,7 @@ namespace Unity.Mathematics
         
         [BurstCompile, MonoPInvokeCallback(typeof(f1x2_f1))] // and also generate this attribute for the method we added the attribute to
         
-        [MI(IL)] public static float fmax(this float x, float y) => x <= y ? x : y;
+        [MI(IL)] public static float fmax(this float x, float y) => x >= y ? x : y;
         
         [MI(IL)] public static float2 fmax(this float2 x, float y) => p_fmax.RunPerAxis(x, y);
         [MI(IL)] public static float3 fmax(this float3 x, float y) => p_fmax.RunPerAxis(x, y);
