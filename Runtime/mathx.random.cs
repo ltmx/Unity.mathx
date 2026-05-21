@@ -47,9 +47,9 @@ namespace Unity.Mathematics
         [MI(IL)] public static uint hash(this float2 seed) => math.hash(seed);
         [MI(IL)] public static uint hash(this float3 seed) => math.hash(seed);
         [MI(IL)] public static uint hash(this float4 seed) => math.hash(seed);
-        [MI(IL)] public static uint2 hashwide(this float2 v) => math.hashwide(v) / uint.MaxValue;
-        [MI(IL)] public static uint3 hashwide(this float3 v) => math.hashwide(v) / uint.MaxValue;
-        [MI(IL)] public static uint4 hashwide(this float4 v) => math.hashwide(v) / uint.MaxValue;
+        [MI(IL)] public static uint2 hashwide(this float2 v) => math.hashwide(v);
+        [MI(IL)] public static uint3 hashwide(this float3 v) => math.hashwide(v);
+        [MI(IL)] public static uint4 hashwide(this float4 v) => math.hashwide(v);
 
 
         [MI(IL)] public static float varyrand(this float a, float min, float max) => a + rand(min, max);
