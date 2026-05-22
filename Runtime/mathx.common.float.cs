@@ -175,7 +175,7 @@ namespace Unity.Mathematics
 
         #region pow
 
-        /// <summary>Returns the componentwise result of raising x to the power y.</summary>
+        /// Returns the componentwise result of raising x to the power y.
         [MI(IL)] public static float4 pow(this float4 f, float4 pow) => math.pow(f, pow);
         /// <inheritdoc cref="pow(float4,float4)"/>
         [MI(IL)] public static float3 pow(this float3 f, float3 y) => math.pow(f, y);
