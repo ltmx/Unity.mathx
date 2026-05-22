@@ -172,130 +172,130 @@ namespace Unity.Mathematics
         [MI(IL)] public static float4 mult(this float a, int4 b) => new(a * b.x, a * b.y, a * b.z, a * b.w);
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static float mult(this float a, bool b) => a * b.asint();
+        [MI(IL)] public static float mult(this float a, bool b) => a * b.toint();
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static float2 mult(this float2 a, bool2 b) => a * b.asint();
+        [MI(IL)] public static float2 mult(this float2 a, bool2 b) => a * b.toint();
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static float3 mult(this float3 a, bool3 b) => a * b.asint();
+        [MI(IL)] public static float3 mult(this float3 a, bool3 b) => a * b.toint();
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static float4 mult(this float4 a, bool4 b) => a * b.asint();
+        [MI(IL)] public static float4 mult(this float4 a, bool4 b) => a * b.toint();
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static float2 mult(this float2 a, bool b) => a * b.asint();
+        [MI(IL)] public static float2 mult(this float2 a, bool b) => a * b.toint();
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static float3 mult(this float3 a, bool b) => a * b.asint();
+        [MI(IL)] public static float3 mult(this float3 a, bool b) => a * b.toint();
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static float4 mult(this float4 a, bool b) => a * b.asint();
+        [MI(IL)] public static float4 mult(this float4 a, bool b) => a * b.toint();
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static float mult(this bool a, float b) => a.asint() * b;
+        [MI(IL)] public static float mult(this bool a, float b) => a.toint() * b;
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static float2 mult(this bool2 a, float2 b) => a.asfloat() * b;
+        [MI(IL)] public static float2 mult(this bool2 a, float2 b) => a.tofloat() * b;
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static float3 mult(this bool3 a, float3 b) => a.asfloat() * b;
+        [MI(IL)] public static float3 mult(this bool3 a, float3 b) => a.tofloat() * b;
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static float4 mult(this bool4 a, float4 b) => a.asfloat() * b;
+        [MI(IL)] public static float4 mult(this bool4 a, float4 b) => a.tofloat() * b;
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static float2 mult(this bool a, float2 b) => a.asint() * b;
+        [MI(IL)] public static float2 mult(this bool a, float2 b) => a.toint() * b;
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static float3 mult(this bool a, float3 b) => a.asint() * b;
+        [MI(IL)] public static float3 mult(this bool a, float3 b) => a.toint() * b;
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static float4 mult(this bool a, float4 b) => a.asint() * b;
+        [MI(IL)] public static float4 mult(this bool a, float4 b) => a.toint() * b;
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static int mult(this bool a, int b) => a.asint() * b;
+        [MI(IL)] public static int mult(this bool a, int b) => a.toint() * b;
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static int2 mult(this bool2 a, int2 b) => a.asint() * b;
+        [MI(IL)] public static int2 mult(this bool2 a, int2 b) => a.toint() * b;
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static int3 mult(this bool3 a, int3 b) => a.asint() * b;
+        [MI(IL)] public static int3 mult(this bool3 a, int3 b) => a.toint() * b;
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static int4 mult(this bool4 a, int4 b) => a.asint() * b;
+        [MI(IL)] public static int4 mult(this bool4 a, int4 b) => a.toint() * b;
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static int2 mult(this bool a, int2 b) => a.asint() * b;
+        [MI(IL)] public static int2 mult(this bool a, int2 b) => a.toint() * b;
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static int3 mult(this bool a, int3 b) => a.asint() * b;
+        [MI(IL)] public static int3 mult(this bool a, int3 b) => a.toint() * b;
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static int4 mult(this bool a, int4 b) => a.asint() * b;
+        [MI(IL)] public static int4 mult(this bool a, int4 b) => a.toint() * b;
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static int mult(this int a, bool b) => a * b.asint();
+        [MI(IL)] public static int mult(this int a, bool b) => a * b.toint();
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static int2 mult(this int2 a, bool2 b) => a * b.asint();
+        [MI(IL)] public static int2 mult(this int2 a, bool2 b) => a * b.toint();
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static int3 mult(this int3 a, bool3 b) => a * b.asint();
+        [MI(IL)] public static int3 mult(this int3 a, bool3 b) => a * b.toint();
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static int4 mult(this int4 a, bool4 b) => a * b.asint();
+        [MI(IL)] public static int4 mult(this int4 a, bool4 b) => a * b.toint();
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static int2 mult(this int2 a, bool b) => a * b.asint();
+        [MI(IL)] public static int2 mult(this int2 a, bool b) => a * b.toint();
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static int3 mult(this int3 a, bool b) => a * b.asint();
+        [MI(IL)] public static int3 mult(this int3 a, bool b) => a * b.toint();
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static int4 mult(this int4 a, bool b) => a * b.asint();
+        [MI(IL)] public static int4 mult(this int4 a, bool b) => a * b.toint();
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static uint mult(this bool a, uint b) => a.asuint() * b;
+        [MI(IL)] public static uint mult(this bool a, uint b) => a.touint() * b;
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static uint2 mult(this bool2 a, uint2 b) => a.asuint() * b;
+        [MI(IL)] public static uint2 mult(this bool2 a, uint2 b) => a.touint() * b;
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static uint3 mult(this bool3 a, uint3 b) => a.asuint() * b;
+        [MI(IL)] public static uint3 mult(this bool3 a, uint3 b) => a.touint() * b;
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static uint4 mult(this bool4 a, uint4 b) => a.asuint() * b;
+        [MI(IL)] public static uint4 mult(this bool4 a, uint4 b) => a.touint() * b;
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static uint2 mult(this bool a, uint2 b) => a.asuint() * b;
+        [MI(IL)] public static uint2 mult(this bool a, uint2 b) => a.touint() * b;
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static uint3 mult(this bool a, uint3 b) => a.asuint() * b;
+        [MI(IL)] public static uint3 mult(this bool a, uint3 b) => a.touint() * b;
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static uint4 mult(this bool a, uint4 b) => a.asuint() * b;
+        [MI(IL)] public static uint4 mult(this bool a, uint4 b) => a.touint() * b;
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static uint mult(this uint a, bool b) => a * b.asuint();
+        [MI(IL)] public static uint mult(this uint a, bool b) => a * b.touint();
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static uint2 mult(this uint2 a, bool2 b) => a * b.asuint();
+        [MI(IL)] public static uint2 mult(this uint2 a, bool2 b) => a * b.touint();
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static uint3 mult(this uint3 a, bool3 b) => a * b.asuint();
+        [MI(IL)] public static uint3 mult(this uint3 a, bool3 b) => a * b.touint();
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static uint4 mult(this uint4 a, bool4 b) => a * b.asuint();
+        [MI(IL)] public static uint4 mult(this uint4 a, bool4 b) => a * b.touint();
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static uint2 mult(this uint2 a, bool b) => a * b.asuint();
+        [MI(IL)] public static uint2 mult(this uint2 a, bool b) => a * b.touint();
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static uint3 mult(this uint3 a, bool b) => a * b.asuint();
+        [MI(IL)] public static uint3 mult(this uint3 a, bool b) => a * b.touint();
 
         /// <inheritdoc cref="mult(float,float)"/>
-        [MI(IL)] public static uint4 mult(this uint4 a, bool b) => a * b.asuint();
+        [MI(IL)] public static uint4 mult(this uint4 a, bool b) => a * b.touint();
 
         #endregion
     }

@@ -25,13 +25,13 @@ namespace Unity.Mathematics
         
 
         /// Round to int
-        [MI(IL)] public static int4 rint(this double4 f) => f.round().asint();
+        [MI(IL)] public static int4 rint(this double4 f) => f.round().toint();
         ///<inheritdoc cref="rint(double4)"/>
-        [MI(IL)] public static int3 rint(this double3 f) => f.round().asint();
+        [MI(IL)] public static int3 rint(this double3 f) => f.round().toint();
         ///<inheritdoc cref="rint(double4)"/>
-        [MI(IL)] public static int2 rint(this double2 f) => f.round().asint();
+        [MI(IL)] public static int2 rint(this double2 f) => f.round().toint();
         ///<inheritdoc cref="rint(double4)"/>
-        [MI(IL)] public static int rint(this double f) => f.round().asint();
+        [MI(IL)] public static int rint(this double f) => f.round().toint();
         
 
         // Clamp
@@ -131,13 +131,13 @@ namespace Unity.Mathematics
         #region CeilToInt
 
         /// Ceil to int
-        [MI(IL)] public static int4 clint(this double4 f) => f.ceil().asint();
+        [MI(IL)] public static int4 clint(this double4 f) => f.ceil().toint();
         /// <inheritdoc cref="clint(double4)" />
-        [MI(IL)] public static int3 clint(this double3 f) => f.ceil().asint();
+        [MI(IL)] public static int3 clint(this double3 f) => f.ceil().toint();
         /// <inheritdoc cref="clint(double4)" />
-        [MI(IL)] public static int2 clint(this double2 f) => f.ceil().asint();
+        [MI(IL)] public static int2 clint(this double2 f) => f.ceil().toint();
         /// <inheritdoc cref="clint(double4)" />
-        [MI(IL)] public static int clint(this double f) => f.ceil().asint();
+        [MI(IL)] public static int clint(this double f) => f.ceil().toint();
 
         #endregion
         
@@ -157,13 +157,13 @@ namespace Unity.Mathematics
         #region Floor To Int
 
         /// Floor To Int
-        [MI(IL)] public static int4 flint(this double4 f) => f.greater(0).select(f, f + 1).asint();
+        [MI(IL)] public static int4 flint(this double4 f) => f.greater(0).select(f, f + 1).toint();
         /// <inheritdoc cref="flint(double4)" />
-        [MI(IL)] public static int3 flint(this double3 f) => f.greater(0).select(f, f + 1).asint();
+        [MI(IL)] public static int3 flint(this double3 f) => f.greater(0).select(f, f + 1).toint();
         /// <inheritdoc cref="flint(double4)" />
-        [MI(IL)] public static int2 flint(this double2 f) => f.greater(0).select(f, f + 1).asint();
+        [MI(IL)] public static int2 flint(this double2 f) => f.greater(0).select(f, f + 1).toint();
         /// <inheritdoc cref="flint(double4)" />
-        [MI(IL)] public static int flint(this double f) => f.greater(0).select(f, f + 1).asint();
+        [MI(IL)] public static int flint(this double f) => f.greater(0).select(f, f + 1).toint();
         
 
         #endregion

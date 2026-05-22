@@ -682,7 +682,7 @@ namespace Unity.Mathematics
           // Also a cuboctahedral vertex
           // And corresponds to the face of its dual, the rhombic dodecahedron
           var cuboct = cube;
-          cuboct *= (f3(0, 1, 2) != (int)(hash / 16)).asfloat();
+          cuboct *= (f3(0, 1, 2) != (int)(hash / 16)).tofloat();
 
           // In a funky way, pick one of the four points on the rhombic face
           var type = ((hash / 8).floor() * 0.5f).frac() * 2;
@@ -705,7 +705,7 @@ namespace Unity.Mathematics
           var v1 = round(X);
           var d1 = X - v1;
           var score1 = d1.abs();
-          var dir1 = (score1.yzx.max(score1.zxy) < score1).asfloat();
+          var dir1 = (score1.yzx.max(score1.zxy) < score1).tofloat();
           var v2 = v1 + dir1 * (d1 < 0).select(-1, 1);
           var d2 = X - v2;
 
@@ -714,7 +714,7 @@ namespace Unity.Mathematics
           var v3 = round(X2);
           var d3 = X2 - v3;
           var score2 = d3.abs();
-          var dir2 = (score2.yzx.max(score2.zxy) < score2).asfloat();
+          var dir2 = (score2.yzx.max(score2.zxy) < score2).tofloat();
           var v4 = v3 + dir2 * (d3 < 0).select(-1, 1);
           var d4 = X2 - v4;
 
