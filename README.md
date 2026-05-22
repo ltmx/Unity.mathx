@@ -121,7 +121,7 @@ bool4.all(); // returns true if all components are true // and-gate
 ```ruby
 // most methods have at least a dozen overloads
 
-fcos() veryFastCos() ultraFastCos() CosLoop() SinLoop() sfcos() fsqrt()
+fsqrt() fastrcp()
 fdistance() flength() log2int() fastmodinv() fexp() sfastsine() sfastcosine()
 fastsine() fastcosine() anglerad() angledeg() fastangle() straightsignedangle()
 preciseangle() signedangle() signedanglethis() fastatan2() sign() abs() mod()
