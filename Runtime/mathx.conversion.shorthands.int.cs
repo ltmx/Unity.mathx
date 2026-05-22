@@ -28,7 +28,7 @@ namespace Unity.Mathematics
         public static readonly int3 righti3 = new(1, 0, 0);
         /// Shorthand for new i3(0,0,1)
         public static readonly int3 forwardi3 = new(0, 0, 1);
-        /// Shorthand for new new i3(0,-1,0)
+        /// Shorthand for new i3(0,-1,0)
         public static readonly int3 downi3 = new(0, -1, 0);
         /// Shorthand for new i3(-1,0,0)
         public static readonly int3 lefti3 = new(-1, 0, 0);
