@@ -66,7 +66,7 @@ namespace Unity.Mathematics
             return $"Origin: {(object) m_Origin.ToString(format, formatProvider)}, Dir: {(object) m_Direction.ToString(format, formatProvider)}";
         }
         
-        [MI(IL)] public static implicit operator ray(Ray r) => new(r.origin, r.direction);
+        [MI(IL)] public static implicit operator ray(Ray r) => new(r.origin.asfloat(), r.direction.asfloat());
         [MI(IL)] public static implicit operator Ray(ray r) => new(r.origin, r.direction);
     }
 }
