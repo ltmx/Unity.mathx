@@ -44,16 +44,7 @@ namespace Unity.Mathematics
 
         //sin(x + PI/2) = cos(x)
         /// High precision cosine (~8x faster) - always wrap input angle to -PI..PI
-        public static float fastcosine(this float x)
-        {
-            if (x > HPI) x -= 4.71238898f;
-            if (x < 0) {
-                var c = x * (t1+ t2* x);
-                return c < 0 ? .225f * (c * -c - c) + c : .225f * (c * c - c) + c;
-            }
-            var c2 = x * (t1- t2* x);
-            return c2 < 0 ? .225f * (c2 * -c2 - c2) + c2 : .225f * (c2 * c2 - c2) + c2;
-        }
+        public static float fastcosine(this float x) => fastsine(x + HPI);
         
         // Overloads
         
