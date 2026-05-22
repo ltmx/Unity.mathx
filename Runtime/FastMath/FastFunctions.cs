@@ -45,19 +45,33 @@ namespace Unity.Mathematics
 
 
         /// Returns the distance between a and b (fast but low accuracy)
-        [MethodImpl(IL)] public static float fdistance(float4 a, float4 b) => fsqrt((a - b).lengthsq());
+        [MethodImpl(IL)] public static float fdistance(float4 a, float4 b) => (a - b).flengthsq().fsqrt();
         /// <inheritdoc cref="fdistance(float4, float4)"/>
-        [MethodImpl(IL)] public static float fdistance(float3 a, float3 b) => fsqrt((a - b).lengthsq());
+        [MethodImpl(IL)] public static float fdistance(float3 a, float3 b) => (a - b).flengthsq().fsqrt();
         /// <inheritdoc cref="fdistance(float4, float4)"/>
-        [MethodImpl(IL)] public static float fdistance(float2 a, float2 b) => fsqrt((a - b).lengthsq());
+        [MethodImpl(IL)] public static float fdistance(float2 a, float2 b) => (a - b).flengthsq().fsqrt();
         
 
         /// Returns the length of the vector (fast but low accuracy)
-        [MethodImpl(IL)] public static float flength(this float4 f) => fsqrt(f.lengthsq());
+        [MethodImpl(IL)] public static float flength(this float4 f) => f.flengthsq().fsqrt();
         /// <inheritdoc cref="flength(float4)"/>
-        [MethodImpl(IL)] public static float flength(this float3 f) => fsqrt(f.lengthsq());
+        [MethodImpl(IL)] public static float flength(this float3 f) => f.flengthsq().fsqrt();
         /// <inheritdoc cref="flength(float4)"/>
-        [MethodImpl(IL)] public static float flength(this float2 f) => fsqrt(f.lengthsq());
+        [MethodImpl(IL)] public static float flength(this float2 f) => f.lengthsq().fsqrt();
+        
+        /// <inheritdoc cref="math.lengthsq(float4)"/>
+        [MethodImpl(IL)] public static float flengthsq(this float4 f) => f.fdot(f);
+        /// <inheritdoc cref="math.lengthsq(float3)"/>
+        [MethodImpl(IL)] public static float flengthsq(this float3 f) => f.fdot(f);
+        /// <inheritdoc cref="math.lengthsq(float2)"/>
+        [MethodImpl(IL)] public static float flengthsq(this float2 f) => f.fdot(f);
+        
+        /// faster dot method removing to double casts
+        [MethodImpl(IL)] public static float fdot(this float4 f, float4 f2) => f.x * f2.x + f.y * f2.y + f.z * f2.z + f.w * f2.w;
+        /// <inheritdoc cref="fdot(float4,float4)"/>
+        [MethodImpl(IL)] public static float fdot(this float3 f, float3 f2) => f.x * f2.x + f.y * f2.y + f.z * f2.z;
+        /// <inheritdoc cref="fdot(float4,float4)"/>
+        [MethodImpl(IL)] public static float fdot(this float2 f, float2 f2) => f.x * f2.x + f.y * f2.y;
         
         
         /// https://github.com/SunsetQuest/Fast-Integer-Log2 --------------------------
