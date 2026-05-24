@@ -1,27 +1,77 @@
-
 name: Create release
 
 on:
   push:
-    branches:
-      - master
     tags:
-      - '*.*.*'
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - '[0-9]+.[0-9]+.[0-9]+'
+
+permissions:
+  contents: write
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Resolve version from tag
+        id: version
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          TAG="${GITHUB_REF_NAME}"
+          if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Tag must be a semver version (for example v1.2.3 or 1.2.3)."
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
 
-      - name: Zip Folder
-        run: zip -r ${{ github.event.repository.name }}.zip .
-
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
+      - uses: actions/checkout@v4
         with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+
+      - name: Bump package.json and move tag onto that commit
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          TAG="${{ steps.version.outputs.tag }}"
+
+          git fetch origin master
+
+          if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/master)" ]; then
+            echo "Tag must point to the current tip of master."
+            echo "Push master first, then tag that commit and push the tag."
+            exit 1
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          CURRENT="$(jq -r '.version' package.json)"
+          if [ "$CURRENT" = "$VERSION" ]; then
+            echo "package.json already at $VERSION"
+          else
+            jq --arg version "$VERSION" '.version = $version' package.json > package.json.tmp
+            mv package.json.tmp package.json
+            git add package.json
+            git commit -m "chore: release $TAG [skip ci]"
+          fi
+
+          git tag -f "$TAG"
+          git push origin HEAD:master
+          git push origin "refs/tags/$TAG" --force
+
+      - name: Create package archive
+        run: |
+          zip -r "${{ github.event.repository.name }}.zip" . \
+            -x "*.git*" \
+            -x ".github/*" \
+            -x ".cursorignore" \
+            -x "Tests/*"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
           files: ${{ github.event.repository.name }}.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          generate_release_notes: true
