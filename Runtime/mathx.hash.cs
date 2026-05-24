@@ -5,6 +5,7 @@
 
 #region
 
+using System;
 using MI = System.Runtime.CompilerServices.MethodImplAttribute;
 
 #endregion
@@ -22,18 +23,18 @@ namespace Unity.Mathematics
 		const uint HashPrime5 = 374761393u;
 
 		[MI(IL)] public static uint hash(this int v) => math.hash(v);
-		[MI(IL)] public static uint hash(this int2 v) => math.hash(v);
+		[MI(IL)] public static uint hash(this int2 v) => ((Func<int2, uint>)math.hash)(v);
 		[MI(IL)] public static uint hash(this int3 v) => math.hash(v);
 		[MI(IL)] public static uint hash(this int4 v) => math.hash(v);
 		[MI(IL)] public static uint hash(this uint v) => math.hash(v);
-		[MI(IL)] public static uint hash(this uint2 v) => math.hash(v);
+		[MI(IL)] public static uint hash(this uint2 v) => ((Func<uint2, uint>)math.hash)(v);
 		[MI(IL)] public static uint hash(this uint3 v) => math.hash(v);
 		[MI(IL)] public static uint hash(this uint4 v) => math.hash(v);
 
-		[MI(IL)] public static uint2 hashwide(this int2 v) => math.hashwide(v);
+		[MI(IL)] public static uint2 hashwide(this int2 v) => ((Func<int2, uint2>)math.hashwide)(v);
 		[MI(IL)] public static uint3 hashwide(this int3 v) => math.hashwide(v);
 		[MI(IL)] public static uint4 hashwide(this int4 v) => math.hashwide(v);
-		[MI(IL)] public static uint2 hashwide(this uint2 v) => math.hashwide(v);
+		[MI(IL)] public static uint2 hashwide(this uint2 v) => ((Func<uint2, uint2>)math.hashwide)(v);
 		[MI(IL)] public static uint3 hashwide(this uint3 v) => math.hashwide(v);
 		[MI(IL)] public static uint4 hashwide(this uint4 v) => math.hashwide(v);
 
