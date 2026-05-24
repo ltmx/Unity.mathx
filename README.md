@@ -93,14 +93,13 @@ bool4.all(); // returns true if all components are true // and-gate
 - [x] Shorthands (`3D Directions`, `2D Directions`, and others)
 - [x] Data Construction (`append`, `float2.xyzw()`, matrix construction, etc)
 - [x] Data Conversion (`anyColortArray.tofloat4Array()`, and others)
-- [ ] Noise Functions `WIP` (`Simplex`, `Perlin`, `Whorley`, `Layered`, `Voronoi`)
-- [ ] Job Helpers `WIP`
-- [ ] Burst Compiled Function Pointers `WIP 80%`
-- [ ] Function Iterators (prevents nested loops) `WIP 50%`
-- [ ] Hashing Functions `WIP 80%`
-- [ ] Vector Function Builders `WIP 50%`
-- [ ] Generic Jobs `WIP 50%`
-- [ ] Mesh Processing `WIP 0%`
+- [x] Noise Functions (`Simplex`, `Perlin`, `Worley`, `Layered`, `Voronoi`)
+- [x] Job Helpers
+- [x] Burst Compiled Function Pointers
+- [x] Function Iterators (prevents nested loops)
+- [x] Hashing Functions
+- [x] Vector Function Builders
+- [x] Generic Jobs
 
 <br>
 
@@ -171,7 +170,9 @@ sincos() mod360() mod2PI() sinh() cosh() tanh() sech() coth() csch() acosh()
 asinh() atanh() acoth() asech() acsch() distance() distancesq() reflect()
 refract() project() projectsafe() manhattan() minkowski() chebyshev() cross()
 perp() exterior() orthonorm() cdistance() cdistancesq() ccross() cdot()
-openSimplex2_ImproveXY() openSimplex2SDerivatives_ImproveXY() sdSphere() sdBox()
+openSimplex2_ImproveXY() openSimplex2SDerivatives_ImproveXY() simplex2() simplex3() simplex4()
+perlin2() perlin3() perlin2Periodic() perlin3Periodic() fbm2() fbm3() worley2() worley3()
+voronoi2() voronoi3() xxhash32() hash01() hashnp01() forEach2D() forEach3D() make() sdSphere() sdBox()
 sdRoundBox() sdBoxFrame() sdTorus() sdCappedTorus() sdLink() sdCylinder()
 sdCone() sdConeBound() sdPlane() sdHexPrism() sdTriPrism() sdCapsule()
 sdVerticalCapsule() sdCappedCylinder() sdRoundedCylinder() sdCappedCone()
