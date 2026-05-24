@@ -1,19 +1,22 @@
-﻿#region Header
-// **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
-// **    Github Profile: https://github.com/LTMX
-// **    Repository : https://github.com/LTMX/Unity.mathx
-#endregion
+﻿// // ** Copyright (C) 2026 @ltmx. All rights reserved.
+// // ** GitHub Profile: https://github.com/ltmx
+// // ** Repository : https://github.com/ltmx/Unity.mathx
+
+#region
 
 using MI = System.Runtime.CompilerServices.MethodImplAttribute;
 
+#endregion
+
 namespace Unity.Mathematics
 {
-    public static partial class mathx
-    {
-        /// sets the value of x to f and returns f
-        [MI(IL)] public static T set<T>(this T f, out T x) {
-            x = f;
-            return f;
-        }
-    }
+	public static partial class mathx
+	{
+		/// sets the value of x to f and returns f
+		[MI(IL)] public static T set<T>(this T f, out T x)
+		{
+			x = f;
+			return f;
+		}
+	}
 }

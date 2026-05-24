@@ -1,8 +1,6 @@
-#region Header
-// **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
-// **    Github Profile: https://github.com/LTMX
-// **    Repository : https://github.com/LTMX/Unity.mathx
-#endregion
+// // ** Copyright (C) 2026 @ltmx. All rights reserved.
+// // ** GitHub Profile: https://github.com/ltmx
+// // ** Repository : https://github.com/ltmx/Unity.mathx
 
 // using System.Runtime.CompilerServices;
 // // using static Unity.Mathematics.math;
@@ -152,3 +150,4 @@
 // }
 //
 // } // namespace Klak.Math
+

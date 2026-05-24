@@ -1,102 +1,97 @@
-#region Header
-// **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
-// **    Github Profile: https://github.com/LTMX
-// **    Repository : https://github.com/LTMX/Unity.mathx
-#endregion
+// // ** Copyright (C) 2026 @ltmx. All rights reserved.
+// // ** GitHub Profile: https://github.com/ltmx
+// // ** Repository : https://github.com/ltmx/Unity.mathx
+
+#region
 
 using MI = System.Runtime.CompilerServices.MethodImplAttribute;
 
+#endregion
+
 namespace Unity.Mathematics
 {
-    public static partial class mathx
-    {
-        // Logic ----------------------------------------------------
+	public static partial class mathx
+	{
+		// Logic ----------------------------------------------------
 
-        /// returns true if any of the components is true
-        [MI(IL)] public static bool any(this bool4 s) => s.x || s.y || s.z || s.w;
-        /// returns true in all components are true
-        [MI(IL)] public static bool all(this bool4 s) => s is { x: true, y: true, z: true, w: true };
-        
-        /// <inheritdoc cref="any(bool4)"/>
-        [MI(IL)] public static bool any(this bool3 s) => s.x || s.y || s.z;
-        /// <inheritdoc cref="all(bool4)"/>
-        [MI(IL)] public static bool all(this bool3 s) => s is { x: true, y: true, z: true };
+		/// returns true if any of the components is true
+		[MI(IL)] public static bool any(this bool4 s) => s.x || s.y || s.z || s.w;
+		/// returns true in all components are true
+		[MI(IL)] public static bool all(this bool4 s) => s is {x: true, y: true, z: true, w: true};
 
-        /// <inheritdoc cref="any(bool4)"/>
-        [MI(IL)] public static bool any(this bool2 s) => s.x || s.y;
-        /// <inheritdoc cref="all(bool4)"/>
-        [MI(IL)] public static bool all(this bool2 s) => s is { x: true, y: true };
-        
+		/// <inheritdoc cref="any(bool4)"/>
+		[MI(IL)] public static bool any(this bool3 s) => s.x || s.y || s.z;
+		/// <inheritdoc cref="all(bool4)"/>
+		[MI(IL)] public static bool all(this bool3 s) => s is {x: true, y: true, z: true};
 
+		/// <inheritdoc cref="any(bool4)"/>
+		[MI(IL)] public static bool any(this bool2 s) => s.x || s.y;
+		/// <inheritdoc cref="all(bool4)"/>
+		[MI(IL)] public static bool all(this bool2 s) => s is {x: true, y: true};
 
-        // Select ---------------------------------------------------
-        
-        /// Returns a when s is false, b when s is true (component-wise).
-        [MI(IL)] public static float4 select(this bool4 s, float4 a, float4 b) => math.select(a, b, s);
-        /// <inheritdoc cref="select(bool4,float4,float4)"/>
-        [MI(IL)] public static float3 select(this bool3 s, float3 a, float3 b) => math.select(a, b, s);
-        /// <inheritdoc cref="select(bool4,float4,float4)"/>
-        [MI(IL)] public static float2 select(this bool2 s, float2 a, float2 b) => math.select(a, b, s);
-        
-        /// <inheritdoc cref="select(bool4,float4,float4)"/>
-        [MI(IL)] public static double4 select(this bool4 s, double4 a, double4 b) => math.select(a, b, s);
-        /// <inheritdoc cref="select(bool4,float4,float4)"/>
-        [MI(IL)] public static double3 select(this bool3 s, double3 a, double3 b) => math.select(a, b, s);
-        /// <inheritdoc cref="select(bool4,float4,float4)"/>
-        [MI(IL)] public static double2 select(this bool2 s, double2 a, double2 b) => math.select(a, b, s);
-        /// <inheritdoc cref="select(bool4,float4,float4)"/>
-        [MI(IL)] public static double select(this bool s, double a, double b) => math.select(a, b, s);
-        
-        /// <inheritdoc cref="select(bool4,float4,float4)"/>
-        [MI(IL)] public static int4 select(this bool4 s, int4 a, int4 b) => math.select(a, b, s);
-        /// <inheritdoc cref="select(bool4,float4,float4)"/>
-        [MI(IL)] public static int3 select(this bool3 s, int3 a, int3 b) => math.select(a, b, s);
-        /// <inheritdoc cref="select(bool4,float4,float4)"/>
-        [MI(IL)] public static int2 select(this bool2 s, int2 a, int2 b) => math.select(a, b, s);
-        
-        /// <inheritdoc cref="select(bool4,float4,float4)"/>
-        [MI(IL)] public static uint4 select(this bool4 s, uint4 a, uint4 b) => math.select(a, b, s);
-        /// <inheritdoc cref="select(bool4,float4,float4)"/>
-        [MI(IL)] public static uint3 select(this bool3 s, uint3 a, uint3 b) => math.select(a, b, s);
-        /// <inheritdoc cref="select(bool4,float4,float4)"/>
-        [MI(IL)] public static uint2 select(this bool2 s, uint2 a, uint2 b) => math.select(a, b, s);
-        
-        /// <inheritdoc cref="select(bool4,float4,float4)"/>
-        [MI(IL)] public static half4 select(this bool4 s, half4 a, half4 b) => new(s.x ? b.x : a.x, s.y ? b.y : a.y, s.z ? b.z : a.z, s.w ? b.w : a.w);
-        /// <inheritdoc cref="select(bool4,float4,float4)"/>
-        [MI(IL)] public static half3 select(this bool3 s, half3 a, half3 b) => new(s.x ? b.x : a.x, s.y ? b.y : a.y, s.z ? b.z : a.z);
-        /// <inheritdoc cref="select(bool4,float4,float4)"/>
-        [MI(IL)] public static half2 select(this bool2 s, half2 a, half2 b) => new(s.x ? b.x : a.x, s.y ? b.y : a.y);
-        
-        
-        
-        
-        /// <inheritdoc cref="select(bool4,float4,float4)"/>
-        [MI(IL)] public static byte4 select(this bool4 s, byte4 a, byte4 b) => new(s.x ? b.x : a.x, s.y ? b.y : a.y, s.z ? b.z : a.z, s.w ? b.w : a.w);
-        /// <inheritdoc cref="select(bool4,float4,float4)"/>
-        [MI(IL)] public static byte3 select(this bool3 s, byte3 a, byte3 b) => new(s.x ? b.x : a.x, s.y ? b.y : a.y, s.z ? b.z : a.z);
-        /// <inheritdoc cref="select(bool4,float4,float4)"/>
-        [MI(IL)] public static byte2 select(this bool2 s, byte2 a, byte2 b) => new(s.x ? b.x : a.x, s.y ? b.y : a.y);
-        
-        /// <inheritdoc cref="select(bool4,float4,float4)"/>
-        [MI(IL)] public static color select(this bool4 s, color a, color b) => new(s.x ? b.x : a.x, s.y ? b.y : a.y, s.z ? b.z : a.z, s.w ? b.w : a.w);
-        /// <inheritdoc cref="select(bool4,float4,float4)"/>
-        [MI(IL)] public static quaternion select(this bool4 s, quaternion a, quaternion b) => new(s.x ? b.value.x : a.value.x, s.y ? b.value.y : a.value.y, s.z ? b.value.z : a.value.z, s.w ? b.value.w : a.value.w);
+		// Select ---------------------------------------------------
 
-        
+		/// Returns a when s is false, b when s is true (component-wise).
+		[MI(IL)] public static float4 select(this bool4 s, float4 a, float4 b) => math.select(a, b, s);
+		/// <inheritdoc cref="select(bool4,float4,float4)"/>
+		[MI(IL)] public static float3 select(this bool3 s, float3 a, float3 b) => math.select(a, b, s);
+		/// <inheritdoc cref="select(bool4,float4,float4)"/>
+		[MI(IL)] public static float2 select(this bool2 s, float2 a, float2 b) => math.select(a, b, s);
 
-        // Approx ---------------------------------------------------
-        
-        /// Compares two floating point values and returns true if they are similar.
-        [MI(IL)] public static bool approx(this float a, float b) => (b - a).abs() < (1E-06f * a.abs().max(b.abs())).max(EPSILON * 8);
-        /// Compares two floating point values and returns true if they are similar.
-        [MI(IL)] public static bool approx(this double a, double b) => (b - a).abs() < (1E-06f * a.abs().max(b.abs())).max(EPSILON_DBL * 8);
-        /// Compares two floating point values and returns true if they are within a certain distance of each other (tolerance)
-        [MI(IL)] public static bool approx(this float a, float b, float tolerance) => abs(a - b) <= abs(tolerance);
-        /// Compares two floating point values and returns true if they are within a certain distance of each other (tolerance)
-        [MI(IL)] public static bool approx(this double a, double b, double tolerance) => abs(a - b) <= abs(tolerance);
-        
-        // Odd & Even ----------------------------------------------
-    }
+		/// <inheritdoc cref="select(bool4,float4,float4)"/>
+		[MI(IL)] public static double4 select(this bool4 s, double4 a, double4 b) => math.select(a, b, s);
+		/// <inheritdoc cref="select(bool4,float4,float4)"/>
+		[MI(IL)] public static double3 select(this bool3 s, double3 a, double3 b) => math.select(a, b, s);
+		/// <inheritdoc cref="select(bool4,float4,float4)"/>
+		[MI(IL)] public static double2 select(this bool2 s, double2 a, double2 b) => math.select(a, b, s);
+		/// <inheritdoc cref="select(bool4,float4,float4)"/>
+		[MI(IL)] public static double select(this bool s, double a, double b) => math.select(a, b, s);
+
+		/// <inheritdoc cref="select(bool4,float4,float4)"/>
+		[MI(IL)] public static int4 select(this bool4 s, int4 a, int4 b) => math.select(a, b, s);
+		/// <inheritdoc cref="select(bool4,float4,float4)"/>
+		[MI(IL)] public static int3 select(this bool3 s, int3 a, int3 b) => math.select(a, b, s);
+		/// <inheritdoc cref="select(bool4,float4,float4)"/>
+		[MI(IL)] public static int2 select(this bool2 s, int2 a, int2 b) => math.select(a, b, s);
+
+		/// <inheritdoc cref="select(bool4,float4,float4)"/>
+		[MI(IL)] public static uint4 select(this bool4 s, uint4 a, uint4 b) => math.select(a, b, s);
+		/// <inheritdoc cref="select(bool4,float4,float4)"/>
+		[MI(IL)] public static uint3 select(this bool3 s, uint3 a, uint3 b) => math.select(a, b, s);
+		/// <inheritdoc cref="select(bool4,float4,float4)"/>
+		[MI(IL)] public static uint2 select(this bool2 s, uint2 a, uint2 b) => math.select(a, b, s);
+
+		/// <inheritdoc cref="select(bool4,float4,float4)"/>
+		[MI(IL)] public static half4 select(this bool4 s, half4 a, half4 b) => new(s.x ? b.x : a.x, s.y ? b.y : a.y, s.z ? b.z : a.z, s.w ? b.w : a.w);
+		/// <inheritdoc cref="select(bool4,float4,float4)"/>
+		[MI(IL)] public static half3 select(this bool3 s, half3 a, half3 b) => new(s.x ? b.x : a.x, s.y ? b.y : a.y, s.z ? b.z : a.z);
+		/// <inheritdoc cref="select(bool4,float4,float4)"/>
+		[MI(IL)] public static half2 select(this bool2 s, half2 a, half2 b) => new(s.x ? b.x : a.x, s.y ? b.y : a.y);
+
+		/// <inheritdoc cref="select(bool4,float4,float4)"/>
+		[MI(IL)] public static byte4 select(this bool4 s, byte4 a, byte4 b) => new(s.x ? b.x : a.x, s.y ? b.y : a.y, s.z ? b.z : a.z, s.w ? b.w : a.w);
+		/// <inheritdoc cref="select(bool4,float4,float4)"/>
+		[MI(IL)] public static byte3 select(this bool3 s, byte3 a, byte3 b) => new(s.x ? b.x : a.x, s.y ? b.y : a.y, s.z ? b.z : a.z);
+		/// <inheritdoc cref="select(bool4,float4,float4)"/>
+		[MI(IL)] public static byte2 select(this bool2 s, byte2 a, byte2 b) => new(s.x ? b.x : a.x, s.y ? b.y : a.y);
+
+		/// <inheritdoc cref="select(bool4,float4,float4)"/>
+		[MI(IL)] public static color select(this bool4 s, color a, color b) => new(s.x ? b.x : a.x, s.y ? b.y : a.y, s.z ? b.z : a.z, s.w ? b.w : a.w);
+		/// <inheritdoc cref="select(bool4,float4,float4)"/>
+		[MI(IL)] public static quaternion select(this bool4 s, quaternion a, quaternion b) =>
+			new(s.x ? b.value.x : a.value.x, s.y ? b.value.y : a.value.y, s.z ? b.value.z : a.value.z, s.w ? b.value.w : a.value.w);
+
+		// Approx ---------------------------------------------------
+
+		/// Compares two floating point values and returns true if they are similar.
+		[MI(IL)] public static bool approx(this float a, float b) => (b - a).abs() < (1E-06f * a.abs().max(b.abs())).max(EPSILON * 8);
+		/// Compares two floating point values and returns true if they are similar.
+		[MI(IL)] public static bool approx(this double a, double b) => (b - a).abs() < (1E-06f * a.abs().max(b.abs())).max(EPSILON_DBL * 8);
+		/// Compares two floating point values and returns true if they are within a certain distance of each other (tolerance)
+		[MI(IL)] public static bool approx(this float a, float b, float tolerance) => abs(a - b) <= abs(tolerance);
+		/// Compares two floating point values and returns true if they are within a certain distance of each other (tolerance)
+		[MI(IL)] public static bool approx(this double a, double b, double tolerance) => abs(a - b) <= abs(tolerance);
+
+		// Odd & Even ----------------------------------------------
+	}
 }
-

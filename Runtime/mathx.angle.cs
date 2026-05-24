@@ -1,125 +1,124 @@
-﻿#region Header
-// **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
-// **    Github Profile: https://github.com/LTMX
-// **    Repository : https://github.com/LTMX/Unity.mathx
-#endregion
+﻿// // ** Copyright (C) 2026 @ltmx. All rights reserved.
+// // ** GitHub Profile: https://github.com/ltmx
+// // ** Repository : https://github.com/ltmx/Unity.mathx
+
+#region
 
 using UnityEngine;
 using MI = System.Runtime.CompilerServices.MethodImplAttribute;
 
+#endregion
+
 namespace Unity.Mathematics
 {
-    public static partial class mathx
-    {
-        // angle() translated from UnityEngine
-        
-        /// Returns the signed angle between two vectors in radians
-        [MI(IL)] public static float anglerad(this float2 from, float2 to)
-        {
-            var num = (from.lengthsq() * to.lengthsq()).sqrt();
-            return num < 1.00000000362749E-15f ? 0 : (from.dot(to) / num).satsigned().acos(); // * 57.29578f;
-        }
-        
-        /// <inheritdoc cref="anglerad(float2, float2)" />
-        [MI(IL)] public static float anglerad(this float3 from, float3 to)
-        {
-            var num = (from.lengthsq() * to.lengthsq()).sqrt();
-            return num < 1.00000000362749E-15f ? 0 : (from.dot(to) / num).satsigned().acos(); // * 57.29578f;
-        }
+	public static partial class mathx
+	{
+		// angle() translated from UnityEngine
 
-        /// <inheritdoc cref="anglerad(float2, float2)" />
-        [MI(IL)] public static float anglerad(this float4 from, float4 to)
-        {
-            var num = (from.lengthsq() * to.lengthsq()).sqrt();
-            return num < 1.00000000362749E-15f ? 0 : (from.dot(to) / num).satsigned().acos(); // * 57.29578f;
-        }
-        
-        /// <inheritdoc cref="math.angle(Unity.Mathematics.quaternion, Unity.Mathematics.quaternion)" />
-        [MI(IL)] public static float anglerad(this quaternion q1, quaternion q2) => math.angle(q1, q2);
+		/// Returns the signed angle between two vectors in radians
+		[MI(IL)] public static float anglerad(this float2 from, float2 to)
+		{
+			float num = (from.lengthsq() * to.lengthsq()).sqrt();
+			return num < 1.00000000362749E-15f ? 0 : (from.dot(to) / num).satsigned().acos(); // * 57.29578f;
+		}
 
-        
+		/// <inheritdoc cref="anglerad(float2, float2)" />
+		[MI(IL)] public static float anglerad(this float3 from, float3 to)
+		{
+			float num = (from.lengthsq() * to.lengthsq()).sqrt();
+			return num < 1.00000000362749E-15f ? 0 : (from.dot(to) / num).satsigned().acos(); // * 57.29578f;
+		}
 
-        /// Returns the signed angle between two vectors in degrees
-        [MI(IL)] public static float angledeg(this float2 from, float2 to) => from.anglerad(to).deg();
-        /// <inheritdoc cref="angledeg(float2, float2)" />
-        [MI(IL)] public static float angledeg(this float3 from, float3 to) => from.anglerad(to).deg();
-        /// <inheritdoc cref="angledeg(float2, float2)" />s
-        [MI(IL)] public static float angledeg(this float4 from, float4 to) => from.anglerad(to).deg();
-        /// <summary>Returns the angle in degrees between two unit quaternions.</summary>
-        /// <param name="q1">The first quaternion.</param>
-        /// <param name="q2">The second quaternion.</param>
-        /// <returns>The angle between two unit quaternions.</returns>
-        [MI(IL)] public static float angledeg(this quaternion q1, quaternion q2) => q1.anglerad(q2).deg();
+		/// <inheritdoc cref="anglerad(float2, float2)" />
+		[MI(IL)] public static float anglerad(this float4 from, float4 to)
+		{
+			float num = (from.lengthsq() * to.lengthsq()).sqrt();
+			return num < 1.00000000362749E-15f ? 0 : (from.dot(to) / num).satsigned().acos(); // * 57.29578f;
+		}
 
+		/// <inheritdoc cref="math.angle(Unity.Mathematics.quaternion, Unity.Mathematics.quaternion)" />
+		[MI(IL)] public static float anglerad(this quaternion q1, quaternion q2) => math.angle(q1, q2);
 
-        /// a fast and accurate way of computing angles
-        [MI(IL)] public static float fastangle(this float4 from, float4 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).satsigned().acos();
+		/// Returns the signed angle between two vectors in degrees
+		[MI(IL)] public static float angledeg(this float2 from, float2 to) => from.anglerad(to).deg();
+		/// <inheritdoc cref="angledeg(float2, float2)" />
+		[MI(IL)] public static float angledeg(this float3 from, float3 to) => from.anglerad(to).deg();
+		/// <inheritdoc cref="angledeg(float2, float2)" />s
+		[MI(IL)] public static float angledeg(this float4 from, float4 to) => from.anglerad(to).deg();
+		/// <summary>Returns the angle in degrees between two unit quaternions.</summary>
+		/// <param name="q1">The first quaternion.</param>
+		/// <param name="q2">The second quaternion.</param>
+		/// <returns>The angle between two unit quaternions.</returns>
+		[MI(IL)] public static float angledeg(this quaternion q1, quaternion q2) => q1.anglerad(q2).deg();
 
-        [MI(IL)] public static float fastangle(this float3 from, float3 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).satsigned().acos();
+		/// a fast and accurate way of computing angles
+		[MI(IL)] public static float fastangle(this float4 from, float4 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).satsigned().acos();
 
-        [MI(IL)] public static float fastangle(this float2 from, float2 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).satsigned().acos();
+		[MI(IL)] public static float fastangle(this float3 from, float3 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).satsigned().acos();
 
-        // // another way of computing angles
-        // [MI(IL)] public static float otherangle(f2 v1, f2 v2) => math.atan2(v1.x * v2.y - v2.x * v1.y, (v1 * v2).csum()) * (180 / PI);
+		[MI(IL)] public static float fastangle(this float2 from, float2 to) => (from.dot(to) / (from.lengthsq() * to.lengthsq()).fsqrt()).satsigned().acos();
 
-        // https://gist.github.com/SaffronCR/b0802d102dd7f262118ac853cd5b4901#file-Mathutil-cs-L24
+		// // another way of computing angles
+		// [MI(IL)] public static float otherangle(f2 v1, f2 v2) => math.atan2(v1.x * v2.y - v2.x * v1.y, (v1 * v2).csum()) * (180 / PI);
 
-        /// Determine the signed angle between two vectors, with normal 'limn' as the rotation axis.
-        /// straightforward formulae to compute the signed angle between two vectors
-        [MI(IL)] public static float straightsignedangle(this float3 f1, float3 f2, float3 n) => n.dot(f1.cross(f2)).atan2(f1.dot(f2));
+		// https://gist.github.com/SaffronCR/b0802d102dd7f262118ac853cd5b4901#file-Mathutil-cs-L24
 
-        /// Returns the precise angle between two vectors in radians
-        [MI(IL)] public static float preciseangle(this float4 v1, float4 v2)
-        {
-            var v3 = v1.norm();
-            var v4 = v2.norm();
-            return v1.dot(v2) < 0 ? PI - 2 * ((-v3 - v4).length() / 2).asin() : 2 * ((v3 - v4).length() / 2).asin();
-        }
+		/// Determine the signed angle between two vectors, with normal 'limn' as the rotation axis.
+		/// straightforward formulae to compute the signed angle between two vectors
+		[MI(IL)] public static float straightsignedangle(this float3 f1, float3 f2, float3 n) => n.dot(f1.cross(f2)).atan2(f1.dot(f2));
 
-        /// Returns the precise angle between two vectors in radians
-        [MI(IL)] public static float preciseangle(this float3 v1, float3 v2)
-        {
-            var v3 = v1.norm();
-            var v4 = v2.norm();
-            return v1.dot(v2) < 0 ? PI - 2 * ((-v3 - v4).length() / 2).asin() : 2 * ((v3 - v4).length() / 2).asin();
-        }
+		/// Returns the precise angle between two vectors in radians
+		[MI(IL)] public static float preciseangle(this float4 v1, float4 v2)
+		{
+			float4 v3 = v1.norm();
+			float4 v4 = v2.norm();
+			return v1.dot(v2) < 0 ? PI - 2 * ((-v3 - v4).length() / 2).asin() : 2 * ((v3 - v4).length() / 2).asin();
+		}
 
-        /// Returns the precise angle between two vectors in radians
-        [MI(IL)] public static float preciseangle(this float2 v1, float2 v2)
-        {
-            var v3 = v1.norm();
-            var v4 = v2.norm();
-            return v3.dot(v4) < 0 ? PI - 2 * ((-v3 - v4).length() / 2).asin() : 2 * ((v3 - v4).length() / 2).asin();
-        }
+		/// Returns the precise angle between two vectors in radians
+		[MI(IL)] public static float preciseangle(this float3 v1, float3 v2)
+		{
+			float3 v3 = v1.norm();
+			float3 v4 = v2.norm();
+			return v1.dot(v2) < 0 ? PI - 2 * ((-v3 - v4).length() / 2).asin() : 2 * ((v3 - v4).length() / 2).asin();
+		}
 
-        /// Returns the signed angle between two vectors in radians using an axis of rotation
-        [MI(IL)] public static float signedangle(this float4 from, float4 to, float4 axis) =>
-            anglerad(from, to) * ((from.yzwx * to.zwxy - from.zwxy * to.yzwx) * axis).csum().sign();
+		/// Returns the precise angle between two vectors in radians
+		[MI(IL)] public static float preciseangle(this float2 v1, float2 v2)
+		{
+			float2 v3 = v1.norm();
+			float2 v4 = v2.norm();
+			return v3.dot(v4) < 0 ? PI - 2 * ((-v3 - v4).length() / 2).asin() : 2 * ((v3 - v4).length() / 2).asin();
+		}
 
-        /// Returns the signed angle between two vectors in radians using an axis of rotation
-        [MI(IL)] public static float signedangle(this float3 from, float3 to, float3 axis) =>
-            anglerad(from, to) * ((from.yzx * to.zxy - from.zxy * to.yzx) * axis).csum().sign();
+		/// Returns the signed angle between two vectors in radians using an axis of rotation
+		[MI(IL)] public static float signedangle(this float4 from, float4 to, float4 axis) =>
+			anglerad(from, to) * ((from.yzwx * to.zwxy - from.zwxy * to.yzwx) * axis).csum().sign();
 
-        /// Returns the signed angle between two vectors in radians;
-        [MI(IL)] public static float signedanglethis (Vector2 from, Vector2 to) =>
-            anglerad(from, to) * (from.x * to.y - from.y * to.x).sign();
+		/// Returns the signed angle between two vectors in radians using an axis of rotation
+		[MI(IL)] public static float signedangle(this float3 from, float3 to, float3 axis) =>
+			anglerad(from, to) * ((from.yzx * to.zxy - from.zxy * to.yzx) * axis).csum().sign();
 
-        /// https://gist.github.com/voidqk/fc5a58b7d9fc020ecf7f2f5fc907dfa5
-        /// Computes atan2(y,x), fast -->  max err: 0.071115
-        [MI(IL)] public static float fastatan2(this float y, float x)
-        {
-            const float c1 = PI / 4;
-            const float c2 = PI * 0.75f;
-            if (y == 0 && x == 0) return 0;
-            var abs_y = y.abs();
-            float angle;
-            if (x >= 0) angle = c1 - c1 * ((x - abs_y) / (x + abs_y));
-            else angle = c2 - c1 * ((x + abs_y) / (abs_y - x));
-            if (y < 0) return -angle;
-            return angle;
-        }
-        // rotation -----------------------------------------------------
+		/// Returns the signed angle between two vectors in radians;
+		[MI(IL)] public static float signedanglethis(Vector2 from, Vector2 to) =>
+			anglerad(from, to) * (from.x * to.y - from.y * to.x).sign();
 
-        // Builds a quaternion rotation from and axis and an angle in radians
-    }
+		/// https://gist.github.com/voidqk/fc5a58b7d9fc020ecf7f2f5fc907dfa5
+		/// Computes atan2(y,x), fast -->  max err: 0.071115
+		[MI(IL)] public static float fastatan2(this float y, float x)
+		{
+			const float c1 = PI / 4;
+			const float c2 = PI * 0.75f;
+			if (y == 0 && x == 0) return 0;
+			float abs_y = y.abs();
+			float angle;
+			if (x >= 0) angle = c1 - c1 * ((x - abs_y) / (x + abs_y));
+			else angle        = c2 - c1 * ((x + abs_y) / (abs_y - x));
+			if (y < 0) return -angle;
+			return angle;
+		}
+		// rotation -----------------------------------------------------
+
+		// Builds a quaternion rotation from and axis and an angle in radians
+	}
 }

@@ -1,478 +1,483 @@
-﻿#region Header
-// **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
-// **    Github Profile: https://github.com/LTMX
-// **    Repository : https://github.com/LTMX/Unity.mathx
-#endregion
+﻿// // ** Copyright (C) 2026 @ltmx. All rights reserved.
+// // ** GitHub Profile: https://github.com/ltmx
+// // ** Repository : https://github.com/ltmx/Unity.mathx
+
+#region
 
 using MI = System.Runtime.CompilerServices.MethodImplAttribute;
 
+#endregion
+
 namespace Unity.Mathematics
 {
-    public static partial class mathx
-    {
-        
-        #region sign
+	public static partial class mathx
+	{
+		#region sign
 
-        /// Returns the sign of the given value.
-        /// <remarks>
-        /// This implementation is 2.6x faster than math.sign.
-        /// </remarks>
-        [MI(IL)] public static float4 sign(this float4 f) => math.sign(f);
-        ///<inheritdoc cref="sign(float4)"/>
-        [MI(IL)] public static float3 sign(this float3 f) => math.sign(f);
-        ///<inheritdoc cref="sign(float4)"/>
-        [MI(IL)] public static float2 sign(this float2 f) => math.sign(f);
-        ///<inheritdoc cref="sign(float4)"/>
-        [MI(IL)] public static float sign(this float f) => math.sign(f);
-        
-        ///<inheritdoc cref="math.chgsign(float4,float4)"/>
-        [MI(IL)] public static float4 chgsign(this float4 f, float4 y) => math.chgsign(f, y);
-        ///<inheritdoc cref="math.chgsign(float3,float3)"/>
-        [MI(IL)] public static float3 chgsign(this float3 f, float3 y) => math.chgsign(f, y);
-        ///<inheritdoc cref="math.chgsign(float2,float2)"/>
-        [MI(IL)] public static float2 chgsign(this float2 f, float2 y) => math.chgsign(f, y);
-        ///<inheritdoc cref="math.chgsign(float,float)"/>
-        [MI(IL)] public static float chgsign(this float f, float y) => math.chgsign(f, y);
-        
-        ///<inheritdoc cref="math.chgsign(float4,float4)"/>
-        [MI(IL)] public static float4 chgsign(this float4 f, float y) => math.asfloat(math.asuint(f) ^ (math.asuint(y) & 0x80000000));
-        ///<inheritdoc cref="math.chgsign(float3,float3)"/>
-        [MI(IL)] public static float3 chgsign(this float3 f, float y) => math.asfloat(math.asuint(f) ^ (math.asuint(y) & 0x80000000));
-        ///<inheritdoc cref="math.chgsign(float2,float2)"/>
-        [MI(IL)] public static float2 chgsign(this float2 f, float y) => math.asfloat(math.asuint(f) ^ (math.asuint(y) & 0x80000000));
+		/// Returns the sign of the given value.
+		/// <remarks>
+		/// This implementation is 2.6x faster than math.sign.
+		/// </remarks>
+		[MI(IL)] public static float4 sign(this float4 f) => math.sign(f);
+		///<inheritdoc cref="sign(float4)"/>
+		[MI(IL)] public static float3 sign(this float3 f) => math.sign(f);
+		///<inheritdoc cref="sign(float4)"/>
+		[MI(IL)] public static float2 sign(this float2 f) => math.sign(f);
+		///<inheritdoc cref="sign(float4)"/>
+		[MI(IL)] public static float sign(this float f) => math.sign(f);
 
-        #endregion
-        
-        #region abs
+		///<inheritdoc cref="math.chgsign(float4,float4)"/>
+		[MI(IL)] public static float4 chgsign(this float4 f, float4 y) => math.chgsign(f, y);
+		///<inheritdoc cref="math.chgsign(float3,float3)"/>
+		[MI(IL)] public static float3 chgsign(this float3 f, float3 y) => math.chgsign(f, y);
+		///<inheritdoc cref="math.chgsign(float2,float2)"/>
+		[MI(IL)] public static float2 chgsign(this float2 f, float2 y) => math.chgsign(f, y);
+		///<inheritdoc cref="math.chgsign(float,float)"/>
+		[MI(IL)] public static float chgsign(this float f, float y) => math.chgsign(f, y);
 
-        /// The component-wise absolute value of the input.
-        [MI(IL)] public static float4 abs(this float4 f) => math.abs(f);
-        /// <inheritdoc cref="abs(float4)"/>
-        [MI(IL)] public static float3 abs(this float3 f) => math.abs(f);
-        /// <inheritdoc cref="abs(float4)"/>
-        [MI(IL)] public static float2 abs(this float2 f) => math.abs(f);
-        /// <inheritdoc cref="abs(float4)"/>
-        [MI(IL)] public static float abs(this float f) => math.abs(f);
+		///<inheritdoc cref="math.chgsign(float4,float4)"/>
+		[MI(IL)] public static float4 chgsign(this float4 f, float y) => math.asfloat(math.asuint(f) ^ math.asuint(y) & 0x80000000);
+		///<inheritdoc cref="math.chgsign(float3,float3)"/>
+		[MI(IL)] public static float3 chgsign(this float3 f, float y) => math.asfloat(math.asuint(f) ^ math.asuint(y) & 0x80000000);
+		///<inheritdoc cref="math.chgsign(float2,float2)"/>
+		[MI(IL)] public static float2 chgsign(this float2 f, float y) => math.asfloat(math.asuint(f) ^ math.asuint(y) & 0x80000000);
 
-        #endregion
-        
-        #region mod
+		#endregion
 
-        /// fast mod function
-        /// <remarks>
-        /// approx 5% faster than math.mod()
-        /// It is also exact for negative values of x;
-        /// </remarks>
-        [MI(IL)] public static float4 mod(this float4 f, float4 mod) => f % mod;
-        /// <inheritdoc cref="mod(float4, float4)"/>
-        [MI(IL)] public static float3 mod(this float3 f, float3 mod) => f % mod;
-        /// <inheritdoc cref="mod(float4, float4)"/>
-        [MI(IL)] public static float2 mod(this float2 f, float2 mod) => f % mod;
-        /// <inheritdoc cref="mod(float4, float4)"/>
-        [MI(IL)] public static float mod(this float f, float mod) => f % mod;
-        
-        /// <inheritdoc cref="mod(float4, float4)"/>
-        [MI(IL)] public static float4 mod(this float4 f, int4 mod) => f % mod;
-        /// <inheritdoc cref="mod(float4, float4)"/>
-        [MI(IL)] public static float3 mod(this float3 f, int3 mod) => f % mod;
-        /// <inheritdoc cref="mod(float4, float4)"/>
-        [MI(IL)] public static float2 mod(this float2 f, int2 mod) => f % mod;
-        /// <inheritdoc cref="mod(float4, float4)"/>
-        [MI(IL)] public static float mod(this float f, int mod) => f % mod;
+		#region abs
 
-        
-        /// <inheritdoc cref="mod(float4, float4)"/>
-        [MI(IL)] public static float4 mod(this float4 f, float mod) => f % mod;
-        /// <inheritdoc cref="mod(float4, float4)"/>
-        [MI(IL)] public static float3 mod(this float3 f, float mod) => f % mod;
-        /// <inheritdoc cref="mod(float4, float4)"/>
-        [MI(IL)] public static float2 mod(this float2 f, float mod) => f % mod;
-        
-        /// <inheritdoc cref="mod(float4, float4)"/>
-        [MI(IL)] public static float4 mod(this float4 f, int mod) => f % mod;
-        /// <inheritdoc cref="mod(float4, float4)"/>
-        [MI(IL)] public static float3 mod(this float3 f, int mod) => f % mod;
-        /// <inheritdoc cref="mod(float4, float4)"/>
-        [MI(IL)] public static float2 mod(this float2 f, int mod) => f % mod;
+		/// The component-wise absolute value of the input.
+		[MI(IL)] public static float4 abs(this float4 f) => math.abs(f);
+		/// <inheritdoc cref="abs(float4)"/>
+		[MI(IL)] public static float3 abs(this float3 f) => math.abs(f);
+		/// <inheritdoc cref="abs(float4)"/>
+		[MI(IL)] public static float2 abs(this float2 f) => math.abs(f);
+		/// <inheritdoc cref="abs(float4)"/>
+		[MI(IL)] public static float abs(this float f) => math.abs(f);
 
-        #endregion
-        
-        #region frac
+		#endregion
 
-        /// <summary>Returns the fractional part of a float value.</summary>
-        /// <remarks>Fractional Remainder (f - (int)f) is x3 faster than math.frac() (1.3.1)</remarks>
-        [MI(IL)] public static float4 frac(this float4 f) => f - (int4)f;
-        /// <inheritdoc cref="frac(float4)"/>
-        [MI(IL)] public static float3 frac(this float3 f) => f - (int3)f;
-        /// <inheritdoc cref="frac(float4)"/>
-        [MI(IL)] public static float2 frac(this float2 f) => f - (int2)f;
-        /// <inheritdoc cref="frac(float4)"/>
-        [MI(IL)] public static float frac(this float f) => f - (int)f;
-        
+		#region mod
 
-        #endregion
-        
-        #region csum
+		/// fast mod function
+		/// <remarks>
+		/// approx 5% faster than math.mod()
+		/// It is also exact for negative values of x;
+		/// </remarks>
+		[MI(IL)] public static float4 mod(this float4 f, float4 mod) => f % mod;
+		/// <inheritdoc cref="mod(float4, float4)"/>
+		[MI(IL)] public static float3 mod(this float3 f, float3 mod) => f % mod;
+		/// <inheritdoc cref="mod(float4, float4)"/>
+		[MI(IL)] public static float2 mod(this float2 f, float2 mod) => f % mod;
+		/// <inheritdoc cref="mod(float4, float4)"/>
+		[MI(IL)] public static float mod(this float f, float mod) => f % mod;
 
-        /// Returns the csum of all components of the vector
-        [MI(IL)] public static float csum(this float4 f) => math.csum(f);
-        /// <inheritdoc cref="csum(float4)"/> 
-        [MI(IL)] public static float csum(this float3 f) => math.csum(f);
-        /// <inheritdoc cref="csum(float4)"/>
-        [MI(IL)] public static float csum(this float2 f) => math.csum(f);
+		/// <inheritdoc cref="mod(float4, float4)"/>
+		[MI(IL)] public static float4 mod(this float4 f, int4 mod) => f % mod;
+		/// <inheritdoc cref="mod(float4, float4)"/>
+		[MI(IL)] public static float3 mod(this float3 f, int3 mod) => f % mod;
+		/// <inheritdoc cref="mod(float4, float4)"/>
+		[MI(IL)] public static float2 mod(this float2 f, int2 mod) => f % mod;
+		/// <inheritdoc cref="mod(float4, float4)"/>
+		[MI(IL)] public static float mod(this float f, int mod) => f % mod;
 
-        #endregion
+		/// <inheritdoc cref="mod(float4, float4)"/>
+		[MI(IL)] public static float4 mod(this float4 f, float mod) => f % mod;
+		/// <inheritdoc cref="mod(float4, float4)"/>
+		[MI(IL)] public static float3 mod(this float3 f, float mod) => f % mod;
+		/// <inheritdoc cref="mod(float4, float4)"/>
+		[MI(IL)] public static float2 mod(this float2 f, float mod) => f % mod;
 
-        #region cmul
+		/// <inheritdoc cref="mod(float4, float4)"/>
+		[MI(IL)] public static float4 mod(this float4 f, int mod) => f % mod;
+		/// <inheritdoc cref="mod(float4, float4)"/>
+		[MI(IL)] public static float3 mod(this float3 f, int mod) => f % mod;
+		/// <inheritdoc cref="mod(float4, float4)"/>
+		[MI(IL)] public static float2 mod(this float2 f, int mod) => f % mod;
 
-        /// Returns the product of all components of the vector
-        [MI(IL)] public static float cmul(this float4 f) => f.x * f.y * f.z * f.w;
-        /// <inheritdoc cref="cmul(float4)"/>
-        [MI(IL)] public static float cmul(this float3 f) => f.x * f.y * f.z;
-        /// <inheritdoc cref="cmul(float4)"/>
-        [MI(IL)] public static float cmul(this float2 f) => f.x * f.y;
+		#endregion
 
-        #endregion
+		#region frac
 
-        #region inv
+		/// <summary>Returns the fractional part of a float value.</summary>
+		/// <remarks>Fractional Remainder (f - (int)f) is x3 faster than math.frac() (1.3.1)</remarks>
+		[MI(IL)] public static float4 frac(this float4 f) => f - (int4)f;
+		/// <inheritdoc cref="frac(float4)"/>
+		[MI(IL)] public static float3 frac(this float3 f) => f - (int3)f;
+		/// <inheritdoc cref="frac(float4)"/>
+		[MI(IL)] public static float2 frac(this float2 f) => f - (int2)f;
+		/// <inheritdoc cref="frac(float4)"/>
+		[MI(IL)] public static float frac(this float f) => f - (int)f;
 
-        /// Returns one minus the given value. => ex : color inversion
-        [MI(IL)] public static float4 inv(this float4 f) => 1 - f;
-        /// <inheritdoc cref="inv(float4)"/>
-        [MI(IL)] public static float3 inv(this float3 f) => 1 - f;
-        /// <inheritdoc cref="inv(float4)"/>
-        [MI(IL)] public static float2 inv(this float2 f) => 1 - f;
-        /// <inheritdoc cref="inv(float4)"/>
-        [MI(IL)] public static float inv(this float f) => 1 - f;
+		#endregion
 
-        #endregion
+		#region csum
 
-        #region neg
+		/// Returns the csum of all components of the vector
+		[MI(IL)] public static float csum(this float4 f) => math.csum(f);
+		/// <inheritdoc cref="csum(float4)"/> 
+		[MI(IL)] public static float csum(this float3 f) => math.csum(f);
+		/// <inheritdoc cref="csum(float4)"/>
+		[MI(IL)] public static float csum(this float2 f) => math.csum(f);
 
-        /// Returns the negation of the given value.
-        [MI(IL)] public static float4 neg(this float4 f) => -f;
-        /// <inheritdoc cref="neg(float4)"/>
-        [MI(IL)] public static float3 neg(this float3 f) => -f;
-        /// <inheritdoc cref="neg(float4)"/>
-        [MI(IL)] public static float2 neg(this float2 f) => -f;
-        /// <inheritdoc cref="neg(float4)"/>
-        [MI(IL)] public static float neg(this float f) => -f;
-        
-        #endregion
-        
-        #region rcp
+		#endregion
 
-        /// Returns the componentwise reciprocal a vector.
-        [MI(IL)] public static float4 rcp(this float4 f) => math.rcp(f);
-        /// <inheritdoc cref="rcp(float4)"/>
-        [MI(IL)] public static float3 rcp(this float3 f) => math.rcp(f);
-        /// <inheritdoc cref="rcp(float4)"/>
-        [MI(IL)] public static float2 rcp(this float2 f) => math.rcp(f);
-        /// <inheritdoc cref="rcp(float4)"/>
-        [MI(IL)] public static float rcp(this float f) => math.rcp(f);
+		#region cmul
 
-        #endregion
+		/// Returns the product of all components of the vector
+		[MI(IL)] public static float cmul(this float4 f) => f.x * f.y * f.z * f.w;
+		/// <inheritdoc cref="cmul(float4)"/>
+		[MI(IL)] public static float cmul(this float3 f) => f.x * f.y * f.z;
+		/// <inheritdoc cref="cmul(float4)"/>
+		[MI(IL)] public static float cmul(this float2 f) => f.x * f.y;
 
-        #region pow
+		#endregion
 
-        /// Returns the componentwise result of raising x to the power y.
-        [MI(IL)] public static float4 pow(this float4 f, float4 pow) => math.pow(f, pow);
-        /// <inheritdoc cref="pow(float4,float4)"/>
-        [MI(IL)] public static float3 pow(this float3 f, float3 y) => math.pow(f, y);
-        /// <inheritdoc cref="pow(float4,float4)"/>
-        [MI(IL)] public static float2 pow(this float2 f, float2 y) => math.pow(f, y);
-        /// <inheritdoc cref="pow(float4,float4)"/>
-        [MI(IL)] public static float pow(this float f, float y) => math.pow(f, y);
-        
-        /// <inheritdoc cref="pow(float4,float4)"/>
-        [MI(IL)] public static float4 pow(this float4 f, float pow) => new(math.pow(f.x, pow), math.pow(f.y, pow), math.pow(f.z, pow), math.pow(f.w, pow));
-        /// <inheritdoc cref="pow(float4,float4)"/>
-        [MI(IL)] public static float3 pow(this float3 f, float y) => new(math.pow(f.x, y), math.pow(f.y, y), math.pow(f.z, y));
-        /// <inheritdoc cref="pow(float4,float4)"/>
-        [MI(IL)] public static float2 pow(this float2 f, float y) => new(math.pow(f.x, y), math.pow(f.y, y));
+		#region inv
 
-        #endregion
+		/// Returns one minus the given value. => ex : color inversion
+		[MI(IL)] public static float4 inv(this float4 f) => 1 - f;
+		/// <inheritdoc cref="inv(float4)"/>
+		[MI(IL)] public static float3 inv(this float3 f) => 1 - f;
+		/// <inheritdoc cref="inv(float4)"/>
+		[MI(IL)] public static float2 inv(this float2 f) => 1 - f;
+		/// <inheritdoc cref="inv(float4)"/>
+		[MI(IL)] public static float inv(this float f) => 1 - f;
 
-        #region sq
+		#endregion
 
-        /// Returns x^2
-        [MI(IL)] public static float4 sq(this float4 f) => f * f;
-        /// <inheritdoc cref="sq(float4)"/>
-        [MI(IL)] public static float3 sq(this float3 f) => f * f;
-        /// <inheritdoc cref="sq(float4)"/>
-        [MI(IL)] public static float2 sq(this float2 f) => f * f;
-        /// <inheritdoc cref="sq(float4)"/>
-        [MI(IL)] public static float sq(this float f) => f * f;
+		#region neg
 
-        #endregion
+		/// Returns the negation of the given value.
+		[MI(IL)] public static float4 neg(this float4 f) => -f;
+		/// <inheritdoc cref="neg(float4)"/>
+		[MI(IL)] public static float3 neg(this float3 f) => -f;
+		/// <inheritdoc cref="neg(float4)"/>
+		[MI(IL)] public static float2 neg(this float2 f) => -f;
+		/// <inheritdoc cref="neg(float4)"/>
+		[MI(IL)] public static float neg(this float f) => -f;
 
-        #region cube
+		#endregion
 
-        /// <summary> Returns x^3 </summary>
-        [MI(IL)] public static float4 cube(this float4 f) => f * f * f;
-        /// <inheritdoc cref="cube(float4)"/>
-        [MI(IL)] public static float3 cube(this float3 f) => f * f * f;
-        /// <inheritdoc cref="cube(float4)"/>
-        [MI(IL)] public static float2 cube(this float2 f) => f * f * f;
-        /// <inheritdoc cref="cube(float4)"/>
-        [MI(IL)] public static float cube(this float f) => f * f * f;
+		#region rcp
 
-        #endregion
+		/// Returns the componentwise reciprocal a vector.
+		[MI(IL)] public static float4 rcp(this float4 f) => math.rcp(f);
+		/// <inheritdoc cref="rcp(float4)"/>
+		[MI(IL)] public static float3 rcp(this float3 f) => math.rcp(f);
+		/// <inheritdoc cref="rcp(float4)"/>
+		[MI(IL)] public static float2 rcp(this float2 f) => math.rcp(f);
+		/// <inheritdoc cref="rcp(float4)"/>
+		[MI(IL)] public static float rcp(this float f) => math.rcp(f);
 
-        #region pow4
+		#endregion
 
-        /// <summary> Returns x^4 </summary>
-        [MI(IL)] public static float4 pow4(this float4 f) => f.sq().sq();
-        /// <inheritdoc cref="pow4(float4)"/>
-        [MI(IL)] public static float3 pow4(this float3 f) => f.sq().sq();
-        /// <inheritdoc cref="pow4(float4)"/>
-        [MI(IL)] public static float2 pow4(this float2 f) => f.sq().sq();
-        /// <inheritdoc cref="pow4(float4)"/>
-        [MI(IL)] public static float pow4(this float f) => f.sq().sq();
+		#region pow
 
-        #endregion
+		/// Returns the componentwise result of raising x to the power y.
+		[MI(IL)] public static float4 pow(this float4 f, float4 pow) => math.pow(f, pow);
+		/// <inheritdoc cref="pow(float4,float4)"/>
+		[MI(IL)] public static float3 pow(this float3 f, float3 y) => math.pow(f, y);
+		/// <inheritdoc cref="pow(float4,float4)"/>
+		[MI(IL)] public static float2 pow(this float2 f, float2 y) => math.pow(f, y);
+		/// <inheritdoc cref="pow(float4,float4)"/>
+		[MI(IL)] public static float pow(this float f, float y) => math.pow(f, y);
 
-        #region pow5
+		/// <inheritdoc cref="pow(float4,float4)"/>
+		[MI(IL)] public static float4 pow(this float4 f, float pow) => new(math.pow(f.x, pow), math.pow(f.y, pow), math.pow(f.z, pow), math.pow(f.w, pow));
+		/// <inheritdoc cref="pow(float4,float4)"/>
+		[MI(IL)] public static float3 pow(this float3 f, float y) => new(math.pow(f.x, y), math.pow(f.y, y), math.pow(f.z, y));
+		/// <inheritdoc cref="pow(float4,float4)"/>
+		[MI(IL)] public static float2 pow(this float2 f, float y) => new(math.pow(f.x, y), math.pow(f.y, y));
 
-        /// <summary> Returns x^5 </summary>
-        [MI(IL)] public static float4 pow5(this float4 f) => f.sq().sq() * f;
-        /// <inheritdoc cref="pow5(float4)" />
-        [MI(IL)] public static float3 pow5(this float3 f) => f.sq().sq() * f;
-        /// <inheritdoc cref="pow5(float4)" />
-        [MI(IL)] public static float2 pow5(this float2 f) => f.sq().sq() * f;
-        /// <inheritdoc cref="pow5(float4)" />
-        [MI(IL)] public static float pow5(this float f) => f.sq().sq() * f;
+		#endregion
 
-        #endregion
+		#region sq
 
-        #region saturate
-        /// <inheritdoc cref="math.saturate(float4)" />
-        [MI(IL)] public static float4 saturate(this float4 f) => math.saturate(f);
-        /// <inheritdoc cref="math.saturate(float3)" />
-        [MI(IL)] public static float3 saturate(this float3 f) => math.saturate(f);
-        /// <inheritdoc cref="math.saturate(float2)" />
-        [MI(IL)] public static float2 saturate(this float2 f) => math.saturate(f);
-        /// <inheritdoc cref="math.saturate(float)" />
-        [MI(IL)] public static float saturate(this float f) => math.saturate(f);
-        #endregion
+		/// Returns x^2
+		[MI(IL)] public static float4 sq(this float4 f) => f * f;
+		/// <inheritdoc cref="sq(float4)"/>
+		[MI(IL)] public static float3 sq(this float3 f) => f * f;
+		/// <inheritdoc cref="sq(float4)"/>
+		[MI(IL)] public static float2 sq(this float2 f) => f * f;
+		/// <inheritdoc cref="sq(float4)"/>
+		[MI(IL)] public static float sq(this float f) => f * f;
 
-        #region snap
-        /// <summary> Rounds a value to the closest multiplier of snap. </summary>
-        [MI(IL)] public static float4 snap(this float4 x, float4 snap) => round(x / snap) * snap;
-        /// <inheritdoc cref="snap(float4,float4)" />
-        [MI(IL)] public static float4 snap(this float4 x, float snap) => round(x / snap) * snap;
-        /// <inheritdoc cref="snap(float4,float4)" />
-        [MI(IL)] public static float3 snap(this float3 x, float3 snap) => round(x / snap) * snap;
-        /// <inheritdoc cref="snap(float4,float4)" />
-        [MI(IL)] public static float3 snap(this float3 x, float snap) => round(x / snap) * snap;
-        /// <inheritdoc cref="snap(float4,float4)" />
-        [MI(IL)] public static float2 snap(this float2 x, float2 snap) => round(x / snap) * snap;
-        /// <inheritdoc cref="snap(float4,float4)" />
-        [MI(IL)] public static float2 snap(this float2 x, float snap) => round(x / snap) * snap;
-        /// <inheritdoc cref="snap(float4,float4)" />
-        [MI(IL)] public static float snap(this float x, float snap) => round(x / snap) * snap;
-        #endregion
+		#endregion
 
-        #region bitwave
-        /// <summary> Samples a square wave that goes between 0 and 1. </summary>
-        [MI(IL)] public static float4 bitwave(this float4 x) => floor(math.fmod(x, 2));
-        /// <inheritdoc cref="bitwave(float4)" />
-        [MI(IL)] public static float3 bitwave(this float3 x) => floor(math.fmod(x, 2));
-        /// <inheritdoc cref="bitwave(float4)" />
-        [MI(IL)] public static float2 bitwave(this float2 x) => floor(math.fmod(x, 2));
-        /// <inheritdoc cref="bitwave(float4)" />
-        [MI(IL)] public static float bitwave(this float x) => floor(math.fmod(x, 2));
-        #endregion
-        
-        #region bitwave
+		#region cube
 
-        /// <summary> Samples a square wave that goes between 0 and 1. </summary>
-        [MI(IL)] public static float4 bitwave2(this float4 x) => (int4)x & 1;
-        /// <inheritdoc cref="bitwave2(float4)" />
-        [MI(IL)] public static float3 bitwave2(this float3 x) => (int3)x & 1;
-        /// <inheritdoc cref="bitwave2(float4)" />
-        [MI(IL)] public static float2 bitwave2(this float2 x) => (int2)x & 1;
-        /// <inheritdoc cref="bitwave2(float4)" />
-        [MI(IL)] public static float bitwave2(this float x) => (int)x & 1;
-        #endregion
+		/// <summary> Returns x^3 </summary>
+		[MI(IL)] public static float4 cube(this float4 f) => f * f * f;
+		/// <inheritdoc cref="cube(float4)"/>
+		[MI(IL)] public static float3 cube(this float3 f) => f * f * f;
+		/// <inheritdoc cref="cube(float4)"/>
+		[MI(IL)] public static float2 cube(this float2 f) => f * f * f;
+		/// <inheritdoc cref="cube(float4)"/>
+		[MI(IL)] public static float cube(this float f) => f * f * f;
 
-        #region triwave
-        /// <summary> Samples a triangle wave between +0.5f and -0.5f. </summary>
-        [MI(IL)] public static float4 triwave(this float4 x) => abs(frac(x) - 0.5f);
-        /// <inheritdoc cref="triwave(float4)" />
-        [MI(IL)] public static float3 triwave(this float3 x) => abs(frac(x) - 0.5f);
-        /// <inheritdoc cref="triwave(float4)" />
-        [MI(IL)] public static float2 triwave(this float2 x) => abs(frac(x) - 0.5f);
-        /// <inheritdoc cref="triwave(float4)" />
-        [MI(IL)] public static float triwave(this float x) => abs(frac(x) - 0.5f);
-        #endregion
-        
-        #region Component-wise Math
+		#endregion
 
-        /// <inheritdoc cref="math.sqrt(float4)"/>
-        [MI(IL)] public static float4 sqrt(this float4 f) => math.sqrt(f);
-        /// <inheritdoc cref="math.sqrt(float3)"/>
-        [MI(IL)] public static float3 sqrt(this float3 f) => math.sqrt(f);
-        /// <inheritdoc cref="math.sqrt(float2)"/>
-        [MI(IL)] public static float2 sqrt(this float2 f) => math.sqrt(f);
-        /// <inheritdoc cref="math.sqrt(float)"/>
-        [MI(IL)] public static float sqrt(this float f) => math.sqrt(f);
-        
-        /// Cube Root Function
-        [MI(IL)] public static float4 cbrt(this float4 f) => f.sign() * f.abs().pow(THIRD);
-        /// <inheritdoc cref="cbrt(float4)"/>
-        [MI(IL)] public static float3 cbrt(this float3 f) => f.sign() * f.abs().pow(THIRD);
-        /// <inheritdoc cref="cbrt(float4)"/>
-        [MI(IL)] public static float2 cbrt(this float2 f) => f.sign() * f.abs().pow(THIRD);
-        /// <inheritdoc cref="cbrt(float4)"/>
-        [MI(IL)] public static float cbrt(this float f) => f.sign() * f.abs().pow(THIRD);
+		#region pow4
 
-        /// returns 1 / cbrt(f) : inverse Cube root
-        [MI(IL)] public static float4 rcbrt(this float4 f) => 1 / f.cbrt();
-        /// <inheritdoc cref="rcbrt(float4)"/>
-        [MI(IL)] public static float3 rcbrt(this float3 f) => 1 / f.cbrt();
-        /// <inheritdoc cref="rcbrt(float4)"/>
-        [MI(IL)] public static float2 rcbrt(this float2 f) => 1 / f.cbrt();
-        /// <inheritdoc cref="rcbrt(float4)"/>
-        [MI(IL)] public static float rcbrt(this float f) => 1 / f.cbrt();
-        
+		/// <summary> Returns x^4 </summary>
+		[MI(IL)] public static float4 pow4(this float4 f) => f.sq().sq();
+		/// <inheritdoc cref="pow4(float4)"/>
+		[MI(IL)] public static float3 pow4(this float3 f) => f.sq().sq();
+		/// <inheritdoc cref="pow4(float4)"/>
+		[MI(IL)] public static float2 pow4(this float2 f) => f.sq().sq();
+		/// <inheritdoc cref="pow4(float4)"/>
+		[MI(IL)] public static float pow4(this float f) => f.sq().sq();
 
-        /// <inheritdoc cref="math.rsqrt(float4)"/>
-        [MI(IL)] public static float4 rsqrt(this float4 f) => math.rsqrt(f);
-        /// <inheritdoc cref="math.rsqrt(float3)"/>
-        [MI(IL)] public static float3 rsqrt(this float3 f) => math.rsqrt(f);
-        /// <inheritdoc cref="math.rsqrt(float2)"/>
-        [MI(IL)] public static float2 rsqrt(this float2 f) => math.rsqrt(f);
-        /// <inheritdoc cref="math.rsqrt(float)"/>
-        [MI(IL)] public static float rsqrt(this float f) => math.rsqrt(f);
-        
-        
-        #endregion Component-wise Math
+		#endregion
 
-        /// Returns input * 2 - 1
-        /// Effectively remaps the range [0, 1] to [-1, 1]
-        [MI(IL)] public static float m2n1(this float f) => f * 2 - 1;
-        /// <inheritdoc cref="m2n1(float)"/>
-        [MI(IL)] public static float2 m2n1(this float2 f) => f * 2 - 1;
-        /// <inheritdoc cref="m2n1(float)"/>
-        [MI(IL)] public static float3 m2n1(this float3 f) => f * 2 - 1;
-        /// <inheritdoc cref="m2n1(float)"/>
-        [MI(IL)] public static float4 m2n1(this float4 f) => f * 2 - 1;
-        /// <inheritdoc cref="m2n1(float)"/>
-        [MI(IL)] public static float2x2 m2n1(this float2x2 f) => f * 2 - 1;
-        /// <inheritdoc cref="m2n1(float)"/>
-        [MI(IL)] public static float2x3 m2n1(this float2x3 f) => f * 2 - 1;
-        /// <inheritdoc cref="m2n1(float)"/>
-        [MI(IL)] public static float2x4 m2n1(this float2x4 f) => f * 2 - 1;
-        /// <inheritdoc cref="m2n1(float)"/>
-        [MI(IL)] public static float3x2 m2n1(this float3x2 f) => f * 2 - 1;
-        /// <inheritdoc cref="m2n1(float)"/>
-        [MI(IL)] public static float3x3 m2n1(this float3x3 f) => f * 2 - 1;
-        /// <inheritdoc cref="m2n1(float)"/>
-        [MI(IL)] public static float3x4 m2n1(this float3x4 f) => f * 2 - 1;
-        /// <inheritdoc cref="m2n1(float)"/>
-        [MI(IL)] public static float4x2 m2n1(this float4x2 f) => f * 2 - 1;
-        /// <inheritdoc cref="m2n1(float)"/>
-        [MI(IL)] public static float4x3 m2n1(this float4x3 f) => f * 2 - 1;
-        /// <inheritdoc cref="m2n1(float)"/>
-        [MI(IL)] public static float4x4 m2n1(this float4x4 f) => f * 2 - 1;
-        
-        /// Addition Operation
-        
-        [MI(IL)] public static float add(this float x, float y) => x + y;
-        /// <inheritdoc cref="add(float, float)"/>
-        [MI(IL)] public static float2 add(this float2 x, float2 y) => x + y;
-        /// <inheritdoc cref="add(float, float)"/>
-        [MI(IL)] public static float3 add(this float3 x, float3 y) => x + y;
-        /// <inheritdoc cref="add(float, float)"/>
-        [MI(IL)] public static float4 add(this float4 x, float4 y) => x + y;
-        /// <inheritdoc cref="add(float, float)"/>
-        [MI(IL)] public static float2 add(this float2 x, float y) => x + y;
-        /// <inheritdoc cref="add(float, float)"/>
-        [MI(IL)] public static float3 add(this float3 x, float y) => x + y;
-        /// <inheritdoc cref="add(float, float)"/>
-        [MI(IL)] public static float4 add(this float4 x, float y) => x + y;
-        /// <inheritdoc cref="add(float, float)"/>
-        [MI(IL)] public static float2 add(this float x, float2 y) => x + y;
-        /// <inheritdoc cref="add(float, float)"/>
-        [MI(IL)] public static float3 add(this float x, float3 y) => x + y;
-        /// <inheritdoc cref="add(float, float)"/>
-        [MI(IL)] public static float4 add(this float x, float4 y) => x + y;
+		#region pow5
 
-        /// Subtraction Operation
-        [MI(IL)] public static float sub(this float x, float y) => x - y;
-        /// <inheritdoc cref="sub(float, float)"/>
-        [MI(IL)] public static float2 sub(this float2 x, float2 y) => x - y;
-        /// <inheritdoc cref="sub(float, float)"/>
-        [MI(IL)] public static float3 sub(this float3 x, float3 y) => x - y;
-        /// <inheritdoc cref="sub(float, float)"/>
-        [MI(IL)] public static float4 sub(this float4 x, float4 y) => x - y;
-        /// <inheritdoc cref="sub(float, float)"/>
-        [MI(IL)] public static float2 sub(this float2 x, float y) => x - y;
-        /// <inheritdoc cref="sub(float, float)"/>
-        [MI(IL)] public static float3 sub(this float3 x, float y) => x - y;
-        /// <inheritdoc cref="sub(float, float)"/>
-        [MI(IL)] public static float4 sub(this float4 x, float y) => x - y;
-        /// <inheritdoc cref="sub(float, float)"/>
-        [MI(IL)] public static float2 sub(this float x, float2 y) => x - y;
-        /// <inheritdoc cref="sub(float, float)"/>
-        [MI(IL)] public static float3 sub(this float x, float3 y) => x - y;
-        /// <inheritdoc cref="sub(float, float)"/>
-        [MI(IL)] public static float4 sub(this float x, float4 y) => x - y;
-        
-        /// Division Operation
-        [MI(IL)] public static float div(this float x, float y) => x / y;
-        /// <inheritdoc cref="div(float, float)"/>
-        [MI(IL)] public static float2 div(this float2 x, float2 y) => x / y;
-        /// <inheritdoc cref="div(float, float)"/>
-        [MI(IL)] public static float3 div(this float3 x, float3 y) => x / y;
-        /// <inheritdoc cref="div(float, float)"/>
-        [MI(IL)] public static float4 div(this float4 x, float4 y) => x / y;
-        /// <inheritdoc cref="div(float, float)"/>
-        [MI(IL)] public static float2 div(this float2 x, float y) => x / y;
-        /// <inheritdoc cref="div(float, float)"/>
-        [MI(IL)] public static float3 div(this float3 x, float y) => x / y;
-        /// <inheritdoc cref="div(float, float)"/>
-        [MI(IL)] public static float4 div(this float4 x, float y) => x / y;
-        /// <inheritdoc cref="div(float, float)"/>
-        [MI(IL)] public static float2 div(this float x, float2 y) => x / y;
-        /// <inheritdoc cref="div(float, float)"/>
-        [MI(IL)] public static float3 div(this float x, float3 y) => x / y;
-        /// <inheritdoc cref="div(float, float)"/>
-        [MI(IL)] public static float4 div(this float x, float4 y) => x / y;
+		/// <summary> Returns x^5 </summary>
+		[MI(IL)] public static float4 pow5(this float4 f) => f.sq().sq() * f;
+		/// <inheritdoc cref="pow5(float4)" />
+		[MI(IL)] public static float3 pow5(this float3 f) => f.sq().sq() * f;
+		/// <inheritdoc cref="pow5(float4)" />
+		[MI(IL)] public static float2 pow5(this float2 f) => f.sq().sq() * f;
+		/// <inheritdoc cref="pow5(float4)" />
+		[MI(IL)] public static float pow5(this float f) => f.sq().sq() * f;
 
-        /// Cycle components from x to y to z to w and back to x
-        [MI(IL)] public static float2 cycle(this float2 f) => f.yx;
-        /// <inheritdoc cref="cycle(float2)"/>
-        [MI(IL)] public static float3 cycle(this float3 f) => f.yzx;
-        /// <inheritdoc cref="cycle(float2)"/>
-        [MI(IL)] public static float4 cycle(this float4 f) => f.yzwx;
-        
-        /// cycles the components n times
-        [MI(IL)] public static float2 cycle(this float2 f, int n) => f.apply(cycle, n % 2);
-        /// cycles the components n times
-        [MI(IL)] public static float3 cycle(this float3 f, int n) => f.apply(cycle, n % 3);
-        /// cycles the components n times
-        [MI(IL)] public static float4 cycle(this float4 f, int n) => f.apply(cycle, n % 4);
+		#endregion
 
-        // Swap components
-        /// <inheritdoc cref="swapx(Unity.Mathematics.float4,float)"/>
-        [MI(IL)] public static float2 swapx(this float2 f, float x) => new(x, f.y);
-        /// <inheritdoc cref="swapy(Unity.Mathematics.float4,float)"/>
-        [MI(IL)] public static float2 swapy(this float2 f, float y) => new(f.x, y);
-        /// <inheritdoc cref="swapx(Unity.Mathematics.float4,float)"/>
-        [MI(IL)] public static float3 swapx(this float3 f, float x) => new(x, f.y, f.z);
-        /// <inheritdoc cref="swapy(Unity.Mathematics.float4,float)"/>
-        [MI(IL)] public static float3 swapy(this float3 f, float y) => new(f.x, y, f.z);
-        /// <inheritdoc cref="swapz(Unity.Mathematics.float4,float)"/>
-        [MI(IL)] public static float3 swapz(this float3 f, float z) => new(f.x, f.y, z);
-        /// substitutes the component x
-        [MI(IL)] public static float4 swapx(this float4 f, float x) => new(x, f.y, f.z, f.w);
-        /// substitutes the component y
-        [MI(IL)] public static float4 swapy(this float4 f, float y) => new(f.x, y, f.z, f.w);
-        /// substitutes the component z
-        [MI(IL)] public static float4 swapz(this float4 f, float z) => new(f.x, f.y, z, f.w);
-        /// substitutes the component w
-        [MI(IL)] public static float4 swapw(this float4 f, float w) => new(f.x, f.y, f.z, w);
-    }
+		#region saturate
+
+		/// <inheritdoc cref="math.saturate(float4)" />
+		[MI(IL)] public static float4 saturate(this float4 f) => math.saturate(f);
+		/// <inheritdoc cref="math.saturate(float3)" />
+		[MI(IL)] public static float3 saturate(this float3 f) => math.saturate(f);
+		/// <inheritdoc cref="math.saturate(float2)" />
+		[MI(IL)] public static float2 saturate(this float2 f) => math.saturate(f);
+		/// <inheritdoc cref="math.saturate(float)" />
+		[MI(IL)] public static float saturate(this float f) => math.saturate(f);
+
+		#endregion
+
+		#region snap
+
+		/// <summary> Rounds a value to the closest multiplier of snap. </summary>
+		[MI(IL)] public static float4 snap(this float4 x, float4 snap) => round(x / snap) * snap;
+		/// <inheritdoc cref="snap(float4,float4)" />
+		[MI(IL)] public static float4 snap(this float4 x, float snap) => round(x / snap) * snap;
+		/// <inheritdoc cref="snap(float4,float4)" />
+		[MI(IL)] public static float3 snap(this float3 x, float3 snap) => round(x / snap) * snap;
+		/// <inheritdoc cref="snap(float4,float4)" />
+		[MI(IL)] public static float3 snap(this float3 x, float snap) => round(x / snap) * snap;
+		/// <inheritdoc cref="snap(float4,float4)" />
+		[MI(IL)] public static float2 snap(this float2 x, float2 snap) => round(x / snap) * snap;
+		/// <inheritdoc cref="snap(float4,float4)" />
+		[MI(IL)] public static float2 snap(this float2 x, float snap) => round(x / snap) * snap;
+		/// <inheritdoc cref="snap(float4,float4)" />
+		[MI(IL)] public static float snap(this float x, float snap) => round(x / snap) * snap;
+
+		#endregion
+
+		#region bitwave
+
+		/// <summary> Samples a square wave that goes between 0 and 1. </summary>
+		[MI(IL)] public static float4 bitwave(this float4 x) => floor(math.fmod(x, 2));
+		/// <inheritdoc cref="bitwave(float4)" />
+		[MI(IL)] public static float3 bitwave(this float3 x) => floor(math.fmod(x, 2));
+		/// <inheritdoc cref="bitwave(float4)" />
+		[MI(IL)] public static float2 bitwave(this float2 x) => floor(math.fmod(x, 2));
+		/// <inheritdoc cref="bitwave(float4)" />
+		[MI(IL)] public static float bitwave(this float x) => floor(math.fmod(x, 2));
+
+		#endregion
+
+		#region bitwave
+
+		/// <summary> Samples a square wave that goes between 0 and 1. </summary>
+		[MI(IL)] public static float4 bitwave2(this float4 x) => (int4)x & 1;
+		/// <inheritdoc cref="bitwave2(float4)" />
+		[MI(IL)] public static float3 bitwave2(this float3 x) => (int3)x & 1;
+		/// <inheritdoc cref="bitwave2(float4)" />
+		[MI(IL)] public static float2 bitwave2(this float2 x) => (int2)x & 1;
+		/// <inheritdoc cref="bitwave2(float4)" />
+		[MI(IL)] public static float bitwave2(this float x) => (int)x & 1;
+
+		#endregion
+
+		#region triwave
+
+		/// <summary> Samples a triangle wave between +0.5f and -0.5f. </summary>
+		[MI(IL)] public static float4 triwave(this float4 x) => abs(frac(x) - 0.5f);
+		/// <inheritdoc cref="triwave(float4)" />
+		[MI(IL)] public static float3 triwave(this float3 x) => abs(frac(x) - 0.5f);
+		/// <inheritdoc cref="triwave(float4)" />
+		[MI(IL)] public static float2 triwave(this float2 x) => abs(frac(x) - 0.5f);
+		/// <inheritdoc cref="triwave(float4)" />
+		[MI(IL)] public static float triwave(this float x) => abs(frac(x) - 0.5f);
+
+		#endregion
+
+		#region Component-wise Math
+
+		/// <inheritdoc cref="math.sqrt(float4)"/>
+		[MI(IL)] public static float4 sqrt(this float4 f) => math.sqrt(f);
+		/// <inheritdoc cref="math.sqrt(float3)"/>
+		[MI(IL)] public static float3 sqrt(this float3 f) => math.sqrt(f);
+		/// <inheritdoc cref="math.sqrt(float2)"/>
+		[MI(IL)] public static float2 sqrt(this float2 f) => math.sqrt(f);
+		/// <inheritdoc cref="math.sqrt(float)"/>
+		[MI(IL)] public static float sqrt(this float f) => math.sqrt(f);
+
+		/// Cube Root Function
+		[MI(IL)] public static float4 cbrt(this float4 f) => f.sign() * f.abs().pow(THIRD);
+		/// <inheritdoc cref="cbrt(float4)"/>
+		[MI(IL)] public static float3 cbrt(this float3 f) => f.sign() * f.abs().pow(THIRD);
+		/// <inheritdoc cref="cbrt(float4)"/>
+		[MI(IL)] public static float2 cbrt(this float2 f) => f.sign() * f.abs().pow(THIRD);
+		/// <inheritdoc cref="cbrt(float4)"/>
+		[MI(IL)] public static float cbrt(this float f) => f.sign() * f.abs().pow(THIRD);
+
+		/// returns 1 / cbrt(f) : inverse Cube root
+		[MI(IL)] public static float4 rcbrt(this float4 f) => 1 / f.cbrt();
+		/// <inheritdoc cref="rcbrt(float4)"/>
+		[MI(IL)] public static float3 rcbrt(this float3 f) => 1 / f.cbrt();
+		/// <inheritdoc cref="rcbrt(float4)"/>
+		[MI(IL)] public static float2 rcbrt(this float2 f) => 1 / f.cbrt();
+		/// <inheritdoc cref="rcbrt(float4)"/>
+		[MI(IL)] public static float rcbrt(this float f) => 1 / f.cbrt();
+
+		/// <inheritdoc cref="math.rsqrt(float4)"/>
+		[MI(IL)] public static float4 rsqrt(this float4 f) => math.rsqrt(f);
+		/// <inheritdoc cref="math.rsqrt(float3)"/>
+		[MI(IL)] public static float3 rsqrt(this float3 f) => math.rsqrt(f);
+		/// <inheritdoc cref="math.rsqrt(float2)"/>
+		[MI(IL)] public static float2 rsqrt(this float2 f) => math.rsqrt(f);
+		/// <inheritdoc cref="math.rsqrt(float)"/>
+		[MI(IL)] public static float rsqrt(this float f) => math.rsqrt(f);
+
+		#endregion Component-wise Math
+
+		/// Returns input * 2 - 1
+		/// Effectively remaps the range [0, 1] to [-1, 1]
+		[MI(IL)] public static float m2n1(this float f) => f * 2 - 1;
+		/// <inheritdoc cref="m2n1(float)"/>
+		[MI(IL)] public static float2 m2n1(this float2 f) => f * 2 - 1;
+		/// <inheritdoc cref="m2n1(float)"/>
+		[MI(IL)] public static float3 m2n1(this float3 f) => f * 2 - 1;
+		/// <inheritdoc cref="m2n1(float)"/>
+		[MI(IL)] public static float4 m2n1(this float4 f) => f * 2 - 1;
+		/// <inheritdoc cref="m2n1(float)"/>
+		[MI(IL)] public static float2x2 m2n1(this float2x2 f) => f * 2 - 1;
+		/// <inheritdoc cref="m2n1(float)"/>
+		[MI(IL)] public static float2x3 m2n1(this float2x3 f) => f * 2 - 1;
+		/// <inheritdoc cref="m2n1(float)"/>
+		[MI(IL)] public static float2x4 m2n1(this float2x4 f) => f * 2 - 1;
+		/// <inheritdoc cref="m2n1(float)"/>
+		[MI(IL)] public static float3x2 m2n1(this float3x2 f) => f * 2 - 1;
+		/// <inheritdoc cref="m2n1(float)"/>
+		[MI(IL)] public static float3x3 m2n1(this float3x3 f) => f * 2 - 1;
+		/// <inheritdoc cref="m2n1(float)"/>
+		[MI(IL)] public static float3x4 m2n1(this float3x4 f) => f * 2 - 1;
+		/// <inheritdoc cref="m2n1(float)"/>
+		[MI(IL)] public static float4x2 m2n1(this float4x2 f) => f * 2 - 1;
+		/// <inheritdoc cref="m2n1(float)"/>
+		[MI(IL)] public static float4x3 m2n1(this float4x3 f) => f * 2 - 1;
+		/// <inheritdoc cref="m2n1(float)"/>
+		[MI(IL)] public static float4x4 m2n1(this float4x4 f) => f * 2 - 1;
+
+		/// Addition Operation
+		[MI(IL)] public static float add(this float x, float y) => x + y;
+		/// <inheritdoc cref="add(float, float)"/>
+		[MI(IL)] public static float2 add(this float2 x, float2 y) => x + y;
+		/// <inheritdoc cref="add(float, float)"/>
+		[MI(IL)] public static float3 add(this float3 x, float3 y) => x + y;
+		/// <inheritdoc cref="add(float, float)"/>
+		[MI(IL)] public static float4 add(this float4 x, float4 y) => x + y;
+		/// <inheritdoc cref="add(float, float)"/>
+		[MI(IL)] public static float2 add(this float2 x, float y) => x + y;
+		/// <inheritdoc cref="add(float, float)"/>
+		[MI(IL)] public static float3 add(this float3 x, float y) => x + y;
+		/// <inheritdoc cref="add(float, float)"/>
+		[MI(IL)] public static float4 add(this float4 x, float y) => x + y;
+		/// <inheritdoc cref="add(float, float)"/>
+		[MI(IL)] public static float2 add(this float x, float2 y) => x + y;
+		/// <inheritdoc cref="add(float, float)"/>
+		[MI(IL)] public static float3 add(this float x, float3 y) => x + y;
+		/// <inheritdoc cref="add(float, float)"/>
+		[MI(IL)] public static float4 add(this float x, float4 y) => x + y;
+
+		/// Subtraction Operation
+		[MI(IL)] public static float sub(this float x, float y) => x - y;
+		/// <inheritdoc cref="sub(float, float)"/>
+		[MI(IL)] public static float2 sub(this float2 x, float2 y) => x - y;
+		/// <inheritdoc cref="sub(float, float)"/>
+		[MI(IL)] public static float3 sub(this float3 x, float3 y) => x - y;
+		/// <inheritdoc cref="sub(float, float)"/>
+		[MI(IL)] public static float4 sub(this float4 x, float4 y) => x - y;
+		/// <inheritdoc cref="sub(float, float)"/>
+		[MI(IL)] public static float2 sub(this float2 x, float y) => x - y;
+		/// <inheritdoc cref="sub(float, float)"/>
+		[MI(IL)] public static float3 sub(this float3 x, float y) => x - y;
+		/// <inheritdoc cref="sub(float, float)"/>
+		[MI(IL)] public static float4 sub(this float4 x, float y) => x - y;
+		/// <inheritdoc cref="sub(float, float)"/>
+		[MI(IL)] public static float2 sub(this float x, float2 y) => x - y;
+		/// <inheritdoc cref="sub(float, float)"/>
+		[MI(IL)] public static float3 sub(this float x, float3 y) => x - y;
+		/// <inheritdoc cref="sub(float, float)"/>
+		[MI(IL)] public static float4 sub(this float x, float4 y) => x - y;
+
+		/// Division Operation
+		[MI(IL)] public static float div(this float x, float y) => x / y;
+		/// <inheritdoc cref="div(float, float)"/>
+		[MI(IL)] public static float2 div(this float2 x, float2 y) => x / y;
+		/// <inheritdoc cref="div(float, float)"/>
+		[MI(IL)] public static float3 div(this float3 x, float3 y) => x / y;
+		/// <inheritdoc cref="div(float, float)"/>
+		[MI(IL)] public static float4 div(this float4 x, float4 y) => x / y;
+		/// <inheritdoc cref="div(float, float)"/>
+		[MI(IL)] public static float2 div(this float2 x, float y) => x / y;
+		/// <inheritdoc cref="div(float, float)"/>
+		[MI(IL)] public static float3 div(this float3 x, float y) => x / y;
+		/// <inheritdoc cref="div(float, float)"/>
+		[MI(IL)] public static float4 div(this float4 x, float y) => x / y;
+		/// <inheritdoc cref="div(float, float)"/>
+		[MI(IL)] public static float2 div(this float x, float2 y) => x / y;
+		/// <inheritdoc cref="div(float, float)"/>
+		[MI(IL)] public static float3 div(this float x, float3 y) => x / y;
+		/// <inheritdoc cref="div(float, float)"/>
+		[MI(IL)] public static float4 div(this float x, float4 y) => x / y;
+
+		/// Cycle components from x to y to z to w and back to x
+		[MI(IL)] public static float2 cycle(this float2 f) => f.yx;
+		/// <inheritdoc cref="cycle(float2)"/>
+		[MI(IL)] public static float3 cycle(this float3 f) => f.yzx;
+		/// <inheritdoc cref="cycle(float2)"/>
+		[MI(IL)] public static float4 cycle(this float4 f) => f.yzwx;
+
+		/// cycles the components n times
+		[MI(IL)] public static float2 cycle(this float2 f, int n) => f.apply(cycle, n % 2);
+		/// cycles the components n times
+		[MI(IL)] public static float3 cycle(this float3 f, int n) => f.apply(cycle, n % 3);
+		/// cycles the components n times
+		[MI(IL)] public static float4 cycle(this float4 f, int n) => f.apply(cycle, n % 4);
+
+		// Swap components
+		/// <inheritdoc cref="swapx(Unity.Mathematics.float4,float)"/>
+		[MI(IL)] public static float2 swapx(this float2 f, float x) => new(x, f.y);
+		/// <inheritdoc cref="swapy(Unity.Mathematics.float4,float)"/>
+		[MI(IL)] public static float2 swapy(this float2 f, float y) => new(f.x, y);
+		/// <inheritdoc cref="swapx(Unity.Mathematics.float4,float)"/>
+		[MI(IL)] public static float3 swapx(this float3 f, float x) => new(x, f.y, f.z);
+		/// <inheritdoc cref="swapy(Unity.Mathematics.float4,float)"/>
+		[MI(IL)] public static float3 swapy(this float3 f, float y) => new(f.x, y, f.z);
+		/// <inheritdoc cref="swapz(Unity.Mathematics.float4,float)"/>
+		[MI(IL)] public static float3 swapz(this float3 f, float z) => new(f.x, f.y, z);
+		/// substitutes the component x
+		[MI(IL)] public static float4 swapx(this float4 f, float x) => new(x, f.y, f.z, f.w);
+		/// substitutes the component y
+		[MI(IL)] public static float4 swapy(this float4 f, float y) => new(f.x, y, f.z, f.w);
+		/// substitutes the component z
+		[MI(IL)] public static float4 swapz(this float4 f, float z) => new(f.x, f.y, z, f.w);
+		/// substitutes the component w
+		[MI(IL)] public static float4 swapw(this float4 f, float w) => new(f.x, f.y, f.z, w);
+	}
 }

@@ -1,144 +1,136 @@
-﻿#region Header
-// **    Copyright (C) 2023 Nicolas Reinhard, @LTMX. All rights reserved.
-// **    Github Profile: https://github.com/LTMX
-// **    Repository : https://github.com/LTMX/Unity.mathx
-#endregion
+﻿// // ** Copyright (C) 2026 @ltmx. All rights reserved.
+// // ** GitHub Profile: https://github.com/ltmx
+// // ** Repository : https://github.com/ltmx/Unity.mathx
 
+#region
+
+using System.ComponentModel;
 using UnityEngine;
 using MI = System.Runtime.CompilerServices.MethodImplAttribute;
 
+#endregion
 
 namespace Unity.Mathematics
 {
-    public static partial class mathx
-    {
-        // https://github.com/FreyaHolmer/Mathfs/blob/master/Runtime/Mathfs.cs
+	public static partial class mathx
+	{
+		// https://github.com/FreyaHolmer/Mathfs/blob/master/Runtime/Mathfs.cs
 
-        // SmoothDamp ------------------------------------------------------------------------------------------------
-        [MI(IL)] public static float4 smoothdamp(float4 current, float4 target, ref float4 currentVelocity, float smoothTime, float maxSpeed = float.PositiveInfinity) {
-            return smoothdamp(current, target, ref currentVelocity, smoothTime, maxSpeed, Time.deltaTime);
-        }
+		// SmoothDamp ------------------------------------------------------------------------------------------------
+		[MI(IL)] public static float4 smoothdamp(float4 current, float4 target, ref float4 currentVelocity, float smoothTime, float maxSpeed = float.PositiveInfinity) =>
+			smoothdamp(current, target, ref currentVelocity, smoothTime, maxSpeed, Time.deltaTime);
 
-        [MI(IL)] public static float3 smoothdamp(float3 current, float3 target, ref float3 currentVelocity, float smoothTime, float maxSpeed = float.PositiveInfinity) {
-            return smoothdamp(current, target, ref currentVelocity, smoothTime, maxSpeed, Time.deltaTime);
-        }
+		[MI(IL)] public static float3 smoothdamp(float3 current, float3 target, ref float3 currentVelocity, float smoothTime, float maxSpeed = float.PositiveInfinity) =>
+			smoothdamp(current, target, ref currentVelocity, smoothTime, maxSpeed, Time.deltaTime);
 
-        [MI(IL)] public static float2 smoothdamp(float2 current, float2 target, ref float2 currentVelocity, float smoothTime, float maxSpeed = float.PositiveInfinity) {
-            return smoothdamp(current, target, ref currentVelocity, smoothTime, maxSpeed, Time.deltaTime);
-        }
+		[MI(IL)] public static float2 smoothdamp(float2 current, float2 target, ref float2 currentVelocity, float smoothTime, float maxSpeed = float.PositiveInfinity) =>
+			smoothdamp(current, target, ref currentVelocity, smoothTime, maxSpeed, Time.deltaTime);
 
-        [MI(IL)] public static float smoothdamp(float current, float target, ref float currentVelocity, float smoothTime, float maxSpeed = float.PositiveInfinity) {
-            return smoothdamp(current, target, ref currentVelocity, smoothTime, maxSpeed, Time.deltaTime);
-        }
-        
+		[MI(IL)] public static float smoothdamp(float current, float target, ref float currentVelocity, float smoothTime, float maxSpeed = float.PositiveInfinity) =>
+			smoothdamp(current, target, ref currentVelocity, smoothTime, maxSpeed, Time.deltaTime);
 
-        [MI(IL)] public static float smoothdamp(float current, float target, ref float velocity, float smoothTime, 
-            [System.ComponentModel.DefaultValue("float.PositiveInfinity")]float maxSpeed, 
-            [System.ComponentModel.DefaultValue("Time.deltaTime")]float deltaTime)
-        {
-            smoothTime = 0.0001f.max(smoothTime);
-            float omega = 2 / smoothTime;
+		[MI(IL)] public static float smoothdamp(float current, float target, ref float velocity, float smoothTime, [DefaultValue("float.PositiveInfinity")] float maxSpeed,
+			[DefaultValue("Time.deltaTime")] float deltaTime)
+		{
+			smoothTime = 0.0001f.max(smoothTime);
+			float omega = 2 / smoothTime;
 
-            float x = omega * deltaTime;
-            float exp = (x * (x * (0.48f + x * 0.235f) + 1 )).rcp();
+			float x = omega * deltaTime;
+			float exp = (x * (x * (0.48f + x * 0.235f) + 1)).rcp();
 
-            var change = current - target;
-            var maxChange = maxSpeed * smoothTime;
-            change = change.clamp(-maxChange, maxChange);
+			float change = current - target;
+			float maxChange = maxSpeed * smoothTime;
+			change = change.clamp(-maxChange, maxChange);
 
-            var temp = (velocity + omega * change) * deltaTime;
-            velocity = (velocity - omega * temp) * exp;
+			float temp = (velocity + omega * change) * deltaTime;
+			velocity = (velocity - omega * temp) * exp;
 
-            var result = current - change + (change + temp) * exp;
+			float result = current - change + (change + temp) * exp;
 
-            if ((target - current) * (result - target) <= 0) return result;
-            
-            result = target;
-            velocity = 0;
+			if ((target - current) * (result - target) <= 0) return result;
 
-            return result;
-        }
+			result   = target;
+			velocity = 0;
 
-        [MI(IL)] public static float2 smoothdamp(float2 current, float2 target, ref float2 velocity, float smoothTime, 
-            [System.ComponentModel.DefaultValue("float.PositiveInfinity")]float maxSpeed, 
-            [System.ComponentModel.DefaultValue("Time.deltaTime")]float deltaTime)
-        {
-            smoothTime = 0.0001f.max(smoothTime);
-            float omega = 2 / smoothTime;
+			return result;
+		}
 
-            float x = omega * deltaTime;
-            float exp = (x * (x * (0.48f + x * 0.235f) + 1 )).rcp();
+		[MI(IL)] public static float2 smoothdamp(float2 current, float2 target, ref float2 velocity, float smoothTime, [DefaultValue("float.PositiveInfinity")] float maxSpeed,
+			[DefaultValue("Time.deltaTime")] float deltaTime)
+		{
+			smoothTime = 0.0001f.max(smoothTime);
+			float omega = 2 / smoothTime;
 
-            var change = current - target;
-            var maxChange = maxSpeed * smoothTime;
-            change = change.clamp(-maxChange, maxChange);
+			float x = omega * deltaTime;
+			float exp = (x * (x * (0.48f + x * 0.235f) + 1)).rcp();
 
-            var temp = (velocity + omega * change) * deltaTime;
-            velocity = (velocity - omega * temp) * exp;
+			float2 change = current - target;
+			float maxChange = maxSpeed * smoothTime;
+			change = change.clamp(-maxChange, maxChange);
 
-            var result = current - change + (change + temp) * exp;
+			float2 temp = (velocity + omega * change) * deltaTime;
+			velocity = (velocity - omega * temp) * exp;
 
-            if ((target - current).dot(result - target) <= 0) return result;
-            
-            result = target;
-            velocity = 0;
+			float2 result = current - change + (change + temp) * exp;
 
-            return result;
-        }
+			if ((target - current).dot(result - target) <= 0) return result;
 
-        [MI(IL)] public static float3 smoothdamp(float3 current, float3 target, ref float3 velocity, float smoothTime, 
-            [System.ComponentModel.DefaultValue("float.PositiveInfinity")]float maxSpeed, 
-            [System.ComponentModel.DefaultValue("Time.deltaTime")]float deltaTime)
-        {
-            smoothTime = 0.0001f.max(smoothTime);
-            float omega = 2 / smoothTime;
+			result   = target;
+			velocity = 0;
 
-            float x = omega * deltaTime;
-            float exp = (x * (x * (0.48f + x * 0.235f) + 1 )).rcp();
+			return result;
+		}
 
-            var change = current - target;
-            var maxChange = maxSpeed * smoothTime;
-            change = change.clamp(-maxChange, maxChange);
+		[MI(IL)] public static float3 smoothdamp(float3 current, float3 target, ref float3 velocity, float smoothTime, [DefaultValue("float.PositiveInfinity")] float maxSpeed,
+			[DefaultValue("Time.deltaTime")] float deltaTime)
+		{
+			smoothTime = 0.0001f.max(smoothTime);
+			float omega = 2 / smoothTime;
 
-            var temp = (velocity + omega * change) * deltaTime;
-            velocity = (velocity - omega * temp) * exp;
+			float x = omega * deltaTime;
+			float exp = (x * (x * (0.48f + x * 0.235f) + 1)).rcp();
 
-            var result = current - change + (change + temp) * exp;
+			float3 change = current - target;
+			float maxChange = maxSpeed * smoothTime;
+			change = change.clamp(-maxChange, maxChange);
 
-            if ((target - current).dot(result - target) <= 0) return result;
-            
-            result = target;
-            velocity = 0;
+			float3 temp = (velocity + omega * change) * deltaTime;
+			velocity = (velocity - omega * temp) * exp;
 
-            return result;
-        }
-        
-        [MI(IL)] public static float4 smoothdamp(float4 current, float4 target, ref float4 velocity, float smoothTime, 
-            [System.ComponentModel.DefaultValue("float.PositiveInfinity")]float maxSpeed, 
-            [System.ComponentModel.DefaultValue("Time.deltaTime")]float deltaTime)
-        {
-            smoothTime = 0.0001f.max(smoothTime);
-            float omega = 2 / smoothTime;
+			float3 result = current - change + (change + temp) * exp;
 
-            float x = omega * deltaTime;
-            float exp = (x * (x * (0.48f + x * 0.235f) + 1 )).rcp();
+			if ((target - current).dot(result - target) <= 0) return result;
 
-            var change = current - target;
-            var maxChange = maxSpeed * smoothTime;
-            change = change.clamp(-maxChange, maxChange);
+			result   = target;
+			velocity = 0;
 
-            var temp = (velocity + omega * change) * deltaTime;
-            velocity = (velocity - omega * temp) * exp;
+			return result;
+		}
 
-            var result = current - change + (change + temp) * exp;
+		[MI(IL)] public static float4 smoothdamp(float4 current, float4 target, ref float4 velocity, float smoothTime, [DefaultValue("float.PositiveInfinity")] float maxSpeed,
+			[DefaultValue("Time.deltaTime")] float deltaTime)
+		{
+			smoothTime = 0.0001f.max(smoothTime);
+			float omega = 2 / smoothTime;
 
-            if ((target - current).dot(result - target) <= 0) return result;
-            
-            result = target;
-            velocity = 0;
+			float x = omega * deltaTime;
+			float exp = (x * (x * (0.48f + x * 0.235f) + 1)).rcp();
 
-            return result;
-        }
+			float4 change = current - target;
+			float maxChange = maxSpeed * smoothTime;
+			change = change.clamp(-maxChange, maxChange);
 
-    }
+			float4 temp = (velocity + omega * change) * deltaTime;
+			velocity = (velocity - omega * temp) * exp;
+
+			float4 result = current - change + (change + temp) * exp;
+
+			if ((target - current).dot(result - target) <= 0) return result;
+
+			result   = target;
+			velocity = 0;
+
+			return result;
+		}
+	}
 }
