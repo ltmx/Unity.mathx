@@ -1,0 +1,45 @@
+{
+  "$schema": "https://raw.githubusercontent.com/dotnet/docfx/main/schemas/docfx.schema.json",
+  "metadata": [
+    {
+      "src": [
+        {
+          "src": ".",
+          "files": ["Mathx.Docs.csproj"]
+        }
+      ],
+      "dest": "api/metadata",
+      "filter": "filter.yml",
+      "properties": {
+        "TargetFramework": "netstandard2.1"
+      }
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": ["api/metadata/**.yml", "api/metadata/**.yaml"]
+      },
+      {
+        "files": ["articles/**.md", "articles/toc.yml"]
+      }
+    ],
+    "resource": [
+      {
+        "files": ["images/**"]
+      }
+    ],
+    "dest": "api/_site",
+    "globalMetadata": {
+      "_appTitle": "Unity.mathx API",
+      "_appName": "Unity.mathx",
+      "_enableSearch": true,
+      "_appBasePath": "/Unity.mathx/api",
+      "_gitContribute": {
+        "repo": "https://github.com/LTMX/Unity.mathx",
+        "branch": "master"
+      }
+    },
+    "template": ["default", "modern"]
+  }
+}

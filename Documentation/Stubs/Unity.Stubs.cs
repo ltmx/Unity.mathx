@@ -1,0 +1,174 @@
+// Minimal Unity API stubs for DocFX metadata extraction (not used at runtime).
+
+using System;
+using System.Runtime.InteropServices;
+using Unity.Mathematics;
+
+namespace UnityEngine
+{
+	public struct Vector2
+	{
+		public float x, y;
+		public Vector2(float x, float y) { this.x = x; this.y = y; }
+		public static implicit operator float2(Vector2 v) { unsafe { return *(float2*)&v; } }
+		public static implicit operator Vector2(float2 v) { unsafe { return *(Vector2*)&v; } }
+		public static Vector2 operator -(Vector2 v) => new(-v.x, -v.y);
+	}
+
+	public struct Vector3
+	{
+		public float x, y, z;
+		public Vector3(float x, float y, float z) { this.x = x; this.y = y; this.z = z; }
+		public static implicit operator float3(Vector3 v) { unsafe { return *(float3*)&v; } }
+		public static implicit operator Vector3(float3 v) { unsafe { return *(Vector3*)&v; } }
+		public static Vector3 operator -(Vector3 v) => new(-v.x, -v.y, -v.z);
+	}
+
+	public struct Vector4
+	{
+		public float x, y, z, w;
+		public Vector4(float x, float y, float z, float w) { this.x = x; this.y = y; this.z = z; this.w = w; }
+		public static implicit operator float4(Vector4 v) { unsafe { return *(float4*)&v; } }
+		public static Vector4 operator -(Vector4 v) => new(-v.x, -v.y, -v.z, -v.w);
+	}
+	public struct Vector2Int { public int x, y; public Vector2Int(int x, int y) { this.x = x; this.y = y; } }
+	public struct Vector3Int { public int x, y, z; public Vector3Int(int x, int y, int z) { this.x = x; this.y = y; this.z = z; } }
+	public struct Matrix4x4
+	{
+		public float m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33;
+		public static explicit operator float4x4(Matrix4x4 m) { unsafe { return *(float4x4*)&m; } }
+	}
+	public struct Color { public float r, g, b, a; public Color(float r, float g, float b, float a) { this.r = r; this.g = g; this.b = b; this.a = a; } }
+	public struct Color32 { public byte r, g, b, a; public Color32(byte r, byte g, byte b, byte a) { this.r = r; this.g = g; this.b = b; this.a = a; } }
+	public struct Bounds { public Vector3 center, size; public Bounds(Vector3 center, Vector3 size) { this.center = center; this.size = size; } }
+	public struct Ray { public Vector3 origin, direction; public Ray(Vector3 origin, Vector3 direction) { this.origin = origin; this.direction = direction; } }
+	public static class Time { public static float deltaTime => 0.016f; }
+
+	public class Transform
+	{
+		public Matrix4x4 localToWorldMatrix => default;
+	}
+}
+
+namespace AOT
+{
+	[AttributeUsage(AttributeTargets.Method)]
+	public class MonoPInvokeCallbackAttribute : Attribute
+	{
+		public MonoPInvokeCallbackAttribute(Type type) { }
+	}
+}
+
+namespace Unity.Burst
+{
+	public enum FloatPrecision { Standard, Low, Medium, High }
+	public enum FloatMode { Default, Strict, Deterministic, Fast }
+	public enum OptimizeFor { Default, Performance, Size, FastCompilation }
+
+	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Method)]
+	public class BurstCompileAttribute : Attribute
+	{
+		public FloatPrecision FloatPrecision { get; set; }
+		public FloatMode FloatMode { get; set; }
+		public bool CompileSynchronously { get; set; }
+		public OptimizeFor OptimizeFor { get; set; }
+
+		public BurstCompileAttribute() { }
+		public BurstCompileAttribute(FloatPrecision precision, FloatMode mode) { FloatPrecision = precision; FloatMode = mode; }
+	}
+
+	public readonly struct FunctionPointer<T> where T : class
+	{
+		public FunctionPointer(IntPtr ptr) { Invoke = default!; }
+		public T Invoke { get; }
+		public void InvokeMethod() { }
+	}
+
+	public static class BurstCompiler
+	{
+		public static FunctionPointer<T> CompileFunctionPointer<T>(T delegateMethod) where T : class =>
+			new FunctionPointer<T>(IntPtr.Zero);
+	}
+}
+
+namespace Unity.Burst.Intrinsics
+{
+	public struct v128
+	{
+		public int Int0, Int1, Int2, Int3;
+		public v128(int a, int b, int c, int d) { Int0 = a; Int1 = b; Int2 = c; Int3 = d; }
+	}
+
+	public static class X86
+	{
+		public static class Sse
+		{
+			public static v128 rcp_ss(v128 a) => a;
+		}
+
+		public static class Sse2
+		{
+			public static v128 sub_epi32(v128 a, v128 b) => a;
+		}
+	}
+}
+
+namespace Unity.Collections
+{
+	[AttributeUsage(AttributeTargets.Field | AttributeTargets.Parameter)]
+	public class ReadOnlyAttribute : Attribute { }
+
+	[AttributeUsage(AttributeTargets.Field | AttributeTargets.Parameter)]
+	public class WriteOnlyAttribute : Attribute { }
+
+	public struct NativeArray<T> where T : struct
+	{
+		public int Length => 0;
+		public T this[int index] { get => default; set { } }
+		public void CopyFrom(T[] array) { }
+	}
+}
+
+namespace Unity.Collections.LowLevel.Unsafe
+{
+	public static class Unsafe
+	{
+		public static ref TTo As<TFrom, TTo>(ref TFrom source) where TFrom : struct where TTo : struct
+		{
+			// Doc stub only — not invoked at runtime.
+			throw new NotSupportedException();
+		}
+	}
+}
+
+namespace Unity.Jobs
+{
+	public struct JobHandle { }
+
+	public static class JobHandleExtensions
+	{
+		public static void Complete(this JobHandle handle) { }
+	}
+
+	public interface IJob
+	{
+		void Execute();
+	}
+
+	public interface IJobParallelFor
+	{
+		void Execute(int index);
+	}
+
+	public static class IJobExtensions
+	{
+		public static JobHandle Schedule<T>(this T jobData) where T : struct, IJob => default;
+		public static JobHandle Schedule<T>(this T jobData, JobHandle dependsOn) where T : struct, IJob => default;
+	}
+
+	public static class IJobParallelForExtensions
+	{
+		public static JobHandle Schedule<T>(this T jobData, int arrayLength, int innerloopBatchCount) where T : struct, IJobParallelFor => default;
+		public static JobHandle Schedule<T>(this T jobData, int arrayLength, int innerloopBatchCount, JobHandle dependsOn) where T : struct, IJobParallelFor => default;
+	}
+}

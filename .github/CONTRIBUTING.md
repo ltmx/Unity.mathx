@@ -20,4 +20,4 @@
 - Add or update **Unity Test Framework** tests in `Tests/` for behavior changes.
 - Prefer golden-value tests for deterministic APIs (hashing, noise); tolerance tests for fast math approximations.
 - Run **Window → General → Test Runner → Edit Mode** before opening a PR.
-- See [docs/QUALITY.md](../docs/QUALITY.md) for local test setup and IL2CPP validation checklist.
+- See [Quality & testing](https://ltmx.github.io/Unity.mathx/QUALITY/) for local test setup and IL2CPP validation checklist.

@@ -1,2 +1,10 @@
 *.csproj
 *.csproj.meta
+
+# Documentation builds
+site/
+docs/api/
+Documentation/api/metadata/
+Documentation/api/_site/
+Documentation/**/bin/
+Documentation/**/obj/

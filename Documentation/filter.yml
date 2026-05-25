@@ -1,0 +1,7 @@
+apiRules:
+  - exclude:
+      uidRegex: ^Unity\.Mathematics\.(ExpTween|CdsTween|WIP)
+      type: Type
+  - exclude:
+      uidRegex: ^Unity\.Mathematics\.mathx\.(ExpTween|CdsTween)
+      type: Member

@@ -1,4 +1,4 @@
-# Quality phase
+# Quality & testing
 
 ## Automated tests
 
@@ -29,9 +29,7 @@ Unity does **not** auto-discover tests inside UPM packages. In your **host proje
 }
 ```
 
-Also ensure `com.unity.test-framework` is installed (Package Manager or manifest dependency above). After saving, Unity recompiles and the Test Runner picks up `Mathematics.Mathx.Tests`.
-
-1. Add this package to a Unity project with `testables` configured (see above).
+1. Add this package to a Unity project with `testables` configured.
 2. Open **Window → General → Test Runner**.
 3. Run **Edit Mode** tests for assembly `Mathematics.Mathx.Tests`.
 
@@ -50,12 +48,8 @@ Update expected values in `Tests/GoldenNoiseTests.cs` when the noise implementat
 Before a release, validate on a target device:
 
 1. Create or use a project with **Scripting Backend: IL2CPP** and **Burst** enabled.
-2. Build a player for the target platform (Android, iOS, or standalone).
-3. Exercise code paths that use:
-   - `FunctionPointers` / `JobParallelFor` jobs
-   - Noise field jobs (`FillNoise2D`)
-   - Hash APIs used in runtime gameplay
+2. Build a player for the target platform.
+3. Exercise code paths that use function pointers, parallel jobs, and noise fill jobs.
 4. Confirm no Burst discard warnings in the Editor console for shipped APIs.
-5. Run **Tools → mathx → Test WIP Roadmap** once on the target Editor version before tagging.
 
-Document any platform-specific issues in GitHub Issues before publishing to OpenUPM.
+Document platform-specific issues in GitHub Issues before publishing to OpenUPM.
