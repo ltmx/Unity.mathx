@@ -32,6 +32,9 @@ jobs:
           cache: pip
           cache-dependency-path: requirements-docs.txt
 
+      - name: Install Python docs dependencies
+        run: pip install -r requirements-docs.txt
+
       - name: Install DocFX
         run: dotnet tool install -g docfx
 
@@ -50,9 +53,6 @@ jobs:
           mkdir -p docs~/api
           cp -r Documentation~/api/_site/* docs~/api/
           cp docs~/api-stub/index.html docs~/api/index.html
-
-      - name: Install MkDocs
-        run: pip install -r requirements-docs.txt
 
       - name: Build site
         run: mkdocs build
