@@ -202,7 +202,7 @@ forwardi3 downi3 lefti3 backi3 onei2 zeroi2 onei3 zeroi3 onei4 zeroi4
 
 Edit Mode tests ship in `Tests/` (Unity Test Framework). Package tests require `"testables": ["com.ltmx.mathematics.mathx"]` in your **project** `Packages/manifest.json` (plus `com.unity.test-framework`). Then open **Window → General → Test Runner → Edit Mode**.
 
-See [docs/QUALITY.md](docs/QUALITY.md) for setup, golden-value regeneration, CI secrets, and IL2CPP validation.
+See [docs/QUALITY.md](docs/QUALITY.md) for setup, golden-value regeneration, and IL2CPP validation.
 
 <br>
 

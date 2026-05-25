@@ -1,0 +1,6 @@
+*.meta
+*.idea
+*.branding
+*.csproj
+*.csproj.meta
+*.sln

@@ -1,25 +1,26 @@
 {
-	"name": "Mathematics.Mathx.Tests",
-	"rootNamespace": "",
-	"references": [
-		"GUID:adfab0925da842c4db9a0d438ad877f7",
-		"GUID:d8b63aba1907145bea998dd612889d6b",
-		"GUID:343deaaf83e0cee4ca978e7df0b80d21",
-		"GUID:2bafac87e7f4b9b418d9448d219b01ab",
-		"GUID:2665a8d13d1b3f18800f46e256720795",
-		"GUID:27619889b8ba8c2498cf18bb16e452e2",
-		"GUID:687573a0-0ba2-4178-8dd8-0e9d3de3d9e0"
-	],
-	"includePlatforms": [],
-	"excludePlatforms": [],
-	"allowUnsafeCode": true,
-	"overrideReferences": false,
-	"precompiledReferences": [],
-	"autoReferenced": true,
-	"defineConstraints": [],
-	"versionDefines": [],
-	"noEngineReferences": false,
-	"optionalUnityReferences": [
-		"TestAssemblies"
-	]
+    "name": "Mathematics.Mathx.Tests",
+    "rootNamespace": "",
+    "references": [
+        "GUID:adfab0925da842c4db9a0d438ad877f7",
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:343deaaf83e0cee4ca978e7df0b80d21",
+        "GUID:2bafac87e7f4b9b418d9448d219b01ab",
+        "GUID:2665a8d13d1b3f18800f46e256720795",
+        "GUID:27619889b8ba8c24980f49ee34dbb44a",
+        "GUID:0acc523941302664db1f4e527237feb3"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

@@ -31,7 +31,7 @@ Unity does **not** auto-discover tests inside UPM packages. In your **host proje
 
 Also ensure `com.unity.test-framework` is installed (Package Manager or manifest dependency above). After saving, Unity recompiles and the Test Runner picks up `Mathematics.Mathx.Tests`.
 
-1. Add this package to a Unity project (or open `.ci/TestProject` which already sets `testables`).
+1. Add this package to a Unity project with `testables` configured (see above).
 2. Open **Window → General → Test Runner**.
 3. Run **Edit Mode** tests for assembly `Mathematics.Mathx.Tests`.
 
@@ -45,25 +45,9 @@ python .ci/scripts/golden_noise.py
 
 Update expected values in `Tests/GoldenNoiseTests.cs` when the noise implementation intentionally changes.
 
-## CI
-
-Workflow: [`.github/workflows/tests.yml`](.github/workflows/tests.yml)
-
-Uses [GameCI](https://game.ci/) with project path `.ci/TestProject`, which references the repo root package via `file:../../`.
-
-### Required GitHub secrets
-
-| Secret | Purpose |
-|--------|---------|
-| `UNITY_LICENSE` | Unity `.ulf` license file contents (personal license) |
-| `UNITY_EMAIL` | Unity account email |
-| `UNITY_PASSWORD` | Unity account password |
-
-For Unity Pro, use `UNITY_SERIAL` instead of `UNITY_LICENSE` — see [GameCI activation docs](https://game.ci/docs/github/activation).
-
 ## IL2CPP and device validation (manual)
 
-Automated CI runs Edit Mode tests and Burst compilation in the Editor. Before a release, validate on a target device:
+Before a release, validate on a target device:
 
 1. Create or use a project with **Scripting Backend: IL2CPP** and **Burst** enabled.
 2. Build a player for the target platform (Android, iOS, or standalone).
