@@ -1,4 +1,4 @@
-// Minimal Unity API stubs for DocFX metadata extraction (not used at runtime).
+// DocFX-only Unity API stubs. Extension .stub so Unity does not compile this file in consuming projects.
 
 using System;
 using System.Runtime.InteropServices;
@@ -135,7 +135,6 @@ namespace Unity.Collections.LowLevel.Unsafe
 	{
 		public static ref TTo As<TFrom, TTo>(ref TFrom source) where TFrom : struct where TTo : struct
 		{
-			// Doc stub only — not invoked at runtime.
 			throw new NotSupportedException();
 		}
 	}

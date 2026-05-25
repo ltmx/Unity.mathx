@@ -67,7 +67,12 @@ jobs:
             -x "*.git*" \
             -x ".github/*" \
             -x ".cursorignore" \
-            -x "Tests/*"
+            -x "Tests/*" \
+            -x "Documentation~/*" \
+            -x "docs/*" \
+            -x "mkdocs.yml" \
+            -x "requirements-docs.txt" \
+            -x "site/*"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2

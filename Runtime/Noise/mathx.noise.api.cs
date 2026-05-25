@@ -58,7 +58,7 @@ namespace Unity.Mathematics
 			float sum = 0, amp = 1, freq = 1;
 			for (var i = 0; i < octaves; i++)
 			{
-				var n = 1f - pos.mult(freq).simplex2().abs();
+				var n = 1f - pos.mult((float)freq).simplex2().abs();
 				sum += amp * n * n;
 				freq *= lacunarity;
 				amp *= gain;

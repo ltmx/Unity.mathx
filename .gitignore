@@ -1,10 +1,18 @@
 *.csproj
+!Documentation~/**/*.csproj
 *.csproj.meta
 
-# Documentation builds
+# Documentation builds (Documentation~ trailing ~ = Unity ignores folder on import)
 site/
 docs/api/
-Documentation/api/metadata/
-Documentation/api/_site/
-Documentation/**/bin/
-Documentation/**/obj/
+Documentation~/api/
+Documentation~/**/*.meta
+Documentation~/**/bin/
+Documentation~/**/obj/
+Documentation~/**/*.dll
+Documentation~/**/*.pdb
+Documentation~/**/*.deps.json
+Documentation~/**/obj/**/*.cs
+Documentation~/**/obj/**/*.cache
+Documentation~/**/obj/**/*.editorconfig
+Documentation~/**/obj/**/*.txt

@@ -37,7 +37,7 @@ jobs:
 
       - name: Build API reference
         run: |
-          cd Documentation
+          cd Documentation~
           dotnet build Mathx.Docs.csproj
           docfx metadata docfx.json
           docfx build docfx.json
@@ -46,7 +46,7 @@ jobs:
         run: |
           rm -rf docs/api
           mkdir -p docs/api
-          cp -r Documentation/api/_site/* docs/api/
+          cp -r Documentation~/api/_site/* docs/api/
           cp docs/api-stub/index.html docs/api/index.html
 
       - name: Install MkDocs
