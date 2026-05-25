@@ -15,9 +15,10 @@ namespace Unity.Mathematics.Tests
 {
 	public static class WipMenuTests
 	{
-		[MenuItem("Tools/mathx/Test WIP Roadmap")]
+		[MenuItem("Tools/mathx/Test WIP Roadmap (legacy menu)")]
 		public static void RunWipTests()
 		{
+			Debug.Log("[mathx WIP] Prefer Window → General → Test Runner (Edit Mode). Running legacy smoke checks…");
 			var passed = 0;
 			var failed = 0;
 
