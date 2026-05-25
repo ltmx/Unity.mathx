@@ -90,6 +90,6 @@ nav:
       - Jobify & jobs: guides/jobify.md
       - Hashing: guides/hashing.md
       - Structs: guides/structs.md
-  - API reference: ../api/index.html
+  - API reference: api/index.html
   - Quality: QUALITY.md
   - Contributing: contributing.md

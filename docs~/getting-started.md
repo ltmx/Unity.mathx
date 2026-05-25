@@ -62,5 +62,5 @@ Many APIs are Burst-friendly. For parallel workloads, see [Jobify & jobs](guides
 ## Next steps
 
 - [Fluent chains](guides/fluent-chains.md) — chaining, `.set(out x)`, readability
-- [API reference](api/index.html) — full method list from XML docs
+- [API reference](../api/) — categorized `mathx` browser from XML docs
 - [Contributing](contributing.md) — naming and file layout conventions

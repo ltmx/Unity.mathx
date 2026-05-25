@@ -7,7 +7,7 @@
     </p>
     <div class="mathx-hero__actions">
       <a href="getting-started/" class="md-button md-button--primary">Get started</a>
-      <a href="api/metadata/Unity.Mathematics.mathx.html" class="md-button">API reference</a>
+      <a href="api/" class="md-button">API reference</a>
       <a href="https://github.com/LTMX/Unity.mathx" class="md-button">GitHub</a>
     </div>
     <span class="mathx-hero__package">com.ltmx.mathematics.mathx</span>
@@ -100,7 +100,7 @@ Available on [OpenUPM](https://openupm.com/packages/com.ltmx.mathematics.mathx/)
 
 ## Roadmap
 
-- [x] Fast functions, constants, Mathf translations
-- [x] Random, component logic, interpolation, matrices
-- [x] Noise, SDF, Jobify, hashing, vector builders
-- [x] Generic jobs and function iterators
+- ✅ Fast functions, constants, Mathf translations
+- ✅ Random, component logic, interpolation, matrices
+- ✅ Noise, SDF, Jobify, hashing, vector builders
+- ✅ Generic jobs and function iterators
