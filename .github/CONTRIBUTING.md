@@ -14,3 +14,10 @@
     - Code must be rewritten and optimized for Unity.Mathematics, compatibility checked
     - Unification is key : if some functions are already available in math or Unity.Mathematics.math (sometimes under another name), use them !
  - Documentation should be inherited from Unity.Mathematics.math methods for direct extension method translations
+
+## Tests
+
+- Add or update **Unity Test Framework** tests in `Tests/` for behavior changes.
+- Prefer golden-value tests for deterministic APIs (hashing, noise); tolerance tests for fast math approximations.
+- Run **Window → General → Test Runner → Edit Mode** before opening a PR.
+- See [docs/QUALITY.md](../docs/QUALITY.md) for CI setup and IL2CPP validation checklist.

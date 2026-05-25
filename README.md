@@ -198,6 +198,14 @@ forwardi3 downi3 lefti3 backi3 onei2 zeroi2 onei3 zeroi3 onei4 zeroi4
 ```
 
 
+## Tests
+
+Edit Mode tests ship in `Tests/` (Unity Test Framework). Open **Window → General → Test Runner** in a project that includes this package, or use the CI project at `.ci/TestProject`.
+
+See [docs/QUALITY.md](docs/QUALITY.md) for golden-value regeneration, CI secrets, and IL2CPP validation.
+
+<br>
+
 # 🌱 Contribute !
 
 ## 👉 Guidelines
