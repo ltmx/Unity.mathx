@@ -60,7 +60,7 @@ namespace Unity.Mathematics
 			var s1 = (1f - u1).sqrt();
 			var s2 = u1.sqrt();
 			var v = new float4(s1 * r1.sincos(), s2 * r2.sincos());
-			return quaternion(math.select(v, -v, v.w < 0f));
+			return math.select(v, -v, v.w < 0f).quaternion();
 		}
 
 		static uint CalculateHash(uint data, uint seed)

@@ -39,22 +39,25 @@ namespace Unity.Mathematics
 
 		[MI(IL)] public static float2 applyfp(this float2 input, FunctionPointer<f1_f1> function, int cycles)
 		{
+			var fn = function.Invoke;
 			for (var i = 0; i < cycles; i++)
-				input = function.RunPerAxis(input);
+				input = fn.RunPerAxis(input);
 			return input;
 		}
 
 		[MI(IL)] public static float3 applyfp(this float3 input, FunctionPointer<f1_f1> function, int cycles)
 		{
+			var fn = function.Invoke;
 			for (var i = 0; i < cycles; i++)
-				input = function.RunPerAxis(input);
+				input = fn.RunPerAxis(input);
 			return input;
 		}
 
 		[MI(IL)] public static float4 applyfp(this float4 input, FunctionPointer<f1_f1> function, int cycles)
 		{
+			var fn = function.Invoke;
 			for (var i = 0; i < cycles; i++)
-				input = function.RunPerAxis(input);
+				input = fn.RunPerAxis(input);
 			return input;
 		}
 
