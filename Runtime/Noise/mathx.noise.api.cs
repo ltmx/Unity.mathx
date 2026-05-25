@@ -58,7 +58,7 @@ namespace Unity.Mathematics
 			float sum = 0, amp = 1, freq = 1;
 			for (var i = 0; i < octaves; i++)
 			{
-				var n = 1f - pos.mul(freq).simplex2().abs();
+				var n = 1f - pos.mult(freq).simplex2().abs();
 				sum += amp * n * n;
 				freq *= lacunarity;
 				amp *= gain;
@@ -71,7 +71,7 @@ namespace Unity.Mathematics
 			float sum = 0, amp = 1, freq = 1;
 			for (var i = 0; i < octaves; i++)
 			{
-				var n = 1f - pos.mul(freq).simplex3().abs();
+				var n = 1f - pos.mult(freq).simplex3().abs();
 				sum += amp * n * n;
 				freq *= lacunarity;
 				amp *= gain;
@@ -84,7 +84,7 @@ namespace Unity.Mathematics
 			float sum = 0, amp = 1, freq = 1;
 			for (var i = 0; i < octaves; i++)
 			{
-				sum += amp * pos.mul(freq).simplex2().abs();
+				sum += amp * pos.mult(freq).simplex2().abs();
 				freq *= lacunarity;
 				amp *= gain;
 			}
@@ -96,7 +96,7 @@ namespace Unity.Mathematics
 			float sum = 0, amp = 1, freq = 1;
 			for (var i = 0; i < octaves; i++)
 			{
-				sum += amp * pos.mul(freq).simplex3().abs();
+				sum += amp * pos.mult(freq).simplex3().abs();
 				freq *= lacunarity;
 				amp *= gain;
 			}
