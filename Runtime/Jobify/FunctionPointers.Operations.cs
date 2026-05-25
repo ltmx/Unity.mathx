@@ -35,6 +35,14 @@ namespace Unity.Mathematics
 		[MethodImpl(IL)] public static float2 RunPerAxisWithParam(this f1x3_f1 func, float2 a, float2 b, float2 t) => new(func(a.x, b.x, t.x), func(a.y, b.y, t.y));
 		[MethodImpl(IL)] public static float RunPerAxisWithParam(this f1x3_f1 func, float a, float b, float t) => func(a, b, t);
 
+		[MethodImpl(IL)] public static float2 RunPerAxis(this f1x3_f1 func, float2 a, float b, float c) => new(func(a.x, b, c), func(a.y, b, c));
+		[MethodImpl(IL)] public static float3 RunPerAxis(this f1x3_f1 func, float3 a, float b, float c) => new(func(a.x, b, c), func(a.y, b, c), func(a.z, b, c));
+		[MethodImpl(IL)] public static float4 RunPerAxis(this f1x3_f1 func, float4 a, float b, float c) => new(func(a.x, b, c), func(a.y, b, c), func(a.z, b, c), func(a.w, b, c));
+
+		[MethodImpl(IL)] public static float2 RunPerAxis(this f1x3_f1 func, float2 a, float2 b, float2 c) => new(func(a.x, b.x, c.x), func(a.y, b.y, c.y));
+		[MethodImpl(IL)] public static float3 RunPerAxis(this f1x3_f1 func, float3 a, float3 b, float3 c) => new(func(a.x, b.x, c.x), func(a.y, b.y, c.y), func(a.z, b.z, c.z));
+		[MethodImpl(IL)] public static float4 RunPerAxis(this f1x3_f1 func, float4 a, float4 b, float4 c) => new(func(a.x, b.x, c.x), func(a.y, b.y, c.y), func(a.z, b.z, c.z), func(a.w, b.w, c.w));
+
 		[MethodImpl(IL)] public static float RunAdditive(this f1x2_f1 func, float4 a, float4 b) => func(a.x, b.x) + func(a.y, b.y) + func(a.z, b.z) + func(a.w, b.w);
 		[MethodImpl(IL)] public static float RunAdditive(this f1x2_f1 func, float3 a, float3 b) => func(a.x, b.x) + func(a.y, b.y) + func(a.z, b.z);
 		[MethodImpl(IL)] public static float RunAdditive(this f1x2_f1 func, float2 a, float2 b) => func(a.x, b.x) + func(a.y, b.y);
