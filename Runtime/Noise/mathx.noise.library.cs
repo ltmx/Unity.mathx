@@ -82,7 +82,7 @@ namespace Unity.Mathematics
 			float4 C = f4(0.211324865405187f, // (3-sqrt(3))/6
 				0.366025403784439f, // 0.5f*(sqrt(3)-1)
 				-0.577350269189626f, // -1 + 2 * C.x
-				024390243902439f); // 1 / 41
+				0.024390243902439f); // 1 / 41
 			// First corner
 			float2 i = (v + v.dot(C.yy)).floor();
 			float2 x0 = v - i + i.dot(C.xx);
@@ -128,7 +128,7 @@ namespace Unity.Mathematics
 			float4 C = f4(0.211324865405187f, // (3-sqrt(3))/6
 				0.366025403784439f, // 0.5f*(sqrt(3)-1)
 				-0.577350269189626f, // -1 + 2 * C.x
-				024390243902439f); // 1 / 41
+				0.024390243902439f); // 1 / 41
 			// First corner
 			float2 i = (v + v.dot(C.yy)).floor();
 			float2 x0 = v - i + i.dot(C.xx);
@@ -175,7 +175,7 @@ namespace Unity.Mathematics
 
 		static float snoise(float3 v)
 		{
-			float2 C = f2(1 / 6f, 1 / 3);
+			float2 C = f2(1 / 6f, 1 / 3f);
 
 			// First corner
 			float3 i = (v + v.dot(C.yyy)).floor();

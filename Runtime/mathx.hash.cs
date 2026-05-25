@@ -2,7 +2,6 @@
 // // ** GitHub Profile: https://github.com/ltmx
 // // ** Repository : https://github.com/ltmx/Unity.mathx
 // Credits: XXHash — Yann Collet (https://github.com/Cyan4973/xxHash)
-// Hash constants match Unity.Mathematics vector hash implementations.
 
 #region
 
@@ -23,22 +22,20 @@ namespace Unity.Mathematics
 		const uint HashPrime5 = 374761393u;
 
 		[MI(IL)] public static uint hash(this int v) => math.asuint(v) * 0x9B13B92Du + 0xD75513F9u;
-		[MI(IL)] public static uint hash(this int2 v) => math.csum(math.asuint(v) * math.uint2(0x83B58237u, 0x833E3E29u)) + 0xA9D919BFu;
-		[MI(IL)] public static uint hash(this int3 v) => math.csum(math.asuint(v) * math.uint3(0x4C7F6DD1u, 0x4822A3E9u, 0xAAC3C25Du)) + 0xD21D0945u;
-		[MI(IL)] public static uint hash(this int4 v) => math.csum(math.asuint(v) * math.uint4(0x6E050B01u, 0x750FDBF5u, 0x7F3DD499u, 0x52EAAEBBu)) + 0x4599C793u;
+		[MI(IL)] public static uint hash(this int2 v) => math.hash(v);
+		[MI(IL)] public static uint hash(this int3 v) => math.hash(v);
+		[MI(IL)] public static uint hash(this int4 v) => math.hash(v);
+		[MI(IL)] public static uint hash(this uint v) => math.asuint(v) * 0x9B13B92Du + 0xD75513F9u;
+		[MI(IL)] public static uint hash(this uint2 v) => math.hash(v);
+		[MI(IL)] public static uint hash(this uint3 v) => math.hash(v);
+		[MI(IL)] public static uint hash(this uint4 v) => math.hash(v);
 
-		[MI(IL)] public static uint hash(this uint v) => v * 0x9B13B92Du + 0xD75513F9u;
-		[MI(IL)] public static uint hash(this uint2 v) => math.csum(v * math.uint2(0x4473BBB1u, 0xCBA11D5Fu)) + 0x685835CFu;
-		[MI(IL)] public static uint hash(this uint3 v) => math.csum(v * math.uint3(0xCD266C89u, 0xF1852A33u, 0x77E35E77u)) + 0x863E3729u;
-		[MI(IL)] public static uint hash(this uint4 v) => math.csum(v * math.uint4(0xB492BF15u, 0xD37220E3u, 0x7AA2C2BDu, 0xE16BC89Du)) + 0x7AA07CD3u;
-
-		[MI(IL)] public static uint2 hashwide(this int2 v) => math.asuint(v) * math.uint2(0xC3EC1D97u, 0xB8B208C7u) + 0x5D3ED947u;
-		[MI(IL)] public static uint3 hashwide(this int3 v) => math.asuint(v) * math.uint3(0x88FCAB2Du, 0x614DA60Du, 0x5BA2C50Bu) + 0x8C455ACBu;
-		[MI(IL)] public static uint4 hashwide(this int4 v) => math.asuint(v) * math.uint4(0x83B5E729u, 0xC267163Fu, 0x67BC9149u, 0xAD7C5EC1u) + 0x822A7D6Du;
-
-		[MI(IL)] public static uint2 hashwide(this uint2 v) => v * math.uint2(0xC3D32AE1u, 0xB966942Fu) + 0xFE9856B3u;
-		[MI(IL)] public static uint3 hashwide(this uint3 v) => v * math.uint3(0xE191B035u, 0x68586FAFu, 0xD4DFF6D3u) + 0xCB634F4Du;
-		[MI(IL)] public static uint4 hashwide(this uint4 v) => v * math.uint4(0xAF642BA9u, 0xA8F2213Bu, 0x9F3FDC37u, 0xAC60D0C3u) + 0x9263662Fu;
+		[MI(IL)] public static uint2 hashwide(this int2 v) => math.hashwide(v);
+		[MI(IL)] public static uint3 hashwide(this int3 v) => math.hashwide(v);
+		[MI(IL)] public static uint4 hashwide(this int4 v) => math.hashwide(v);
+		[MI(IL)] public static uint2 hashwide(this uint2 v) => math.hashwide(v);
+		[MI(IL)] public static uint3 hashwide(this uint3 v) => math.hashwide(v);
+		[MI(IL)] public static uint4 hashwide(this uint4 v) => math.hashwide(v);
 
 		[MI(IL)] public static uint xxhash32(this uint seed)
 		{

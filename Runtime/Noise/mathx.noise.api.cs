@@ -52,9 +52,9 @@ namespace Unity.Mathematics
 			for (var j = -1; j <= 1; j++)
 			for (var i = -1; i <= 1; i++)
 			{
-				var neighbor = cell + float2(i, j);
+				var neighbor = cell + new float2(i, j);
 				var point = neighbor + hashcell2(neighbor);
-				minDist = math.min(minDist, math.length(point - pos));
+				minDist = minDist.min((point - pos).length());
 			}
 			return minDist;
 		}
@@ -67,9 +67,9 @@ namespace Unity.Mathematics
 			for (var j = -1; j <= 1; j++)
 			for (var i = -1; i <= 1; i++)
 			{
-				var neighbor = cell + float3(i, j, k);
+				var neighbor = cell + new float3(i, j, k);
 				var point = neighbor + hashcell3(neighbor);
-				minDist = math.min(minDist, math.length(point - pos));
+				minDist = mathx.min(minDist, mathx.length(point - pos));
 			}
 			return minDist;
 		}
@@ -82,9 +82,9 @@ namespace Unity.Mathematics
 			for (var j = -1; j <= 1; j++)
 			for (var i = -1; i <= 1; i++)
 			{
-				var neighbor = cell + float2(i, j);
+				var neighbor = cell + new float2(i, j);
 				var point = neighbor + hashcell2(neighbor);
-				var dist = math.length(point - pos);
+				var dist = (point - pos).length();
 				if (dist < minDist)
 				{
 					secondDist = minDist;
@@ -105,9 +105,9 @@ namespace Unity.Mathematics
 			for (var j = -1; j <= 1; j++)
 			for (var i = -1; i <= 1; i++)
 			{
-				var neighbor = cell + float3(i, j, k);
+				var neighbor = cell + new float3(i, j, k);
 				var point = neighbor + hashcell3(neighbor);
-				var dist = math.length(point - pos);
+				var dist = (point - pos).length();
 				if (dist < minDist)
 				{
 					secondDist = minDist;
@@ -121,16 +121,16 @@ namespace Unity.Mathematics
 
 		[MI(IL)] static float2 hashcell2(float2 cell)
 		{
-			var p = math.frac(cell * float2(443.897f, 441.423f));
+			var p = (cell * new float2(443.897f, 441.423f)).frac();
 			p += p.dot(p.yx + 19.19f);
-			return math.frac(float2(p.x * p.y, p.x + p.y));
+			return new float2(p.x * p.y, p.x + p.y).frac();
 		}
 
 		[MI(IL)] static float3 hashcell3(float3 cell)
 		{
-			var p = math.frac(cell * float3(443.897f, 441.423f, 437.195f));
+			var p = (cell * new float3(443.897f, 441.423f, 437.195f)).frac();
 			p += p.dot(p.yzx + 19.19f);
-			return math.frac(float3(p.x * p.y, p.y * p.z, p.z * p.x));
+			return new float3(p.x * p.y, p.y * p.z, p.z * p.x).frac();
 		}
 	}
 }

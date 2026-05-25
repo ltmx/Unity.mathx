@@ -28,13 +28,13 @@ namespace Unity.Mathematics.Tests
 			// Hashing
 			var h = 42u.xxhash32();
 			Assert(h == 42u.xxhash32(), "xxhash32 deterministic", $"{h}");
-			Assert(hash01(7u) >= 0f && hash01(7u) <= 1f, "hash01 range", "out of [0,1]");
+			Assert(7u.hash01() >= 0f && 7u.hash01() <= 1f, "hash01 range", "out of [0,1]");
 			Assert(any(new int2(1, 2).hashwide() != 0u), "int2 hashwide", "zero");
 
 			// Noise
-			var sx = simplex2(float2.zero);
+			var sx = float2.zero.simplex2();
 			Assert(!float.IsNaN(sx), "simplex2 finite", sx.ToString());
-			var px = perlin2(float2(1.3f, 2.7f));
+			var px = new float2(1.3f, 2.7f).perlin2();
 			Assert(!float.IsNaN(px), "perlin2 finite", px.ToString());
 			var wx = worley2(float2(0.5f, 0.5f));
 			Assert(wx >= 0f, "worley2 non-negative", wx.ToString());

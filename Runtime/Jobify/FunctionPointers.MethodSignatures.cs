@@ -5,6 +5,7 @@
 using System;
 using System.Runtime.InteropServices;
 using static Unity.Burst.BurstCompiler;
+using static Unity.Mathematics.FunctionPointers.Signature;
 using UFP = System.Runtime.InteropServices.UnmanagedFunctionPointerAttribute;
 
 namespace Unity.Mathematics

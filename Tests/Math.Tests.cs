@@ -6,16 +6,11 @@
 
 using System;
 using System.Diagnostics;
-using Unity.Burst;
-using Unity.Mathematics;
-using UnityEditor;
-using static Unity.Mathematics.math;
 using Debug = UnityEngine.Debug;
-using Object = UnityEngine.Object;
 
 namespace Unity.Mathematics.Tests
 {
-    [BurstCompile]
+    [MathxAttribute]
     public static class MathTests
     {
         static Stopwatch stopwatch = new ();
