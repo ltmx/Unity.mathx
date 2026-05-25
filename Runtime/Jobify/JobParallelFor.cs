@@ -6,6 +6,7 @@ using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
 using static Unity.Mathematics.FunctionPointers.Signature;
+using static Unity.Mathematics.mathx;
 
 namespace Unity.Mathematics
 {

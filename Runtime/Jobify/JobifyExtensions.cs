@@ -28,9 +28,9 @@ namespace Unity.Mathematics
 			JobParallelFor.ScheduleNoise2D(output, size, origin, spacing, kind, batchSize, deps);
 
 		public static JobHandle MapAbs(this NativeArray<float> input, NativeArray<float> output, JobHandle deps = default) =>
-			input.Map(output, pAbs, 64, deps);
+			input.Map(output, pAbsPtr, 64, deps);
 
 		public static JobHandle MapFmax(this NativeArray<float> inputA, NativeArray<float> inputB, NativeArray<float> output, JobHandle deps = default) =>
-			inputA.Map(inputB, output, pFmax, 64, deps);
+			inputA.Map(inputB, output, pFmaxPtr, 64, deps);
 	}
 }

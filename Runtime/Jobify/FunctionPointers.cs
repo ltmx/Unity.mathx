@@ -2,20 +2,36 @@
 // // ** GitHub Profile: https://github.com/ltmx
 // // ** Repository : https://github.com/ltmx/Unity.mathx
 
+using Unity.Burst;
 using static Unity.Mathematics.FunctionPointers.Signature;
 
 namespace Unity.Mathematics
 {
 	public static partial class FunctionPointers
 	{
-		public static readonly f1x2_f1 pFmax = compile<f1x2_f1>(mathx.fmax);
-		public static readonly f1x2_f1 pFmin = compile<f1x2_f1>(mathx.fmin);
-		public static readonly f1x3_f1 pClamp = compile<f1x3_f1>(mathx.clampfp);
-		public static readonly f1_f1 pSaturate = compile<f1_f1>(mathx.saturatefp);
-		public static readonly f1_f1 pAbs = compile<f1_f1>(mathx.absfp);
-		public static readonly f1x3_f1 pLerp = compile<f1x3_f1>(mathx.lerptfp);
-		public static readonly f1x3_f1 pSmaxExp = compile<f1x3_f1>(mathx.smax_expfp);
-		public static readonly f1x3_f1 pSminExp = compile<f1x3_f1>(mathx.smin_expfp);
+		public static readonly FunctionPointer<f1x2_f1> pFmaxPtr = compilePtr(mathx.fmax);
+		public static readonly f1x2_f1 pFmax = pFmaxPtr.Invoke;
+
+		public static readonly FunctionPointer<f1x2_f1> pFminPtr = compilePtr(mathx.fmin);
+		public static readonly f1x2_f1 pFmin = pFminPtr.Invoke;
+
+		public static readonly FunctionPointer<f1x3_f1> pClampPtr = compilePtr(mathx.clampfp);
+		public static readonly f1x3_f1 pClamp = pClampPtr.Invoke;
+
+		public static readonly FunctionPointer<f1_f1> pSaturatePtr = compilePtr(mathx.saturatefp);
+		public static readonly f1_f1 pSaturate = pSaturatePtr.Invoke;
+
+		public static readonly FunctionPointer<f1_f1> pAbsPtr = compilePtr(mathx.absfp);
+		public static readonly f1_f1 pAbs = pAbsPtr.Invoke;
+
+		public static readonly FunctionPointer<f1x3_f1> pLerpPtr = compilePtr(mathx.lerptfp);
+		public static readonly f1x3_f1 pLerp = pLerpPtr.Invoke;
+
+		public static readonly FunctionPointer<f1x3_f1> pSmaxExpPtr = compilePtr(mathx.smax_expfp);
+		public static readonly f1x3_f1 pSmaxExp = pSmaxExpPtr.Invoke;
+
+		public static readonly FunctionPointer<f1x3_f1> pSminExpPtr = compilePtr(mathx.smin_expfp);
+		public static readonly f1x3_f1 pSminExp = pSminExpPtr.Invoke;
 
 		public static readonly f1x2_f1 p_fmax = pFmax;
 		public static readonly f1x2_f1 p_fmin = pFmin;

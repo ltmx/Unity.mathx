@@ -14,6 +14,10 @@ namespace Unity.Mathematics
 	{
 		public static T compile<T>(T m) where T : class => CompileFunctionPointer(m).Invoke;
 
+		public static FunctionPointer<f1_f1> compilePtr(f1_f1 m) => CompileFunctionPointer(m);
+		public static FunctionPointer<f1x2_f1> compilePtr(f1x2_f1 m) => CompileFunctionPointer(m);
+		public static FunctionPointer<f1x3_f1> compilePtr(f1x3_f1 m) => CompileFunctionPointer(m);
+
 		public static f1_f1 compile(f1_f1 m) => CompileFunctionPointer(m).Invoke;
 		public static f1_i1 compile(f1_i1 m) => CompileFunctionPointer(m).Invoke;
 		public static f1x2_f1 compile(f1x2_f1 m) => CompileFunctionPointer(m).Invoke;
