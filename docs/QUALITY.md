@@ -15,7 +15,23 @@ Edit Mode tests live in `Tests/` and run via the Unity Test Framework (NUnit).
 
 ### Run locally
 
-1. Add this package to a Unity project (or open `.ci/TestProject` after adding the local package reference).
+Unity does **not** auto-discover tests inside UPM packages. In your **host project** `Packages/manifest.json`, add:
+
+```json
+{
+  "dependencies": {
+    "com.unity.test-framework": "1.4.5",
+    "com.ltmx.mathematics.mathx": "…"
+  },
+  "testables": [
+    "com.ltmx.mathematics.mathx"
+  ]
+}
+```
+
+Also ensure `com.unity.test-framework` is installed (Package Manager or manifest dependency above). After saving, Unity recompiles and the Test Runner picks up `Mathematics.Mathx.Tests`.
+
+1. Add this package to a Unity project (or open `.ci/TestProject` which already sets `testables`).
 2. Open **Window → General → Test Runner**.
 3. Run **Edit Mode** tests for assembly `Mathematics.Mathx.Tests`.
 

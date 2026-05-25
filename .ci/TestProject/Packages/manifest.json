@@ -2,5 +2,8 @@
 	"dependencies": {
 		"com.unity.test-framework": "1.4.5",
 		"com.ltmx.mathematics.mathx": "file:../../"
-	}
+	},
+	"testables": [
+		"com.ltmx.mathematics.mathx"
+	]
 }
