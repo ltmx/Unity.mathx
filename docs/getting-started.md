@@ -1,5 +1,14 @@
 # Getting started
 
+<div class="mathx-page-header" markdown="1">
+<img src="assets/branding/logo-128.png" alt="mathx" />
+<div>
+
+Install **Unity.mathx** in a few minutes. Requires Unity.Mathematics and Burst for job helpers.
+
+</div>
+</div>
+
 ## Requirements
 
 - Unity 2020.3+ (LTS recommended)

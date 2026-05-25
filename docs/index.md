@@ -1,20 +1,18 @@
-# Unity.mathx
-
-![Banner](https://raw.githubusercontent.com/LTMX/Unity.mathx/master/.branding/LTMX_Unity_Mathematics_Mathx_Github_Banner_Thin.png)
-
-Extension library for [Unity.Mathematics](https://github.com/Unity-Technologies/Unity.Mathematics) with fluent, shader-like syntax, noise, SDFs, fast math, and Burst job helpers.
-
-[:octicons-download-24: Install](getting-started.md){ .md-button }
-[:octicons-code-24: API Reference](api/index.html){ .md-button .md-button--primary }
-[:octicons-mark-github-24: GitHub](https://github.com/LTMX/Unity.mathx){ .md-button }
-
-## Package
-
-```ruby
-com.ltmx.mathematics.mathx
-```
-
-Available on [OpenUPM](https://openupm.com/packages/com.ltmx.mathematics.mathx/) and [GitHub](https://github.com/LTMX/Unity.mathx).
+<div class="mathx-hero" markdown="0">
+  <img class="mathx-hero__banner" src="assets/branding/banner-thin.png" alt="Unity.mathx — extension library for Unity.Mathematics" />
+  <div class="mathx-hero__body">
+    <img class="mathx-hero__logo" src="assets/branding/logo-256.png" alt="mathx logo" />
+    <p class="mathx-hero__tagline">
+      Fluent, shader-like extensions for <strong>Unity.Mathematics</strong> — noise, SDFs, fast math, and Burst job helpers in one <code>using static</code>.
+    </p>
+    <div class="mathx-hero__actions">
+      <a href="getting-started/" class="md-button md-button--primary">Get started</a>
+      <a href="api/metadata/Unity.Mathematics.mathx.html" class="md-button">API reference</a>
+      <a href="https://github.com/LTMX/Unity.mathx" class="md-button">GitHub</a>
+    </div>
+    <span class="mathx-hero__package">com.ltmx.mathematics.mathx</span>
+  </div>
+</div>
 
 ## Quick start
 
@@ -25,7 +23,7 @@ float3 v = new float3(1, 2, 3);
 return v.length().clamp(0, 10).normalize();
 ```
 
-Every method lives on the single `mathx` partial class — one `using static` and you're done.
+Every method lives on the single `mathx` partial class — one import and you're done.
 
 ## Fluent chains
 
@@ -44,22 +42,61 @@ Every method lives on the single `mathx` partial class — one `using static` an
     anyVector = math.cos(anyVector);
     anyVector = anyVector * anyVector;
     anyVector = math.mul(math.rotate(anyQuaternion, anyVector), 1f / 3.2f);
-    // ...
     ```
 
 See the [Fluent chains guide](guides/fluent-chains.md) for `.set(out x)` and when to break a chain.
 
 ## Feature overview
 
-| Area | Highlights |
-|------|------------|
-| [Interpolation](guides/interpolation.md) | `smoothstep`, easing, `smin` / `smax` |
-| [Noise](guides/noise.md) | Simplex, Perlin, FBM, Worley, Voronoi |
-| [SDF](guides/sdf.md) | Primitives, CSG-style combinations |
-| [Fast math](guides/fast-math.md) | `fsqrt`, `fastsine`, approximations vs `math.*` |
-| [Jobify](guides/jobify.md) | Function pointers, parallel jobs, noise fill |
-| [Hashing](guides/hashing.md) | `xxhash32`, `hash01`, gradient hashes |
-| [Structs](guides/structs.md) | `bounds`, `ray`, `color`, `byte*` |
+<div class="grid cards mathx-feature-grid" markdown="1">
+
+-   __[Interpolation](guides/interpolation.md)__
+
+    ---
+
+    `smoothstep`, easing, `smin` / `smax`
+
+-   __[Noise](guides/noise.md)__
+
+    ---
+
+    Simplex, Perlin, FBM, Worley, Voronoi
+
+-   __[SDF](guides/sdf.md)__
+
+    ---
+
+    Primitives and CSG-style combinations
+
+-   __[Fast math](guides/fast-math.md)__
+
+    ---
+
+    `fsqrt`, `fastsine`, approximations vs `math.*`
+
+-   __[Jobify](guides/jobify.md)__
+
+    ---
+
+    Function pointers, parallel jobs, noise fill
+
+-   __[Hashing](guides/hashing.md)__
+
+    ---
+
+    `xxhash32`, `hash01`, gradient hashes
+
+-   __[Structs](guides/structs.md)__
+
+    ---
+
+    `bounds`, `ray`, `color`, `byte*`
+
+</div>
+
+## Install
+
+Available on [OpenUPM](https://openupm.com/packages/com.ltmx.mathematics.mathx/) and via Git URL — see [Getting started](getting-started.md).
 
 ## Roadmap
 
@@ -67,10 +104,3 @@ See the [Fluent chains guide](guides/fluent-chains.md) for `.set(out x)` and whe
 - [x] Random, component logic, interpolation, matrices
 - [x] Noise, SDF, Jobify, hashing, vector builders
 - [x] Generic jobs and function iterators
-
-## Links
-
-- [Getting started](getting-started.md)
-- [Quality & testing](QUALITY.md)
-- [Contributing](contributing.md)
-- [API reference](api/index.html)

@@ -2,11 +2,112 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="refresh" content="0; url=api/metadata/Unity.Mathematics.mathx.html">
   <title>Unity.mathx API</title>
   <link rel="canonical" href="api/metadata/Unity.Mathematics.mathx.html">
+  <link rel="icon" href="../assets/branding/logo-128.png" type="image/png">
+  <style>
+    :root {
+      --mathx-purple: #7b4ae2;
+      --mathx-purple-dark: #5a32b8;
+      --mathx-ink: #12101a;
+      --mathx-text: #e8e4f0;
+      --mathx-muted: #a89bc4;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: var(--mathx-text);
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(123, 74, 226, 0.35), transparent),
+        var(--mathx-ink);
+    }
+
+    .card {
+      width: min(32rem, 100%);
+      text-align: center;
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(157, 109, 255, 0.25);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    .card img.banner {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .card-body {
+      padding: 1.5rem 1.75rem 1.75rem;
+    }
+
+    .card-body img.logo {
+      width: 64px;
+      height: 64px;
+      margin: -3rem auto 1rem;
+      display: block;
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.35));
+    }
+
+    h1 {
+      margin: 0 0 0.5rem;
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+
+    p {
+      margin: 0 0 1.25rem;
+      color: var(--mathx-muted);
+      line-height: 1.5;
+    }
+
+    a.button {
+      display: inline-block;
+      padding: 0.55rem 1.25rem;
+      border-radius: 999px;
+      background: var(--mathx-purple);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.15s ease;
+    }
+
+    a.button:hover { background: #9d6dff; }
+
+    .links {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .links a {
+      color: var(--mathx-muted);
+      margin: 0 0.5rem;
+    }
+  </style>
 </head>
 <body>
-  <p><a href="api/metadata/Unity.Mathematics.mathx.html">Unity.mathx API reference</a></p>
+  <div class="card">
+    <img class="banner" src="../assets/branding/banner-thin.png" alt="Unity.mathx">
+    <div class="card-body">
+      <img class="logo" src="../assets/branding/logo-256.png" alt="mathx logo">
+      <h1>API reference</h1>
+      <p>Redirecting to the <strong>mathx</strong> API browser…</p>
+      <a class="button" href="api/metadata/Unity.Mathematics.mathx.html">Browse mathx API</a>
+      <div class="links">
+        <a href="../">Guides</a>
+        <a href="https://github.com/LTMX/Unity.mathx">GitHub</a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

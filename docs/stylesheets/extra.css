@@ -1,12 +1,187 @@
 :root {
-	--md-primary-fg-color: #6a5acd;
-	--md-accent-fg-color: #8a2be2;
+	--mathx-purple: #7b4ae2;
+	--mathx-purple-dark: #5a32b8;
+	--mathx-violet: #9d6dff;
+	--mathx-ink: #1a1228;
+	--md-primary-fg-color: var(--mathx-purple);
+	--md-primary-fg-color--light: var(--mathx-violet);
+	--md-primary-fg-color--dark: var(--mathx-purple-dark);
+	--md-accent-fg-color: var(--mathx-violet);
+}
+
+[data-md-color-scheme="slate"] {
+	--md-default-bg-color: #12101a;
+	--md-default-bg-color--light: #1a1624;
+	--md-default-bg-color--lighter: #221c30;
+	--md-default-bg-color--lightest: #2a2438;
+}
+
+.md-header {
+	background: linear-gradient(90deg, var(--mathx-purple-dark) 0%, var(--mathx-purple) 55%, #6b5ce7 100%);
 }
 
 .md-header__title {
-	font-weight: 600;
+	font-weight: 700;
+	letter-spacing: 0.02em;
+}
+
+.md-tabs {
+	background: var(--mathx-purple-dark);
+}
+
+.md-typeset .md-button--primary {
+	background-color: var(--mathx-purple);
+	border-color: var(--mathx-purple);
+}
+
+.md-typeset .md-button--primary:hover {
+	background-color: var(--mathx-violet);
+	border-color: var(--mathx-violet);
+}
+
+/* Landing hero */
+.mathx-hero {
+	margin: 0 0 2rem;
+	padding: 0;
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 12px 40px rgba(90, 50, 184, 0.22);
+	background: linear-gradient(145deg, rgba(123, 74, 226, 0.12) 0%, rgba(26, 18, 40, 0.04) 100%);
+}
+
+[data-md-color-scheme="slate"] .mathx-hero {
+	box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+	background: linear-gradient(145deg, rgba(123, 74, 226, 0.18) 0%, rgba(18, 16, 26, 0.6) 100%);
+}
+
+.mathx-hero__banner {
+	display: block;
+	width: 100%;
+	height: auto;
+	margin: 0;
+}
+
+.mathx-hero__body {
+	padding: 1.75rem 2rem 2rem;
+	text-align: center;
+}
+
+.mathx-hero__logo {
+	width: 72px;
+	height: 72px;
+	margin: -3.25rem auto 1rem;
+	display: block;
+	filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.25));
+}
+
+.mathx-hero__tagline {
+	font-size: 1.15rem;
+	line-height: 1.6;
+	max-width: 42rem;
+	margin: 0 auto 1.5rem;
+	opacity: 0.92;
+}
+
+.mathx-hero__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	justify-content: center;
+	margin-bottom: 0.5rem;
+}
+
+.mathx-hero__package {
+	display: inline-block;
+	margin-top: 1.25rem;
+	padding: 0.35rem 0.9rem;
+	border-radius: 999px;
+	font-family: var(--md-code-font-family);
+	font-size: 0.85rem;
+	background: rgba(123, 74, 226, 0.12);
+	border: 1px solid rgba(123, 74, 226, 0.35);
+	color: var(--md-default-fg-color);
+}
+
+[data-md-color-scheme="slate"] .mathx-hero__package {
+	background: rgba(157, 109, 255, 0.12);
+	border-color: rgba(157, 109, 255, 0.35);
+}
+
+/* Feature cards on home */
+.mathx-feature-grid {
+	margin-top: 1.5rem;
+}
+
+.mathx-feature-grid > ul {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+	gap: 0.75rem;
+	padding: 0;
+}
+
+.mathx-feature-grid > ul > li {
+	border: 1px solid rgba(123, 74, 226, 0.2);
+	border-radius: 10px;
+	padding: 0.25rem 0.75rem 0.75rem;
+	background: rgba(123, 74, 226, 0.04);
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.mathx-feature-grid > ul > li:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 24px rgba(123, 74, 226, 0.15);
+}
+
+[data-md-color-scheme="slate"] .mathx-feature-grid > ul > li {
+	background: rgba(255, 255, 255, 0.03);
+	border-color: rgba(157, 109, 255, 0.25);
+}
+
+/* Inner-page banner strip (injected via theme override) */
+.mathx-page-band {
+	margin: -0.5rem 0 1.25rem;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 6px 24px rgba(90, 50, 184, 0.14);
+	max-height: 5.5rem;
+}
+
+.mathx-page-band img {
+	display: block;
+	width: 100%;
+	height: 5.5rem;
+	object-fit: cover;
+	object-position: center 42%;
+}
+
+[data-md-color-scheme="slate"] .mathx-page-band {
+	box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+}
+
+/* Section headings with logo accent on inner pages */
+.mathx-page-header {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 1.5rem;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid rgba(123, 74, 226, 0.2);
+}
+
+.mathx-page-header img {
+	width: 48px;
+	height: 48px;
+	flex-shrink: 0;
 }
 
 .md-typeset h1 {
 	font-weight: 700;
+}
+
+.md-footer-meta {
+	background-color: var(--mathx-ink);
+}
+
+.md-footer__inner {
+	padding-top: 0.5rem;
 }

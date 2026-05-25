@@ -10,6 +10,7 @@
       ],
       "dest": "api/metadata",
       "filter": "filter.yml",
+      "memberLayout": "SeparatePages",
       "properties": {
         "TargetFramework": "netstandard2.1"
       }
@@ -33,6 +34,8 @@
     "globalMetadata": {
       "_appTitle": "Unity.mathx API",
       "_appName": "Unity.mathx",
+      "_appLogoPath": "images/logo-128.png",
+      "_appFaviconPath": "images/logo-128.png",
       "_enableSearch": true,
       "_appBasePath": "/Unity.mathx/api",
       "_gitContribute": {

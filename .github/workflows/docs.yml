@@ -40,7 +40,9 @@ jobs:
           cd Documentation~
           dotnet build Mathx.Docs.csproj
           docfx metadata docfx.json
+          python tools/organize_mathx_api.py
           docfx build docfx.json
+          python tools/patch_mathx_hub.py
 
       - name: Stage API into docs tree
         run: |
