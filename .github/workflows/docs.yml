@@ -35,8 +35,18 @@ jobs:
       - name: Install Python docs dependencies
         run: pip install -r requirements-docs.txt
 
+      - name: Cache DocFX global tool
+        uses: actions/cache@v4
+        id: docfx-tool-cache
+        with:
+          path: ~/.dotnet/tools
+          key: docfx-2.78.5-${{ runner.os }}
+          restore-keys: |
+            docfx-2.78.5-${{ runner.os }}
+
       - name: Install DocFX
-        run: dotnet tool install -g docfx
+        if: steps.docfx-tool-cache.outputs.cache-hit != 'true'
+        run: dotnet tool install -g docfx --version 2.78.5
 
       - name: Build API reference
         run: |
