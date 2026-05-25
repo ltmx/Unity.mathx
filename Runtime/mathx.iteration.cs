@@ -5,12 +5,14 @@
 #region
 
 using System;
-using System.Runtime.CompilerServices;
 using MI = System.Runtime.CompilerServices.MethodImplAttribute;
 
 #endregion
 
 using Unity.Burst;
+using Unity.Collections;
+using Unity.Jobs;
+using static Unity.Mathematics.FunctionPointers;
 using static Unity.Mathematics.FunctionPointers.Signature;
 
 namespace Unity.Mathematics
@@ -35,6 +37,27 @@ namespace Unity.Mathematics
 			return input;
 		}
 
+		[MI(IL)] public static float2 applyfp(this float2 input, FunctionPointer<f1_f1> function, int cycles)
+		{
+			for (var i = 0; i < cycles; i++)
+				input = function.RunPerAxis(input);
+			return input;
+		}
+
+		[MI(IL)] public static float3 applyfp(this float3 input, FunctionPointer<f1_f1> function, int cycles)
+		{
+			for (var i = 0; i < cycles; i++)
+				input = function.RunPerAxis(input);
+			return input;
+		}
+
+		[MI(IL)] public static float4 applyfp(this float4 input, FunctionPointer<f1_f1> function, int cycles)
+		{
+			for (var i = 0; i < cycles; i++)
+				input = function.RunPerAxis(input);
+			return input;
+		}
+
 		[MI(IL)] public static void forEach2D(int2 size, Action<int2> body)
 		{
 			for (var y = 0; y < size.y; y++)
@@ -49,5 +72,8 @@ namespace Unity.Mathematics
 			for (var x = 0; x < size.x; x++)
 				body(new int3(x, y, z));
 		}
+
+		[MI(IL)] public static JobHandle forEach2DBurst(int2 size, NativeArray<float> output, float2 origin, float spacing, JobParallelFor.NoiseKind kind = JobParallelFor.NoiseKind.Simplex2, int batchSize = 64, JobHandle deps = default) =>
+			output.FillNoise2D(size, origin, spacing, kind, batchSize, deps);
 	}
 }

@@ -53,6 +53,56 @@ namespace Unity.Mathematics
 			return sum;
 		}
 
+		[MI(IL)] public static float ridged2(float2 pos, int octaves = 4, float lacunarity = 2f, float gain = 0.5f)
+		{
+			float sum = 0, amp = 1, freq = 1;
+			for (var i = 0; i < octaves; i++)
+			{
+				var n = 1f - pos.mul(freq).simplex2().abs();
+				sum += amp * n * n;
+				freq *= lacunarity;
+				amp *= gain;
+			}
+			return sum;
+		}
+
+		[MI(IL)] public static float ridged3(float3 pos, int octaves = 4, float lacunarity = 2f, float gain = 0.5f)
+		{
+			float sum = 0, amp = 1, freq = 1;
+			for (var i = 0; i < octaves; i++)
+			{
+				var n = 1f - pos.mul(freq).simplex3().abs();
+				sum += amp * n * n;
+				freq *= lacunarity;
+				amp *= gain;
+			}
+			return sum;
+		}
+
+		[MI(IL)] public static float turbulence2(float2 pos, int octaves = 4, float lacunarity = 2f, float gain = 0.5f)
+		{
+			float sum = 0, amp = 1, freq = 1;
+			for (var i = 0; i < octaves; i++)
+			{
+				sum += amp * pos.mul(freq).simplex2().abs();
+				freq *= lacunarity;
+				amp *= gain;
+			}
+			return sum;
+		}
+
+		[MI(IL)] public static float turbulence3(float3 pos, int octaves = 4, float lacunarity = 2f, float gain = 0.5f)
+		{
+			float sum = 0, amp = 1, freq = 1;
+			for (var i = 0; i < octaves; i++)
+			{
+				sum += amp * pos.mul(freq).simplex3().abs();
+				freq *= lacunarity;
+				amp *= gain;
+			}
+			return sum;
+		}
+
 		[MI(IL)] public static float worley2(float2 pos)
 		{
 			var cell = pos.floor();
@@ -65,6 +115,50 @@ namespace Unity.Mathematics
 				minDist = minDist.min((point - pos).length());
 			}
 			return minDist;
+		}
+
+		[MI(IL)] public static float worley2F2(float2 pos)
+		{
+			var cell = pos.floor();
+			var minDist = 1e10f;
+			var secondDist = 1e10f;
+			for (var j = -1; j <= 1; j++)
+			for (var i = -1; i <= 1; i++)
+			{
+				var neighbor = cell + new float2(i, j);
+				var point = neighbor + hashcell2(neighbor);
+				var dist = (point - pos).length();
+				if (dist < minDist)
+				{
+					secondDist = minDist;
+					minDist = dist;
+				}
+				else if (dist < secondDist)
+					secondDist = dist;
+			}
+			return secondDist;
+		}
+
+		[MI(IL)] public static float4 voronoi2Cell(float2 pos)
+		{
+			var cell = pos.floor();
+			var minDist = 1e10f;
+			var nearestCell = cell;
+			var nearestPoint = float2.zero;
+			for (var j = -1; j <= 1; j++)
+			for (var i = -1; i <= 1; i++)
+			{
+				var neighbor = cell + new float2(i, j);
+				var point = neighbor + hashcell2(neighbor);
+				var dist = (point - pos).length();
+				if (dist < minDist)
+				{
+					minDist = dist;
+					nearestCell = neighbor;
+					nearestPoint = point;
+				}
+			}
+			return new float4(nearestCell, pos - nearestPoint);
 		}
 
 		[MI(IL)] public static float worley3(float3 pos)
