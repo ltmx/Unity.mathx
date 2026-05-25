@@ -1,0 +1,149 @@
+/* Compact API layout — overrides DocFX modern defaults */
+
+:root,
+[data-bs-theme="light"],
+[data-bs-theme="dark"] {
+	--bs-body-line-height: 1.35;
+	--bs-paragraph-margin-bottom: 0.5rem;
+}
+
+article {
+	font-size: 0.95rem;
+}
+
+article h1[data-uid] {
+	margin-bottom: 0.35rem;
+	font-size: 1.65rem;
+	line-height: 1.25;
+}
+
+article h2.section {
+	margin-top: 1.25rem;
+	margin-bottom: 0.35rem;
+	font-size: 1.2rem;
+	line-height: 1.3;
+}
+
+article h3[data-uid] {
+	margin-top: 0.85rem;
+	margin-bottom: 0.25rem;
+	padding-bottom: 0;
+	font-size: 1.05rem;
+	line-height: 1.3;
+}
+
+article h2.section + h3[data-uid],
+article h2.section + a + h3[data-uid] {
+	margin-top: 0.5rem;
+}
+
+article h4.section {
+	margin-top: 0.65rem;
+	margin-bottom: 0.2rem;
+	font-size: 0.95rem;
+	line-height: 1.25;
+}
+
+article div.facts {
+	margin: 0.5rem 0 0.35rem;
+	font-size: 0.85rem;
+}
+
+article div.facts dl {
+	margin-bottom: 0.15rem;
+}
+
+article div.facts dt,
+article div.facts dd {
+	margin-bottom: 0;
+}
+
+article .markdown.summary:empty,
+article .markdown.conceptual:empty,
+article .markdown.level1.summary:empty,
+article .markdown.level1.conceptual:empty {
+	display: none;
+}
+
+article .markdown.summary:not(:empty),
+article .markdown.conceptual:not(:empty),
+article .markdown.level1.summary:not(:empty),
+article .markdown.level1.conceptual:not(:empty) {
+	margin: 0.25rem 0 0.35rem;
+}
+
+article .codewrapper {
+	margin: 0.25rem 0 0.35rem;
+}
+
+article .codewrapper pre {
+	margin: 0;
+	padding: 0.45rem 0.65rem;
+	font-size: 0.88rem;
+	line-height: 1.35;
+}
+
+article dl.parameters > dt {
+	margin: 0.35rem 0 0;
+}
+
+article dl.parameters > dd {
+	margin: 0 0 0.25rem;
+}
+
+article dl.parameters > dt > code {
+	font-size: 0.92em;
+}
+
+article .returns,
+article .remarks,
+article .exceptions {
+	margin-top: 0.35rem;
+}
+
+article .returns dl,
+article .exceptions dl {
+	margin-bottom: 0.35rem;
+}
+
+article p,
+article li {
+	margin-bottom: 0.35rem;
+}
+
+article ul,
+article ol {
+	margin-bottom: 0.5rem;
+	padding-left: 1.25rem;
+}
+
+article table {
+	margin: 0.35rem 0 0.5rem;
+	font-size: 0.92rem;
+}
+
+article table td,
+article table th {
+	padding: 0.25rem 0.5rem;
+}
+
+article hr {
+	margin: 0.75rem 0;
+}
+
+article .inheritedMembers {
+	margin-top: 0.75rem;
+}
+
+article .inheritedMembers h5 {
+	margin-bottom: 0.35rem;
+	font-size: 0.95rem;
+}
+
+article .inheritedMembers ul {
+	margin-bottom: 0.35rem;
+}
+
+article .inheritedMembers li {
+	margin-bottom: 0.15rem;
+}

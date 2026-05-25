@@ -1,6 +1,6 @@
 # Noise
 
-Procedural noise for textures, terrain, and VFX. Sources live in `Runtime/Noise/`.
+Procedural noise for textures, terrain, and VFX. Sources live in `package/Runtime/Noise/`.
 
 ## 2D / 3D primitives
 
@@ -31,10 +31,10 @@ output.FillNoise2D(size, origin, spacing, JobParallelFor.NoiseKind.Simplex2);
 
 ## Golden tests
 
-Noise output is regression-tested in `GoldenNoiseTests.cs`. After intentional algorithm changes:
+Noise output is regression-tested in `package/Tests/GoldenNoiseTests.cs`. After intentional algorithm changes:
 
 ```bash
-python .ci/scripts/golden_noise.py
+python package/.ci/scripts/golden_noise.py
 ```
 
 Then update expected values in the test file.

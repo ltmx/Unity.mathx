@@ -10,23 +10,24 @@ from pathlib import Path
 
 HUB_STYLES = """
 <style>
-.mathx-api-hub { margin: 1.5rem 0 2rem; }
-.mathx-api-hub__intro { opacity: 0.85; margin-bottom: 1rem; }
+.mathx-api-hub { margin: 0.75rem 0 1rem; }
+.mathx-api-hub__intro { opacity: 0.85; margin-bottom: 0.5rem; line-height: 1.35; }
 .mathx-api-tabs {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
-  margin-bottom: 1rem;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
   border-bottom: 1px solid rgba(123, 74, 226, 0.25);
-  padding-bottom: 0.75rem;
+  padding-bottom: 0.45rem;
 }
 .mathx-api-tabs button {
   border: 1px solid rgba(123, 74, 226, 0.35);
   background: rgba(123, 74, 226, 0.08);
   color: inherit;
   border-radius: 999px;
-  padding: 0.35rem 0.85rem;
-  font-size: 0.9rem;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.82rem;
+  line-height: 1.2;
   cursor: pointer;
 }
 .mathx-api-tabs button.active,
@@ -40,28 +41,36 @@ HUB_STYLES = """
 .mathx-api-search {
   width: 100%;
   max-width: 28rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.9rem;
+  line-height: 1.25;
 }
 .mathx-api-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
-  gap: 0.35rem 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  gap: 0.1rem 0.65rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
+.mathx-api-grid li {
+  margin: 0;
+  line-height: 1.25;
+}
 .mathx-api-grid a {
   text-decoration: none;
   font-family: var(--bs-font-monospace, ui-monospace, monospace);
-  font-size: 0.92rem;
+  font-size: 0.84rem;
 }
 .mathx-api-grid a:hover { text-decoration: underline; }
 .mathx-api-meta {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   opacity: 0.7;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.35rem;
+  line-height: 1.25;
 }
-.mathx-api-loading { opacity: 0.7; font-style: italic; }
+.mathx-api-loading { opacity: 0.7; font-style: italic; margin: 0; }
 </style>
 """
 

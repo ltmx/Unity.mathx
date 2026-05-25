@@ -18,7 +18,7 @@ Gradient noise helpers live in `mathx.hash.gradient.cs` — used internally by n
 
 ## Golden tests
 
-Exact hash outputs are locked in `GoldenHashTests.cs`. Change expected values only when the algorithm intentionally changes.
+Exact hash outputs are locked in `package/Tests/GoldenHashTests.cs`. Change expected values only when the algorithm intentionally changes.
 
 ## API
 

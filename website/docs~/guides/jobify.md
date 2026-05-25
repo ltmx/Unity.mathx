@@ -1,6 +1,6 @@
 # Jobify & jobs
 
-Burst-compiled function pointers wired into Unity Jobs. Code: `Runtime/Jobify/`.
+Burst-compiled function pointers wired into Unity Jobs. Code: `package/Runtime/Jobify/`.
 
 ## Flow
 

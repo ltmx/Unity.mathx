@@ -2,7 +2,7 @@
 
 ## Automated tests
 
-Edit Mode tests live in `Tests/` and run via the Unity Test Framework (NUnit).
+Edit Mode tests live in `package/Tests/` and run via the Unity Test Framework (NUnit).
 
 | Suite | File | Coverage |
 |-------|------|----------|
@@ -38,10 +38,10 @@ Legacy menu shortcuts remain under **Tools → mathx** for quick manual smoke ch
 ### Regenerate noise golden values
 
 ```bash
-python .ci/scripts/golden_noise.py
+python package/.ci/scripts/golden_noise.py
 ```
 
-Update expected values in `Tests/GoldenNoiseTests.cs` when the noise implementation intentionally changes.
+Update expected values in `package/Tests/GoldenNoiseTests.cs` when the noise implementation intentionally changes.
 
 ## IL2CPP and device validation (manual)
 

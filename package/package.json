@@ -6,7 +6,7 @@
   },
   "displayName": "Unity.mathx",
   "name": "com.ltmx.mathematics.mathx",
-  "repository": "github:LTMX/Unity.mathx",
+  "repository": "github:ltmx/Unity.mathx",
   "description": "Extension library for Unity.Mathematics",
   "version": "1.4.12",
   "dependencies": {

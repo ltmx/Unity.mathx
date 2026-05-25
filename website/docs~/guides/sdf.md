@@ -1,6 +1,6 @@
 # Signed distance fields
 
-SDF primitives and operations for rendering, collision, and modeling. Implementation: `Runtime/SDF/`.
+SDF primitives and operations for rendering, collision, and modeling. Implementation: `package/Runtime/SDF/`.
 
 ## Primitives
 

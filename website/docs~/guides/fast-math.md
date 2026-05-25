@@ -1,6 +1,6 @@
 # Fast math
 
-Approximations and intrinsics-backed paths in `Runtime/FastMath/` for hot loops.
+Approximations and intrinsics-backed paths in `package/Runtime/FastMath/` for hot loops.
 
 ## Examples
 
@@ -15,7 +15,7 @@ float a = y.fastatan2(x);        // fast atan2
 
 ## Accuracy
 
-`FastMathAccuracyTests.cs` compares fast paths against `Unity.Mathematics` reference implementations within configured tolerances.
+`package/Tests/FastMathAccuracyTests.cs` compares fast paths against `Unity.Mathematics` reference implementations within configured tolerances.
 
 !!! warning "Know your error budget"
     Use fast variants in inner loops (particles, mesh deform, audio DSP). For critical precision (finance, long integrators), prefer `math.*` reference functions.

@@ -2,7 +2,7 @@
 
 
 
-![Banner](https://raw.githubusercontent.com/LTMX/Unity.mathx/master/.branding/LTMX_Unity_Mathematics_Mathx_Github_Banner_Thin.png)
+![Banner](https://raw.githubusercontent.com/ltmx/Unity.mathx/master/website/.branding/LTMX_Unity_Mathematics_Mathx_Github_Banner_Thin.png)
 
 <p align="center">
   <a href="https://ltmx.github.io/Unity.mathx/">
@@ -24,13 +24,13 @@
 
 <br>
 
-![GitHub package.json version](https://img.shields.io/github/package-json/v/LTMX/Unity.mathx?color=blueviolet&style=flat)
+![GitHub package.json version](https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/ltmx/Unity.mathx/master/package/package.json&label=version&query=$.version&color=blueviolet&style=flat)
 [![openupm](https://img.shields.io/npm/v/com.ltmx.mathematics.mathx?label=openupm&style=flat&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.ltmx.mathematics.mathx)
-![GitHub](https://img.shields.io/github/license/LTMX/Unity.mathx?style=flat)
+![GitHub](https://img.shields.io/github/license/ltmx/Unity.mathx?style=flat)
 [![Made for Unity](https://img.shields.io/badge/Made%20for-Unity-57b9d3.svg?style=flat&logo=unity&color=blueviolet)](https://unity3d.com)
 
 
-<!--![GitHub top language](https://img.shields.io/github/languages/top/LTMX/Unity.mathx?color=success&style=flat)-->
+<!--![GitHub top language](https://img.shields.io/github/languages/top/ltmx/Unity.mathx?color=success&style=flat)-->
 
 
 
@@ -56,9 +56,14 @@
 > ```
 
 
+## Repository layout
+
+- **`package/`** — Unity package (`Runtime/`, `Tests/`, `package.json`)
+- **`website/`** — documentation site (MkDocs guides, DocFX API, GitHub Pages output)
+
 # ⬇️ Install
 #### Method 1 : <br>
-1. Copy Git Package URL : `https://github.com/LTMX/Unity.mathx.git`
+1. Copy Git Package URL : `https://github.com/ltmx/Unity.mathx.git?path=/package`
 2. In Unity : `Window > Package Manager > Add Package From Git URL`
 
 #### Method 2 : <br>
@@ -148,9 +153,9 @@ Topic guides: [fluent chains](https://ltmx.github.io/Unity.mathx/guides/fluent-c
 
 ## Tests
 
-Edit Mode tests ship in `Tests/` (Unity Test Framework). Package tests require `"testables": ["com.ltmx.mathematics.mathx"]` in your **project** `Packages/manifest.json` (plus `com.unity.test-framework`). Then open **Window → General → Test Runner → Edit Mode**.
+Edit Mode tests ship in `package/Tests/` (Unity Test Framework). Package tests require `"testables": ["com.ltmx.mathematics.mathx"]` in your **project** `Packages/manifest.json` (plus `com.unity.test-framework`). Then open **Window → General → Test Runner → Edit Mode**.
 
-See [docs~/QUALITY.md](docs~/QUALITY.md) or the [Quality page](https://ltmx.github.io/Unity.mathx/quality/) for setup, golden-value regeneration, and IL2CPP validation.
+See [website/docs~/QUALITY.md](website/docs~/QUALITY.md) or the [Quality page](https://ltmx.github.io/Unity.mathx/quality/) for setup, golden-value regeneration, and IL2CPP validation.
 
 <br>
 
@@ -174,4 +179,4 @@ See [docs~/QUALITY.md](docs~/QUALITY.md) or the [Quality page](https://ltmx.gith
 <br>
 
 ## 📜 LICENSING
-<p>This project is licensed under the MIT License (<a href="https://github.com/LTMX/Unity.mathx/blob/master/LICENSE.md">License</a>)</p>
+<p>This project is licensed under the MIT License (<a href="https://github.com/ltmx/Unity.mathx/blob/master/package/LICENSE.md">License</a>)</p>

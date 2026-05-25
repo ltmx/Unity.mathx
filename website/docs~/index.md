@@ -8,7 +8,7 @@
     <div class="mathx-hero__actions">
       <a href="getting-started/" class="md-button md-button--primary">Get started</a>
       <a href="api/" class="md-button">API reference</a>
-      <a href="https://github.com/LTMX/Unity.mathx" class="md-button">GitHub</a>
+      <a href="https://github.com/ltmx/Unity.mathx" class="md-button">GitHub</a>
     </div>
     <span class="mathx-hero__package">com.ltmx.mathematics.mathx</span>
   </div>

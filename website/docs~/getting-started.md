@@ -19,7 +19,7 @@ Install **Unity.mathx** in a few minutes. Requires Unity.Mathematics and Burst f
 
 ### Git URL (recommended)
 
-1. Copy: `https://github.com/LTMX/Unity.mathx.git`
+1. Copy: `https://github.com/ltmx/Unity.mathx.git?path=/package`
 2. Unity: **Window → Package Manager → + → Add package from git URL**
 
 ### OpenUPM
@@ -30,7 +30,7 @@ openupm add com.ltmx.mathematics.mathx
 
 ### Local disk
 
-Download a [release](https://github.com/LTMX/Unity.mathx/releases) zip, then **Add package from disk** and select `package.json`.
+Download a [release](https://github.com/ltmx/Unity.mathx/releases) zip, then **Add package from disk** and select `package.json` at the root of the unzipped folder.
 
 ## Usage
 

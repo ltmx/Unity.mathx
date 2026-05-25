@@ -3,9 +3,9 @@ site_url: https://ltmx.github.io/Unity.mathx/
 site_description: Extension library for Unity.Mathematics — fluent chains, noise, SDF, fast math, and Burst jobs.
 site_author: LTMX
 copyright: Copyright &copy; LTMX
-repo_url: https://github.com/LTMX/Unity.mathx
-repo_name: LTMX/Unity.mathx
-edit_uri: edit/master/docs~/
+repo_url: https://github.com/ltmx/Unity.mathx
+repo_name: ltmx/Unity.mathx
+edit_uri: edit/master/website/docs~/
 
 docs_dir: docs~
 site_dir: site~
@@ -74,7 +74,7 @@ extra_css:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/LTMX/Unity.mathx
+      link: https://github.com/ltmx/Unity.mathx
     - icon: fontawesome/brands/unity
       link: https://openupm.com/packages/com.ltmx.mathematics.mathx
 

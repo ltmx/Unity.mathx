@@ -39,10 +39,10 @@
       "_enableSearch": true,
       "_appBasePath": "/Unity.mathx/api",
       "_gitContribute": {
-        "repo": "https://github.com/LTMX/Unity.mathx",
+        "repo": "https://github.com/ltmx/Unity.mathx",
         "branch": "master"
       }
     },
-    "template": ["default", "modern"]
+    "template": ["default", "modern", "templates/mathx"]
   }
 }

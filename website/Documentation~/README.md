@@ -1,10 +1,15 @@
 # Build documentation locally
 
-This folder is named **`Documentation~`** so Unity **ignores it entirely** when mathx is imported as a UPM package (trailing `~` is a Unity convention).
+All website assets live under **`website/`** at the repo root. Unity package code is in **`package/`**.
 
-The same applies to **`docs~`**, **`overrides~`**, and **`site~`** at the package root — MkDocs guides, theme overrides, and local build output.
+Inside `website/`:
 
-DocFX stubs use `Stubs/Unity.Stubs.stub` (not `.cs`). Never commit `bin/`, `obj/`, or `.dll` outputs — Unity loads them as plugins and conflicts with `Mathematics.Mathx.asmdef`.
+- **`docs~`** — MkDocs guide source
+- **`Documentation~`** — DocFX API build
+- **`overrides~`** — MkDocs theme overrides
+- **`site~`** — local MkDocs output (gitignored)
+
+DocFX stubs use `Stubs/Unity.Stubs.stub` (not `.cs`). Never commit `bin/`, `obj/`, or `.dll` outputs.
 
 ## Prerequisites
 
@@ -15,17 +20,19 @@ DocFX stubs use `Stubs/Unity.Stubs.stub` (not `.cs`). Never commit `bin/`, `obj/
 
 ```bash
 # API reference (DocFX)
-cd Documentation~
+cd website/Documentation~
 dotnet build Mathx.Docs.csproj
 dotnet tool install -g docfx   # once
 docfx metadata docfx.json
+python tools/organize_mathx_api.py
 docfx build docfx.json
+python tools/patch_mathx_hub.py
 
 # Merge API into docs~ before MkDocs (included in site~ output)
-rm -rf docs~/api
-mkdir -p docs~/api
-cp -r Documentation~/api/_site/* docs~/api/
-cp docs~/api-stub/index.html docs~/api/index.html
+rm -rf ../docs~/api
+mkdir -p ../docs~/api
+cp -r api/_site/* ../docs~/api/
+cp ../docs~/api-stub/index.html ../docs~/api/index.html
 
 # Guides (MkDocs Material)
 cd ..
