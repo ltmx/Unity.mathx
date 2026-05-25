@@ -16,6 +16,14 @@ namespace Unity.Mathematics
 		[MI(IL)] public static float simplex3(this float3 v) => snoise(v);
 		[MI(IL)] public static float simplex4(this float4 v) => snoise(v);
 
+		[MI(IL)] public static float3 simplex2Derivatives(this float2 v) => snoise_grad(v);
+		[MI(IL)] public static float4 simplex3Derivatives(this float3 v) => snoise_grad(v);
+
+		[MI(IL)] public static float4 bcc4(this float3 pos) => Bcc4NoiseClassic(pos);
+		[MI(IL)] public static float4 bcc8(this float3 pos) => Bcc8NoiseClassic(pos);
+		[MI(IL)] public static float4 bcc4Plane(this float3 pos) => Bcc4NoisePlaneFirst(pos);
+		[MI(IL)] public static float4 bcc8Plane(this float3 pos) => Bcc8NoisePlaneFirst(pos);
+
 		[MI(IL)] public static float perlin2(this float2 v) => cnoise(v);
 		[MI(IL)] public static float perlin3(this float3 v) => cnoise(v);
 		[MI(IL)] public static float perlin2Periodic(this float2 v, float2 period) => pnoise(v, period);

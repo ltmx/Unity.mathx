@@ -690,7 +690,7 @@ namespace Unity.Mathematics
 			// To make all gradients the same length, we only need to shorten the
 			// second type of vector. We also put in the whole noise scale constant.
 			// The compiler should reduce it into the existing floats. I think.
-			grad *= (1 - 042942436724648037f * type) * 32.80201376986577f;
+			grad *= (1 - 0.042942436724648037f * type) * 32.80201376986577f;
 
 			return grad;
 		}
@@ -788,7 +788,7 @@ namespace Unity.Mathematics
 			// To make all gradients the same length, we only need to shorten the
 			// second type of vector. We also put in the whole noise scale constant.
 			// The compiler should reduce it into the existing floats. I think.
-			grad *= (1 - 042942436724648037f * type) * 3.5946317686139184f;
+			grad *= (1 - 0.042942436724648037f * type) * 3.5946317686139184f;
 
 			return grad;
 		}
