@@ -69,10 +69,11 @@ jobs:
             -x ".cursorignore" \
             -x "Tests/*" \
             -x "Documentation~/*" \
-            -x "docs/*" \
+            -x "docs~/*" \
+            -x "overrides~/*" \
             -x "mkdocs.yml" \
             -x "requirements-docs.txt" \
-            -x "site/*"
+            -x "site~/*"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2

@@ -2,9 +2,12 @@
 !Documentation~/**/*.csproj
 *.csproj.meta
 
-# Documentation builds (Documentation~ trailing ~ = Unity ignores folder on import)
-site/
-docs/api/
+# Documentation builds (~ suffix = Unity ignores folder on import)
+site~/
+docs~/api/
+docs.meta
+overrides.meta
+site.meta
 Documentation~/api/
 Documentation~/**/*.meta
 Documentation~/**/bin/

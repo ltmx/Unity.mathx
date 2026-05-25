@@ -46,10 +46,10 @@ jobs:
 
       - name: Stage API into docs tree
         run: |
-          rm -rf docs/api
-          mkdir -p docs/api
-          cp -r Documentation~/api/_site/* docs/api/
-          cp docs/api-stub/index.html docs/api/index.html
+          rm -rf docs~/api
+          mkdir -p docs~/api
+          cp -r Documentation~/api/_site/* docs~/api/
+          cp docs~/api-stub/index.html docs~/api/index.html
 
       - name: Install MkDocs
         run: pip install -r requirements-docs.txt
@@ -60,7 +60,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: site~
 
   deploy:
     needs: build

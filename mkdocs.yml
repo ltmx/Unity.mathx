@@ -5,13 +5,14 @@ site_author: LTMX
 copyright: Copyright &copy; LTMX
 repo_url: https://github.com/LTMX/Unity.mathx
 repo_name: LTMX/Unity.mathx
-edit_uri: edit/master/docs/
+edit_uri: edit/master/docs~/
 
-docs_dir: docs
+docs_dir: docs~
+site_dir: site~
 
 theme:
   name: material
-  custom_dir: overrides
+  custom_dir: overrides~
   language: en
   logo: assets/branding/logo-128.png
   favicon: assets/branding/logo-128.png

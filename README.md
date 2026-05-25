@@ -133,7 +133,7 @@ Topic guides: [fluent chains](https://ltmx.github.io/Unity.mathx/guides/fluent-c
 
 Edit Mode tests ship in `Tests/` (Unity Test Framework). Package tests require `"testables": ["com.ltmx.mathematics.mathx"]` in your **project** `Packages/manifest.json` (plus `com.unity.test-framework`). Then open **Window → General → Test Runner → Edit Mode**.
 
-See [docs/quality.md](docs/quality.md) or the [Quality page](https://ltmx.github.io/Unity.mathx/quality/) for setup, golden-value regeneration, and IL2CPP validation.
+See [docs~/QUALITY.md](docs~/QUALITY.md) or the [Quality page](https://ltmx.github.io/Unity.mathx/quality/) for setup, golden-value regeneration, and IL2CPP validation.
 
 <br>
 
