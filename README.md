@@ -4,7 +4,26 @@
 
 ![Banner](https://raw.githubusercontent.com/LTMX/Unity.mathx/master/.branding/LTMX_Unity_Mathematics_Mathx_Github_Banner_Thin.png)
 
-<!-- ![GitHub repo size](https://img.shields.io/github/repo-size/LTMX/Unity.mathx) -->
+<p align="center">
+  <a href="https://ltmx.github.io/Unity.mathx/">
+    <img alt="Read the documentation" src="https://img.shields.io/badge/📖_Documentation-ltmx.github.io%2FUnity.mathx-7b4ae2?style=for-the-badge&logo=readthedocs&logoColor=white">
+  </a>
+  &nbsp;
+  <a href="https://ltmx.github.io/Unity.mathx/api/">
+    <img alt="API reference" src="https://img.shields.io/badge/API_Reference-mathx-9d6dff?style=for-the-badge">
+  </a>
+</p>
+
+<p align="center">
+  <strong>Guides</strong> · <a href="https://ltmx.github.io/Unity.mathx/getting-started/">Getting started</a> ·
+  <a href="https://ltmx.github.io/Unity.mathx/guides/fluent-chains/">Fluent chains</a> ·
+  <a href="https://ltmx.github.io/Unity.mathx/guides/noise/">Noise</a> ·
+  <a href="https://ltmx.github.io/Unity.mathx/guides/sdf/">SDF</a> ·
+  <a href="https://ltmx.github.io/Unity.mathx/guides/jobify/">Jobify</a>
+</p>
+
+<br>
+
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/LTMX/Unity.mathx?color=blueviolet&style=flat)
 [![openupm](https://img.shields.io/npm/v/com.ltmx.mathematics.mathx?label=openupm&style=flat&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.ltmx.mathematics.mathx)
 ![GitHub](https://img.shields.io/github/license/LTMX/Unity.mathx?style=flat)
@@ -19,8 +38,6 @@
 <br>
 
 # Extension Library for [Unity.Mathematics](https://github.com/Unity-Technologies/Unity.Mathematics) & quality of life improvements !
-
-**Documentation:** [ltmx.github.io/Unity.mathx](https://ltmx.github.io/Unity.mathx/) — guides, cookbooks, and [API reference](https://ltmx.github.io/Unity.mathx/api/).
 
 <br>
 
